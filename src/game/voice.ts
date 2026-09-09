@@ -8,6 +8,8 @@
 // missing files are silent no-ops, so the game runs fine before any audio exists.
 
 import { VOICE_LINES } from './voice_manifest.generated';
+import { VOICE_LINES_ZH } from './voice_manifest.zh_CN.generated';
+import { getLanguage } from '../ui/i18n';
 
 // Voices sit slightly under their slider value so NPC dialogue doesn't overpower
 // the SFX/ambience mix.
@@ -106,7 +108,9 @@ export class GameVoice {
   /** Play the clip for a line key, if one exists and voice-over is enabled. */
   play(lineKey: string, opts?: { gain?: number }): void {
     if (!this.enabled) return;
-    const src = VOICE_LINES[lineKey];
+    const lang = getLanguage();
+    const isZh = lang === 'zh_CN' || lang === 'zh_TW';
+    const src = (isZh && (VOICE_LINES_ZH as Record<string, string>)[lineKey]) || VOICE_LINES[lineKey];
     if (!src) return;
     // The one-time room introduction is longer than the walk to Ignivar's
     // aggro edge. Preserve it for this player and queue the latest encounter
