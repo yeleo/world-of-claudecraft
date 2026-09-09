@@ -3447,26 +3447,28 @@ async function startGame(
         };
       },
     };
-    attachWocMarketExchange({
-      hud,
-      api,
-      online,
-      wallet: {
-        linkedPubkey: () => linkedWalletPubkey,
-        load: loadWallet,
-        desktopAuthorize: desktopWalletBrowserHandoffAvailable() ? wocDesktopAuthorize : null,
-      },
-    }).catch((err) => console.warn('[woc] exchange attach failed', err));
-    if (!NATIVE_APP) {
-      hud.attachClaudium(claudiumHooks);
-      if (
-        shouldShowStorePromo({
-          nativeApp: NATIVE_APP,
-          desktopApp: DESKTOP_APP,
-          mobileTouch: document.body.classList.contains('mobile-touch'),
-        })
-      ) {
-        hud.attachStorePromoCard();
+    if (WALLET_ENABLED) {
+      attachWocMarketExchange({
+        hud,
+        api,
+        online,
+        wallet: {
+          linkedPubkey: () => linkedWalletPubkey,
+          load: loadWallet,
+          desktopAuthorize: desktopWalletBrowserHandoffAvailable() ? wocDesktopAuthorize : null,
+        },
+      }).catch((err) => console.warn('[woc] exchange attach failed', err));
+      if (!NATIVE_APP) {
+        hud.attachClaudium(claudiumHooks);
+        if (
+          shouldShowStorePromo({
+            nativeApp: NATIVE_APP,
+            desktopApp: DESKTOP_APP,
+            mobileTouch: document.body.classList.contains('mobile-touch'),
+          })
+        ) {
+          hud.attachStorePromoCard();
+        }
       }
     }
   }
@@ -7997,7 +7999,7 @@ async function wocDesktopAuthorize(action: DesktopWalletBrowserAction) {
 // website-distributed Electron shell opts in through a trusted IPC probe.
 let WALLET_ENABLED = false;
 const walletCapabilityReady = resolveWalletCapability({
-  disabled: String(import.meta.env.VITE_WALLET_DISABLED ?? '').trim() === '1',
+  disabled: String(import.meta.env.VITE_WALLET_DISABLED ?? '1').trim() !== '0',
   nativeApp: NATIVE_APP,
   desktopApp: DESKTOP_APP,
   bridge: NATIVE_APP ? nativeSolanaMobileBridge : DESKTOP_APP ? desktopBridge() : null,
