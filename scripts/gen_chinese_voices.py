@@ -11,6 +11,7 @@
 import argparse
 import hashlib
 import json
+import concurrent.futures
 import os
 import re
 import sys
@@ -302,20 +303,34 @@ def update_manifest_file(manifest_keys: dict[str, str], out_dir: Path):
     print(f"\n[Manifest] 已更新中文语音清单: {MANIFEST_ZH_FILE.relative_to(ROOT)} ({len(sorted_entries)}/{len(manifest_keys)} 条可用)")
 
 
-def synthesize_single_line(client: Client, item: dict, dest_path: Path, max_retries: int = 3) -> str:
-    """调用本地 Qwen3-TTS 合成单条音频并原子转码保存为 MP3"""
+def get_tts_client(api_url: str) -> Client:
+    """创建或重建 Gradio Client"""
+    return Client(api_url)
+
+
+def run_predict_with_timeout(client: Client, item: dict, timeout_sec: int = 45):
+    """带超时控制的单次调用"""
+    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+        future = executor.submit(
+            client.predict,
+            text=item["text"],
+            language_label="中文 / Chinese",
+            instruct=item["instruct"],
+            max_new_tokens=2048,
+            api_name="/synth_voicedesign"
+        )
+        return future.result(timeout=timeout_sec)
+
+
+def synthesize_single_line(client_ref: list, api_url: str, item: dict, dest_path: Path, max_retries: int = 3) -> str:
+    """调用本地 Qwen3-TTS 合成单条音频（支持超时熔断与连接重置）"""
     dest_path.parent.mkdir(parents=True, exist_ok=True)
     tmp_mp3 = dest_path.with_suffix(".tmp.mp3")
 
     for attempt in range(max_retries):
         try:
-            res = client.predict(
-                text=item["text"],
-                language_label="中文 / Chinese",
-                instruct=item["instruct"],
-                max_new_tokens=2048,
-                api_name="/synth_voicedesign"
-            )
+            client = client_ref[0]
+            res = run_predict_with_timeout(client, item, timeout_sec=45)
             wav_path = res[1]
             if not wav_path or not Path(wav_path).exists():
                 raise RuntimeError(f"TTS 服务未返回有效音频路径: {res}")
@@ -334,13 +349,17 @@ def synthesize_single_line(client: Client, item: dict, dest_path: Path, max_retr
         except Exception as e:
             if tmp_mp3.exists():
                 tmp_mp3.unlink(missing_ok=True)
+            # 异常时尝试重置 client 连接
+            try:
+                client_ref[0] = get_tts_client(api_url)
+            except Exception:
+                pass
             if attempt < max_retries - 1:
                 wait_sec = 2 * (attempt + 1)
-                print(f"\n  [Retry] 生成失败 ({e})，{wait_sec}s 后重试...", end="", flush=True)
+                print(f"\n  [Retry] 生成异常 ({type(e).__name__}: {e})，重置连接并在 {wait_sec}s 后重试...", end="", flush=True)
                 time.sleep(wait_sec)
             else:
                 raise e
-
 
 def main():
     parser = argparse.ArgumentParser(description="World of Claudecraft Qwen3-TTS 本地中文语音生成工具")
@@ -428,7 +447,7 @@ def main():
     # 初始化 TTS Client
     print(f"\n[*] 正在连接本地 Qwen3-TTS 服务: {args.api_url} ...")
     try:
-        client = Client(args.api_url)
+        client_ref = [get_tts_client(args.api_url)]
         print("[*] 连接成功！开始进行增量语音合成...")
     except Exception as e:
         print(f"[Error] 无法连接到 Qwen3-TTS 服务: {e}")
@@ -443,7 +462,7 @@ def main():
         print(f"[{idx}/{len(pending)}] {item['key']} ({item['voice_npc']}, {len(item['text'])}字) [{reason}] ... ", end="", flush=True)
         t0 = time.time()
         try:
-            h12 = synthesize_single_line(client, item, dest_file)
+            h12 = synthesize_single_line(client_ref, args.api_url, item, dest_file)
             dt = time.time() - t0
             print(f"OK ({dt:.1f}s)")
             
