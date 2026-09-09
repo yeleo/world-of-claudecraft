@@ -38,7 +38,8 @@ services:
         # Build-time public client config inlined into the bundle (see .env.example).
         VITE_TURNSTILE_SITEKEY: ${VITE_TURNSTILE_SITEKEY:-}
         VITE_REOWN_PROJECT_ID: ${VITE_REOWN_PROJECT_ID:-}
-        VITE_WALLET_DISABLED: ${VITE_WALLET_DISABLED:-}
+        VITE_WALLET_DISABLED: ${VITE_WALLET_DISABLED:-1}
+        VITE_DISCORD_DISABLED: ${VITE_DISCORD_DISABLED:-1}
     container_name: eastbrook-game
     restart: unless-stopped
     depends_on:
@@ -86,7 +87,7 @@ services:
       PBE_BOOST_ACCOUNTS: ${PBE_BOOST_ACCOUNTS:-}
       # Target the game server 302-redirects /wiki to when hit directly (not via the
       # reverse proxy). Public origin in prod; localhost fallback for local dev.
-      WIKI_URL: ${WIKI_URL:-http://localhost:8080/wiki/index.php/Main_Page}
+      WIKI_URL: ${WIKI_URL:-/wiki/}
       # Runtime public origin for server-generated absolute URLs such as player-card
       # Open Graph images. Set per environment, for example dev vs production.
       PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-}
@@ -399,6 +400,8 @@ services:
   mediawiki-db:
     image: mariadb:11
     container_name: eastbrook-wiki-db
+    profiles:
+      - wiki
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${MEDIAWIKI_DB_NAME:-mediawiki}
@@ -418,6 +421,8 @@ services:
       context: .
       dockerfile: mediawiki/Dockerfile
     container_name: eastbrook-wiki
+    profiles:
+      - wiki
     restart: unless-stopped
     depends_on:
       mediawiki-db:
