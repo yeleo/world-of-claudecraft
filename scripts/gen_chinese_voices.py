@@ -308,7 +308,7 @@ def get_tts_client(api_url: str) -> Client:
     return Client(api_url)
 
 
-def run_predict_with_timeout(client: Client, item: dict, timeout_sec: int = 45):
+def run_predict_with_timeout(client: Client, item: dict, timeout_sec: int = 240):
     """带超时控制的单次调用"""
     with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
         future = executor.submit(
@@ -330,7 +330,7 @@ def synthesize_single_line(client_ref: list, api_url: str, item: dict, dest_path
     for attempt in range(max_retries):
         try:
             client = client_ref[0]
-            res = run_predict_with_timeout(client, item, timeout_sec=45)
+            res = run_predict_with_timeout(client, item, timeout_sec=240)
             wav_path = res[1]
             if not wav_path or not Path(wav_path).exists():
                 raise RuntimeError(f"TTS 服务未返回有效音频路径: {res}")
