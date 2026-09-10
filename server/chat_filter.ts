@@ -75,9 +75,12 @@ export function normalizeWord(term: string): string {
   return foldConfusables(term).replace(/[^a-z\u4e00-\u9fa5]/g, '');
 }
 
-/** Split a raw blob (newline / comma / space separated) into normalized terms. */
+/** Split a raw blob (newline / comma / space separated) into normalized terms. Ignores # comments. */
 export function parseWordList(raw: string): string[] {
   return raw
+    .split('\n')
+    .map((line) => line.replace(/#.*$/, '').trim())
+    .join(' ')
     .split(/[\s,]+/)
     .map((t) => normalizeWord(t))
     .filter((t) => t.length > 0);

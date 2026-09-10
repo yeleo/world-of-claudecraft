@@ -47,6 +47,7 @@ describe('parseWordList', () => {
   it('splits on whitespace/commas and normalizes each term', () => {
     expect(parseWordList('Fuck, sh1t\n bitch')).toEqual(['fuck', 'shit', 'bitch']);
     expect(parseWordList('   ')).toEqual([]);
+    expect(parseWordList('# header comment\nfoo, bar # inline comment\nbaz')).toEqual(['foo', 'bar', 'baz']);
   });
 });
 
