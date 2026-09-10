@@ -262,6 +262,8 @@ export interface OptionsEnv {
    *  shell installed before it shipped. Absent (the web/offline callers) means
    *  the row never renders. */
   desktopDiscordPresence?: boolean;
+  /** walletUiEnabled(): when false, suppresses wallet and daily rewards toggles. */
+  walletEnabled?: boolean;
 }
 
 const slider = (
@@ -842,10 +844,16 @@ export function buildInterfaceControls(
     boolToggle(s, 'invertLookY', 'hud.options.invertLookY'),
     boolToggle(s, 'landingHighContrast', 'hudChrome.options.highContrastBackground'),
     boolToggle(s, 'showDevBadges', 'hudChrome.options.showDevBadges'),
-    boolToggle(s, 'showWalletOnCharacterScreen', 'hudChrome.options.showWalletOnCharacterScreen'),
-    boolToggle(s, 'showWalletOnPlayerCard', 'hudChrome.options.showWalletOnPlayerCard'),
+    ...(env?.walletEnabled !== false
+      ? [
+          boolToggle(s, 'showWalletOnCharacterScreen', 'hudChrome.options.showWalletOnCharacterScreen'),
+          boolToggle(s, 'showWalletOnPlayerCard', 'hudChrome.options.showWalletOnPlayerCard'),
+        ]
+      : []),
     boolToggle(s, 'showPlaytime', 'hudChrome.options.showPlaytime'),
-    boolToggle(s, 'showDailyRewardsChest', 'hudChrome.options.showDailyRewardsChest'),
+    ...(env?.walletEnabled !== false
+      ? [boolToggle(s, 'showDailyRewardsChest', 'hudChrome.options.showDailyRewardsChest')]
+      : []),
     boolToggle(s, 'showItemLevel', 'hudChrome.options.showItemLevel'),
     boolToggle(s, 'showReliquaryTracker', 'hudChrome.options.showReliquaryTracker'),
     boolToggle(s, 'showOwnNameplate', 'hudChrome.options.showOwnNameplate'),

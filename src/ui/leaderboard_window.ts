@@ -68,6 +68,8 @@ export interface LeaderboardWindowDeps {
   onVisibilityChange?(): void;
   /** The viewer's developer-badge display preference; also hides the Developers tab. */
   showDevBadges(): boolean;
+  /** Whether daily rewards are enabled. Hides the Daily tab when false. */
+  dailyRewardsEnabled?(): boolean;
 }
 
 /** Where focus should land after a (re)render: into the window on open, back onto
@@ -189,6 +191,9 @@ export class LeaderboardWindow {
     if (this.board === 'devs') {
       await this.renderDevBoard(el, world, focus, seq);
       return;
+    }
+    if (this.board === 'daily' && this.deps.dailyRewardsEnabled && !this.deps.dailyRewardsEnabled()) {
+      this.board = 'players';
     }
     if (this.board === 'daily') {
       await this.renderDailyBoard(el, world, focus, seq);
@@ -478,7 +483,9 @@ export class LeaderboardWindow {
       tab('guilds', t('hudChrome.leaderboard.tabGuilds')) +
       tab('deeds', t('hudChrome.deeds.lbTab')) +
       (this.deps.showDevBadges() ? tab('devs', t('hudChrome.leaderboard.tabDevs')) : '') +
-      tab('daily', t('hudChrome.dailyRewards.leaderboard')) +
+      ((this.deps.dailyRewardsEnabled?.() ?? true)
+        ? tab('daily', t('hudChrome.dailyRewards.leaderboard'))
+        : '') +
       `</div>`
     );
   }

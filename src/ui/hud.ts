@@ -5781,6 +5781,7 @@ export class Hud {
     ...this.windowFocus('#leaderboard-window'),
     onVisibilityChange: () => this.syncAnyWindowOpenState(),
     showDevBadges: () => this.optionsHooks?.settings.get('showDevBadges') ?? true,
+    dailyRewardsEnabled: () => this.dailyRewardsEnabled(),
   });
   // The signpost guild board (src/ui/hud/guild_board/): opened by the world's
   // noticeboard interaction, never a menu button; the board lives in the world.

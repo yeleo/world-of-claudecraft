@@ -134,6 +134,7 @@ import {
   withGraphicsDraft,
 } from './options_view';
 import { PerfOverlaySettingsPanel, type PerfSettingsHost } from './perf_overlay_settings';
+import { walletUiEnabled } from './wallet_balance';
 import { type RestartRequestPhase, restartStripState } from './restart_strip_core';
 import { buildRestartStrip, paintRestartStrip } from './restart_strip_painter';
 import { settingsCard, subhead } from './settings_controls';
@@ -1594,6 +1595,7 @@ export class OptionsWindow {
       nativeShell: isNativeAppShell(),
       desktopGpuPref: desktopGpuPrefSupported(desktopBridge()),
       desktopDiscordPresence: desktopDiscordPresenceSupported(desktopBridge()),
+      walletEnabled: walletUiEnabled(),
     };
     const controls = hooks ? buildInterfaceControls(this.settingsSource(hooks), env) : [];
 

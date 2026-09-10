@@ -1490,7 +1490,7 @@ async function startGame(
     initSoftwareRenderNotice(DESKTOP_APP);
     loadPhaseStart('hud-ctor');
     hud = new Hud(world, renderer, keybinds, {
-      dailyRewardsEnabled: NATIVE_APP ? await walletCapabilityReady : true,
+      dailyRewardsEnabled: await walletCapabilityReady,
       devCommandsEnabled: import.meta.env.DEV,
       constrainedMemory: GFX.constrainedMemory,
     });
@@ -9317,6 +9317,7 @@ async function wireWallet(): Promise<void> {
   // Feature-gate: when explicitly disabled, remove the wallet row entirely and
   // never download the wallet chunk.
   if (!WALLET_ENABLED) {
+    document.querySelector('.cs-wallet-group')?.remove();
     document.querySelector('.cs-wallet')?.remove();
     document.querySelector('.cs-wallet-hidden-note')?.remove();
     document.querySelector('.account-wallet-card')?.remove();

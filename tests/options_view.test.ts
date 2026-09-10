@@ -1077,6 +1077,18 @@ describe('options_view: interface dispatch matrix (cluster 5)', () => {
     expect(find(off, 'forceHighPerfGpu')).toMatchObject({ control: 'boolToggle', on: false });
   });
 
+  it('omits wallet and daily rewards toggles when walletEnabled is false', () => {
+    const withoutWallet = buildInterfaceControls(makeSource(), {
+      touch: false,
+      nativeShell: false,
+      walletEnabled: false,
+    });
+    expect(find(withoutWallet, 'showWalletOnCharacterScreen')).toBeUndefined();
+    expect(find(withoutWallet, 'showWalletOnPlayerCard')).toBeUndefined();
+    expect(find(withoutWallet, 'showDailyRewardsChest')).toBeUndefined();
+    expect(find(withoutWallet, 'showPlaytime')).toBeTruthy();
+  });
+
   // Regression pin for the buff-placement bug (issue: buffs on the player
   // frame flip above/below unpredictably): the above/below choice is now the
   // player's OWN setting (auraBarBelowFrame), gated on aurasOnPlayerFrame the

@@ -351,7 +351,7 @@ describe('WOC Store window contract', () => {
   });
 
   it('keeps the store and Claudium out of native builds while gating Daily Rewards by wallet capability', () => {
-    expect(main).toContain('dailyRewardsEnabled: NATIVE_APP ? await walletCapabilityReady : true');
+    expect(main).toContain('dailyRewardsEnabled: await walletCapabilityReady');
     expect(main).toContain('devCommandsEnabled: import.meta.env.DEV');
     const economyWiring = main.slice(
       anchor(main, 'if (!NATIVE_APP) {', anchor(main, 'const claudiumHooks')),
