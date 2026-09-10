@@ -11332,11 +11332,11 @@ export const zh_CN: EnTranslations = {
       },
       "melting_acid": {
         "name": "溶解酸",
-        "description": "向目标泼洒腐蚀性毒液，造成 {damage} 点自然伤害，并使其护甲降低 5%，持续 12 秒。"
+        "description": "为你的武器涂抹强酸，持续 30 分钟。你的每次近战攻击都会向目标泼洒腐蚀性强酸，使其护甲降低 5%，持续 12 秒。"
       },
       "nightshade_coating": {
         "name": "夜影涂层",
-        "description": "用夜影覆盖目标，造成 {damage} 点自然伤害，并使其受到的治疗降低 25%，持续 12 秒。"
+        "description": "为你的武器涂抹龙葵毒素，持续 30 分钟。你的每次近战攻击都会使目标沾染龙葵，使其受到的治疗效果降低 25%，持续 12 秒。"
       },
       "expose_armor": {
         "name": "护甲突破",
@@ -11352,11 +11352,11 @@ export const zh_CN: EnTranslations = {
       },
       "instant_poison": {
         "name": "蝰蛇之咬",
-        "description": "为你的武器淬毒，持续 30 分钟，使你的每次近战攻击额外造成 8 点自然伤害。"
+        "description": "为你的武器淬毒，持续 30 分钟，使你的每次近战攻击额外造成 {damage} 点自然伤害。"
       },
       "deadly_poison": {
         "name": "溃烂毒液",
-        "description": "为你的武器淬毒，持续 30 分钟，使你的每次近战攻击额外造成 14 点自然伤害。"
+        "description": "为你的武器淬毒，持续 30 分钟。你的每次近战攻击都会使目标叠加一层剧毒（最多 5 层）并刷新 12 秒持续时间。每层剧毒每 2 秒造成 {damage} 点自然伤害。"
       },
       "blind": {
         "name": "扬尘",
@@ -12463,7 +12463,7 @@ export const zh_CN: EnTranslations = {
       },
       "temporal_echo": {
         "name": "时光回响",
-        "description": "以更健康时刻的回响标记一名盟友，立即恢复{damage}点生命值。{duration}秒内，你造成的奥术伤害有一部分会通过回响转化为对其的治疗。"
+        "description": "以更健康时刻的回响标记一名盟友，立即为其恢复 {damage} 点生命值。在 {duration} 秒内，你的其他单体奥术伤害的 {echoSinglePct}% 以及群体奥术伤害的 {echoAreaPct}% 会转化为对其的治疗。以太涌动和以太飞弹则会按造成伤害的 {echoDriverPct}% 为其提供治疗。"
       },
       "temporal_cascade": {
         "name": "时光奔流",
@@ -12608,7 +12608,7 @@ export const zh_CN: EnTranslations = {
       },
       "scouring_mercy": {
         "name": "涤罪慈悲",
-        "description": "以神圣之力净化一名敌人，或立即救治一名友方目标。教义专属技能。"
+        "description": "对一名敌人造成 {damage} 点神圣伤害，或为一名友方目标恢复 {healing} 点生命值。伤害受法术强度加成，治疗受治疗强度加成。教义专属技能。"
       },
       "seraphic_vigil": {
         "name": "炽天使守望",
