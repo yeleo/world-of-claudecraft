@@ -91,5 +91,5 @@ export function handleKeyboardActivation(event: KeyboardEvent, callback: () => v
  */
 export function validateCharacterName(name: string): boolean {
   const trimmed = name.trim();
-  return /^[A-Za-z][A-Za-z' -]{1,15}$/.test(trimmed);
+  return /^[A-Za-z\u4e00-\u9fa5][A-Za-z\u4e00-\u9fa5' -]{1,15}$/.test(trimmed);
 }

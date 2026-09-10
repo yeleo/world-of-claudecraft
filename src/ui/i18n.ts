@@ -76,7 +76,8 @@ export const supportedLanguages = [...SUPPORTED_LANGUAGES] as SupportedLanguage[
 // map (whose keys were the old membership test) is no longer imported.
 const SUPPORTED_SET: ReadonlySet<string> = new Set(SUPPORTED_LANGUAGES);
 
-let currentLanguage: SupportedLanguage = 'en';
+export const DEFAULT_LANGUAGE: SupportedLanguage = 'zh_CN';
+let currentLanguage: SupportedLanguage = DEFAULT_LANGUAGE;
 
 // --- en_XA dev-only pseudo-locale --------------------------------------
 //
@@ -148,18 +149,15 @@ if (typeof window !== 'undefined' && window.location) {
   const params = new URLSearchParams(window.location.search);
   const langParam = params.get('lang');
   if (langParam === DEV_PSEUDO_LOCALE && !isReleaseBuild()) {
-    // Dev-only en_XA pseudo-locale: keep currentLanguage = "en" as the base and flip
-    // the pseudo flag. en_XA is not a SupportedLanguage and is never persisted, so it
-    // cannot leak into supportedLanguages, the picker, or a stored preference. On a
-    // release build this branch is skipped, so ?lang=en_XA degrades to the default.
+    currentLanguage = 'en';
     pseudoActive = true;
   } else if (langParam && isSupportedLanguage(langParam)) {
     currentLanguage = langParam;
   } else {
-    currentLanguage = getStoredLanguage() ?? currentLanguage;
+    currentLanguage = getStoredLanguage() ?? DEFAULT_LANGUAGE;
   }
 } else {
-  currentLanguage = getStoredLanguage() ?? currentLanguage;
+  currentLanguage = getStoredLanguage() ?? DEFAULT_LANGUAGE;
 }
 
 let resolutionRevision = pseudoActive || currentLanguage !== 'en' ? 1 : 0;

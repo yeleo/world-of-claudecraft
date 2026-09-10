@@ -9514,7 +9514,7 @@ export const zh_CN: EnTranslations = {
     "nothingInteract": "附近没有可互动目标。",
     "noEnemyNearby": "附近没有敌人。",
     "characterNameRequired": "请输入角色名称。",
-    "characterNameInvalid": "名称必须为 2-16 个字符，以字母开头，并且只能包含字母、空格、连字符或撇号。",
+    "characterNameInvalid": "名称必须为 2-16 个字符，以字母或汉字开头，并且只能包含汉字、字母、空格、连字符或撇号。",
     "selectClass": "请选择一个职业。",
     "pickClass": "选择一个职业。",
     "returnToLogin": "返回登录",

@@ -183,6 +183,8 @@ describe('Auth Utilities', () => {
       expect(validateCharacterName('Rexxar-Misha')).toBe(true);
       expect(validateCharacterName('  Uther  ')).toBe(true); // check trimming
       expect(validateCharacterName('Ab')).toBe(true); // minimum length 2
+      expect(validateCharacterName('叶雷傲')).toBe(true);
+      expect(validateCharacterName('阿尔萨斯')).toBe(true);
     });
 
     it('rejects invalid character names', () => {

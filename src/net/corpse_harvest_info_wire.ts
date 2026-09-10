@@ -55,7 +55,7 @@ const MATERIAL_ID_SHAPE = /^[\x21-\x7e]+$/;
 
 // Mirrors server/auth.ts validCharNameShape: the actual character-name bound,
 // not an arbitrary display-name limit.
-const RESERVATION_NAME_SHAPE = /^[A-Za-z][A-Za-z' -]{1,15}$/;
+const RESERVATION_NAME_SHAPE = /^[A-Za-z\u4e00-\u9fa5][A-Za-z\u4e00-\u9fa5' -]{1,15}$/;
 
 function isPlainRecord(value: unknown): value is Record<string, unknown> {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) return false;

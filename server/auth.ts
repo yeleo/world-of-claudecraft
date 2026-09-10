@@ -425,7 +425,7 @@ export function validCharName(n: unknown): n is string {
 }
 
 export function validCharNameShape(n: unknown): n is string {
-  return typeof n === 'string' && /^[A-Za-z][A-Za-z' -]{1,15}$/.test(n);
+  return typeof n === 'string' && /^[A-Za-z\u4e00-\u9fa5][A-Za-z\u4e00-\u9fa5' -]{1,15}$/.test(n);
 }
 
 // Server-side canonical form for a character name: trim the ends and collapse

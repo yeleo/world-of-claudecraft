@@ -8155,7 +8155,7 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'errors.nothingInteract': '附近没有可互动目标。',
   'errors.noEnemyNearby': '附近没有敌人。',
   'errors.characterNameRequired': '请输入角色名称。',
-  'errors.characterNameInvalid': '名称必须为 2-16 个字符，以字母开头，并且只能包含字母、空格、连字符或撇号。',
+  'errors.characterNameInvalid': '名称必须为 2-16 个字符，以字母或汉字开头，并且只能包含汉字、字母、空格、连字符或撇号。',
   'errors.selectClass': '请选择一个职业。',
   'errors.pickClass': '选择一个职业。',
   'errors.returnToLogin': '返回登录',
