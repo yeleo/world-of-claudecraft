@@ -99,7 +99,8 @@ services:
       USERNAME_BANLIST: ${USERNAME_BANLIST:-}
       USERNAME_BANLIST_FILE: ${USERNAME_BANLIST_FILE:-}
       CHAT_CENSOR_LIST: ${CHAT_CENSOR_LIST:-}
-      CHAT_CENSOR_FILE: ${CHAT_CENSOR_FILE:-}
+      CHAT_CENSOR_FILE: ${CHAT_CENSOR_FILE:-/app/data/censor/censor_soft.txt}
+      CHAT_FILTER_HARD_FILE: ${CHAT_FILTER_HARD_FILE:-/app/data/censor/censor_hard.txt}
       # Runtime: server-side Turnstile verification (see .env.example). Empty → gate off.
       TURNSTILE_SECRET: ${TURNSTILE_SECRET:-}
       # Runtime: native app attestation for iOS DeviceCheck and Google Play Integrity.
@@ -247,8 +248,6 @@ services:
       PARSE_CENSUS: ${PARSE_CENSUS:-}
       PARSE_CENSUS_HOUR: ${PARSE_CENSUS_HOUR:-}
       WOC_BUILD_VERSION: ${WOC_BUILD_VERSION:-}
-      CHAT_CENSOR_FILE: ${CHAT_CENSOR_FILE:-/app/data/censor/censor_soft.txt}
-      CHAT_FILTER_HARD_FILE: ${CHAT_FILTER_HARD_FILE:-/app/data/censor/censor_hard.txt}
     # loopback-only: the TLS reverse proxy (Caddy) is the public entrance
     ports:
       - "127.0.0.1:8787:8787"
