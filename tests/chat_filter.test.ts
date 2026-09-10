@@ -143,3 +143,30 @@ describe('cleanEscalationConfig', () => {
     });
   });
 });
+
+describe('Chinese chat filter localization', () => {
+  it('normalizes Chinese phrases and strips punctuation/separators', () => {
+    expect(normalizeWord('草.泥-马')).toBe('草泥马');
+    expect(normalizeWord('草.泥-马!')).toBe('草泥马i'); // ! maps to i in leet confusables
+    expect(normalizeWord('外 挂')).toBe('外挂');
+    expect(normalizeWord('私服外挂')).toBe('私服外挂');
+  });
+
+  it('masks Chinese soft words within full sentences without destroying entire message', () => {
+    expect(maskText('你这个笨蛋赶紧走', ['笨蛋'])).toBe('你这个**赶紧走');
+    expect(maskText('笨蛋你真是个笨蛋', ['笨蛋'])).toBe('**你真是个**');
+    expect(maskText('what a shit 东西', ['shit'])).toBe('what a **** 东西');
+  });
+
+  it('detects Chinese hard words embedded in clauses without spaces', () => {
+    expect(findHardWord('大家快来买外挂加QQ群', ['外挂'])).toBe('外挂');
+    expect(findHardWord('最新私服上线送神器', ['私服'])).toBe('私服');
+    expect(findHardWord('正常游戏聊天没有任何问题', ['外挂', '私服'])).toBeNull();
+  });
+
+  it('handles punctuation and whitespace evasion in Chinese phrases', () => {
+    expect(findHardWord('大家快来买外.挂', ['外挂'])).toBe('外挂');
+    expect(findHardWord('大家快来买 外 挂', ['外挂'])).toBe('外挂');
+    expect(findHardWord('买外-挂加群', ['外挂'])).toBe('外挂');
+  });
+});

@@ -247,6 +247,8 @@ services:
       PARSE_CENSUS: ${PARSE_CENSUS:-}
       PARSE_CENSUS_HOUR: ${PARSE_CENSUS_HOUR:-}
       WOC_BUILD_VERSION: ${WOC_BUILD_VERSION:-}
+      CHAT_CENSOR_FILE: ${CHAT_CENSOR_FILE:-/app/data/censor/censor_soft.txt}
+      CHAT_FILTER_HARD_FILE: ${CHAT_FILTER_HARD_FILE:-/app/data/censor/censor_hard.txt}
     # loopback-only: the TLS reverse proxy (Caddy) is the public entrance
     ports:
       - "127.0.0.1:8787:8787"
@@ -254,6 +256,7 @@ services:
       - ${EASTBROOK_MEDIA_DIR:-./media-cache}:/app/dist/media
       - ${EASTBROOK_SFX_DIR:-./sfx-runtime}:/app/sfx-runtime:ro
       - ${PARSE_SPOOL_HOST_DIR:-./parse-spool}:/app/parse-spool
+      - ${CENSOR_DIR:-./data/censor}:/app/data/censor:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
     # Exec form with a node one-liner, deliberately unlike the CMD-SHELL healthcheck

@@ -68,9 +68,11 @@ export function foldConfusables(text: string): string {
     .replace(CONFUSABLE_RE, (ch) => CONFUSABLE_CHARS[ch] ?? ch);
 }
 
-/** Fold a token to its comparable core: de-leet/deburr, then strip non-letters. */
+const HAS_CJK_RE = /[\u4e00-\u9fa5]/;
+
+/** Fold a token to its comparable core: de-leet/deburr, then strip non-letters. Preserves CJK characters for localization. */
 export function normalizeWord(term: string): string {
-  return foldConfusables(term).replace(/[^a-z]/g, '');
+  return foldConfusables(term).replace(/[^a-z\u4e00-\u9fa5]/g, '');
 }
 
 /** Split a raw blob (newline / comma / space separated) into normalized terms. */
@@ -92,9 +94,20 @@ function tokenMatchesSoft(normalizedToken: string, terms: readonly string[]): bo
  */
 export function maskText(text: string, terms: readonly string[]): string {
   if (terms.length === 0) return text;
-  return text.replace(TOKEN_RE, (tok) =>
-    tokenMatchesSoft(normalizeWord(tok), terms) ? '*'.repeat(tok.length) : tok,
-  );
+  return text.replace(TOKEN_RE, (tok) => {
+    const normalized = normalizeWord(tok);
+    if (!tokenMatchesSoft(normalized, terms)) return tok;
+    if (HAS_CJK_RE.test(tok)) {
+      let masked = tok;
+      for (const term of terms) {
+        if (term && normalized.includes(term)) {
+          masked = masked.split(term).join('*'.repeat(term.length));
+        }
+      }
+      return masked;
+    }
+    return '*'.repeat(tok.length);
+  });
 }
 
 // Hard tier: strict whole-token equality (plus a stripped trailing plural "s"),
@@ -105,13 +118,18 @@ export function maskText(text: string, terms: readonly string[]): string {
 function tokenMatchesHard(normalizedToken: string, terms: readonly string[]): boolean {
   if (normalizedToken.length === 0) return false;
   const singular = normalizedToken.endsWith('s') ? normalizedToken.slice(0, -1) : normalizedToken;
-  return terms.some((term) => normalizedToken === term || singular === term);
+  return terms.some((term) =>
+    HAS_CJK_RE.test(term)
+      ? normalizedToken.includes(term)
+      : (normalizedToken === term || singular === term),
+  );
 }
 
 /**
  * First hard term a message hits, or null. This is the SOLE punitive trigger:
  * only a token that — after normalization — equals a configured hard word (or
- * its trailing-"s" plural) counts. An empty list enforces nothing.
+ * its trailing-"s" plural) counts. For CJK, substring containment matches since
+ * Chinese clauses are not space-delimited. An empty list enforces nothing.
  */
 export function findHardWord(text: string, terms: readonly string[]): string | null {
   if (terms.length === 0) return null;
@@ -122,7 +140,23 @@ export function findHardWord(text: string, terms: readonly string[]): string | n
     if (tokenMatchesHard(normalized, terms)) {
       // Return the configured term that fired, for the incident log.
       const singular = normalized.endsWith('s') ? normalized.slice(0, -1) : normalized;
-      return terms.find((term) => normalized === term || singular === term) ?? normalized;
+      return (
+        terms.find((term) =>
+          HAS_CJK_RE.test(term)
+            ? normalized.includes(term)
+            : (normalized === term || singular === term),
+        ) ?? normalized
+      );
+    }
+  }
+  // Check Chinese multi-char terms against full-text normalized (catches evasion like "外.挂", "外 挂")
+  const cjkTerms = terms.filter((t) => HAS_CJK_RE.test(t));
+  if (cjkTerms.length > 0) {
+    const fullNormalized = normalizeWord(text);
+    for (const term of cjkTerms) {
+      if (term.length > 0 && fullNormalized.includes(term)) {
+        return term;
+      }
     }
   }
   return null;

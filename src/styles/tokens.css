@@ -60,9 +60,9 @@
     /* Typography, Cinzel (heraldic display/headings), Alegreya Sans (UI + body),
        Alegreya (serif flavour prose). Legacy token names alias the canonical set
        so every existing usage resolves to the new system. */
-    --font-display: "Cinzel", "Palatino Linotype", Palatino, Georgia, serif;
-    --font-ui: "Alegreya Sans", "Segoe UI", system-ui, "Helvetica Neue", sans-serif;
-    --font-serif: "Alegreya", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-display: "Cinzel", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans SC", "SimHei", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-ui: "Alegreya Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans SC", system-ui, "Helvetica Neue", sans-serif;
+    --font-serif: "Alegreya", "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", "SimSun", "Palatino Linotype", Palatino, Georgia, serif;
     --title-font: var(--font-display);
     --font-heading: var(--font-display);
     --ui-font: var(--font-ui);

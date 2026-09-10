@@ -845,6 +845,19 @@
     gap: 14px;
     flex-wrap: wrap;
   }
+  .footer-healthy-gaming {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 6px auto 2px;
+    letter-spacing: 0.5px;
+    font-family: var(--font-ui);
+    max-width: 600px;
+    padding: 0 12px;
+  }
   .footer-lang-row {
     align-items: center;
     gap: 12px;

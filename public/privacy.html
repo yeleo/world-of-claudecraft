@@ -77,10 +77,80 @@
   <div class="shell">
     <nav class="topbar" aria-label="Legal page navigation">
       <a class="brand" href="/" aria-label="World of ClaudeCraft home"><img src="/woc_logo_square.webp" alt="" /> <span>World of ClaudeCraft</span></a>
-      <a class="back-link" href="/">Return to Game</a>
+      <div class="topbar-right">
+        <button type="button" class="lang-toggle active" id="btn-lang-zh" onclick="setLang('zh')">简体中文</button>
+        <button type="button" class="lang-toggle" id="btn-lang-en" onclick="setLang('en')">English</button>
+        <a class="back-link" id="back-link" href="/">返回游戏</a>
+      </div>
     </nav>
     <main>
+      <div id="content-zh" lang-content class="active">
       <header class="hero">
+        <p class="eyebrow">法律条款</p>
+        <h1>隐私政策</h1>
+        <p class="updated">最近更新日期：2026年6月21日</p>
+      </header>
+      <article class="content">
+        <p><strong>World of ClaudeCraft（克劳德争霸）</strong></p>
+        <p>本隐私政策旨在向您说明我们如何收集、使用、存储、分享您的个人信息，以及您所享有的相关权利。本政策适用于您游玩 World of ClaudeCraft（以下简称“游戏”）、访问游戏网站 worldofclaudecraft.com（以下简称“网站”）或使用移动应用端（以下简称“App”）的所有场景。游戏、网站与 App 统称为“本服务”。</p>
+        <p><strong>运营主体说明：</strong>本服务由 Dream Home AI Limited（商业名称 Levy Street，新西兰注册公司，编号 8703066）运营，位于新西兰惠灵顿。我们是本服务所处理个人信息的数据控制者。</p>
+        <p>当您使用本服务时，即表示您已阅读并同意本隐私政策。如您不同意本政策的任何内容，请停止使用本服务。</p>
+        <hr />
+        <h2>1. 摘要速览</h2>
+        <ul>
+        <li><strong>离线体验</strong>：您可以完全在不注册账号、不提供任何个人信息的情况下游玩离线单机版本。</li>
+        <li><strong>在线账号</strong>：注册在线联机模式需提供用户名与密码。所有密码均经过高强度加盐 scrypt 哈希算法单向散列加密存储，我们绝不在服务器保存任何明文密码。</li>
+        <li><strong>存档保存</strong>：我们安全保存您的角色属性、背包物品和任务进度，以便您随时跨设备继续冒险。</li>
+        <li><strong>公共社交</strong>：游戏公屏聊天、角色名称、阵营、队伍互动和排行榜积分对其他在线玩家公开可见，请勿在公共频道透露个人隐私。</li>
+        <li><strong>运行与安全</strong>：我们仅收集必要的有限技术数据（如客户端 IP 地址、网络延迟、报错日志），用于服务器反作弊、频次限制与安全防护。</li>
+        <li><strong>自主控制</strong>：您可以随时在游戏内删除指定角色，或申请注销清空整套游戏账号及相关数据。</li>
+        <li><strong>独立项目</strong>：本项目为独立开源社区作品，与任何第三方商业公司无关。</li>
+        </ul>
+        <hr />
+        <h2>2. 我们收集的信息</h2>
+        <p><strong>账号信息：</strong>当您注册联机模式时，我们收集您的用户名与密码哈希。若您在注册或安全设置中提供了用于密码找回的电子邮箱，我们将安全保存用于身份验证和密码重置通知。</p>
+        <p><strong>角色与游戏进度：</strong>在您创建角色并进行游戏时，我们会保存角色的名称、职业、外观参数、等级、装备、背包道具、任务完成度、地图坐标及游戏内货币。这些数据持久化保存在数据库中，保障游戏世界连续性。</p>
+        <p><strong>聊天与社交行为：</strong>游戏提供综合频道、队伍频道与私人聊天功能。您发送的聊天消息会在服务器进行安全过滤与转发，并在日志中保留合理期限以用于不良内容审查和举报处理。角色名与排名信息将在公屏排行榜和玩家名片中展示。</p>
+        <p><strong>技术与运行日志：</strong>当客户端与服务器建立连接时，系统会自动接收基本技术信息，包括 IP 地址、设备型号、操作系统、浏览器内核、语言设置、会话令牌（有效时长 7 天）以及错误堆栈日志。我们利用 IP 地址进行登录防爆破频次限制（Rate Limiting）及外挂防范。</p>
+        <p><strong>本地存储：</strong>客户端使用浏览器 LocalStorage 存储当前语言偏好、音频音量设置、界面键位布局以及会话凭证。清除本地缓存可能导致偏好设置重置，但不影响服务器端角色数据。</p>
+        <p><strong>绝不收集敏感信息：</strong>我们绝不主动收集您的种族、宗教信仰、健康生理、生物识别或精确 GPS 地理位置等敏感个人信息。</p>
+        <hr />
+        <h2>3. 信息的使用目的</h2>
+        <p>我们仅将所收集的信息用于：</p>
+        <ul>
+        <li>提供、维护和优化游戏运行，实现跨设备云端存档同步；</li>
+        <li>进行多层级聊天内容合规过滤，保障健康的社区交流环境；</li>
+        <li>防范未授权访问、外挂脚本滥用、拒绝服务攻击与黑产行为；</li>
+        <li>处理玩家找回密码与账号注销等服务请求；</li>
+        <li>履行法律法规规定的网络安全与内容安全法定义务。</li>
+        </ul>
+        <hr />
+        <h2>4. 信息的保护与安全存储</h2>
+        <p>我们采取严格的技术与管理措施保障玩家信息安全：</p>
+        <ul>
+        <li>所有网络通信均强制采用 TLS/HTTPS 及加密 WebSocket 传输；</li>
+        <li>密码采用工业级 salted scrypt 哈希算法存储，不可逆向还原；</li>
+        <li>严格控制数据库管理权限，定期执行安全扫描与配置加固。</li>
+        </ul>
+        <hr />
+        <h2>5. 账号注销与数据删除</h2>
+        <p>您享有完全的数据控制权：</p>
+        <ul>
+        <li><strong>删除角色</strong>：可以在角色选择界面点击删除按钮，实时移除指定角色。</li>
+        <li><strong>注销账号</strong>：可以通过游戏账号设置界面或联系管理员申请注销账号。注销后，我们将彻底删除或匿名化处理您的账号凭据与关联数据。</li>
+        </ul>
+        <hr />
+        <h2>6. 未成年人保护</h2>
+        <p>本服务严格遵守未成年人保护法律法规。未成年人应在监护人指导和监督下合理安排游戏时间，遵守国家《健康游戏忠告》，适度娱乐，避免沉迷。</p>
+        <hr />
+        <h2>7. 联系我们</h2>
+        <p>如对本隐私政策有任何疑问、意见或申诉，您可以通过以下方式联系项目团队：</p>
+        <p>电子邮箱：tony@levystreet.com</p>
+        <p>运营地址：Dream Home AI Limited, 262 Thorndon Quay, Wellington 6011, New Zealand</p>
+      </article>
+    </div>
+<div id="content-en" lang-content>
+<header class="hero">
         <p class="eyebrow">Legal</p>
         <h1>Privacy Policy</h1>
         <p class="updated">Last updated: 21 June 2026</p>
@@ -200,6 +270,28 @@
         <h2>15. Changes to this Policy</h2>
         <p>We may update this Policy from time to time. When we make material changes we will update the date above and, where appropriate, provide additional notice. Your continued use of the Service after an update means you accept the revised Policy.</p>
       </article>
+</div>
+<script>
+    function setLang(lang) {
+      const isZh = lang === 'zh';
+      document.getElementById('content-zh').classList.toggle('active', isZh);
+      document.getElementById('content-en').classList.toggle('active', !isZh);
+      document.getElementById('btn-lang-zh').classList.toggle('active', isZh);
+      document.getElementById('btn-lang-en').classList.toggle('active', !isZh);
+      document.getElementById('back-link').textContent = isZh ? '返回游戏' : 'Return to Game';
+      document.documentElement.lang = isZh ? 'zh-CN' : 'en';
+      try { localStorage.setItem('woc_legal_lang', lang); } catch {}
+    }
+    (function() {
+      let saved = null;
+      try { saved = localStorage.getItem('woc_legal_lang') || localStorage.getItem('woc_lang'); } catch {}
+      if (!saved) {
+        saved = (navigator.language && navigator.language.toLowerCase().startsWith('zh')) ? 'zh' : 'zh'; // Default to zh on domestic build
+      }
+      setLang(saved.startsWith('zh') ? 'zh' : 'en');
+    })();
+  </script>
+
     </main>
     <footer>
       <a href="/support">Support</a>

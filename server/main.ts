@@ -1266,6 +1266,19 @@ async function refreshReleases(): Promise<ReleaseEntry[]> {
   }
 }
 
+function loadFallbackReleases(): ReleaseEntry[] {
+  const localFile = process.env.LOCAL_RELEASES_FILE || 'data/releases.json';
+  try {
+    if (fs.existsSync(localFile)) {
+      const parsed = JSON.parse(fs.readFileSync(localFile, 'utf8'));
+      if (Array.isArray(parsed)) return parsed;
+    }
+  } catch (e) {
+    console.warn('could not load local releases fallback:', e);
+  }
+  return [];
+}
+
 async function getReleases(): Promise<ReleaseEntry[]> {
   if (releasesCache && Date.now() - releasesCache.at < RELEASES_TTL_MS) {
     recordUsageCacheEvent('github.releases', 'hit');
@@ -1277,7 +1290,9 @@ async function getReleases(): Promise<ReleaseEntry[]> {
   } catch (err) {
     recordUsageCacheEvent('github.releases', 'failure');
     console.error('github releases refresh failed:', err);
-    return releasesCache?.entries ?? [];
+    const cached = releasesCache?.entries ?? [];
+    if (cached.length > 0) return cached;
+    return loadFallbackReleases();
   }
 }
 

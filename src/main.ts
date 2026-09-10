@@ -8736,6 +8736,10 @@ function syncDiscordEntries(): void {
   if (mobileBtn) mobileBtn.hidden = !DISCORD_BUILD_ENABLED;
   const desktopBtn = document.getElementById('mm-discord');
   if (desktopBtn) desktopBtn.hidden = !DISCORD_BUILD_ENABLED;
+  const footerDiscord = document.getElementById('footer-discord-link');
+  if (footerDiscord) footerDiscord.hidden = !DISCORD_BUILD_ENABLED;
+  const footerDonate = document.getElementById('footer-donate-link');
+  if (footerDonate) footerDonate.hidden = !DISCORD_BUILD_ENABLED;
 }
 
 // The More tray's Discord tap: the account panel (link / unlink / status) when
@@ -9321,6 +9325,7 @@ async function wireWallet(): Promise<void> {
     document.querySelector('.cs-wallet')?.remove();
     document.querySelector('.cs-wallet-hidden-note')?.remove();
     document.querySelector('.account-wallet-card')?.remove();
+    document.getElementById('footer-whitepaper-link')?.remove();
     updateWalletButton();
     return;
   }
