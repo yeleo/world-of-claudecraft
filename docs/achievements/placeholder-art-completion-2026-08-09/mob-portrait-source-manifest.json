@@ -6,13 +6,24 @@
     "bytes": 1510,
     "sha256": "bb0b6bacba9acb12568c3bbbe536e4442cb2964266cffef890f27ee4915dcf2a"
   },
-  "rendererFingerprint": "448a81d8c63a15b663c304ba52b285ed913382774a309dafb53c06b436f092ad",
+  "rendererFingerprint": "a5570569a067278741f78c499fcb011ee35994966bb580d2e478660307dddb32",
+  "renderEnv": {
+    "schemaVersion": 1,
+    "platform": "linux",
+    "arch": "x64",
+    "gpuVendor": "Google Inc. (Google)",
+    "gpuRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "browserMajor": "152",
+    "browserVersion": "Chrome/152.0.7977.82",
+    "requestedBackend": "swiftshader",
+    "fingerprint": "9b8a5174625ffd9f2dfa2d6d72599c3e5e71bbc0bef8e8831715f3141701ffa2"
+  },
   "renderer": {
     "trackedFiles": [
       {
         "path": "scripts/render_finder_portraits.mjs",
-        "bytes": 10988,
-        "sha256": "5f9b0357f3062fee9cc2021a0bfbd43691b2a30b09e90c96d989171c0f89cec7"
+        "bytes": 12980,
+        "sha256": "56c68ed052e18757b7ee489f9176081484b28a74ff70e66f0923ab7d0681269a"
       },
       {
         "path": "scripts/lib/mob_portrait_jobs.mjs",
@@ -27,8 +38,8 @@
     ],
     "browserBundle": {
       "entry": "scripts/wiki/stills_render_entry.js",
-      "bytes": 4356414,
-      "sha256": "f443e52bdc3d91da3f8e1ce7ec06bcccae03c4efa350111e7e5b876aa4fc32ec",
+      "bytes": 4864529,
+      "sha256": "1d10073657417c627d0bffdd39c3f58953aff57ef821dfa5a6ee70079369caed",
       "esbuildVersion": "0.28.1"
     },
     "output": {
@@ -40,7 +51,7 @@
       "backdrop": "scripts/lib/mob_portrait_background.mjs"
     }
   },
-  "portraitCount": 242,
+  "portraitCount": 245,
   "portraits": [
     {
       "id": "acolyte_tessa",
@@ -3090,6 +3101,74 @@
       }
     },
     {
+      "id": "hub_healing_dummy",
+      "family": "humanoid",
+      "finderEncounter": false,
+      "visualKey": "mob_training_dummy",
+      "renderSpec": {
+        "model": {
+          "url": "models/creatures/training_dummy.glb",
+          "path": "public/models/creatures/training_dummy.glb",
+          "bytes": 885308,
+          "sha256": "e29aa3fb8ea7472d51f86176bdf5051c921794f62ac7af5941e0cd3fa560ab92"
+        },
+        "idle": "Idle",
+        "height": 2.3,
+        "yaw": null,
+        "hover": null,
+        "show": null,
+        "attach": [],
+        "weaponFix": null,
+        "tintStrength": 0.35
+      },
+      "tint": {
+        "source": "entity",
+        "authored": "entity",
+        "resolved": "#74c476",
+        "strength": 0.35
+      },
+      "sourceFingerprint": "e9fa47b31ad3c092566a54dd3ecab9cd9eeac17e40fe6a397e1766577b8dbb26",
+      "output": {
+        "path": "public/ui/mobs/hub_healing_dummy.webp",
+        "bytes": 1750,
+        "sha256": "ec5ee875012334ded214b00791b8332a109b64eda71352a0461d0fd4b40c15ff"
+      }
+    },
+    {
+      "id": "hub_training_dummy",
+      "family": "humanoid",
+      "finderEncounter": false,
+      "visualKey": "mob_training_dummy",
+      "renderSpec": {
+        "model": {
+          "url": "models/creatures/training_dummy.glb",
+          "path": "public/models/creatures/training_dummy.glb",
+          "bytes": 885308,
+          "sha256": "e29aa3fb8ea7472d51f86176bdf5051c921794f62ac7af5941e0cd3fa560ab92"
+        },
+        "idle": "Idle",
+        "height": 2.3,
+        "yaw": null,
+        "hover": null,
+        "show": null,
+        "attach": [],
+        "weaponFix": null,
+        "tintStrength": 0.35
+      },
+      "tint": {
+        "source": "entity",
+        "authored": "entity",
+        "resolved": "#b8924a",
+        "strength": 0.35
+      },
+      "sourceFingerprint": "2b45c3ab5c106f0bcda1101a6c31f56a61148e76d43ecec1fa0444b51ba64ac6",
+      "output": {
+        "path": "public/ui/mobs/hub_training_dummy.webp",
+        "bytes": 1788,
+        "sha256": "d5acd85d81045c7507277060fcfbe56e398e4cddbd4d5c4b3520efa30603504e"
+      }
+    },
+    {
       "id": "ice_wisp",
       "family": "elemental",
       "finderEncounter": false,
@@ -4407,6 +4486,40 @@
         "path": "public/ui/mobs/normal_boss_dummy.webp",
         "bytes": 1778,
         "sha256": "2fa2483ed8531151b14bcdb5d6427fd3e87d9445b83d5e0545238f210b577cb3"
+      }
+    },
+    {
+      "id": "nythraxis_bone_spike",
+      "family": "undead",
+      "finderEncounter": false,
+      "visualKey": "mob_nythraxis_bone_spike",
+      "renderSpec": {
+        "model": {
+          "url": "models/props/nythraxis_bone_spike.glb",
+          "path": "public/models/props/nythraxis_bone_spike.glb",
+          "bytes": 258956,
+          "sha256": "54cef7af378d2f101639533bcf395eb82c9dfa117d078a03ff19b088fe694dc3"
+        },
+        "idle": "Idle",
+        "height": 2.6,
+        "yaw": 0,
+        "hover": null,
+        "show": null,
+        "attach": [],
+        "weaponFix": null,
+        "tintStrength": null
+      },
+      "tint": {
+        "source": "none",
+        "authored": null,
+        "resolved": null,
+        "strength": null
+      },
+      "sourceFingerprint": "c5d61b8664623cf2eb0bbb924a602a424909e843ca6f970996548768148819e3",
+      "output": {
+        "path": "public/ui/mobs/nythraxis_bone_spike.webp",
+        "bytes": 1504,
+        "sha256": "c008e9692d97478f981866c792ba62a3a145dbc3a096eeb3d12a357440e5e7cc"
       }
     },
     {
@@ -8123,6 +8236,18 @@
             "position": null,
             "rotationY": null,
             "gripRef": null
+          },
+          {
+            "asset": {
+              "url": "models/weapons/spellbook_open.glb",
+              "path": "public/models/weapons/spellbook_open.glb",
+              "bytes": 35136,
+              "sha256": "e564abd17649ec4fa471dfbfdfd1d0668987f1844ee925d8bde17b9f2ec1d6e0"
+            },
+            "bone": "handslot.l",
+            "position": null,
+            "rotationY": null,
+            "gripRef": null
           }
         ],
         "weaponFix": null,
@@ -8134,11 +8259,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "a2d7dd6d84d60194e91c7553ce5b15ce0e0aed43b2367590752fd71c21928357",
+      "sourceFingerprint": "3cc09042c77622a7cbff2253e1039098d7e3911d01e8a7c659bd5d7f7e206554",
       "output": {
         "path": "public/ui/mobs/vision_malric_mage.webp",
-        "bytes": 2296,
-        "sha256": "07181da932c36674679220587972dde08f5dbf08986bada2af8dbb85264ceb53"
+        "bytes": 2330,
+        "sha256": "a6b4833829865bd6625b8ed8fc45349083a6d8a17ce29e39cdb42bba78fcd92d"
       }
     },
     {

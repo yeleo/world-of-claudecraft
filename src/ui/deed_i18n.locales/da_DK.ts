@@ -88,8 +88,9 @@ export const table: DeedLocaleTable = {
     desc: 'Host en malmare, en traestand og et urtebed i Nightbloom.',
   },
   chr_nightbloom_first_cast: {
-    name: 'En ring pa manebronden',
     desc: 'Fang en fisk i Nightblooms vande.',
+
+    name: 'En krusning i Månekilden',
   },
   chr_wraithwood_gatherer: {
     name: 'Host under kronerne',
@@ -147,7 +148,11 @@ export const table: DeedLocaleTable = {
     name: 'Alle Seks',
     desc: 'Vælg én mulighed i alle seks talentrækker i ét build.',
   },
-  prog_veteran: { name: 'Veteran', desc: 'Optjen sammenlagt 250.000 erfaring.', title: 'Veteran' },
+  prog_veteran: {
+    name: 'Veteranen',
+    desc: 'Optjen sammenlagt 250.000 erfaring.',
+    title: 'Veteranen',
+  },
   prog_champion: { name: 'Mester', desc: 'Optjen sammenlagt 500.000 erfaring.', title: 'Mester' },
   prog_paragon: {
     name: 'Forbillede',
@@ -168,7 +173,8 @@ export const table: DeedLocaleTable = {
   prog_herbalism_100: { name: 'Engens Mester', desc: 'Nå 100 i færdigheden Urtekundskab.' },
   prog_master_gatherer: {
     name: 'Mestersamler',
-    desc: 'Nå 100 i færdighed i tre af fagene Minedrift, Skovhugst, Urtekundskab og Fiskeri.',
+
+    desc: 'Nå 100 færdighed i tre valgfrie indsamlingsfag.',
   },
   prog_first_craft: { name: 'Håndlavet', desc: 'Fuldfør din første vellykkede fremstilling.' },
   prog_craft_specialist: {
@@ -279,8 +285,9 @@ export const table: DeedLocaleTable = {
     title: 'Ormefælder',
   },
   dgn_sanctum_speed: {
-    name: 'Helligdomsspurt',
     desc: 'Besejr Korzul Gravormen inden for 15 minutter efter, at din gruppe har gjort krav på Gravormens Helligdom.',
+
+    name: 'Kapløb i Helligdommen',
   },
   dgn_nythraxis_gravebreaker: {
     name: 'Knæl for Ingen Konge',
@@ -342,7 +349,7 @@ export const table: DeedLocaleTable = {
   },
   dlv_varric_ringers: {
     name: 'Klokkerne Forstummer',
-    desc: 'Fæld hver Ligklokkeringer, Diakon Varric genopvækker, før han selv falder.',
+    desc: 'Fæld hver Ligklokkeringer, Diakon Vandric genopvækker, før han selv falder.',
   },
   dlv_nhalia_bells: {
     name: 'Klokkestiller',
@@ -355,7 +362,6 @@ export const table: DeedLocaleTable = {
   },
   chr_vale_chapter_ii: {
     name: 'Dalens Krønike, Kapitel II',
-    desc: 'Afslut andet kapitel af Sauls krønike: banditter, mudfinne-snigerne og minens skadedyr nedkæmpet, Somarken spillet og Relikvariet trodset.',
   },
   chr_vale_chapter_iii: {
     name: 'Krøniken om Dalen',
@@ -370,7 +376,6 @@ export const table: DeedLocaleTable = {
   chr_vale_packbreaker: { name: 'Flokbryder', desc: 'Dræb 3 Skovulve inden for 10 sekunder.' },
   chr_vale_cup_debut: {
     name: 'Kobberspandens Kandidat',
-    desc: 'Gå på banen og rør bolden i en Dalpokal-kamp på Somarken.',
   },
   chr_vale_rares: {
     name: 'Dalens Rædsler',
@@ -415,12 +420,13 @@ export const table: DeedLocaleTable = {
   },
   chr_peaks_chapter_iii: {
     name: 'Krøniken om Tornetop',
-    desc: 'Følg bjergets fulde fortælling til ende: Ormekulten knust, Helligdommen bragt til tavshed, den Vågnende Tinde styrtet og hver navngiven rædsel i klipperne fældet.',
     title: 'af Tornetop',
+
+    desc: 'Se hele bjergets historie til ende: Broodsworn knust, Helligdommen gjort tavs, den Vågnende Tinde fældet og hver navngivne rædsel i klipperne lagt ned.',
   },
   chr_peaks_sparring: {
     name: 'Øvelser på Muren',
-    desc: 'Tilføj træningsdukken over Højvagten 1.000 skade i alt.',
+    desc: 'Tilføj en træningsdukke 1.000 skade i alt.',
   },
   chr_peaks_glimmer_cast: { name: 'Koldt Vand, Koldere Lys', desc: 'Fang en fisk i Glimmersøen.' },
   chr_peaks_moongate: {
@@ -492,7 +498,7 @@ export const table: DeedLocaleTable = {
   },
   col_quartermaster_buyout: {
     name: 'Stamkunde',
-    desc: 'Opdag alle ti dele af den Heroiske Kvartermesters lager.',
+    desc: 'Opdag alle ti udstyrsdele fra den Heroiske Kvartermesters lager.',
   },
   col_glimmerfin: {
     name: 'Et Glimt af Håb',
@@ -517,9 +523,9 @@ export const table: DeedLocaleTable = {
   pvp_arena_1v1_1600: { name: 'Kolosseets Udfordrer', desc: 'Nå 1600 i rating i 1v1-arenarækken.' },
   pvp_arena_1v1_1750: { name: 'Kolosseets Rival', desc: 'Nå 1750 i rating i 1v1-arenarækken.' },
   pvp_arena_1v1_1900: {
-    name: 'Gladiator',
+    name: 'Arenaens gladiator',
     desc: 'Nå 1900 i rating i 1v1-arenarækken.',
-    title: 'Gladiator',
+    title: 'Arenaens gladiator',
   },
   pvp_arena_2v2_1600: { name: 'To Mand Høj', desc: 'Nå 1600 i rating i 2v2-arenarækken.' },
   pvp_arena_2v2_1750: { name: 'Frygtet Makkerpar', desc: 'Nå 1750 i rating i 2v2-arenarækken.' },
@@ -531,63 +537,49 @@ export const table: DeedLocaleTable = {
   },
   pvp_vcup_first_match: {
     name: 'Støvler på Banen',
-    desc: 'Spil en hel Dalpokal-kamp til ende på Somarken, uanset sejr eller nederlag.',
   },
-  pvp_vcup_first_win: { name: 'Det Første Sølvtøj', desc: 'Vind en ranglistekamp i Dalpokalen.' },
+  pvp_vcup_first_win: { name: 'Det Første Sølvtøj' },
   pvp_vcup_wins_10: {
     name: 'Garvet Vildsvineboldspiller',
-    desc: 'Vind 10 ranglistekampe i Dalpokalen.',
   },
   pvp_vcup_wins_25: {
     name: 'Vildsvinebold-Legende',
-    desc: 'Vind 25 ranglistekampe i Dalpokalen.',
     title: 'Vildsvinebold-Legende',
   },
-  pvp_vcup_first_goal: { name: 'På Måltavlen', desc: 'Scor et mål i en Dalpokal-ranglistekamp.' },
+  pvp_vcup_first_goal: { name: 'På Måltavlen' },
   pvp_vcup_hat_trick: {
     name: 'Hattrick-Helt',
-    desc: 'Scor tre mål i en enkelt Dalpokal-ranglistekamp, i 3v3-rækken eller større.',
   },
   pvp_vcup_golden_goal: {
     name: 'Gyldent Øjeblik',
-    desc: 'Scor det gyldne mål, der afgør en Dalpokal-ranglistekamp.',
   },
   pvp_vcup_first_save: {
     name: 'Sikre Hænder',
-    desc: 'Red et skud som målmand i en Dalpokal-ranglistekamp.',
   },
   pvp_vcup_clean_sheet: {
     name: 'Intet Slipper Forbi Mig',
-    desc: 'Vind en Dalpokal-ranglistekamp som målmand uden at lukke et mål ind.',
   },
   pvp_vcup_guild_win: {
     name: 'For Banneret',
-    desc: 'Vind en Dalpokal-ranglistekamp, hvor holdet stillede op under dit gildes banner.',
   },
   pvp_fiesta_first_bout: {
     name: 'Ubuden Gæst',
-    desc: 'Kæmp en fuld 2v2 Fiesta-dyst, uanset sejr eller nederlag.',
   },
-  pvp_fiesta_first_win: { name: 'Festens Midtpunkt', desc: 'Vind en 2v2 Fiesta-dyst.' },
+  pvp_fiesta_first_win: { name: 'Festens Midtpunkt' },
   pvp_fiesta_double: {
     name: 'Dobbelt Ballade',
-    desc: 'Lav to Fiesta-nedlæggelser inden for fire sekunder.',
   },
   pvp_fiesta_shutdown: {
     name: 'Lyseslukker',
-    desc: 'Nedlæg en Fiesta-modstander, der er på en stime på tre eller mere.',
   },
   pvp_fiesta_full_build: {
     name: 'Klædt på til Lejligheden',
-    desc: 'Vind en Fiesta-dyst med en forstærkning låst fast fra alle tre bølger.',
   },
   pvp_fiesta_powerups: {
     name: 'En af Hver',
-    desc: 'Snup hver af de fire power-ups i ringen mindst én gang: Fartdjævel, Kolos, Månestøvler og Bersærk.',
   },
   pvp_fiesta_five_kills: {
     name: 'Bærer Hele Festen',
-    desc: 'Lav fem nedlæggelser i en enkelt Fiesta-dyst.',
   },
   soc_first_party: { name: 'Bedre Sammen', desc: 'Slut dig til en gruppe med en anden spiller.' },
   soc_full_house: {
@@ -986,23 +978,107 @@ export const table: DeedLocaleTable = {
   },
   dgn_ignivar: {
     name: 'Herolden Falder',
-    desc: 'Besejr Ignivar, Sidste Flammes Herold, i Sidste Kildes Smeltedigel.',
+    desc: 'Besejr Ignivar, den Sidste Flammes Herold, i Den Sidste Kildes Digel.',
   },
   dgn_ignivar_heroic: {
     name: 'Heroisk: Herolden Falder',
-    desc: 'Besejr Ignivar, Sidste Flammes Herold, på heroisk sværhedsgrad.',
+    desc: 'Besejr Ignivar, den Sidste Flammes Herold, på heroisk sværhedsgrad.',
   },
   dgn_varkhul: {
     name: 'Essen Bliver Kold',
-    desc: 'Besejr Varkhul, Sidste Flammes Smedefader, i Den Indre Smeltedigel.',
+    desc: 'Besejr Varkhul, den Sidste Flammes Smedefader, i Den Indre Digel.',
   },
   dgn_varkhul_heroic: {
     name: 'Heroisk: Essen Bliver Kold',
-    desc: 'Besejr Varkhul, Sidste Flammes Smedefader, på heroisk sværhedsgrad.',
+    desc: 'Besejr Varkhul, den Sidste Flammes Smedefader, på heroisk sværhedsgrad.',
   },
   dgn_varkhul_flawless: {
     name: 'Ingen Glød Gik Tabt',
-    desc: 'Besejr Varkhul, Sidste Flammes Smedefader, på heroisk sværhedsgrad, uden at en eneste raider dør.',
+    desc: 'Besejr Varkhul, den Sidste Flammes Smedefader, på heroisk sværhedsgrad uden at et eneste raidmedlem dør.',
     title: 'den Uskadte',
+  },
+  col_set_bramblehide: {
+    name: "Roots' Tornehud",
+    desc: "Opdag hver del af Roots' Tornehud.",
+  },
+  prog_jewelcrafting_rare: {
+    desc: 'Skab dit første sjældne udstyrsstykke i Juvelkunst.',
+
+    name: 'Poleret til glans',
+  },
+  prog_jewelcrafting_50: { desc: 'Nå 50 i færdighed i Juvelkunst.', name: 'Facet og filigran' },
+  prog_grandmaster_jewelcrafting: {
+    desc: 'Nå 125 i færdighed i Juvelkunst, selve toppen af fagets mæstring.',
+
+    name: 'Stormester i juvelkunst',
+    title: 'Stormester i juvelkunst',
+  },
+  prog_inscription_rare: {
+    desc: 'Skab dit første sjældne udstyrsstykke i Inskription.',
+
+    name: 'Skrevet med fin blæk',
+  },
+  prog_inscription_50: { desc: 'Nå 50 i færdighed i Inskription.', name: 'Pen og pigment' },
+  prog_grandmaster_inscription: {
+    desc: 'Nå 125 i færdighed i Inskription, selve toppen af fagets mæstring.',
+
+    name: 'Stormester i skriftkunst',
+    title: 'Stormester i skriftkunst',
+  },
+  col_deepest_cast: {
+    desc: 'Få en Clockreel-fiskestang, den eneste stang, der når de dybeste fangster.',
+
+    name: 'Det dybeste kast',
+  },
+  prog_first_planting: { desc: 'Plant din første afgrøde i et havebed.', name: 'Såning begynder' },
+  chr_vale_first_harvest: {
+    desc: 'Høst din første frodige afgrøde fra et havebed i Østbæk Dal.',
+
+    name: 'Dalens første frugter',
+  },
+  chr_marsh_first_harvest: {
+    desc: 'Høst din første frodige afgrøde fra et havebed i Mosekær Sump.',
+
+    name: 'Spirer i tørven',
+  },
+  chr_peaks_first_harvest: {
+    desc: 'Høst din første frodige afgrøde fra et havebed i Tornetop Højder.',
+
+    name: 'En afgrøde mellem klipperne',
+  },
+  chr_evergarden_first_harvest: {
+    desc: 'Høst din første frodige afgrøde fra et havebed i Evergarden.',
+
+    name: 'Et bed i paradiset',
+  },
+  col_golden_harvest: {
+    desc: 'Høst en gylden afgrøde, og lad hele zonen høre om det.',
+
+    name: 'Gylden høst',
+  },
+  prog_farming_100: {
+    desc: 'Nå 100 i færdighed i Landbrug.',
+    name: 'Høstmester',
+    title: 'Høstmester',
+  },
+  col_farm_roster: {
+    desc: 'Høst hver afgrøde, som de fire haver dyrker.',
+
+    name: 'Alle furer fyldt',
+  },
+  prog_field_to_feast: {
+    desc: 'Tilbered et topmåltid, som et helt raid kan spise fra.',
+
+    name: 'Fra mark til festmåltid',
+  },
+  prog_legendmaker: {
+    desc: 'Hæv et Perfektioneret værk til legende med en Skabelsesgerning, og giv det et navn helt for sig selv.',
+
+    name: 'Legendemageren',
+  },
+  hid_forgebreaker: {
+    desc: 'Form Smedjebryderen selv, og vend tilbage til Maelin med den færdige hammer.',
+
+    name: 'En kilde ubundet',
   },
 };

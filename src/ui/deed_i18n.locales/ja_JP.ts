@@ -128,7 +128,7 @@ export const table: DeedLocaleTable = {
     desc: 'Nightbloomで鉱脈、木立、薬草畑を収穫する。',
   },
   chr_nightbloom_first_cast: {
-    name: '月の井戸の波紋',
+    name: '月の泉の波紋',
     desc: 'Nightbloomの水辺で魚を釣る。',
   },
   chr_wraithwood_gatherer: {
@@ -198,7 +198,7 @@ export const table: DeedLocaleTable = {
   prog_herbalism_100: { name: '野辺の名人', desc: '薬草学の熟練度100に到達する。' },
   prog_master_gatherer: {
     name: '採集の達人',
-    desc: '採掘、伐採、薬草学、釣りのうち、いずれか3つの熟練度100に到達する。',
+    desc: 'いずれか3つの採集職で熟練度100に到達する。',
   },
   prog_first_craft: { name: '手仕事の味', desc: '初めての製作を成功させる。' },
   prog_craft_specialist: {
@@ -345,7 +345,7 @@ export const table: DeedLocaleTable = {
   },
   dlv_varric_ringers: {
     name: '鳴りやむ鐘',
-    desc: '彼が甦らせる葬儀の鐘鳴らしをすべて先に仕留めてから、助祭ヴァリックを倒す。',
+    desc: '彼が甦らせる葬儀の鐘鳴らしをすべて先に仕留めてから、助祭ヴァンドリックを倒す。',
   },
   dlv_nhalia_bells: {
     name: '鐘鎮め',
@@ -358,7 +358,6 @@ export const table: DeedLocaleTable = {
   },
   chr_vale_chapter_ii: {
     name: '渓谷年代記 第二章',
-    desc: 'ソールの年代記の第二章を仕上げる：盗賊、泥ひれの潜伏者、鉱山の害獣どもを退治し、ソウフィールドで試合をこなし、聖遺物庫へ挑む。',
   },
   chr_vale_chapter_iii: {
     name: '渓谷の年代記',
@@ -375,8 +374,8 @@ export const table: DeedLocaleTable = {
   },
   chr_vale_packbreaker: { name: '群れ崩し', desc: '10秒以内に森の狼を3体倒す。' },
   chr_vale_cup_debut: {
+    desc: 'ソウフィールドで行われるヴェイルカップの試合に出場し、ボールに触れる。ヴェイルカップの試合はもうプレイできないため、新たに獲得することはできない。',
     name: '銅の手桶の挑戦者',
-    desc: 'ソウフィールドでのヴェイルカップの試合に出場し、ボールに触れる。',
   },
   chr_vale_rares: {
     name: '渓谷の恐怖',
@@ -421,12 +420,12 @@ export const table: DeedLocaleTable = {
   },
   chr_peaks_chapter_iii: {
     name: 'ソーンピークの年代記',
-    desc: '山の物語を最後まで見届ける：ワーム教団を壊滅させ、聖所を鎮め、目覚めし峰を打ち倒し、岩山に名だたる恐怖をことごとく討ち倒す。',
+    desc: '山の物語を最後まで見届ける：竜誓団を壊滅させ、聖所を鎮め、目覚めし峰を打ち倒し、岩山に名だたる恐怖をことごとく討ち倒す。',
     title: 'ソーンピークの語り部',
   },
   chr_peaks_sparring: {
     name: '城壁の型稽古',
-    desc: 'ハイウォッチの高台にある訓練用ダミーに合計1,000のダメージを与える。',
+    desc: '訓練用ダミーに合計1,000のダメージを与える。',
   },
   chr_peaks_glimmer_cast: {
     name: '冷たい水、さらに冷たい光',
@@ -510,7 +509,7 @@ export const table: DeedLocaleTable = {
   },
   col_quartermaster_buyout: {
     name: 'お得意様',
-    desc: '補給係ヴェックスの品揃え全10点を発見する。',
+    desc: '補給係ヴェックスの装備品全10点を発見する。',
   },
   col_glimmerfin: {
     name: '希望のきらめき',
@@ -548,56 +547,74 @@ export const table: DeedLocaleTable = {
   pvp_duel_first_win: { name: '表へ出ろ', desc: '決闘に勝利する。' },
   pvp_duel_grace: { name: '謙虚さの心得', desc: '威厳をおおむね保ったまま、決闘に敗れる。' },
   pvp_vcup_first_match: {
+    desc: 'ソウフィールドでヴェイルカップの試合を、勝敗にかかわらず最後まで戦い抜く。ヴェイルカップの試合はもうプレイできないため、新たに獲得することはできない。',
     name: 'ピッチに立つ',
-    desc: '勝ち負けを問わず、ソウフィールドでのヴェイルカップの試合を最後まで戦い抜く。',
   },
-  pvp_vcup_first_win: { name: '初めての銀杯', desc: 'ヴェイルカップのレート戦に勝利する。' },
-  pvp_vcup_wins_10: { name: '熟練ボアボーラー', desc: 'ヴェイルカップのレート戦で10勝する。' },
+  pvp_vcup_first_win: {
+    name: '初めての銀杯',
+    desc: 'レート制ヴェイルカップの試合に勝利する。ヴェイルカップの試合はもうプレイできないため、新たに獲得することはできない。',
+  },
+  pvp_vcup_wins_10: {
+    name: '熟練ボアボーラー',
+    desc: 'レート制ヴェイルカップの試合で10勝する。ヴェイルカップの試合はもうプレイできないため、新たに獲得することはできない。',
+  },
   pvp_vcup_wins_25: {
+    desc: 'レート制ヴェイルカップの試合で25勝する。ヴェイルカップの試合はもうプレイできないため、新たに獲得することはできない。',
     name: 'ボアボールの伝説',
-    desc: 'ヴェイルカップのレート戦で25勝する。',
     title: 'ボアボールの伝説',
   },
-  pvp_vcup_first_goal: { name: 'まずは一点', desc: 'ヴェイルカップのレート戦でゴールを決める。' },
+  pvp_vcup_first_goal: {
+    name: 'まずは一点',
+    desc: 'レート制ヴェイルカップの試合でゴールを決める。ヴェイルカップの試合はもうプレイできないため、新たに獲得することはできない。',
+  },
   pvp_vcup_hat_trick: {
+    desc: '3対3以上のレート制ヴェイルカップの試合で、1試合に3ゴールを決める。ヴェイルカップの試合はもうプレイできないため、新たに獲得することはできない。',
     name: 'ハットトリックの英雄',
-    desc: '3v3以上の部門で、ヴェイルカップのレート戦1試合中に3ゴールを決める。',
   },
   pvp_vcup_golden_goal: {
+    desc: 'レート制ヴェイルカップの試合を決めるゴールデンゴールを決める。ヴェイルカップの試合はもうプレイできないため、新たに獲得することはできない。',
     name: '黄金の瞬間',
-    desc: 'ヴェイルカップのレート戦に決着をつけるゴールデンゴールを叩き込む。',
   },
   pvp_vcup_first_save: {
+    desc: '3対3以上のレート制ヴェイルカップの試合で、キーパーとしてセーブする。手の感触を試すほど速いシュートだけが対象で、やさしいキャッチは対象外。ヴェイルカップの試合はもうプレイできないため、新たに獲得することはできない。',
     name: '鉄壁の両手',
-    desc: 'ヴェイルカップのレート戦でキーパーとしてセーブを決める。',
   },
   pvp_vcup_clean_sheet: {
+    desc: '3対3以上のレート制ヴェイルカップの試合で、キーパーとして無失点で勝利する。ヴェイルカップの試合はもうプレイできないため、新たに獲得することはできない。',
     name: '何ひとつ通さない',
-    desc: 'キーパーとして無失点のまま、ヴェイルカップのレート戦に勝利する。',
   },
   pvp_vcup_guild_win: {
+    desc: '自分のギルドの旗を掲げて参加したレート制ヴェイルカップの試合に勝利する。ヴェイルカップの試合はもうプレイできないため、新たに獲得することはできない。',
     name: '旗の名にかけて',
-    desc: 'ギルドの旗を掲げて出場したヴェイルカップのレート戦に勝利する。',
   },
   pvp_fiesta_first_bout: {
+    desc: '勝敗にかかわらず、Fiestaの2対2の試合を最後まで戦い抜く。Fiestaの試合はアリーナのキューからなくなったため、新たに獲得することはできない。',
     name: '宴への乱入者',
-    desc: '勝ち負けを問わず、2v2フィエスタの一戦を最後まで戦い抜く。',
   },
-  pvp_fiesta_first_win: { name: '宴の主役', desc: '2v2フィエスタの一戦に勝利する。' },
-  pvp_fiesta_double: { name: '二丁上がり', desc: 'フィエスタで4秒以内に2回の撃破を決める。' },
+  pvp_fiesta_first_win: {
+    name: '宴の主役',
+    desc: 'Fiestaの2対2の試合に勝利する。Fiestaの試合はアリーナのキューからなくなったため、新たに獲得することはできない。',
+  },
+  pvp_fiesta_double: {
+    name: '二丁上がり',
+    desc: 'Fiestaで4秒以内に2回テイクダウンする。Fiestaの試合はアリーナのキューからなくなったため、新たに獲得することはできない。',
+  },
   pvp_fiesta_shutdown: {
+    desc: '3連勝以上のFiestaの敵をテイクダウンする。Fiestaの試合はアリーナのキューからなくなったため、新たに獲得することはできない。',
     name: '祭りに水を差す者',
-    desc: 'フィエスタで、3連続撃破以上の勢いに乗った敵を仕留める。',
   },
   pvp_fiesta_full_build: {
+    desc: '3ウェーブすべてで強化を1つ固定した状態で、Fiestaの試合に勝利する。Fiestaの試合はアリーナのキューからなくなったため、新たに獲得することはできない。',
     name: '宴の正装',
-    desc: '3回のウェーブすべてで強化を確定させた状態で、フィエスタの一戦に勝利する。',
   },
   pvp_fiesta_powerups: {
+    desc: 'リングの4種のパワーアップ、スピードデーモン、コロッサス、ムーンブーツ、バーサーカーを、それぞれ少なくとも1回取得する。Fiestaの試合はアリーナのキューからなくなったため、新たに獲得することはできない。',
     name: '全部ひとつずつ',
-    desc: 'リングの4種のパワーアップ、スピードデーモン、コロッサス、ムーンブーツ、バーサーカーをそれぞれ1回以上手に入れる。',
   },
-  pvp_fiesta_five_kills: { name: '宴を背負う者', desc: 'フィエスタの一戦で5回の撃破を決める。' },
+  pvp_fiesta_five_kills: {
+    name: '宴を背負う者',
+    desc: '1回のFiestaの試合で5回テイクダウンする。Fiestaの試合はアリーナのキューからなくなったため、新たに獲得することはできない。',
+  },
   soc_first_party: { name: '持つべきものは仲間', desc: '他のプレイヤーとパーティを組む。' },
   soc_full_house: { name: 'フルハウス', desc: '5人満員のパーティでダンジョンを攻略する。' },
   soc_guild_joined: { name: '同じ旗の下に', desc: 'ギルドの一員になる。' },
@@ -905,6 +922,32 @@ export const table: DeedLocaleTable = {
     name: '完璧な装甲',
     desc: '防具鍛冶で初めてのレア級アイテムを作る。',
   },
+  prog_jewelcrafting_rare: {
+    name: '磨かれた輝き',
+    desc: '宝石細工で初めてのレア級アイテムを作る。',
+  },
+  prog_jewelcrafting_50: {
+    name: '刻面と透かし細工',
+    desc: '宝石細工のスキルで50に到達する。',
+  },
+  prog_grandmaster_jewelcrafting: {
+    name: '宝石細工の大師',
+    desc: '宝石細工のスキルで125に到達し、その道の極みに立つ。',
+    title: '宝石細工の大師',
+  },
+  prog_inscription_rare: {
+    name: '見事な墨書',
+    desc: '銘文で初めてのレア級アイテムを作る。',
+  },
+  prog_inscription_50: {
+    name: '羽根ペンと顔料',
+    desc: '銘文のスキルで50に到達する。',
+  },
+  prog_grandmaster_inscription: {
+    name: '銘文の大師',
+    desc: '銘文のスキルで125に到達し、その道の極みに立つ。',
+    title: '銘文の大師',
+  },
   prog_ready_for_an_adventure: {
     name: '冒険の準備は万端',
     desc: '修練の浜を卒業する。島でのすべての課題を終え、渡しの鐘を鳴らしてイーストブルックへ帰る。',
@@ -937,5 +980,54 @@ export const table: DeedLocaleTable = {
     name: '消えぬ熾火',
     desc: 'レイドの誰ひとり死なせずに、英雄難易度で「最後の炎の鍛造父、ヴァルクル」を倒す。',
     title: '無傷',
+  },
+  hid_forgebreaker: {
+    name: '解き放たれた泉',
+    desc: 'フォージブレイカーを自ら鍛え、完成した槌を携えてメイリンのもとへ戻る。',
+  },
+  col_set_bramblehide: {
+    name: 'ルーツのブランブルハイド',
+    desc: 'ルーツのブランブルハイドの全部位を発見する。',
+  },
+  col_deepest_cast: {
+    desc: 'Clockreelの釣り竿を手に入れる。最深部の獲物に届く唯一の竿だ。',
+    name: '最深の一投',
+  },
+  prog_first_planting: { desc: '畑に初めて作物を植える。', name: '種まきの始まり' },
+  chr_vale_first_harvest: {
+    desc: 'イーストブルック渓谷の畑で、初めて元気に育った作物を収穫する。',
+
+    name: '谷の初穂',
+  },
+  chr_marsh_first_harvest: {
+    desc: 'マイアフェン湿地の畑で、初めて元気に育った作物を収穫する。',
+    name: '泥炭に芽吹く',
+  },
+  chr_peaks_first_harvest: {
+    desc: 'ソーンピーク高地の畑で、初めて元気に育った作物を収穫する。',
+    name: '岩峰の実り',
+  },
+  chr_evergarden_first_harvest: {
+    desc: 'Evergardenの畑で、初めて元気に育った作物を収穫する。',
+    name: '楽園の畑',
+  },
+  col_golden_harvest: {
+    desc: '黄金の収穫を得て、その知らせをゾーン全体に届ける。',
+    name: '黄金の収穫',
+  },
+  prog_farming_100: {
+    desc: '農耕の熟練度100に到達する。',
+    name: '収穫の達人',
+    title: '収穫の達人',
+  },
+  col_farm_roster: { desc: '4つの畑で育つすべての作物を収穫する。', name: 'すべての畝に実りを' },
+  prog_field_to_feast: {
+    desc: '最上級の宴を料理し、レイド全体が囲める食卓を作る。',
+    name: '畑から祝宴へ',
+  },
+  prog_legendmaker: {
+    desc: '創造の証書で完全化された作品を伝説に引き上げ、自分だけの名前を与える。',
+
+    name: '伝説を生む者',
   },
 };

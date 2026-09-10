@@ -1,7 +1,11 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import type { GuildRow } from '../src/ui/social_view';
-import { guildMemberRowHtml } from '../src/ui/social_window';
+import {
+  guildMemberRowHtml,
+  rosterExpandConfirmHtml,
+  splicePriceHtml,
+} from '../src/ui/social_window';
 
 // Source-level guards for the social painter. The pure row + signature decisions are
 // unit-tested in social_view.test.ts; here we pin the no-magic-values
@@ -408,5 +412,125 @@ describe('social_window: guild header copy', () => {
   it('uses localized membership copy that avoids the broken rank article sentence', () => {
     expect(hudChromeCatalog).toContain("one: 'your guild rank is {rank}; {count} member'");
     expect(hudChromeCatalog).toContain("other: 'your guild rank is {rank}; {count} members'");
+  });
+});
+
+describe('social_window: guild roster expansion (source pins)', () => {
+  // The painter renders what the pure core decided (guildView memberCap /
+  // nextRosterPrice / canExpandRoster), spends gold only through the shared
+  // confirm prompt, and formats the price with the money formatter.
+  it('reads the seat cap off the pure core and renders the price as coin icons, never a raw number', () => {
+    expect(painter).toContain("t('hudChrome.social.roster.seats'");
+    expect(painter).toContain('cap: formatNumber(g.memberCap');
+    // The price lives in the confirm prompt only, as the shared coin-icon readout with
+    // formatMoney's compact coin set and bare digits (no thousands separators).
+    expect(painter).toContain(
+      'moneyHtml(roster.nextRosterPrice, { compact: true, grouping: false })',
+    );
+    expect(painter).not.toContain('formatMoney(');
+    expect(painter).not.toMatch(/roster\.nextRosterPrice\s*\/\s*10_?000/);
+  });
+
+  it('shows the buy button to the leader only, disabled once the ladder is complete', () => {
+    expect(painter).toContain("roster && guild.rank === 'leader'");
+    expect(painter).toContain('data-act="guild-expand" disabled');
+    expect(painter).toContain("t('hudChrome.social.roster.maxed')");
+    // The button carries no seats or price (the catalog value is the bare label).
+    expect(painter).toContain("t('hudChrome.social.roster.expand')");
+    expect(painter).not.toContain("t('hudChrome.social.roster.expand',");
+    expect(hudChromeCatalog).toContain("expand: 'Expand roster',");
+  });
+
+  it('the expand button leads the footer row the disband / leave button ends', () => {
+    // One .soc-add.soc-leave row holds both: the leader-only expand button first
+    // (pushed to the start edge by .soc-foot-start), the disband or leave button last.
+    expect(painter).toContain('foot += `<div class="soc-add soc-leave">${expand}${leave}</div>`;');
+    expect(painter).toContain('class="btn soc-foot-start" data-act="guild-expand"');
+    expect(painter).not.toContain('<div class="soc-add soc-leave"><button');
+    expect(componentsCss).toContain(
+      '.soc-add.soc-leave .soc-foot-start {\n    margin-right: auto;\n  }',
+    );
+    // The shared row wraps rather than squeezing a long label beside the other button.
+    const leaveRule = componentsCss.slice(
+      componentsCss.indexOf('.soc-add.soc-leave {'),
+      componentsCss.indexOf('.soc-add.soc-leave .soc-foot-start {'),
+    );
+    expect(leaveRule).toContain('flex-wrap: wrap;');
+  });
+
+  it('a bought page (a structural change) rebuilds the footer around a preserved draft', () => {
+    // The footer button is emitted by render(), which refreshIfChanged reaches
+    // only on a structural change; the roster cap and price are part of that
+    // signature (tests/social_view.test.ts), and the rebuild keeps the
+    // half-typed invite or billboard draft the relocalize() way.
+    const start = painter.indexOf('refreshIfChanged(): void {');
+    const body = painter.slice(start, painter.indexOf('relocalize(): void {', start));
+    expect(body).toContain('const draft = captureFormDraft(el);');
+    expect(body).toContain('this.render();');
+    expect(body).toContain('restoreFormDraft(el, draft);');
+    expect(body.indexOf('captureFormDraft(el)')).toBeLessThan(body.indexOf('this.render();'));
+    expect(body.indexOf('this.render();')).toBeLessThan(
+      body.indexOf('restoreFormDraft(el, draft)'),
+    );
+  });
+
+  it('buys through the shared confirm prompt, gated on the pure core permission', () => {
+    const handler = painter.slice(painter.indexOf("act === 'guild-expand'"));
+    const body = handler.slice(0, handler.indexOf("act === 'guild-leave'"));
+    expect(body).toContain('roster?.canExpandRoster && roster.nextRosterPrice !== null');
+    expect(body).toContain('this.deps.showPrompt(');
+    expect(body).toContain('rosterExpandConfirmHtml(');
+    expect(body).toContain("t('hudChrome.social.roster.confirmAction')");
+    expect(body).toContain('() => w.guildBuyRosterPage()');
+  });
+
+  it('the confirm body escapes the localized sentence and splices the coin markup into its slot', () => {
+    // The sentence never reaches innerHTML raw: only the trusted price markup does.
+    const price = '<span class="money-inline">1736<span class="coin g"></span></span>';
+    const html = rosterExpandConfirmHtml('20', price);
+    expect(html).toBe(
+      `Expand the guild roster by 20 seats for ${price}? The gold comes from your own purse and is not refunded.`,
+    );
+    expect(html).not.toContain('\u0000');
+    // A price carrying replacement-pattern characters is spliced verbatim.
+    expect(rosterExpandConfirmHtml('20', '$&$1')).toContain('for $&$1?');
+    // The seats value is escaped like any other interpolated text.
+    expect(rosterExpandConfirmHtml('<b>', price)).toContain('by &lt;b&gt; seats');
+  });
+
+  it('the price splice fills every slot and never leaves the prompt unpriced', () => {
+    const price = '<span class="money-inline">7</span>';
+    // A sentence naming the price twice fills both (split/join, not first-only).
+    expect(splicePriceHtml('Pay \u0000 now, yes \u0000?', price)).toBe(
+      `Pay ${price} now, yes ${price}?`,
+    );
+    // Replacement-pattern characters in the markup are kept verbatim.
+    expect(splicePriceHtml('for \u0000?', '$&$1')).toBe('for $&$1?');
+    // A sentence that lost its slot still ends with the price.
+    expect(splicePriceHtml('Expand the roster?', price)).toBe(`Expand the roster? ${price}`);
+  });
+
+  it('the catalog carries the roster block with every key the painter and hud read', () => {
+    // Scoped to the `roster: {` block under `social`, so a same-named key
+    // elsewhere in the catalog (there are several `maxed:` / `retry:` leaves)
+    // cannot satisfy this pin; tests/result_code_keys.test.ts resolves the
+    // hud-side keys through the generated bundle.
+    const start = hudChromeCatalog.indexOf('    roster: {');
+    expect(start).toBeGreaterThan(-1);
+    const block = hudChromeCatalog.slice(start, hudChromeCatalog.indexOf('\n    },\n', start));
+    for (const key of [
+      'seats:',
+      'expand:',
+      'maxed:',
+      'confirm:',
+      'confirmAction:',
+      'expandedLine:',
+      'result: {',
+      'notLeader:',
+      'cannotAfford:',
+      'retry:',
+    ]) {
+      expect(block, key).toContain(key);
+    }
   });
 });

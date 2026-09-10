@@ -1,7 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { corpseLootAvailability } from '../src/game/corpse_loot_availability';
+import {
+  corpseLootAvailability,
+  corpseLootAvailabilityInWorld,
+} from '../src/game/corpse_loot_availability';
 import { MOBS } from '../src/sim/data';
+import { harvestFamilyYieldsItem } from '../src/sim/professions/gathering';
 import type { Entity } from '../src/sim/types';
+import {
+  UNMAPPED_FAMILY,
+  UNMAPPED_FAMILY_2,
+  withRetaggedTemplates,
+} from './helpers/unmapped_family';
 
 function corpse(overrides: Partial<Entity>): Entity {
   return {
@@ -27,6 +36,19 @@ describe('corpseLootAvailability', () => {
     expect(result.visibleItems).toEqual([]);
     expect(result.hasLoot).toBe(false);
     expect(result.canOpen).toBe(false);
+  });
+
+  it('does not advertise an exhausted personal slot as ordinary loot', () => {
+    const result = corpseLootAvailability(
+      corpse({
+        templateId: 'forest_wolf',
+        loot: { copper: 0, items: [{ itemId: 'wolf_fang', count: 0, personalFor: [1] }] },
+      }),
+      1,
+    );
+    expect(result.visibleItems).toEqual([]);
+    expect(result.hasLoot).toBe(false);
+    expect(result.harvestable).toBe(true);
   });
 
   it('includes personal loot assigned to the local player', () => {
@@ -106,18 +128,21 @@ describe('corpseLootAvailability', () => {
 
   it('closes a depleted corpse whose every component family is unmapped (#2513)', () => {
     // fen_troll carried claw and tusk and HARVEST_COMPONENT_ITEMS mapped
-    // neither, so the sim refused a harvest there. Both are mapped now (this
-    // branch's own fix), so no shipped template is left in that shape: gills
-    // and horn are still waiting on theirs, so this drives the gate through a
-    // real, otherwise-untagged template (warlock_imp) retagged for the
-    // duration of the case, restored in a finally. This arm used to answer on
-    // the tag COUNT and reported the corpse harvestable, which kept the popup
-    // open on an empty body with an enabled Harvest button whose every submit
-    // the server refused. It now reads the sim's own isHarvestableCorpse.
-    const template = MOBS.warlock_imp;
-    const priorTags = template.componentTags;
-    template.componentTags = ['gills', 'horn'];
-    try {
+    // neither, so the sim refused a harvest there. Both are mapped now
+    // (#2905), and Phase 11m mapped gills and horn after them, so no shipped
+    // template is left in that shape: this drives the gate through two real,
+    // otherwise-untagged templates retagged with the synthetic never-mapped
+    // families (tests/helpers/unmapped_family.ts) for the duration of the
+    // case, restored in a finally (warlock_imp all-unmapped,
+    // warlock_voidwalker mixed). This arm used to answer on the tag COUNT and
+    // reported the corpse harvestable, which kept the popup open on an empty
+    // body with an enabled Harvest button whose every submit the server
+    // refused. It now reads the sim's own isHarvestableCorpse.
+    const retags = {
+      warlock_imp: [UNMAPPED_FAMILY, UNMAPPED_FAMILY_2],
+      warlock_voidwalker: ['hide', UNMAPPED_FAMILY],
+    };
+    withRetaggedTemplates(retags, () => {
       const depleted = corpseLootAvailability(
         corpse({ templateId: 'warlock_imp', loot: null, harvestClaimedBy: null }),
         1,
@@ -140,13 +165,22 @@ describe('corpseLootAvailability', () => {
       expect(withCoin.hasLoot).toBe(true);
       expect(withCoin.canOpen).toBe(true);
       expect(withCoin.visibleCopper).toBe(50);
-    } finally {
-      template.componentTags = priorTags;
-    }
-    // The discriminator on real content: a template carrying an unmapped
-    // family beside a mapped one stays harvestable, so this is the yield
-    // table talking and not a special case of the corpse-level gate.
-    expect(MOBS.sethrael_palecoil.componentTags).toEqual(['hide', 'claw', 'horn']);
+      // The discriminator: a template carrying an unmapped family beside a
+      // mapped one stays harvestable, so this is the yield table talking and
+      // not a special case of the corpse-level gate (both fixtures carry
+      // exactly two tags, so it is not the count either).
+      const mixed = corpseLootAvailability(
+        corpse({ templateId: 'warlock_voidwalker', loot: null, harvestClaimedBy: null }),
+        1,
+      );
+      expect(mixed.harvestable).toBe(true);
+      expect(mixed.canOpen).toBe(true);
+    });
+    // ...and on real content: sethrael_palecoil was the shipped mixed
+    // exemplar (hide, claw, horn) until Phase 11m mapped horn; it still
+    // carries horn, every tag it carries maps now, and it is harvestable.
+    expect(MOBS.sethrael_palecoil.componentTags).toContain('horn');
+    expect(MOBS.sethrael_palecoil.componentTags?.every(harvestFamilyYieldsItem)).toBe(true);
     const palecoil = corpseLootAvailability(
       corpse({ templateId: 'sethrael_palecoil', loot: null, harvestClaimedBy: null }),
       1,
@@ -293,5 +327,40 @@ describe('corpseLootAvailability loot rights matrix', () => {
     expect(result.harvestable).toBe(true);
     expect(result.hasLoot).toBe(false);
     expect(result.canOpen).toBe(true);
+  });
+});
+
+describe('corpse popup field kit visibility', () => {
+  it('shows ordinary loot without exposing harvesting when no kit is carried', () => {
+    const world = { playerId: 1, partyInfo: null, inventory: [] };
+    const body = corpse({ templateId: 'forest_wolf', loot: { copper: 25, items: [] } });
+    expect(corpseLootAvailabilityInWorld(world, body)).toMatchObject({
+      harvestable: false,
+      hasLoot: true,
+      canOpen: true,
+      visibleCopper: 25,
+    });
+    expect(corpseLootAvailabilityInWorld(world, { ...body, loot: null }).canOpen).toBe(false);
+  });
+  it('follows live kit acquisition and removal', () => {
+    const body = corpse({ templateId: 'forest_wolf', loot: null });
+    const world = { playerId: 1, partyInfo: null, inventory: [{ itemId: 'field_kit', count: 1 }] };
+    expect(corpseLootAvailabilityInWorld(world, body).harvestable).toBe(true);
+    expect(corpseLootAvailabilityInWorld({ ...world, inventory: [] }, body).canOpen).toBe(false);
+    expect(
+      corpseLootAvailabilityInWorld(
+        {
+          ...world,
+          inventory: [{ itemId: 'rough_hide', count: 20 }],
+        },
+        body,
+      ).canOpen,
+    ).toBe(false);
+    expect(
+      corpseLootAvailabilityInWorld(
+        { ...world, inventory: [{ itemId: 'field_kit', count: 0 }] },
+        body,
+      ).canOpen,
+    ).toBe(false);
   });
 });

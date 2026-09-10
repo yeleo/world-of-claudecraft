@@ -195,7 +195,7 @@ export const table: DeedLocaleTable = {
   prog_herbalism_100: { name: '초원의 달인', desc: '약초 채집 숙련도 100을 달성하십시오.' },
   prog_master_gatherer: {
     name: '채집의 대가',
-    desc: '채광, 벌목, 약초 채집, 낚시 중 세 가지 이상에서 숙련도 100을 달성하십시오.',
+    desc: '채집 직업 세 가지의 숙련도를 100까지 올리십시오.',
   },
   prog_first_craft: { name: '손수 만든 물건', desc: '첫 제작을 성공적으로 완료하십시오.' },
   prog_craft_specialist: {
@@ -306,7 +306,7 @@ export const table: DeedLocaleTable = {
     title: '고룡을 쓰러뜨린 자',
   },
   dgn_sanctum_speed: {
-    name: '성소 질주',
+    name: '성소 경주',
     desc: '파티가 무덤고룡 성소를 차지한 뒤 15분 안에 무덤고룡 코르줄을 처치하십시오.',
   },
   dgn_nythraxis_gravebreaker: {
@@ -369,7 +369,7 @@ export const table: DeedLocaleTable = {
   },
   dlv_varric_ringers: {
     name: '종은 침묵한다',
-    desc: '부제 바릭이 일으킨 장례 종지기를 모두 처치한 상태로 그를 물리치십시오.',
+    desc: '부제 반드릭이 일으킨 장례 종지기를 모두 처치한 상태로 그를 물리치십시오.',
   },
   dlv_nhalia_bells: {
     name: '종을 재우는 자',
@@ -382,7 +382,6 @@ export const table: DeedLocaleTable = {
   },
   chr_vale_chapter_ii: {
     name: '골짜기 연대기, 제2장',
-    desc: '사울의 연대기 제2장을 끝마치십시오: 도적과 멀록과 광산의 해로운 짐승들을 처치하고, 소우필드에서 경기를 뛰고, 성물실에 도전하십시오.',
   },
   chr_vale_chapter_iii: {
     name: '골짜기의 연대기',
@@ -399,8 +398,8 @@ export const table: DeedLocaleTable = {
   },
   chr_vale_packbreaker: { name: '무리를 흩는 자', desc: '10초 안에 숲늑대 3마리를 처치하십시오.' },
   chr_vale_cup_debut: {
+    desc: '소필드에서 열리는 베일 컵 경기에 출전해 공을 터치하십시오. 베일 컵 경기는 더 이상 플레이할 수 없으므로 새로 획득할 수 없습니다.',
     name: '구리 양동이 도전자',
-    desc: '소우필드에서 열리는 골짜기 컵 경기에 나서서 공을 만져 보십시오.',
   },
   chr_vale_rares: {
     name: '골짜기의 공포',
@@ -445,12 +444,12 @@ export const table: DeedLocaleTable = {
   },
   chr_peaks_chapter_iii: {
     name: '쏜피크의 연대기',
-    desc: '산의 이야기를 끝까지 지켜보십시오: 고룡교단을 무너뜨리고, 성소를 침묵시키고, 깨어나는 봉우리를 쓰러뜨리고, 바위산의 이름난 공포를 모두 처치하십시오.',
+    desc: '산의 이야기를 끝까지 지켜보십시오: 용서약단을 무너뜨리고, 성소를 침묵시키고, 깨어나는 봉우리를 쓰러뜨리고, 바위산의 이름난 공포를 모두 처치하십시오.',
     title: '쏜피크의 증인',
   },
   chr_peaks_sparring: {
     name: '성벽 훈련',
-    desc: '하이워치 위쪽의 훈련용 허수아비에게 총 1,000의 피해를 입히십시오.',
+    desc: '훈련용 허수아비에게 총 1,000의 피해를 입히십시오.',
   },
   chr_peaks_glimmer_cast: {
     name: '찬 물, 더 찬 빛',
@@ -534,7 +533,7 @@ export const table: DeedLocaleTable = {
   },
   col_quartermaster_buyout: {
     name: '단골 손님',
-    desc: '병참장교 벡스의 취급 물품 열 가지를 모두 발견하십시오.',
+    desc: '병참장교 벡스의 취급 장비 열 가지를 모두 발견하십시오.',
   },
   col_glimmerfin: {
     name: '희망의 반짝임',
@@ -584,64 +583,73 @@ export const table: DeedLocaleTable = {
   pvp_duel_first_win: { name: '결판은 밖에서', desc: '결투에서 승리하십시오.' },
   pvp_duel_grace: { name: '겸손의 가르침', desc: '결투에서 지되, 체면은 그럭저럭 지켜 내십시오.' },
   pvp_vcup_first_match: {
+    desc: '소필드에서 베일 컵 경기를 승패와 관계없이 끝까지 마치십시오. 베일 컵 경기는 더 이상 플레이할 수 없으므로 새로 획득할 수 없습니다.',
     name: '그라운드에 선 첫발',
-    desc: '소우필드에서 골짜기 컵 경기 한 판을 승패에 관계없이 끝까지 치르십시오.',
   },
-  pvp_vcup_first_win: { name: '첫 우승컵', desc: '등급전 골짜기 컵 경기에서 승리하십시오.' },
+  pvp_vcup_first_win: {
+    name: '첫 우승컵',
+    desc: '평점제 베일 컵 경기에서 승리하십시오. 베일 컵 경기는 더 이상 플레이할 수 없으므로 새로 획득할 수 없습니다.',
+  },
   pvp_vcup_wins_10: {
+    desc: '평점제 베일 컵 경기에서 10회 승리하십시오. 베일 컵 경기는 더 이상 플레이할 수 없으므로 새로 획득할 수 없습니다.',
     name: '노련한 멧돼지공 선수',
-    desc: '등급전 골짜기 컵 경기에서 10회 승리하십시오.',
   },
   pvp_vcup_wins_25: {
+    desc: '평점제 베일 컵 경기에서 25회 승리하십시오. 베일 컵 경기는 더 이상 플레이할 수 없으므로 새로 획득할 수 없습니다.',
     name: '멧돼지공의 전설',
-    desc: '등급전 골짜기 컵 경기에서 25회 승리하십시오.',
     title: '멧돼지공의 전설',
   },
-  pvp_vcup_first_goal: { name: '마수걸이 골', desc: '등급전 골짜기 컵 경기에서 골을 넣으십시오.' },
+  pvp_vcup_first_goal: {
+    name: '마수걸이 골',
+    desc: '평점제 베일 컵 경기에서 골을 넣으십시오. 베일 컵 경기는 더 이상 플레이할 수 없으므로 새로 획득할 수 없습니다.',
+  },
   pvp_vcup_hat_trick: {
+    desc: '3대3 이상 부문의 평점제 베일 컵 경기에서 한 경기 세 골을 넣으십시오. 베일 컵 경기는 더 이상 플레이할 수 없으므로 새로 획득할 수 없습니다.',
     name: '해트트릭의 주인공',
-    desc: '3대3 이상 부문의 등급전 골짜기 컵 경기 한 판에서 세 골을 넣으십시오.',
   },
   pvp_vcup_golden_goal: {
+    desc: '평점제 베일 컵 경기의 승패를 가르는 골든 골을 넣으십시오. 베일 컵 경기는 더 이상 플레이할 수 없으므로 새로 획득할 수 없습니다.',
     name: '황금의 순간',
-    desc: '등급전 골짜기 컵 경기의 승부를 가르는 골든골을 넣으십시오.',
   },
   pvp_vcup_first_save: {
+    desc: '3대3 이상 부문의 평점제 베일 컵 경기에서 골키퍼로 선방하십시오. 손아귀를 시험할 만큼 빠른 슛만 인정되며, 살짝 잡은 공은 인정되지 않습니다. 베일 컵 경기는 더 이상 플레이할 수 없으므로 새로 획득할 수 없습니다.',
     name: '든든한 두 손',
-    desc: '등급전 골짜기 컵 경기에서 골키퍼로 선방에 성공하십시오.',
   },
   pvp_vcup_clean_sheet: {
+    desc: '3대3 이상 부문의 평점제 베일 컵 경기에서 골키퍼로 무실점 승리하십시오. 베일 컵 경기는 더 이상 플레이할 수 없으므로 새로 획득할 수 없습니다.',
     name: '철벽 수문장',
-    desc: '골키퍼로 한 골도 내주지 않고 등급전 골짜기 컵 경기에서 승리하십시오.',
   },
   pvp_vcup_guild_win: {
+    desc: '길드의 깃발을 걸고 참가한 평점제 베일 컵 경기에서 승리하십시오. 베일 컵 경기는 더 이상 플레이할 수 없으므로 새로 획득할 수 없습니다.',
     name: '깃발을 위하여',
-    desc: '길드의 깃발 아래 출전한 등급전 골짜기 컵 경기에서 승리하십시오.',
   },
   pvp_fiesta_first_bout: {
+    desc: '승패와 관계없이 Fiesta 2대2 경기를 끝까지 치르십시오. Fiesta 경기는 더 이상 투기장 대기열에 나오지 않으므로 새로 획득할 수 없습니다.',
     name: '잔치의 불청객',
-    desc: '2대2 피에스타 한 판을 승패에 관계없이 끝까지 싸우십시오.',
   },
   pvp_fiesta_first_win: {
+    desc: 'Fiesta 2대2 경기에서 승리하십시오. Fiesta 경기는 더 이상 투기장 대기열에 나오지 않으므로 새로 획득할 수 없습니다.',
     name: '피에스타의 주인공',
-    desc: '2대2 피에스타 한 판에서 승리하십시오.',
   },
-  pvp_fiesta_double: { name: '연달아 둘', desc: '4초 안에 피에스타 처치 2회를 기록하십시오.' },
+  pvp_fiesta_double: {
+    name: '연달아 둘',
+    desc: '4초 안에 Fiesta 적을 두 번 쓰러뜨리십시오. Fiesta 경기는 더 이상 투기장 대기열에 나오지 않으므로 새로 획득할 수 없습니다.',
+  },
   pvp_fiesta_shutdown: {
+    desc: '3연승 이상의 기록을 가진 Fiesta 적을 쓰러뜨리십시오. Fiesta 경기는 더 이상 투기장 대기열에 나오지 않으므로 새로 획득할 수 없습니다.',
     name: '흥을 깨는 자',
-    desc: '연속 처치 3회 이상을 이어 가던 피에스타 상대를 쓰러뜨리십시오.',
   },
   pvp_fiesta_full_build: {
+    desc: '세 웨이브 모두에서 강화 하나를 고정한 채 Fiesta 경기에서 승리하십시오. Fiesta 경기는 더 이상 투기장 대기열에 나오지 않으므로 새로 획득할 수 없습니다.',
     name: '완벽한 채비',
-    desc: '세 웨이브 모두에서 증강을 확정한 채 피에스타 한 판에서 승리하십시오.',
   },
   pvp_fiesta_powerups: {
+    desc: '네 가지 링 강화, 속도의 악마, 거상, 달빛 장화, 광전사를 각각 한 번 이상 획득하십시오. Fiesta 경기는 더 이상 투기장 대기열에 나오지 않으므로 새로 획득할 수 없습니다.',
     name: '하나씩 전부',
-    desc: '링의 파워업 네 가지를 각각 한 번 이상 획득하십시오: 질주광, 거상, 달 장화, 광전사.',
   },
   pvp_fiesta_five_kills: {
+    desc: '한 번의 Fiesta 경기에서 적을 다섯 번 쓰러뜨리십시오. Fiesta 경기는 더 이상 투기장 대기열에 나오지 않으므로 새로 획득할 수 없습니다.',
     name: '잔치를 짊어지다',
-    desc: '피에스타 한 판에서 처치 5회를 기록하십시오.',
   },
   soc_first_party: { name: '함께라면 더 멀리', desc: '다른 플레이어와 함께 파티에 들어가십시오.' },
   soc_full_house: { name: '풀 하우스', desc: '다섯 명이 꽉 찬 파티로 던전을 끝까지 공략하십시오.' },
@@ -956,6 +964,32 @@ export const table: DeedLocaleTable = {
     name: '완벽을 향한 판금',
     desc: '방어구 제작에서 처음으로 희귀 등급 아이템을 제작하십시오.',
   },
+  prog_jewelcrafting_rare: {
+    name: '광채를 향한 연마',
+    desc: '보석세공에서 처음으로 희귀 등급 아이템을 제작하십시오.',
+  },
+  prog_jewelcrafting_50: {
+    name: '깎은 면과 세공',
+    desc: '보석세공 기술 50을 달성하십시오.',
+  },
+  prog_grandmaster_jewelcrafting: {
+    name: '보석세공 대가',
+    desc: '보석세공 기술 125를 달성하여 그 기예의 정점에 오르십시오.',
+    title: '보석세공 대가',
+  },
+  prog_inscription_rare: {
+    name: '고운 먹으로 쓰다',
+    desc: '각인에서 처음으로 희귀 등급 아이템을 제작하십시오.',
+  },
+  prog_inscription_50: {
+    name: '깃펜과 안료',
+    desc: '각인 기술 50을 달성하십시오.',
+  },
+  prog_grandmaster_inscription: {
+    name: '각인 대가',
+    desc: '각인 기술 125를 달성하여 그 기예의 정점에 오르십시오.',
+    title: '각인 대가',
+  },
   prog_ready_for_an_adventure: {
     name: '모험을 떠날 준비',
     desc: '수련의 해안을 졸업하십시오. 섬의 모든 수업을 마친 뒤, 나룻배 종을 울려 이스트브룩으로 돌아가십시오.',
@@ -988,5 +1022,60 @@ export const table: DeedLocaleTable = {
     name: '꺼지지 않은 불씨',
     desc: '공격대원이 단 한 명도 죽지 않고 영웅 난이도에서 마지막 불꽃의 대장장이 발쿨을 처치하십시오.',
     title: '그을리지 않은 자',
+  },
+  hid_forgebreaker: {
+    name: '풀려난 샘',
+    desc: '화로파괴자를 직접 벼리고 완성된 망치를 가지고 메일린에게 돌아가세요.',
+  },
+  col_set_bramblehide: {
+    name: '루츠의 가시덤불가죽',
+    desc: '루츠의 가시덤불가죽의 모든 부위를 발견하십시오.',
+  },
+  col_deepest_cast: {
+    desc: 'Clockreel 낚싯대를 획득하십시오. 가장 깊은 어획물까지 닿는 유일한 낚싯대입니다.',
+
+    name: '가장 깊은 투척',
+  },
+  prog_first_planting: { desc: '텃밭에 첫 작물을 심으십시오.', name: '씨앗으로 시작하다' },
+  chr_vale_first_harvest: {
+    desc: '이스트브룩 골짜기의 밭에서 처음으로 잘 자란 작물을 수확하십시오.',
+
+    name: '골짜기의 첫 열매',
+  },
+  chr_marsh_first_harvest: {
+    desc: '마이어펜 습지의 밭에서 처음으로 잘 자란 작물을 수확하십시오.',
+    name: '이탄 속 새싹',
+  },
+  chr_peaks_first_harvest: {
+    desc: '쏜피크 고지의 밭에서 처음으로 잘 자란 작물을 수확하십시오.',
+    name: '바위산의 수확',
+  },
+  chr_evergarden_first_harvest: {
+    desc: 'Evergarden의 밭에서 처음으로 잘 자란 작물을 수확하십시오.',
+
+    name: '낙원의 텃밭',
+  },
+  col_golden_harvest: {
+    desc: '황금 수확을 거두고 그 소식이 온 구역에 퍼지게 하십시오.',
+    name: '황금빛 수확',
+  },
+  prog_farming_100: {
+    desc: '농사 숙련도 100을 달성하십시오.',
+    name: '수확의 달인',
+    title: '수확의 달인',
+  },
+  col_farm_roster: {
+    desc: '네 정원에서 자라는 모든 작물을 수확하십시오.',
+    name: '모든 고랑을 채우다',
+  },
+  prog_field_to_feast: {
+    desc: '정점의 잔치를 요리하여 공격대 전체가 함께 먹을 수 있는 상을 차리십시오.',
+
+    name: '밭에서 잔치까지',
+  },
+  prog_legendmaker: {
+    desc: '창조의 증서로 완전해진 작품을 전설로 승격시키고, 그 작품만의 이름을 지어 주십시오.',
+
+    name: '전설을 빚는 자',
   },
 };

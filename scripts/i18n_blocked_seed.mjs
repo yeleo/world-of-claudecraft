@@ -18,6 +18,14 @@
 // list. These are SOURCE strings, not keys.
 
 export const COPIED_ALLOW_IDS = [
+  // Market buckets use the native French "Essence"/"Compost" and Dutch
+  // "Compost". Indonesian "Median (per unit)" is also native technical wording.
+  'admin::fr_FR::marketMetrics.bucketEssence',
+  'admin::fr_CA::marketMetrics.bucketEssence',
+  'admin::fr_FR::marketMetrics.bucketCompost',
+  'admin::fr_CA::marketMetrics.bucketCompost',
+  'admin::nl_NL::marketMetrics.bucketCompost',
+  'admin::id_ID::marketMetrics.colMedian',
   'server::fr_FR::who.statusCombat',
   'server::fr_CA::who.statusCombat',
   'server::it_IT::who.statusOnline',
@@ -432,6 +440,8 @@ export const V07_SLASH = [
   'You are disenchanting: Akis of Akis remaining.',
   'You are enchanting: Akis of Akis remaining.',
   'You are salvaging: Akis of Akis remaining.',
+  // Masterwrought phase 04: the sunder cast joins the same /cast backstop.
+  'You are sundering: Akis of Akis remaining.',
   'You are recharging a tool effect: Akis of Akis remaining.',
   'You are in Aki (levels Aki–Aki) at (5, 5).',
   'You are in Aki.',

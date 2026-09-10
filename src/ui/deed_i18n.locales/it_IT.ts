@@ -88,7 +88,7 @@ export const table: DeedLocaleTable = {
     desc: 'Raccogli una vena di minerale, un gruppo di legna e un appezzamento d erbe a Nightbloom.',
   },
   chr_nightbloom_first_cast: {
-    name: 'Un increspatura sul pozzo lunare',
+    name: 'Un’Onda alla Fonte Lunare',
     desc: 'Pesca un pesce nelle acque di Nightbloom.',
   },
   chr_wraithwood_gatherer: {
@@ -199,7 +199,70 @@ export const table: DeedLocaleTable = {
   },
   prog_master_gatherer: {
     name: 'Maestro Raccoglitore',
-    desc: 'Raggiungi 100 di competenza in almeno tre tra Estrazione, Disboscamento, Erboristeria e Pesca.',
+    desc: 'Raggiungi 100 di competenza in tre mestieri di raccolta qualsiasi.',
+  },
+  prog_jewelcrafting_rare: {
+    name: 'Lucidato fino allo Splendore',
+    desc: 'Crea il tuo primo oggetto di livello raro in Oreficeria.',
+  },
+  prog_jewelcrafting_50: {
+    name: 'Sfaccetta e Filigrana',
+    desc: 'Raggiungi 50 di abilità in Oreficeria.',
+  },
+  prog_grandmaster_jewelcrafting: {
+    name: 'Gran Maestro di Oreficeria',
+    desc: 'Raggiungi 125 di abilità in Oreficeria, il vertice assoluto del mestiere.',
+    title: 'Gran Maestro di Oreficeria',
+  },
+  prog_inscription_rare: {
+    name: 'Scritto con Inchiostro Pregiato',
+    desc: 'Crea il tuo primo oggetto di livello raro in Inscrizione.',
+  },
+  prog_inscription_50: {
+    name: 'Penna e Pigmento',
+    desc: 'Raggiungi 50 di abilità in Inscrizione.',
+  },
+  prog_grandmaster_inscription: {
+    name: 'Gran Maestro di Inscrizione',
+    desc: 'Raggiungi 125 di abilità in Iscrizione, il vertice assoluto del mestiere.',
+    title: 'Gran Maestro di Inscrizione',
+  },
+  col_deepest_cast: {
+    name: 'La Cattura Più Profonda',
+    desc: 'Ottieni una canna da pesca Clockreel, l’unica che raggiunge le catture più profonde.',
+  },
+  prog_first_planting: {
+    name: 'E Così si Semina',
+    desc: 'Pianta la tua prima coltura in un’aiuola.',
+  },
+  chr_vale_first_harvest: {
+    name: 'I Primi Frutti della Valle',
+    desc: 'Raccogli la tua prima coltura rigogliosa da un’aiuola nella Valle di Eastbrook.',
+  },
+  chr_marsh_first_harvest: {
+    name: 'Germogli nella Torba',
+    desc: 'Raccogli la tua prima coltura rigogliosa da un’aiuola nella Palude di Mirefen.',
+  },
+  chr_peaks_first_harvest: {
+    name: 'Un Raccolto tra le Cime',
+    desc: 'Raccogli la tua prima coltura rigogliosa da un’aiuola nelle Alture di Thornpeak.',
+  },
+  chr_evergarden_first_harvest: {
+    name: 'Un Appezzamento in Paradiso',
+    desc: 'Raccogli la tua prima coltura rigogliosa da un’aiuola nell’Evergarden.',
+  },
+  prog_farming_100: {
+    name: 'Maestro del Raccolto',
+    desc: 'Raggiungi 100 di competenza in Agricoltura.',
+    title: 'Maestro del Raccolto',
+  },
+  col_farm_roster: {
+    name: 'Ogni Solco Riempito',
+    desc: 'Raccogli ogni coltura prodotta dai quattro giardini.',
+  },
+  prog_field_to_feast: {
+    name: 'Dal Campo al Banchetto',
+    desc: 'Cucina un banchetto d’apice, il tavolo a cui mangia un’intera incursione.',
   },
   prog_first_craft: {
     name: 'Fatto a Mano',
@@ -316,7 +379,7 @@ export const table: DeedLocaleTable = {
     title: 'Abbattiwyrm',
   },
   dgn_sanctum_speed: {
-    name: 'Scatto nel Santuario',
+    name: 'Corsa al Santuario',
     desc: 'Sconfiggi Korzul il Gravewyrm entro 15 minuti da quando il tuo gruppo rivendica il Santuario del Gravewyrm.',
   },
   dgn_nythraxis_gravebreaker: {
@@ -382,7 +445,7 @@ export const table: DeedLocaleTable = {
   },
   dlv_varric_ringers: {
     name: 'Le Campane Tacciono',
-    desc: 'Sconfiggi il Diacono Varric quando ogni Campanaro Funebre che risveglia è già stato ucciso.',
+    desc: 'Sconfiggi il Diacono Vandric quando ogni Campanaro Funebre che risveglia è già stato ucciso.',
   },
   dlv_nhalia_bells: {
     name: 'Fermacampane',
@@ -395,7 +458,6 @@ export const table: DeedLocaleTable = {
   },
   chr_vale_chapter_ii: {
     name: 'Cronaca della Valle, Capitolo II',
-    desc: 'Concludi il secondo capitolo della cronaca di Saul: banditi, murloc e parassiti della miniera sterminati, una partita giocata al Campo della Scrofa e il Reliquiario affrontato.',
   },
   chr_vale_chapter_iii: {
     name: 'Cronaca della Valle',
@@ -415,8 +477,8 @@ export const table: DeedLocaleTable = {
     desc: 'Uccidi 3 Lupi della foresta entro 10 secondi.',
   },
   chr_vale_cup_debut: {
+    desc: 'Scendi in campo e tocca la palla in una partita della Coppa della Valle al Il Campo della Scrofa. Le partite della Coppa della Valle non sono più giocabili, quindi questo non può più essere ottenuto.',
     name: 'Contendente del Secchio di Rame',
-    desc: 'Scendi in campo e tocca la palla in una partita della Coppa della Valle al Campo della Scrofa.',
   },
   chr_vale_rares: {
     name: 'I Terrori della Valle',
@@ -461,12 +523,12 @@ export const table: DeedLocaleTable = {
   },
   chr_peaks_chapter_iii: {
     name: 'Cronaca di Thornpeak',
-    desc: "Porta a compimento l'intera storia della montagna: il Culto del Wyrm spezzato, il Santuario ridotto al silenzio, il Picco Risvegliato abbattuto e ogni terrore famigerato delle rupi eliminato.",
+    desc: 'Ripercorri tutta la storia della montagna: i Broodsworn spezzati, il Santuario ridotto al silenzio, il Picco Risvegliato abbattuto e ogni terrore nominato delle cime sconfitto.',
     title: 'di Thornpeak',
   },
   chr_peaks_sparring: {
     name: 'Esercitazioni sul Muro',
-    desc: "Infliggi 1.000 danni totali al manichino d'allenamento sopra Highwatch.",
+    desc: "Infliggi 1.000 danni totali a un manichino d'allenamento.",
   },
   chr_peaks_glimmer_cast: {
     name: 'Acqua Fredda, Luce più Fredda',
@@ -556,7 +618,7 @@ export const table: DeedLocaleTable = {
   },
   col_quartermaster_buyout: {
     name: 'Cliente di Riguardo',
-    desc: 'Scopri tutti e dieci i pezzi della mercanzia del Quartiermastro Vex.',
+    desc: 'Scopri tutti e dieci i pezzi di equipaggiamento della mercanzia del Quartiermastro Vex.',
   },
   col_glimmerfin: {
     name: 'Un Barlume di Speranza',
@@ -609,70 +671,73 @@ export const table: DeedLocaleTable = {
     desc: 'Perdi un duello con la dignità quasi intatta.',
   },
   pvp_vcup_first_match: {
+    desc: 'Porta a termine una partita completa della Coppa della Valle al Il Campo della Scrofa, vincendo o perdendo. Le partite della Coppa della Valle non sono più giocabili, quindi questo non può più essere ottenuto.',
     name: 'Scarpini in Campo',
-    desc: "Porta a termine un'intera partita di Coppa della Valle al Campo della Scrofa, vinta o persa che sia.",
   },
   pvp_vcup_first_win: {
+    desc: 'Vinci una partita classificata della Coppa della Valle. Le partite della Coppa della Valle non sono più giocabili, quindi questo non può più essere ottenuto.',
     name: 'Primo Trofeo in Bacheca',
-    desc: 'Vinci una partita classificata di Coppa della Valle.',
   },
   pvp_vcup_wins_10: {
+    desc: 'Vinci 10 partite classificate della Coppa della Valle. Le partite della Coppa della Valle non sono più giocabili, quindi questo non può più essere ottenuto.',
     name: 'Vecchia Volpe del Boarball',
-    desc: 'Vinci 10 partite classificate di Coppa della Valle.',
   },
   pvp_vcup_wins_25: {
+    desc: 'Vinci 25 partite classificate della Coppa della Valle. Le partite della Coppa della Valle non sono più giocabili, quindi questo non può più essere ottenuto.',
     name: 'Leggenda del Boarball',
-    desc: 'Vinci 25 partite classificate di Coppa della Valle.',
     title: 'Leggenda del Boarball',
   },
   pvp_vcup_first_goal: {
+    desc: 'Segna un gol in una partita classificata della Coppa della Valle. Le partite della Coppa della Valle non sono più giocabili, quindi questo non può più essere ottenuto.',
     name: 'A Segno',
-    desc: 'Segna un gol in una partita classificata di Coppa della Valle.',
   },
   pvp_vcup_hat_trick: {
+    desc: 'Segna tre gol nella stessa partita classificata della Coppa della Valle, nella categoria 3 contro 3 o superiore. Le partite della Coppa della Valle non sono più giocabili, quindi questo non può più essere ottenuto.',
     name: 'Eroe della Tripletta',
-    desc: 'Segna tre gol in una singola partita classificata di Coppa della Valle, nella categoria 3v3 o superiore.',
   },
   pvp_vcup_golden_goal: {
+    desc: 'Segna il golden goal che decide una partita classificata della Coppa della Valle. Le partite della Coppa della Valle non sono più giocabili, quindi questo non può più essere ottenuto.',
     name: "Momento d'Oro",
-    desc: "Segna il gol d'oro che decide una partita classificata di Coppa della Valle.",
   },
   pvp_vcup_first_save: {
+    desc: 'Effettua una parata come portiere in una partita classificata della Coppa della Valle, nella categoria 3 contro 3 o superiore. Conta solo un tiro abbastanza veloce da mettere alla prova la presa; una presa morbida non conta. Le partite della Coppa della Valle non sono più giocabili, quindi questo non può più essere ottenuto.',
     name: 'Mani Sicure',
-    desc: 'Effettua una parata da portiere in una partita classificata di Coppa della Valle.',
   },
   pvp_vcup_clean_sheet: {
+    desc: 'Vinci una partita classificata della Coppa della Valle come portiere senza subire gol, nella categoria 3 contro 3 o superiore. Le partite della Coppa della Valle non sono più giocabili, quindi questo non può più essere ottenuto.',
     name: 'Di Qui Non Si Passa',
-    desc: 'Vinci da portiere una partita classificata di Coppa della Valle senza subire gol.',
   },
   pvp_vcup_guild_win: {
+    desc: 'Vinci una partita classificata della Coppa della Valle sotto lo stendardo della tua gilda. Le partite della Coppa della Valle non sono più giocabili, quindi questo non può più essere ottenuto.',
     name: 'Per il Vessillo',
-    desc: 'Vinci una partita classificata di Coppa della Valle disputata sotto il vessillo della tua gilda.',
   },
   pvp_fiesta_first_bout: {
+    desc: 'Combatti in un incontro Fiesta completo 2 contro 2, vincendo o perdendo. Gli incontri Fiesta non sono più offerti nella coda dell’Arena, quindi questo non può più essere ottenuto.',
     name: 'Imbucato alla Fiesta',
-    desc: 'Combatti per intero uno scontro Fiesta 2v2, vinto o perso che sia.',
   },
-  pvp_fiesta_first_win: { name: "L'Anima della Fiesta", desc: 'Vinci uno scontro Fiesta 2v2.' },
+  pvp_fiesta_first_win: {
+    name: "L'Anima della Fiesta",
+    desc: 'Vinci un incontro Fiesta 2 contro 2. Gli incontri Fiesta non sono più offerti nella coda dell’Arena, quindi questo non può più essere ottenuto.',
+  },
   pvp_fiesta_double: {
+    desc: 'Metti a segno due atterramenti in Fiesta entro quattro secondi. Gli incontri Fiesta non sono più offerti nella coda dell’Arena, quindi questo non può più essere ottenuto.',
     name: 'Doppio Guaio',
-    desc: 'Metti a segno due abbattimenti nella Fiesta nel giro di quattro secondi.',
   },
   pvp_fiesta_shutdown: {
+    desc: 'Abbatti un avversario di Fiesta con una serie di almeno tre. Gli incontri Fiesta non sono più offerti nella coda dell’Arena, quindi questo non può più essere ottenuto.',
     name: 'Guastafeste',
-    desc: 'Abbatti un avversario della Fiesta che vanta una serie di tre o più abbattimenti.',
   },
   pvp_fiesta_full_build: {
+    desc: 'Vinci un incontro Fiesta con un potenziamento bloccato in tutte e tre le ondate. Gli incontri Fiesta non sono più offerti nella coda dell’Arena, quindi questo non può più essere ottenuto.',
     name: "In Tiro per l'Occasione",
-    desc: 'Vinci uno scontro della Fiesta avendo fissato un potenziamento in ognuna delle tre ondate.',
   },
   pvp_fiesta_powerups: {
+    desc: 'Raccogli almeno una volta ciascuno dei quattro potenziamenti dell’anello: Demone della Velocità, Colosso, Stivali Lunari e Berserker. Gli incontri Fiesta non sono più offerti nella coda dell’Arena, quindi questo non può più essere ottenuto.',
     name: 'Uno per Tipo',
-    desc: 'Raccogli almeno una volta ognuno dei quattro power-up del ring: Demone della Velocità, Colosso, Stivali Lunari e Berserker.',
   },
   pvp_fiesta_five_kills: {
+    desc: 'Metti a segno cinque atterramenti in un singolo incontro Fiesta. Gli incontri Fiesta non sono più offerti nella coda dell’Arena, quindi questo non può più essere ottenuto.',
     name: 'Squadra in Spalla',
-    desc: 'Metti a segno cinque abbattimenti in un singolo scontro della Fiesta.',
   },
   soc_first_party: {
     name: 'Meglio in Compagnia',
@@ -699,7 +764,7 @@ export const table: DeedLocaleTable = {
   soc_market_magnate: {
     name: 'Magnate del Mercato',
     desc: "Riscuoti un totale complessivo di 100 monete d'oro dalle tue vendite al Mercato Mondiale.",
-    title: 'Magnate',
+    title: 'Grande Mercante',
   },
   soc_by_ravens_wing: {
     name: "Sull'Ala del Corvo",
@@ -1086,23 +1151,39 @@ export const table: DeedLocaleTable = {
   },
   dgn_ignivar: {
     name: "L'Araldo Cade",
-    desc: 'Sconfiggi Ignivar, Herald of the Last Flame, nel Crucible of the Last Spring.',
+    desc: 'Sconfiggi Ignivar, Araldo dell’Ultima Fiamma, nel Crogiolo dell’Ultima Fonte.',
   },
   dgn_ignivar_heroic: {
     name: "Eroico: L'Araldo Cade",
-    desc: 'Sconfiggi Ignivar, Herald of the Last Flame, in difficoltà Eroica.',
+    desc: 'Sconfiggi Ignivar, Araldo dell’Ultima Fiamma, in difficoltà Eroica.',
   },
   dgn_varkhul: {
     name: 'La Forgia si Spegne',
-    desc: "Sconfiggi Varkhul, Forgefather of the Last Flame, nell'Inner Crucible.",
+    desc: 'Sconfiggi Varkhul, Padre della Forgia dell’Ultima Fiamma, nel Crogiolo Interiore.',
   },
   dgn_varkhul_heroic: {
     name: 'Eroico: La Forgia si Spegne',
-    desc: 'Sconfiggi Varkhul, Forgefather of the Last Flame, in difficoltà Eroica.',
+    desc: 'Sconfiggi Varkhul, Padre della Forgia dell’Ultima Fiamma, in difficoltà Eroica.',
   },
   dgn_varkhul_flawless: {
     name: 'Nemmeno una Brace Perduta',
-    desc: 'Sconfiggi Varkhul, Forgefather of the Last Flame, in difficoltà Eroica senza che un solo membro del raid muoia.',
+    desc: 'Sconfiggi Varkhul, Padre della Forgia dell’Ultima Fiamma, in difficoltà Eroica senza che un solo membro del raid muoia.',
     title: "l'Incombusto",
+  },
+  col_set_bramblehide: {
+    name: 'Pelle di Rovo di Roots',
+    desc: 'Scopri ogni pezzo della Pelle di Rovo di Roots.',
+  },
+  col_golden_harvest: {
+    name: 'Raccolto Dorato',
+    desc: 'Ottieni un raccolto dorato e fallo sapere a tutta la zona.',
+  },
+  prog_legendmaker: {
+    name: 'Creatore di Leggende',
+    desc: 'Eleva un lavoro Perfezionato a leggendario con una Impresa della Creazione e dagli un nome tutto suo.',
+  },
+  hid_forgebreaker: {
+    name: 'Una Fonte Liberata',
+    desc: 'Forgia personalmente Spezzaforgia e torna da Maelin con il martello finito.',
   },
 };

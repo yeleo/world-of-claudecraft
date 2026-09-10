@@ -44,6 +44,10 @@ import {
 import type { ReliquaryViewInput } from '../src/ui/reliquary_view';
 import { ReliquaryWindow, type ReliquaryWindowDeps } from '../src/ui/reliquary_window';
 
+// Pin the two profession pages separately from the 40 original pages.
+// Their names and descriptions are now supplied in every shipped locale.
+const NEW_PROFESSION_PAGES = new Set(['professions_crucible', 'professions_forgebreaker']);
+
 describe('reliquary_i18n English resolution', () => {
   it('resolves name and desc from the catalog page def', () => {
     expect(reliquaryPageName('conquerors_hollow_crypt')).toBe('The Hollow Crypt');
@@ -71,14 +75,20 @@ describe('reliquary_i18n English resolution', () => {
     // manifest still emits the desc row conditionally so a desc-less page added
     // later contributes only its name row instead of an empty-string row.
     // This count is the FILL TRIPWIRE: adding a catalog page must be accompanied
-    // by a name row in every shipped locale chunk (the per-locale row count is
-    // pinned to the same 39 below), so a new page cannot quietly render English
-    // to a CJK or Cyrillic reader. 35 + the four Crucible raid pages.
-    expect(pageCount).toBe(39);
-    expect(descCount).toBe(39);
+    // by a name row in every M16 locale chunk, so a new page cannot quietly
+    // render English to a CJK or Cyrillic reader. The 39 original pages plus
+    // the Roots' Bramblehide set page keep all-locale coverage (40); the
+    // Crucible collection and Forgebreaker personal-hammer pages add two more.
+    expect(pageCount).toBe(42);
+    expect(descCount).toBe(42);
     expect(manifest.length).toBe(pageCount + descCount);
-    expect(manifest.filter((row) => row.field === 'name').length).toBe(39);
-    expect(manifest.filter((row) => row.field === 'desc').length).toBe(39);
+    expect(manifest.filter((row) => row.field === 'name').length).toBe(42);
+    expect(manifest.filter((row) => row.field === 'desc').length).toBe(42);
+    expect(manifest).toContainEqual({
+      id: 'professions_forgebreaker',
+      field: 'name',
+      source: 'Forgebreaker',
+    });
     expect(manifest).toContainEqual({
       id: 'conquerors_thunzharr',
       field: 'name',
@@ -88,7 +98,7 @@ describe('reliquary_i18n English resolution', () => {
   });
 });
 
-describe('reliquary locale chunks (the shipped non-Latin fill)', () => {
+describe('reliquary locale chunks (all shipped locales)', () => {
   type BaseLocale = keyof typeof RELIQUARY_LOCALE_LOADERS;
   const tables = {} as Record<BaseLocale, ReliquaryLocaleTable>;
   // The resolved main-catalog bundles, for the entity-anchor sweep: the page
@@ -166,9 +176,20 @@ describe('reliquary locale chunks (the shipped non-Latin fill)', () => {
 
   it('carries only real catalog page ids, and no empty values', () => {
     for (const lang of tableLocales()) {
-      // Vacuity floor: an emptied chunk would satisfy every for-loop in this
-      // suite silently. One row per catalog page, in every shipped locale.
-      expect(Object.keys(tables[lang]).length, `${lang} row count`).toBe(39);
+      // Preserve the 40 original pages plus both profession pages in every
+      // locale. Release fill now includes all names and narrative descriptions.
+      expect(
+        Object.keys(tables[lang]).filter((id) => !NEW_PROFESSION_PAGES.has(id)).length,
+        `${lang} original row count`,
+      ).toBe(40);
+      for (const id of NEW_PROFESSION_PAGES) {
+        expect(Object.hasOwn(tables[lang], id), `${lang}.${id}`).toBe(true);
+        const description = tables[lang][id]?.desc;
+        expect(description?.trim().length, `${lang}.${id}.desc`).toBeGreaterThan(0);
+        expect(description, `${lang}.${id}.desc must be translated`).not.toBe(
+          RELIQUARY_PAGES_BY_ID[id].desc,
+        );
+      }
       for (const [id, entry] of Object.entries(tables[lang])) {
         expect(RELIQUARY_PAGES_BY_ID[id], `${lang}.${id} is not a catalog page`).toBeDefined();
         for (const field of ['name', 'desc'] as const) {
@@ -250,16 +271,7 @@ describe('reliquary locale chunks (the shipped non-Latin fill)', () => {
     }
   });
 
-  // Page NAMES ship for the five non-Latin locales now, because a Latin-script
-  // reader can still parse an English proper noun while a CJK or Cyrillic reader
-  // cannot. That makes NAME coverage a PR-tier contract: this arm runs at both
-  // tiers so a page added without its five fills reds immediately. Page DESCS
-  // and the Latin locale tables are release fill (Phase 22), held to the
-  // release tier by the runIf arm below (the deed-channel shape), which is why
-  // this suite sits on the release-tier suite list in all three places that
-  // list holds (scripts/lib/gate_steps.mjs, the release-i18n job in ci.yml,
-  // and the literal pin in tests/release_i18n_tier_coverage.test.ts).
-  it('covers every manifest NAME row in all five shipped locale tables', () => {
+  it('covers every manifest NAME row in every shipped locale table', () => {
     const nameRows = reliquaryTranslationManifest().filter((row) => row.field === 'name');
     for (const lang of tableLocales()) {
       const table = tables[lang];
@@ -325,11 +337,11 @@ describe('reliquary locale chunks (the shipped non-Latin fill)', () => {
         swept.push(`${lang}.${page.id}`);
       }
     }
-    // Vacuity floor, snug to the real corpus: 19 anchorable pages x 18 locales
-    // since the release fill (5 normal + 5 heroic dungeons, 2 delves, 7 sets;
-    // the world-boss page is mark-anchored and the rest carry no derivable
-    // anchor).
-    expect(swept.length).toBeGreaterThanOrEqual(342);
+    // Vacuity floor, snug to the real corpus: 20 anchorable pages x 18 locales
+    // since the release fill (5 normal + 5 heroic dungeons, 2 delves, 8 sets
+    // now that Roots' Bramblehide joined the set-page family; the world-boss
+    // page is mark-anchored and the rest carry no derivable anchor).
+    expect(swept.length).toBeGreaterThanOrEqual(360);
   });
 
   // RELEASE-TIER ONLY: channel English lives in RELIQUARY_PAGES, outside the
@@ -376,6 +388,14 @@ describe('reliquary locale chunks (the shipped non-Latin fill)', () => {
             value !== undefined && value.trim().length > 0,
             `${lang}.${row.id}.${row.field}`,
           ).toBe(true);
+          // Presence alone cannot distinguish a translation from an English
+          // copy in these chunks, which live outside the pending registry.
+          const comparable = (text: string) =>
+            text.normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase();
+          expect(
+            comparable(value ?? ''),
+            `${lang}.${row.id}.${row.field} must not copy canonical English`,
+          ).not.toBe(comparable(row.source));
         }
       }
     },
