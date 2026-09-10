@@ -48,7 +48,12 @@ import {
 } from '../../src/sim/ignivar_raid_ids';
 import { enterDungeon } from '../../src/sim/instances/dungeons';
 import { solveLockActions } from '../../src/sim/lockpick';
-import type { PendingLootRoll } from '../../src/sim/loot/loot_roll';
+import {
+  grantAwardedLootItem,
+  killSnapshotEligibility,
+  type PendingLootRoll,
+  rollLoot,
+} from '../../src/sim/loot/loot_roll';
 import { RIFT_MECHANIC_SPACING_SEC } from '../../src/sim/mob/mechanic_spacing';
 import { NYTHRAXIS_BONE_SPIKE_ID } from '../../src/sim/nythraxis_bone_spike';
 import { NYTHRAXIS_GRAVE_ERUPTION_TELEGRAPH_SECONDS } from '../../src/sim/nythraxis_grave_eruption';
@@ -7582,6 +7587,50 @@ function varkhulRaidTuning(): Scenario {
   };
 }
 
+// The bind-on-pickup party-trade eligibility snapshot (PR #3791): a soulbound
+// Crucible drop pins its kill-time trade group at roll time, so a member who
+// leaves before distribution stays on the awarded copy.
+function bopPartyTradeEligibility(): Scenario {
+  return {
+    name: 'bop_party_trade_eligibility',
+    coverage: [
+      'soulbound raid loot captures stable party-trade identity at roll time',
+      'a leaving member remains eligible during delayed distribution',
+      'class:warrior',
+      'class:mage',
+    ],
+    sampleEvery: 1,
+    build: () => new Sim({ seed: 1173, playerClass: 'warrior', noPlayer: true }),
+    drive(rec: Recorder) {
+      const sim = rec.sim;
+      const aliceId = sim.addPlayer('warrior', 'AliceParity', { characterId: 101 });
+      const bobId = sim.addPlayer('mage', 'BobParity', { characterId: 102 });
+      const alice = requireValue(sim.meta(aliceId), 'BoP parity Alice metadata');
+      const bob = requireValue(sim.meta(bobId), 'BoP parity Bob metadata');
+      const mob = createMob(sim.nextId++, MOBS.ignivar_herald_of_the_last_flame, 20, {
+        x: 20,
+        y: terrainHeight(20, 22, sim.cfg.seed),
+        z: 22,
+      }) as AnyEntity;
+      mob.lootRecipientIds = [aliceId, bobId];
+      sim.addEntity(mob);
+      rec.track(mob.id);
+
+      rollLoot(sim.ctx, mob, alice, [alice, bob]);
+      if (!mob.lootPartyTradeEligibility) {
+        throw new Error('BoP parity seed did not roll a soulbound Ignivar drop');
+      }
+      rec.snapshot('loot-identity-captured');
+
+      bob.leaving = true;
+      const eligibility = killSnapshotEligibility(sim.ctx, mob);
+      grantAwardedLootItem(sim.ctx, 'sigil_anvil_helmet', aliceId, eligibility);
+      rec.notes.eligibleCharacterIds = eligibility.characterIds;
+      rec.snapshot('leaver-remains-eligible');
+    },
+  };
+}
+
 export const SCENARIOS: Scenario[] = [
   soloWarrior(),
   soloMage(),
@@ -7688,4 +7737,5 @@ export const SCENARIOS: Scenario[] = [
   // between shards.
   heroicFiveManClear(),
   flaskConsumables(),
+  bopPartyTradeEligibility(),
 ];

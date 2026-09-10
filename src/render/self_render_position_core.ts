@@ -6,6 +6,7 @@
 
 import type { Entity } from '../sim/types';
 import {
+  SELF_MOTION_SNAP_DIST_SQ,
   type SelfMotionFrame,
   SelfMotionPredictor,
   updateSelfRenderFallback,
@@ -16,6 +17,38 @@ import {
 // takes over from the lead-smoothing path (gone in ~0.3 s, no camera step).
 const SELF_MOTION_HANDOFF_RATE = 15;
 export const MAX_SELF_REWIND_YD_PER_SEC = 12;
+
+/**
+ * Capture the gap between the drawn pose and the pose the incoming path wants
+ * as the handoff offset, unless it is a teleport. A handoff gap is at most a
+ * few yards (predictor lead, a reconcile residual); anything past the shared
+ * six-yard snap rule is an authoritative relocation that landed on the same
+ * frame the paths swapped: a delve or dungeon entry closes the prediction gate
+ * and teleports the body at once. Gliding that gap would pin the drawn body
+ * (and the camera) at the old spot and creep it toward the new one, which
+ * inside an instance reads as floating through the void. Zeroing the offset
+ * lets the fallback snap exactly as it would for a teleport with no handoff.
+ */
+function captureHandoffOffset(
+  offset: Vec3Like,
+  from: Vec3Like,
+  toX: number,
+  toY: number,
+  toZ: number,
+): void {
+  const dx = from.x - toX;
+  const dy = from.y - toY;
+  const dz = from.z - toZ;
+  if (dx * dx + dy * dy + dz * dz > SELF_MOTION_SNAP_DIST_SQ) {
+    offset.x = 0;
+    offset.y = 0;
+    offset.z = 0;
+    return;
+  }
+  offset.x = dx;
+  offset.y = dy;
+  offset.z = dz;
+}
 
 function decayOffset(offset: Vec3Like, dt: number, maxDistance = Number.POSITIVE_INFINITY): void {
   const decayShare = 1 - Math.exp(-SELF_MOTION_HANDOFF_RATE * Math.max(0, dt));
@@ -121,9 +154,7 @@ export function updateSelfRenderPosition(
         state.offset.y = 0;
         state.offset.z = 0;
       } else if (state.ready && !state.active) {
-        state.offset.x = state.position.x - predicted.x;
-        state.offset.y = state.position.y - predicted.y;
-        state.offset.z = state.position.z - predicted.z;
+        captureHandoffOffset(state.offset, state.position, predicted.x, predicted.y, predicted.z);
       }
       if (reconciled.kind === 'reconciled' && reconciled.residual) {
         state.offset.x += reconciled.residual.x;
@@ -150,9 +181,7 @@ export function updateSelfRenderPosition(
     state.offset.y = 0;
     state.offset.z = 0;
   } else if (state.ready && predictorWasActive) {
-    state.offset.x = state.position.x - px;
-    state.offset.y = state.position.y - py;
-    state.offset.z = state.position.z - pz;
+    captureHandoffOffset(state.offset, state.position, px, py, pz);
   }
   if (
     !authoritativeDiscontinuity &&

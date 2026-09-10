@@ -5427,6 +5427,10 @@ export interface Entity extends ClientMirroredEntityFields {
   lootable: boolean;
   loot: CorpseLoot | null;
   lootRecipientIds?: number[];
+  /** Runtime-only stable identity for a soulbound drop's party-trade window.
+   *  Captured synchronously when loot rolls, so a later disconnect cannot
+   *  erase a kill-eligible character from the copy's transfer group. */
+  lootPartyTradeEligibility?: { names: string[]; characterIds: number[] };
   xpValue: number;
   // npc
   questIds: string[];

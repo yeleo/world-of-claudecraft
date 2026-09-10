@@ -1900,4 +1900,12 @@ describe('coverage: each scenario fires its subsystem', { timeout: 90_000 }, () 
     // shed the aura rather than leaving a stale second one behind.
     expect((p.auras as any[]).filter((a) => a.kind === 'buff_sta')).toEqual([]);
   });
+
+  it('bop_party_trade_eligibility: a leaving drop-mate stays on the awarded copy', () => {
+    const rec = run('bop_party_trade_eligibility');
+    expect(rec.notes.eligibleCharacterIds).toEqual([101, 102]);
+    const alice = [...rec.sim.ctx.players.values()].find((meta) => meta.name === 'AliceParity');
+    const awarded = alice?.inventory.find((slot) => slot.itemId === 'sigil_anvil_helmet');
+    expect(awarded?.instance?.partyTrade?.eligibleIds).toEqual([101, 102]);
+  });
 });

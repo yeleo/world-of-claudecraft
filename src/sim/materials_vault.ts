@@ -90,6 +90,7 @@ import { addStacked, bagPools, bagsFullError, countFit } from './bags';
 import { nearBanker } from './bank';
 import { warnDroppedInstanceKeys } from './item_instance_load';
 import { itemInstancePayloadsEqual } from './item_instance_merge';
+import { normalizePartyTradeSlots } from './loot/bop_trade_cleanup';
 import { materialItemIds } from './material_ids';
 import { applyMaterialInventoryTake } from './material_inventory_take';
 import { resolveMaterialSourceTransferSelection } from './material_source_transfer_selection';
@@ -187,6 +188,24 @@ export function savedVaultState(state: MaterialsVaultState): SavedMaterialsVault
       : {}),
     upgrades: state.upgrades,
   };
+}
+
+/** Retire expired party-trade markers while keeping this module the sole vault writer. */
+export function normalizeVaultPartyTradeState(state: MaterialsVaultState, nowMs: number): boolean {
+  const special = normalizePartyTradeSlots(state.special, nowMs);
+  if (special === state.special) return false;
+  state.special = special;
+  return true;
+}
+
+/** Save-shape variant that preserves the absent-while-empty `special` contract. */
+export function normalizeSavedVaultPartyTradeState(
+  state: SavedMaterialsVaultState,
+  nowMs: number,
+): void {
+  if (!state.special) return;
+  const special = normalizePartyTradeSlots(state.special, nowMs);
+  if (special !== state.special) state.special = special;
 }
 
 /** True when a slot must retain its full identity in `special` rather than

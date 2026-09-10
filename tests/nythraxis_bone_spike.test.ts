@@ -4,6 +4,10 @@
 // their driver by hand and assert on entities, auras, events, and readouts.
 
 import { describe, expect, it } from 'vitest';
+import {
+  HEROIC_DUNGEON_TUNING,
+  NORMAL_DUNGEON_TUNING,
+} from '../src/sim/content/dungeon_difficulty';
 import * as nythraxis from '../src/sim/encounters/nythraxis';
 import {
   isNythraxisImpaled,
@@ -217,14 +221,25 @@ describe('Nythraxis Bone Spike', () => {
     expect(inst?.mobIds).not.toContain(spike.id);
   });
 
-  it('pins the spike health pool the tuning tables promise: 1000 normal, 1500 heroic', () => {
+  it('pins the spike health pool the tuning tables promise: 1000 on both difficulties', () => {
+    // Heroic spikes carry the NORMAL pool (owner call, 2026-09-10): heroic
+    // already pins one more raider, casts sooner, drains faster, and spawns at
+    // level 22, so a bigger pool compounded into an overtuned check.
     for (const difficulty of ['normal', 'heroic'] as const) {
       const { ctx, boss, st, room, spikes } = setup({ difficulty });
       nythraxis.castNythraxisBoneSpike(ctx, boss, st, room(), difficulty);
       const spike = spikes()[0];
-      expect(spike.maxHp, difficulty).toBe(difficulty === 'heroic' ? 1500 : 1000);
+      expect(spike.maxHp, difficulty).toBe(1000);
       expect(spike.hp, difficulty).toBe(spike.maxHp);
     }
+    // The heroic pool comes from an explicit per-mob override that mirrors the
+    // normal table's shared multiplier: a deleted override would fall through
+    // to the raid-wide 3.2x, so the literal is pinned beside the spawn check.
+    const heroicArena = HEROIC_DUNGEON_TUNING.nythraxis_boss_arena;
+    expect(heroicArena.healthMultiplierByMob?.nythraxis_bone_spike).toBe(
+      NORMAL_DUNGEON_TUNING.nythraxis_boss_arena.healthMultiplier,
+    );
+    expect(NORMAL_DUNGEON_TUNING.nythraxis_boss_arena.healthMultiplier).toBe(2.0);
   });
 
   it('frees a victim who dies impaled, so a resurrection never brings the pin back', () => {
