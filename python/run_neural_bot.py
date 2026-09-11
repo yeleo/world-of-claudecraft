@@ -4,8 +4,9 @@ Features:
 - Health check and friendly connection diagnostics for the server URL.
 - Support for multiple bots (--count 1~5) operating individually or as a coordinated party.
 - Automatic party formation (Leader invites, members accept).
-- Cohesive team formation (members follow leader when wandering).
+- Cohesive team formation (members follow leader in tactical formation).
 - Coordinated focus-fire combat driven by 3M-step PPO neural policy.
+- Proving Shore exploration & mob engagement patrols.
 """
 
 from __future__ import annotations
@@ -62,17 +63,32 @@ DEFAULT_ROLES = [
     ("paladin", "Support"),
 ]
 
+# Proving Shore trail from arrival beach to training effigies and far strand
+PROVING_SHORE_WAYPOINTS = [
+    (-295.0, -18.0),  # Beach path exit
+    (-315.0, -16.0),  # Middle trail
+    (-336.0, -14.0),  # Practice yard (Training Effigies)
+    (-355.0, -25.0),  # South path
+    (-380.0, -42.0),  # Far strand crab camps
+]
+
+FORMATION_OFFSETS = [
+    (0.0, 0.0),    # Leader (Warrior Tank)
+    (-2.2, -2.5),  # Priest (Healer behind left)
+    (2.2, -2.5),   # Mage (Caster behind right)
+    (0.0, -4.2),   # Hunter (Ranged directly behind)
+    (2.6, -0.8),   # Paladin (Support on right flank)
+]
+
 
 def check_server_health(server_url: str) -> bool:
     """Probes the server to ensure it is alive before connecting."""
     clean_url = server_url.rstrip("/")
     try:
-        # Check /livez or root
         req = urllib.request.Request(f"{clean_url}/livez", headers={"User-Agent": "WoC-BotProbe"})
         with urllib.request.urlopen(req, timeout=3) as resp:
             return resp.status in (200, 204, 301, 302)
-    except urllib.error.HTTPError as e:
-        # If /livez is 404, check root url
+    except urllib.error.HTTPError:
         try:
             req2 = urllib.request.Request(clean_url, headers={"User-Agent": "WoC-BotProbe"})
             with urllib.request.urlopen(req2, timeout=3) as resp2:
@@ -87,7 +103,6 @@ def make_api_post(url: str, payload: dict, token: str | None = None) -> dict:
     data = json.dumps(payload).encode("utf-8")
     req = urllib.request.Request(url, data=data, method="POST")
     req.add_header("Content-Type", "application/json")
-    # Add Origin and User-Agent to satisfy webLoginEnforced (isWebClientRequest)
     parsed = urllib.parse.urlparse(url)
     origin = f"{parsed.scheme}://{parsed.netloc}"
     req.add_header("Origin", origin)
@@ -150,8 +165,6 @@ class SingleBotInstance:
         })
         self.token = reg["token"]
 
-        # Server validates character names with /^[A-Za-z\u4e00-\u9fa5][A-Za-z\u4e00-\u9fa5' -]{1,15}$/
-        # Digits are disallowed. Use letters only.
         clean_prefix = re.sub(r"[^A-Za-z]", "", self.name)[:8] or "Bot"
         role_tag = chr(65 + (self.bot_idx % 26))
         alpha_suffix = "".join(random.choices(string.ascii_lowercase, k=4))
@@ -176,7 +189,7 @@ class SingleBotInstance:
         lv = s.get("lv", 1)
         x = s.get("x", 0.0)
         z = s.get("z", 0.0)
-        facing = s.get("facing", 0.0)
+        facing = s.get("f", s.get("facing", 0.0))
         gcd = s.get("gcd", 0.0)
 
         obs[0] = hp / mhp
@@ -192,17 +205,19 @@ class SingleBotInstance:
         # Team/Leader target synchronization: Focus-fire
         chosen_target = None
         if not self.is_leader and self.leader_ref and self.leader_ref.target_id:
-            chosen_target = self.entities.get(self.leader_ref.target_id)
+            lead_t = self.entities.get(self.leader_ref.target_id)
+            if lead_t and not lead_t.get("dead") and not lead_t.get("loot"):
+                chosen_target = lead_t
 
-        # If no team target, find nearest enemy
+        # If no team target, pick nearest active mob within 45 yards
         if not chosen_target:
             nearest_dist = float("inf")
             for ent in self.entities.values():
-                if ent.get("type") == "mob" and not ent.get("dead"):
+                if ent.get("k") == "mob" and not ent.get("dead") and not ent.get("loot"):
                     ex = ent.get("x", 0.0)
                     ez = ent.get("z", 0.0)
                     d = math.hypot(ex - x, ez - z)
-                    if d < nearest_dist:
+                    if d < nearest_dist and d <= 45.0:
                         nearest_dist = d
                         chosen_target = ent
 
@@ -217,7 +232,7 @@ class SingleBotInstance:
             obs[10] = math.cos(angle_to_mob - facing)
             obs[11] = math.sin(angle_to_mob - facing)
             obs[12] = 1.0 if chosen_target.get("combat") else 0.0
-            obs[13] = chosen_target.get("level", 1) / MAX_LEVEL
+            obs[13] = chosen_target.get("lv", chosen_target.get("level", 1)) / MAX_LEVEL
             obs[14] = 0.0
             obs[15] = 0.0
             obs[16] = 1.0
@@ -243,7 +258,7 @@ class SingleBotInstance:
                 "dungeonEntryFacingWire": 1,
                 "timerWire": 3,
                 "petSpecialWire": 1,
-                "movementWire": 2,
+                "movementWire": 1,
             }
             await ws.send(json.dumps(auth_msg))
 
@@ -261,22 +276,32 @@ class SingleBotInstance:
                             self.self_state.update(msg["self"])
                         if "ents" in msg:
                             for ent in msg["ents"]:
-                                self.entities[ent["id"]] = ent
+                                eid = ent.get("id")
+                                if eid is not None:
+                                    if eid in self.entities:
+                                        self.entities[eid].update(ent)
+                                    else:
+                                        self.entities[eid] = ent
                         keep = set(msg.get("keep", []))
                         for ent_id in list(self.entities.keys()):
-                            if ent_id not in keep and ent_id not in [e["id"] for e in msg.get("ents", [])]:
+                            if ent_id not in keep and ent_id not in [e["id"] for e in msg.get("ents", []) if "id" in e]:
                                 self.entities.pop(ent_id, None)
                     elif t == "events":
-                        # Auto-accept party invitation
                         for ev in msg.get("list", []):
-                            if ev.get("type") == "party_invite" and not self.is_leader:
+                            ev_type = ev.get("type")
+                            if ev_type in ("partyInvite", "party_invite") and not self.is_leader:
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "paccept"}))
 
             async def control_loop():
+                wp_idx = 0
+                last_log_time = 0.0
+
                 while True:
                     await asyncio.sleep(0.05)  # 20 Hz tick
                     if not self.self_state or self.pid < 0:
                         continue
+
+                    now = time.time()
 
                     # Resurrect if dead
                     if self.self_state.get("dead"):
@@ -290,93 +315,109 @@ class SingleBotInstance:
                             if other != self and other.pid > 0 and other.pid not in self.party_invited_ids:
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "pinvite", "id": other.pid}))
                                 self.party_invited_ids.add(other.pid)
-                                await asyncio.sleep(0.2)
+                                await asyncio.sleep(0.1)
 
-                    # Cohesive Formation: If non-leader and too far from leader, steer toward leader
                     my_x = self.self_state.get("x", 0.0)
                     my_z = self.self_state.get("z", 0.0)
-                    if not self.is_leader and self.leader_ref and self.leader_ref.self_state:
+
+                    # Update observation & target selection
+                    _ = self.build_obs()
+                    target_ent = self.entities.get(self.target_id) if self.target_id else None
+
+                    # 1. Combat Mode (Enemy sighted or engaged)
+                    if target_ent and not target_ent.get("dead") and not target_ent.get("loot"):
+                        tx = target_ent.get("x", my_x)
+                        tz = target_ent.get("z", my_z)
+                        dist_to_tgt = math.hypot(tx - my_x, tz - my_z)
+                        angle_to_tgt = math.atan2(tx - my_x, tz - my_z)
+
+                        if now - last_log_time > 4.0:
+                            tgt_name = target_ent.get("nm", "enemy")
+                            print(f"  [Combat] Bot #{self.bot_idx + 1} '{self.char_name}' fighting {tgt_name} (Dist: {dist_to_tgt:.1f}m)")
+                            last_log_time = now
+
+                        is_ranged = self.player_class in ("mage", "hunter", "priest")
+                        desired_dist = 12.0 if is_ranged else 2.2
+
+                        if dist_to_tgt > desired_dist:
+                            # Close in towards target
+                            await ws.send(json.dumps({
+                                "t": "input",
+                                "mi": {"f": 1},
+                                "facing": angle_to_tgt,
+                            }))
+                        else:
+                            # In attack range: stop running, lock facing
+                            await ws.send(json.dumps({
+                                "t": "input",
+                                "mi": {},
+                                "facing": angle_to_tgt,
+                            }))
+
+                        # Target and auto-attack
+                        await ws.send(json.dumps({"t": "cmd", "cmd": "target", "id": self.target_id}))
+                        await ws.send(json.dumps({"t": "cmd", "cmd": "attack"}))
+
+                        # Class ability execution
+                        ability_map = {
+                            "warrior": "heroic_strike",
+                            "paladin": "seal_of_righteousness",
+                            "mage": "fireball",
+                            "priest": "smite",
+                            "hunter": "arcane_shot",
+                        }
+                        ability = ability_map.get(self.player_class, "heroic_strike")
+                        await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": ability, "target": self.target_id}))
+
+                    # 2. Squad Follower Mode (Out of combat, maintain formation with Leader)
+                    elif not self.is_leader and self.leader_ref and self.leader_ref.self_state:
                         lx = self.leader_ref.self_state.get("x", my_x)
                         lz = self.leader_ref.self_state.get("z", my_z)
-                        dist_to_lead = math.hypot(lx - my_x, lz - my_z)
-                        # If far from leader and not in direct combat, walk to leader
-                        if dist_to_lead > 8.0 and not self.target_id:
-                            angle_to_lead = math.atan2(lx - my_x, lz - my_z)
-                            await ws.send(json.dumps({"t": "input", "mi": {"f": 1}, "facing": angle_to_lead}))
-                            continue
+                        lf = self.leader_ref.self_state.get("f", self.leader_ref.self_state.get("facing", 0.0))
 
-                    # 3M-Step Neural Policy Action Selection
-                    obs = self.build_obs()
-                    obs_t = torch.as_tensor(obs, dtype=torch.float32).unsqueeze(0)
-                    with torch.no_grad():
-                        action, _, _, _ = self.policy.get_action_and_value(obs_t)
-                        action_idx = action.item()
+                        off_x, off_z = FORMATION_OFFSETS[self.bot_idx % len(FORMATION_OFFSETS)]
+                        # Rotate offset by leader facing
+                        slot_x = lx + (off_x * math.cos(lf) + off_z * math.sin(lf))
+                        slot_z = lz + (-off_x * math.sin(lf) + off_z * math.cos(lf))
 
-                    act_name = ACTIONS[action_idx] if action_idx < len(ACTIONS) else "noop"
-                    await self.execute_action(ws, act_name)
+                        dist_to_slot = math.hypot(slot_x - my_x, slot_z - my_z)
+                        angle_to_slot = math.atan2(slot_x - my_x, slot_z - my_z)
+
+                        if dist_to_slot > 1.8:
+                            await ws.send(json.dumps({
+                                "t": "input",
+                                "mi": {"f": 1},
+                                "facing": angle_to_slot,
+                            }))
+                        else:
+                            await ws.send(json.dumps({
+                                "t": "input",
+                                "mi": {},
+                                "facing": lf,
+                            }))
+
+                    # 3. Squad Leader Mode (Out of combat, lead squad along exploration waypoints)
+                    elif self.is_leader:
+                        wp_x, wp_z = PROVING_SHORE_WAYPOINTS[wp_idx]
+                        dist_to_wp = math.hypot(wp_x - my_x, wp_z - my_z)
+
+                        if dist_to_wp < 3.5:
+                            wp_idx = (wp_idx + 1) % len(PROVING_SHORE_WAYPOINTS)
+                            wp_x, wp_z = PROVING_SHORE_WAYPOINTS[wp_idx]
+                            print(f"  [Explore] Leader '{self.char_name}' reached waypoint, proceeding to next ({wp_x:.0f}, {wp_z:.0f})")
+
+                        angle_to_wp = math.atan2(wp_x - my_x, wp_z - my_z)
+                        await ws.send(json.dumps({
+                            "t": "input",
+                            "mi": {"f": 1},
+                            "facing": angle_to_wp,
+                        }))
+
+                        if now - last_log_time > 5.0:
+                            print(f"  [Explore] Leader '{self.char_name}' patrolling at ({my_x:.1f}, {my_z:.1f}) -> heading to ({wp_x:.0f}, {wp_z:.0f})")
+                            last_log_time = now
 
             await asyncio.gather(receive_loop(), control_loop())
-
-    async def execute_action(self, ws, act_name: str):
-        if act_name == "noop":
-            return
-
-        # Movement inputs
-        mi = {}
-        if act_name == "forward":
-            mi["f"] = 1
-        elif act_name == "back":
-            mi["b"] = 1
-        elif act_name == "strafe_left":
-            mi["sl"] = 1
-        elif act_name == "strafe_right":
-            mi["sr"] = 1
-        elif act_name == "jump":
-            mi["j"] = 1
-
-        if mi:
-            await ws.send(json.dumps({"t": "input", "mi": mi}))
-            return
-
-        # Facing changes
-        facing = self.self_state.get("facing", 0.0)
-        if act_name == "turn_left":
-            await ws.send(json.dumps({"t": "input", "facing": facing - 0.2}))
-            return
-        elif act_name == "turn_right":
-            await ws.send(json.dumps({"t": "input", "facing": facing + 0.2}))
-            return
-
-        # Target selection
-        if act_name == "target_nearest":
-            if self.target_id is not None:
-                await ws.send(json.dumps({"t": "cmd", "cmd": "target", "id": self.target_id}))
-            return
-
-        # Combat attack
-        if act_name == "attack":
-            if self.target_id is not None:
-                await ws.send(json.dumps({"t": "cmd", "cmd": "target", "id": self.target_id}))
-                await ws.send(json.dumps({"t": "cmd", "cmd": "attack"}))
-            return
-
-        # Class abilities
-        if act_name.startswith("ability_"):
-            ability_map = {
-                "warrior": "heroic_strike",
-                "paladin": "seal_of_righteousness",
-                "mage": "fireball",
-                "priest": "smite",
-                "hunter": "arcane_shot",
-            }
-            ability = ability_map.get(self.player_class, "heroic_strike")
-            await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": ability}))
-            return
-
-        # Release/Stop
-        if act_name == "stop":
-            await ws.send(json.dumps({"t": "input", "mi": {}}))
-            return
 
 
 async def main_async(args):
