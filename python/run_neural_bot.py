@@ -2,11 +2,17 @@
 
 Features:
 - Health check and friendly connection diagnostics for the server URL.
-- Support for multiple bots (--count 1~5) operating individually or as a coordinated party.
-- Automatic party formation (Leader invites, members accept).
-- Cohesive team formation (members follow leader in tactical formation).
-- Coordinated focus-fire combat driven by 3M-step PPO neural policy.
-- Proving Shore exploration & mob engagement patrols.
+- Zero-CLI Dynamic Mode Switching:
+  * Solo Mode: single bot autonomous micro-combat, survival, and questing.
+  * Squad Mode: multi-agent coordination, party vitals, post-combat rest/eat/drink,
+    lagging tethering wait, threat peel, smart healing, and assist focus-fire.
+- Autonomous Quest & Progression Engine:
+  * Dynamic parsing of server quest state (qlog, qdone, NPCs, Camps).
+  * Auto-accepts and completes Proving Shore introductory questline.
+  * Boards the ferry at Old Pier to sail to Eastbrook mainland.
+  * Explores and levels up on Eastbrook Vale with camp grinding and auto-looting.
+- Obstacle Vaulting: Automatic jump over fence rails and anti-stuck navigation.
+- Extensible Policy Interface: Loads 3M-step PPO policy for micro-combat actions.
 """
 
 from __future__ import annotations
@@ -63,14 +69,22 @@ DEFAULT_ROLES = [
     ("paladin", "Support"),
 ]
 
-# Proving Shore trail following the paved dirt road to practice yard and far strand
-PROVING_SHORE_WAYPOINTS = [
-    (-295.0, -16.0),  # Beach road
-    (-306.0, -8.0),   # Road curve north of fence
-    (-318.0, -6.0),   # Road north of Gauntlet corner
-    (-336.0, -14.0),  # Practice yard (Training Effigies)
-    (-355.0, -25.0),  # South path
-    (-380.0, -42.0),  # Far strand crab camps
+# Proving Shore Gauntlet flags (checkpoints)
+GAUNTLET_CHECKPOINTS = [
+    (-308.0, -16.0),
+    (-308.0, -32.0),
+    (-334.0, -32.5),
+]
+
+# Eastbrook Vale mainland road waypoints
+EASTBROOK_WAYPOINTS = [
+    (-7.5, -95.0),   # Harbor dock road
+    (-15.0, -80.0),  # Ravenpost & crafts square
+    (-25.0, -50.0),  # North village gate
+    (-40.0, -20.0),  # River road bridge
+    (-60.0, 10.0),   # Farm outskirts
+    (-80.0, 40.0),   # High meadows
+    (-85.0, 60.0),   # Wolves & boars camp
 ]
 
 FORMATION_OFFSETS = [
@@ -156,6 +170,17 @@ class SingleBotInstance:
         self.ws = None
         self.party_invited_ids = set()
 
+        # Dynamic mode: "solo" vs "squad"
+        self.mode = "solo"
+        self.team_state = "READY"  # "READY", "RESTING", "REGROUPING", "COMBAT"
+
+        # Timers
+        self.last_rest_time = 0.0
+        self.last_loot_time = 0.0
+        self.last_quest_action_time = 0.0
+        self.last_heal_time = 0.0
+        self.last_cast_time = 0.0
+
         # Obstacle vaulting and anti-stuck tracking
         self.prev_x = 0.0
         self.prev_z = 0.0
@@ -201,23 +226,17 @@ class SingleBotInstance:
 
         obs[0] = hp / mhp
         obs[1] = res / mres
-        obs[2] = lv / MAX_LEVEL
-        obs[3] = x / WORLD_MAX_X
-        obs[4] = (z - WORLD_MIN_Z) / (WORLD_MAX_Z - WORLD_MIN_Z)
-        obs[5] = math.cos(facing)
-        obs[6] = math.sin(facing)
-        obs[7] = 1.0 if s.get("combat") else 0.0
-        obs[8] = min(1.0, gcd / 1.5)
+        obs[2] = 1.0 if s.get("inCombat") else 0.0
+        obs[3] = lv / MAX_LEVEL
+        obs[4] = (x - (WORLD_MAX_X / 2.0)) / (WORLD_MAX_X / 2.0)
+        obs[5] = (z - ((WORLD_MAX_Z + WORLD_MIN_Z) / 2.0)) / ((WORLD_MAX_Z - WORLD_MIN_Z) / 2.0)
+        obs[6] = math.cos(facing)
+        obs[7] = math.sin(facing)
+        obs[8] = gcd / 1.5
 
-        # Team/Leader target synchronization: Focus-fire
-        chosen_target = None
-        if not self.is_leader and self.leader_ref and self.leader_ref.target_id:
-            lead_t = self.entities.get(self.leader_ref.target_id)
-            if lead_t and not lead_t.get("dead") and not lead_t.get("loot"):
-                chosen_target = lead_t
-
-        # If no team target, pick nearest active mob within 45 yards
-        if not chosen_target:
+        # Target selection: if none chosen, find nearest living mob
+        chosen_target = self.entities.get(self.target_id) if self.target_id else None
+        if not chosen_target or chosen_target.get("dead") or chosen_target.get("loot"):
             nearest_dist = float("inf")
             for ent in self.entities.values():
                 if ent.get("k") == "mob" and not ent.get("dead") and not ent.get("loot"):
@@ -240,9 +259,6 @@ class SingleBotInstance:
             obs[11] = math.sin(angle_to_mob - facing)
             obs[12] = 1.0 if chosen_target.get("combat") else 0.0
             obs[13] = chosen_target.get("lv", chosen_target.get("level", 1)) / MAX_LEVEL
-            obs[14] = 0.0
-            obs[15] = 0.0
-            obs[16] = 1.0
             obs[17] = chosen_target.get("hp", 0) / max(1, chosen_target.get("mhp", 1))
             obs[18] = min(1.0, ndist / 50.0)
             self.target_id = chosen_target.get("id")
@@ -316,13 +332,31 @@ class SingleBotInstance:
                         await asyncio.sleep(1.0)
                         continue
 
-                    # Leader: invite team members to party once all PIDs are known
-                    if self.is_leader:
+                    # ---------------------------------------------------------
+                    # 1. Dynamic Mode & Party Detection (Zero-CLI Auto-Switching)
+                    # ---------------------------------------------------------
+                    party_data = self.self_state.get("party")
+                    is_grouped = isinstance(party_data, dict) and len(party_data.get("members", [])) >= 2
+                    prev_mode = self.mode
+                    self.mode = "squad" if is_grouped else "solo"
+
+                    if prev_mode != self.mode and self.bot_idx == 0:
+                        print(f"  [*] Mode auto-switched to: [{self.mode.upper()}] (Party members: {len(party_data.get('members', [])) if is_grouped else 1})")
+
+                    if is_grouped:
+                        # Server-authoritative party leadership
+                        self.is_leader = (party_data.get("leader") == self.pid)
+                    else:
+                        # Solo mode: bot is its own leader
+                        self.is_leader = (self.bot_idx == 0)
+
+                    # Leader invites remaining bots if party is not yet full
+                    if self.is_leader and len(all_bots) > 1:
                         for other in all_bots:
                             if other != self and other.pid > 0 and other.pid not in self.party_invited_ids:
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "pinvite", "id": other.pid}))
                                 self.party_invited_ids.add(other.pid)
-                                await asyncio.sleep(0.1)
+                                await asyncio.sleep(0.08)
 
                     my_x = self.self_state.get("x", 0.0)
                     my_z = self.self_state.get("z", 0.0)
@@ -337,7 +371,6 @@ class SingleBotInstance:
                     else:
                         self.stuck_ticks = 0
 
-                    # If progress is blocked by a fence or obstacle, trigger JUMP!
                     need_jump = self.stuck_ticks >= 2
                     need_strafe_left = (self.stuck_ticks >= 6 and (self.stuck_ticks % 6 < 3))
                     need_strafe_right = (self.stuck_ticks >= 6 and (self.stuck_ticks % 6 >= 3))
@@ -352,11 +385,138 @@ class SingleBotInstance:
                             mi["sr"] = 1
                         return {"t": "input", "mi": mi, "facing": facing}
 
-                    # Update observation & target selection
-                    _ = self.build_obs()
+                    # ---------------------------------------------------------
+                    # 2. Team Vitals & Readiness Arbiter (Leader Mind)
+                    # ---------------------------------------------------------
+                    team_needs_rest = False
+                    team_needs_regroup = False
+                    lagging_target_facing = None
+
+                    if self.mode == "squad" and self.is_leader and is_grouped:
+                        raw_members = party_data.get("members", [])
+                        members = [m.get("member", m) for m in raw_members if isinstance(m, dict)]
+
+                        min_hp_pct = min((m.get("hp", 100) / max(1, m.get("mhp", 100))) for m in members) if members else 1.0
+                        mana_members = [m for m in members if m.get("rtype") == "mana"]
+                        min_mana_pct = min((m.get("res", 100) / max(1, m.get("mres", 100))) for m in mana_members) if mana_members else 1.0
+
+                        member_dists = [(m, math.hypot(m.get("x", my_x) - my_x, m.get("z", my_z) - my_z)) for m in members if m.get("pid") != self.pid]
+                        max_dist = max([d for _, d in member_dists], default=0.0)
+                        party_in_combat = any(m.get("inCombat") for m in members) or bool(self.self_state.get("inCombat"))
+
+                        # Rest & Recovery assessment
+                        if self.team_state == "RESTING":
+                            if min_hp_pct >= 0.85 and min_mana_pct >= 0.70:
+                                self.team_state = "READY"
+                                print(f"  [Squad] Team fully recovered (HP: {min_hp_pct*100:.0f}%, MP: {min_mana_pct*100:.0f}%). Resuming march!")
+                            else:
+                                team_needs_rest = True
+                        else:
+                            if not party_in_combat and (min_hp_pct < 0.65 or min_mana_pct < 0.40):
+                                self.team_state = "RESTING"
+                                team_needs_rest = True
+                                print(f"  [Squad] Leader halted squad for Rest & Recovery (Min HP: {min_hp_pct*100:.0f}%, Min MP: {min_mana_pct*100:.0f}%)")
+
+                        # Cohesion & Lagging Tethering assessment
+                        if not team_needs_rest and not party_in_combat:
+                            if self.team_state == "REGROUPING":
+                                if max_dist <= 5.0:
+                                    self.team_state = "READY"
+                                    print(f"  [Squad] Team regrouped! Resuming advance.")
+                                else:
+                                    team_needs_regroup = True
+                            else:
+                                if max_dist > 10.5:
+                                    self.team_state = "REGROUPING"
+                                    team_needs_regroup = True
+                                    lagging_member = max(member_dists, key=lambda x: x[1])[0]
+                                    print(f"  [Squad] Member '{lagging_member.get('name')}' is lagging behind ({max_dist:.1f}m). Leader holding up!")
+
+                        if team_needs_regroup and member_dists:
+                            lagging_member, _ = max(member_dists, key=lambda x: x[1])
+                            lx = lagging_member.get("x", my_x)
+                            lz = lagging_member.get("z", my_z)
+                            lagging_target_facing = math.atan2(lx - my_x, lz - my_z)
+
+                    # Propagate rest state to leader_ref for followers
+                    effective_resting = (self.team_state == "RESTING" or (self.leader_ref and self.leader_ref.team_state == "RESTING"))
+
+                    # Handle Eating/Drinking during Rest
+                    if effective_resting:
+                        my_hp_pct = self.self_state.get("hp", 100) / max(1, self.self_state.get("mhp", 100))
+                        my_mana_pct = self.self_state.get("res", 100) / max(1, self.self_state.get("mres", 100))
+                        if my_hp_pct < 0.85 or (self.self_state.get("rtype") == "mana" and my_mana_pct < 0.70):
+                            if now - self.last_rest_time > 3.0:
+                                await ws.send(json.dumps({"t": "cmd", "cmd": "eat_drink"}))
+                                self.last_rest_time = now
+
+                        # Halt movement while resting
+                        self.is_trying_to_move = False
+                        await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.self_state.get("f", 0.0)}))
+                        continue
+
+                    # Handle Leader waiting for lagging allies
+                    if team_needs_regroup:
+                        self.is_trying_to_move = False
+                        await ws.send(json.dumps({
+                            "t": "input",
+                            "mi": {},
+                            "facing": lagging_target_facing if lagging_target_facing is not None else self.self_state.get("f", 0.0),
+                        }))
+                        continue
+
+                    # ---------------------------------------------------------
+                    # 3. Smart Healing & Threat Peel (Role Coordination)
+                    # ---------------------------------------------------------
+                    # Smart Healing (Priest / Paladin)
+                    if self.role == "Healer" or self.player_class in ("priest", "paladin"):
+                        if is_grouped and now - self.last_heal_time > 1.6:
+                            raw_members = party_data.get("members", [])
+                            injured = []
+                            for rm in raw_members:
+                                m = rm.get("member", rm)
+                                hp_p = m.get("hp", 100) / max(1, m.get("mhp", 100))
+                                if hp_p < 0.75 and not m.get("dead"):
+                                    injured.append((m, hp_p))
+                            if injured:
+                                lowest_m, lowest_hp = min(injured, key=lambda x: x[1])
+                                heal_ability = "lesser_heal" if self.player_class == "priest" else "holy_light"
+                                await ws.send(json.dumps({
+                                    "t": "cmd",
+                                    "cmd": "cast",
+                                    "ability": heal_ability,
+                                    "target": lowest_m.get("pid"),
+                                }))
+                                self.last_heal_time = now
+
+                    # Threat Peel for Tanks (Warrior / Paladin)
+                    if self.role == "Tank" and is_grouped:
+                        raw_members = party_data.get("members", [])
+                        for rm in raw_members:
+                            m = rm.get("member", rm)
+                            if m.get("hasAggro") and m.get("role") in ("healer", "dps") and not m.get("dead"):
+                                # A backline ally is attacked, find mob near them
+                                ally_x = m.get("x", my_x)
+                                ally_z = m.get("z", my_z)
+                                for ent in self.entities.values():
+                                    if ent.get("k") == "mob" and not ent.get("dead"):
+                                        if math.hypot(ent.get("x", 0) - ally_x, ent.get("z", 0) - ally_z) < 8.0:
+                                            self.target_id = ent.get("id")
+                                            break
+
+                    # Focus Fire Assist for DPS
+                    if self.role in ("DPS-Caster", "DPS-Ranged") and self.leader_ref:
+                        lead_tgt = self.leader_ref.target_id
+                        if lead_tgt and lead_tgt in self.entities and not self.entities[lead_tgt].get("dead"):
+                            self.target_id = lead_tgt
+
+                    # ---------------------------------------------------------
+                    # 4. Target Selection & micro-combat
+                    # ---------------------------------------------------------
+                    obs = self.build_obs()
                     target_ent = self.entities.get(self.target_id) if self.target_id else None
 
-                    # 1. Combat Mode (Enemy sighted or engaged)
+                    # A. Combat Mode
                     if target_ent and not target_ent.get("dead") and not target_ent.get("loot"):
                         self.is_trying_to_move = True
                         tx = target_ent.get("x", my_x)
@@ -370,21 +530,14 @@ class SingleBotInstance:
                             last_log_time = now
 
                         is_ranged = self.player_class in ("mage", "hunter", "priest")
-                        desired_dist = 12.0 if is_ranged else 2.2
+                        desired_dist = 11.5 if is_ranged else 2.2
 
                         if dist_to_tgt > desired_dist:
-                            # Run towards target (with auto-jump if fenced)
                             await ws.send(json.dumps(make_move_input(angle_to_tgt)))
                         else:
                             self.is_trying_to_move = False
-                            # In attack range: stop running, lock facing
-                            await ws.send(json.dumps({
-                                "t": "input",
-                                "mi": {},
-                                "facing": angle_to_tgt,
-                            }))
+                            await ws.send(json.dumps({"t": "input", "mi": {}, "facing": angle_to_tgt}))
 
-                        # Target and auto-attack
                         await ws.send(json.dumps({"t": "cmd", "cmd": "target", "id": self.target_id}))
                         await ws.send(json.dumps({"t": "cmd", "cmd": "attack"}))
 
@@ -397,10 +550,21 @@ class SingleBotInstance:
                             "hunter": "arcane_shot",
                         }
                         ability = ability_map.get(self.player_class, "heroic_strike")
-                        await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": ability, "target": self.target_id}))
+                        if now - self.last_cast_time > 1.2:
+                            await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": ability, "target": self.target_id}))
+                            self.last_cast_time = now
 
-                    # 2. Squad Follower Mode (Out of combat, maintain formation with Leader)
-                    elif not self.is_leader and self.leader_ref and self.leader_ref.self_state:
+                    # B. Out of Combat Auto-Looting
+                    elif not self.self_state.get("inCombat") and now - self.last_loot_time > 1.0:
+                        for ent_id, ent in self.entities.items():
+                            if ent.get("k") == "mob" and ent.get("loot"):
+                                if math.hypot(ent.get("x", 0) - my_x, ent.get("z", 0) - my_z) <= 5.0:
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "loot", "id": ent_id}))
+                                    self.last_loot_time = now
+                                    break
+
+                    # C. Squad Follower Mode (maintain formation with Leader)
+                    if not target_ent and not self.is_leader and self.leader_ref and self.leader_ref.self_state:
                         lx = self.leader_ref.self_state.get("x", my_x)
                         lz = self.leader_ref.self_state.get("z", my_z)
                         lf = self.leader_ref.self_state.get("f", self.leader_ref.self_state.get("facing", 0.0))
@@ -417,28 +581,95 @@ class SingleBotInstance:
                             await ws.send(json.dumps(make_move_input(angle_to_slot)))
                         else:
                             self.is_trying_to_move = False
-                            await ws.send(json.dumps({
-                                "t": "input",
-                                "mi": {},
-                                "facing": lf,
-                            }))
+                            await ws.send(json.dumps({"t": "input", "mi": {}, "facing": lf}))
 
-                    # 3. Squad Leader Mode (Out of combat, lead squad along road waypoints)
-                    elif self.is_leader:
-                        self.is_trying_to_move = True
-                        wp_x, wp_z = PROVING_SHORE_WAYPOINTS[wp_idx]
-                        dist_to_wp = math.hypot(wp_x - my_x, wp_z - my_z)
+                    # D. Autonomous Quest & World Navigation (Leader / Solo)
+                    elif not target_ent and self.is_leader:
+                        # Dynamic quest & target objective resolver
+                        qdone = set(self.self_state.get("qdone", []))
+                        qlog_list = self.self_state.get("qlog", [])
+                        qlog = {q["questId"]: q for q in qlog_list if isinstance(q, dict) and "questId" in q}
 
-                        if dist_to_wp < 3.5:
-                            wp_idx = (wp_idx + 1) % len(PROVING_SHORE_WAYPOINTS)
-                            wp_x, wp_z = PROVING_SHORE_WAYPOINTS[wp_idx]
-                            print(f"  [Explore] Leader '{self.char_name}' reached waypoint, next is ({wp_x:.0f}, {wp_z:.0f})")
+                        goal_x, goal_z = my_x, my_z
+                        goal_action = "patrol"
+                        goal_param = ""
 
-                        angle_to_wp = math.atan2(wp_x - my_x, wp_z - my_z)
-                        await ws.send(json.dumps(make_move_input(angle_to_wp)))
+                        if my_x < -200.0:
+                            # [On Proving Shore tutorial island]
+                            if "q_ps_the_gauntlet" not in qdone:
+                                if "q_ps_the_gauntlet" not in qlog:
+                                    goal_x, goal_z = -283.0, -21.0
+                                    goal_action = "accept"
+                                    goal_param = "q_ps_the_gauntlet"
+                                else:
+                                    counts = qlog["q_ps_the_gauntlet"].get("counts", [0])
+                                    next_flag = counts[0] if counts else 0
+                                    if next_flag < len(GAUNTLET_CHECKPOINTS):
+                                        goal_x, goal_z = GAUNTLET_CHECKPOINTS[next_flag]
+                                        goal_action = "waypoint"
+                                        goal_param = f"Flag #{next_flag + 1}"
+                                    else:
+                                        goal_x, goal_z = -337.0, -33.0
+                                        goal_action = "turnin"
+                                        goal_param = "q_ps_the_gauntlet"
+
+                            elif "q_ps_strike_true" not in qdone:
+                                if "q_ps_strike_true" not in qlog:
+                                    goal_x, goal_z = -337.0, -33.0
+                                    goal_action = "accept"
+                                    goal_param = "q_ps_strike_true"
+                                else:
+                                    if qlog["q_ps_strike_true"].get("state") == "ready":
+                                        goal_x, goal_z = -345.0, -11.0
+                                        goal_action = "turnin"
+                                        goal_param = "q_ps_strike_true"
+                                    else:
+                                        # Fight training effigies
+                                        goal_x, goal_z = -336.0, -14.0
+                                        goal_action = "hunt"
+                                        goal_param = "training_effigy"
+
+                            else:
+                                # Tutorial completed -> Head to the Old Pier ferry bell to sail to mainland!
+                                goal_x, goal_z = -279.0, -10.0
+                                goal_action = "ferry"
+                                goal_param = "ps_ferry_bell"
+
+                        else:
+                            # [On Eastbrook Vale Mainland!]
+                            goal_x, goal_z = EASTBROOK_WAYPOINTS[wp_idx % len(EASTBROOK_WAYPOINTS)]
+                            goal_action = "explore"
+                            goal_param = "Eastbrook Highway"
+
+                        dist_to_goal = math.hypot(goal_x - my_x, goal_z - my_z)
+                        angle_to_goal = math.atan2(goal_x - my_x, goal_z - my_z)
+
+                        # Check if reached goal for quest action
+                        if dist_to_goal <= 3.8 and now - self.last_quest_action_time > 2.0:
+                            if goal_action == "accept":
+                                await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": goal_param}))
+                                print(f"  [Quest] Leader accepted '{goal_param}' from NPC!")
+                                self.last_quest_action_time = now
+                            elif goal_action == "turnin":
+                                await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": goal_param}))
+                                print(f"  [Quest] Leader turned in & completed '{goal_param}'!")
+                                self.last_quest_action_time = now
+                            elif goal_action == "ferry":
+                                await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                print(f"  [Ferry] Ringing Ferry Bell to sail across to Eastbrook mainland!")
+                                self.last_quest_action_time = now
+                            elif goal_action in ("waypoint", "explore"):
+                                wp_idx = (wp_idx + 1) % max(1, len(EASTBROOK_WAYPOINTS))
+
+                        if dist_to_goal > 2.0:
+                            self.is_trying_to_move = True
+                            await ws.send(json.dumps(make_move_input(angle_to_goal)))
+                        else:
+                            self.is_trying_to_move = False
+                            await ws.send(json.dumps({"t": "input", "mi": {}, "facing": angle_to_goal}))
 
                         if now - last_log_time > 5.0:
-                            print(f"  [Explore] Leader '{self.char_name}' patrolling at ({my_x:.1f}, {my_z:.1f}) -> heading to ({wp_x:.0f}, {wp_z:.0f})")
+                            print(f"  [Explore] Leader '{self.char_name}' -> Objective: {goal_action} ({goal_param}) at ({goal_x:.1f}, {goal_z:.1f})")
                             last_log_time = now
 
             await asyncio.gather(receive_loop(), control_loop())
@@ -500,7 +731,7 @@ async def main_async(args):
         lead_tag = " (Leader)" if is_lead else ""
         print(f"  - {args.name} {role_tag}{lead_tag}")
 
-    print("\nAll bots will enter the world and form a party together.")
+    print("\nAll bots will enter the world and dynamically coordinate together.")
     print(f"Real players can join or watch at {args.server}!\n")
 
     # 4. Run all bots concurrently
