@@ -128,7 +128,7 @@ echo " - 职业配置   : $CLASS_NAME"
 echo " - 模型权重   : $MODEL_PATH"
 echo "=================================================="
 
-exec "$PYTHON_EXEC" "$ROOT_DIR/python/run_neural_bot.py" \
+exec "$PYTHON_EXEC" -u "$ROOT_DIR/python/run_neural_bot.py" \
   --server "$SERVER_URL" \
   --count "$BOT_COUNT" \
   --model "$MODEL_PATH" \
