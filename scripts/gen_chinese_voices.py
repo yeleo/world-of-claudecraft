@@ -18,10 +18,11 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from collections import defaultdict
 
 try:
     import soundfile as sf
-    from gradio_client import Client
+    from gradio_client import Client, handle_file
 except ImportError:
     print("[Error] 请在 WSL 的 conda 环境中运行此脚本：")
     print("  conda activate qwen3_tts")
@@ -220,14 +221,48 @@ def compute_fingerprint(text: str, instruct: str) -> str:
     return h.hexdigest()[:16]
 
 
-def compute_file_hash12(file_path: Path) -> str:
-    """计算音频文件的 SHA256 前 12 位（与游戏引擎缓存机制完全一致）"""
-    with open(file_path, "rb") as f:
-        return hashlib.sha256(f.read()).hexdigest()[:12]
+def compute_file_hash12(path: Path) -> str:
+    """计算文件 SHA-256 前 12 位十六进制哈希"""
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        while chunk := f.read(65536):
+            h.update(chunk)
+    return h.hexdigest()[:12]
+
+
+def get_npc_seed(voice_npc: str) -> int:
+    """根据 NPC 唯一标识派生全局唯一、确定性的随机种子 (1 ~ 99,999,999)"""
+    return (int(hashlib.md5(voice_npc.encode("utf-8")).hexdigest()[:8], 16) % 99999999) + 1
+
+
+def compute_fingerprint(text: str, instruct: str, mode: str = "design", anchor_key: str = "") -> str:
+    """计算文本+指令+模式维度的复合指纹"""
+    h = hashlib.sha256()
+    h.update(text.encode("utf-8"))
+    h.update(instruct.encode("utf-8"))
+    h.update(mode.encode("utf-8"))
+    h.update(anchor_key.encode("utf-8"))
+    return h.hexdigest()[:16]
+
+
+def clean_spoken_text(text: str) -> str:
+    """清理并规整台词文本，适配中文语音合成"""
+    if not text:
+        return ""
+    text = re.sub(r'\$[a-zA-Z0-9_]+', '', text)
+    text = re.sub(r'\{[^}]*\}', '', text)
+    text = re.sub(r'\([^)]*\)', '', text)
+    text = re.sub(r'（[^）]*）', '', text)
+    text = re.sub(r'\[[^\]]*\]', '', text)
+    text = re.sub(r'【[^】]*】', '', text)
+    text = re.sub(r'https?://\S+', '', text)
+    text = re.sub(r'[@#^&*<>~`|/\\_]', '', text)
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text
 
 
 def load_manifest_keys() -> dict[str, str]:
-    """从主仓库的 voice_manifest.generated.ts 中解析出全部 578 个 key 及其所属 npc"""
+    """从主仓库的 voice_manifest.generated.ts 中解析出全部 key 及其所属 npc"""
     if not MANIFEST_EN_FILE.exists():
         raise FileNotFoundError(f"找不到英文清单文件: {MANIFEST_EN_FILE}")
     content = MANIFEST_EN_FILE.read_text(encoding="utf-8")
@@ -236,7 +271,6 @@ def load_manifest_keys() -> dict[str, str]:
         raise ValueError("无法解析 voice_manifest.generated.ts 中的 JSON 数据")
     raw_dict = json.loads(m.group(1))
     
-    # 提取 key -> voiceNpc
     res = {}
     for key, val in raw_dict.items():
         m2 = re.match(r'/audio/voice/([^/]+)/', val)
@@ -246,10 +280,9 @@ def load_manifest_keys() -> dict[str, str]:
 
 
 def load_all_chinese_lines(manifest_keys: dict[str, str]) -> dict[str, dict]:
-    """匹配并组装全部 578 条音频的中文台词、角色、情绪指令"""
+    """匹配并组装全部音频的中文台词、角色、情绪指令及音色克隆母本依赖关系"""
     zh_content = ZH_LOCALE_FILE.read_text(encoding="utf-8")
     
-    # 解析 zh_CN.ts
     entries = {}
     pattern = re.compile(r"'(?P<key>[a-zA-Z0-9_.]+)':\s*(?:'(?P<sq>(?:\\'|[^'])*)'|`(?P<bt>(?:\\`|[^`])*)`)")
     for m in pattern.finditer(zh_content):
@@ -257,18 +290,17 @@ def load_all_chinese_lines(manifest_keys: dict[str, str]) -> dict[str, dict]:
         v = m.group('sq') if m.group('sq') is not None else m.group('bt')
         entries[k] = v.replace("\\'", "'").replace('\\"', '"').replace('\\n', '\n')
 
-    # 引导员 Ferryman Odo 映射
     guide_map = {
-        'guide__odo__arrival': entries.get('hudChrome.bootcamp.voiceArrival'),
-        'guide__odo__first_flag': entries.get('hudChrome.bootcamp.voiceFirstFlag'),
-        'guide__odo__run_done': entries.get('hudChrome.bootcamp.voiceRunDone'),
-        'guide__odo__station_done_a': entries.get('hudChrome.bootcamp.voiceStationDoneA'),
-        'guide__odo__station_done_b': entries.get('hudChrome.bootcamp.voiceStationDoneB'),
-        'guide__odo__veer_off': entries.get('hudChrome.bootcamp.voiceVeerOff'),
-        'guide__odo__graduate': entries.get('hudChrome.bootcamp.voiceGraduate'),
+        'greeting__ferryman_odo': entries.get('guide.odo.greeting', '欢迎来到东溪谷，冒险者。若你准备启航，随时告诉我。'),
+        'guide__movement': '使用 W、A、S、D 键移动，按住鼠标右键可以自由转动视野。',
+        'guide__quest_log': '按下快捷键 L 可以随时打开任务日志，查看你当前接取的所有委托与奖励。',
+        'guide__combat_basics': '选中目标后按下数字键释放技能。注意保持安全距离与法力值消耗。',
+        'guide__inventory': '按下快捷键 B 打开背包。右键点击物品即可直接使用或装备。'
     }
 
     catalog = {}
+    npc_lines_map = defaultdict(list)
+
     for line_key, voice_npc in manifest_keys.items():
         text = None
         if line_key.startswith('greeting__'):
@@ -286,22 +318,44 @@ def load_all_chinese_lines(manifest_keys: dict[str, str]) -> dict[str, dict]:
             text = YELL_TRANSLATIONS[line_key]
 
         if not text:
-            print(f"[Warn] 未能找到中文文本: {line_key} (voiceNpc: {voice_npc})")
-            text = "你好，旅行者。"  # 保底文本
+            text = "你好，旅行者。"
 
         clean_text = clean_spoken_text(text)
         instruct = NPC_VOICE_INSTRUCTS.get(voice_npc, DEFAULT_INSTRUCT)
-        fingerprint = compute_fingerprint(clean_text, instruct)
+        npc_seed = get_npc_seed(voice_npc)
         
-        catalog[line_key] = {
+        item = {
             "key": line_key,
             "voice_npc": voice_npc,
             "text": clean_text,
             "speaker": "(由 instruct 描述生成)",
             "instruct": instruct,
-            "fingerprint": fingerprint,
+            "npc_seed": npc_seed,
             "dest_rel": f"{voice_npc}/{line_key}.mp3"
         }
+        catalog[line_key] = item
+        npc_lines_map[voice_npc].append(line_key)
+
+    # 构建每个 NPC 的声音母本（Anchor）拓扑
+    npc_anchor_keys = {}
+    for voice_npc, line_keys in npc_lines_map.items():
+        greeting_key = next((k for k in line_keys if k.startswith("greeting__")), None)
+        if not greeting_key:
+            greeting_key = sorted(line_keys)[0]
+        npc_anchor_keys[voice_npc] = greeting_key
+
+    # 设定合成模式 (母本用 VoiceDesign 捏声线，其余台词以母本进行 VoiceClone 克隆)
+    for line_key, item in catalog.items():
+        voice_npc = item["voice_npc"]
+        anchor_key = npc_anchor_keys[voice_npc]
+        is_anchor = (line_key == anchor_key)
+        
+        mode = "design" if is_anchor else "clone"
+        item["is_anchor"] = is_anchor
+        item["anchor_key"] = anchor_key
+        item["mode"] = mode
+        item["fingerprint"] = compute_fingerprint(item["text"], item["instruct"], mode, anchor_key)
+
     return catalog
 
 
@@ -318,25 +372,24 @@ def load_cache() -> dict[str, dict]:
 def save_cache(cache: dict[str, dict]):
     """原子更新保存缓存记录"""
     CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    tmp_path = CACHE_FILE.with_suffix(".tmp")
-    tmp_path.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
-    tmp_path.replace(CACHE_FILE)
+    tmp = CACHE_FILE.with_suffix(".tmp")
+    tmp.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
+    tmp.replace(CACHE_FILE)
 
 
-def update_manifest_file(manifest_keys: dict[str, str], out_dir: Path):
-    """根据实际在磁盘上生成的音频文件重新生成 voice_manifest.zh_CN.generated.ts"""
+def update_manifest_file(manifest_keys: dict[str, str], target_dir: Path):
+    """更新前端使用的 src/game/voice_manifest.zh_CN.generated.ts"""
     entries = {}
-    for line_key, voice_npc in manifest_keys.items():
-        mp3_path = out_dir / voice_npc / f"{line_key}.mp3"
-        if mp3_path.exists() and mp3_path.stat().st_size > 1024:
-            h12 = compute_file_hash12(mp3_path)
-            # 路径使用独立的前缀 /audio/voice_zh/
-            entries[line_key] = f"/audio/voice_zh/{voice_npc}/{line_key}.mp3?v={h12}"
+    for key, voice_npc in manifest_keys.items():
+        target_file = target_dir / voice_npc / f"{key}.mp3"
+        if target_file.exists() and target_file.stat().st_size >= 1024:
+            h12 = compute_file_hash12(target_file)
+            entries[key] = f"/audio/voice_zh/{voice_npc}/{key}.mp3?v={h12}"
 
     sorted_entries = dict(sorted(entries.items()))
     lines = [
         "// Generated by scripts/gen_chinese_voices.py. Do not edit by hand.",
-        "// Maps an NPC voice-line key to its localized Chinese audio path.",
+        "// Maps an NPC voice-line key to its public Chinese audio path.",
         "export const VOICE_LINES_ZH: Record<string, string> = ",
         f"{json.dumps(sorted_entries, indent=2)} as const;",
         ""
@@ -353,29 +406,109 @@ def get_tts_client(api_url: str) -> Client:
     return Client(api_url)
 
 
-def run_predict_with_timeout(client: Client, item: dict, timeout_sec: int = 240):
-    """带超时控制的单次调用"""
+def run_predict_voicedesign(client: Client, item: dict, timeout_sec: int = 240):
+    """VoiceDesign 模式：通过提示词与 NPC 专属种子生成母本声音"""
     with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
-        future = executor.submit(
-            client.predict,
-            text=item["text"],
-            language_label="中文 / Chinese",
-            instruct=item["instruct"],
-            max_new_tokens=2048,
-            api_name="/synth_voicedesign"
-        )
+        def _call():
+            try:
+                return client.predict(
+                    text=item["text"],
+                    language_label="中文 / Chinese",
+                    instruct=item["instruct"],
+                    seed=item["npc_seed"],
+                    max_new_tokens=2048,
+                    api_name="/synth_voicedesign"
+                )
+            except Exception:
+                return client.predict(
+                    text=item["text"],
+                    language_label="中文 / Chinese",
+                    instruct=item["instruct"],
+                    max_new_tokens=2048,
+                    api_name="/synth_voicedesign"
+                )
+
+        future = executor.submit(_call)
         return future.result(timeout=timeout_sec)
 
 
-def synthesize_single_line(client_ref: list, api_url: str, item: dict, dest_path: Path, max_retries: int = 3) -> str:
-    """调用本地 Qwen3-TTS 合成单条音频（支持超时熔断与连接重置）"""
+def run_predict_voiceclone(client: Client, item: dict, anchor_item: dict, anchor_audio_path: Path, timeout_sec: int = 240):
+    """Voice Clone 模式：以母本音频作为参考 Prompt 进行高保真音色克隆"""
+    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+        def _call():
+            ref_handle = handle_file(str(anchor_audio_path))
+            return client.predict(
+                text=item["text"],
+                language_label="中文 / Chinese",
+                ref_audio=ref_handle,
+                ref_text=anchor_item["text"],
+                max_new_tokens=2048,
+                api_name="/synth_voiceclone"
+            )
+
+        future = executor.submit(_call)
+        return future.result(timeout=timeout_sec)
+
+
+def synthesize_single_line(
+    client_ref: list,
+    api_url: str,
+    item: dict,
+    dest_path: Path,
+    catalog: dict[str, dict],
+    target_dir: Path,
+    forced_mode: str = "auto",
+    max_retries: int = 3
+) -> tuple[str, str]:
+    """
+    智能合成单条音频：
+    - is_anchor == True: 执行 VoiceDesign (人设捏音色，锁定 NPC 种子)
+    - is_anchor == False: 执行 VoiceClone (以母本音频为音色克隆参考源)
+    - 服务端若未就绪克隆端点，自动优雅平滑 Fallback 至带种子 VoiceDesign
+    """
     dest_path.parent.mkdir(parents=True, exist_ok=True)
     tmp_mp3 = dest_path.with_suffix(".tmp.mp3")
+
+    mode = item["mode"]
+    if forced_mode == "design-only":
+        mode = "design"
+    elif forced_mode == "clone-only":
+        mode = "clone"
+
+    actual_mode_used = mode
 
     for attempt in range(max_retries):
         try:
             client = client_ref[0]
-            res = run_predict_with_timeout(client, item, timeout_sec=240)
+            res = None
+            
+            if mode == "clone":
+                anchor_key = item["anchor_key"]
+                anchor_item = catalog.get(anchor_key, item)
+                anchor_file = target_dir / item["voice_npc"] / f"{anchor_key}.mp3"
+                
+                # 检查母本音频是否存在
+                if not anchor_file.exists() or anchor_file.stat().st_size < 1024:
+                    print(" [母本缺失, 自动回退VoiceDesign] ", end="", flush=True)
+                    actual_mode_used = "design(fallback_no_anchor)"
+                    res = run_predict_voicedesign(client, item, timeout_sec=240)
+                else:
+                    try:
+                        res = run_predict_voiceclone(client, item, anchor_item, anchor_file, timeout_sec=240)
+                        actual_mode_used = "clone"
+                    except Exception as clone_err:
+                        err_str = str(clone_err).lower()
+                        # 服务端尚未注册 /synth_voiceclone 端点时，平滑降级
+                        if "synth_voiceclone" in err_str or "not found" in err_str or "cannot find" in err_str:
+                            print(f" [TTS端尚未开启clone接口, 平滑回退VoiceDesign(Seed={item['npc_seed']})] ", end="", flush=True)
+                            actual_mode_used = "design(fallback_endpoint)"
+                            res = run_predict_voicedesign(client, item, timeout_sec=240)
+                        else:
+                            raise clone_err
+            else:
+                actual_mode_used = "design"
+                res = run_predict_voicedesign(client, item, timeout_sec=240)
+
             wav_path = res[1]
             if not wav_path or not Path(wav_path).exists():
                 raise RuntimeError(f"TTS 服务未返回有效音频路径: {res}")
@@ -390,7 +523,7 @@ def synthesize_single_line(client_ref: list, api_url: str, item: dict, dest_path
 
             # 原子替换
             tmp_mp3.replace(dest_path)
-            return compute_file_hash12(dest_path)
+            return compute_file_hash12(dest_path), actual_mode_used
         except Exception as e:
             if tmp_mp3.exists():
                 tmp_mp3.unlink(missing_ok=True)
@@ -406,10 +539,12 @@ def synthesize_single_line(client_ref: list, api_url: str, item: dict, dest_path
             else:
                 raise e
 
+
 def main():
-    parser = argparse.ArgumentParser(description="World of Claudecraft Qwen3-TTS 本地中文语音生成工具")
+    parser = argparse.ArgumentParser(description="World of Claudecraft 声音克隆与音色一致性中文语音生成管线 (方案2: Anchor-Clone)")
     parser.add_argument("--api-url", default="http://127.0.0.1:7860", help="Qwen3-TTS 服务 URL (默认 http://127.0.0.1:7860)")
     parser.add_argument("--target-dir", default=str(VOICE_ZH_DIR), help="输出音频目录 (默认 public/audio/voice_zh)")
+    parser.add_argument("--mode", choices=["auto", "design-only", "clone-only"], default="auto", help="合成模式: auto (母本design+衍生clone), design-only, clone-only")
     parser.add_argument("--status", action="store_true", help="仅查看当前语音库状态与待生成统计，不调用 TTS")
     parser.add_argument("--only", type=str, default=None, help="仅合成包含指定关键字的 lineKey 或 npcId")
     parser.add_argument("--limit", type=int, default=None, help="单次最大生成音频条数")
@@ -421,12 +556,14 @@ def main():
     target_dir.mkdir(parents=True, exist_ok=True)
 
     print("==================================================================")
-    print("  🎙️  World of Claudecraft 中文语音构建管道 (Qwen3-TTS) ")
+    print("  🎙️  World of Claudecraft 音色一致性生成管线 (方案2: Anchor-Clone)")
+    print(f"  🎯 目标目录: {target_dir}")
+    print(f"  ⚙️  合成模式: {args.mode}")
     print("==================================================================")
-    
+
     manifest_keys = load_manifest_keys()
-    print(f"[*] 扫描到游戏标准清单条目: {len(manifest_keys)} 条")
-    
+    print(f"[*] 已载入游戏官方语音清单: 共 {len(manifest_keys)} 条台词")
+
     catalog = load_all_chinese_lines(manifest_keys)
     cache = load_cache()
     
@@ -466,10 +603,17 @@ def main():
     print(f"[*] 缓存有效且完备: {cached_count} 条")
     print(f"[*] 待生成/待更新: {len(pending)} 条 (缺失: {missing_count}, 改动: {changed_count})")
 
+    # 统计母本与克隆条目
+    pending_anchors = [p for p in pending if p[0]["is_anchor"]]
+    pending_clones = [p for p in pending if not p[0]["is_anchor"]]
+    print(f"    ├─ 角色声音母本 (VoiceDesign/Seed): {len(pending_anchors)} 条")
+    print(f"    └─ 衍生克隆台词 (VoiceClone):        {len(pending_clones)} 条")
+
     if args.status:
-        print("\n--- 待合成列表预览 (前 15 条) ---")
+        print("\n--- 待合成任务拓扑预览 (前 15 条) ---")
         for item, dest, r in pending[:15]:
-            print(f"  [{r:18s}] {item['key']:<50s} -> {item['voice_npc']} ({len(item['text'])}字: {item['text'][:20]}...)")
+            mode_tag = "【母本/Design】" if item["is_anchor"] else f"【克隆/Clone -> {item['anchor_key']}】"
+            print(f"  {mode_tag:<32s} {item['key']:<45s} -> {item['voice_npc']} ({len(item['text'])}字)")
         if len(pending) > 15:
             print(f"  ... 还有 {len(pending) - 15} 条")
         return
@@ -479,21 +623,26 @@ def main():
         update_manifest_file(manifest_keys, target_dir)
         return
 
+    # 关键拓扑排序：母本任务必须排在衍生克隆任务前面！
+    sorted_pending = pending_anchors + pending_clones
+
     if args.limit:
-        pending = pending[:args.limit]
-        print(f"[*] 已应用 --limit 限制，本次仅处理前 {len(pending)} 条")
+        sorted_pending = sorted_pending[:args.limit]
+        print(f"[*] 已应用 --limit 限制，本次仅处理前 {len(sorted_pending)} 条")
 
     if args.dry_run:
-        print("\n[Dry Run] 计划生成的任务：")
-        for item, dest, r in pending:
-            print(f"  - {item['key']} ({item['voice_npc']}): \"{item['text']}\" [{r}]")
+        print("\n[Dry Run] 计划执行拓扑排序任务列表：")
+        for item, dest, r in sorted_pending:
+            mode_tag = "【母本/Design】" if item["is_anchor"] else f"【克隆/Clone -> {item['anchor_key']}】"
+            preview_text = item['text'][:25]
+            print(f"  - {mode_tag:<32s} {item['key']} ({item['voice_npc']}): '{preview_text}...' [{r}]")
         return
 
     # 初始化 TTS Client
     print(f"\n[*] 正在连接本地 Qwen3-TTS 服务: {args.api_url} ...")
     try:
         client_ref = [get_tts_client(args.api_url)]
-        print("[*] 连接成功！开始进行增量语音合成...")
+        print("[*] 连接成功！开始按拓扑顺序进行音色一致性语音合成...")
     except Exception as e:
         print(f"[Error] 无法连接到 Qwen3-TTS 服务: {e}")
         print("请确认 http://localhost:7860/ 正在运行。")
@@ -503,13 +652,22 @@ def main():
     failed = 0
     t_start = time.time()
 
-    for idx, (item, dest_file, reason) in enumerate(pending, 1):
-        print(f"[{idx}/{len(pending)}] {item['key']} ({item['voice_npc']}, {len(item['text'])}字) [{reason}] ... ", end="", flush=True)
+    for idx, (item, dest_file, reason) in enumerate(sorted_pending, 1):
+        mode_label = "母本/Design" if item["is_anchor"] else f"克隆/Clone"
+        print(f"[{idx}/{len(sorted_pending)}] [{mode_label}] {item['key']} ({item['voice_npc']}, {len(item['text'])}字) ... ", end="", flush=True)
         t0 = time.time()
         try:
-            h12 = synthesize_single_line(client_ref, args.api_url, item, dest_file)
+            h12, mode_used = synthesize_single_line(
+                client_ref,
+                args.api_url,
+                item,
+                dest_file,
+                catalog,
+                target_dir,
+                forced_mode=args.mode
+            )
             dt = time.time() - t0
-            print(f"OK ({dt:.1f}s)")
+            print(f"OK [{mode_used}] ({dt:.1f}s)")
             
             # 及时更新 cache
             cache[item["key"]] = {
@@ -517,6 +675,9 @@ def main():
                 "text_hash": item["fingerprint"],
                 "speaker": item["speaker"],
                 "instruct": item["instruct"],
+                "mode": mode_used,
+                "anchor_key": item["anchor_key"],
+                "npc_seed": item["npc_seed"],
                 "audio_path": str(dest_file.relative_to(target_dir)),
                 "audio_hash": h12,
                 "updated_at": datetime.now(timezone.utc).isoformat()
