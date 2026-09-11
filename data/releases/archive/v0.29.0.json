@@ -1,0 +1,10 @@
+{
+  "id": 358431378,
+  "tag": "v0.29.0",
+  "name": "World of ClaudeCraft v0.29.0 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸） v0.29.0 Release Notes",
+  "body": "版本 v0.29.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.29.0 Release Notes\n**Release:** v0.29.0\n**Date:** 2026-07-23\n**Previous release:** v0.28.0\nVersion 0.29.0 finalizes Professions 2.0 as a complete, balanced crafting economy. Every\ncharacter's profession skills are reset to 0 one time with this release so progression starts on\nthe finished mastery curve. The release also retunes dungeon and raid difficulty, fills\nlong-standing class loot gaps, refreshes a large part of the interface, streams a remastered\nsoundtrack, adds an AAA camera feel pass, and lands substantial server reliability and security\nwork.",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.29.0",
+  "prerelease": false,
+  "publishedAt": "2026-07-23T02:51:57Z"
+}

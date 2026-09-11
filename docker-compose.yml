@@ -257,6 +257,7 @@ services:
       - ${PARSE_SPOOL_HOST_DIR:-./parse-spool}:/app/parse-spool
       - ${CENSOR_DIR:-./data/censor}:/app/data/censor:ro
       - ./data/releases.json:/app/data/releases.json:ro
+      - ./data/releases:/app/data/releases:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
     # Exec form with a node one-liner, deliberately unlike the CMD-SHELL healthcheck

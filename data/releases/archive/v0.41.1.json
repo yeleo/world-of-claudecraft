@@ -1,0 +1,10 @@
+{
+  "id": 380427759,
+  "tag": "v0.41.1",
+  "name": "World of ClaudeCraft v0.41.1 团队副本机制打磨",
+  "summary": "熔炉团队副本首领战机制精修、战斗日志伤害统计细化、团队框架Buff高亮。",
+  "body": "- **团队副本机制精修**：针对熔炉首领战斗阶段转换时的技能释放时机进行了微调，增加首领读条预警特效。\n- **战斗日志统计**：战斗统计面板支持细分技能、法术暴击与未命中判定，方便玩家优化输出循环。\n- **团队框体增强**：主坦克与治疗者在小队/团队框体上获得专属高亮边框提示。",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.41.1",
+  "prerelease": false,
+  "publishedAt": "2026-09-01T11:12:30Z"
+}

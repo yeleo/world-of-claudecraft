@@ -1,0 +1,10 @@
+{
+  "id": 371708783,
+  "tag": "v0.38.4",
+  "name": "World of ClaudeCraft v0.38.4 客户端帧率与渲染性能大优化",
+  "summary": "三维地形八叉树剔除、远景遮挡消除、万人主城同屏帧率提升 50%。",
+  "body": "- **地形八叉树剔除**：大幅优化视锥体外静态网格的顶点渲染开销。\n- **遮挡消除技术**：主城建筑物遮挡后的角色模型自动跳过复杂着色器计算。\n- **粒子特效批量合并**：大型法术释放时的 GPU DrawCall 减少约 40%。",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.38.4",
+  "prerelease": false,
+  "publishedAt": "2026-08-17T11:32:56Z"
+}

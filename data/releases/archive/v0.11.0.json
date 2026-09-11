@@ -1,0 +1,10 @@
+{
+  "id": 342320515,
+  "tag": "v0.11.0",
+  "name": "World of ClaudeCraft v0.11.0 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸）  v0.11.0 Release Notes",
+  "body": "版本 v0.11.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） - v0.11.0 Release Notes\n**Release:** v0.11.0\n**Date:** 2026-06-21\n**Previous release:** v0.10.0\nv0.11.0 is a security, localization, wallet, performance, and polish release with\n**80 commits** since the public v0.10.0 tag. It removes the vulnerable third-party\nwallet connector stack, adds a smaller injected Solana wallet-linking path,\nintroduces `$WOC` holder flair and shareable player cards, completes a major\nhardcoded-string localization sweep, improves graphics budgets and telemetry,\nand lands several game-feel fixes across movement, audio, market browsing, and",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.11.0",
+  "prerelease": false,
+  "publishedAt": "2026-06-20T13:25:48Z"
+}

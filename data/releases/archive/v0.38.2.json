@@ -1,0 +1,10 @@
+{
+  "id": 371187968,
+  "tag": "v0.38.2",
+  "name": "World of ClaudeCraft v0.38.2 邮件系统与快递投递",
+  "summary": "邮箱基础设施覆盖全部旅店与城镇、支持金币邮寄、物品付费取件（COD）。",
+  "body": "- **全图邮箱布设**：各大营地与主城现已设立醒目的邮箱设施。\n- **物品与金币寄送**：支持玩家间文本信件、多件物品打包寄送以及金币汇款。\n- **付费取件（COD）机制**：实现远程安全的点对点货到付款交易。",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.38.2",
+  "prerelease": false,
+  "publishedAt": "2026-08-15T23:59:43Z"
+}

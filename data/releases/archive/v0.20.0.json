@@ -1,0 +1,10 @@
+{
+  "id": 348914999,
+  "tag": "v0.20.0",
+  "name": "World of ClaudeCraft v0.20.0 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸）  v0.20.0 Release Notes",
+  "body": "版本 v0.20.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） - v0.20.0 Release Notes\n**Release:** v0.20.0\n**Date:** 2026-07-04\n**Previous release:** v0.19.0\nv0.20.0 is the biggest content release yet, with **379 commits** since v0.19.0. The headline is The Drowned Litany, a second delve set in a flooded Mirefen marsh ruin, arriving alongside the Ravenpost mail system with a calendar and guild events, Thunzharr the first world boss, bags, haste as a real stat, a browser map editor, and a complete character-select redesign. Under the hood this cycle also completes the IP pivot rename sweep, fills every one of the 21 locales to zero pending keys, and tightens account security from recovery-email capture to a hardened AI-review pipeline.\n## Highlights\n- **The Drowned Litany:** a second delve (levels 12-14) beneath the Mirefen marsh: seven flooded modules with Blackwater hazards, a bell-rite puzzle, the spider-infested Sinkhole Baptistry, Sister Nhalia as the boss, and Edda Reedhand as the delve's healer companion (#1327).\n- **Ravenpost mail, calendar, and guild events:** send coin and items to any character (online or off) with real escrow, delivery delay, and postage; plus a calendar window and guild events backed by new server tables (#1339).\n- **Thunzharr, the first world boss:** a daily personal-loot epic encounter dropping Tier-2 set gloves and belts (#1034).\n- **Haste:** melee, ranged, and spell haste via the item-set bonus framework: every Tier-2 3-piece now grants 15% haste, and three new leveling haste kits assemble from world drops (#994).",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.20.0",
+  "prerelease": false,
+  "publishedAt": "2026-07-04T10:22:41Z"
+}

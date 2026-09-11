@@ -1,0 +1,10 @@
+{
+  "id": 338953356,
+  "tag": "v0.3.0",
+  "name": "World of ClaudeCraft v0.3.0 版本更新",
+  "summary": "## World of ClaudeCraft（克劳德争霸） v0.3.0",
+  "body": "版本 v0.3.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n## World of ClaudeCraft（克劳德争霸） v0.3.0\nThis release is a major online-play update focused on social systems, moderation,\ncombat behavior, performance, and the first-pass release polish for the public game.\n### Highlights\n- 新增 friends, guilds, ignores, and realm-aware social systems.\n- 新增 player reporting and admin moderation tools.\n- 新增 right-click reporting from chat player names.\n- 新增 a classic MMO-style threat system for tanking and deaggro.\n- Polished the title screen, login flow, character creation, and character preview.\n- 新增 hashed media caching for faster repeat loads.",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.3.0",
+  "prerelease": false,
+  "publishedAt": "2026-06-13T11:00:03Z"
+}

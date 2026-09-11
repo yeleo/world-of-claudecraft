@@ -1,0 +1,10 @@
+{
+  "id": 358814864,
+  "tag": "v0.29.1",
+  "name": "World of ClaudeCraft v0.29.1 版本更新",
+  "summary": "A balance hotfix for the v0.29.0 heroic retune: healers can keep up again, tanks",
+  "body": "版本 v0.29.1 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\nA balance hotfix for the v0.29.0 heroic retune: healers can keep up again, tanks stop dying to dice rolls, and the fights that overshot got retuned.\n## Healers\n- Every healing spell gains a new or stronger top rank at level 20 (leveling ranks unchanged).\n- Healing now benefits from double Spell Power: every point of Intellect adds 1 healing.\n## Tanks\n- Monsters can no longer critically strike committed tanks: Protection warriors, Protection paladins, and Feral druids in Sloth Form.\n- Protection paladin and Sloth Form durability raised to stand alongside Protection warriors.\n## 奈斯拉西斯（Nythraxis） (raid)\n- Gravebreaker is now a charged attack released on his next landed swing: no more instant opener, and it can no longer stack with a melee hit. Dodging his swing delays it.\n- Heroic: 奈斯拉西斯（Nythraxis） swings for less, his skeleton waves have far less health, and all court adds hit much less hard. Voss can now realistically be slowed and kited.",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.29.1",
+  "prerelease": false,
+  "publishedAt": "2026-07-23T16:24:24Z"
+}

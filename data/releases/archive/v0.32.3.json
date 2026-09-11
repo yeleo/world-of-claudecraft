@@ -1,0 +1,10 @@
+{
+  "id": 362934575,
+  "tag": "v0.32.3",
+  "name": "World of ClaudeCraft v0.32.3 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸） v0.32.3 Release Notes",
+  "body": "版本 v0.32.3 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.32.3 Release Notes\n**Release:** v0.32.3\n**Date:** 2026-07-31\n**Previous release:** v0.32.2\nVersion 0.32.3 is a focused patch on the open-world farm economy. Every open-world trash mob\nrespawned on one flat 25 second timer, so a farmed camp regenerated about three times a minute\nregardless of zone; respawn now follows the zone's level band, which moves the sustainable\ngold ceiling on the worst corridor from about 189 gold per hour to 27. Alongside it, escort\nambush waves stop leaking permanent mobs into the world, the deliberately-coinless beast,\nspider, and reptile families finally have harvestable corpses, and the economy guard now pins",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.32.3",
+  "prerelease": false,
+  "publishedAt": "2026-07-31T08:25:46Z"
+}

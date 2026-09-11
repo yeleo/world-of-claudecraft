@@ -1,0 +1,10 @@
+{
+  "id": 339175959,
+  "tag": "v0.5.0",
+  "name": "World of ClaudeCraft v0.5.0 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸） v0.5 Release Notes",
+  "body": "版本 v0.5.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.5 Release Notes\nBranch: `release/v0.5`\nRelease head: `b1d9f28`\nBaseline: `v0.4.0`\n## Highlights\n- Expands the **灰烬大斗兽场** with arena polish, safer match cleanup, countdown/\nbuff fixes, root diminishing, camera bounds, and realm-scoped leaderboard\ncorrectness.\n- Adds the first **fishing loop**: buy a Simple Fishing Pole, cast at fishable\nwater, complete a cast bar, and catch early fishing loot.",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.5.0",
+  "prerelease": false,
+  "publishedAt": "2026-06-14T13:31:54Z"
+}

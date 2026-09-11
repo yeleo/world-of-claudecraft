@@ -1,0 +1,10 @@
+{
+  "id": 339093571,
+  "tag": "v0.4.0",
+  "name": "World of ClaudeCraft v0.4.0 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸） v0.4 Release Notes",
+  "body": "版本 v0.4.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.4 Release Notes\nBranch: `release/v0.4`\nRelease head: `4278d5d`\nBaseline: `v0.3.0` / current production `main`\n## Highlights\n- Adds **The 灰烬大斗兽场**, a ranked 1v1 arena with matchmaking, Elo ratings, arena UI, leaderboard support, and dedicated test coverage.\n- Adds the **World Market** through the Merchant, including player listings, buying, cancelling, collections, expiry handling, persistence, and market test/visual scripts.\n- Delivers the major **mobile browser control and layout pass**, including touch controls, safe-area-aware HUD placement, Safari keyboard recovery, mobile login/character flows, mobile map/panel sizing, and landscape handling.\n- Reworks the public **homepage/login/start flow** with a localized, responsive shell, realm/character views, project stats, SEO metadata, and PWA manifest.\n- Adds an nginx-facing **server unavailable fallback page** so players see a branded maintenance/downstream-error screen instead of a raw proxy failure.",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.4.0",
+  "prerelease": false,
+  "publishedAt": "2026-06-14T03:27:18Z"
+}

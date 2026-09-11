@@ -1,0 +1,10 @@
+{
+  "id": 347536827,
+  "tag": "v0.18.0",
+  "name": "World of ClaudeCraft v0.18.0 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸）  v0.18.0 Release Notes",
+  "body": "版本 v0.18.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） - v0.18.0 Release Notes\n**Release:** v0.18.0\n**Date:** 2026-07-02\n**Previous release:** v0.17.0\nv0.18.0 is a large gameplay and platform release with **65 commits** since v0.17.0. The headline is a sweeping talent tooltip accuracy pass and buff rebalance that makes every talent across all 9 classes and 27 specs state its real numbers, alongside a new developer badges system that rewards contributors who land commits in the open-source repo. This cycle also delivers party and raid loot settings with master looter, a World Market expansion with realm-scoping, Discord guild auto-join, and a broad stability and infrastructure hardening pass.\n## Highlights\n- **Talents:** Every talent tooltip across all 9 classes and 27 specs now spells out the exact numbers its effect produces, buff-strengthening talents that previously did nothing now deliver their promised bonuses, and caster and raid buffs are rebalanced into percentage, party-wide values (#1039, #1038).\n- **Buff tooltips online:** Buff and debuff hover tooltips now show real magnitudes online, so Aspect of the Hawk reads \"Increases attack power by 20\" instead of \"by 0\" and percent effects, DoTs, and absorbs all display their true values (#1220).\n- **Developer badges:** Contributors who land commits in the open-source repo now earn cosmetic developer badges through a verified GitHub link, with five tiers, nameplate and inspect flair, and a new Developers leaderboard tab (#1086).\n- **Loot and raid:** A new party and raid Loot Settings window surfaces the group's loot rules to everyone, and whole-group loot messaging broadcasts the full loot lifecycle with clickable item links (#1216).",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.18.0",
+  "prerelease": false,
+  "publishedAt": "2026-07-01T15:02:20Z"
+}

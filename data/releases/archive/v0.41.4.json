@@ -1,0 +1,10 @@
+{
+  "id": 383185193,
+  "tag": "v0.41.4",
+  "name": "World of ClaudeCraft v0.41.4 熔炉原声带与音效升级",
+  "summary": "熔炉团队副本 4 个楼层专属原声大碟发布，空间环绕音效全方位重采样与延迟优化。",
+  "body": "熔炉团队副本（The Crucible）迎来专属全新原声大碟，为全部四个楼层定制了独立战斗旋律：\n\n- **第一层：余烬之路（A Way Through the Embers）**：伴随团队进军熔炉深渊的前哨战歌。\n- **第二层：百炼成钢（Even Iron Must Yield）**：第一首领震撼战斗曲目。\n- **第三层：熔炉之火（A Flame in the Dark）**：烈焰迷宫穿行背景交响乐。\n- **第四层：终焉审判（The Last Ember Falls）**：迎战最终首领瓦克胡尔的史诗决战配乐。\n- **音效优化与空间混响**：对音效引擎的空间环绕混响进行了全方位重采样与延迟优化。",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.41.4",
+  "prerelease": false,
+  "publishedAt": "2026-09-05T08:31:51Z"
+}

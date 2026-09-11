@@ -1,0 +1,10 @@
+{
+  "id": 362227500,
+  "tag": "v0.32.1",
+  "name": "World of ClaudeCraft v0.32.1 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸） v0.32.1 Release Notes",
+  "body": "版本 v0.32.1 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.32.1 Release Notes\n**Release:** v0.32.1\n**Date:** 2026-07-30\n**Previous release:** v0.32.0\nVersion 0.32.1 is the first patch on the 0.32 line, and it is mostly about honoring what 0.32.0\npromised. The headline is that `/unstuck` no longer kills you: it moves you to the nearest\ngraveyard under a new, shorter sickness instead of routing you through the Pale Keeper. Around it,\nthe four escort quests become completable for the first time, the ten new realms' world mobs\nfinally drop loot, normal Wildheart Basin gets a real tuning pass, rift portals move from three\nworld-wide to one per zone every hour with WoW-style instance binding, world entry stops dying on",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.32.1",
+  "prerelease": false,
+  "publishedAt": "2026-07-30T06:45:24Z"
+}

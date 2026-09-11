@@ -1,0 +1,10 @@
+{
+  "id": 338928061,
+  "tag": "electron-dev-test-0.1.0",
+  "name": "World of ClaudeCraft electron-dev-test-0.1.0 版本更新",
+  "summary": "Unsigned Electron test builds from dev/electrononlineoffline (3dd88cb). Online m",
+  "body": "版本 electron-dev-test-0.1.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\nUnsigned Electron test builds from dev/electron-online-offline (3dd88cb). Online mode targets https://dev.worldofclaudecraft.com for validation before production release.",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/electron-dev-test-0.1.0",
+  "prerelease": false,
+  "publishedAt": "2026-06-13T08:04:45Z"
+}

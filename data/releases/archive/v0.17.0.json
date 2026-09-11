@@ -1,0 +1,10 @@
+{
+  "id": 346944501,
+  "tag": "v0.17.0",
+  "name": "World of ClaudeCraft v0.17.0 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸）  v0.17.0 Release Notes",
+  "body": "版本 v0.17.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） - v0.17.0 Release Notes\n**Release:** v0.17.0\n**Date:** 2026-07-01\n**Previous release:** v0.16.0\nv0.17.0 is a Discord integration, public guide/wiki, social, admin moderation, and stability release with **117 commits** since v0.16.0. The headline is two-way Discord integration: account linking with a first-login account choice and safe unlink, in-game rewards and flair, and a relay bot wired into the Docker/compose deployment. It also ships a much richer public guide (pre-rendered monster and class still images, a 3D model viewer and gallery, and a Delves page), a guild high-score board, the ability to inspect another player's equipped gear, live admin moderation and suspicious-player review tooling, a single-action-bar default, and a broad set of combat, pet, talent, camera, mobile, rendering-stability, and localization fixes.\n## Highlights\n- **Discord integration:** Two-way Discord support with account linking, a first-login account choice, safe unlink, in-game rewards and flair, and a relay bot, with the bot built and run as part of the Docker/compose stack.\n- **Public guide and wiki:** Pre-rendered monster and class still images, a working 3D model viewer and model gallery, a new Delves page, bestiary coverage for temple and delve creatures, and wiki prose brought in line with the current game systems.\n- **Leaderboards and inspect:** 新增 a guild high-score board alongside the player leaderboard, and the ability to inspect another player's equipped gear.\n- **Admin and moderation:** Enriched online player positions with human-friendly locations, a live suspicious-player review dashboard, in-game moderation commands with a spectate mode and separated /ban and /suspend, and sortable shared IPs.",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.17.0",
+  "prerelease": false,
+  "publishedAt": "2026-06-30T15:50:03Z"
+}

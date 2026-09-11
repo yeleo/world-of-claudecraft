@@ -1,0 +1,10 @@
+{
+  "id": 367090191,
+  "tag": "v0.35.1",
+  "name": "World of ClaudeCraft v0.35.1 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸） v0.35.1 Release Notes",
+  "body": "版本 v0.35.1 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.35.1 Release Notes\n**Release:** v0.35.1\n**Date:** 2026-08-08\n**Previous release:** v0.35.0\nVersion 0.35.1 is a performance patch on the 0.35 line, on both sides of the wire. On the\nserver, the two heaviest per-tick snapshot reads (mail and the commission order board) are\nnow gated on change and cadence, and Ravenpost mail lookups stop scanning the whole book.\nIn the renderer, the spell VFX stack sheds its per-frame allocation and upload costs and\nweapon skins fade with distance instead of ticking forever. The patch also pins a\ndependency security advisory and ships fully localized across all 21 locales.",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.35.1",
+  "prerelease": false,
+  "publishedAt": "2026-08-08T02:43:08Z"
+}

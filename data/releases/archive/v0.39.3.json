@@ -1,0 +1,10 @@
+{
+  "id": 374771144,
+  "tag": "v0.39.3",
+  "name": "World of ClaudeCraft v0.39.3 动作条与技能宏体验优化",
+  "summary": "多动作条翻页与按键绑定重构、快速施法与目标切换平滑过渡。",
+  "body": "- **动作条系统重构**：新增左右两侧辅助动作条，支持自定义键位无冲突绑定。\n- **智能目标选取**：Tab 键选取目标优先匹配视野中央正对且处于战斗状态的敌对目标。\n- **动作条锁定功能**：防止战斗中激烈操作意外拖拽移除技能图标。",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.39.3",
+  "prerelease": false,
+  "publishedAt": "2026-08-22T01:58:43Z"
+}

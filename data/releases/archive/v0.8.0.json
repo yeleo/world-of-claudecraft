@@ -1,0 +1,10 @@
+{
+  "id": 340604369,
+  "tag": "v0.8.0",
+  "name": "World of ClaudeCraft v0.8.0 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸）  v0.8 Release Notes",
+  "body": "版本 v0.8.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） - v0.8 Release Notes\n**Release:** v0.8\n**Date:** 2026-06-17\n**Previous release:** v0.7.0\nv0.8 is a major systems release with **107 commits** since the public v0.7.0\ntag and more than **16,000 lines changed** across gameplay, server security,\nmobile controls, web presentation, community surfaces, and release operations.\nThe headline themes are ranked 2v2 arena, a new wave of deterministic enemy\naffixes, the first behavioral anti-bot system, Turnstile-backed authentication,\na substantially upgraded public home page, more complete mobile play, and a",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.8.0",
+  "prerelease": false,
+  "publishedAt": "2026-06-17T08:14:16Z"
+}

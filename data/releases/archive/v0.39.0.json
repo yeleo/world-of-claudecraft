@@ -1,0 +1,10 @@
+{
+  "id": 372954989,
+  "tag": "v0.39.0",
+  "name": "World of ClaudeCraft v0.39.0 荣誉系统与野外 PvP 争霸",
+  "summary": "阵营荣誉系统开放、击杀荣誉击杀与军衔评定、东溪谷野外哨塔争夺。",
+  "body": "PvP 阵营荣誉系统全面上线！\n\n- **荣誉击杀与军衔评级**：野外击杀对立阵营同级别玩家可获得荣誉点数，每周按段位结算军衔。\n- **东溪谷哨塔争夺**：两座战略哨塔成为野外阵营争夺的核心要地，占领方全图享有 5% 经验加成。\n- **无名者惩罚机制**：严厉惩处恶意低等级屠戮行为，杜绝非荣誉击杀。",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.39.0",
+  "prerelease": false,
+  "publishedAt": "2026-08-19T10:16:54Z"
+}

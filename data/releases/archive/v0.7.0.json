@@ -1,0 +1,10 @@
+{
+  "id": 340060681,
+  "tag": "v0.7.0",
+  "name": "World of ClaudeCraft v0.7.0 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸） v0.7 Release Notes",
+  "body": "版本 v0.7.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.7 Release Notes\nBranch: `release/v0.7`\nRelease head: `9fa47fa`\nBaseline: `v0.6.0`\n## Highlights\n- Adds **The 沉没神殿**, a new portal-reached 5-player group dungeon.\n- Reworks character presentation with **KayKit full-pack models**, merged animation\nsets, per-player skins, chroma selection, and an in-game character-sheet preview.\n- Adds new character visuals for **德鲁伊 Cat Form** and 术士 **Imp** and\n**Voidwalker** demon pets.",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.7.0",
+  "prerelease": false,
+  "publishedAt": "2026-06-16T10:07:36Z"
+}

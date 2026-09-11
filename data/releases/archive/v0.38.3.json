@@ -1,0 +1,10 @@
+{
+  "id": 371473543,
+  "tag": "v0.38.3",
+  "name": "World of ClaudeCraft v0.38.3 地下城寻找器与自动组队",
+  "summary": "随机地下城排队工具上线、自动角色职责匹配（坦克/治疗/输出）。",
+  "body": "- **地下城查找器**：随时随地通过快捷键开启副本寻找器，无需在主城喊话组队。\n- **角色职责自动分配**：队伍自动匹配 1 坦克、1 治疗与 3 伤害输出配置，提升通关成功率。\n- **完成副本额外奖励**：通过查找器完成全通可获得金币与额外经验礼包。",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.38.3",
+  "prerelease": false,
+  "publishedAt": "2026-08-17T00:37:43Z"
+}

@@ -1,0 +1,10 @@
+{
+  "id": 339366258,
+  "tag": "v0.6.0",
+  "name": "World of ClaudeCraft v0.6.0 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸） v0.6 Release Notes",
+  "body": "版本 v0.6.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.6 Release Notes\nBranch: `release/v0.6`\nRelease head: `ac7e28b`\nRelease branch head: `b7751a9`\nBaseline: `v0.5.0`\n## Highlights\n- Adds the first full **Talent Trees and Specializations** system across playable classes, with class trees, spec\ntrees, talent points, signature abilities, mastery passives, active talents, passive modifiers, choice nodes,\nloadouts, and build-string import/export.\n- Adds **Max-Level XP Overflow**, letting capped players keep earning lifetime XP toward virtual levels,",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.6.0",
+  "prerelease": false,
+  "publishedAt": "2026-06-15T06:22:08Z"
+}

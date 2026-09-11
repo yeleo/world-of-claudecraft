@@ -1,0 +1,10 @@
+{
+  "id": 374684431,
+  "tag": "v0.39.2",
+  "name": "World of ClaudeCraft v0.39.2 装备耐久与修理系统",
+  "summary": "引入装备耐久损耗、铁匠全装修理与工匠磨刀石消耗品。",
+  "body": "- **装备耐久损耗**：战斗死亡与承受重击将损耗护甲耐久度，耐久降至 0 时属性暂时失效。\n- **全城镇铁匠修理**：各大营地铁匠 NPC 现已支持单件及一键全部修理。\n- **铁匠制作磨刀石**：锻造师可制作初级与高级磨刀石，临时提升武器伤害。",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.39.2",
+  "prerelease": false,
+  "publishedAt": "2026-08-21T21:27:30Z"
+}

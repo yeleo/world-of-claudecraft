@@ -1,0 +1,10 @@
+{
+  "id": 371001661,
+  "tag": "v0.38.1",
+  "name": "World of ClaudeCraft v0.38.1 怪物仇恨机制与嘲讽重构",
+  "summary": "仇恨列表精准化计算、坦克职业嘲讽技能强制锁定、首领换坦机制支持。",
+  "body": "- **仇恨算法精准化**：严格根据伤害量与治疗量折算怪物当前第一仇恨目标。\n- **嘲讽强制重定向**：坦克的嘲讽技能在生效期间使首领无条件攻击施法者，保障仇恨交接。\n- **治疗仇恨扩散**：群体治疗将按比例平摊产生微量全场仇恨。",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.38.1",
+  "prerelease": false,
+  "publishedAt": "2026-08-15T08:41:48Z"
+}

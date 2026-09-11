@@ -1,0 +1,10 @@
+{
+  "id": 369601451,
+  "tag": "v0.37.0",
+  "name": "World of ClaudeCraft v0.37.0 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸） v0.37.0 Release Notes",
+  "body": "版本 v0.37.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.37.0 Release Notes\n**Release:** v0.37.0\n**Date:** 2026-08-13\n**Previous release:** v0.36.0\nVersion 0.37.0 is a client performance and platform delivery release. The loading and\nhitch-elimination campaign that started in v0.36.0 closes out its worst remaining\noffenders, the native mobile shells gain real differential over-the-air updates behind a\nvisible update gate, the Android build finally fits under the Play Store size cap, and\nthe texture pipeline moves terrain to standalone KTX2. Around the platform work, players\nget a bag item lock, a smarter World Market, backward Tab targeting, and authored bodies",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.37.0",
+  "prerelease": false,
+  "publishedAt": "2026-08-13T00:34:02Z"
+}

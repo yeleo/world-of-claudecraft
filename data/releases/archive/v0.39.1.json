@@ -1,0 +1,10 @@
+{
+  "id": 373677109,
+  "tag": "v0.39.1",
+  "name": "World of ClaudeCraft v0.39.1 芬桥镇主城生活与商贩扩充",
+  "summary": "主城芬桥镇新增旅店老板、飞行管理员、更多日常杂货商与坐骑马厩。",
+  "body": "- **芬桥镇旅店系统**：与旅店老板交谈可将炉石绑定在芬桥镇，享受双倍休息经验值加成。\n- **坐骑马厩开放**：玩家可在马厩管理员处存放与选乘所拥有的坐骑伙伴。\n- **更多商贩进驻**：引入烹饪原料供应商、钓鱼工具商人以及稀有试剂供货商。",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.39.1",
+  "prerelease": false,
+  "publishedAt": "2026-08-20T11:15:38Z"
+}

@@ -1,0 +1,10 @@
+{
+  "id": 342182549,
+  "tag": "v0.10.0",
+  "name": "World of ClaudeCraft v0.10.0 版本更新",
+  "summary": "# World of ClaudeCraft（克劳德争霸）  v0.10.0 Release Notes",
+  "body": "版本 v0.10.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） - v0.10.0 Release Notes\n**Release:** v0.10.0\n**Date:** 2026-06-19\n**Previous release:** v0.9.0\nv0.10.0 is a large content, audio, and systems release with **281 commits** since\nthe public v0.9.0 release branch. It adds a broad open-world content pack, 2v2\nFiesta arena, NPC voice-over, spatial sound effects, WoW-style chat channel tabs,\nthe first Combat Mech cosmetic assets, and the first Aldric meteor storyline hook.\n## Highlights\n- **Large content bundle**: new class abilities, consumables, rare elites, gear,",
+  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.10.0",
+  "prerelease": false,
+  "publishedAt": "2026-06-20T00:09:34Z"
+}
