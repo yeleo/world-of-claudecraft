@@ -165,6 +165,23 @@ def make_api_post(url: str, payload: dict, token: str | None = None) -> dict:
         raise
 
 
+NAME_PREFIXES = ["铁血", "暴风", "夜风", "凌云", "逐星", "清风", "烈焰", "寒冰", "幻月", "晨光", "紫电", "惊雷", "沧海", "长空", "傲雪", "流云", "问天", "落羽", "绝尘"]
+NAME_BASES = {
+    "warrior": ["战狂", "战魂", "战盾", "战意", "铁骑", "狂刀", "不灭", "霸王", "战尊", "斩月", "断岳", "铁壁"],
+    "priest": ["祈愿", "圣光", "安魂", "浅浅", "云朵", "星芒", "微光", "清音", "回春", "琉璃", "雨露", "圣语"],
+    "mage": ["奥术", "火球", "冰霜", "暴雪", "星火", "法灵", "元素", "星辰", "霜华", "炽焰", "秘法", "寒魄"],
+    "hunter": ["神射", "逐风", "穿云", "寻踪", "鹰眼", "游侠", "箭雨", "灵狐", "暗夜", "听风", "追影", "流矢"],
+    "paladin": ["誓言", "守护", "领主", "黎明", "圣堂", "圣裁", "光耀", "神辉", "正义", "坚毅", "圣印", "光痕"],
+}
+NAME_SUFFIXES = ["君", "客", "者", "儿", "子", "侠", "尊", "羽", "仙", "生", "痕", "影", "灵", "落", "绝", "心", "歌", "尘", "风"]
+
+def generate_chinese_mmo_name(player_class: str, bot_idx: int) -> str:
+    p = random.choice(NAME_PREFIXES)
+    b = random.choice(NAME_BASES.get(player_class, NAME_BASES["warrior"]))
+    s = random.choice(NAME_SUFFIXES)
+    return f"{p}{b}{s}"
+
+
 class SingleBotInstance:
     def __init__(
         self,
@@ -228,7 +245,7 @@ class SingleBotInstance:
         self.last_greet_time = 0.0
 
     def register_and_create_char(self):
-        uniq = str(int(time.time()))[-4:] + str(self.bot_idx)
+        uniq = str(int(time.time()))[-4:] + str(self.bot_idx) + str(random.randint(10, 99))
         username = f"usr_{self.player_class[:3]}_{uniq}"
         reg = make_api_post(f"{self.server_url}/api/register", {
             "username": username,
@@ -237,28 +254,27 @@ class SingleBotInstance:
         })
         self.token = reg["token"]
 
-        # Authentic Chinese Player Name Selection
-        pool = HUMAN_PLAYER_NAMES.get(self.player_class, HUMAN_PLAYER_NAMES["warrior"])
-        chosen_name = pool[self.bot_idx % len(pool)]
-        # If needed, add subtle suffix if collision
-        suffix_chars = "之的在风月星辰雪痕"
-        suffix = suffix_chars[self.bot_idx % len(suffix_chars)]
-        # Format within 2~16 characters
-        self.char_name = f"{chosen_name}{suffix}"[:15]
+        for _ in range(15):
+            candidate_name = generate_chinese_mmo_name(self.player_class, self.bot_idx)
+            try:
+                char = make_api_post(f"{self.server_url}/api/characters", {
+                    "name": candidate_name,
+                    "class": self.player_class,
+                }, token=self.token)
+                self.char_name = candidate_name
+                self.char_id = char["id"]
+                return
+            except urllib.error.HTTPError as e:
+                if e.code == 409:
+                    continue  # Name taken, retry
+                raise
 
-        try:
-            char = make_api_post(f"{self.server_url}/api/characters", {
-                "name": self.char_name,
-                "class": self.player_class,
-            }, token=self.token)
-        except Exception:
-            # Fallback in case name taken: append digit or short letter
-            self.char_name = f"{chosen_name[:6]}{random.randint(1, 99)}"
-            char = make_api_post(f"{self.server_url}/api/characters", {
-                "name": self.char_name,
-                "class": self.player_class,
-            }, token=self.token)
-
+        fallback = f"行者{random.choice(NAME_SUFFIXES)}{random.choice(NAME_SUFFIXES)}"
+        char = make_api_post(f"{self.server_url}/api/characters", {
+            "name": fallback,
+            "class": self.player_class,
+        }, token=self.token)
+        self.char_name = fallback
         self.char_id = char["id"]
 
     def build_obs(self) -> np.ndarray:
