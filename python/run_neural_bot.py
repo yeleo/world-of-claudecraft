@@ -1,18 +1,22 @@
 """Multi-Agent Neural Bot Client for World of ClaudeCraft.
 
-Features:
-- Health check and friendly connection diagnostics for the server URL.
-- Zero-CLI Dynamic Mode Switching:
-  * Solo Mode: single bot autonomous micro-combat, survival, and questing.
-  * Squad Mode: multi-agent coordination, party vitals, post-combat rest/eat/drink,
-    lagging tethering wait, threat peel, smart healing, and assist focus-fire.
-- Autonomous Quest & Progression Engine:
-  * Dynamic parsing of server quest state (qlog, qdone, NPCs, Camps).
-  * Auto-accepts and completes Proving Shore introductory questline.
-  * Boards the ferry at Old Pier to sail to Eastbrook mainland.
-  * Explores and levels up on Eastbrook Vale with camp grinding and auto-looting.
-- Obstacle Vaulting: Automatic jump over fence rails and anti-stuck navigation.
-- Extensible Policy Interface: Loads 3M-step PPO policy for micro-combat actions.
+Turing-Grade Human-like MMORPG Squad System:
+- Realistic Human-like Character Naming (Authentic Chinese MMORPG Player Names by Class).
+- Smooth Locomotion & Inertia: Natural turn rate angular interpolation, micro-wiggle,
+  and habitual casual gamer hopping while traversing.
+- Loose Dynamic Formation: Breathing formation drift avoiding robotic geometry.
+- Human-like Reaction Stutter: NPC reading simulation delays, corpse looting pauses,
+  and staggered asynchronous team quest hand-ins.
+- Living Social Presence:
+  * Dynamic natural Party Chat (/p) for pulling, resting/drinking, ready calls, and cheers.
+  * Overhead Emotes (cheer, flex, salute, wave) on level up, quest complete, or meeting players.
+  * Polite greeting reactions to real human players encountered in the world.
+- Tactical Micro-Combat:
+  * Melee flanking (hitting from sides/back to avoid parry).
+  * Smart Healing for Healer role prioritizing lowest HP ally.
+  * Threat peeling for tanks when backline is attacked.
+  * Focus-fire assistance for DPS.
+- Zero-CLI Autonomous Dual-Mode (Solo vs Squad) & Quest Progression to Eastbrook Mainland.
 """
 
 from __future__ import annotations
@@ -43,19 +47,6 @@ if _HERE not in sys.path:
 
 from train_ppo import ActorCritic
 
-ACTIONS = [
-    "noop", "forward", "back", "turn_left", "turn_right", "strafe_left", "strafe_right", "jump",
-    "target_nearest", "attack",
-    "ability_1", "ability_2", "ability_3", "ability_4", "ability_5", "ability_6", "ability_7",
-    "ability_8", "ability_9", "ability_10", "ability_11", "ability_12", "ability_13", "ability_14",
-    "ability_15", "ability_16", "ability_17", "ability_18", "ability_19", "ability_20", "ability_21",
-    "ability_22", "ability_23", "ability_24", "ability_25", "ability_26", "ability_27", "ability_28",
-    "ability_29", "ability_30", "ability_31", "ability_32", "ability_33", "ability_34", "ability_35",
-    "ability_36", "ability_37", "ability_38", "ability_39", "ability_40", "ability_41", "ability_42",
-    "ability_43", "ability_44", "ability_45", "ability_46", "ability_47", "ability_48",
-    "interact", "stop", "eat_drink",
-]
-
 MAX_LEVEL = 10
 WORLD_MAX_X = 140.0
 WORLD_MAX_Z = 140.0
@@ -67,6 +58,47 @@ DEFAULT_ROLES = [
     ("mage", "DPS-Caster"),
     ("hunter", "DPS-Ranged"),
     ("paladin", "Support"),
+]
+
+# Authentic Chinese MMORPG Player Names by Role
+HUMAN_PLAYER_NAMES = {
+    "warrior": [
+        "铁血战意", "夜风微凉", "风暴之盾", "冲锋就白给", "雷霆一击",
+        "破阵子", "不灭狂怒", "风剑在手", "带头大哥", "狂暴大叔", "断水流大师兄", "撼地神牛"
+    ],
+    "priest": [
+        "一口奶满你", "圣光忽悠着你", "云朵浅浅", "安魂曲", "白衣如雪",
+        "秋风引", "治愈星芒", "给你加个盾", "奶谁谁暴击", "回春小能手", "糖果布丁", "浅笑安然"
+    ],
+    "mage": [
+        "暴风雪狂魔", "闪现撞墙", "火法暴击十万", "冰封王座", "喝水大户",
+        "奥术飞弹", "搓面包的大师", "寒冰箭雨", "大火球神教", "星光漫天", "法力无边", "冰霜之语"
+    ],
+    "hunter": [
+        "宝宝快上", "夺命射击", "暗夜寻风", "放生治疗", "风行者之誓",
+        "百步穿杨", "假死脱战", "箭雨风暴", "鹰眼游侠", "猎魔之刃", "带猫去流浪", "风筝大师"
+    ],
+    "paladin": [
+        "无敌炉石", "大领主", "黎明骑士", "正义之锤", "圣光守护",
+        "荣耀之誓", "十字军试炼", "惩戒之怒", "奉献光环", "守望者之誓", "神圣祝福", "白银之手"
+    ],
+}
+
+# Natural chat chatter pools
+CHAT_PULL_LINES = [
+    "我开怪了，大家集火", "先打我打的这只！", "拉住了，集火打", "这波开两个，集火", "冲冲冲！"
+]
+CHAT_REST_LINES = [
+    "等下，我空蓝了回口水", "稍等下，坐地喝口水", "先休整一下，回满再打", "等等，没蓝了"
+]
+CHAT_RESUME_LINES = [
+    "好了，满状态走起", "回满了，继续", "冲", "搞定，走走走", "满状态，开拔"
+]
+CHAT_VICTORY_LINES = [
+    "搞定！", "舒服了", "这波配合可以", "稳稳拿下", "交任务去咯"
+]
+CHAT_LAG_LINES = [
+    "等等我，刚才被石头卡了下", "来了来了，跟上", "等等我马上到"
 ]
 
 # Proving Shore Gauntlet flags (checkpoints)
@@ -174,22 +206,30 @@ class SingleBotInstance:
         self.mode = "solo"
         self.team_state = "READY"  # "READY", "RESTING", "REGROUPING", "COMBAT"
 
-        # Timers
-        self.last_rest_time = 0.0
-        self.last_loot_time = 0.0
-        self.last_quest_action_time = 0.0
-        self.last_heal_time = 0.0
-        self.last_cast_time = 0.0
-
-        # Obstacle vaulting and anti-stuck tracking
+        # Locomotion & Human-like Movement Smoothing
+        self.current_facing = 0.0
+        self.last_casual_jump_time = time.time() + random.uniform(3.0, 10.0)
         self.prev_x = 0.0
         self.prev_z = 0.0
         self.stuck_ticks = 0
         self.is_trying_to_move = False
 
+        # Human-like Interaction Timers & Delays
+        self.last_rest_time = 0.0
+        self.last_loot_time = 0.0
+        self.last_quest_action_time = 0.0
+        self.last_heal_time = 0.0
+        self.last_cast_time = 0.0
+        self.last_chat_time = 0.0
+        self.last_emote_time = 0.0
+        self.npc_reading_until = 0.0
+
+        # Known other player pids (for human greeting)
+        self.last_greet_time = 0.0
+
     def register_and_create_char(self):
         uniq = str(int(time.time()))[-4:] + str(self.bot_idx)
-        username = f"bot_{self.name.lower()}_{uniq}"
+        username = f"usr_{self.player_class[:3]}_{uniq}"
         reg = make_api_post(f"{self.server_url}/api/register", {
             "username": username,
             "password": "botpassword123",
@@ -197,15 +237,28 @@ class SingleBotInstance:
         })
         self.token = reg["token"]
 
-        clean_prefix = re.sub(r"[^A-Za-z]", "", self.name)[:8] or "Bot"
-        role_tag = chr(65 + (self.bot_idx % 26))
-        alpha_suffix = "".join(random.choices(string.ascii_lowercase, k=4))
-        self.char_name = f"{clean_prefix}{role_tag}{alpha_suffix}"[:16]
+        # Authentic Chinese Player Name Selection
+        pool = HUMAN_PLAYER_NAMES.get(self.player_class, HUMAN_PLAYER_NAMES["warrior"])
+        chosen_name = pool[self.bot_idx % len(pool)]
+        # If needed, add subtle suffix if collision
+        suffix_chars = "之的在风月星辰雪痕"
+        suffix = suffix_chars[self.bot_idx % len(suffix_chars)]
+        # Format within 2~16 characters
+        self.char_name = f"{chosen_name}{suffix}"[:15]
 
-        char = make_api_post(f"{self.server_url}/api/characters", {
-            "name": self.char_name,
-            "class": self.player_class,
-        }, token=self.token)
+        try:
+            char = make_api_post(f"{self.server_url}/api/characters", {
+                "name": self.char_name,
+                "class": self.player_class,
+            }, token=self.token)
+        except Exception:
+            # Fallback in case name taken: append digit or short letter
+            self.char_name = f"{chosen_name[:6]}{random.randint(1, 99)}"
+            char = make_api_post(f"{self.server_url}/api/characters", {
+                "name": self.char_name,
+                "class": self.player_class,
+            }, token=self.token)
+
         self.char_id = char["id"]
 
     def build_obs(self) -> np.ndarray:
@@ -234,7 +287,6 @@ class SingleBotInstance:
         obs[7] = math.sin(facing)
         obs[8] = gcd / 1.5
 
-        # Target selection: if none chosen, find nearest living mob
         chosen_target = self.entities.get(self.target_id) if self.target_id else None
         if not chosen_target or chosen_target.get("dead") or chosen_target.get("loot"):
             nearest_dist = float("inf")
@@ -267,9 +319,22 @@ class SingleBotInstance:
 
         return obs
 
+    def smooth_turn_facing(self, desired_facing: float, dt: float = 0.05) -> float:
+        """Human-like turn rate interpolation with subtle micro-tremor."""
+        max_rad_per_sec = 6.8  # ~390 deg/sec natural mouse turn speed
+        max_step = max_rad_per_sec * dt
+
+        diff = (desired_facing - self.current_facing + math.pi) % (2 * math.pi) - math.pi
+        clamped_step = max(-max_step, min(max_step, diff))
+        self.current_facing = (self.current_facing + clamped_step) % (2 * math.pi)
+
+        # Micro-tremor
+        tremor = math.sin(time.time() * 2.5 + self.bot_idx) * 0.008
+        return self.current_facing + tremor
+
     async def run(self, all_bots: list[SingleBotInstance]):
         self.register_and_create_char()
-        print(f"  [+] Bot #{self.bot_idx + 1} '{self.char_name}' ({self.player_class}/{self.role}) connecting...")
+        print(f"  [+] Player #{self.bot_idx + 1} '{self.char_name}' ({self.player_class}/{self.role}) connecting...")
 
         async with websockets.connect(self.ws_url, origin=self.origin_url) as ws:
             self.ws = ws
@@ -291,9 +356,9 @@ class SingleBotInstance:
                     t = msg.get("t")
                     if t == "hello":
                         self.pid = msg.get("pid", -1)
-                        print(f"  >>> Bot #{self.bot_idx + 1} '{self.char_name}' LIVE in world! (PID: {self.pid})")
+                        print(f"  >>> Player #{self.bot_idx + 1} '{self.char_name}' joined the realm! (PID: {self.pid})")
                     elif t == "error":
-                        print(f"  [!] Bot #{self.bot_idx + 1} '{self.char_name}' server error: {msg.get('error')}")
+                        pass
                     elif t == "snap":
                         if "self" in msg:
                             self.self_state.update(msg["self"])
@@ -313,11 +378,14 @@ class SingleBotInstance:
                         for ev in msg.get("list", []):
                             ev_type = ev.get("type")
                             if ev_type in ("partyInvite", "party_invite") and not self.is_leader:
+                                # Natural human reaction delay before accepting party invite
+                                await asyncio.sleep(random.uniform(0.3, 0.8))
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "paccept"}))
 
             async def control_loop():
                 wp_idx = 0
                 last_log_time = 0.0
+                bot_pids = {b.pid for b in all_bots}
 
                 while True:
                     await asyncio.sleep(0.05)  # 20 Hz tick
@@ -328,12 +396,12 @@ class SingleBotInstance:
 
                     # Resurrect if dead
                     if self.self_state.get("dead"):
+                        await asyncio.sleep(random.uniform(1.2, 2.5))  # human hesitation before release
                         await ws.send(json.dumps({"t": "cmd", "cmd": "release"}))
-                        await asyncio.sleep(1.0)
                         continue
 
                     # ---------------------------------------------------------
-                    # 1. Dynamic Mode & Party Detection (Zero-CLI Auto-Switching)
+                    # 1. Zero-CLI Mode & Party Auto-Detection
                     # ---------------------------------------------------------
                     party_data = self.self_state.get("party")
                     is_grouped = isinstance(party_data, dict) and len(party_data.get("members", [])) >= 2
@@ -341,22 +409,20 @@ class SingleBotInstance:
                     self.mode = "squad" if is_grouped else "solo"
 
                     if prev_mode != self.mode and self.bot_idx == 0:
-                        print(f"  [*] Mode auto-switched to: [{self.mode.upper()}] (Party members: {len(party_data.get('members', [])) if is_grouped else 1})")
+                        print(f"  [*] Party status updated: [{self.mode.upper()}] Mode active (Squad: {len(party_data.get('members', [])) if is_grouped else 1} members)")
 
                     if is_grouped:
-                        # Server-authoritative party leadership
                         self.is_leader = (party_data.get("leader") == self.pid)
                     else:
-                        # Solo mode: bot is its own leader
                         self.is_leader = (self.bot_idx == 0)
 
-                    # Leader invites remaining bots if party is not yet full
+                    # Leader invites remaining bots with human-like staggering
                     if self.is_leader and len(all_bots) > 1:
                         for other in all_bots:
                             if other != self and other.pid > 0 and other.pid not in self.party_invited_ids:
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "pinvite", "id": other.pid}))
                                 self.party_invited_ids.add(other.pid)
-                                await asyncio.sleep(0.08)
+                                await asyncio.sleep(random.uniform(0.15, 0.35))
 
                     my_x = self.self_state.get("x", 0.0)
                     my_z = self.self_state.get("z", 0.0)
@@ -375,7 +441,13 @@ class SingleBotInstance:
                     need_strafe_left = (self.stuck_ticks >= 6 and (self.stuck_ticks % 6 < 3))
                     need_strafe_right = (self.stuck_ticks >= 6 and (self.stuck_ticks % 6 >= 3))
 
+                    # Habitual gamer casual jump while traversing
+                    if self.is_trying_to_move and not need_jump and now > self.last_casual_jump_time:
+                        need_jump = True
+                        self.last_casual_jump_time = now + random.uniform(8.0, 18.0)
+
                     def make_move_input(facing: float):
+                        smoothed = self.smooth_turn_facing(facing, 0.05)
                         mi = {"f": 1}
                         if need_jump:
                             mi["j"] = 1
@@ -383,10 +455,27 @@ class SingleBotInstance:
                             mi["sl"] = 1
                         elif need_strafe_right:
                             mi["sr"] = 1
-                        return {"t": "input", "mi": mi, "facing": facing}
+                        return {"t": "input", "mi": mi, "facing": smoothed}
 
                     # ---------------------------------------------------------
-                    # 2. Team Vitals & Readiness Arbiter (Leader Mind)
+                    # 2. Living Social Interactions (Emotes & Chatter)
+                    # ---------------------------------------------------------
+                    # Greet passing human players (non-bot players)
+                    if now - self.last_greet_time > 25.0:
+                        for ent in self.entities.values():
+                            if ent.get("k") == "player" and ent.get("id") not in bot_pids:
+                                p_dist = math.hypot(ent.get("x", 0) - my_x, ent.get("z", 0) - my_z)
+                                if p_dist < 6.5:
+                                    # Human wave or friendly say
+                                    if random.random() < 0.6:
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "emote", "emote": "wave"}))
+                                    else:
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": "嗨~"}))
+                                    self.last_greet_time = now
+                                    break
+
+                    # ---------------------------------------------------------
+                    # 3. Team Vitals & Readiness Arbiter (Leader Mind)
                     # ---------------------------------------------------------
                     team_needs_rest = False
                     team_needs_regroup = False
@@ -408,7 +497,11 @@ class SingleBotInstance:
                         if self.team_state == "RESTING":
                             if min_hp_pct >= 0.85 and min_mana_pct >= 0.70:
                                 self.team_state = "READY"
-                                print(f"  [Squad] Team fully recovered (HP: {min_hp_pct*100:.0f}%, MP: {min_mana_pct*100:.0f}%). Resuming march!")
+                                print(f"  [Squad] Team vitals recovered (HP: {min_hp_pct*100:.0f}%, MP: {min_mana_pct*100:.0f}%). Advancing!")
+                                if now - self.last_chat_time > 4.0:
+                                    resume_msg = random.choice(CHAT_RESUME_LINES)
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {resume_msg}"}))
+                                    self.last_chat_time = now
                             else:
                                 team_needs_rest = True
                         else:
@@ -416,6 +509,10 @@ class SingleBotInstance:
                                 self.team_state = "RESTING"
                                 team_needs_rest = True
                                 print(f"  [Squad] Leader halted squad for Rest & Recovery (Min HP: {min_hp_pct*100:.0f}%, Min MP: {min_mana_pct*100:.0f}%)")
+                                if now - self.last_chat_time > 5.0:
+                                    rest_msg = random.choice(CHAT_REST_LINES)
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {rest_msg}"}))
+                                    self.last_chat_time = now
 
                         # Cohesion & Lagging Tethering assessment
                         if not team_needs_rest and not party_in_combat:
@@ -430,7 +527,7 @@ class SingleBotInstance:
                                     self.team_state = "REGROUPING"
                                     team_needs_regroup = True
                                     lagging_member = max(member_dists, key=lambda x: x[1])[0]
-                                    print(f"  [Squad] Member '{lagging_member.get('name')}' is lagging behind ({max_dist:.1f}m). Leader holding up!")
+                                    print(f"  [Squad] '{lagging_member.get('name')}' is lagging behind ({max_dist:.1f}m). Leader holding up!")
 
                         if team_needs_regroup and member_dists:
                             lagging_member, _ = max(member_dists, key=lambda x: x[1])
@@ -438,7 +535,6 @@ class SingleBotInstance:
                             lz = lagging_member.get("z", my_z)
                             lagging_target_facing = math.atan2(lx - my_x, lz - my_z)
 
-                    # Propagate rest state to leader_ref for followers
                     effective_resting = (self.team_state == "RESTING" or (self.leader_ref and self.leader_ref.team_state == "RESTING"))
 
                     # Handle Eating/Drinking during Rest
@@ -450,7 +546,6 @@ class SingleBotInstance:
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "eat_drink"}))
                                 self.last_rest_time = now
 
-                        # Halt movement while resting
                         self.is_trying_to_move = False
                         await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.self_state.get("f", 0.0)}))
                         continue
@@ -466,7 +561,7 @@ class SingleBotInstance:
                         continue
 
                     # ---------------------------------------------------------
-                    # 3. Smart Healing & Threat Peel (Role Coordination)
+                    # 4. Smart Healing & Threat Peel (Role Coordination)
                     # ---------------------------------------------------------
                     # Smart Healing (Priest / Paladin)
                     if self.role == "Healer" or self.player_class in ("priest", "paladin"):
@@ -495,7 +590,6 @@ class SingleBotInstance:
                         for rm in raw_members:
                             m = rm.get("member", rm)
                             if m.get("hasAggro") and m.get("role") in ("healer", "dps") and not m.get("dead"):
-                                # A backline ally is attacked, find mob near them
                                 ally_x = m.get("x", my_x)
                                 ally_z = m.get("z", my_z)
                                 for ent in self.entities.values():
@@ -511,7 +605,7 @@ class SingleBotInstance:
                             self.target_id = lead_tgt
 
                     # ---------------------------------------------------------
-                    # 4. Target Selection & micro-combat
+                    # 5. Combat & Target Engagement
                     # ---------------------------------------------------------
                     obs = self.build_obs()
                     target_ent = self.entities.get(self.target_id) if self.target_id else None
@@ -524,19 +618,32 @@ class SingleBotInstance:
                         dist_to_tgt = math.hypot(tx - my_x, tz - my_z)
                         angle_to_tgt = math.atan2(tx - my_x, tz - my_z)
 
+                        # Leader natural pull shout
+                        if self.is_leader and now - self.last_chat_time > 8.0:
+                            pull_msg = random.choice(CHAT_PULL_LINES)
+                            await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {pull_msg}"}))
+                            self.last_chat_time = now
+
                         if now - last_log_time > 4.0:
                             tgt_name = target_ent.get("nm", "enemy")
-                            print(f"  [Combat] Bot #{self.bot_idx + 1} '{self.char_name}' fighting {tgt_name} (Dist: {dist_to_tgt:.1f}m)")
+                            print(f"  [Combat] Player #{self.bot_idx + 1} '{self.char_name}' fighting {tgt_name} (Dist: {dist_to_tgt:.1f}m)")
                             last_log_time = now
 
                         is_ranged = self.player_class in ("mage", "hunter", "priest")
                         desired_dist = 11.5 if is_ranged else 2.2
 
+                        # Melee tactical flanking (walk slightly to mob's flank/rear)
+                        move_angle = angle_to_tgt
+                        if not is_ranged and self.role != "Tank" and dist_to_tgt < 3.5:
+                            flank_side = 0.4 if (self.bot_idx % 2 == 0) else -0.4
+                            move_angle = angle_to_tgt + flank_side
+
                         if dist_to_tgt > desired_dist:
-                            await ws.send(json.dumps(make_move_input(angle_to_tgt)))
+                            await ws.send(json.dumps(make_move_input(move_angle)))
                         else:
                             self.is_trying_to_move = False
-                            await ws.send(json.dumps({"t": "input", "mi": {}, "facing": angle_to_tgt}))
+                            smoothed_face = self.smooth_turn_facing(angle_to_tgt, 0.05)
+                            await ws.send(json.dumps({"t": "input", "mi": {}, "facing": smoothed_face}))
 
                         await ws.send(json.dumps({"t": "cmd", "cmd": "target", "id": self.target_id}))
                         await ws.send(json.dumps({"t": "cmd", "cmd": "attack"}))
@@ -550,42 +657,90 @@ class SingleBotInstance:
                             "hunter": "arcane_shot",
                         }
                         ability = ability_map.get(self.player_class, "heroic_strike")
-                        if now - self.last_cast_time > 1.2:
+                        if now - self.last_cast_time > random.uniform(1.1, 1.4):
                             await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": ability, "target": self.target_id}))
                             self.last_cast_time = now
 
-                    # B. Out of Combat Auto-Looting
-                    elif not self.self_state.get("inCombat") and now - self.last_loot_time > 1.0:
+                    # B. Out of Combat Auto-Looting with Human Pause
+                    elif not self.self_state.get("inCombat") and now - self.last_loot_time > 1.2:
                         for ent_id, ent in self.entities.items():
                             if ent.get("k") == "mob" and ent.get("loot"):
-                                if math.hypot(ent.get("x", 0) - my_x, ent.get("z", 0) - my_z) <= 5.0:
+                                if math.hypot(ent.get("x", 0) - my_x, ent.get("z", 0) - my_z) <= 4.5:
+                                    # Brief stop to loot
+                                    await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.self_state.get("f", 0.0)}))
+                                    await asyncio.sleep(0.4)
                                     await ws.send(json.dumps({"t": "cmd", "cmd": "loot", "id": ent_id}))
                                     self.last_loot_time = now
                                     break
 
-                    # C. Squad Follower Mode (maintain formation with Leader)
+                    # C. Squad Follower Mode (maintain loose breathing formation with Leader)
                     if not target_ent and not self.is_leader and self.leader_ref and self.leader_ref.self_state:
                         lx = self.leader_ref.self_state.get("x", my_x)
                         lz = self.leader_ref.self_state.get("z", my_z)
                         lf = self.leader_ref.self_state.get("f", self.leader_ref.self_state.get("facing", 0.0))
 
-                        off_x, off_z = FORMATION_OFFSETS[self.bot_idx % len(FORMATION_OFFSETS)]
+                        # Formation breathing drift
+                        base_x, base_z = FORMATION_OFFSETS[self.bot_idx % len(FORMATION_OFFSETS)]
+                        drift_x = math.sin(now * 0.7 + self.bot_idx) * 0.35
+                        drift_z = math.cos(now * 0.6 + self.bot_idx) * 0.35
+                        off_x = base_x + drift_x
+                        off_z = base_z + drift_z
+
                         slot_x = lx + (off_x * math.cos(lf) + off_z * math.sin(lf))
                         slot_z = lz + (-off_x * math.sin(lf) + off_z * math.cos(lf))
 
                         dist_to_slot = math.hypot(slot_x - my_x, slot_z - my_z)
                         angle_to_slot = math.atan2(slot_x - my_x, slot_z - my_z)
 
+                        # Follower synchronous quest acceptance & turn-in (staggered human-like)
+                        qdone_f = set(self.self_state.get("qdone", []))
+                        qlog_list_f = self.self_state.get("qlog", [])
+                        qlog_f = {q["questId"]: q for q in qlog_list_f if isinstance(q, dict) and "questId" in q}
+
+                        # Check Gauntlet
+                        if "q_ps_the_gauntlet" not in qdone_f:
+                            if "q_ps_the_gauntlet" not in qlog_f:
+                                if math.hypot(-283.0 - my_x, -21.0 - my_z) <= 5.5 and now - self.last_quest_action_time > 2.5:
+                                    await asyncio.sleep(random.uniform(0.4, 1.2))
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": "q_ps_the_gauntlet"}))
+                                    self.last_quest_action_time = now
+                            else:
+                                if math.hypot(-337.0 - my_x, -33.0 - my_z) <= 5.5 and now - self.last_quest_action_time > 2.5:
+                                    await asyncio.sleep(random.uniform(0.4, 1.2))
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": "q_ps_the_gauntlet"}))
+                                    self.last_quest_action_time = now
+
+                        # Check Strike True
+                        elif "q_ps_strike_true" not in qdone_f:
+                            if "q_ps_strike_true" not in qlog_f:
+                                if math.hypot(-337.0 - my_x, -33.0 - my_z) <= 5.5 and now - self.last_quest_action_time > 2.5:
+                                    await asyncio.sleep(random.uniform(0.4, 1.2))
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": "q_ps_strike_true"}))
+                                    self.last_quest_action_time = now
+                            else:
+                                if qlog_f["q_ps_strike_true"].get("state") == "ready":
+                                    if math.hypot(-345.0 - my_x, -11.0 - my_z) <= 5.5 and now - self.last_quest_action_time > 2.5:
+                                        await asyncio.sleep(random.uniform(0.4, 1.2))
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": "q_ps_strike_true"}))
+                                        self.last_quest_action_time = now
+
+                        # Check Ferry Bell
+                        else:
+                            if math.hypot(-279.0 - my_x, -10.0 - my_z) <= 5.0 and now - self.last_quest_action_time > 3.0:
+                                await asyncio.sleep(random.uniform(0.5, 1.5))
+                                await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                self.last_quest_action_time = now
+
                         if dist_to_slot > 1.8:
                             self.is_trying_to_move = True
                             await ws.send(json.dumps(make_move_input(angle_to_slot)))
                         else:
                             self.is_trying_to_move = False
-                            await ws.send(json.dumps({"t": "input", "mi": {}, "facing": lf}))
+                            smoothed_lf = self.smooth_turn_facing(lf, 0.05)
+                            await ws.send(json.dumps({"t": "input", "mi": {}, "facing": smoothed_lf}))
 
                     # D. Autonomous Quest & World Navigation (Leader / Solo)
                     elif not target_ent and self.is_leader:
-                        # Dynamic quest & target objective resolver
                         qdone = set(self.self_state.get("qdone", []))
                         qlog_list = self.self_state.get("qlog", [])
                         qlog = {q["questId"]: q for q in qlog_list if isinstance(q, dict) and "questId" in q}
@@ -645,16 +800,36 @@ class SingleBotInstance:
                         angle_to_goal = math.atan2(goal_x - my_x, goal_z - my_z)
 
                         # Check if reached goal for quest action
-                        if dist_to_goal <= 3.8 and now - self.last_quest_action_time > 2.0:
+                        if dist_to_goal <= 3.8 and now - self.last_quest_action_time > 2.5:
+                            # Human-like reading hesitation before clicking accept/turnin
+                            if now < self.npc_reading_until:
+                                # Still reading dialog
+                                self.is_trying_to_move = False
+                                await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.smooth_turn_facing(angle_to_goal, 0.05)}))
+                                continue
+
+                            if self.npc_reading_until == 0.0 and goal_action in ("accept", "turnin", "ferry"):
+                                # Start reading pause
+                                self.npc_reading_until = now + random.uniform(0.8, 1.6)
+                                continue
+
+                            self.npc_reading_until = 0.0
+
                             if goal_action == "accept":
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": goal_param}))
                                 print(f"  [Quest] Leader accepted '{goal_param}' from NPC!")
                                 self.last_quest_action_time = now
+                                if random.random() < 0.5:
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "emote", "emote": "salute"}))
                             elif goal_action == "turnin":
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": goal_param}))
                                 print(f"  [Quest] Leader turned in & completed '{goal_param}'!")
                                 self.last_quest_action_time = now
+                                vic_msg = random.choice(CHAT_VICTORY_LINES)
+                                await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {vic_msg}"}))
+                                await ws.send(json.dumps({"t": "cmd", "cmd": "emote", "emote": "cheer"}))
                             elif goal_action == "ferry":
+                                await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": "/p 走，乘船去东溪谷大陆开荒！"}))
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
                                 print(f"  [Ferry] Ringing Ferry Bell to sail across to Eastbrook mainland!")
                                 self.last_quest_action_time = now
@@ -666,7 +841,8 @@ class SingleBotInstance:
                             await ws.send(json.dumps(make_move_input(angle_to_goal)))
                         else:
                             self.is_trying_to_move = False
-                            await ws.send(json.dumps({"t": "input", "mi": {}, "facing": angle_to_goal}))
+                            smoothed_goal = self.smooth_turn_facing(angle_to_goal, 0.05)
+                            await ws.send(json.dumps({"t": "input", "mi": {}, "facing": smoothed_goal}))
 
                         if now - last_log_time > 5.0:
                             print(f"  [Explore] Leader '{self.char_name}' -> Objective: {goal_action} ({goal_param}) at ({goal_x:.1f}, {goal_z:.1f})")
@@ -704,7 +880,7 @@ async def main_async(args):
     bots: list[SingleBotInstance] = []
     leader = None
 
-    print(f"[*] Launching {args.count} bots into the world:")
+    print(f"[*] Launching {args.count} Turing-grade bots into the realm:")
     for idx in range(args.count):
         if args.class_name == "auto":
             pclass, role = DEFAULT_ROLES[idx % len(DEFAULT_ROLES)]
@@ -728,11 +904,11 @@ async def main_async(args):
         bots.append(bot)
 
         role_tag = f"[{pclass.upper()} - {role}]"
-        lead_tag = " (Leader)" if is_lead else ""
-        print(f"  - {args.name} {role_tag}{lead_tag}")
+        lead_tag = " (Party Leader)" if is_lead else ""
+        print(f"  - Player #{idx + 1} {role_tag}{lead_tag}")
 
-    print("\nAll bots will enter the world and dynamically coordinate together.")
-    print(f"Real players can join or watch at {args.server}!\n")
+    print("\nAll players will enter the realm, form a cohesive party, and chat/emote naturally.")
+    print(f"Watch live at {args.server}!\n")
 
     # 4. Run all bots concurrently
     await asyncio.gather(*(bot.run(bots) for bot in bots))
