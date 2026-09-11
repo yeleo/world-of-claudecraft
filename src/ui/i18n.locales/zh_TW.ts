@@ -1902,6 +1902,7 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'download.linuxCta': '下載 Linux 版',
   'download.linuxHint': 'AppImage 格式：賦予可執行權限後直接執行，無需安裝。',
   'download.windowsCta': '下載 Windows 版',
+  'download.androidCta': '下載 Android 版 (APK)',
   'download.windowsPending': 'Windows 版本即將推出。',
   'download.desc': '獲取獨立啟動器，以獲得更優化的效能和全螢幕遊戲體驗。',
   'comingSoon.placeholder': '敬請期待...',

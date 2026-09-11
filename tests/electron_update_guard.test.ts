@@ -15,7 +15,7 @@ import {
 
 describe('PRODUCTION_API_ORIGIN', () => {
   it('is the production site', () => {
-    expect(PRODUCTION_API_ORIGIN).toBe('https://worldofclaudecraft.com');
+    expect(PRODUCTION_API_ORIGIN).toBe('https://worldofclaudecraft.aoruantech.com');
   });
 });
 

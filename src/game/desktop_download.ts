@@ -4,7 +4,7 @@
 // firewall: it only calls initDesktopDownload() once at landing bootstrap. The
 // pure helpers (detectDesktopPlatform, desktopDownloadUrl) are Node-tested.
 
-export type DesktopPlatform = 'mac' | 'win' | 'linux' | 'other';
+export type DesktopPlatform = 'mac' | 'win' | 'linux' | 'android' | 'other';
 
 // The published desktop build on the update host, derived from package.json at
 // build time through the __APP_VERSION__ define (vite.config.ts), so it can
@@ -18,7 +18,10 @@ declare const __APP_VERSION__: string;
 // The standalone browser-test config injects no defines, so a bare identifier
 // would throw there; the guard keeps this module importable everywhere.
 export const DESKTOP_VERSION = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.0.0';
-const DESKTOP_HOST = 'https://updates.worldofclaudecraft.com/desktop';
+const GITHUB_REPO = 'yeleo/world-of-claudecraft';
+const GITHUB_RELEASE_TAG = `v${DESKTOP_VERSION}-cn`;
+const GITHUB_RELEASE_BASE = `https://github.com/${GITHUB_REPO}/releases/download/${GITHUB_RELEASE_TAG}`;
+const MIRROR_PREFIX = 'https://ghproxy.net/';
 
 // electron-builder website-channel artifact names (docs/desktop-release.md):
 // mac ships one universal dmg; the x64 Linux AppImage is named x86_64 (that is
@@ -31,12 +34,14 @@ const ARTIFACT: Partial<Record<DesktopPlatform, string>> = {
   mac: `world-of-claudecraft-${DESKTOP_VERSION}-mac-universal.dmg`,
   win: `world-of-claudecraft-${DESKTOP_VERSION}-win-x64.exe`,
   linux: `world-of-claudecraft-${DESKTOP_VERSION}-linux-x86_64.AppImage`,
+  android: `world-of-claudecraft-${DESKTOP_VERSION}-android.apk`,
 };
 
 // Full download URL for a platform, or null when no artifact is published for it.
 export function desktopDownloadUrl(platform: DesktopPlatform): string | null {
   const file = ARTIFACT[platform];
-  return file ? `${DESKTOP_HOST}/${file}` : null;
+  if (!file) return null;
+  return `${MIRROR_PREFIX}${GITHUB_RELEASE_BASE}/${file}`;
 }
 
 // Best-effort desktop-OS detection from a userAgent string. Pure so Node tests
@@ -44,7 +49,7 @@ export function desktopDownloadUrl(platform: DesktopPlatform): string | null {
 // reports "linux" in its UA but is not a desktop target, so it maps to 'other'.
 export function detectDesktopPlatform(userAgent: string): DesktopPlatform {
   const ua = userAgent.toLowerCase();
-  if (ua.includes('android')) return 'other';
+  if (ua.includes('android')) return 'android';
   if (ua.includes('mac')) return 'mac';
   if (ua.includes('win')) return 'win';
   if (ua.includes('linux') || ua.includes('x11')) return 'linux';

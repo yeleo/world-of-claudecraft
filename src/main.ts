@@ -659,7 +659,7 @@ applyNativeDeviceLanguage({
 // boot's profile is already resolved, and a missing bridge no-ops.
 void primeNativeDeviceMemoryHint();
 
-const SITE_URL = 'https://worldofclaudecraft.com/';
+const SITE_URL = 'https://worldofclaudecraft.aoruantech.com/';
 
 const RESOURCE_KEYS = {
   mana: 'classDetails.resources.mana',

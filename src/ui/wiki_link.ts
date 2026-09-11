@@ -16,7 +16,7 @@ import { NATIVE_APP } from '../client_origin';
 import { t } from './i18n';
 
 /** The canonical public wiki, for shells with no meaningful web origin. */
-export const CANONICAL_WIKI_URL = 'https://worldofclaudecraft.com/wiki/';
+export const CANONICAL_WIKI_URL = 'https://worldofclaudecraft.aoruantech.com/wiki/';
 
 export interface WikiUrlEnv {
   /** True in the Capacitor native app (its WebView origin is not the site). */

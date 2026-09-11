@@ -33,7 +33,7 @@ function linuxPrimeDevConfig() {
 }
 
 const viteUrl = process.env.VITE_DEV_SERVER_URL ?? 'http://127.0.0.1:5173';
-const onlineOrigin = process.env.VITE_DESKTOP_API_ORIGIN ?? 'https://worldofclaudecraft.com';
+const onlineOrigin = process.env.VITE_DESKTOP_API_ORIGIN ?? 'https://worldofclaudecraft.aoruantech.com';
 const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const electronCommand = process.platform === 'win32' ? 'electron.cmd' : 'electron';
 

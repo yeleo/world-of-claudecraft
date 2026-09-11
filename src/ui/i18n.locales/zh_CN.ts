@@ -7157,6 +7157,7 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'download.desc': '获取独立启动器，以获得更优化的性能和全屏游戏体验。',
   'download.macCta': '下载 macOS 版',
   'download.windowsCta': '下载 Windows 版',
+  'download.androidCta': '下载 Android 版 (APK)',
   'download.linuxCta': '下载 Linux 版',
   'download.linuxHint': 'AppImage 格式：赋予可执行权限后直接运行，无需安装。',
   'download.windowsPending': 'Windows 版本即将推出。',
