@@ -66,14 +66,16 @@ jobs:
           # Full history so the main-ancestry guard below can walk it.
           fetch-depth: 0
 
-      # A tag alone must not be able to publish code that never landed on release/china
-      # (the contract is: merge to release/china, then tag the merge).
-      - name: Verify the tagged commit is on release/china (tag pushes only)
+      # A tag alone must not be able to publish code that never landed on release/china or main
+      # (the contract is: merge to release/china or main, then tag the merge).
+      - name: Verify the tagged commit is on release/china or main (tag pushes only)
         if: github.event_name == 'push'
         run: |
-          git fetch --no-tags origin release/china
-          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/release/china; then
-            echo "Tag ${GITHUB_REF_NAME} points at ${GITHUB_SHA}, which is not on release/china. Refusing to publish." >&2
+          git fetch --no-tags origin release/china main 2>/dev/null || true
+          IS_ON_CHINA=$(git merge-base --is-ancestor "$GITHUB_SHA" origin/release/china 2>/dev/null && echo "yes" || echo "no")
+          IS_ON_MAIN=$(git merge-base --is-ancestor "$GITHUB_SHA" origin/main 2>/dev/null && echo "yes" || echo "no")
+          if [ "$IS_ON_CHINA" != "yes" ] && [ "$IS_ON_MAIN" != "yes" ]; then
+            echo "Tag ${GITHUB_REF_NAME} points at ${GITHUB_SHA}, which is neither on release/china nor on main. Refusing to publish." >&2
             exit 1
           fi
 
