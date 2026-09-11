@@ -1,9 +1,9 @@
 {
-  "id": 373677109,
+  "id": 375000000,
   "tag": "v0.39.1",
-  "name": "World of ClaudeCraft v0.39.1 桌面端进入游戏卡死热修复",
-  "body": "# World of ClaudeCraft v0.39.1 更新说明\n\n版本 0.39.1 是针对 v0.39.0 桌面客户端（Electron）在进入世界时卡死问题的紧急热修复。桌面端的内容安全策略（CSP）阻断了 Zstandard 纹理解码器的 WebAssembly 引导，导致包含 zstd 极限压缩的 KTX2 模型全部被拒绝加载。网页端与手机原生端不受影响。\n\n- **桌面端进入世界卡死修复**：Three.js 的 ZSTDDecoder 引导 WASM 需要发起 data: URI 请求，桌面端 CSP 的 connect-src 现已放行 data: 协议，恢复了全部 170 个携带 zstd 压缩纹理的 3D 模型的正常解析与加载。",
-  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.39.1",
+  "name": "v0.39.1",
+  "body": "# World of ClaudeCraft v0.39.1\n\n版本 0.39.1 是针对 v0.39.0 桌面客户端（Electron）在进入世界时卡死问题的紧急热修复。\n\n- **桌面端进入世界卡死修复**：桌面端 CSP 的 connect-src 现已放行 data: 协议，恢复了全部 170 个携带 zstd 极限压缩纹理的 3D 模型的正常解析与加载。\n\n**完整更新变更记录**：https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.39.1",
+  "url": "https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.39.1",
   "prerelease": false,
   "publishedAt": "2026-08-20T11:15:38Z"
 }

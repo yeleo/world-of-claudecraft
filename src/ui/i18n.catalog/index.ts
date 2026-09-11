@@ -292,7 +292,7 @@ export const en = {
   },
   footer: {
     copyright: '2026 World of ClaudeCraft',
-    githubLink: 'https://github.com/levy-street/world-of-claudecraft',
+    githubLink: 'https://github.com/yeleo/world-of-claudecraft',
     githubLabel: 'Open Source Project',
     whitepaper: 'Whitepaper',
     terms: 'Terms of Service',

@@ -1,9 +1,9 @@
 {
-  "id": 379854049,
+  "id": 380000000,
   "tag": "v0.41.0",
-  "name": "World of ClaudeCraft v0.41.0 熔炉团队副本盛大揭幕",
-  "body": "# World of ClaudeCraft v0.41.0 熔炉团队副本盛大揭幕\n\n终局团队副本「伊格尼瓦尔熔炉（The Ignivar Crucible）」全面开放！自 v0.40.1 以来共计 20 个合并请求、70 次代码提交，横跨 446 个文件。\n\n## 伊格尼瓦尔熔炉（The Ignivar Crucible）\n\n熔炉是坐落在东溪谷最西端的一座远古火山要塞，是整座大陆最高等级的终局团队副本。\n\n- **四大首领决战**：\n  - **熔岩巨怪（Magma Colossus）**：守护要塞外围熔岩护城河的远古元素。\n  - **铸造大师伊格尼瓦尔（Ignivar the Forgemaster）**：掌控熔炉烈焰核心与铁砧的终极工匠。\n  - **暗影主宰瓦克胡尔（Varkhul the Shadowbringer）**：试图腐化锻炉的虚空尊主。\n  - **巨龙守护者奈斯拉西斯（Nythraxis the Undying）**：掌控死灵骸骨与风暴的古龙。\n- **T1 史诗职业套装**：全部九大首发职业专属的史诗套装，包含强力的 2 件套与 4 件套专精技能质变效果。\n- **团队进度锁存与重置（Raid Lockout）**：引入每周定期重置的团队首领击杀锁存机制。",
-  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.41.0",
+  "name": "v0.41.0",
+  "body": "# World of ClaudeCraft v0.41.0\n\n终局团队副本「伊格尼瓦尔熔炉（The Ignivar Crucible）」盛大揭幕！自 v0.40.1 以来共计 20 个合并请求、70 次代码提交。\n\n- **四大首领决战**：深入火山熔岩与远古锻炉，挑战熔岩巨怪、铸造大师伊格尼瓦尔、暗影主宰瓦克胡尔以及巨龙守护者奈斯拉西斯。\n- **T1 史诗职业套装**：全部九大首发职业专属的史诗套装，包含强力的 2 件套与 4 件套专精技能质变效果。\n- **团队进度锁存与重置（Raid Lockout）**：引入每周定期重置的团队首领击杀锁存机制。\n\n**完整更新变更记录**：https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.41.0",
+  "url": "https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.41.0",
   "prerelease": false,
   "publishedAt": "2026-08-31T15:22:51Z"
 }

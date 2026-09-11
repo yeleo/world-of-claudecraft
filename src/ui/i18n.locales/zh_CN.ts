@@ -7130,7 +7130,7 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'stats.playersOnline': '在线玩家数',
   'stats.realmName': '服务器名称',
   'footer.copyright': '2026 World of ClaudeCraft',
-  'footer.githubLink': 'https://github.com/levy-street/world-of-claudecraft',
+  'footer.githubLink': 'https://github.com/yeleo/world-of-claudecraft',
   'footer.githubLabel': '开源项目',
   'footer.whitepaper': '白皮书',
   'footer.terms': '服务条款',

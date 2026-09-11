@@ -198,14 +198,14 @@ describe('NEW-badge marker logic', () => {
     expect(marked.find((r) => r.id === 3)?.isNew).toBe(false);
   });
 
-  it('caps the shown list at 5 releases', () => {
-    const many = Array.from({ length: 8 }, (_, i) => ({
-      id: 8 - i,
-      tag: `v${8 - i}`,
-      name: `v${8 - i}`,
+  it('caps the shown list at 20 releases', () => {
+    const many = Array.from({ length: 25 }, (_, i) => ({
+      id: 25 - i,
+      tag: `v${25 - i}`,
+      name: `v${25 - i}`,
       publishedAt: '2026-01-01T00:00:00Z',
     }));
-    expect(markNewReleases(many, null)).toHaveLength(5);
+    expect(markNewReleases(many, null)).toHaveLength(20);
   });
 
   it('advances the last-seen marker to the max seen release id, never backwards', () => {

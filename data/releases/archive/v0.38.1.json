@@ -1,9 +1,9 @@
 {
-  "id": 371001661,
+  "id": 370000000,
   "tag": "v0.38.1",
-  "name": "World of ClaudeCraft v0.38.1 追随镜头朝向修复与 Docker 构建加固",
-  "body": "# World of ClaudeCraft v0.38.1 更新说明\n\n版本 0.38.1 针对 v0.38.0 中引擎升级遗留的两个问题进行热修复：转身时追随镜头瞄准位置滞后一帧导致的晃动，以及 Dockerfile 构建上下文缺失的问题。\n\n- **镜头朝向对齐**：修复摄像机矩阵自动更新未及时触发导致角色转身时偏离屏幕中央的视角滞后问题。\n- **Docker 镜像构建修复**：补齐构建上下文依赖，确保服务器容器镜像顺畅打包。",
-  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.38.1",
+  "name": "v0.38.1",
+  "body": "# World of ClaudeCraft v0.38.1\n\n版本 0.38.1 针对 v0.38.0 中引擎升级遗留的两个问题进行热修复：转身时追随镜头瞄准位置滞后一帧导致的晃动，以及 Dockerfile 构建上下文缺失的问题。\n\n- **镜头朝向对齐**：修复摄像机矩阵自动更新未及时触发导致角色转身时偏离屏幕中央的视角滞后问题。\n- **Docker 镜像构建修复**：补齐构建上下文依赖，确保服务器容器镜像顺畅打包。\n\n**完整更新变更记录**：https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.38.1",
+  "url": "https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.38.1",
   "prerelease": false,
   "publishedAt": "2026-08-15T08:41:48Z"
 }

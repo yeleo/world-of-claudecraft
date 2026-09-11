@@ -12,7 +12,7 @@ import { formatDateTime, t } from './i18n';
 // The public release-notes home. The character-select news panel renders its
 // "all releases" link with it, and the desktop update card's what's-new row
 // links it directly.
-export const GITHUB_RELEASES_URL = 'https://github.com/levy-street/world-of-claudecraft/releases';
+export const GITHUB_RELEASES_URL = 'https://github.com/yeleo/world-of-claudecraft/releases';
 
 export interface NewsReleaseEntry {
   id: number;
@@ -30,7 +30,7 @@ export interface ReleaseSummary {
   publishedAt: string;
 }
 
-const MAX_RELEASES_SHOWN = 5;
+const MAX_RELEASES_SHOWN = 20;
 
 /**
  * Marks each release NEW relative to the stored last-seen id, then caps the

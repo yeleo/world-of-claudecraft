@@ -1,9 +1,9 @@
 {
-  "id": 383185193,
+  "id": 384000000,
   "tag": "v0.41.4",
-  "name": "World of ClaudeCraft v0.41.4 熔炉原声带与音效升级",
-  "body": "# World of ClaudeCraft v0.41.4\n\n熔炉团队副本（The Crucible）迎来专属全新原声大碟，为全部四个楼层定制了独立战斗配乐：\n\n- **第一层：余烬之路（A Way Through the Embers）**：伴随团队进军熔炉深渊的前哨战歌。\n- **第二层：百炼成钢（Even Iron Must Yield）**：第一首领震撼战斗曲目。\n- **第三层：未竟之宿命（A Fate Still Unwritten）**：引领玩家深入熔炉腹地的交响曲。\n- **第四层：终焉审判（The Future Is Not Yours to Keep）**：迎战最终决战的史诗交响乐。\n\n每个楼层的音乐将在拉怪与首领战中持续无缝播放。在不同楼层之间移动时将平滑淡入下一首曲目，离开副本时将自动切回大世界背景音乐。音量控制、静音与菜单暂停保持正常生效。\n\n**完整更新变更记录**：https://github.com/levy-street/world-of-claudecraft/compare/v0.41.3...v0.41.4",
-  "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.41.4",
+  "name": "v0.41.4",
+  "body": "# World of ClaudeCraft v0.41.4\n\n熔炉团队副本（The Crucible）迎来专属全新原声大碟，为全部四个楼层定制了独立战斗配乐：\n\n- **第一层：余烬之路（A Way Through the Embers）**：伴随团队进军熔炉深渊的前哨战歌。\n- **第二层：百炼成钢（Even Iron Must Yield）**：第一首领震撼战斗曲目。\n- **第三层：未竟之宿命（A Fate Still Unwritten）**：引领玩家深入熔炉腹地的交响曲。\n- **第四层：终焉审判（The Future Is Not Yours to Keep）**：迎战最终决战的史诗交响乐。\n\n每个楼层的音乐将在拉怪与首领战中持续无缝播放。在不同楼层之间移动时将平滑淡入下一首曲目，离开副本时将自动切回大世界背景音乐。音量控制、静音与菜单暂停保持正常生效。\n\n**完整更新变更记录**：https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.41.4",
+  "url": "https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.41.4",
   "prerelease": false,
   "publishedAt": "2026-09-05T08:31:51Z"
 }
