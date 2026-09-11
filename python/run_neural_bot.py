@@ -63,10 +63,11 @@ DEFAULT_ROLES = [
     ("paladin", "Support"),
 ]
 
-# Proving Shore trail from arrival beach to training effigies and far strand
+# Proving Shore trail following the paved dirt road to practice yard and far strand
 PROVING_SHORE_WAYPOINTS = [
-    (-295.0, -18.0),  # Beach path exit
-    (-315.0, -16.0),  # Middle trail
+    (-295.0, -16.0),  # Beach road
+    (-306.0, -8.0),   # Road curve north of fence
+    (-318.0, -6.0),   # Road north of Gauntlet corner
     (-336.0, -14.0),  # Practice yard (Training Effigies)
     (-355.0, -25.0),  # South path
     (-380.0, -42.0),  # Far strand crab camps
@@ -154,6 +155,12 @@ class SingleBotInstance:
         self.target_id: int | None = None
         self.ws = None
         self.party_invited_ids = set()
+
+        # Obstacle vaulting and anti-stuck tracking
+        self.prev_x = 0.0
+        self.prev_z = 0.0
+        self.stuck_ticks = 0
+        self.is_trying_to_move = False
 
     def register_and_create_char(self):
         uniq = str(int(time.time()))[-4:] + str(self.bot_idx)
@@ -320,12 +327,38 @@ class SingleBotInstance:
                     my_x = self.self_state.get("x", 0.0)
                     my_z = self.self_state.get("z", 0.0)
 
+                    # Anti-Stuck & Obstacle Jumping Detection
+                    moved_dist = math.hypot(my_x - self.prev_x, my_z - self.prev_z)
+                    self.prev_x = my_x
+                    self.prev_z = my_z
+
+                    if self.is_trying_to_move and moved_dist < 0.08:
+                        self.stuck_ticks += 1
+                    else:
+                        self.stuck_ticks = 0
+
+                    # If progress is blocked by a fence or obstacle, trigger JUMP!
+                    need_jump = self.stuck_ticks >= 2
+                    need_strafe_left = (self.stuck_ticks >= 6 and (self.stuck_ticks % 6 < 3))
+                    need_strafe_right = (self.stuck_ticks >= 6 and (self.stuck_ticks % 6 >= 3))
+
+                    def make_move_input(facing: float):
+                        mi = {"f": 1}
+                        if need_jump:
+                            mi["j"] = 1
+                        if need_strafe_left:
+                            mi["sl"] = 1
+                        elif need_strafe_right:
+                            mi["sr"] = 1
+                        return {"t": "input", "mi": mi, "facing": facing}
+
                     # Update observation & target selection
                     _ = self.build_obs()
                     target_ent = self.entities.get(self.target_id) if self.target_id else None
 
                     # 1. Combat Mode (Enemy sighted or engaged)
                     if target_ent and not target_ent.get("dead") and not target_ent.get("loot"):
+                        self.is_trying_to_move = True
                         tx = target_ent.get("x", my_x)
                         tz = target_ent.get("z", my_z)
                         dist_to_tgt = math.hypot(tx - my_x, tz - my_z)
@@ -340,13 +373,10 @@ class SingleBotInstance:
                         desired_dist = 12.0 if is_ranged else 2.2
 
                         if dist_to_tgt > desired_dist:
-                            # Close in towards target
-                            await ws.send(json.dumps({
-                                "t": "input",
-                                "mi": {"f": 1},
-                                "facing": angle_to_tgt,
-                            }))
+                            # Run towards target (with auto-jump if fenced)
+                            await ws.send(json.dumps(make_move_input(angle_to_tgt)))
                         else:
+                            self.is_trying_to_move = False
                             # In attack range: stop running, lock facing
                             await ws.send(json.dumps({
                                 "t": "input",
@@ -376,7 +406,6 @@ class SingleBotInstance:
                         lf = self.leader_ref.self_state.get("f", self.leader_ref.self_state.get("facing", 0.0))
 
                         off_x, off_z = FORMATION_OFFSETS[self.bot_idx % len(FORMATION_OFFSETS)]
-                        # Rotate offset by leader facing
                         slot_x = lx + (off_x * math.cos(lf) + off_z * math.sin(lf))
                         slot_z = lz + (-off_x * math.sin(lf) + off_z * math.cos(lf))
 
@@ -384,34 +413,29 @@ class SingleBotInstance:
                         angle_to_slot = math.atan2(slot_x - my_x, slot_z - my_z)
 
                         if dist_to_slot > 1.8:
-                            await ws.send(json.dumps({
-                                "t": "input",
-                                "mi": {"f": 1},
-                                "facing": angle_to_slot,
-                            }))
+                            self.is_trying_to_move = True
+                            await ws.send(json.dumps(make_move_input(angle_to_slot)))
                         else:
+                            self.is_trying_to_move = False
                             await ws.send(json.dumps({
                                 "t": "input",
                                 "mi": {},
                                 "facing": lf,
                             }))
 
-                    # 3. Squad Leader Mode (Out of combat, lead squad along exploration waypoints)
+                    # 3. Squad Leader Mode (Out of combat, lead squad along road waypoints)
                     elif self.is_leader:
+                        self.is_trying_to_move = True
                         wp_x, wp_z = PROVING_SHORE_WAYPOINTS[wp_idx]
                         dist_to_wp = math.hypot(wp_x - my_x, wp_z - my_z)
 
                         if dist_to_wp < 3.5:
                             wp_idx = (wp_idx + 1) % len(PROVING_SHORE_WAYPOINTS)
                             wp_x, wp_z = PROVING_SHORE_WAYPOINTS[wp_idx]
-                            print(f"  [Explore] Leader '{self.char_name}' reached waypoint, proceeding to next ({wp_x:.0f}, {wp_z:.0f})")
+                            print(f"  [Explore] Leader '{self.char_name}' reached waypoint, next is ({wp_x:.0f}, {wp_z:.0f})")
 
                         angle_to_wp = math.atan2(wp_x - my_x, wp_z - my_z)
-                        await ws.send(json.dumps({
-                            "t": "input",
-                            "mi": {"f": 1},
-                            "facing": angle_to_wp,
-                        }))
+                        await ws.send(json.dumps(make_move_input(angle_to_wp)))
 
                         if now - last_log_time > 5.0:
                             print(f"  [Explore] Leader '{self.char_name}' patrolling at ({my_x:.1f}, {my_z:.1f}) -> heading to ({wp_x:.0f}, {wp_z:.0f})")
