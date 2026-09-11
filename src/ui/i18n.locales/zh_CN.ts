@@ -1,5 +1,7 @@
-// Chinese (Simplified, China) locale definitions.
-export default {
+// Flat dotted-key translation overlay for "zh_CN".
+import type { TranslationKey } from '../i18n.catalog';
+
+export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'a11y.characterActions': '角色操作',
   'a11y.discordCommunity': '加入 World of ClaudeCraft 的 Discord 社区',
   'a11y.donateProject': '捐赠支持 World of ClaudeCraft',
@@ -6191,8 +6193,8 @@ export default {
   'guide.gear.fishingTitle': '钓鱼',
   'guide.gear.intro': '装备是你角色身上穿戴的行头，以及你随身携带的物品。更好的装备是变强最稳妥的途径，而其中大部分只需游玩便能到手。',
   'guide.gear.itemLevelBody': '如果你想快速比较两件装备，可以在选项中开启“显示物品等级”。有明确来源的装备，无论来自敌人、任务还是制作专业，都会显示一个物品等级，一个根据其来源大致衡量强度的单一数值，让你一眼就能看出哪件升级更有分量，即便是不同部位之间也能比较。没有这类来源的物品，比如普通的商人基础货和新手装备，则不显示物品等级，因此没有数值是正常现象，并非缺陷。',
-  'guide.gear.masterwroughtBody': '最顶尖的制造装备会在提示中带有金色的',
-  'guide.gear.masterwroughtBodyLegendary': '最顶尖的制造装备会在提示中带有金色的',
+  'guide.gear.masterwroughtBody': '最顶尖的制造装备会在提示中带有金色的"装备唯一：大师锻造"标签。这些装备是制造专业的巅峰之作，由大师用稀有材料制成，可像其他制造品一样在市场上自由交易，足以与最深处地下城的珍宝比肩。这个标签代表一条共通的家族规则：无论出自哪个专业，角色同时最多只能穿戴两件大师锻造装备，所以请选好让它们发挥最大作用的两个部位。',
+  'guide.gear.masterwroughtBodyLegendary': '最顶尖的制造装备会在提示中带有金色的"装备唯一：大师锻造"标签。这些装备是制造专业的巅峰之作，由大师用稀有材料制成，可像其他制造品一样在市场上自由交易，足以与最深处地下城的珍宝比肩。这个标签代表一条共通的家族规则：无论出自哪个专业，角色同时最多只能穿戴两件大师锻造装备，所以请选好让它们发挥最大作用的两个部位。这条规则还为家族之巅多留了一行：将一件大师锻造装备臻至完美的佩戴者，可以把它晋升为一件由自己命名的传说装备（完整的链条在专业页面讲述），而角色穿戴的两件之中，同时最多只能有一件传说品质的大师锻造装备。',
   'guide.gear.masterwroughtTitle': '大师锻造：制造的巅峰',
   'guide.gear.offhandBody': '副手能拿什么，取决于你的职业。盾牌放在那里，宝珠或典籍之类的手持法器也放在那里，猎人的箭袋同样如此。能够双持的职业则会在副手放上第二把武器。双手武器通常要占去两只手，所以装备一把双手武器会让副手原本拿着的东西下场，除非你的专精正是少数几个能同时挥舞两把双手武器的那种。',
   'guide.gear.qualityBody': '每件物品都有其品质，名称也以相应的颜色标示，让你一眼便能看出它的价值。从最常见到最珍贵：',
@@ -13477,3 +13479,5 @@ export default {
   'yumi.queue.teamLeave': '你的队伍离开了Protect Yumi队列。',
   'yumi.respawn.title': '倒下了！',
 };
+
+export default zh_CN;

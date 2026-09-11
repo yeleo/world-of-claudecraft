@@ -38,6 +38,9 @@ export function flatten(node, prefix = '', out = {}) {
 }
 
 export function unflatten(flat) {
+  if (!flat || typeof flat !== 'object') {
+    return {};
+  }
   const out = {};
   for (const path of Object.keys(flat)) {
     const parts = path.split('.');

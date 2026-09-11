@@ -8260,6 +8260,7 @@ export const id_ID: EnTranslations = {
     "desc": "Dapatkan peluncur mandiri untuk performa optimal dan permainan layar penuh.",
     "macCta": "Unduh untuk macOS",
     "windowsCta": "Unduh untuk Windows",
+    "androidCta": "Download for Android (APK)",
     "linuxCta": "Unduh untuk Linux",
     "linuxHint": "AppImage: membuatnya dapat dieksekusi, lalu jalankan. Tidak perlu instalasi.",
     "windowsPending": "Build Windows tertunda."

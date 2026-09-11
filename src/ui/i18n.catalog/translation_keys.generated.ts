@@ -927,6 +927,7 @@ export type TranslationKeyFlat =
   | 'devCommand.serverRequirement'
   | 'devCommand.subtitle'
   | 'devCommand.title'
+  | 'download.androidCta'
   | 'download.desc'
   | 'download.linuxCta'
   | 'download.linuxHint'

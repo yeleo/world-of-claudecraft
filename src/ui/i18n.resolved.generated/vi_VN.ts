@@ -8260,6 +8260,7 @@ export const vi_VN: EnTranslations = {
     "desc": "Tải trình khởi chạy độc lập để có hiệu năng tối ưu và chơi toàn màn hình.",
     "macCta": "Tải xuống cho macOS",
     "windowsCta": "Tải xuống cho Windows",
+    "androidCta": "Download for Android (APK)",
     "linuxCta": "Tải xuống cho Linux",
     "linuxHint": "AppImage: làm cho nó có thể thực thi được rồi chạy nó. Không cần cài đặt.",
     "windowsPending": "Bản dựng Windows đang chờ."

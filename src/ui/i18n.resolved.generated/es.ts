@@ -8260,6 +8260,7 @@ export const es: EnTranslations = {
     "desc": "Consigue el lanzador independiente para un rendimiento optimizado y juego a pantalla completa.",
     "macCta": "Descargar para macOS",
     "windowsCta": "Descargar para Windows",
+    "androidCta": "Download for Android (APK)",
     "linuxCta": "Descargar para Linux",
     "linuxHint": "AppImage: hazlo ejecutable y luego ejecútalo. No se necesita instalación.",
     "windowsPending": "Compilacion para Windows pendiente."

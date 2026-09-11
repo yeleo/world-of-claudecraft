@@ -9,25 +9,72 @@
 // Reproducibility is checked by tests/i18n_resolved_equivalence.test.ts.
 
 export const pending: Record<string, readonly string[]> = {
-  "es": [],
-  "es_ES": [],
-  "fr_FR": [],
-  "fr_CA": [],
+  "es": [
+    "download.androidCta"
+  ],
+  "es_ES": [
+    "download.androidCta"
+  ],
+  "fr_FR": [
+    "download.androidCta"
+  ],
+  "fr_CA": [
+    "download.androidCta"
+  ],
   "en_CA": [],
-  "it_IT": [],
-  "de_DE": [],
-  "zh_CN": [],
+  "it_IT": [
+    "download.androidCta"
+  ],
+  "de_DE": [
+    "download.androidCta"
+  ],
+  "zh_CN": [
+    "hudChrome.archetypePair.alchemy+cooking",
+    "hudChrome.archetypePair.armorcrafting+engineering",
+    "hudChrome.archetypePair.cooking+leatherworking",
+    "hudChrome.archetypePair.enchanting+jewelcrafting",
+    "hudChrome.archetypePair.engineering+alchemy",
+    "hudChrome.archetypePair.inscription+enchanting",
+    "hudChrome.archetypePair.jewelcrafting+weaponcrafting",
+    "hudChrome.archetypePair.leatherworking+tailoring",
+    "hudChrome.archetypePair.tailoring+inscription",
+    "hudChrome.archetypePair.weaponcrafting+armorcrafting"
+  ],
   "zh_TW": [],
-  "ko_KR": [],
-  "ja_JP": [],
-  "pt_BR": [],
-  "ru_RU": [],
-  "cs_CZ": [],
-  "nl_NL": [],
-  "pl_PL": [],
-  "id_ID": [],
-  "tr_TR": [],
-  "sv_SE": [],
-  "vi_VN": [],
-  "da_DK": []
+  "ko_KR": [
+    "download.androidCta"
+  ],
+  "ja_JP": [
+    "download.androidCta"
+  ],
+  "pt_BR": [
+    "download.androidCta"
+  ],
+  "ru_RU": [
+    "download.androidCta"
+  ],
+  "cs_CZ": [
+    "download.androidCta"
+  ],
+  "nl_NL": [
+    "download.androidCta"
+  ],
+  "pl_PL": [
+    "download.androidCta"
+  ],
+  "id_ID": [
+    "download.androidCta"
+  ],
+  "tr_TR": [
+    "download.androidCta"
+  ],
+  "sv_SE": [
+    "download.androidCta"
+  ],
+  "vi_VN": [
+    "download.androidCta"
+  ],
+  "da_DK": [
+    "download.androidCta"
+  ]
 };

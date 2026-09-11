@@ -8260,6 +8260,7 @@ export const it_IT: EnTranslations = {
     "desc": "Ottieni il launcher autonomo per prestazioni ottimizzate e gioco a schermo intero.",
     "macCta": "Scarica per macOS",
     "windowsCta": "Scarica per Windows",
+    "androidCta": "Download for Android (APK)",
     "linuxCta": "Scarica per Linux",
     "linuxHint": "AppImage: rendilo eseguibile, quindi eseguilo. Nessuna installazione necessaria.",
     "windowsPending": "Build Windows in arrivo."

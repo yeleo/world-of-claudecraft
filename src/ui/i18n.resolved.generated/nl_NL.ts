@@ -8260,6 +8260,7 @@ export const nl_NL: EnTranslations = {
     "desc": "Download de losse launcher voor optimale prestaties en schermvullend spelen.",
     "macCta": "Download voor macOS",
     "windowsCta": "Downloaden voor Windows",
+    "androidCta": "Download for Android (APK)",
     "linuxCta": "Downloaden voor Linux",
     "linuxHint": "AppImage: maak het uitvoerbaar en voer het vervolgens uit. Geen installatie nodig.",
     "windowsPending": "Windows-build volgt later."

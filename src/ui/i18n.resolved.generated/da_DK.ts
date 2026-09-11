@@ -8260,6 +8260,7 @@ export const da_DK: EnTranslations = {
     "desc": "Hent den selvstændige launcher for optimeret ydeevne og fuldskærmsspil.",
     "macCta": "Download til macOS",
     "windowsCta": "Download til Windows",
+    "androidCta": "Download for Android (APK)",
     "linuxCta": "Download til Linux",
     "linuxHint": "AppImage: gør det eksekverbart, og kør det derefter. Ingen installation nødvendig.",
     "windowsPending": "Windows-build afventer."

@@ -8223,7 +8223,7 @@ export const en_CA: EnTranslations = {
   },
   "footer": {
     "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "githubLink": "https://github.com/yeleo/world-of-claudecraft",
     "githubLabel": "Open Source Project",
     "whitepaper": "Whitepaper",
     "terms": "Terms of Service",
@@ -8260,6 +8260,7 @@ export const en_CA: EnTranslations = {
     "desc": "Get the standalone launcher for optimized performance and full-screen play.",
     "macCta": "Download for macOS",
     "windowsCta": "Download for Windows",
+    "androidCta": "Download for Android (APK)",
     "linuxCta": "Download for Linux",
     "linuxHint": "AppImage: make it executable, then run it. No install needed.",
     "windowsPending": "Windows build pending."
