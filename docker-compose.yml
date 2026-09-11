@@ -97,7 +97,7 @@ services:
       # Open Graph images. Set per environment, for example dev vs production.
       PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-}
       USERNAME_BANLIST: ${USERNAME_BANLIST:-}
-      USERNAME_BANLIST_FILE: ${USERNAME_BANLIST_FILE:-}
+      USERNAME_BANLIST_FILE: ${USERNAME_BANLIST_FILE:-/app/data/censor/censor_hard.txt}
       CHAT_CENSOR_LIST: ${CHAT_CENSOR_LIST:-}
       CHAT_CENSOR_FILE: ${CHAT_CENSOR_FILE:-/app/data/censor/censor_soft.txt}
       CHAT_FILTER_HARD_FILE: ${CHAT_FILTER_HARD_FILE:-/app/data/censor/censor_hard.txt}

@@ -162,7 +162,7 @@ export const NAMEPLATE_MIN_PIXEL_RATIO = 1;
 export const NAMEPLATE_TEXT_SPRITE_LIMIT = 512;
 export const NAMEPLATE_TEXT_SPRITE_BUDGET_BYTES = 16 * 1024 * 1024;
 
-const TITLE_FONT = 'Cinzel, Georgia, serif';
+const TITLE_FONT = "Cinzel, Georgia, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif";
 const NAME_STYLE: TextSpriteStyle = {
   font: `700 12px ${TITLE_FONT}`,
   fill: '#fff',
@@ -233,7 +233,7 @@ const MARKER_STYLE: TextSpriteStyle = {
   lineWidth: 2,
 };
 const CAST_STYLE: TextSpriteStyle = {
-  font: '700 9px Arial, sans-serif',
+  font: "700 9px 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif",
   fill: '#fff',
   stroke: '#000',
   lineWidth: 1,

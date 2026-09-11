@@ -2,9 +2,9 @@
 // Maps an NPC voice-line key to its localized Chinese audio path.
 export const VOICE_LINES_ZH: Record<string, string> = 
 {
-  "greeting__alchemist_verane": "/audio/voice_zh/alchemist_verane/greeting__alchemist_verane.mp3?v=9cc56719f702",
-  "greeting__apothecary_lin": "/audio/voice_zh/apothecary_lin/greeting__apothecary_lin.mp3?v=81a0e579c2f7",
-  "greeting__archivist_tullo": "/audio/voice_zh/archivist_tullo/greeting__archivist_tullo.mp3?v=fbbfae4e6b71",
+  "greeting__alchemist_verane": "/audio/voice_zh/alchemist_verane/greeting__alchemist_verane.mp3?v=18f739d32e99",
+  "greeting__apothecary_lin": "/audio/voice_zh/apothecary_lin/greeting__apothecary_lin.mp3?v=679b84589f67",
+  "greeting__archivist_tullo": "/audio/voice_zh/archivist_tullo/greeting__archivist_tullo.mp3?v=35887d6cf722",
   "greeting__armorer_hode": "/audio/voice_zh/armorer_hode/greeting__armorer_hode.mp3?v=ae039ef38273",
   "greeting__astronomer_cassian": "/audio/voice_zh/astronomer_cassian/greeting__astronomer_cassian.mp3?v=cdac9f919c37",
   "greeting__auctioneer_voss": "/audio/voice_zh/auctioneer_voss/greeting__auctioneer_voss.mp3?v=e5f619f0ff4a",

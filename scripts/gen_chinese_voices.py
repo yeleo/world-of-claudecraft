@@ -100,57 +100,103 @@ YELL_TRANSLATIONS = {
     "yell__no_the_sea_spits_me_back_once_not_twice": "不……无情的大海能饶我一次，却绝不会仁慈第二次……"
 }
 
-# 默认配音映射规则 (根据角色身份、性别、性格与声线特征分配)
-DEFAULT_SPEAKER = "👨 Uncle_Fu - 中文"
-DEFAULT_INSTRUCT = "自然流畅的中世纪魔幻奇幻语气"
-
-NPC_VOICE_CONFIG = {
-    # 威严年长 / 军官 / 牧师
-    "brother_aldric": ("👨 Uncle_Fu - 中文", "庄重慈悲的年长牧师语气，沉稳而充满使命感"),
-    "marshal_redbrook": ("👨 Uncle_Fu - 中文", "饱经沙场的老元帅语气，低沉沙哑，带着军人威严"),
-    "ferryman_odo": ("👨 Uncle_Fu - 中文", "慈祥温和的老船夫口吻，语调舒缓沉稳"),
-    "warden_fenwick": ("👨 Uncle_Fu - 中文", "严肃警惕的守卫队长语气"),
-    "gatecaptain_brannoc": ("👨 Uncle_Fu - 中文", "刚毅威严的要塞门将口吻"),
-    
-    # Boss / 巨兽 / 熔炉
-    "nythraxis": ("👨 Uncle_Fu - 中文", "极度霸道低沉的古代暗黑君王巨龙咆哮口吻"),
-    "ignivar": ("👨 Uncle_Fu - 中文", "烈焰与熔炉混响、狂暴充满压迫感的魔神语气"),
-    "varkhul": ("👨 Uncle_Fu - 中文", "古老苍劲、坚如磐石的锻造之父沉重低音"),
-
-    # 商人 / 市井 / 青年男性
-    "the_merchant": ("🧑 Dylan - 中文(北京话)", "热情洋溢、精明能干的商人叫卖语气"),
-    "trader_wilkes": ("🧑 Dylan - 中文(北京话)", "市井小贩热情的吆喝语气"),
-    "auctioneer_voss": ("🧑 Dylan - 中文(北京话)", "节奏明快、充满诱惑力的拍卖商语气"),
-    "card_master": ("🧑 Dylan - 中文(北京话)", "轻松戏谑、玩世不恭的卡牌大师语气"),
-    "bursar_fernando": ("🧑 Dylan - 中文(北京话)", "干练严谨的年轻账房掌柜口吻"),
-
-    # 粗犷男性 / 猎人 / 铁匠 / 工人
-    "smith_haldren": ("👨 Uncle_Fu - 中文", "粗犷洪亮的铁匠打铁口吻"),
-    "foreman_odell": ("👨 Uncle_Fu - 中文", "沙哑暴躁的矿工工头大嗓门"),
-    "armorer_hode": ("👨 Uncle_Fu - 中文", "低沉有力的铠甲铸造大师语气"),
-    "fisherman_brandt": ("🧑 Eric - 中文(四川话)", "有点迷糊怪异的老渔民语气"),
-    "trapper_brosk": ("👨 Uncle_Fu - 中文", "老练冷峻的雪原猎人语气"),
-    "gravedigger_mosley": ("🧑 Eric - 中文(四川话)", "战战兢兢、略带神经质的掘墓人口吻"),
-    "castaway_navigator": ("🧑 Eric - 中文(四川话)", "劫后余生、疲惫急迫的水手口吻"),
-    "fisher_bram": ("🧑 Dylan - 中文(北京话)", "真诚焦急的年轻渔民口吻"),
-
-    # 干练女性 / 斥候 / 女队长
-    "captain_thessaly": ("👩 Vivian - 中文", "英姿飒爽、威严果断的女卫队长命令语气"),
-    "scout_maren": ("👩 Vivian - 中文", "机警短促、压低嗓音的敏捷女斥候口吻"),
-    "quartermaster_bree": ("👩 Vivian - 中文", "利落高效的女军需官口吻"),
-    "stablemaster_marla": ("👩 Vivian - 中文", "干练热情、爽朗的马厩老板娘语气"),
-    "salvage_boss_ryna": ("👩 Vivian - 中文", "干练豪放的打捞队女首领口吻"),
-    "warden_kaldra": ("👩 Vivian - 中文", "冷峻坚决的女守望者口吻"),
-
-    # 温柔女性 / 草药师 / 观星者 / 治愈者
-    "apothecary_lin": ("👩 Serena - 中文", "轻柔谨慎的女草药医师口吻，温和沉静"),
-    "aurorist_veyla": ("👩 Serena - 中文", "空灵悠扬、宁静专注的极光学者口吻"),
-    "mother_sedge": ("👩 Serena - 中文", "慈祥神秘的沼泽老妇人语气"),
-    "lira_dewsong": ("👩 Serena - 中文", "清澈优美的精灵歌咏者语调"),
-    "spirit_healer": ("👩 Serena - 中文", "飘渺神圣、超然物外的灵魂医者语气"),
-    "apprentice_wren": ("👩 Serena - 中文", "惊慌失措、需要保护的年轻女学徒语气"),
-    "weaver_amelle": ("👩 Serena - 中文", "温和细致的纺织女工口吻"),
+# 全量 92 位 NPC 专属 VoiceDesign 声音指导词库 (基于官方原版人设提取)
+DEFAULT_INSTRUCT = "自然流畅的中世纪奇幻冒险者口吻，清晰生动"
+NPC_VOICE_INSTRUCTS = {
+    'alchemist_verane': '30多岁至40岁的高冷女药剂大师，冷峻克制、咬字精准干练的女中音，带着严谨威严的成熟女性嗓音',
+    'apothecary_lin': '30多岁至40岁轻柔谨慎的女草药医师，嗓音温和清润、带着细致关切的女中音',
+    'apprentice_wren': '年轻怯生生、有些慌乱的见习女学徒嗓音',
+    'archivist_tullo': '60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
+    'armorer_hode': '50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'astronomer_cassian': '40多岁中年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
+    'auctioneer_voss': '节奏明快、充满诱惑力与市井喜感的拍卖商口吻',
+    'aurorist_veyla': '空灵悠扬、宁静专注的极光学者女性口吻',
+    'bellkeeper_tam': '50多岁成熟饱经沧桑的长者，声音沉稳和蔼、语调舒缓的中老年男性男低音',
+    'bridgewright_alden': '40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
+    'brother_aldric': '60多岁庄重慈悲的圣光大牧师，饱经沧桑、沉稳肃穆的长者男中音',
+    'brother_halven': '40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'bursar_aldous_crane': '60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
+    'bursar_fernando': '40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
+    'bursar_petra_vell': '金库女司库主管，精明干练、咬字干脆利落的成熟职场女性中音',
+    'captain_thessaly': '英姿飒爽、威严果断的要塞女卫队长，坚决洪亮的军官女性口吻',
+    'card_master': '轻松戏谑、玩世不恭的年轻卡牌大师口吻',
+    'castaway_navigator': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'chronicler_edda_hartwell': '年轻的高山女学者，语速轻快敏锐、朝气蓬勃且求知欲强的年轻女性清脆嗓音',
+    'chronicler_osric_fenn': '40多岁中年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
+    'chronicler_saul': '50多岁成熟威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
+    'cook_marlow': '40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
+    'ferryman_odo': '60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'ferrymaster_caddow': '50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'fisher_bram': '60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
+    'fisher_nell': '20多岁在海边惊魂未定的年轻渔妇，声音轻微颤抖、带着后怕与柔弱的年轻女性嗓音',
+    'fisherman_brandt': '常年在海边抽烟斗、有点怪癖的粗犷老渔民口吻',
+    'foreman_odell': '沙哑暴躁的矿工工头大嗓门，粗犷有力',
+    'forgemistress_darva': '城镇铁匠铺女主管，粗犷刚毅、声音如击打玄铁般有力的成熟女性低中音',
+    'fury': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'gardener_yew': '60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'gatecaptain_brannoc': '50多岁成熟威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
+    'gatewarden_pell': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'gravedigger_mosley': '战战兢兢、神情紧张的掘墓人口吻',
+    'harbormaster_odile': '峭壁渔港的女港口长，饱经风霜海盐、爽朗干练的海港女主管嗓音',
+    'head_gardener_amaranth': '守护古老花园十年的老女园丁，嗓音轻柔沙哑、略带疲惫与细致关怀的年长女性嗓音',
+    'hearthkeeper_maeve': '极北温暖客栈的女老板娘，慈祥温厚、热情好客的成熟母亲女性嗓音',
+    'herbalist_yara': '沼泽深处的神秘草药女巫，声音低沉沙哑、慢条斯理且深不可测的女性烟嗓',
+    'hermit_okku': '50多岁成熟饱经沧桑的长者，声音沉稳和蔼、语调舒缓的中老年男性男低音',
+    'heroic_quartermaster': '40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
+    'huntsman_deral': '40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'ignivar': '狂暴烈焰与熔炉巨兽魔神咆哮口吻，炽热低沉且充满毁灭压迫感',
+    'keeper_bram': '60多岁老年粗犷硬朗的劳动工人，中气十足、声音洪亮有力的成年男性嗓音',
+    'keeper_saelwyn': '30多岁从容干练的女性，自然沉稳、清晰流畅的女性中音',
+    'lamplighter_sorrel': '40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'lampman_cobb': '60多岁老年饱经沧桑的长者，声音沉稳和蔼、语调舒缓的中老年男性男低音',
+    'lira_dewsong': '清澈空灵、宛如夜莺的精灵女歌者嗓音',
+    'loremaster_caddis': '50多岁成熟热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
+    'loremother_bryn': '神社守护者老妇人，温和沧桑、慢条斯理如诵读经卷的年长女性嗓音',
+    'marshal_redbrook': '50多岁饱经风霜的军团老元帅，沙哑低沉、刚毅如磐石的威严军人男低音',
+    'mender_saul': '40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'mother_sedge': '慈祥神秘、深邃安详的沼泽老妇人女性嗓音',
+    'netter_maris': '熟练的捕鳗女渔民，语速极快、热情唠叨且带着市井烟火气的女性嗓音',
+    'nythraxis': '极度霸道低沉的古代暗黑君王巨龙咆哮口吻，古老威严且充满毁灭压迫感',
+    'orchardist_pomeline': '看守古老果园的老妇人，声音酸甜干练、带有护食倔强的年长女性嗓音',
+    'pearlmother_isha': '采珠部族的德高望重女族长，深沉从容、慈爱威严的年长母性嗓音',
+    'provisioner_fenna': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'provisioner_hale': '40多岁中年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
+    'quartermaster_bree': '利落高效、有条不紊的女军需官口吻',
+    'quartermaster_edda': '要塞军需女官，疲惫坚毅、雷厉风行的军旅女性嗓音',
+    'quartermaster_sela': '物资军需女官，务实利落、略带疲倦的干练女性嗓音',
+    'reeve_ottoline': '丰收镇女执政官，干练从容、略带威严幽默的年长女性嗓音',
+    'riftwatch_ollun': '40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'salvage_boss_ryna': '豪迈坚毅、雷厉风行的打捞队女首领口吻',
+    'salvager_edda': '沙滩拾荒沉船的女打捞者，干练冷峻、略带讥讽与世故的独行女性嗓音',
+    'scout_einna': '常年在雪原巡逻的年轻女斥候，嗓音紧凑短促、冷静戒备的年轻女性嗓音',
+    'scout_maren': '机警短促、压低嗓音的敏捷年轻女斥候口吻',
+    'scout_yerrin': '在敌前哨岗独自潜伏一个月的女斥候，压低嗓音、极度敏锐警惕的女性低语嗓音',
+    'sexton_marrow': '50多岁成熟饱经沧桑的长者，声音沉稳和蔼、语调舒缓的中老年男性男低音',
+    'smith_haldren': '40多岁至50岁粗犷洪亮的铁匠大师，在熔炉旁中气十足、声音如钢铁般有力的男低音',
+    'spirit_healer': '空灵神圣、超然物外的远古灵魂女医者语气',
+    'stablemaster_marla': '干练爽朗、热情洋溢的马厩女老板口吻',
+    'strandwatcher_pell': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'tanner_hesk': '40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'the_merchant': '50多岁精明能干的商会拍卖官，语调温润连贯、充满诱惑力与市井喜感的从容中年男中音',
+    'tidewatcher_ondrel': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'tinker_gizzel': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'trader_wilkes': '40多岁热情洋溢的市井小贩，语速明快、带着爽朗笑意的亲切中年男高音',
+    'trapper_brosk': '60多岁老年饱经沧桑的长者，声音沉稳和蔼、语调舒缓的中老年男性男低音',
+    'varkhul': '古老苍劲、坚如磐石的终焉熔炉锻造之父，深沉浑厚的远古神明低音',
+    'vicar_creel': '50多岁成熟热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
+    'warden_coalfast': '40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
+    'warden_fenwick': '40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
+    'warden_kaldra': '冷峻坚决、忠诚警惕的女守望者口吻',
+    'wardsmith_orun': '50多岁成熟饱经沧桑的长者，声音沉稳和蔼、语调舒缓的中老年男性男低音',
+    'watcher_maren': '迎风山隘的女守卫者，声音高亢嘹亮、能在呼啸寒风中清晰传达命令的女性嗓音',
+    'waykeeper_pell': '沼泽台阶上的客栈女看守，随和温厚、从容热情的成熟女性嗓音',
+    'waywatcher_sorrel': '高山隘口的女守望者，嘹亮坚毅、在风中传颂警报的年轻女性嗓音',
+    'weaver_amelle': '温和细致、耐心专注的纺织女工口吻',
+    'weaver_ottilie': '纺织工坊的织造女大师，从容沉稳、字句优雅考究的成熟女性中音',
+    'wickmother_sorrel': '乡村旅店的老板娘，热情忙碌、语调亲切朴实的年长妇人女性嗓音',
+    'widow_tansy': '制作守灵烛的孤苦老妇人，声音苍老轻微颤抖、带着淡淡哀伤的年长女性嗓音',
 }
+
 
 
 def clean_spoken_text(text: str) -> str:
@@ -166,11 +212,10 @@ def clean_spoken_text(text: str) -> str:
     return cleaned
 
 
-def compute_fingerprint(text: str, speaker: str, instruct: str) -> str:
+def compute_fingerprint(text: str, instruct: str) -> str:
     """计算单条语音的配置指纹，用于变更检测"""
     h = hashlib.md5()
     h.update(text.encode('utf-8'))
-    h.update(speaker.encode('utf-8'))
     h.update(instruct.encode('utf-8'))
     return h.hexdigest()[:16]
 
@@ -245,14 +290,14 @@ def load_all_chinese_lines(manifest_keys: dict[str, str]) -> dict[str, dict]:
             text = "你好，旅行者。"  # 保底文本
 
         clean_text = clean_spoken_text(text)
-        speaker, instruct = NPC_VOICE_CONFIG.get(voice_npc, (DEFAULT_SPEAKER, DEFAULT_INSTRUCT))
-        fingerprint = compute_fingerprint(clean_text, speaker, instruct)
+        instruct = NPC_VOICE_INSTRUCTS.get(voice_npc, DEFAULT_INSTRUCT)
+        fingerprint = compute_fingerprint(clean_text, instruct)
         
         catalog[line_key] = {
             "key": line_key,
             "voice_npc": voice_npc,
             "text": clean_text,
-            "speaker": speaker,
+            "speaker": "(由 instruct 描述生成)",
             "instruct": instruct,
             "fingerprint": fingerprint,
             "dest_rel": f"{voice_npc}/{line_key}.mp3"

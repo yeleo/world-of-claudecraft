@@ -67,12 +67,15 @@ function normalizedUsernameForCensorship(username: string): string {
   return username
     .toLowerCase()
     .replace(/[0134578!|@$+]/g, (ch) => CONFUSABLE_CHARS[ch] ?? ch)
-    .replace(/[^a-z]/g, '');
+    .replace(/[^a-z\u4e00-\u9fa5]/g, '');
 }
 
 function parseBanlist(raw: string | undefined): string[] {
   return (raw ?? '')
-    .split(/[\s,]+/)
+    .split(/\r?\n/)
+    .map((line) => line.replace(/#.*$/, '').trim())
+    .filter((line) => line.length > 0)
+    .flatMap((line) => line.split(/[\s,]+/))
     .map((term) => normalizedUsernameForCensorship(term))
     .filter((term) => term.length > 0);
 }

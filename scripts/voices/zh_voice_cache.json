@@ -1,30 +1,30 @@
 {
   "greeting__alchemist_verane": {
-    "text": "量药需再三核准，倾倒只需一瞬，冒险者！炼金工坊可经不起毛手毛脚打翻珍稀药剂！",
-    "text_hash": "f4abcdb825e9cc56",
-    "speaker": "👨 Uncle_Fu - 中文",
-    "instruct": "自然流畅的中世纪魔幻奇幻语气",
+    "text": "量药需再三核准，倾倒只需一瞬，冒险者。炼金工坊可经不起毛手毛脚打翻珍贵药剂！",
+    "text_hash": "6bc68c51f1603fad",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "30多岁至40岁的高冷女药剂大师，冷峻克制、咬字精准干练的女中音，带着严谨威严的成熟女性嗓音",
     "audio_path": "alchemist_verane/greeting__alchemist_verane.mp3",
-    "audio_hash": "9cc56719f702",
-    "updated_at": "2026-09-09T14:30:38.027389+00:00"
+    "audio_hash": "18f739d32e99",
+    "updated_at": "2026-09-10T14:18:37.407711+00:00"
   },
   "greeting__apothecary_lin": {
     "text": "在东北边的密林里穿行时，可千万当心脚下，朋友……那些毒物可不长眼。",
-    "text_hash": "d166bcfe69d38545",
-    "speaker": "👩 Serena - 中文",
-    "instruct": "轻柔谨慎的女草药医师口吻，温和沉静",
+    "text_hash": "337a7774c3a955ec",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "30多岁至40岁轻柔谨慎的女草药医师，嗓音温和清润、带着细致关切的女中音",
     "audio_path": "apothecary_lin/greeting__apothecary_lin.mp3",
-    "audio_hash": "81a0e579c2f7",
-    "updated_at": "2026-09-09T14:30:55.084849+00:00"
+    "audio_hash": "679b84589f67",
+    "updated_at": "2026-09-10T14:18:51.423492+00:00"
   },
   "greeting__archivist_tullo": {
     "text": "这里的每一卷卷轴都浸透着岁月与尘埃。轻拿轻放，凡人，你指尖触碰的是古帝国的兴亡。",
-    "text_hash": "1699257449c14b09",
-    "speaker": "👨 Uncle_Fu - 中文",
-    "instruct": "自然流畅的中世纪魔幻奇幻语气",
+    "text_hash": "010d2dfe4b930c16",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
     "audio_path": "archivist_tullo/greeting__archivist_tullo.mp3",
-    "audio_hash": "fbbfae4e6b71",
-    "updated_at": "2026-09-09T14:31:16.229620+00:00"
+    "audio_hash": "35887d6cf722",
+    "updated_at": "2026-09-10T14:19:08.761027+00:00"
   },
   "greeting__armorer_hode": {
     "text": "熔炉正旺，磨刀石转得飞起！只要是能砍人保命的家伙，我这里应有尽有！",
