@@ -2,6 +2,7 @@
 
 Utilizes Gymnasium AsyncVectorEnv for multi-environment parallel sampling and
 GPU (CUDA) acceleration for policy/value network optimization.
+Supports resume/fine-tuning from existing checkpoints.
 """
 
 from __future__ import annotations
@@ -70,6 +71,7 @@ class ActorCritic(nn.Module):
 def parse_args():
     parser = argparse.ArgumentParser(description="World of ClaudeCraft PPO Training")
     parser.add_argument("--total-timesteps", type=int, default=3_000_000, help="Total environment steps")
+    parser.add_argument("--resume", type=str, default="", help="Path to checkpoint .pth to resume from")
     parser.add_argument("--num-envs", type=int, default=8, help="Number of parallel environments")
     parser.add_argument("--num-steps", type=int, default=256, help="Steps per rollout per env")
     parser.add_argument("--lr", type=float, default=3e-4, help="Learning rate")
@@ -102,6 +104,7 @@ def main():
     print(f"==================================================")
     print(f" World of ClaudeCraft - PPO Training")
     print(f" Target Steps : {args.total_timesteps:,}")
+    print(f" Resume Model : {args.resume if args.resume else 'None (from scratch)'}")
     print(f" Parallel Envs: {args.num_envs}")
     print(f" Device       : {device} ({torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU'})")
     print(f" Class        : {args.player_class}")
@@ -120,6 +123,14 @@ def main():
     agent = ActorCritic(obs_dim, act_dim).to(device)
     optimizer = optim.Adam(agent.parameters(), lr=args.lr, eps=1e-5)
 
+    global_step = 0
+    if args.resume and os.path.exists(args.resume):
+        print(f"Loading checkpoint from: {args.resume}...")
+        ckpt = torch.load(args.resume, map_location=device)
+        agent.load_state_dict(ckpt["model_state_dict"])
+        global_step = ckpt.get("global_step", 0)
+        print(f"Successfully resumed! Starting from step: {global_step:,}\n")
+
     # Storage buffers
     obs_buf = torch.zeros((args.num_steps, args.num_envs, obs_dim), device=device)
     actions_buf = torch.zeros((args.num_steps, args.num_envs), device=device)
@@ -136,16 +147,16 @@ def main():
 
     batch_size = args.num_envs * args.num_steps
     minibatch_size = batch_size // args.num_minibatches
-    num_updates = args.total_timesteps // batch_size
+    remaining_steps = max(0, args.total_timesteps - global_step)
+    num_updates = remaining_steps // batch_size
 
     # Reset environments
     next_obs, _ = envs.reset(seed=args.seed)
     next_obs = torch.as_tensor(next_obs, dtype=torch.float32, device=device)
     next_done = torch.zeros(args.num_envs, device=device)
 
-    global_step = 0
     start_time = time.time()
-    last_save_step = 0
+    last_save_step = global_step
 
     print("Starting training loop...\n")
 
@@ -249,11 +260,11 @@ def main():
 
         # Telemetry logging
         elapsed = time.time() - start_time
-        fps = int(global_step / max(1e-5, elapsed))
+        fps = int((global_step - (global_step - update * batch_size)) / max(1e-5, elapsed))
         if update % 5 == 0 or update == 1 or update == num_updates:
             avg_rew = np.mean(ep_rewards_history) if ep_rewards_history else 0.0
             avg_len = np.mean(ep_lens_history) if ep_lens_history else 0.0
-            progress = (global_step / args.total_timesteps) * 100
+            progress = min(100.0, (global_step / args.total_timesteps) * 100)
             print(
                 f"[{progress:5.1f}%] Step: {global_step:9,}/{args.total_timesteps:,} | "
                 f"FPS: {fps:4d} | "
