@@ -126,7 +126,7 @@ def main():
     global_step = 0
     if args.resume and os.path.exists(args.resume):
         print(f"Loading checkpoint from: {args.resume}...")
-        ckpt = torch.load(args.resume, map_location=device)
+        ckpt = torch.load(args.resume, map_location=device, weights_only=False)
         agent.load_state_dict(ckpt["model_state_dict"])
         global_step = ckpt.get("global_step", 0)
         print(f"Successfully resumed! Starting from step: {global_step:,}\n")
