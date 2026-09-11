@@ -29,24 +29,3 @@ jobs:
           target_sync_branch: main
           target_repo_token: ${{ secrets.GITHUB_TOKEN }}
           test_mode: false
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Sync and translate release notes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          node scripts/sync_releases.mjs
-
-      - name: Commit and push translated release notes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/releases data/releases
-          if ! git diff --staged --quiet; then
-            git commit -m "docs(releases): sync and translate upstream releases [skip ci]"
-            git push origin main
-          fi

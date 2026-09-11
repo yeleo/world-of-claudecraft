@@ -1,9 +1,8 @@
 {
   "id": 344054360,
   "tag": "v0.15.0",
-  "name": "World of ClaudeCraft v0.15.0 版本更新",
-  "summary": "# World of ClaudeCraft（克劳德争霸）  v0.15.0 Release Notes",
-  "body": "版本 v0.15.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） - v0.15.0 Release Notes\n**Release:** v0.15.0\n**Date:** 2026-06-24\n**Previous release:** v0.14.1\nv0.15.0 is a content, delve, rendering, companion API, account polish, admin metrics, and release-stability update with **70 commits** since v0.14.1. The headline is the Delves feature line: deterministic delve runs, lockpicking, reward chests, delve-specific rendering, companions, vendors, maps, docs, and test harnesses. It also ships equipped weapon models in-hand, new weapon icon renders, clickable quest sharing, modifier keybinds, character sorting, one-click vendor junk selling, richer public profile and companion API surfaces, improved admin metrics, wallet/player-card fixes, raid-frame fixes, and full release localization cleanup.\n## Highlights\n- **Delves and lockpicking** add the new delve run loop, collapsed reliquary content, delve board/map UI, Tumbler's Path lockpick minigame, reward coffers, Marks vendor/shop support, delve companions, affixes, mobs, items, interiors, props, collision fixes, and extensive focused coverage.\n- **New content and world polish** adds delve entrance assets, Reliquary Hill labeling, Old Cragmaw loot naming/migration, 奈斯拉西斯（Nythraxis）/Aldric quest coverage, and supporting content docs for the delve system.\n- **Equipped weapon rendering** replaces the fixed class-held weapon with the player's equipped mainhand item, backed by roughly 30 weapon model variants and matching rendered 2D bag icons.\n- **Gameplay UX improvements** add modifier keybind combos, sortable character select, one-click Sell Junk, clickable quest sharing in chat, Growl autocast, full raid frame ordering, aura stack/debuff display, and a stuck performance-graph fix.",
+  "name": "World of ClaudeCraft v0.15.0 版本更新说明",
+  "body": "# World of ClaudeCraft v0.15.0 版本说明\n\n版本 v0.15.0 正式发布，包含游戏早期原型机制迭代、网络同步与界面系统优化。\n\n**发布日期：** 2026-06-24\n**官方链接：** https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.15.0",
   "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.15.0",
   "prerelease": false,
   "publishedAt": "2026-06-24T11:05:22Z"

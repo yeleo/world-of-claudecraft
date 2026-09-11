@@ -1,9 +1,8 @@
 {
   "id": 343808192,
   "tag": "v0.14.1",
-  "name": "World of ClaudeCraft v0.14.1 版本更新",
-  "summary": "# World of ClaudeCraft（克劳德争霸）  v0.14.1 Release Notes",
-  "body": "版本 v0.14.1 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） - v0.14.1 Release Notes\n**Release:** v0.14.1\n**Date:** 2026-06-24\n**Previous release:** v0.14.0\nv0.14.1 is a gameplay-polish, account-security, UI architecture, raid/party, rendering-performance, and release-stability update with **218 commits** since v0.14.0. It adds two-factor account security and email/data-export flows, themeable and more modular UI systems, better inventory/bag tooling, raid lockout visibility, party/raid roster fixes, Travel Form visual feedback, shader prewarming for crowded scenes, and a broad set of release QA fixes for mobile, `play.html`, Zone 1 content, loot, targeting, and deployment packaging.\n## Highlights\n- **Account security upgrades** add two-factor authentication, verified email change, recovery-code styling, and account data export from the home page.\n- **Transactional and marketing email architecture** establishes the app-side foundation for verification, unsubscribe, and future email workflows.\n- **Themeable in-game UI** adds presets and custom palette support, with AA readability fixes across themes.\n- **Inventory and HUD modularization** starts the UI extraction work with modular bag filtering and the Vendor window extraction pattern.",
+  "name": "World of ClaudeCraft v0.14.1 版本更新说明",
+  "body": "# World of ClaudeCraft v0.14.1 版本说明\n\n版本 v0.14.1 正式发布，包含游戏早期原型机制迭代、网络同步与界面系统优化。\n\n**发布日期：** 2026-06-23\n**官方链接：** https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.14.1",
   "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.14.1",
   "prerelease": false,
   "publishedAt": "2026-06-23T23:17:39Z"

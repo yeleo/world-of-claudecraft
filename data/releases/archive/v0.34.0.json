@@ -1,9 +1,8 @@
 {
   "id": 364857492,
   "tag": "v0.34.0",
-  "name": "World of ClaudeCraft v0.34.0 版本更新",
-  "summary": "# World of ClaudeCraft（克劳德争霸） v0.34.0 Release Notes",
-  "body": "版本 v0.34.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.34.0 Release Notes\n**Release:** v0.34.0\n**Date:** 2026-08-05\n**Previous release:** v0.33.1\nVersion 0.34.0 is a big economy and world release: the guild bank arrives, mount reins\nbecome tradable goods alongside a reworked Drakelands and its new Dragonkin brood,\nprofessions gain the tool-effect charm economy and a real fishing-to-cooking loop, and the\ngame grows an official Discord presence. 芬桥镇（Fenbridge） is rebuilt from the ground up, crowds\nrender lighter, rift bosses fight fair, and the whole release ships fully localized across\nall 21 locales (971 commits since v0.33.1).",
+  "name": "World of ClaudeCraft v0.34.0 版本更新说明",
+  "body": "# World of ClaudeCraft v0.34.0 版本说明\n\n版本 v0.34.0 正式发布，包含游戏早期原型机制迭代、网络同步与界面系统优化。\n\n**发布日期：** 2026-08-04\n**官方链接：** https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.34.0",
   "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.34.0",
   "prerelease": false,
   "publishedAt": "2026-08-04T12:33:09Z"

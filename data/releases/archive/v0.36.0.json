@@ -1,9 +1,8 @@
 {
   "id": 368315413,
   "tag": "v0.36.0",
-  "name": "World of ClaudeCraft v0.36.0 版本更新",
-  "summary": "# World of ClaudeCraft（克劳德争霸） v0.36.0 Release Notes",
-  "body": "版本 v0.36.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.36.0 Release Notes\n**Release:** v0.36.0\n**Date:** 2026-08-11\n**Previous release:** v0.35.1\nVersion 0.36.0 is the class overhaul release. The long-running class-overhaul\nintegration branch lands, followed by a numbers-only retune that brings eight specs into\nthe 150 to 200 DPS band at 120 seconds in best-in-slot gear. Around it, PvP records\nlearned to count draws, battleground seats backfill from the queue, the frame-hitch\nelimination campaign and a loading-time pass made the client measurably smoother, and the\nv0.36 artwork overhaul shipped alongside a wave of recorded sound effects. The whole",
+  "name": "World of ClaudeCraft v0.36.0 版本更新说明",
+  "body": "# World of ClaudeCraft v0.36.0 版本说明\n\n版本 v0.36.0 正式发布，包含游戏早期原型机制迭代、网络同步与界面系统优化。\n\n**发布日期：** 2026-08-11\n**官方链接：** https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.36.0",
   "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.36.0",
   "prerelease": false,
   "publishedAt": "2026-08-11T03:29:07Z"

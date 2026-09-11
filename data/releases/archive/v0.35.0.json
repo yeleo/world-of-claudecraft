@@ -1,9 +1,8 @@
 {
   "id": 366702918,
   "tag": "v0.35.0",
-  "name": "World of ClaudeCraft v0.35.0 版本更新",
-  "summary": "# World of ClaudeCraft（克劳德争霸） v0.35.0 Release Notes",
-  "body": "版本 v0.35.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.35.0 Release Notes\n**Release:** v0.35.0\n**Date:** 2026-08-07\n**Previous release:** v0.34.0\nVersion 0.35.0 is the PvP release. Thornhollow Fields opens as a ranked 5v5\ncapture-the-flag battleground with its own honor economy, gear tier, and rank ladder.\nAlongside it, the character creator was rebuilt modular, swimming became a real system\ninstead of a wade animation, professions moved to cast-paced crafting with a player\ncommission board, and pets stopped being second-class citizens. Under the hood the\nanimation pipeline learned to blend pose samples, which unlocked bespoke ability casts for",
+  "name": "World of ClaudeCraft v0.35.0 版本更新说明",
+  "body": "# World of ClaudeCraft v0.35.0 版本说明\n\n版本 v0.35.0 正式发布，包含游戏早期原型机制迭代、网络同步与界面系统优化。\n\n**发布日期：** 2026-08-07\n**官方链接：** https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.35.0",
   "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.35.0",
   "prerelease": false,
   "publishedAt": "2026-08-07T11:27:51Z"

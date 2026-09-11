@@ -1,9 +1,8 @@
 {
   "id": 341403964,
   "tag": "v0.9.1",
-  "name": "World of ClaudeCraft v0.9.1 版本更新",
-  "summary": "# World of ClaudeCraft（克劳德争霸）  v0.9 Release Notes",
-  "body": "版本 v0.9.1 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） - v0.9 Release Notes\n**Release:** v0.9\n**Date:** 2026-06-19\n**Previous release:** v0.8.0\nv0.9 is a systems-and-polish release with **128 commits** since the public v0.8.0\nrelease tag. It lands Inventory/Equipment 2.0 with a classic two-column paperdoll,\na major internationalization architecture overhaul, the 奈斯拉西斯（Nythraxis） attunement\nquestline, party loot strategies, a broad mobile and touch-controls polish pass,\nand a fix to online local-player animation smoothness.\n## Highlights",
+  "name": "World of ClaudeCraft v0.9.1 版本更新说明",
+  "body": "# World of ClaudeCraft v0.9.1 版本说明\n\n版本 v0.9.1 正式发布，包含游戏早期原型机制迭代、网络同步与界面系统优化。\n\n**发布日期：** 2026-06-18\n**官方链接：** https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.9.1",
   "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.9.1",
   "prerelease": false,
   "publishedAt": "2026-06-18T12:58:49Z"

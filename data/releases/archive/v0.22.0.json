@@ -1,9 +1,8 @@
 {
   "id": 349576800,
   "tag": "v0.22.0",
-  "name": "World of ClaudeCraft v0.22.0 版本更新",
-  "summary": "# World of ClaudeCraft（克劳德争霸）  v0.22.0 Release Notes",
-  "body": "版本 v0.22.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） - v0.22.0 Release Notes\n**Release:** v0.22.0\n**Date:** 2026-07-06\n**Previous release:** v0.21.0\nv0.22.0 is a platform, infrastructure, and polish release with **526 commits** since v0.21.0. The headline is the server REST re-architecture: the main, admin, OAuth, internal, wallet, character, Discord, maps, reports, daily rewards, and related surfaces now run through a shared route registry, middleware pipeline, typed schema layer, structured logging, request IDs, stable API error codes, RED metrics, security headers, ownership gates, and parity tests.\nThis release also improves terrain and water rendering, hardens reconnect behavior, adds daily delve reward points, improves character select and mailbox UX, prepares the macOS desktop launcher download for the 0.22.0 deploy, and deliberately removes the unstable mobile HUD/control work from the release branch so it can continue in its own PR.\n## Highlights\n- **REST API re-architecture:** a new RouteDef registry, path-pattern router, onion middleware stack, request context, CORS, body/raw-body handling, error serializers, security headers, ownership loaders, admin guards, internal-secret gates, and exhaustive parity/characterization tests now cover the server API surface (#1491).\n- **Observability and safety:** structured access logs, request IDs, secret redaction, RED Prometheus metrics, drain-aware health checks, rate-limit metrics, auth-failure/BOLA attack-signal counters, and throttled fail-open database limiter logs are in place (#1491).\n- **Stable localized API errors:** migrated server surfaces now emit stable machine-readable error codes with localized client prose fallback across the supported locales (#1491).",
+  "name": "World of ClaudeCraft v0.22.0 版本更新说明",
+  "body": "# World of ClaudeCraft v0.22.0 版本说明\n\n版本 v0.22.0 正式发布，包含游戏早期原型机制迭代、网络同步与界面系统优化。\n\n**发布日期：** 2026-07-06\n**官方链接：** https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.22.0",
   "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.22.0",
   "prerelease": false,
   "publishedAt": "2026-07-06T13:32:33Z"

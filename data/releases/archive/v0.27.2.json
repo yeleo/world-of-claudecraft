@@ -1,9 +1,8 @@
 {
   "id": 356256474,
   "tag": "v0.27.2",
-  "name": "World of ClaudeCraft v0.27.2 版本更新",
-  "summary": "# World of ClaudeCraft（克劳德争霸） v0.27.2 Release Notes",
-  "body": "版本 v0.27.2 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.27.2 Release Notes\n**Release:** v0.27.2\n**Date:** 2026-07-19\n**Previous release:** v0.27.0\nv0.27.2 rolls up everything shipped since v0.27.0: the warrior balance round deployed as the v0.27.1 hotfix (never tagged; documented here), the iOS world-entry crash fix this release is named for, two gameplay fixes, two server snapshot performance improvements, and a renderer dependency revert.\n## What changed\n### iOS world-entry crash fix ([#2138](https://github.com/levy-street/world-of-claudecraft/pull/2138))\nEntering the world on an iPhone at any graphics preset above Low could exceed the WebView memory budget, killing the process and dumping the player back to the start screen in a reload loop with no reachable graphics control. v0.27.2 attacks it on three fronts, all client-side:\n- **A constrained-memory graphics profile** trims the world-entry GPU allocation spike on phone-class browsers (iOS and Android alike): smaller shadow maps (1536 on Medium, 2048 on High and Ultra), composer MSAA off on High and Ultra, a 1.48 pixel-ratio cap on every tier, sky backdrop mip chains disabled (roughly 44MB of estimated GPU memory), and only the initial biome's environment map prefiltered at entry, with the other two deferred to 30 and 40 seconds after scene build.\n- **A watchdog-safe prewarm** on constrained devices: 5 seconds total budget (desktop keeps 12), a 2.5 second shader-compile budget, at most 12 nearby character views built synchronously at entry (the rest stream in during play), and event-loop yields between stages. Desktop budgets, manifest, and ordering are unchanged.",
+  "name": "World of ClaudeCraft v0.27.2 版本更新说明",
+  "body": "# World of ClaudeCraft v0.27.2 版本说明\n\n版本 v0.27.2 正式发布，包含游戏早期原型机制迭代、网络同步与界面系统优化。\n\n**发布日期：** 2026-07-19\n**官方链接：** https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.27.2",
   "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.27.2",
   "prerelease": false,
   "publishedAt": "2026-07-19T04:26:30Z"

@@ -1,9 +1,8 @@
 {
   "id": 362873097,
   "tag": "v0.32.2",
-  "name": "World of ClaudeCraft v0.32.2 版本更新",
-  "summary": "# World of ClaudeCraft（克劳德争霸） v0.32.2 Release Notes",
-  "body": "版本 v0.32.2 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.32.2 Release Notes\n**Release:** v0.32.2\n**Date:** 2026-07-31\n**Previous release:** v0.32.1\nVersion 0.32.2 is the second patch on the 0.32 line, and it is mostly about making rifts fair\nand legible. The v0.32.1 rotation guaranteed one rift per zone per hour whether or not anyone\ncleared the last one; respawn is now gated on the previous rift actually closing, and once you\nare inside, a new HUD tracker finally tells you which floor you are on and how long the\nentrance has left. Around the rift pair, party members appear on the zone and world maps,\nescort ambushes can no longer be cheesed by outrunning them, a same-tick exchange of lethal",
+  "name": "World of ClaudeCraft v0.32.2 版本更新说明",
+  "body": "# World of ClaudeCraft v0.32.2 版本说明\n\n版本 v0.32.2 正式发布，包含游戏早期原型机制迭代、网络同步与界面系统优化。\n\n**发布日期：** 2026-07-31\n**官方链接：** https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.32.2",
   "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.32.2",
   "prerelease": false,
   "publishedAt": "2026-07-31T05:46:08Z"

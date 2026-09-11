@@ -1,9 +1,8 @@
 {
   "id": 363065344,
   "tag": "v0.32.4",
-  "name": "World of ClaudeCraft v0.32.4 版本更新",
-  "summary": "# World of ClaudeCraft（克劳德争霸） v0.32.4 Release Notes",
-  "body": "版本 v0.32.4 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） v0.32.4 Release Notes\n**Release:** v0.32.4\n**Date:** 2026-08-01\n**Previous release:** v0.32.3\nVersion 0.32.4 is an emergency hotfix for the desktop apps. Since v0.32.2 shipped every\nGLB's textures as KTX2 (the iOS world-entry memory fix), the Windows, macOS, and Linux\ndesktop clients froze at the \"Loading world\" screen: the KTX2 transcoder runs inside a\nworker that inherits the desktop shell's Content Security Policy, the transcoder's\ngenerated glue compiled code at startup, the CSP (correctly) refuses that, and every\nmodel load then waited forever with no error shown. The web client was never affected,",
+  "name": "World of ClaudeCraft v0.32.4 版本更新说明",
+  "body": "# World of ClaudeCraft v0.32.4 版本说明\n\n版本 v0.32.4 正式发布，包含游戏早期原型机制迭代、网络同步与界面系统优化。\n\n**发布日期：** 2026-07-31\n**官方链接：** https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.32.4",
   "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.32.4",
   "prerelease": false,
   "publishedAt": "2026-07-31T12:54:19Z"

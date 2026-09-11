@@ -1,9 +1,8 @@
 {
   "id": 349156034,
   "tag": "v0.21.0",
-  "name": "World of ClaudeCraft v0.21.0 版本更新",
-  "summary": "# World of ClaudeCraft（克劳德争霸）  v0.21.0 Release Notes",
-  "body": "版本 v0.21.0 发布，包含游戏底层架构迭代与前期核心系统打磨。\n\n# World of ClaudeCraft（克劳德争霸） - v0.21.0 Release Notes\n**Release:** v0.21.0\n**Date:** 2026-07-06\n**Previous release:** v0.20.0\nv0.21.0 is a systems-and-polish release with **72 commits** since v0.20.0. The headline is the first full gathering/professions pass: gatherable world nodes, per-player node respawns, corpse harvesting, proficiency-scaled material rarity, crafted tool tiers, and a HUD that shows node state and gathering proficiency. This release also makes Thunzharr far harder to kite, adds painted equipment icons, gives admins role-based dashboard permissions and live bot-detector tuning, improves nameplate and corpse picking, adds Meta CAPI tracking, and brings the full release localization gate back to zero pending keys.\n## Highlights\n- **Gathering and professions:** gatherable herb/ore/logging nodes now exist in the world with render props, per-player harvest state, respawn timers, proficiency tracking, rarity rolls, monster-material corpse harvests, and crafted tool tiers (#1175, #1181, #1183, #1190, #1191, #1194).\n- **Gathering HUD:** node interaction now has localized HUD feedback for node state, gathering skill, and proficiency progress (#1194).\n- **Thunzharr tightened up:** the world boss now spawns at realm boot, respawns on a 90-minute cadence, scales visually and mechanically, uses a Howling Gale snare to punish kiting, and has a cleaner raid lockout source of truth (#1427, #1446).\n- **Painted equipment icons:** armor and equipment now join consumables/resources with committed painted item art, with mapping coverage and tests (#1406).",
+  "name": "World of ClaudeCraft v0.21.0 版本更新说明",
+  "body": "# World of ClaudeCraft v0.21.0 版本说明\n\n版本 v0.21.0 正式发布，包含游戏早期原型机制迭代、网络同步与界面系统优化。\n\n**发布日期：** 2026-07-05\n**官方链接：** https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.21.0",
   "url": "https://github.com/levy-street/world-of-claudecraft/releases/tag/v0.21.0",
   "prerelease": false,
   "publishedAt": "2026-07-05T12:10:06Z"
