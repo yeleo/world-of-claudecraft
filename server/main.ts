@@ -1271,7 +1271,7 @@ function loadFallbackReleases(): ReleaseEntry[] {
   try {
     if (fs.existsSync(localFile)) {
       const parsed = JSON.parse(fs.readFileSync(localFile, 'utf8'));
-      if (Array.isArray(parsed)) return parsed;
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
     }
   } catch (e) {
     console.warn('could not load local releases fallback:', e);
@@ -1284,6 +1284,12 @@ async function getReleases(): Promise<ReleaseEntry[]> {
     recordUsageCacheEvent('github.releases', 'hit');
     return releasesCache.entries;
   }
+  const fallback = loadFallbackReleases();
+  if (fallback.length > 0) {
+    releasesCache = { at: Date.now(), entries: fallback };
+    recordUsageCacheEvent('github.releases', 'fallback');
+    return fallback;
+  }
   recordUsageCacheEvent('github.releases', releasesCache ? 'stale' : 'miss');
   try {
     return await refreshReleases();
@@ -1292,7 +1298,7 @@ async function getReleases(): Promise<ReleaseEntry[]> {
     console.error('github releases refresh failed:', err);
     const cached = releasesCache?.entries ?? [];
     if (cached.length > 0) return cached;
-    return loadFallbackReleases();
+    return [];
   }
 }
 

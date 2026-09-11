@@ -26,6 +26,9 @@ if [ "$CURRENT_BRANCH" != "release/china" ]; then
     git checkout release/china
 fi
 
+# 2. 避免本地临时文件变动阻碍 git pull
+git checkout data/releases.json 2>/dev/null || true
+
 # 2. 拉取最新远端代码（智能适配浅克隆与完整克隆）
 echo "📥 正在拉取远端 release/china 最新代码..."
 if [ -f .git/shallow ]; then
