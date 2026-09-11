@@ -220,6 +220,8 @@ jobs:
 
   mac:
     name: Build and publish macOS artifacts
+    # 暂时停止 macOS 打包发布
+    if: false
     needs: verify
     runs-on: macos-latest
     timeout-minutes: 90

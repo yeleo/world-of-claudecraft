@@ -86,21 +86,18 @@ function entryLinks(path: string, platform: string): HTMLAnchorElement[] {
 }
 
 describe('desktop download entry markup', () => {
-  it.each(['index.html', 'play.html'])('%s pins its mac and Windows hrefs', (path) => {
-    for (const platform of ['mac', 'win'] as const) {
+  it.each(['index.html', 'play.html'])('%s pins its Windows and Android hrefs', (path) => {
+    for (const platform of ['win', 'android'] as const) {
       const links = entryLinks(path, platform);
       expect(links).toHaveLength(1);
       expect(links[0]?.getAttribute('href')).toBe(desktopDownloadUrl(platform));
     }
   });
 
-  it('pins the index.html Linux href, and keeps play.html free of one', () => {
-    const links = entryLinks('index.html', 'linux');
+  it.each(['index.html', 'play.html'])('%s pins its Linux href', (path) => {
+    const links = entryLinks(path, 'linux');
     expect(links).toHaveLength(1);
     expect(links[0]?.getAttribute('href')).toBe(desktopDownloadUrl('linux'));
-    // play.html deliberately links only mac and Windows; collectReleaseVersionFailures
-    // exempts pages that never carried an AppImage link.
-    expect(entryLinks('play.html', 'linux')).toHaveLength(0);
   });
 
   it.each(['index.html', 'play.html'])('%s ships an enabled Windows fallback link', (path) => {

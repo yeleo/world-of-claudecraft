@@ -14,6 +14,7 @@ const LINUX_APPIMAGE_RE = /world-of-claudecraft-\d+\.\d+\.\d+-linux-x86_64\.AppI
 // buildUniversalInstaller is false, issue 2013): a per-arch installer, not
 // the old combined "-win.exe" that folded both arches into one download.
 const WINDOWS_INSTALLER_RE = /world-of-claudecraft-\d+\.\d+\.\d+-win-x64\.exe/g;
+const ANDROID_APK_RE = /world-of-claudecraft-\d+\.\d+\.\d+-android\.apk/g;
 // A page migrated before the per-arch cutover (or hand-edited afterward) can
 // still carry the legacy combined-installer filename. Both prepare and check
 // must recognize it so it gets rewritten/flagged instead of silently surviving
@@ -90,18 +91,14 @@ export function setPackageVersion(packageJson, version) {
 }
 
 export function setDesktopDownloadVersion(html, version, path) {
-  if (!MAC_DMG_RE.test(html)) {
-    throw new Error(`${path} is missing a macOS desktop download URL`);
-  }
   MAC_DMG_RE.lastIndex = 0;
   const normalized = normalizeVersion(version);
-  // Optional platform links are rewritten wherever present. The macOS link is
-  // the only download URL every entry page is required to carry.
   return html
     .replace(MAC_DMG_RE, `world-of-claudecraft-${normalized}-mac-universal.dmg`)
     .replace(LINUX_APPIMAGE_RE, `world-of-claudecraft-${normalized}-linux-x86_64.AppImage`)
     .replace(WINDOWS_INSTALLER_RE, `world-of-claudecraft-${normalized}-win-x64.exe`)
-    .replace(LEGACY_WINDOWS_INSTALLER_RE, `world-of-claudecraft-${normalized}-win-x64.exe`);
+    .replace(LEGACY_WINDOWS_INSTALLER_RE, `world-of-claudecraft-${normalized}-win-x64.exe`)
+    .replace(ANDROID_APK_RE, `world-of-claudecraft-${normalized}-android.apk`);
 }
 
 export function setGameVersionText(html, version, path) {
@@ -220,8 +217,9 @@ export function collectReleaseVersionFailures({
     if (gameVersion !== expected) {
       failures.push(`${path} game-version is v${gameVersion}, expected v${expected}`);
     }
-    if (!html.includes(expectedArtifact)) {
-      failures.push(`${path} is missing the macOS desktop download URL for ${expected}`);
+    MAC_DMG_RE.lastIndex = 0;
+    if (MAC_DMG_RE.test(html) && !html.includes(expectedArtifact)) {
+      failures.push(`${path} has a stale macOS desktop download URL, expected ${expected}`);
     }
     // Only pages that carry a Linux link must have it on the release version;
     // play.html links only the dmg and stays exempt.

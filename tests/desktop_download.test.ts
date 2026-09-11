@@ -63,9 +63,9 @@ describe('detectDesktopPlatform', () => {
 });
 
 describe('desktopDownloadUrl', () => {
-  it('builds the mac universal dmg URL', () => {
-    expect(desktopDownloadUrl('mac')).toBe(
-      `https://updates.worldofclaudecraft.com/desktop/world-of-claudecraft-${DESKTOP_VERSION}-mac-universal.dmg`,
+  it('builds the Android APK URL', () => {
+    expect(desktopDownloadUrl('android')).toBe(
+      `https://ghproxy.net/https://github.com/yeleo/world-of-claudecraft/releases/download/v${DESKTOP_VERSION}-cn/world-of-claudecraft-${DESKTOP_VERSION}-android.apk`,
     );
   });
 
@@ -82,6 +82,7 @@ describe('desktopDownloadUrl', () => {
   });
 
   it('returns null for platforms with no published artifact', () => {
+    expect(desktopDownloadUrl('mac')).toBeNull();
     expect(desktopDownloadUrl('other')).toBeNull();
   });
 });

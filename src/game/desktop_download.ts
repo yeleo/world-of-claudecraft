@@ -31,7 +31,7 @@ const MIRROR_PREFIX = 'https://ghproxy.net/';
 // channel's precedent of running Windows-on-ARM visitors under x64 emulation
 // rather than shipping a second download button.
 const ARTIFACT: Partial<Record<DesktopPlatform, string>> = {
-  mac: `world-of-claudecraft-${DESKTOP_VERSION}-mac-universal.dmg`,
+  // mac: 暂时停止发布，待配置证书后重新启用
   win: `world-of-claudecraft-${DESKTOP_VERSION}-win-x64.exe`,
   linux: `world-of-claudecraft-${DESKTOP_VERSION}-linux-x86_64.AppImage`,
   android: `world-of-claudecraft-${DESKTOP_VERSION}-android.apk`,
