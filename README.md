@@ -5,6 +5,8 @@
 **在浏览器中免费畅玩纯手工打造的经典时代 MMO：任务、组队、地下城与团队副本。**  
 **基于官方 [levy-street/world-of-claudecraft](https://github.com/levy-street/world-of-claudecraft) 深度优化定制，全面适配国内网络环境与游玩体验。**
 
+**官方中文网站：[https://worldofclaudecraft.aoruantech.com/](https://worldofclaudecraft.aoruantech.com/)**
+
 [![Branch: release/china](https://img.shields.io/badge/branch-release%2Fchina-orange?logo=git)](https://github.com/yeleo/world-of-claudecraft/tree/release/china)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r185-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
