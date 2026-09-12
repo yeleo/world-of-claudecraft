@@ -16,7 +16,7 @@
 
 [English (Upstream)](https://github.com/levy-street/world-of-claudecraft) · **简体中文 (本分支)** · [繁體中文](docs/i18n/README.zh_TW.md)
 
-[快速开始](#-快速开始) · [特色与国内定制](#-核心特色与国内定制优化) · [生产部署与一键更新](#-生产环境部署与运维) · [分支管理机制](#-分支管理与上游同步机制) · [客户端下载](#-客户端支持)
+[快速开始](#-快速开始) · [特色与国内定制](#-核心特色与国内定制优化) · [分支管理机制](#-分支管理与上游同步机制) · [客户端下载](#-客户端支持)
 
 ![World of ClaudeCraft 游戏画面](docs/screenshots/title-screen.jpg)
 
@@ -64,23 +64,6 @@ npm run dev
 ```
 打开浏览器访问 `http://localhost:5173` 即可立即进入艾泽拉斯般的冒险世界！
 
----
-
-## 🛠️ 生产环境部署与运维
-
-### 1. Docker 容器化一键部署
-项目自带生产级 `Dockerfile` 与容器编排，支持一键在 Linux 服务器上拉起：
-```bash
-# 构建并启动应用与持久化数据库
-docker compose up -d --build
-```
-
-### 2. 生产环境自动化增量更新
-运维部署时，使用根目录下提供的 `update.sh` 脚本可实现无损秒级增量更新：
-```bash
-bash ./update.sh
-```
-`update.sh` 会自动检测生产浅克隆环境、快速拉取 `release/china` 远端增量变更，并平滑重建重启游戏容器。
 
 ---
 
