@@ -18,7 +18,7 @@
 
 [English (Upstream)](https://github.com/levy-street/world-of-claudecraft) · **简体中文 (本分支)** · [繁體中文](docs/i18n/README.zh_TW.md)
 
-[快速开始](#-快速开始) · [特色与国内定制](#-核心特色与国内定制优化) · [分支管理机制](#-分支管理与上游同步机制) · [客户端下载](#-客户端支持)
+[特色与国内定制](#-核心特色与国内定制优化) · [分支管理机制](#-分支管理与上游同步机制) · [客户端下载](#-客户端支持)
 
 ![World of ClaudeCraft 游戏画面](docs/screenshots/title-screen.jpg)
 
@@ -48,23 +48,6 @@
 ### 4. 🎙️ 中文剧情语音（TTS）离线增强
 - 内置针对 NPC 剧情对话、任务引导的中文语音离线生成与缓存体系，为纯代码渲染世界带来沉浸式的中配音画体验。
 
----
-
-## 🚀 快速开始
-
-### 环境依赖
-- [Node.js](https://nodejs.org/) (建议 Node 20+ 或 22 LTS)
-- [PostgreSQL](https://www.postgresql.org/) 16+ (单人本地模式可选开发服内置内存 DB)
-
-### 本地开发运行
-```bash
-# 1. 安装依赖
-npm install
-
-# 2. 启动开发服务器（含单人离线世界与全量汉化资源）
-npm run dev
-```
-打开浏览器访问 `http://localhost:5173` 即可立即进入艾泽拉斯般的冒险世界！
 
 
 ---
@@ -87,13 +70,5 @@ npm run dev
 
 除了现代 Web 浏览器直接即开即玩外，还支持打包为跨平台独立客户端：
 - **Windows (x64 / ARM64)**: 独立桌面客户端
-- **macOS (Apple Silicon / Intel)**: 原生体验
 - **Linux (AppImage / deb)**: 跨发行版支持
 - **Android**: 支持触屏操作布局的移动端客户端
-
----
-
-## 📜 开源协议
-
-本项目继承源仓库开源精神，基于 [MIT License](LICENSE) 协议分发。
-游戏核心逻辑与全部代码资产均遵循开源规范。
