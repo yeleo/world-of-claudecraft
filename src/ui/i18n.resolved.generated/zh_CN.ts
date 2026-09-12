@@ -2960,15 +2960,7 @@ export const zh_CN: EnTranslations = {
         "crownEnduresName": "王冠不朽",
         "crownEnduresSummary": "从开战起 {enrageNormal} 秒后（奥德里克修士在生命值70%时登场的期间计时会暂停），王冠不朽将触发强制狂暴。尼思拉克西斯获得 {damage} 更多伤害和 {haste} 更快的攻击速度，此后每 {rampEveryNormal} 秒再获得 {rampStep} 伤害提升。此机制没有计时条，警告会在剩余 {warn60}、{warn30} 和 {warn10} 秒时以呐喊形式出现。",
         "crownEnduresHeroicSummary": "从开战起 {enrageHeroic} 秒后（奥德里克修士在生命值70%时登场的期间计时会暂停），王冠不朽将触发强制狂暴。尼思拉克西斯获得 {damage} 更多伤害和 {haste} 更快的攻击速度，此后每 {rampEveryHeroic} 秒再获得 {rampStep} 伤害提升。此机制没有计时条，警告会在剩余 {warn60}、{warn30} 和 {warn10} 秒时以呐喊形式出现。",
-        "crownEnduresResponse": "将第一次警告视为最后爆发的信号。为剩余机制保留走位与防御技能，并在狂暴前击败尼思拉克西斯。",
-        "gravefireHeroicSummary": "每 {everyHeroic} 秒，一道幽紫色的墓火线会从尼思拉克西斯延伸向一名队员，每秒延长 {speed} 码，直至 {length} 码。每一码火线都会燃烧 {burnHeroic} 秒，对站在其中的任何人每秒造成 {tickHeroic} 最大生命值的伤害。",
-        "gravefireName": "墓火",
-        "gravefireResponse": "火线袭来时侧身闪避即可：它很窄且从不转向。远程队员应持续走动，而非站在原地。",
-        "gravefireSummary": "每 {everyNormal} 秒，一道幽紫色的墓火线会从尼思拉克西斯延伸向一名队员，每秒延长 {speed} 码，直至 {length} 码。每一码火线都会燃烧 {burnNormal} 秒，对站在其中的任何人每秒造成 {tickNormal} 最大生命值的伤害。",
-        "soulfireHeroicSummary": "每次灵魂撕裂引爆，每一组聚集的标记只会留下一片半径 {radius} 码的紫色火池，燃烧 {secondsHeroic} 秒，每秒造成 {tickHeroic} 最大生命值的伤害。若多个火池重叠，只会承受一次伤害，而非叠加。火池不会在护符石 {clearance} 码范围内形成。",
-        "soulfireName": "魂火",
-        "soulfireResponse": "标记引爆后应立刻离开紫色火池。选择下一个集合点时，务必避开仍在燃烧的火焰。",
-        "soulfireSummary": "每次灵魂撕裂引爆都会在每个标记所在位置留下一片半径 {radius} 码的紫色火池，燃烧 {seconds} 秒，每秒造成 {tickNormal} 最大生命值的伤害。若多个火池重叠，站在其中会承受每个火池各自的伤害。火池不会在护符石 {clearance} 码范围内形成。"
+        "crownEnduresResponse": "将第一次警告视为最后爆发的信号。为剩余机制保留走位与防御技能，并在狂暴前击败尼思拉克西斯。"
       }
     },
     "auraEffect": {
@@ -4207,16 +4199,16 @@ export const zh_CN: EnTranslations = {
       "hobbyLabel": "爱好"
     },
     "archetypePair": {
-      "engineering+alchemy": "Bombardier",
-      "alchemy+cooking": "Apothecary",
-      "cooking+leatherworking": "Trapper",
-      "leatherworking+tailoring": "Outfitter",
-      "tailoring+inscription": "Inkweaver",
-      "inscription+enchanting": "Arcanist",
-      "enchanting+jewelcrafting": "Gembinder",
-      "jewelcrafting+weaponcrafting": "Bladewright",
-      "weaponcrafting+armorcrafting": "Smith",
-      "armorcrafting+engineering": "Gearwright"
+      "engineering+alchemy": "爆破师",
+      "alchemy+cooking": "药剂师",
+      "cooking+leatherworking": "捕兽人",
+      "leatherworking+tailoring": "制装师",
+      "tailoring+inscription": "织墨师",
+      "inscription+enchanting": "秘法师",
+      "enchanting+jewelcrafting": "缚晶师",
+      "jewelcrafting+weaponcrafting": "铸刃师",
+      "weaponcrafting+armorcrafting": "铁匠",
+      "armorcrafting+engineering": "齿轮匠"
     },
     "craftName": {
       "armorcrafting": "护甲锻造",
@@ -4874,9 +4866,7 @@ export const zh_CN: EnTranslations = {
         "kings_wrath": "国王之怒（30%时触发：永久伤害加成，地面机制加快）",
         "bone_storm": "白骨风暴（他无视仇恨，旋转攻击并冲向团队）",
         "crown_endures": "王冠不朽（6:00时触发强制狂暴，英雄难度为5:00）",
-        "deathless_court": "不死王庭（仅英雄难度，不死之怒后王庭众魂会苏醒）",
-        "gravefire": "墓火（需要闪避的移动火线）",
-        "soulfire": "魂火（灵魂撕裂引爆后留下燃烧的火池）"
+        "deathless_court": "不死王庭（仅英雄难度，不死之怒后王庭众魂会苏醒）"
       }
     },
     "cosmetics": {

@@ -1287,7 +1287,7 @@ async function getReleases(): Promise<ReleaseEntry[]> {
   const fallback = loadFallbackReleases();
   if (fallback.length > 0) {
     releasesCache = { at: Date.now(), entries: fallback };
-    recordUsageCacheEvent('github.releases', 'fallback');
+    recordUsageCacheEvent('github.releases', 'store');
     return fallback;
   }
   recordUsageCacheEvent('github.releases', releasesCache ? 'stale' : 'miss');

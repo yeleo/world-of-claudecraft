@@ -1,430 +1,114 @@
 <div align="center">
 
-# World of ClaudeCraft
+# World of ClaudeCraft (中国特供 / 汉化与合规发布版)
 
-**Quest, group up, and raid a hand-built world, free in your browser. Open source, web3, and online right now.**
+**在浏览器中免费畅玩纯手工打造的经典时代 MMO：任务、组队、地下城与团队副本。**  
+**基于官方 [levy-street/world-of-claudecraft](https://github.com/levy-street/world-of-claudecraft) 深度优化定制，全面适配国内网络环境与游玩体验。**
 
-**Official website: https://worldofclaudecraft.com/**
-
-[![CI](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml)
+[![Branch: release/china](https://img.shields.io/badge/branch-release%2Fchina-orange?logo=git)](https://github.com/yeleo/world-of-claudecraft/tree/release/china)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r185-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
 [![Vitest](https://img.shields.io/badge/Vitest-4.1-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![Gymnasium](https://img.shields.io/badge/Gymnasium-RL%20env-0C7BDC)](https://gymnasium.farama.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.42.2-blue)](package.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/worldofclaudecraft)
 
-**English** · [Español](docs/i18n/README.es.md) · [Español (España)](docs/i18n/README.es_ES.md) · [Français](docs/i18n/README.fr_FR.md) · [Français (Canada)](docs/i18n/README.fr_CA.md) · [Italiano](docs/i18n/README.it_IT.md) · [Deutsch](docs/i18n/README.de_DE.md) · [简体中文](docs/i18n/README.zh_CN.md) · [繁體中文](docs/i18n/README.zh_TW.md) · [한국어](docs/i18n/README.ko_KR.md) · [日本語](docs/i18n/README.ja_JP.md) · [Português (Brasil)](docs/i18n/README.pt_BR.md) · [Русский](docs/i18n/README.ru_RU.md) · [Čeština](docs/i18n/README.cs_CZ.md) · [Nederlands](docs/i18n/README.nl_NL.md) · [Polski](docs/i18n/README.pl_PL.md) · [Bahasa Indonesia](docs/i18n/README.id_ID.md) · [Türkçe](docs/i18n/README.tr_TR.md) · [Svenska](docs/i18n/README.sv_SE.md) · [Tiếng Việt](docs/i18n/README.vi_VN.md) · [Dansk](docs/i18n/README.da_DK.md)
+[English (Upstream)](https://github.com/levy-street/world-of-claudecraft) · **简体中文 (本分支)** · [繁體中文](docs/i18n/README.zh_TW.md)
 
-[Play now](https://worldofclaudecraft.com/) · [Host your own world](#host-your-own-world-one-command) · [Train an agent](#train-an-agent-headless-rl) · [Web3](#web3) · [Contributing](CONTRIBUTING.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
+[快速开始](#-快速开始) · [特色与国内定制](#-核心特色与国内定制优化) · [生产部署与一键更新](#-生产环境部署与运维) · [分支管理机制](#-分支管理与上游同步机制) · [客户端下载](#-客户端支持)
 
-![World of ClaudeCraft title screen](docs/screenshots/title-screen.jpg)
+![World of ClaudeCraft 游戏画面](docs/screenshots/title-screen.jpg)
 
 </div>
 
-## What this is
+---
 
-World of ClaudeCraft is a complete classic-era MMO you can play right now in your browser, host yourself with one command, and even train AI agents to play. It is free, open source, and live at [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+## 🌟 核心特色与国内定制优化
 
-One shared world runs in three places, all from the same game core:
+本分支（`release/china`）作为专门面向中文玩家与国内私有化部署的发布版本，在完整保留上游所有战斗机制、副本、专业技能与数值系统的基础上，进行了全方位的深度优化：
 
-- the **authoritative multiplayer server**, the live world you play at worldofclaudecraft.com, where Postgres-backed accounts share one persistent realm,
-- the **offline browser world**, a local single-player Sim you get from the dev server, useful for development and for reading the game core end to end,
-- the **headless RL env**, where Python drives the real game through a Gym interface.
+### 1. 🇨🇳 13,400+ 词条全量精修汉化（100% 词条覆盖）
+- 界面文本、任务剧情、Boss 技能机制、装备掉落、专业配方、成就系统等共计 **13,476** 条词条全面采用魔兽世界经典“信·达·雅”风格精心打磨。
+- 默认语言强制优先设置为**简体中文（`zh_CN`）**，进入游戏即可零门槛畅玩。
+- 补全双专业系统（Professions 2.0）10 个高阶专精衔称（爆破师、药剂师、捕兽人、制装师、织墨师、秘法师、缚晶师、铸刃师、铁匠、齿轮匠）。
 
-Same seed, same world, everywhere. Much of what you see is still drawn from code at runtime, and the rest is a curated asset set that ships with the project, so a fork runs out of the box.
+### 2. ⚡ 国内网络加速与境外依赖脱钩
+- **剔除 Cloudflare Turnstile 验证**：移除海外 Cloudflare 阻断脚本，杜绝国内网络由于无法加载验证脚本导致的白屏、请求挂起或登录失败。
+- **本地字体与脱敏**：停用 Google Fonts 远程字体加载，优化中文字体渲染栈（优先回落至微软雅黑、PingFang SC 等系统原生优质无衬线体），避免外部 CDN 延迟。
+- **分析工具受控**：屏蔽海外 Google Analytics 上报，保护玩家数据隐私。
+- **分发镜像链路加速**：重构桌面客户端及 APK 下载直链，支持国内高速镜像代理，下载告别 404 与限速。
 
-## Highlights
+### 3. 🛡️ 合规与安全增强
+- **聊天安全过滤系统**：内置敏感词过滤引擎，为社区交流与私服生态提供合规保障。
+- **健康游戏忠告**：根据国内游戏发布标准，规范展示健康游戏忠告与未成年人保护指引。
 
-- **Nine classic classes**, each with a full classic-era-style kit that gains ranks as you level, plus a full **talent system** (three specs per class).
-- **An open world with a second act**: the classic climb from Eastbrook Vale through Mirefen Marsh to Thornpeak Heights, the besieged Farshore starter island off the vale's coast, and, through a thinned seal beneath the northern mountains, the Veiled Hollow and the realms beyond it, from the Drakelands dunes to the level-cap frontiers. One connected quest storyline starts with the Gravecaller conspiracy and marches on into the new lands.
-- **Instanced dungeons at every stage of the climb**, from five-player elite runs to a solo crypt, with elite scaling, AoE boss mechanics, class-archetype loot that collects into tier sets, and a **Heroic difficulty tier** with richer rewards, plus open-world **world bosses** and a ten-player raid finale.
-- **Rift portals, the procedural endgame**: ranked portals tear open across the world and lead into seed-generated rift floors, capped by the hand-authored Infernal Citadel set piece, with rare, epic, and **legendary** loot riding on the rank of the clear.
-- **Scalable delves**, a small-group mode for one or two players plus an AI companion, rebuilt from randomized chambers each run across Normal and Heroic tiers.
-- **Rideable mounts** across rarity tiers, from the stablemaster's Valorsteed to heroic-boss reins and a saddle-broken brood raptor, with a show-jumping race course at the stables.
-- **The Reliquary**, a collection journal whose shelves (Conquerors, Professions, Horizons) track the boss trophies, masterwork marks, mounts, skins, and titles you bring home.
-- **Prestige ranks past the level cap**: XP keeps counting at max level and converts into a leaderboard-visible prestige rank.
-- **Ranked PvP** across two arena maps: 1v1 and 2v2 ladders, a livelier 2v2 Fiesta mode, and **Protect Yumi**, a 3v3 and 5v5 objective mode. Ranked play pays Honor, which buys a PvP-only gear set that never out-scales dungeon loot in PvE.
-- **Card Duel**, a quick head-to-head card game hosted in town.
-- **A Book of Deeds**: an achievement journal of cosmetic titles, badge borders, and Renown, with per-zone Chronicles kept by in-world Chronicler NPCs and a lifetime leaderboard.
-- **A deep professions economy**: four gathering trades feed ten crafts, from cooking and alchemy to jewelcrafting, weaponcrafting, and enchanting, with tiered tools, town workstations, masterwork quality, and commissions, all feeding a player-driven **World Market** and the **Ravenpost** mail service.
-- **Real multiplayer**: parties and raids, guilds, trading, duels, tap rights, party-split XP, whispers, away status, and a **Dungeon Finder** with role queues and premade listings.
-- **Authored in code, not in a 3D editor**: terrain, water, weather, town layouts, real-time shadows, and effects are generated at runtime, and the models that do ship are built by procedural factories and a curated asset library rather than hand-sculpted.
-- **Localized into 22 locales** through a deterministic, sim-emits-keys pipeline.
-- **A companion wiki at `/wiki`**, generated straight from live game content so it cannot drift from the world it documents.
-- **Native apps on every platform**: signed desktop installers for Windows, Linux, and macOS with automatic updates and optional Steam achievement mirroring, plus iOS and Android builds, all sharing the browser client and the same online world.
-- **Scales to the machine you have**: graphics presets and an automatic frame-rate governor trade visual richness for smoothness, and are held to a fairness rule that keeps them from ever hiding something a player reacts to.
-- **Headless RL environment** with Gymnasium bindings, reward shaping, and a benchmark mode.
-- **$WOC utility, fully optional**: wallet linking for holder flair, Daily Rewards, the cosmetic WOC Store, and a player-to-player item marketplace (built, ships disabled), all non-custodial; the game never sells power. The details live in [Web3](#web3) below.
+### 4. 🎙️ 中文剧情语音（TTS）离线增强
+- 内置针对 NPC 剧情对话、任务引导的中文语音离线生成与缓存体系，为纯代码渲染世界带来沉浸式的中配音画体验。
 
-## Screenshots
+---
 
-![A mounted guild muster on the road to the Riftfields](docs/screenshots/guild-muster-mounted.jpg)
+## 🚀 快速开始
 
-| | |
-|:---:|:---:|
-| ![Night over a lantern-lit village in Mirefen Marsh](docs/screenshots/mirefen-marsh-night.jpg)<br>*Lantern-light in Mirefen Marsh at night* | ![Spellfire erupts in a torch-lit dungeon hall](docs/screenshots/dungeon-spellfire.jpg)<br>*A dungeon pull goes loud under the green torches* |
-| ![Players crowd together in the snowfall on the live world](docs/screenshots/live-world-crowd.jpg)<br>*A crowded hour on the live world* | ![Riding the Amberfall road under golden trees](docs/screenshots/amberfall-road.jpg)<br>*Every leaf burns gold on the Amberfall road* |
-| ![Rift warnings fill the chat on the night road through the Palmreach](docs/screenshots/palmreach-rift-warnings.jpg)<br>*Rift warnings roll in on the Palmreach road* | ![Rolling into a snowed-in village in the Frostveil Reach](docs/screenshots/frostveil-reach-village.jpg)<br>*Snowbound lamplight in the Frostveil Reach* |
+### 环境依赖
+- [Node.js](https://nodejs.org/) (建议 Node 20+ 或 22 LTS)
+- [PostgreSQL](https://www.postgresql.org/) 16+ (单人本地模式可选开发服内置内存 DB)
 
-Weather is biome-driven and render-only, so it never touches the deterministic sim:
-
-| | | |
-|:---:|:---:|:---:|
-| ![Clear skies over Eastbrook Vale](docs/screenshots/weather-vale_clear.jpg)<br>*Clear over the Vale* | ![Rain over Mirefen Marsh](docs/screenshots/weather-marsh_rain.jpg)<br>*Rain over Mirefen Marsh* | ![Snow on Thornpeak Heights](docs/screenshots/weather-peaks_snow.jpg)<br>*Snow on Thornpeak Heights* |
-
-## Play it
-
-Play in your browser at [worldofclaudecraft.com](https://worldofclaudecraft.com/), or install the native app for Windows, Linux, macOS, iOS, or Android. Every client connects to the same online world.
-
-### Online, with other players
-
-Create an account, create a character, and enter the live world. To run that same client/server stack yourself, see [Host your own world](#host-your-own-world-one-command) below.
-
-### Offline, in the dev server
-
-Offline mode is a local single-player world with no account and no server authority, so it ships in development builds only. Run the dev server and it appears in the mode picker:
-
+### 本地开发运行
 ```bash
-# once per machine (match package.json packageManager; Corepack not required;
-# full install policy: CONTRIBUTING.md)
-npm install -g pnpm@10.34.5
-pnpm install --frozen-lockfile
-pnpm run dev       # then open http://localhost:5173 and choose Play Offline
+# 1. 安装依赖
+npm install
+
+# 2. 启动开发服务器（含单人离线世界与全量汉化资源）
+npm run dev
 ```
+打开浏览器访问 `http://localhost:5173` 即可立即进入艾泽拉斯般的冒险世界！
 
-Name your character, pick any of the nine classes, and you start in **Eastbrook Vale** (levels 1-7), a market town ringed by hubs: wolf runs to the north, boar meadows east, the Sableweb woods west, Mirror Lake northwest, a burrower-ridden copper dig southwest, and a ruined chapel of restless dead northeast, with Gorrak's bandit camp to the southeast. The north road climbs a mountain pass into **Mirefen Marsh** (6-13, hub Fenbridge) and on up to **Thornpeak Heights** (13-20, hub Highwatch). The road no longer ends there: the Ferrywalk sandbar leads east from the vale to **the Farshore**, a besieged island of rift breaks, and past Thornpeak a thinned seal beneath the mountains opens into **the Veiled Hollow** and the realms beyond, out to the level-cap frontiers. The world seed is fixed in `src/sim/world_seed.ts`, so it is the same place every visit.
+---
 
-### Desktop apps for Windows, Linux, and macOS
+## 🛠️ 生产环境部署与运维
 
-World of ClaudeCraft ships as full desktop apps for all three major desktop platforms: signed Windows installers, Linux AppImage and deb packages, and signed and notarized universal macOS builds. They use the same game client and online world as the browser, with native packaging and automatic updates.
-
-Online sign-in is Discord and email only, exactly the web flow: email/password logs in inside the app, and "Continue with Discord" opens your default browser on the `/desktop-login` page, which hands a one-time code back to the app over a `worldofclaudecraft://` deep link that the app exchanges for a normal World of ClaudeCraft session token.
-
+### 1. Docker 容器化一键部署
+项目自带生产级 `Dockerfile` 与容器编排，支持一键在 Linux 服务器上拉起：
 ```bash
-npm run electron:dev          # Vite + Electron dev shell
-npm run electron:pack         # local unpacked desktop app
-npm run electron:build        # website-channel installers (self-updating)
-npm run electron:build:steam  # SteamPipe depot layouts (in-app updater off)
+# 构建并启动应用与持久化数据库
+docker compose up -d --build
 ```
 
-Point the shell at a different API with `VITE_DESKTOP_API_ORIGIN`, for example a local server or a staging host:
-
+### 2. 生产环境自动化增量更新
+运维部署时，使用根目录下提供的 `update.sh` 脚本可实现无损秒级增量更新：
 ```bash
-VITE_DESKTOP_API_ORIGIN=http://127.0.0.1:8787 npm run electron:dev
+bash ./update.sh
 ```
+`update.sh` 会自动检测生产浅克隆环境、快速拉取 `release/china` 远端增量变更，并平滑重建重启游戏容器。
 
-Override the production API origin for staging builds with `VITE_DESKTOP_API_ORIGIN=https://dev.worldofclaudecraft.com` (a BUILD-time value: it is baked into the bundle and stamped into the packaged app, and installed builds ignore it as a runtime env var). Steam is a distribution channel (the same Electron bundle, uploaded via SteamPipe), and desktop players can link a Steam account to mirror the deeds they earn into Steam achievements; sign-in itself stays email and Discord. The full release runbook (signing, notarization, publishing an auto-update, SteamPipe depots, the server deploy) is `docs/desktop-release.md`. iOS and Android ship through Capacitor, with their own runbook in `docs/mobile-store-release.md`.
+---
 
-## Host your own world (one command)
+## 🌿 分支管理与上游同步机制
 
-```bash
-cp .env.example .env
-# edit .env and set a long random POSTGRES_PASSWORD
-docker compose up -d --build     # postgres and the game server, fully built
-# open http://localhost:8787 for accounts, characters, and the whole world
-```
+为了兼顾“紧跟官方最新特性”与“维护国内定制稳定性”，本仓库实行清晰的分支策略：
 
-For **remote hosting**, put the compose stack on any VPS, set a real `POSTGRES_PASSWORD` in the environment, and front port 8787 with a TLS reverse proxy. Caddy makes this a handful of lines; WebSockets are proxied automatically and the client auto-selects `wss://` on https pages. Auth endpoints are rate-limited, passwords are scrypt-hashed, and login sessions expire. Never set `ALLOW_DEV_COMMANDS=1` in production, since it enables the full `/dev` cheat set: the level and teleport cheats the test bots use, plus item grants, mob spawns, instance teleports, and the in-game dev command GUI. [DEPLOY.md](DEPLOY.md) is the full production guide, including the reverse-proxy configuration that keeps the health and metrics endpoints off the public edge.
+| 分支名 | 定位 | 说明 |
+| :--- | :--- | :--- |
+| **`release/china`** | **默认分支** (Default) | 国内发行版主分支。集成完整汉化包、合规优化、国内分发加速。所有生产发布均从此分支打 Tag。 |
+| **`main`** | **上游镜像分支** | 100% 纯净镜像源仓库 `levy-street/world-of-claudecraft:main`。 |
 
-### Develop online with hot reload
+- 仓库配置了定时自动化工作流（`.github/workflows/sync-upstream.yml`），每小时自动同步原作者仓库的最新提交至 `main` 分支。
+- 绝不会直接将上游强制合并至 `release/china`，保证线上环境稳定可靠。
 
-```bash
-# pnpm and dependencies installed as in the Offline section above (policy: CONTRIBUTING.md)
-cp .env.example .env
-# set POSTGRES_PASSWORD and point DATABASE_URL at the same password
-pnpm run db:up       # postgres 16 in docker (port 5433, volume-persisted)
-pnpm run server      # authoritative game server on :8787 (REST + WebSocket)
-pnpm run dev         # client dev server on :5173 (proxies /api, /admin/api, and /ws)
-```
+---
 
-Open http://localhost:5173, choose **Play Online**, create an account, create a character, and Enter World. The character-select screen shows the latest release news in its News & Updates panel, with NEW badges for anything you have not seen. Open a second tab and log in again to see each other in town. `Enter` opens chat. The player wiki is the in-repo Guide, served at http://localhost:5173/wiki and at `/wiki` in production; its content is generated from current game data by `npm run wiki:content`.
+## 📱 客户端支持
 
-What persists and how the server stays in charge:
+除了现代 Web 浏览器直接即开即玩外，还支持打包为跨平台独立客户端：
+- **Windows (x64 / ARM64)**: 独立桌面客户端
+- **macOS (Apple Silicon / Intel)**: 原生体验
+- **Linux (AppImage / deb)**: 跨发行版支持
+- **Android**: 支持触屏操作布局的移动端客户端
 
-- **Accounts**: scrypt-hashed passwords and expiring bearer tokens.
-- **Characters**: up to 10 per account per realm; level, gear, bags, bank vault, quests, talents, professions, PvP and deed progress, position, and money persist as JSONB in Postgres, saved on a timer, on logout, and on server shutdown. Names are unique per realm and classic in style.
-- **The server is authoritative**: clients stream movement intent and commands at 20 Hz; the server runs the one shared `Sim` and returns interest-scoped snapshots plus per-player events. Every combat roll, loot drop, quest credit, and vendor transaction resolves server-side. The client is a renderer.
+---
 
-## Train an agent (headless RL)
+## 📜 开源协议
 
-The same deterministic core runs as a [Gymnasium](https://gymnasium.farama.org/) environment, so an agent learns against the actual game, not a reimplementation of it. The env server (`headless/env_server.ts`) wraps one `Sim` and speaks newline-delimited JSON over stdio; the Python bindings in `python/` launch it as a subprocess and expose the usual `reset` / `step` / `close` loop.
-
-```bash
-npm run build:env    # bundle the env server to dist-env/env_server.cjs
-npm run env          # run it directly (NDJSON on stdio)
-npm run bench        # in-process throughput benchmark (no IPC)
-
-# drive it from Python
-pip install gymnasium numpy
-python python/example_random_agent.py
-```
-
-```python
-from wow_env import WoWClassicEnv
-
-env = WoWClassicEnv(player_class="warrior")   # any of the nine classes
-obs, info = env.reset(seed=42)
-obs, reward, terminated, truncated, info = env.step(env.action_space.sample())
-env.close()
-```
-
-- **Observation and action spaces are content-derived.** Query them from the env's `info` reply at startup rather than hardcoding; they grow with the game. The action space is a `Discrete` covering movement, target, attack, the full ability kit, interact, and eat/drink; the observation is a `Box` covering self, abilities, target, nearby mobs, the nearest interactable, and quest progress.
-- **Reward** is a weighted sum of per-tick counter deltas (XP, damage dealt and taken, kills, deaths, quest progress, level-ups), tunable per reset. Each `step` applies one action and advances five sim ticks by default, so roughly four decisions per simulated second.
-- **Deterministic by construction.** No wall clock, no `Math.random`. Seed the reset and the episode replays exactly.
-
-The protocol and bindings are documented in `headless/CLAUDE.md` and `python/CLAUDE.md`.
-
-## Web3
-
-World of ClaudeCraft is web3-native around **$WOC**, our community token on Solana. Connect a Solana wallet, link it to your account with one signature (non-custodial, no transaction to approve), and your read-only $WOC balance shows up in the HUD alongside a cosmetic holder-tier badge.
-
-$WOC also has optional utility in the live game:
-
-- **WOC Store**: buy Claudium, the one-way cosmetic currency, with fiat, SOL, USDC, or $WOC. The $WOC payment rail is discounted against the others.
-- **Season 1 Armory**: spend Claudium on cosmetic weapon-skin collections. Store purchases do not add stats or combat power.
-- **Daily Rewards**: eligible verified holders can earn points through a daily spin and rotating tasks, then compete for a share of the daily prize pool.
-- **$WOC Marketplace** (built, ships disabled): a player-to-player auction house and direct-trade rail where players sell eligible already-earned items, stat-bearing gear included, to each other for $WOC. Every sale settles in $WOC with a 10% fee: 7% to the treasury, 3% burned. The game itself is not a party to any marketplace sale and never sells power; enabling it on a production realm awaits legal sign-off (`docs/prd/woc/marketplace.md`).
-
-None of this is needed to play. Wallet linking is optional and non-custodial, and the game never sells power: nothing bought from us, in any currency, grants stats, gear, or progression. The marketplace, when it enables, is players trading their own earned items with each other. The whole game plays fine without ever connecting a wallet.
-
-**$WOC contract address (Solana):**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-More on the token at [worldofclaudecraft.com](https://worldofclaudecraft.com/).
-
-## A tour of the world
-
-### The nine classes
-
-Every class runs on classic-era MMO mechanics implemented from first principles, and learns ranked spells across the whole climb to the level cap.
-
-- **Warrior**: a rage engine that turns damage taken and dealt into ever bigger swings, bleeds, and shouts.
-- **Paladin**: a holy knight who brands foes with an oath, then spends it on verdicts, wards, and mending light.
-- **Hunter**: ranged auto-attacks with a classic-style dead zone, snares and traps of the wild, and a tameable pet at your side.
-- **Rogue**: energy and combo points, opened from stealth and cashed in on cold-blooded finishers.
-- **Priest**: psalms and litanies that shield allies, mend wounds, and rot an enemy's mind in equal measure.
-- **Shaman**: elemental jolts, mending waters, and weapon imbues that spark on every swing.
-- **Mage**: fire, frost, and arcane answers for every pull, a summoned elemental, and Chronomancy, a time-magic healing spec.
-- **Warlock**: dark pacts and creeping rot, a stable of summonable demons, and a necromancy line that raises graveguard, skeletal warriors, bone mages, and gravewings from the ossuary-marked dead.
-- **Druid**: nature's caster, shapeshifting between wolf, bruin, and moonwing forms as the fight demands.
-
-Heals and buffs land on party members, healing can crit, and absorb shields soak damage before health. Spend points across **three talent specs per class**; allocation is server-validated and exportable as a build string. Every spellbook, rank, and talent tree is listed in the [wiki](https://worldofclaudecraft.com/wiki).
-
-### Dungeons
-
-The Gravecaller storyline runs through five-player elite instances at every stage of the climb, a solo crypt sits off to the side for explorers, and the endgame keeps going past the authored set into procedural rift floors.
-
-- **The Hollow Crypt** (5 players), beneath the Fallen Chapel: the crypt door teleports your party into a private instance copy on the trail of Morthen the Gravecaller.
-- **The Sunken Bastion** (5 players), southeast Mirefen: a drowned fort where Vael the Fogbinder raises the fallen against you.
-- **Gravewyrm Sanctum** (5 players), beneath Thornpeak: the necromantic heart of the conspiracy, where epic weapons drop.
-- **The Drowned Temple** (5 players), through the Glimmermere moongate: a pale, moon-violet shrine to the Drowned Moon.
-- **The Wildheart Basin** (5 players), hidden behind the Sunken Idol in Palmreach: an open-field hunt through a basin whose cult answers its high priest as one.
-- **The Abandoned Crypt** (solo), in Thornpeak: a quiet keystone-and-diary dive whose trail unseals the royal door to **Nythraxis, Scourge of Thornpeak**, a ten-player raid finale.
-- **The Last Keep**, out in the Drakelands: a cold, silent memorial keep with no fight in it at all, only a keepsake waiting for whoever walks its halls.
-
-The elite instances and the raid also run on **Heroic**: higher-level enemies, sharper mechanics, and their own loot and vendor currency. Past the authored set, ranked **rift portals** tear open onto seed-generated floors capped by the hand-authored Infernal Citadel, with rare, epic, and legendary loot riding on the rank of the clear. The lead-up quest chains are soloable, so the story is never gated behind finding a group. Boss-by-boss mechanics, loot tables, and the rest of the depth live in the [wiki](https://worldofclaudecraft.com/wiki). Our automated five-bot raid (warrior, paladin, priest, mage, hunter with focus-fire and healer AI) clears the Hollow Crypt in about five minutes (`node scripts/crypt_raid.mjs`, needs `ALLOW_DEV_COMMANDS=1`).
-
-### Delves
-
-Delves are a separate, scalable small-group mode for one or two players, rebuilt from randomized chambers on every run and ending on a locked reliquary chest that opens through a lockpicking minigame rather than a loot roll. **The Collapsed Reliquary** (level 7 and up) ends at Deacon Vandric, with an AI companion, Tessa, fighting at your side if you go alone. **The Drowned Litany** (level 12 and up) follows the trail into a flooded shrine at the edge of Mirefen Marsh. A delve board sets the tier: Heroic raises enemy levels and adds a random affix for richer rewards.
-
-### Ranked PvP (the Ashen Coliseum)
-
-Press `G` or the arena button to queue. Matchmaking teleports fighters into a private pit, a short countdown heals and resets everyone for a fair start, and the bout ends when a side yields. Nobody dies, and you return exactly where you queued. Protect Yumi is fought in its own maze rather than the Coliseum pit.
-
-- **1v1 and 2v2 ranked ladders**, each with a persistent Elo-style rating and an all-time leaderboard.
-- **2v2 Fiesta**, a livelier party mode where teams race to a takedown target while augment pickups drop power and a closing ring forces the fight together.
-- **Protect Yumi**, an unrated 3v3 and 5v5 objective mode fought in a maze: each team guards a cat familiar while trying to bring the other side's down, so escorts and picks matter more than raw kills.
-
-Ranked wins and Fiesta takedowns pay **Honor**, which the quartermaster in town trades for a set of Warfare gear. Warfare is a PvP-only stat, so the set wins duels without ever out-gearing same-tier dungeon loot in PvE.
-
-### Thornhollow Fields (5v5 capture the flag)
-
-Press `G` to open the PvP window (Thornhollow Fields is its primary tab, beside the 1v1 and 2v2 arena brackets) and Enter the Queue, solo or with a party of up to five (parties stay together; solos fill the rest). Two teams of five fight over a walled, open-air field with a keep at each end: steal the enemy banner with a deliberate press of the battleground action key and run it to your own stand. First to 3 captures wins inside a 12-minute cap.
-
-- **Team wave respawns** (no graveyard run): each team's fallen rise together on a staggered wave clock at their keep, briefly spawn-protected until they act.
-- **Anti-turtle carrier fatigue**: hold the enemy flag too long and you take ever-increasing damage until it is captured, dropped, or returned. The flag also refuses to hide: grabbing it breaks stealth, and a carrier who turns invisible drops it on the spot.
-- **Three chambers, contested crossings**: two full-width curtain walls carve the field into each team's own field chamber and the walled Ruin Courtyard between them; every move between chambers passes the wide main gate or the gatehouse room with its offset doors. Each keep is sealed except its mouth, a low barricade breaks the straight charge into it, and **Sprint Runes** wait at the flag approaches and flanks. The whole map is point-symmetric, so neither team is favored.
-- A persistent per-character **battleground rating** (Elo over team averages, base 1500) with an all-time leaderboard (`GET /api/battleground/leaderboard`), and Honor for played-out wins and losses.
-
-### Playing together
-
-- **Dungeon Finder**: open it with `Shift+I` to browse dungeons and raids, inspect bosses and loot, join an automatic tank/healer/DPS role queue, or create a premade listing. Finder-made groups still travel to the entrance together.
-- **Parties** up to 5, converted into a 10-player raid of two groups once you are full: right-click a player and Invite to Party. Members share tap rights and quest credit, split XP with the classic-era group bonuses, and show up as blips on the minimap. `/p` for party chat, `/roll` to settle loot.
-- **Trading**: right-click and Trade. Both sides stage items and money, both must accept, and the swap is atomic and server-validated. Quest items cannot be traded, and walking apart cancels.
-- **Duels**: right-click and Challenge to a Duel. A 3-second countdown, then fight until one side hits 1 hp; the winner is announced zone-wide and running 60 yards away forfeits.
-- **Tap rights and away status**: the first player to damage a mob owns its loot, XP, and quest credit; `/afk` and `/dnd` mark you away with an auto-reply to whispers.
-
-### World and systems
-
-- **Professions** (`Shift+P`): four gathering trades (mining, logging, herbalism, fishing) feed ten crafts, from cooking and alchemy to weaponcrafting, jewelcrafting, and enchanting. Gathering tools come in tiers that decide which nodes you can work, crafting runs at town workstations with a chance at masterwork quality that carries your maker's mark, and there is an archetype system to discover as you specialize.
-- **The World Market**: a player-driven auction house for gear, materials, and consumables, browsable from the hub towns.
-- **Ravenpost mail**: send items and coin to other characters, with attachments held safely until claimed.
-- **Guilds**: charters, rosters, ranks, and guild chat.
-- **The Guide**: a searchable in-site wiki at `/wiki` covering classes, creatures, zones, and deeds, generated straight from live game content so it cannot drift from the world it documents.
-- **Card Duel**: a quick head-to-head card game hosted by the Card Master in town.
-- **Eating and drinking**: sit to restore, broken by damage or standing, and yes, you can eat and drink at once.
-- **Vendors** that buy food and water and sell honest white gear, with coin shown in gold, silver, and copper.
-- **A personal bank** (the Gilded Strongbox): bursars in each hub town keep a vault per character, from 24 slots up to 96 with coin-bought expansions, plus bonus slots earned online for a verified email, linked accounts, and referrals.
-- **The Book of Deeds**: an achievement journal (default `Shift+Z`) of quests, kills, clears, and delights, paying out cosmetic titles you can wear on your nameplate, in chat, and on the boards, plus a HUD tracker for the deeds you are chasing, per-zone Chronicles kept by Chronicler NPCs, and a lifetime Renown leaderboard; the public list lives at `/wiki/deeds`.
-- **Mob AI**: wander, proximity aggro by level difference, social pulls, chase, leash and reset, corpse loot, and respawns, with a rare spawn (Old Greyjaw) on a long timer.
-- **Fishing** spots with their own loot tables and rare catches.
-- **Cosmetic skins** rolled at uncommon, rare, and epic rarity, purely for looks.
-- **Death and recovery**: release your spirit to the graveyard, take falling damage, and slow down while swimming.
-- **Biome weather**: clear in the Vale, rain in the Marsh, snow on the Peaks, cross-fading as you move between zones.
-
-### Controls (classic layout)
-
-| Input | Action |
-|---|---|
-| `W` / `S` | run / backpedal. `A`/`D` turn (strafe with right mouse held), `Q`/`E` strafe |
-| right-drag / left-drag | mouselook / orbit camera. Wheel zooms, `Space` jumps |
-| `Tab` / `Shift+Tab` | cycle nearest enemies forward / backward. left-click to target, right-click to attack, loot, or talk |
-| `1`-`9`, `0`, `-`, `=` | action bar |
-| `F` | interact (loot a corpse, pick up an object, talk) |
-| `C` `P` `L` `M` `B` `N` `T` | character, spellbook, quest log, world map, bags, talents, crafting |
-| `G` `O` `K` `I` `Shift+I` `Shift+P` `Shift+Z` `Shift+X` | arena, friends and guild, leaderboard, calendar, Dungeon Finder, professions, deeds, the Reliquary |
-| `Z` / `X` / `` ` `` | sheath or draw your weapons, emote wheel, mount or dismount |
-| `V` / `R` / `Esc` | nameplates, autorun, close the top window (or open the game menu) |
-
-Every binding is remappable in the keybinds panel, and mouse buttons bind like keys: press the middle button (M3) or a thumb button (M4, M5) while binding. Left and right stay reserved for the camera, click to move, and clicking things in the world. Touch controls (a movement stick, camera drag, and on-screen action buttons) come up automatically on mobile.
-
-## Architecture (one sim, three hosts)
-
-Three ideas hold the project together:
-
-- **One sim, three hosts.** The same `src/sim/` code runs the offline browser world, the online server, and the RL env. Behavior must be identical everywhere, and the tests exist to keep it that way.
-- **`IWorld` is the only seam.** `IWorld` is defined as per-domain facet interfaces under `src/world_api/`, aggregated by `src/world_api.ts`. The offline `Sim` satisfies it structurally and the online `ClientWorld` implements it by mirroring server snapshots. The renderer and HUD talk only to `IWorld`, never to a concrete world, so a new feature extends the matching facet first and then both worlds.
-- **The server is authoritative.** Clients send intent; the server decides outcomes. The client never resolves combat, loot, or economy on its own.
-
-The sim is a fixed 20 Hz tick (`DT = 1/20`), all randomness flows through one seeded `Rng`, and `src/sim/` carries zero DOM, browser, or Three.js imports. That is what lets the same code bundle into a Node env server, an authoritative game loop, and a browser tab without changing a line.
-
-### Project layout
-
-| Path | What it is |
-|---|---|
-| `src/sim/` | Deterministic game core, the source of truth. No DOM or Three dependencies. |
-| `src/sim/content/` | Data as code: the nine classes, abilities, zones, dungeons, delves, items, recipes, enchants, talents, professions, deeds. |
-| `src/world_api.ts` + `src/world_api/` | `IWorld`, the seam the renderer and HUD depend on: one facet interface per domain. |
-| `src/` (rest) | Three.js renderer, HUD + styles, input/audio, online mirror, and the admin, guide, and editor SPAs. |
-| `server/` | Authoritative server: HTTP and WS, world loop, Postgres, auth, social, moderation. |
-| `server/http/` | The REST request pipeline: table router, middleware, and per-domain route definitions. |
-| `headless/` + `python/` | RL env server (`env_server.ts`) and Python Gym bindings. |
-| `bot/` | Discord bot (roles, relay, activity feed). |
-| `electron/`, `android/`, `ios/` | Desktop (Steam) and native mobile shells. |
-| `tests/` | Vitest suite. |
-| `scripts/` | Build, asset, i18n, SFX, screenshot, and browser E2E tooling. |
-| `deploy/` · `mediawiki/` | Production first-boot assets and the player-wiki container. |
-| `public/` · `docs/` | Static assets (deployed verbatim to the site) and design docs. |
-
-None of this is honour-system: `tests/architecture.test.ts` scans every sim file for a
-forbidden import, a DOM global, or a stray clock or `Math.random` call, and
-`tests/world_api_parity.test.ts` pins the seam so the two worlds cannot drift.
-
-Most directories carry their own `CLAUDE.md` with local conventions, and the full set of
-project invariants lives in the root [`CLAUDE.md`](CLAUDE.md). Agent contributors start
-there, then pick up their runtime's entry point: [`AGENTS.md`](AGENTS.md) plus the
-[Codex operator guide](docs/codex.md) for Codex, [`GEMINI.md`](GEMINI.md) for Gemini. All
-of them route into the same canonical architecture.
-
-## Built like the classics
-
-Combat, leveling, and threat all run on authentic classic-era rules: rage and energy, hit and dodge tables, armor mitigation, the real XP curve, swing timers, and the global cooldown. It feels the way you remember rather than approximating it. The exact numbers live in `src/sim/` if you want to read them.
-
-The world is authored in code rather than in a 3D editor, which is what keeps it small,
-deterministic, and easy to fork:
-
-- Terrain, water, weather, sky, town layouts, real-time shadows, and combat effects are generated at runtime from the sim's own data.
-- The models that do ship are built the same way: procedural factories under `scripts/assets/` export deterministic GLBs through the project's image-to-GLB pipeline, alongside a curated library of CC0 model kits. Rigged creature and character families carry full walk, attack, cast, sit, and death animations.
-- Icons are a layered painter that composes art for anything without a shipped file, so nothing is ever missing an icon, with curated painted art layered on top for abilities, items, and deeds.
-- A complete classic HUD (unit frames, action bars, tooltips, quest log, world map, minimap, floating combat text, the Book of Deeds), sampled spatial and interface sound effects, and a soundtrack composed procedurally in the repo and shipped as streamed remasters that crossfade between zones, towns, dungeons, and combat.
-
-Every shipped asset and its license is recorded in [CREDITS.md](CREDITS.md), and bundled
-third-party dependencies carry their notices in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-
-## Development
-
-Besides the game client, the build produces the operator dashboard, the world editor at
-`/editor`, and the public Guide at `/wiki`, all served from the same dev server.
-
-Every FFmpeg path the gate and the audio tests exercise resolves the bundled
-`ffmpeg-static`/`ffprobe-static` npm packages, so a normal contribution needs no system
-FFmpeg install. The conformance-measuring paths (`npm run sfx:check`, the audio tests, the
-Studio's export validation) bind to the static binaries directly, with no `PATH` fallback:
-rerun `pnpm install --frozen-lockfile` if a scripts-skipped install left them missing. The Studio's playback and
-encode spawns and the `npm run gate` preflight resolve via `scripts/sfx/ffmpeg_paths.mjs`,
-which does fall back to `PATH`. Some standalone audio generator scripts (for example
-`scripts/gen_ui_sfx.mjs`) still default to `PATH` `ffmpeg`.
-
-```bash
-npm test                        # vitest: formulas, combat, AI, quests, all 9 classes, parties, duels, trades, dungeons
-node scripts/gate_select.mjs    # the selective pre-merge gate (the merge bar, per docs/qa-gate.md)
-npm run gate                    # complete CI-equivalent contribution gate (the deeper check)
-npm run build                   # production web build
-npm run sfx:studio              # local SFX authoring, runtime mix, and production export
-node scripts/smoke_browser.mjs  # warrior end-to-end (needs npm run dev)
-node scripts/smoke_mage.mjs     # mage: casting, polymorph, conjure and drink, death and release
-node scripts/visual_tour.mjs    # screenshot tour of the zone and UI into tmp/
-node scripts/tour_temple.mjs    # screenshot tour of the Glimmermere and Drowned Temple into tmp/
-node scripts/mp_integration.mjs # API, WS, and persistence checks (server running)
-node scripts/social_e2e.mjs     # trade and duel over the wire (ALLOW_DEV_COMMANDS=1)
-node scripts/arena_visual.mjs   # two clients queue and fight a ranked 1v1
-node scripts/squad_visual.mjs   # several clients queue and play Thornhollow Fields 5v5 CTF (ALLOW_DEV_COMMANDS=1)
-node scripts/crypt_raid.mjs     # five bots clear the Hollow Crypt (ALLOW_DEV_COMMANDS=1)
-```
-
-Logic and unit tests use Vitest. While iterating, run a single file: `npx vitest run tests/sim.test.ts`. Interface changes also have an opt-in real-browser suite covering accessibility, keyboard navigation, and touch targets: `npm run test:browser`. The screenshot and smoke scripts drive real browsers via `puppeteer-core` and need `npm run dev` running; the wire-level scripts (`mp_integration.mjs`, `social_e2e.mjs`, `crypt_raid.mjs`) talk to the server directly and need `npm run server` instead. Browser agents can drive movement through `window.__game.controller` instead of simulating held keys, for example `controller.move({ forward: true }, facingRadians)` or compact flags like `{ f: 1, sr: 1 }`.
-
-Checks run in layers, described in [docs/qa-gate.md](docs/qa-gate.md): point your clone at
-the shared hooks with `git config core.hooksPath .githooks` and a fast floor runs before
-anything leaves your machine.
-
-For the server commands see [Develop online](#develop-online-with-hot-reload) above,
-[CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow, the
-[SFX Studio tutorial](docs/sfx-studio-tutorial.md) for sound authoring and
-artifact export, [DEPLOY.md](DEPLOY.md) for production, and
-[CREDITS.md](CREDITS.md) for asset licenses.
-
-## Localization
-
-Every player-visible string resolves through `t()`, and the game ships in **22 locales** (English, two Spanish, two French, English Canada, Italian, German, Simplified and Traditional Chinese, Korean, Japanese, Brazilian Portuguese, Russian, Czech, Dutch, Polish, Indonesian, Turkish, Swedish, Vietnamese, and Danish). The sim and server stay language-agnostic: they emit stable keys or English that the client re-localizes at the boundary, which keeps determinism intact. Contributors add English only; the maintainer batch-fills the other locales before each release. The workflow is documented in `docs/i18n-scaling/translation-workflow.md`.
-
-## Contributing
-
-Contributions of every kind are welcome: code, translations, bug reports, and documentation. Start with [CONTRIBUTING.md](CONTRIBUTING.md) for setup, read the [Code of Conduct](CODE_OF_CONDUCT.md), and check [SECURITY.md](SECURITY.md) before reporting a vulnerability. New here? Look for issues labeled [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue), open an [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose), or say hello on [Discord](https://discord.com/invite/worldofclaudecraft).
-
-Active development runs on the newest `release/vX.Y.Z` branch. Look it up rather than assuming, then branch from it and target it with your pull request. Never branch from or target `main`, which only receives a release branch once that version ships. [CONTRIBUTING.md](CONTRIBUTING.md) has the one-line command that finds the current one.
-
-## License
-
-**The code is [MIT licensed](LICENSE), so fork it, remix it, and host your own world.** That is the whole point, and nothing else on this page or on our website takes it back.
-
-Three things are licensed separately, so it is worth thirty seconds to know which is which:
-
-| What | License | Can you redistribute it? |
-|---|---|---|
-| **Source code**, meaning all of it except the media assets carved out below | [MIT](LICENSE) | Yes. Commercially too. |
-| **Media assets**: models, textures, HDRIs, icons, sounds, fonts (mostly under `public/`) | Per asset, recorded in [CREDITS.md](CREDITS.md) | Mostly yes (most are CC0). Some are not, see below. |
-| **Name and branding**: "World of ClaudeCraft", "Levy Street", the logos | Not licensed | No. |
-
-**Fork it and host your own world. That works, and the assets are not in your way.** Most of what you see is CC0 public domain (KayKit, Quaternius, Kenney, ambientCG, Poly Haven), and our own generated props, creatures, backdrops and interface sounds ship with the project so a fork runs out of the box. You just can't lift those out and sell them as standalone art.
-
-What you would need to remove or replace before redistributing:
-
-- the **CraftPix class ability icons** under `public/ui/skills/` were purchased by Levy Street and **may not be redistributed**, so buy your own licence if you want to ship them;
-- the **@jamiecypher sound effects** are CC BY-NC 4.0, so share them non-commercially with credit, but the commercial grant runs to this project only;
-- the **store and prestige art** (Season 1 Armory, the Claudium set, the professions art set, Book of Deeds icons, the elite dragon emblem) is commissioned commercial art and **rights are reserved**;
-- the **third-party brand marks** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) are trademarks of their owners and are not ours to license on;
-- a handful of **icons and recordings used with permission** need permission to pass on.
-
-[CREDITS.md](CREDITS.md) is the authoritative list, with a redistribution column per asset. Where an asset is listed there, that license controls over the project's MIT license. That register is still being completed, so a media asset missing from it is unrecorded rather than free: ask before relying on it. Source code is the other way around, and everything not carved out is MIT.
-
-Our [Terms of Service](https://worldofclaudecraft.com/terms) cover the hosted game that we run at worldofclaudecraft.com: accounts, conduct, virtual items. They do not restrict the rights the MIT License gives you in this source code.
+本项目继承源仓库开源精神，基于 [MIT License](LICENSE) 协议分发。
+游戏核心逻辑与全部代码资产均遵循开源规范。

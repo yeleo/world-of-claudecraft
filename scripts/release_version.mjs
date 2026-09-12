@@ -79,6 +79,11 @@ export function inferExpectedReleaseVersion({ argv = [], env = process.env } = {
     versionFromRef(env.GITHUB_REF);
   if (fromEnv) return fromEnv;
 
+  try {
+    const pkg = parseJson(readFileSync(resolve(ROOT, 'package.json'), 'utf8'), 'package.json');
+    if (pkg.version && VERSION_RE.test(pkg.version)) return pkg.version;
+  } catch {}
+
   throw new Error(
     'Could not infer release version. Run from release/vX.Y.Z or pass --version X.Y.Z.',
   );
@@ -97,7 +102,9 @@ export function setDesktopDownloadVersion(html, version, path) {
     .replace(MAC_DMG_RE, `world-of-claudecraft-${normalized}-mac-universal.dmg`)
     .replace(LINUX_APPIMAGE_RE, `world-of-claudecraft-${normalized}-linux-x86_64.AppImage`)
     .replace(WINDOWS_INSTALLER_RE, `world-of-claudecraft-${normalized}-win-x64.exe`)
+    .replace(ANDROID_APK_RE, `world-of-claudecraft-${normalized}-android.apk`)
     .replace(LEGACY_WINDOWS_INSTALLER_RE, `world-of-claudecraft-${normalized}-win-x64.exe`)
+    .replace(/\/download\/v\d+\.\d+\.\d+(?:-cn)?\//g, `/download/v${normalized}-cn/`)
     .replace(ANDROID_APK_RE, `world-of-claudecraft-${normalized}-android.apk`);
 }
 

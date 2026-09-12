@@ -63,7 +63,7 @@ export interface GpuNoticeState {
  * direction); the caller (src/game/software_render_notice.ts) computes it
  * with that module's detectDesktopPlatform and passes the value in.
  */
-export type DesktopPlatform = 'mac' | 'win' | 'linux' | 'other';
+export type DesktopPlatform = 'mac' | 'win' | 'linux' | 'android' | 'other';
 
 export type GpuNoticeBodyKey =
   | 'gpuNotice.bodyDesktop'

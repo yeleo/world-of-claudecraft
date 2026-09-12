@@ -51,7 +51,7 @@ describe('detectDesktopPlatform', () => {
   });
 
   it('does not treat Android as a Linux desktop', () => {
-    expect(detectDesktopPlatform(UA.android)).toBe('other');
+    expect(detectDesktopPlatform(UA.android)).toBe('android');
   });
 
   it('maps iOS (reports "Mac") to mac, and unknowns to other', () => {
@@ -71,13 +71,13 @@ describe('desktopDownloadUrl', () => {
 
   it('builds the Linux x86_64 AppImage URL (electron-builder x64 arch token)', () => {
     expect(desktopDownloadUrl('linux')).toBe(
-      `https://updates.worldofclaudecraft.com/desktop/world-of-claudecraft-${DESKTOP_VERSION}-linux-x86_64.AppImage`,
+      `https://ghproxy.net/https://github.com/yeleo/world-of-claudecraft/releases/download/v${DESKTOP_VERSION}-cn/world-of-claudecraft-${DESKTOP_VERSION}-linux-x86_64.AppImage`,
     );
   });
 
   it('builds the x64 Windows NSIS installer URL (issue 2013: per-arch installers)', () => {
     expect(desktopDownloadUrl('win')).toBe(
-      `https://updates.worldofclaudecraft.com/desktop/world-of-claudecraft-${DESKTOP_VERSION}-win-x64.exe`,
+      `https://ghproxy.net/https://github.com/yeleo/world-of-claudecraft/releases/download/v${DESKTOP_VERSION}-cn/world-of-claudecraft-${DESKTOP_VERSION}-win-x64.exe`,
     );
   });
 

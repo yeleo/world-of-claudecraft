@@ -28,18 +28,7 @@ export const pending: Record<string, readonly string[]> = {
   "de_DE": [
     "download.androidCta"
   ],
-  "zh_CN": [
-    "hudChrome.archetypePair.alchemy+cooking",
-    "hudChrome.archetypePair.armorcrafting+engineering",
-    "hudChrome.archetypePair.cooking+leatherworking",
-    "hudChrome.archetypePair.enchanting+jewelcrafting",
-    "hudChrome.archetypePair.engineering+alchemy",
-    "hudChrome.archetypePair.inscription+enchanting",
-    "hudChrome.archetypePair.jewelcrafting+weaponcrafting",
-    "hudChrome.archetypePair.leatherworking+tailoring",
-    "hudChrome.archetypePair.tailoring+inscription",
-    "hudChrome.archetypePair.weaponcrafting+armorcrafting"
-  ],
+  "zh_CN": [],
   "zh_TW": [],
   "ko_KR": [
     "download.androidCta"
