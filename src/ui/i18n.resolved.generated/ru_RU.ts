@@ -8260,7 +8260,7 @@ export const ru_RU: EnTranslations = {
     "desc": "Загрузите отдельный клиент для оптимальной производительности и игры на весь экран.",
     "macCta": "Скачать для macOS",
     "windowsCta": "Скачать для Windows",
-    "androidCta": "Download for Android (APK)",
+    "androidCta": "Скачать для Android (APK)",
     "linuxCta": "Скачать для Linux",
     "linuxHint": "Формат AppImage: сделайте файл исполняемым и запустите его, установка не требуется.",
     "windowsPending": "Сборка для Windows готовится."

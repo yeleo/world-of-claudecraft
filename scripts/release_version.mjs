@@ -79,10 +79,15 @@ export function inferExpectedReleaseVersion({ argv = [], env = process.env } = {
     versionFromRef(env.GITHUB_REF);
   if (fromEnv) return fromEnv;
 
-  try {
-    const pkg = parseJson(readFileSync(resolve(ROOT, 'package.json'), 'utf8'), 'package.json');
-    if (pkg.version && VERSION_RE.test(pkg.version)) return pkg.version;
-  } catch {}
+  const rawRef = env.GITHUB_HEAD_REF || env.GITHUB_REF_NAME || env.GITHUB_REF;
+  if (!rawRef || rawRef === 'release/china' || rawRef === 'refs/heads/release/china') {
+    if (rawRef === 'release/china' || rawRef === 'refs/heads/release/china' || (!rawRef && process.env.NODE_ENV !== 'test')) {
+      try {
+        const pkg = parseJson(readFileSync(resolve(ROOT, 'package.json'), 'utf8'), 'package.json');
+        if (pkg.version && VERSION_RE.test(pkg.version)) return pkg.version;
+      } catch {}
+    }
+  }
 
   throw new Error(
     'Could not infer release version. Run from release/vX.Y.Z or pass --version X.Y.Z.',

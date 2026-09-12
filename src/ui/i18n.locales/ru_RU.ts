@@ -1995,6 +1995,7 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
     'Формат AppImage: сделайте файл исполняемым и запустите его, установка не требуется.',
   'download.windowsCta': 'Скачать для Windows',
   'download.windowsPending': 'Сборка для Windows готовится.',
+  'download.androidCta': 'Скачать для Android (APK)',
   'download.desc':
     'Загрузите отдельный клиент для оптимальной производительности и игры на весь экран.',
   'comingSoon.placeholder': 'Скоро...',

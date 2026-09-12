@@ -30,18 +30,12 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "zh_CN": [],
   "zh_TW": [],
-  "ko_KR": [
-    "download.androidCta"
-  ],
-  "ja_JP": [
-    "download.androidCta"
-  ],
+  "ko_KR": [],
+  "ja_JP": [],
   "pt_BR": [
     "download.androidCta"
   ],
-  "ru_RU": [
-    "download.androidCta"
-  ],
+  "ru_RU": [],
   "cs_CZ": [
     "download.androidCta"
   ],

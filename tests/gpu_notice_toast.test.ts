@@ -24,6 +24,7 @@ const languageBindings = (spy: { mock: { calls: unknown[][] } }): number =>
 
 beforeEach(() => {
   localStorage.clear();
+  localStorage.setItem('locale', 'en');
 });
 
 describe('the languagechange listener rides the DOM', () => {

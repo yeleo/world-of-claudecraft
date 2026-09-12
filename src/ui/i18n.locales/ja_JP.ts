@@ -1976,7 +1976,8 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'download.linuxHint':
     'AppImage形式です。実行権限を付けてそのまま起動でき、インストールは不要です。',
   'download.windowsCta': 'Windows版をダウンロード',
-  'download.windowsPending': 'Windows版は準備中です。',
+  'download.windowsPending': 'Windows版は准备中です。',
+  'download.androidCta': 'Android版をダウンロード (APK)',
   'download.desc':
     '最適化されたパフォーマンスと全画面表示でのプレイのために、スタンドアロン版ランチャーを入手してください。',
   'comingSoon.placeholder': '近日公開...',

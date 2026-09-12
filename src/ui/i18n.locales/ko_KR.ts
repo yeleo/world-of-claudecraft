@@ -1967,6 +1967,7 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
     'AppImage 형식입니다. 실행 권한만 부여하면 바로 실행되며, 설치는 필요 없습니다.',
   'download.windowsCta': 'Windows용 다운로드',
   'download.windowsPending': 'Windows 빌드는 준비 중입니다.',
+  'download.androidCta': 'Android 다운로드 (APK)',
   'download.desc': '최적화된 성능과 전체 화면 플레이를 위해 독립형 런처를 다운로드하세요.',
   'comingSoon.placeholder': '준비 중...',
   'comingSoon.featureComingSoon': '이 기능은 곧 월드에 추가될 예정입니다.',

@@ -8260,10 +8260,10 @@ export const ja_JP: EnTranslations = {
     "desc": "最適化されたパフォーマンスと全画面表示でのプレイのために、スタンドアロン版ランチャーを入手してください。",
     "macCta": "macOS版をダウンロード",
     "windowsCta": "Windows版をダウンロード",
-    "androidCta": "Download for Android (APK)",
+    "androidCta": "Android版をダウンロード (APK)",
     "linuxCta": "Linux版をダウンロード",
     "linuxHint": "AppImage形式です。実行権限を付けてそのまま起動でき、インストールは不要です。",
-    "windowsPending": "Windows版は準備中です。"
+    "windowsPending": "Windows版は准备中です。"
   },
   "comingSoon": {
     "placeholder": "近日公開...",
