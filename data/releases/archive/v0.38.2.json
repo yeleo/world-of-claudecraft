@@ -1,9 +1,0 @@
-{
-  "id": 371000000,
-  "tag": "v0.38.2",
-  "name": "v0.38.2",
-  "body": "# World of ClaudeCraft v0.38.2\n\n版本 0.38.2 热修复两项严重故障：奈斯拉西斯首领战结界石此前对大部分团本成员不可见导致无法打断灭团狂暴；高级与极高画质在特定 OpenGL 后端下全黑屏的问题。\n\n- **奈斯拉西斯结界石全员可见**：结界石现已设为战斗专用的无条件可交互对象，所有队员均可正常点击引导打断「无尽狂暴（Deathless Rage）」。\n- **修复高级/极高画质黑屏**：修复草丛法线在特定着色器计算下发生 NaN 溢出并导致全屏泛光色调映射黑屏的兼容性缺陷。\n\n**完整更新变更记录**：https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.38.2",
-  "url": "https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.38.2",
-  "prerelease": false,
-  "publishedAt": "2026-08-16T23:59:43Z"
-}

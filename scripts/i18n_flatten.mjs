@@ -39,7 +39,7 @@ export function flatten(node, prefix = '', out = {}) {
 
 export function unflatten(flat) {
   if (!flat || typeof flat !== 'object') {
-    return {};
+    throw new Error(`i18n unflatten: input must be a non-null object, got ${flat === null ? 'null' : typeof flat}`);
   }
   const out = {};
   for (const path of Object.keys(flat)) {

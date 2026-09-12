@@ -1,9 +1,0 @@
-{
-  "id": 374000000,
-  "tag": "v0.39.0",
-  "name": "v0.39.0",
-  "body": "# World of ClaudeCraft v0.39.0\n\nPvP 阵营荣誉系统全面上线！\n\n- **荣誉击杀与军衔评级**：野外击杀对立阵营同级别玩家可获得荣誉点数，每周按段位结算军衔头衔与荣誉勋章。\n- **东溪谷哨塔争夺**：两座战略哨塔成为野外阵营争夺的核心要地，占领方全图享有 5% 经验加成。\n- **防恶意屠杀保护机制**：严厉惩处恶意低等级屠戮行为，击杀灰色目标将产生非荣誉击杀惩罚。\n\n**完整更新变更记录**：https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.39.0",
-  "url": "https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.39.0",
-  "prerelease": false,
-  "publishedAt": "2026-08-19T10:16:54Z"
-}

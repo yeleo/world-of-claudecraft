@@ -1,9 +1,0 @@
-{
-  "id": 368000000,
-  "tag": "v0.37.1",
-  "name": "v0.37.1",
-  "body": "# World of ClaudeCraft v0.37.1\n\n版本 0.37.1 包含体验细节打磨与安全补丁：\n\n- **怪物刷新与视野判定优化**：修复特定地下城拐角处怪物提前预警视距过长的问题。\n- **物品分解与专业升级数值平滑**：优化初级炼金与锻造分解产出比例，提升升级流畅度。\n\n**完整更新变更记录**：https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.37.1",
-  "url": "https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.37.1",
-  "prerelease": false,
-  "publishedAt": "2026-08-13T08:57:57Z"
-}

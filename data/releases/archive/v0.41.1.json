@@ -1,9 +1,0 @@
-{
-  "id": 381000000,
-  "tag": "v0.41.1",
-  "name": "v0.41.1",
-  "body": "# World of ClaudeCraft v0.41.1\n\n版本 0.41.1 巩固了 v0.41.0 伊格尼瓦尔熔炉（Ignivar Crucible）的上线，并弥补了两个长期存在的战斗机制空缺：\n\n- **技能可在公共冷却（GCD）尾部排队**：在正在运转的 GCD 最后 0.4 秒内按下技能，将载入单槽施法预输入队列并在 GCD 结束的瞬间立即释放。对齐经典 SpellQueueWindow 机制，使输出循环节奏不再受网络延迟影响。\n- **鼠标指向施法在排队中正常保留目标**：排队机制现在会将鼠标悬停的目标覆盖完整传递至技能释放瞬间，修复误伤与误奶。\n- **全治疗专精均拥有复活技能，共享 5 分钟冷却**：恩惠与教理牧师获得「归魂祷言（Prayer of Returning）」；林心德鲁伊获得「荒野苏醒（Wildwake）」（战斗中战复技能）与「林地觉醒（Grove Awakening）」；「唤回阵亡者」冷却时间统一调整为全治疗通用的 300 秒。\n- **英雄难度伊格尼瓦尔恢复正常**：熔炉升降梯现在携带完整的英雄难度资格记录，城堡大门不会再静默降级为普通模式。\n- **拾取绑定团本掉落物可在小队窗口期内交易**：带有拾取绑定标记的副本战利品可在击杀时所在的小队/团队成员之间进行 2 小时窗口期内自由交易。\n\n**完整更新变更记录**：https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.41.1",
-  "url": "https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.41.1",
-  "prerelease": false,
-  "publishedAt": "2026-09-01T11:12:30Z"
-}

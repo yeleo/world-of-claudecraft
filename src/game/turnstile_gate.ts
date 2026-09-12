@@ -31,7 +31,7 @@ export function ensureTurnstile(): void {
   const ts = turnstileApi();
   const el = document.getElementById('cf-turnstile-container');
   if (!ts || !el) {
-    window.setTimeout(ensureTurnstile, 200);
+    // Turnstile script is not loaded or disabled
     return;
   }
   turnstileWidgetId = ts.render(el, { sitekey: TURNSTILE_SITEKEY });

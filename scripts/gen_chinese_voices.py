@@ -25,7 +25,7 @@ try:
     from gradio_client import Client, handle_file
 except ImportError:
     print("[Error] 请在 WSL 的 conda 环境中运行此脚本：")
-    print("  conda activate qwen3_tts")
+    print("  conda activate tts")
     print("  python scripts/gen_chinese_voices.py")
     sys.exit(1)
 

@@ -134,8 +134,8 @@ async function loadLocales() {
   const out = {};
   for (const lang of LOCALES) {
     const val = mod[lang];
-    if (!val || typeof val !== 'object') {
-      throw new Error(`[i18n_build] Missing locale export for '${lang}' from ${sourceModule(lang)}.`);
+    if (!val || typeof val !== 'object' || Object.keys(val).length === 0) {
+      throw new Error(`[i18n_build] Locale '${lang}' from ${sourceModule(lang)} failed to load or exported an empty object! Ensure it exports 'export const ${lang}: Partial<Record<TranslationKey, string>> = { ... }'.`);
     }
     out[lang] = val;
   }

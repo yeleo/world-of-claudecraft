@@ -1,9 +1,0 @@
-{
-  "id": 373000000,
-  "tag": "v0.38.4",
-  "name": "v0.38.4",
-  "body": "# World of ClaudeCraft v0.38.4\n\n版本 0.38.4 针对玩家反馈的深渊地窖（Delve）卡死问题进行了紧急热修复：在「不息墓穴（Restless Graves）」词缀下，地下城探索可能陷入无法完成的死局。\n\n- **不息墓穴词缀复活小怪不再卡门**：该词缀在怪物死后 3 秒复活一只白骨行者，击杀房间最后一只小怪开启传送门后复活的小怪不再会导致传送门被封死在身后，正在刷新的小怪现在正确计入存活怪物池中，击杀后方可开门。\n- **废弃的深渊进度自动释放**：修正了空房间判定边界，确保 5 分钟超时时限后无人探索的深渊槽位能够立即被释放供其他小队进入。\n\n**完整更新变更记录**：https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.38.4",
-  "url": "https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.38.4",
-  "prerelease": false,
-  "publishedAt": "2026-08-17T11:32:56Z"
-}

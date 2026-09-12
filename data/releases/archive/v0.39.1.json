@@ -1,9 +1,0 @@
-{
-  "id": 375000000,
-  "tag": "v0.39.1",
-  "name": "v0.39.1",
-  "body": "# World of ClaudeCraft v0.39.1\n\n版本 0.39.1 是针对 v0.39.0 桌面客户端（Electron）在进入世界时卡死问题的紧急热修复。\n\n- **桌面端进入世界卡死修复**：桌面端 CSP 的 connect-src 现已放行 data: 协议，恢复了全部 170 个携带 zstd 极限压缩纹理的 3D 模型的正常解析与加载。\n\n**完整更新变更记录**：https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.39.1",
-  "url": "https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.39.1",
-  "prerelease": false,
-  "publishedAt": "2026-08-20T11:15:38Z"
-}

@@ -1,9 +1,0 @@
-{
-  "id": 380000000,
-  "tag": "v0.41.0",
-  "name": "v0.41.0",
-  "body": "# World of ClaudeCraft v0.41.0\n\n终局团队副本「伊格尼瓦尔熔炉（The Ignivar Crucible）」盛大揭幕！自 v0.40.1 以来共计 20 个合并请求、70 次代码提交。\n\n- **四大首领决战**：深入火山熔岩与远古锻炉，挑战熔岩巨怪、铸造大师伊格尼瓦尔、暗影主宰瓦克胡尔以及巨龙守护者奈斯拉西斯。\n- **T1 史诗职业套装**：全部九大首发职业专属的史诗套装，包含强力的 2 件套与 4 件套专精技能质变效果。\n- **团队进度锁存与重置（Raid Lockout）**：引入每周定期重置的团队首领击杀锁存机制。\n\n**完整更新变更记录**：https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.41.0",
-  "url": "https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.41.0",
-  "prerelease": false,
-  "publishedAt": "2026-08-31T15:22:51Z"
-}
