@@ -225,11 +225,17 @@ class SingleBotInstance:
 
         # Locomotion & Human-like Movement Smoothing
         self.current_facing = 0.0
+        self.travel_heading = 0.0
         self.last_casual_jump_time = time.time() + random.uniform(3.0, 10.0)
         self.prev_x = 0.0
         self.prev_z = 0.0
         self.stuck_ticks = 0
         self.is_trying_to_move = False
+
+        # Macro quest goal tracking
+        self.macro_goal_action = "patrol"
+        self.macro_goal_param = ""
+        self.regroup_wait_start = 0.0
 
         # Human-like Interaction Timers & Delays
         self.last_rest_time = 0.0
@@ -277,6 +283,79 @@ class SingleBotInstance:
         self.char_name = fallback
         self.char_id = char["id"]
 
+    def is_passive_dummy(self, ent: dict) -> bool:
+        if ent.get("dummy"):
+            return True
+        template = str(ent.get("template", ent.get("tid", ""))).lower()
+        name = str(ent.get("nm", ent.get("name", ""))).lower()
+        return "effigy" in template or "effigy" in name or "training_effigy" in template
+
+    def get_valid_combat_target(self) -> dict | None:
+        s = self.self_state
+        my_x = s.get("x", 0.0)
+        my_z = s.get("z", 0.0)
+        in_combat = bool(s.get("inCombat"))
+
+        # If current target is still alive and valid, keep it
+        if self.target_id and self.target_id in self.entities:
+            curr = self.entities[self.target_id]
+            if not curr.get("dead") and not curr.get("loot"):
+                if not in_combat and self.is_passive_dummy(curr):
+                    lead_goal_action = self.macro_goal_action if self.is_leader else (self.leader_ref.macro_goal_action if self.leader_ref else "")
+                    lead_goal_param = self.macro_goal_param if self.is_leader else (self.leader_ref.macro_goal_param if self.leader_ref else "")
+                    if lead_goal_action == "hunt" and "effigy" in lead_goal_param:
+                        return curr
+                else:
+                    return curr
+
+        # Out of combat: followers never initiate pulls on their own
+        if not in_combat and not self.is_leader:
+            if self.leader_ref and self.leader_ref.target_id:
+                lt = self.entities.get(self.leader_ref.target_id)
+                if lt and not lt.get("dead") and not lt.get("loot"):
+                    return lt
+            return None
+
+        # Determine if we are on a specific hunt quest
+        hunt_goal = ""
+        if self.is_leader:
+            if self.macro_goal_action == "hunt":
+                hunt_goal = self.macro_goal_param.lower().replace("_", " ")
+        elif self.leader_ref and self.leader_ref.macro_goal_action == "hunt":
+            hunt_goal = self.leader_ref.macro_goal_param.lower().replace("_", " ")
+
+        nearest_dist = float("inf")
+        best_ent = None
+        max_dist = 45.0 if in_combat else (25.0 if hunt_goal else 4.5)
+
+        for ent in self.entities.values():
+            if ent.get("k") != "mob" or ent.get("dead") or ent.get("loot"):
+                continue
+
+            is_dummy = self.is_passive_dummy(ent)
+            if is_dummy and ("effigy" not in hunt_goal and not in_combat):
+                continue
+
+            ex = ent.get("x", 0.0)
+            ez = ent.get("z", 0.0)
+            d = math.hypot(ex - my_x, ez - my_z)
+
+            if d <= max_dist:
+                if not in_combat and not hunt_goal:
+                    if not ent.get("combat"):
+                        continue
+
+                if hunt_goal:
+                    nm = str(ent.get("template") or ent.get("tid") or ent.get("nm") or "").lower().replace("_", " ")
+                    if hunt_goal not in nm and not any(w in nm for w in hunt_goal.split() if len(w) > 3):
+                        continue
+
+                if d < nearest_dist:
+                    nearest_dist = d
+                    best_ent = ent
+
+        return best_ent
+
     def build_obs(self) -> np.ndarray:
         s = self.self_state
         obs = np.zeros(607, dtype=np.float32)
@@ -303,17 +382,7 @@ class SingleBotInstance:
         obs[7] = math.sin(facing)
         obs[8] = gcd / 1.5
 
-        chosen_target = self.entities.get(self.target_id) if self.target_id else None
-        if not chosen_target or chosen_target.get("dead") or chosen_target.get("loot"):
-            nearest_dist = float("inf")
-            for ent in self.entities.values():
-                if ent.get("k") == "mob" and not ent.get("dead") and not ent.get("loot"):
-                    ex = ent.get("x", 0.0)
-                    ez = ent.get("z", 0.0)
-                    d = math.hypot(ex - x, ez - z)
-                    if d < nearest_dist and d <= 45.0:
-                        nearest_dist = d
-                        chosen_target = ent
+        chosen_target = self.get_valid_combat_target()
 
         if chosen_target:
             ex = chosen_target.get("x", 0.0)
@@ -533,14 +602,27 @@ class SingleBotInstance:
                         # Cohesion & Lagging Tethering assessment
                         if not team_needs_rest and not party_in_combat:
                             if self.team_state == "REGROUPING":
-                                if max_dist <= 5.0:
-                                    self.team_state = "READY"
-                                    print(f"  [Squad] Team regrouped! Resuming advance.")
+                                if my_x > -200.0:
+                                    still_on_island = any(m.get("x", 0) < -200.0 for m, _ in member_dists)
+                                    if still_on_island:
+                                        team_needs_regroup = True
+                                    elif max_dist <= 7.5 or (self.regroup_wait_start > 0 and now - self.regroup_wait_start > 15.0):
+                                        self.team_state = "READY"
+                                        self.regroup_wait_start = 0.0
+                                        print(f"  [Squad] Team regrouped ({max_dist:.1f}m)! Resuming advance.")
+                                    else:
+                                        team_needs_regroup = True
                                 else:
-                                    team_needs_regroup = True
+                                    if max_dist <= 7.5 or (self.regroup_wait_start > 0 and now - self.regroup_wait_start > 6.0):
+                                        self.team_state = "READY"
+                                        self.regroup_wait_start = 0.0
+                                        print(f"  [Squad] Team regrouped ({max_dist:.1f}m)! Resuming advance.")
+                                    else:
+                                        team_needs_regroup = True
                             else:
-                                if max_dist > 10.5:
+                                if max_dist > 14.0 or (my_x > -200.0 and any(m.get("x", 0) < -200.0 for m, _ in member_dists)):
                                     self.team_state = "REGROUPING"
+                                    self.regroup_wait_start = now
                                     team_needs_regroup = True
                                     lagging_member = max(member_dists, key=lambda x: x[1])[0]
                                     print(f"  [Squad] '{lagging_member.get('name')}' is lagging behind ({max_dist:.1f}m). Leader holding up!")
@@ -695,6 +777,33 @@ class SingleBotInstance:
                         lz = self.leader_ref.self_state.get("z", my_z)
                         lf = self.leader_ref.self_state.get("f", self.leader_ref.self_state.get("facing", 0.0))
 
+                        # Sea Crossing Check:
+                        # If leader has already crossed to mainland (lx > -200) but follower is still on island (my_x < -200):
+                        if lx > -200.0 and my_x < -200.0:
+                            ferry_x, ferry_z = -279.0, -10.0
+                            dist_to_ferry = math.hypot(ferry_x - my_x, ferry_z - my_z)
+                            angle_to_ferry = math.atan2(ferry_x - my_x, ferry_z - my_z)
+
+                            if dist_to_ferry <= 5.5 and now - self.last_quest_action_time > 1.5:
+                                bell_id = None
+                                for eid, e in self.entities.items():
+                                    if e.get("objectItemId") == "ps_ferry_bell" or "ferry" in str(e.get("name", "")).lower():
+                                        bell_id = eid
+                                        break
+                                if bell_id is not None:
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": bell_id}))
+                                else:
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                self.last_quest_action_time = now
+
+                            if dist_to_ferry > 2.0:
+                                self.is_trying_to_move = True
+                                await ws.send(json.dumps(make_move_input(angle_to_ferry)))
+                            else:
+                                self.is_trying_to_move = False
+                                await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.smooth_turn_facing(angle_to_ferry, 0.05)}))
+                            continue
+
                         # Formation breathing drift
                         base_x, base_z = FORMATION_OFFSETS[self.bot_idx % len(FORMATION_OFFSETS)]
                         drift_x = math.sin(now * 0.7 + self.bot_idx) * 0.35
@@ -702,8 +811,10 @@ class SingleBotInstance:
                         off_x = base_x + drift_x
                         off_z = base_z + drift_z
 
-                        slot_x = lx + (off_x * math.cos(lf) + off_z * math.sin(lf))
-                        slot_z = lz + (-off_x * math.sin(lf) + off_z * math.cos(lf))
+                        # Use travel heading so orientation doesn't invert when leader pauses/looks back
+                        heading = getattr(self.leader_ref, "travel_heading", lf)
+                        slot_x = lx + (off_x * math.cos(heading) + off_z * math.sin(heading))
+                        slot_z = lz + (-off_x * math.sin(heading) + off_z * math.cos(heading))
 
                         dist_to_slot = math.hypot(slot_x - my_x, slot_z - my_z)
                         angle_to_slot = math.atan2(slot_x - my_x, slot_z - my_z)
@@ -716,35 +827,43 @@ class SingleBotInstance:
                         # Check Gauntlet
                         if "q_ps_the_gauntlet" not in qdone_f:
                             if "q_ps_the_gauntlet" not in qlog_f:
-                                if math.hypot(-283.0 - my_x, -21.0 - my_z) <= 5.5 and now - self.last_quest_action_time > 2.5:
-                                    await asyncio.sleep(random.uniform(0.4, 1.2))
+                                if math.hypot(-283.0 - my_x, -21.0 - my_z) <= 8.5 and now - self.last_quest_action_time > 2.0:
+                                    await asyncio.sleep(random.uniform(0.3, 0.9))
                                     await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": "q_ps_the_gauntlet"}))
                                     self.last_quest_action_time = now
                             else:
-                                if math.hypot(-337.0 - my_x, -33.0 - my_z) <= 5.5 and now - self.last_quest_action_time > 2.5:
-                                    await asyncio.sleep(random.uniform(0.4, 1.2))
+                                if math.hypot(-337.0 - my_x, -33.0 - my_z) <= 8.5 and now - self.last_quest_action_time > 2.0:
+                                    await asyncio.sleep(random.uniform(0.3, 0.9))
                                     await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": "q_ps_the_gauntlet"}))
                                     self.last_quest_action_time = now
 
                         # Check Strike True
                         elif "q_ps_strike_true" not in qdone_f:
                             if "q_ps_strike_true" not in qlog_f:
-                                if math.hypot(-337.0 - my_x, -33.0 - my_z) <= 5.5 and now - self.last_quest_action_time > 2.5:
-                                    await asyncio.sleep(random.uniform(0.4, 1.2))
+                                if math.hypot(-337.0 - my_x, -33.0 - my_z) <= 8.5 and now - self.last_quest_action_time > 2.0:
+                                    await asyncio.sleep(random.uniform(0.3, 0.9))
                                     await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": "q_ps_strike_true"}))
                                     self.last_quest_action_time = now
                             else:
                                 if qlog_f["q_ps_strike_true"].get("state") == "ready":
-                                    if math.hypot(-345.0 - my_x, -11.0 - my_z) <= 5.5 and now - self.last_quest_action_time > 2.5:
-                                        await asyncio.sleep(random.uniform(0.4, 1.2))
+                                    if math.hypot(-345.0 - my_x, -11.0 - my_z) <= 8.5 and now - self.last_quest_action_time > 2.0:
+                                        await asyncio.sleep(random.uniform(0.3, 0.9))
                                         await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": "q_ps_strike_true"}))
                                         self.last_quest_action_time = now
 
                         # Check Ferry Bell
                         else:
-                            if math.hypot(-279.0 - my_x, -10.0 - my_z) <= 5.0 and now - self.last_quest_action_time > 3.0:
+                            if math.hypot(-279.0 - my_x, -10.0 - my_z) <= 7.5 and now - self.last_quest_action_time > 3.0:
                                 await asyncio.sleep(random.uniform(0.5, 1.5))
-                                await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                bell_id = None
+                                for eid, e in self.entities.items():
+                                    if e.get("objectItemId") == "ps_ferry_bell" or "ferry" in str(e.get("name", "")).lower():
+                                        bell_id = eid
+                                        break
+                                if bell_id is not None:
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": bell_id}))
+                                else:
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
                                 self.last_quest_action_time = now
 
                         if dist_to_slot > 1.8:
@@ -752,7 +871,7 @@ class SingleBotInstance:
                             await ws.send(json.dumps(make_move_input(angle_to_slot)))
                         else:
                             self.is_trying_to_move = False
-                            smoothed_lf = self.smooth_turn_facing(lf, 0.05)
+                            smoothed_lf = self.smooth_turn_facing(heading, 0.05)
                             await ws.send(json.dumps({"t": "input", "mi": {}, "facing": smoothed_lf}))
 
                     # D. Autonomous Quest & World Navigation (Leader / Solo)
@@ -812,6 +931,9 @@ class SingleBotInstance:
                             goal_action = "explore"
                             goal_param = "Eastbrook Highway"
 
+                        self.macro_goal_action = goal_action
+                        self.macro_goal_param = goal_param
+
                         dist_to_goal = math.hypot(goal_x - my_x, goal_z - my_z)
                         angle_to_goal = math.atan2(goal_x - my_x, goal_z - my_z)
 
@@ -835,18 +957,28 @@ class SingleBotInstance:
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": goal_param}))
                                 print(f"  [Quest] Leader accepted '{goal_param}' from NPC!")
                                 self.last_quest_action_time = now
+                                self.npc_reading_until = now + random.uniform(2.5, 3.5)
                                 if random.random() < 0.5:
                                     await ws.send(json.dumps({"t": "cmd", "cmd": "emote", "emote": "salute"}))
                             elif goal_action == "turnin":
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": goal_param}))
                                 print(f"  [Quest] Leader turned in & completed '{goal_param}'!")
                                 self.last_quest_action_time = now
+                                self.npc_reading_until = now + random.uniform(2.5, 3.5)
                                 vic_msg = random.choice(CHAT_VICTORY_LINES)
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {vic_msg}"}))
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "emote", "emote": "cheer"}))
                             elif goal_action == "ferry":
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": "/p 走，乘船去东溪谷大陆开荒！"}))
-                                await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                bell_id = None
+                                for eid, e in self.entities.items():
+                                    if e.get("objectItemId") == "ps_ferry_bell" or "ferry" in str(e.get("name", "")).lower():
+                                        bell_id = eid
+                                        break
+                                if bell_id is not None:
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": bell_id}))
+                                else:
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
                                 print(f"  [Ferry] Ringing Ferry Bell to sail across to Eastbrook mainland!")
                                 self.last_quest_action_time = now
                             elif goal_action in ("waypoint", "explore"):
@@ -854,6 +986,7 @@ class SingleBotInstance:
 
                         if dist_to_goal > 2.0:
                             self.is_trying_to_move = True
+                            self.travel_heading = angle_to_goal
                             await ws.send(json.dumps(make_move_input(angle_to_goal)))
                         else:
                             self.is_trying_to_move = False
