@@ -85,6 +85,7 @@ const root = (): HTMLElement => document.getElementById('perfecting-window') as 
 
 beforeEach(() => {
   vi.useFakeTimers();
+  setLanguage('en');
   world = new FakeWorld();
   document.body.innerHTML = '<div id="ui"></div><div id="prompt-stack"></div>';
 });
