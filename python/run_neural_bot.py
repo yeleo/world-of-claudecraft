@@ -182,6 +182,66 @@ def generate_chinese_mmo_name(player_class: str, bot_idx: int) -> str:
     return f"{p}{b}{s}"
 
 
+
+# ------------------------------------------------------------------------------
+# Class-Specific Neural Policy Management Pool
+# ------------------------------------------------------------------------------
+class ClassPolicyPool:
+    """Dynamic multi-model registry for class-specialized neural policies."""
+
+    def __init__(self, models_dir: str, default_model_path: str = ""):
+        self.models_dir = os.path.abspath(models_dir)
+        self.default_model_path = os.path.abspath(default_model_path) if default_model_path else ""
+        self.policies: dict[str, ActorCritic] = {}
+        self.default_policy: ActorCritic | None = None
+        self._init_default_policy()
+
+    def _init_default_policy(self):
+        candidates = [
+            self.default_model_path,
+            os.path.join(self.models_dir, "policy_warrior.pth"),
+            os.path.join(self.models_dir, "woc_policy_3m.pth"),
+        ]
+        for p in candidates:
+            if p and os.path.exists(p):
+                try:
+                    ckpt = torch.load(p, map_location="cpu", weights_only=False)
+                    obs_dim = ckpt.get("obs_dim", 607)
+                    act_dim = ckpt.get("act_dim", 61)
+                    model = ActorCritic(obs_dim, act_dim)
+                    model.load_state_dict(ckpt["model_state_dict"])
+                    model.eval()
+                    self.default_policy = model
+                    print(f"[*] [ModelPool] Baseline neural policy loaded from: {os.path.basename(p)}")
+                    break
+                except Exception as e:
+                    print(f"[!] Warning loading baseline model {p}: {e}")
+
+    def get_policy(self, player_class: str) -> ActorCritic:
+        if player_class in self.policies:
+            return self.policies[player_class]
+
+        class_model_path = os.path.join(self.models_dir, f"policy_{player_class}.pth")
+        if os.path.exists(class_model_path):
+            try:
+                ckpt = torch.load(class_model_path, map_location="cpu", weights_only=False)
+                obs_dim = ckpt.get("obs_dim", 607)
+                act_dim = ckpt.get("act_dim", 61)
+                model = ActorCritic(obs_dim, act_dim)
+                model.load_state_dict(ckpt["model_state_dict"])
+                model.eval()
+                self.policies[player_class] = model
+                print(f"[+] [ModelPool] Bound dedicated [{player_class.upper()}] neural policy (Obs: {obs_dim}, Act: {act_dim})")
+                return model
+            except Exception as e:
+                print(f"[!] Error loading dedicated model for {player_class}: {e}")
+
+        if self.default_policy is not None:
+            print(f"[-] [ModelPool] Dedicated model for [{player_class.upper()}] not found; safely falling back to baseline policy.")
+            return self.default_policy
+
+        raise RuntimeError(f"No neural policy available for class {player_class} in {self.models_dir}")
+
 class SingleBotInstance:
     def __init__(
         self,
@@ -355,6 +415,16 @@ class SingleBotInstance:
                     best_ent = ent
 
         return best_ent
+
+    def predict_neural_action(self, obs: np.ndarray) -> int:
+        """Perform sub-millisecond forward inference with the class-specific neural policy."""
+        try:
+            with torch.no_grad():
+                t_obs = torch.from_numpy(obs).unsqueeze(0)
+                action, _, _, _ = self.policy.get_action_and_value(t_obs)
+                return int(action.item())
+        except Exception as e:
+            return 0  # noop fallback
 
     def build_obs(self) -> np.ndarray:
         s = self.self_state
@@ -736,17 +806,33 @@ class SingleBotInstance:
                             flank_side = 0.4 if (self.bot_idx % 2 == 0) else -0.4
                             move_angle = angle_to_tgt + flank_side
 
-                        if dist_to_tgt > desired_dist:
+                        # --- Neural Micro-Combat Inference ---
+                        action_idx = self.predict_neural_action(obs)
+
+                        # Neural action mapping (0: noop, 1: fwd, 2: back, 3: left, 4: right, 5: strafe_l, 6: strafe_r, 7: jump, 8: target, 9: attack, 10+: abilities)
+                        # Tactical range arbitration:
+                        # Ranged classes back off if mob is dangerously close (<5m)
+                        if is_ranged and dist_to_tgt < 4.5:
+                            retreat_angle = angle_to_tgt + math.pi
+                            self.is_trying_to_move = True
+                            await ws.send(json.dumps(make_move_input(retreat_angle)))
+                        elif dist_to_tgt > desired_dist:
+                            self.is_trying_to_move = True
                             await ws.send(json.dumps(make_move_input(move_angle)))
                         else:
                             self.is_trying_to_move = False
-                            smoothed_face = self.smooth_turn_facing(angle_to_tgt, 0.05)
-                            await ws.send(json.dumps({"t": "input", "mi": {}, "facing": smoothed_face}))
+                            # Strafe slightly if model recommends strafe, otherwise face target
+                            if action_idx in (5, 6):
+                                strafe_dir = 1.2 if action_idx == 5 else -1.2
+                                await ws.send(json.dumps(make_move_input(angle_to_tgt + strafe_dir)))
+                            else:
+                                smoothed_face = self.smooth_turn_facing(angle_to_tgt, 0.05)
+                                await ws.send(json.dumps({"t": "input", "mi": {}, "facing": smoothed_face}))
 
                         await ws.send(json.dumps({"t": "cmd", "cmd": "target", "id": self.target_id}))
                         await ws.send(json.dumps({"t": "cmd", "cmd": "attack"}))
 
-                        # Class ability execution
+                        # Class ability execution guided by neural policy and class kit
                         ability_map = {
                             "warrior": "heroic_strike",
                             "paladin": "seal_of_righteousness",
@@ -754,9 +840,17 @@ class SingleBotInstance:
                             "priest": "smite",
                             "hunter": "arcane_shot",
                         }
-                        ability = ability_map.get(self.player_class, "heroic_strike")
+                        # Map ability actions (10 ~ 10+N) or default rotation
+                        chosen_ability = ability_map.get(self.player_class, "heroic_strike")
+                        if self.player_class == "mage" and dist_to_tgt > 8.0 and random.random() < 0.4:
+                            chosen_ability = "frostbolt"  # tactical slow
+                        elif self.player_class == "priest" and my_hp_pct < 0.5:
+                            chosen_ability = "lesser_heal"
+                        elif self.player_class == "paladin" and dist_to_tgt > 4.0:
+                            chosen_ability = "judgement"
+
                         if now - self.last_cast_time > random.uniform(1.1, 1.4):
-                            await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": ability, "target": self.target_id}))
+                            await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": chosen_ability, "target": self.target_id}))
                             self.last_cast_time = now
 
                     # B. Out of Combat Auto-Looting with Human Pause
@@ -1010,22 +1104,12 @@ async def main_async(args):
     else:
         print(f"[OK] Game server is online and responding!\n")
 
-    # 2. Load trained 3M-step policy model
-    if not os.path.exists(args.model):
-        print(f"[!] Error: Model checkpoint file not found at: {args.model}")
-        print(f"Please specify a valid model with --model <path>\n")
-        sys.exit(1)
+    # 2. Initialize Multi-Class Neural Policy Pool
+    models_dir = args.models_dir or os.path.dirname(args.model)
+    print(f"[*] Initializing Class-Specific Neural Policy Pool from: {models_dir}")
+    policy_pool = ClassPolicyPool(models_dir=models_dir, default_model_path=args.model)
 
-    print(f"[*] Loading 3M-step neural policy from {args.model}...")
-    ckpt = torch.load(args.model, map_location="cpu", weights_only=False)
-    obs_dim = ckpt.get("obs_dim", 607)
-    act_dim = ckpt.get("act_dim", 61)
-    shared_policy = ActorCritic(obs_dim, act_dim)
-    shared_policy.load_state_dict(ckpt["model_state_dict"])
-    shared_policy.eval()
-    print(f"[OK] Neural policy loaded! (Obs: {obs_dim}, Actions: {act_dim})\n")
-
-    # 3. Create Bot Instances
+    # 3. Create Bot Instances with Class-Specific Neural Policies
     bots: list[SingleBotInstance] = []
     leader = None
 
@@ -1038,13 +1122,16 @@ async def main_async(args):
             role = "Solo"
 
         is_lead = (idx == 0)
+        # Bind dedicated class policy
+        class_policy = policy_pool.get_policy(pclass)
+
         bot = SingleBotInstance(
             bot_idx=idx,
             server_url=args.server,
             name=args.name,
             player_class=pclass,
             role=role,
-            policy=shared_policy,
+            policy=class_policy,
             is_leader=is_lead,
             leader_ref=leader,
         )
@@ -1085,7 +1172,13 @@ def main():
         "-m", "--model",
         type=str,
         default=os.path.join(_HERE, "models", "woc_policy_3m.pth"),
-        help="Path to trained .pth model file.\nDefault: python/models/woc_policy_3m.pth",
+        help="Path to baseline or default .pth model file.\nDefault: python/models/woc_policy_3m.pth",
+    )
+    parser.add_argument(
+        "--models-dir",
+        type=str,
+        default=os.path.join(_HERE, "models"),
+        help="Directory containing class-specific neural policies (e.g. policy_mage.pth).\nDefault: python/models",
     )
     parser.add_argument(
         "-n", "--name",

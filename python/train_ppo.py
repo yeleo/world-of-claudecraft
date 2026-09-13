@@ -34,6 +34,46 @@ from torch.distributions.categorical import Categorical
 from wow_env import WoWClassicEnv, make_env
 
 
+
+# Class-specific reward profiles for targeted micro-combat policy shaping
+CLASS_REWARD_PROFILES: dict[str, dict[str, float]] = {
+    "warrior": {
+        "damageDealt": 0.0025,
+        "damageTaken": -0.0008,
+        "kill": 0.25,
+        "death": -5.0,
+        "timePenalty": -0.0005,
+    },
+    "mage": {
+        "damageDealt": 0.0030,
+        "damageTaken": -0.0030,  # Heavy penalty for taking melee hits; forces kiting and distance keeping
+        "kill": 0.20,
+        "death": -6.0,
+        "timePenalty": -0.0002,
+    },
+    "priest": {
+        "damageDealt": 0.0015,
+        "damageTaken": -0.0025,
+        "kill": 0.15,
+        "death": -8.0,  # Extreme penalty for healer death
+        "timePenalty": -0.0002,
+    },
+    "hunter": {
+        "damageDealt": 0.0030,
+        "damageTaken": -0.0025,  # Encourages staying outside 8-yard dead zone
+        "kill": 0.20,
+        "death": -6.0,
+        "timePenalty": -0.0003,
+    },
+    "paladin": {
+        "damageDealt": 0.0020,
+        "damageTaken": -0.0012,
+        "kill": 0.20,
+        "death": -6.0,
+        "timePenalty": -0.0003,
+    },
+}
+
 class ActorCritic(nn.Module):
     """Actor-Critic MLP network with shared feature extraction."""
 
@@ -113,7 +153,9 @@ def main():
     print(f"==================================================")
 
     # Instantiate parallel vector environments
-    env_fns = [make_env(player_class=args.player_class) for _ in range(args.num_envs)]
+    class_rewards = CLASS_REWARD_PROFILES.get(args.player_class)
+    print(f" Reward Profile: {class_rewards if class_rewards else 'Default Env Rewards'}")
+    env_fns = [make_env(player_class=args.player_class, rewards=class_rewards) for _ in range(args.num_envs)]
     envs = gym.vector.AsyncVectorEnv(env_fns)
 
     obs_dim = envs.single_observation_space.shape[0]
@@ -276,27 +318,41 @@ def main():
 
         # Periodic checkpoint
         if global_step - last_save_step >= args.save_interval or global_step >= args.total_timesteps:
-            ckpt_path = os.path.join(args.models_dir, f"woc_ppo_step_{global_step}.pth")
-            torch.save({
+            class_dir = os.path.join(args.models_dir, args.player_class)
+            os.makedirs(class_dir, exist_ok=True)
+            ckpt_path = os.path.join(class_dir, f"policy_{args.player_class}_step_{global_step}.pth")
+            payload = {
                 "global_step": global_step,
                 "model_state_dict": agent.state_dict(),
                 "obs_dim": obs_dim,
                 "act_dim": act_dim,
                 "player_class": args.player_class,
-            }, ckpt_path)
-            print(f"  >>> Checkpoint saved to: {ckpt_path}")
+            }
+            torch.save(payload, ckpt_path)
+            # Maintain active latest pointer
+            class_latest_path = os.path.join(args.models_dir, f"policy_{args.player_class}.pth")
+            torch.save(payload, class_latest_path)
+            print(f"  >>> Checkpoint saved: {ckpt_path} -> {class_latest_path}")
             last_save_step = global_step
 
     # Save final model
-    final_model_name = f"woc_policy_{args.total_timesteps // 1_000_000}m.pth" if args.total_timesteps >= 1_000_000 else f"woc_policy_{args.total_timesteps}.pth"
-    final_path = os.path.join(args.models_dir, final_model_name)
-    torch.save({
+    class_dir = os.path.join(args.models_dir, args.player_class)
+    os.makedirs(class_dir, exist_ok=True)
+    final_path = os.path.join(args.models_dir, f"policy_{args.player_class}.pth")
+    final_step_path = os.path.join(class_dir, f"policy_{args.player_class}_{args.total_timesteps}.pth")
+    final_payload = {
         "global_step": global_step,
         "model_state_dict": agent.state_dict(),
         "obs_dim": obs_dim,
         "act_dim": act_dim,
         "player_class": args.player_class,
-    }, final_path)
+    }
+    torch.save(final_payload, final_path)
+    torch.save(final_payload, final_step_path)
+    # Backward compatibility for legacy default model
+    if args.player_class == "warrior":
+        legacy_path = os.path.join(args.models_dir, "woc_policy_3m.pth")
+        torch.save(final_payload, legacy_path)
     print(f"\n==================================================")
     print(f" Training complete in {elapsed / 60:.1f} minutes!")
     print(f" Final Model Saved: {final_path}")

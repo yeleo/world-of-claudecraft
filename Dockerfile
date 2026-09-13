@@ -5,7 +5,10 @@ FROM node:26-slim AS build
 WORKDIR /app
 # Match package.json packageManager (Corepack not required; same as CONTRIBUTING).
 # .npmrc carries node-linker=hoisted so the install layout matches local/CI.
-RUN npm install -g pnpm@10.34.5
+# Use high-speed domestic mirror for rapid package downloads in container builds.
+RUN npm config set registry https://registry.npmmirror.com && \
+    npm install -g pnpm@10.34.5 && \
+    pnpm config set registry https://registry.npmmirror.com
 COPY package.json pnpm-lock.yaml .npmrc ./
 # pnpm patchedDependencies: the lockfile pins patch file hashes, so a frozen
 # install needs the patch files present or it fails with ENOENT.
