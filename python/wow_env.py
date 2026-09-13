@@ -31,6 +31,7 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 import subprocess
 from typing import Any
 
@@ -85,8 +86,18 @@ class WoWClassicEnv(gym.Env):
             raise FileNotFoundError(
                 f"env server bundle not found at {server}. Run `npm run build:env` first."
             )
+        resolved_node = node_binary
+        if not shutil.which(resolved_node):
+            candidates = [
+                os.path.join(os.environ.get("CONDA_PREFIX", ""), "bin", "node"),
+                "/home/yeleo/miniconda3/envs/claudecraft/bin/node",
+            ]
+            for c in candidates:
+                if c and os.path.exists(c):
+                    resolved_node = c
+                    break
         self._proc = subprocess.Popen(
-            [node_binary, server],
+            [resolved_node, server],
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.DEVNULL,

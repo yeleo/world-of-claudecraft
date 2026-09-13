@@ -111,7 +111,7 @@ class ActorCritic(nn.Module):
 def parse_args():
     parser = argparse.ArgumentParser(description="World of ClaudeCraft PPO Training")
     parser.add_argument("--total-timesteps", type=int, default=3_000_000, help="Total environment steps")
-    parser.add_argument("--resume", type=str, default="", help="Path to checkpoint .pth to resume from")
+    parser.add_argument("--resume", type=str, default="auto", help="Path to checkpoint .pth to resume from, or auto to find latest")
     parser.add_argument("--num-envs", type=int, default=8, help="Number of parallel environments")
     parser.add_argument("--num-steps", type=int, default=256, help="Steps per rollout per env")
     parser.add_argument("--lr", type=float, default=3e-4, help="Learning rate")
@@ -160,18 +160,45 @@ def main():
 
     obs_dim = envs.single_observation_space.shape[0]
     act_dim = envs.single_action_space.n
-    print(f"Obs Dimension : {obs_dim}, Action Space: {act_dim}")
+    print(f"Obs Dimension : {obs_dim}, Action Space: {act_dim}", flush=True)
 
     agent = ActorCritic(obs_dim, act_dim).to(device)
     optimizer = optim.Adam(agent.parameters(), lr=args.lr, eps=1e-5)
 
     global_step = 0
-    if args.resume and os.path.exists(args.resume):
-        print(f"Loading checkpoint from: {args.resume}...")
-        ckpt = torch.load(args.resume, map_location=device, weights_only=False)
+    resume_path = args.resume
+    if resume_path == "auto" or not resume_path:
+        class_dir = os.path.join(args.models_dir, args.player_class)
+        latest_file = os.path.join(args.models_dir, f"policy_{args.player_class}.pth")
+        found_ckpt = None
+        if os.path.isdir(class_dir):
+            step_ckpts = []
+            for fname in os.listdir(class_dir):
+                if fname.endswith(".pth") and "_step_" in fname:
+                    try:
+                        s = int(fname.split("_step_")[-1].replace(".pth", ""))
+                        step_ckpts.append((s, os.path.join(class_dir, fname)))
+                    except Exception:
+                        pass
+            if step_ckpts:
+                step_ckpts.sort(key=lambda x: x[0])
+                found_ckpt = step_ckpts[-1][1]
+        if not found_ckpt and os.path.exists(latest_file):
+            found_ckpt = latest_file
+        if args.player_class == "warrior" and not found_ckpt:
+            legacy_file = os.path.join(args.models_dir, "woc_policy_3m.pth")
+            if os.path.exists(legacy_file):
+                found_ckpt = legacy_file
+        resume_path = found_ckpt or ""
+
+    if resume_path and os.path.exists(resume_path):
+        print(f"Loading checkpoint from: {resume_path}...")
+        ckpt = torch.load(resume_path, map_location=device, weights_only=False)
         agent.load_state_dict(ckpt["model_state_dict"])
         global_step = ckpt.get("global_step", 0)
         print(f"Successfully resumed! Starting from step: {global_step:,}\n")
+    else:
+        print(f"No previous checkpoint found for {args.player_class}. Initializing from scratch.\n")
 
     # Storage buffers
     obs_buf = torch.zeros((args.num_steps, args.num_envs, obs_dim), device=device)
@@ -200,7 +227,7 @@ def main():
     start_time = time.time()
     last_save_step = global_step
 
-    print("Starting training loop...\n")
+    print("Starting training loop...\n", flush=True)
 
     for update in range(1, num_updates + 1):
         # Rollout collection
@@ -302,8 +329,8 @@ def main():
 
         # Telemetry logging
         elapsed = time.time() - start_time
-        fps = int((global_step - (global_step - update * batch_size)) / max(1e-5, elapsed))
-        if update % 5 == 0 or update == 1 or update == num_updates:
+        fps = int((update * batch_size) / max(1e-5, elapsed))
+        if update % 2 == 0 or update == 1 or update == num_updates:
             avg_rew = np.mean(ep_rewards_history) if ep_rewards_history else 0.0
             avg_len = np.mean(ep_lens_history) if ep_lens_history else 0.0
             progress = min(100.0, (global_step / args.total_timesteps) * 100)
@@ -313,7 +340,8 @@ def main():
                 f"Avg Reward: {avg_rew:7.2f} | "
                 f"Avg Len: {avg_len:5.1f} | "
                 f"Policy Loss: {pg_loss.item():.4f} | "
-                f"Value Loss: {v_loss.item():.4f}"
+                f"Value Loss: {v_loss.item():.4f}",
+                flush=True
             )
 
         # Periodic checkpoint
