@@ -193,7 +193,58 @@
      orientation gate) loads from index.extra.css linked above. Layer
      names are flat (hud-mobile, not hud.mobile): a dot is a sublayer separator. This
      inline block is intentionally empty. */
-</style>
+
+    .footer-compliance-container {
+      margin: 12px auto 6px;
+      max-width: 860px;
+      text-align: center;
+      padding: 10px 14px;
+      border-top: 1px solid rgba(215, 181, 109, 0.16);
+    }
+    .footer-healthy-gaming {
+      font-size: 13px;
+      color: #c4b899;
+      line-height: 1.6;
+      letter-spacing: 0.2px;
+      margin-bottom: 6px;
+    }
+    .healthy-title {
+      color: #ffd100;
+      font-weight: 700;
+      margin-right: 6px;
+    }
+    .footer-age-tips {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #a89f84;
+      margin-bottom: 6px;
+    }
+    .age-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #ffd100;
+      border-radius: 4px;
+      color: #ffd100;
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(255, 209, 0, 0.12);
+    }
+    .footer-icp-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 11px;
+      color: #7d7560;
+    }
+
+  </style>
 </head>
 <body class="steam-wishlist-pending" data-start-panel="mode-select">
   <!-- Skip links: the first focusable elements, visually hidden until focused (a11y
@@ -327,7 +378,7 @@
              time surface is #minimap-clock. -->
         <canvas id="minimap-daynight" width="88" height="88" aria-hidden="true"></canvas>
       </div>
-      <div id="minimap-clock" data-i18n-title="hudChrome.widgets.clockTitle" title="Local time — click to toggle 12/24-hour">--:--</div>
+      <div id="minimap-clock" data-i18n-title="hudChrome.widgets.clockTitle" title="Local time: click to toggle 12/24-hour">--:--</div>
       <div id="minimap-coords" role="status" data-i18n-title="hudChrome.widgets.worldCoordinates" data-i18n-aria="hudChrome.widgets.coordinates" title="Your current world coordinates" aria-label="Coordinates">0, 0</div>
       <div id="compass" role="img" data-i18n-aria="hudChrome.widgets.heading" aria-label="Heading">
         <div id="compass-strip"><div id="compass-track"></div></div>
@@ -729,7 +780,7 @@
     <div id="start-screen-backdrop" aria-hidden="true">
       <!-- Looping cinematic background video; poster = static key-art for instant paint + fallback. -->
       <!-- The poster (static key-art) paints instantly. The 5.7 MB looping trailer
-           is NOT eagerly fetched: no autoplay/preload/source here — main.ts attaches
+           is NOT eagerly fetched: no autoplay/preload/source here, main.ts attaches
            the source and plays only on capable devices (see applyLandingBackdrop).
            Phones / Save-Data / reduced-motion / high-contrast keep the poster only. -->
       <video id="bg-home" class="bg-trailer bg-home" loop muted playsinline preload="none" poster="/home-bg.png" aria-hidden="true" data-trailer-src="/home-bg.mp4"></video>
@@ -875,7 +926,7 @@
           <button type="button" id="btn-online" class="play-compat-trigger" tabindex="-1" aria-hidden="true"></button>
           <button type="button" id="btn-offline" class="play-compat-trigger" tabindex="-1" aria-hidden="true"></button>
 
-          <!-- Tip — part of the same play container (divider above). -->
+          <!-- Tip: part of the same play container (divider above). -->
           <div class="play-tip">
             <p id="performance-tip"><b data-i18n="mode.tipTitle">TIP:</b> <span data-i18n="mode.tipText">For the smoothest experience, turn off ad blocker extensions on this site. Community reports found some blockers can cause lag.</span></p>
           </div>
@@ -1633,11 +1684,26 @@
       <div id="game-version">v0.42.2</div>
       </div>
       <div class="footer-legal-row">
-        <a href="/World-of-ClaudeCraft-Whitepaper-v1.0.pdf" id="footer-whitepaper-link" class="footer-link" data-i18n="footer.whitepaper">Whitepaper</a>
-        <a href="/terms" class="footer-link" data-i18n="footer.terms">Terms of Service</a>
-        <a href="/privacy" class="footer-link" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="/terms" class="footer-link" data-i18n="footer.terms">服务条款</a>
+        <a href="/privacy" class="footer-link" data-i18n="footer.privacy">隐私政策</a>
+        <a href="/support" class="footer-link" data-i18n="footer.support">支持与帮助</a>
+        <a href="/World-of-ClaudeCraft-Whitepaper-v1.0.pdf" id="footer-whitepaper-link" class="footer-link" style="display:none;" aria-hidden="true">Whitepaper</a>
       </div>
-      <div class="footer-healthy-gaming" id="footer-healthy-gaming">健康游戏忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。</div>
+      <div class="footer-compliance-container" id="footer-compliance-container">
+        <div class="footer-healthy-gaming" id="footer-healthy-gaming">
+          <span class="healthy-title">健康游戏忠告</span>
+          <span class="healthy-text">抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。</span>
+        </div>
+        <div class="footer-age-tips" id="footer-age-tips">
+          <span class="age-badge">16+</span>
+          <span class="age-text">适龄提示：本游戏适合年满 16 周岁以上的用户体验，请合理安排游戏时间，享受健康生活。</span>
+        </div>
+        <div class="footer-icp-row" id="footer-icp-row">
+          <span>World of ClaudeCraft 开源经典MMO定制版</span>
+          <span>皖ICP备XXXXXXXX号-1（预留）</span>
+          <span>电信增值业务资质：合规备存</span>
+        </div>
+      </div>
       <div class="footer-lang-row">
         <div class="language-selector">
           <label for="lang-select" class="visually-hidden" data-i18n="a11y.languageSelection">Language selection</label>
