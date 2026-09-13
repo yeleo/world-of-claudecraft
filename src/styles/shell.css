@@ -2004,8 +2004,8 @@
     width: 100%;
     box-sizing: border-box;
     background: rgba(11, 11, 18, 0.96);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border-top: 2px solid var(--color-border-default);
     display: flex;
     flex-direction: column;
