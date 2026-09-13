@@ -288,7 +288,8 @@ def main():
             last_save_step = global_step
 
     # Save final model
-    final_path = os.path.join(args.models_dir, "woc_policy_3m.pth")
+    final_model_name = f"woc_policy_{args.total_timesteps // 1_000_000}m.pth" if args.total_timesteps >= 1_000_000 else f"woc_policy_{args.total_timesteps}.pth"
+    final_path = os.path.join(args.models_dir, final_model_name)
     torch.save({
         "global_step": global_step,
         "model_state_dict": agent.state_dict(),
