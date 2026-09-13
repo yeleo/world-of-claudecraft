@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# World of Claudecraft (中国大陆合规发布版) - 停止脚本
+# World of Claudecraft - 停止脚本
 # ==============================================================================
 set -e
 
@@ -11,17 +11,19 @@ if [ "${BASH_SOURCE[0]}" != "$0" ]; then
     return 1 2>/dev/null || exit 1
 fi
 
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "未知")
+
 echo "=================================================="
 echo "  🛑 正在停止 World of Claudecraft 服务...         "
+echo "  🌿 当前分支: $CURRENT_BRANCH"
 echo "=================================================="
 
 docker compose down
 
 echo ""
 echo "✅ 服务已安全平稳停止。"
-echo "💾 说明: 数据库（PostgreSQL/MariaDB）数据与上传媒体文件已完整保留在数据卷中。"
-echo "🚀 重新启动请直接运行: ./start.sh"
+echo "💾 说明: 数据库（PostgreSQL/MariaDB）数据与上传媒体文件已完整保留在持久化数据卷中。"
+echo "🚀 重新启动请直接运行: ./start.sh 或 ./start.sh [目标分支]"
