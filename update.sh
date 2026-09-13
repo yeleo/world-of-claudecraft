@@ -29,14 +29,17 @@ fi
 # 2. 避免本地临时文件变动阻碍 git pull
 git checkout data/releases.json 2>/dev/null || true
 
-# 2. 拉取最新远端代码（智能适配浅克隆与完整克隆）
+# 2. 智能拉取最新远端代码并严格重置对齐（彻底解决浅克隆与非快进分支偏离问题）
 echo "📥 正在拉取远端 release/china 最新代码..."
 if [ -f .git/shallow ]; then
     echo "💡 检测到生产环境浅克隆仓库 (Shallow Clone)，执行深度为 1 的快速拉取..."
-    git pull --depth=1 origin release/china
+    git fetch --depth=1 origin release/china
 else
-    git pull origin release/china
+    git fetch origin release/china
 fi
+
+echo "🔄 正在将本地版本严格重置并对齐至远端最新发布状态..."
+git reset --hard origin/release/china
 
 # 3. 准备运行时目录与权限
 MEDIA_DIR="${EASTBROOK_MEDIA_DIR:-./media-cache}"
