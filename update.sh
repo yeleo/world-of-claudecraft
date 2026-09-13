@@ -32,43 +32,42 @@ echo "  🔄 检查并更新 World of Claudecraft"
 echo "  🌿 目标分支: $TARGET_BRANCH"
 echo "=================================================="
 
-# 2. 检查并切换至目标分支
-if [ "$CURRENT_BRANCH" != "$TARGET_BRANCH" ]; then
-    echo "⚠️ 当前处于分支 '$CURRENT_BRANCH'，正在切换至 '$TARGET_BRANCH'..."
-    # 保护可能阻碍切换的本地元数据文件
-    git checkout data/releases.json 2>/dev/null || true
-    if git show-ref --verify --quiet "refs/heads/$TARGET_BRANCH"; then
-        git checkout "$TARGET_BRANCH"
-    else
-        echo "💡 本地未找到分支 '$TARGET_BRANCH'，正在尝试从远程检出..."
-        if git fetch origin "$TARGET_BRANCH" 2>/dev/null; then
-            git checkout -b "$TARGET_BRANCH" "origin/$TARGET_BRANCH" 2>/dev/null || git checkout "$TARGET_BRANCH"
-        else
-            echo "❌ 错误: 远程与本地均未找到分支 '$TARGET_BRANCH'！"
-            exit 1
-        fi
-    fi
-fi
-
-# 3. 保护临时运行时文件变动
+# 保护可能阻碍切换的本地元数据文件
 git checkout data/releases.json 2>/dev/null || true
 
-# 4. 智能拉取远端代码并对齐（如果远端存在该分支）
+# 2. 检查远端是否存在该目标分支
 echo "📥 正在检查并同步远端分支 '$TARGET_BRANCH' 最新代码..."
 if git ls-remote --exit-code --heads origin "$TARGET_BRANCH" >/dev/null 2>&1; then
+    # 针对单分支浅克隆 (shallow clone) 添加分支跟踪规则，彻底解决无法识别远端新分支问题
+    git config --add remote.origin.fetch "+refs/heads/$TARGET_BRANCH:refs/remotes/origin/$TARGET_BRANCH" 2>/dev/null || true
+    
     if [ -f .git/shallow ]; then
-        echo "💡 检测到生产环境浅克隆仓库 (Shallow Clone)，执行深度为 1 的快速拉取..."
+        echo "💡 检测到浅克隆仓库 (Shallow Clone)，执行深度为 1 的快速拉取..."
         git fetch --depth=1 origin "$TARGET_BRANCH"
     else
         git fetch origin "$TARGET_BRANCH"
     fi
-    echo "🔄 正在将本地分支严格对齐至 origin/$TARGET_BRANCH..."
+    
+    # 强制检出并严格对齐至远端目标分支
+    echo "🔄 正在切换并严格对齐至 origin/$TARGET_BRANCH..."
+    git checkout -B "$TARGET_BRANCH" "origin/$TARGET_BRANCH"
     git reset --hard "origin/$TARGET_BRANCH"
 else
-    echo "ℹ️ 远端未找到 origin/$TARGET_BRANCH（当前为本地开发/测试分支），保留本地提交直接构建！"
+    # 远端无该分支，尝试在本地分支切换
+    if [ "$CURRENT_BRANCH" != "$TARGET_BRANCH" ]; then
+        if git show-ref --verify --quiet "refs/heads/$TARGET_BRANCH"; then
+            echo "⚠️ 远端未发现 '$TARGET_BRANCH'，切换至本地已有的 '$TARGET_BRANCH' 分支..."
+            git checkout "$TARGET_BRANCH"
+        else
+            echo "❌ 错误: 远端与本地均未找到分支 '$TARGET_BRANCH'！"
+            exit 1
+        fi
+    else
+        echo "ℹ️ 当前为本地开发分支，直接基于本地代码构建！"
+    fi
 fi
 
-# 5. 准备运行时目录与权限
+# 3. 准备运行时目录与权限
 MEDIA_DIR="${EASTBROOK_MEDIA_DIR:-./media-cache}"
 SFX_DIR="${EASTBROOK_SFX_DIR:-./sfx-runtime}"
 SPOOL_DIR="${PARSE_SPOOL_HOST_DIR:-./parse-spool}"
@@ -83,18 +82,18 @@ if [ ! -f data/releases.json ]; then
     echo "[]" > data/releases.json
 fi
 
-# 6. 平滑构建并重启容器
+# 4. 平滑构建并重启容器
 echo "🔨 正在重建并重启应用容器..."
 docker compose up -d --build
 
-# 7. 清理构建产生的悬空无用镜像，防止磁盘膨胀
+# 5. 清理构建产生的悬空无用镜像，防止磁盘膨胀
 echo "🧹 正在清理旧版本悬空镜像..."
 docker image prune -f
 
-# 8. 显示最终状态
+# 6. 显示最终状态
 echo ""
-echo "✨ 更新完成！当前分支: $TARGET_BRANCH"
-echo "📊 容器运行状态："
+echo "✨ 更新完成！当前运行分支: $TARGET_BRANCH"
+echo "📊 容器状态："
 docker compose ps
 echo ""
 echo "📜 查看实时日志请执行: docker compose logs -f game"
