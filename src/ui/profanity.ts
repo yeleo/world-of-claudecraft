@@ -15,22 +15,34 @@ const CONFUSABLE_CHARS: Record<string, string> = {
   '3': 'e',
   '4': 'a',
   '5': 's',
+  '6': 'g',
   '7': 't',
   '8': 'b',
+  '9': 'g',
   '!': 'i',
   '|': 'i',
   '@': 'a',
   $: 's',
   '+': 't',
+  '©': 'c',
+  '€': 'e',
+  '£': 'l',
 };
 
-const TOKEN_RE = /[A-Za-z0-9_@$!|+]+/g;
+const CONFUSABLE_RE = /[0-9!|@$+©€£]/g;
+const TOKEN_RE = /[\p{L}\p{M}\p{N}_@$!|+©€£]+/gu;
+const HAS_CJK_RE = /[\u4e00-\u9fa5]/;
+
+function foldConfusables(text: string): string {
+  return text
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(CONFUSABLE_RE, (ch) => CONFUSABLE_CHARS[ch] ?? ch);
+}
 
 function normalizeWord(term: string): string {
-  return term
-    .toLowerCase()
-    .replace(/[0134578!|@$+]/g, (ch) => CONFUSABLE_CHARS[ch] ?? ch)
-    .replace(/[^a-z]/g, '');
+  return foldConfusables(term).replace(/[^a-z\u4e00-\u9fa5]/g, '');
 }
 
 /** Replace every token containing a soft term with asterisks of equal length. */
@@ -38,8 +50,16 @@ export function maskProfanity(text: string, terms: readonly string[]): string {
   if (terms.length === 0) return text;
   return text.replace(TOKEN_RE, (tok) => {
     const normalized = normalizeWord(tok);
-    return normalized.length > 0 && terms.some((term) => normalized.includes(term))
-      ? '*'.repeat(tok.length)
-      : tok;
+    if (!normalized || !terms.some((term) => normalized.includes(term))) return tok;
+    if (HAS_CJK_RE.test(tok)) {
+      let masked = tok;
+      for (const term of terms) {
+        if (term && normalized.includes(term)) {
+          masked = masked.split(term).join('*'.repeat(term.length));
+        }
+      }
+      return masked;
+    }
+    return '*'.repeat(tok.length);
   });
 }

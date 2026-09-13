@@ -47,7 +47,11 @@ describe('parseWordList', () => {
   it('splits on whitespace/commas and normalizes each term', () => {
     expect(parseWordList('Fuck, sh1t\n bitch')).toEqual(['fuck', 'shit', 'bitch']);
     expect(parseWordList('   ')).toEqual([]);
-    expect(parseWordList('# header comment\nfoo, bar # inline comment\nbaz')).toEqual(['foo', 'bar', 'baz']);
+    expect(parseWordList('# header comment\nfoo, bar # inline comment\nbaz')).toEqual([
+      'foo',
+      'bar',
+      'baz',
+    ]);
   });
 });
 
@@ -120,13 +124,17 @@ describe('escalate', () => {
 
   it('mutes immediately when warningsBeforeMute is 0', () => {
     expect(escalate(0, { warningsBeforeMute: 0, muteLadderSeconds: [600] })).toEqual({
-      kind: 'mute', muteSeconds: 600, strikes: 1,
+      kind: 'mute',
+      muteSeconds: 600,
+      strikes: 1,
     });
   });
 
   it('never mutes when the ladder is empty', () => {
     expect(escalate(5, { warningsBeforeMute: 1, muteLadderSeconds: [] })).toEqual({
-      kind: 'warning', muteSeconds: 0, strikes: 6,
+      kind: 'warning',
+      muteSeconds: 0,
+      strikes: 6,
     });
   });
 });
@@ -134,11 +142,15 @@ describe('escalate', () => {
 describe('cleanEscalationConfig', () => {
   it('falls back to defaults on garbage input', () => {
     expect(cleanEscalationConfig({})).toEqual(DEFAULT_ESCALATION);
-    expect(cleanEscalationConfig({ warningsBeforeMute: -3, muteLadderSeconds: 'nope' })).toEqual(DEFAULT_ESCALATION);
+    expect(cleanEscalationConfig({ warningsBeforeMute: -3, muteLadderSeconds: 'nope' })).toEqual(
+      DEFAULT_ESCALATION,
+    );
   });
 
   it('keeps valid values and drops non-positive ladder entries', () => {
-    expect(cleanEscalationConfig({ warningsBeforeMute: 2, muteLadderSeconds: [60, -1, 0, 120] })).toEqual({
+    expect(
+      cleanEscalationConfig({ warningsBeforeMute: 2, muteLadderSeconds: [60, -1, 0, 120] }),
+    ).toEqual({
       warningsBeforeMute: 2,
       muteLadderSeconds: [60, 120],
     });
@@ -169,5 +181,81 @@ describe('Chinese chat filter localization', () => {
     expect(findHardWord('大家快来买外.挂', ['外挂'])).toBe('外挂');
     expect(findHardWord('大家快来买 外 挂', ['外挂'])).toBe('外挂');
     expect(findHardWord('买外-挂加群', ['外挂'])).toBe('外挂');
+  });
+});
+
+describe('Production censor dictionaries and client profanity masking', () => {
+  it('strictly bounds censor_hard.txt under the 64KB banlist ceiling', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const hardPath = path.resolve(__dirname, '../data/censor/censor_hard.txt');
+    const stat = fs.statSync(hardPath);
+    expect(stat.size).toBeLessThan(65536);
+    expect(stat.size).toBeGreaterThan(10000);
+  });
+
+  it('guarantees 0 false positives on standard game vocabulary', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const hardPath = path.resolve(__dirname, '../data/censor/censor_hard.txt');
+    const lines = fs
+      .readFileSync(hardPath, 'utf8')
+      .split('\n')
+      .map((l: string) => l.replace(/#.*$/, '').trim())
+      .filter((l: string) => l.length > 0);
+
+    const normalSentences = [
+      '大家快来看我的战士操作',
+      '我去采草药了',
+      '打开背包看一下',
+      '法师教我一下怎么打副本',
+      '这个任务怎么做',
+      '服务器今天网络很好',
+      '克劳德工艺太好玩了',
+      '今天日常做完了吗',
+      '我们公会什么时候开荒',
+      '请问平台客服在哪里',
+      '兄弟们进组退组',
+      '中国人民爱好和平',
+      '大家一起文明交流',
+      '这个装备属性如何',
+      '退出团队重组',
+    ];
+
+    for (const sentence of normalSentences) {
+      const hit = findHardWord(sentence, lines);
+      expect(hit, `False positive on sentence: "${sentence}"`).toBeNull();
+    }
+  });
+
+  it('reliably catches severe violations from censor_hard.txt', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const hardPath = path.resolve(__dirname, '../data/censor/censor_hard.txt');
+    const lines = fs
+      .readFileSync(hardPath, 'utf8')
+      .split('\n')
+      .map((l: string) => l.replace(/#.*$/, '').trim())
+      .filter((l: string) => l.length > 0);
+
+    const violations = [
+      '大家快来买外挂加QQ群',
+      '最新私服上线送神器',
+      '秒杀挂锁血挂透视自瞄',
+      '出售手枪子弹炸药雷管',
+      '高纯度海洛因冰毒麻古',
+    ];
+
+    for (const v of violations) {
+      const hit = findHardWord(v, lines);
+      expect(hit, `Should have caught violation: "${v}"`).not.toBeNull();
+    }
+  });
+
+  it('client-side maskProfanity masks Chinese soft words with asterisks', async () => {
+    const { maskProfanity } = await import('../src/ui/profanity');
+    expect(maskProfanity('你这个混蛋赶紧走', ['混蛋'])).toBe('你这个**赶紧走');
+    expect(maskProfanity('真笨蛋啊', ['笨蛋'])).toBe('真**啊');
+    expect(maskProfanity('正常交流', ['混蛋'])).toBe('正常交流');
   });
 });
