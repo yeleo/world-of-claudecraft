@@ -7451,6 +7451,7 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
   const jsonLd = document.getElementById('structured-data') as HTMLScriptElement | null;
   if (jsonLd) {
     const sameAs = [
+      'https://github.com/levy-street/world-of-claudecraft',
       'https://github.com/yeleo/world-of-claudecraft',
       'https://discord.com/invite/worldofclaudecraft',
       'https://www.youtube.com/@WoClaudeCraft',

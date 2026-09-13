@@ -835,33 +835,16 @@
     }
   }
 
-  /* Footer donate link keeps the social-link shape but warms up on hover. */
-  .footer-lang-row,
-  .footer-legal-row {
-    display: flex;
-    justify-content: center;
+  /* Footer layout primitives (unified in Global Footer section) */
+  .footer-link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-speed) var(--transition-ease);
   }
-  .footer-legal-row {
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-  .footer-healthy-gaming {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    font-size: 11px;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.45);
-    margin: 6px auto 2px;
-    letter-spacing: 0.5px;
-    font-family: var(--font-ui);
-    max-width: 600px;
-    padding: 0 12px;
-  }
-  .footer-lang-row {
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
+  .footer-link:hover,
+  .footer-link:focus-visible {
+    color: var(--color-primary);
+    outline: none;
   }
   .landing-graphics-control {
     min-height: 40px;
@@ -2019,42 +2002,62 @@
   .homepage-footer {
     position: relative;
     width: 100%;
-    background: rgba(11, 11, 18, 0.95);
+    box-sizing: border-box;
+    background: rgba(11, 11, 18, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-top: 2px solid var(--color-border-default);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    padding: var(--spacing-md) var(--spacing-lg);
+    gap: 10px;
+    padding: 14px var(--spacing-lg) 10px;
     flex-shrink: 0;
     text-align: center;
     margin-top: auto;
+    z-index: 10;
   }
 
   .footer-bar {
     width: 100%;
-    display: flex;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
     gap: 16px;
-    flex-wrap: wrap;
   }
+
   .footer-left {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
+    justify-self: start;
   }
+
   .footer-social-row {
     display: flex;
     gap: var(--spacing-sm);
-    justify-content: center;
+    align-items: center;
   }
-  @media (max-width: 640px) {
-    .footer-bar,
-    .footer-left {
-      justify-content: center;
-    }
+
+  .footer-legal-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    justify-self: center;
+    font-family: var(--font-heading);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-lang-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    justify-self: end;
   }
 
   .footer-text-row {
@@ -2065,25 +2068,84 @@
     text-shadow: 1px 1px 1px #000;
   }
 
-  .footer-link {
-    color: var(--color-text-muted);
-    text-decoration: none;
-    transition: color var(--transition-speed) var(--transition-ease);
-  }
-
-  .footer-link:hover,
-  .footer-link:focus-visible {
-    color: var(--color-primary);
-    outline: none;
-  }
-
   .homepage-footer #game-version {
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.35);
     font-family: var(--font-heading);
     font-size: 11px;
     position: static;
     margin: 0;
     text-shadow: none;
+    letter-spacing: 0.5px;
+  }
+
+  /* Footer Compliance and Advisory Section (stays full-width at the bottom) */
+  .footer-compliance-container {
+    width: 100%;
+    max-width: 920px;
+    box-sizing: border-box;
+    margin: 6px auto 0;
+    text-align: center;
+    padding: 8px 12px 2px;
+    border-top: 1px solid rgba(215, 181, 109, 0.16);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .footer-healthy-gaming {
+    font-size: 12px;
+    color: #c4b899;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-ui);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  }
+
+  .healthy-title {
+    color: #ffd100;
+    font-weight: 700;
+    margin-right: 4px;
+  }
+
+  .footer-age-tips {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #a89f84;
+    line-height: 1.4;
+    font-family: var(--font-ui);
+  }
+
+  .age-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ffd100;
+    border-radius: 4px;
+    color: #ffd100;
+    font-size: 10px;
+    font-weight: 800;
+    background: rgba(255, 209, 0, 0.12);
+    flex-shrink: 0;
+  }
+
+  .footer-icp-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    color: #7d7560;
+    font-family: var(--font-ui);
   }
 
   .social-link {
@@ -7205,10 +7267,12 @@
     margin-top: 0;
   }
   body.mobile-touch .footer-bar {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
   body.mobile-touch .footer-left {
     align-items: center;
   }
@@ -7297,17 +7361,22 @@
       margin-top: 0;
     }
     .footer-bar {
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 12px;
     }
     .footer-left {
       align-items: center;
     }
     .footer-lang-row {
       width: 100%;
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
       align-items: center;
+      gap: 8px;
     }
     .language-selector {
       width: 100%;
