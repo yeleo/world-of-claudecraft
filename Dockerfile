@@ -6,14 +6,16 @@ WORKDIR /app
 # Match package.json packageManager (Corepack not required; same as CONTRIBUTING).
 # .npmrc carries node-linker=hoisted so the install layout matches local/CI.
 # Use high-speed domestic mirror for rapid package downloads in container builds.
-RUN npm config set registry https://registry.npmmirror.com && \
-    npm install -g pnpm@10.34.5 && \
-    pnpm config set registry https://registry.npmmirror.com
+RUN npm install -g pnpm@10.34.5
 COPY package.json pnpm-lock.yaml .npmrc ./
 # pnpm patchedDependencies: the lockfile pins patch file hashes, so a frozen
 # install needs the patch files present or it fails with ENOENT.
 COPY patches ./patches
-RUN pnpm install --frozen-lockfile
+# --ignore-scripts bypasses non-essential downloaders (e.g. ffmpeg-static fetching
+# GitHub release binaries) and node-gyp native builds which hang on missing network/tools.
+# Only rebuild esbuild which is required for vite, build:server, and build:bot.
+RUN pnpm install --frozen-lockfile --ignore-scripts --reporter=append-only && \
+    pnpm rebuild esbuild
 COPY .browserslistrc tsconfig.json vite.config.ts svelte.config.js index.html admin.html play.html guide.html editor.html wallet-handoff.html ./
 COPY src ./src
 COPY server ./server
