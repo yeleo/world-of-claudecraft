@@ -96,9 +96,6 @@ services:
       # Runtime public origin for server-generated absolute URLs such as player-card
       # Open Graph images. Set per environment, for example dev vs production.
       PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-}
-      # Native attestation (Play Integrity / DeviceCheck). Default to 0 (disabled)
-      # for domestic standalone deployments without Google Play Services accounts.
-      NATIVE_ATTESTATION_REQUIRED: ${NATIVE_ATTESTATION_REQUIRED:-0}
       USERNAME_BANLIST: ${USERNAME_BANLIST:-}
       USERNAME_BANLIST_FILE: ${USERNAME_BANLIST_FILE:-/app/data/censor/censor_hard.txt}
       CHAT_CENSOR_LIST: ${CHAT_CENSOR_LIST:-}
@@ -108,7 +105,7 @@ services:
       TURNSTILE_SECRET: ${TURNSTILE_SECRET:-}
       # Runtime: native app attestation for iOS DeviceCheck and Google Play Integrity.
       # Secrets are read from .env on the host and passed through to the container.
-      NATIVE_ATTESTATION_REQUIRED: ${NATIVE_ATTESTATION_REQUIRED:-}
+      NATIVE_ATTESTATION_REQUIRED: ${NATIVE_ATTESTATION_REQUIRED:-0}
       GOOGLE_PLAY_INTEGRITY_SERVICE_ACCOUNT_JSON: ${GOOGLE_PLAY_INTEGRITY_SERVICE_ACCOUNT_JSON:-}
       GOOGLE_PLAY_INTEGRITY_SIGNING_PEM: ${GOOGLE_PLAY_INTEGRITY_SIGNING_PEM:-}
       GOOGLE_PLAY_INTEGRITY_PACKAGE_NAME: ${GOOGLE_PLAY_INTEGRITY_PACKAGE_NAME:-com.worldofclaudecraft}
