@@ -52,6 +52,8 @@ const env = {
   ...process.env,
   VITE_DESKTOP_APP: '1',
   VITE_DESKTOP_API_ORIGIN: apiOrigin,
+  VITE_DISCORD_DISABLED: process.env.VITE_DISCORD_DISABLED || '1',
+  VITE_WALLET_DISABLED: process.env.VITE_WALLET_DISABLED || '1',
 };
 
 // A macOS build with no real Developer ID configured must still LAUNCH. On Apple Silicon

@@ -32,22 +32,29 @@ export async function createNativeAttestationProof(
   if (!NATIVE_APP) return null;
   const plugin = nativePlugin();
   if (!plugin) return null;
-  const challengeRes = await fetch(apiUrl('/api/native-attestation/challenge', base), {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ action }),
-  });
-  if (!challengeRes.ok) return null;
-  const challenge = (await challengeRes.json().catch(() => null)) as ChallengeResponse | null;
-  if (typeof challenge?.challengeId !== 'string' || typeof challenge.nonce !== 'string')
+  try {
+    const challengeRes = await fetch(apiUrl('/api/native-attestation/challenge', base), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action }),
+    });
+    if (!challengeRes.ok) return null;
+    const challenge = (await challengeRes.json().catch(() => null)) as ChallengeResponse | null;
+    if (typeof challenge?.challengeId !== 'string' || typeof challenge.nonce !== 'string')
+      return null;
+    const token = await plugin.getToken({ nonce: challenge.nonce });
+    if ((token.platform !== 'android' && token.platform !== 'ios') || typeof token.token !== 'string')
+      return null;
+    return {
+      platform: token.platform,
+      challengeId: challenge.challengeId,
+      token: token.token,
+      nonce: challenge.nonce,
+    };
+  } catch (err) {
+    // Gracefully degrade when Google Play Services / Play Integrity is unavailable
+    // (e.g. sideloaded APK, non-GMS devices in domestic China environment).
+    console.warn('[native_attestation] Play Integrity token unavailable, falling back:', err);
     return null;
-  const token = await plugin.getToken({ nonce: challenge.nonce });
-  if ((token.platform !== 'android' && token.platform !== 'ios') || typeof token.token !== 'string')
-    return null;
-  return {
-    platform: token.platform,
-    challengeId: challenge.challengeId,
-    token: token.token,
-    nonce: challenge.nonce,
-  };
+  }
 }

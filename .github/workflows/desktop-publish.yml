@@ -53,6 +53,11 @@ concurrency:
   group: desktop-publish
   cancel-in-progress: false
 
+env:
+  VITE_API_ORIGIN: https://worldofclaudecraft.aoruantech.com
+  VITE_DISCORD_DISABLED: "1"
+  VITE_WALLET_DISABLED: "1"
+
 jobs:
   verify:
     name: Verify release guards

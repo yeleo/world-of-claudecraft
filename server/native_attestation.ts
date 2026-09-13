@@ -100,6 +100,13 @@ export function nativeAttestationRequired(env: NodeJS.ProcessEnv = process.env):
   const v = String(env.NATIVE_ATTESTATION_REQUIRED ?? '').toLowerCase();
   if (v === '1' || v === 'true') return true;
   if (v === '0' || v === 'false') return false;
+  // If neither Google Play nor Apple credentials are configured, attestation cannot be verified.
+  const hasGoogle = !!(
+    env.GOOGLE_PLAY_INTEGRITY_SERVICE_ACCOUNT_JSON ||
+    env.GOOGLE_PLAY_INTEGRITY_SIGNING_PEM
+  );
+  const hasApple = !!(env.APPLE_DEVICECHECK_KEY_P8 || env.APPLE_DEVICECHECK_KEY_PEM);
+  if (!hasGoogle && !hasApple) return false;
   return env.NODE_ENV === 'production';
 }
 

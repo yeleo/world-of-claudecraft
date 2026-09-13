@@ -96,6 +96,9 @@ services:
       # Runtime public origin for server-generated absolute URLs such as player-card
       # Open Graph images. Set per environment, for example dev vs production.
       PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-}
+      # Native attestation (Play Integrity / DeviceCheck). Default to 0 (disabled)
+      # for domestic standalone deployments without Google Play Services accounts.
+      NATIVE_ATTESTATION_REQUIRED: ${NATIVE_ATTESTATION_REQUIRED:-0}
       USERNAME_BANLIST: ${USERNAME_BANLIST:-}
       USERNAME_BANLIST_FILE: ${USERNAME_BANLIST_FILE:-/app/data/censor/censor_hard.txt}
       CHAT_CENSOR_LIST: ${CHAT_CENSOR_LIST:-}
