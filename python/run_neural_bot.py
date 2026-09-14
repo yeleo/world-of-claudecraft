@@ -555,7 +555,7 @@ class SingleBotInstance:
                                 print(f"  >>> Player #{self.bot_idx + 1} '{self.char_name}' joined the realm! (PID: {self.pid})")
                             elif t == "error":
                                 err_text = msg.get("error", msg.get("message", ""))
-                                print(f"  [Bot #{self.bot_idx + 1} \g{self.char_name}'] Server notice: {err_text}")
+                                print(f"  [Bot #{self.bot_idx + 1} '{self.char_name}'] Server notice: {err_text}")
                             elif t == "snap":
                                 if "self" in msg:
                                     self.self_state.update(msg["self"])
@@ -597,10 +597,14 @@ class SingleBotInstance:
 
                             now = time.time()
 
-                            # Resurrect if dead
+                            # Resurrect if dead or ghost
                             if self.self_state.get("dead"):
-                                await asyncio.sleep(random.uniform(1.2, 2.5))  # human hesitation before release
+                                await asyncio.sleep(random.uniform(0.8, 1.5))
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "release"}))
+                                continue
+                            if self.self_state.get("ghost"):
+                                await asyncio.sleep(random.uniform(1.0, 2.0))
+                                await ws.send(json.dumps({"t": "cmd", "cmd": "resurrect_healer"}))
                                 continue
 
                             # ---------------------------------------------------------
@@ -1054,37 +1058,71 @@ class SingleBotInstance:
                                 qlog_list_f = self.self_state.get("qlog", [])
                                 qlog_f = {q["questId"]: q for q in qlog_list_f if isinstance(q, dict) and "questId" in q}
 
-                                # Check Gauntlet
-                                if "q_ps_the_gauntlet" not in qdone_f:
-                                    if "q_ps_the_gauntlet" not in qlog_f:
-                                        if math.hypot(-283.0 - my_x, -21.0 - my_z) <= 8.5 and now - self.last_quest_action_time > 2.0:
-                                            await asyncio.sleep(random.uniform(0.3, 0.9))
-                                            await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": "q_ps_the_gauntlet"}))
-                                            self.last_quest_action_time = now
-                                    else:
-                                        if math.hypot(-337.0 - my_x, -33.0 - my_z) <= 8.5 and now - self.last_quest_action_time > 2.0:
-                                            await asyncio.sleep(random.uniform(0.3, 0.9))
-                                            await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": "q_ps_the_gauntlet"}))
-                                            self.last_quest_action_time = now
+                                fgx, fgz, faction, fparam = QuestNavigator.resolve_macro_objective(
+                                    my_x, my_z, qdone_f, qlog_f,
+                                    waypoint_index=0,
+                                    player_class=self.player_class,
+                                    is_ghost=self.self_state.get("ghost", False)
+                                )
 
-                                # Check Strike True
-                                elif "q_ps_strike_true" not in qdone_f:
-                                    if "q_ps_strike_true" not in qlog_f:
-                                        if math.hypot(-337.0 - my_x, -33.0 - my_z) <= 8.5 and now - self.last_quest_action_time > 2.0:
-                                            await asyncio.sleep(random.uniform(0.3, 0.9))
-                                            await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": "q_ps_strike_true"}))
+                                dist_to_fgoal = math.hypot(fgx - my_x, fgz - my_z)
+                                if dist_to_fgoal <= 8.5 and now - self.last_quest_action_time > 2.0:
+                                    if faction == "accept":
+                                        await asyncio.sleep(random.uniform(0.3, 0.8))
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": fparam}))
+                                        self.last_quest_action_time = now
+                                    elif faction == "turnin":
+                                        await asyncio.sleep(random.uniform(0.3, 0.8))
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": fparam}))
+                                        self.last_quest_action_time = now
+                                    elif faction == "ability_drill":
+                                        effigy_id = None
+                                        for eid, e in self.entities.items():
+                                            if e.get("name") == "training_effigy" or e.get("dummy"):
+                                                effigy_id = eid
+                                                break
+                                        if effigy_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "target", "id": effigy_id}))
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": fparam, "target": effigy_id}))
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "attack"}))
                                             self.last_quest_action_time = now
-                                    else:
-                                        if qlog_f["q_ps_strike_true"].get("state") == "ready":
-                                            if math.hypot(-345.0 - my_x, -11.0 - my_z) <= 8.5 and now - self.last_quest_action_time > 2.0:
-                                                await asyncio.sleep(random.uniform(0.3, 0.9))
-                                                await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": "q_ps_strike_true"}))
-                                                self.last_quest_action_time = now
-
-                                # Check Ferry Bell
-                                else:
-                                    if math.hypot(-279.0 - my_x, -10.0 - my_z) <= 7.5 and now - self.last_quest_action_time > 3.0:
-                                        await asyncio.sleep(random.uniform(0.5, 1.5))
+                                    elif faction == "crate":
+                                        crate_id = None
+                                        for eid, e in self.entities.items():
+                                            if e.get("objectItemId") == "ps_castaway_crate" or "crate" in str(e.get("name", "")).lower():
+                                                crate_id = eid
+                                                break
+                                        if crate_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": crate_id}))
+                                        else:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                        self.last_quest_action_time = now
+                                    elif faction == "buy_pouch":
+                                        finch_id = None
+                                        for eid, e in self.entities.items():
+                                            if "finch" in str(e.get("name", "")).lower():
+                                                finch_id = eid
+                                                break
+                                        if finch_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "buy", "npc": finch_id, "item": "linen_pouch"}))
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "use", "item": "linen_pouch"}))
+                                        self.last_quest_action_time = now
+                                    elif faction == "signpost":
+                                        board_id = None
+                                        for eid, e in self.entities.items():
+                                            if "noticeboard" in str(e.get("name", "")).lower() or "signpost" in str(e.get("name", "")).lower():
+                                                board_id = eid
+                                                break
+                                        if board_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": board_id}))
+                                        else:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                        self.last_quest_action_time = now
+                                    elif faction == "death_lesson":
+                                        if not self.self_state.get("dead") and not self.self_state.get("ghost"):
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "use", "item": "ps_passing_stone"}))
+                                            self.last_quest_action_time = now
+                                    elif faction == "ferry" and (lx > -200.0 or math.hypot(-279.0 - lx, -10.0 - lz) <= 8.0):
                                         bell_id = None
                                         for eid, e in self.entities.items():
                                             if e.get("objectItemId") == "ps_ferry_bell" or "ferry" in str(e.get("name", "")).lower():
@@ -1110,56 +1148,12 @@ class SingleBotInstance:
                                 qlog_list = self.self_state.get("qlog", [])
                                 qlog = {q["questId"]: q for q in qlog_list if isinstance(q, dict) and "questId" in q}
 
-                                goal_x, goal_z = my_x, my_z
-                                goal_action = "patrol"
-                                goal_param = ""
-
-                                if my_x < -200.0:
-                                    # [On Proving Shore tutorial island]
-                                    if "q_ps_the_gauntlet" not in qdone:
-                                        if "q_ps_the_gauntlet" not in qlog:
-                                            goal_x, goal_z = -283.0, -21.0
-                                            goal_action = "accept"
-                                            goal_param = "q_ps_the_gauntlet"
-                                        else:
-                                            counts = qlog["q_ps_the_gauntlet"].get("counts", [0])
-                                            next_flag = counts[0] if counts else 0
-                                            if next_flag < len(GAUNTLET_CHECKPOINTS):
-                                                goal_x, goal_z = GAUNTLET_CHECKPOINTS[next_flag]
-                                                goal_action = "waypoint"
-                                                goal_param = f"Flag #{next_flag + 1}"
-                                            else:
-                                                goal_x, goal_z = -337.0, -33.0
-                                                goal_action = "turnin"
-                                                goal_param = "q_ps_the_gauntlet"
-
-                                    elif "q_ps_strike_true" not in qdone:
-                                        if "q_ps_strike_true" not in qlog:
-                                            goal_x, goal_z = -337.0, -33.0
-                                            goal_action = "accept"
-                                            goal_param = "q_ps_strike_true"
-                                        else:
-                                            if qlog["q_ps_strike_true"].get("state") == "ready":
-                                                goal_x, goal_z = -345.0, -11.0
-                                                goal_action = "turnin"
-                                                goal_param = "q_ps_strike_true"
-                                            else:
-                                                # Fight training effigies
-                                                goal_x, goal_z = -336.0, -14.0
-                                                goal_action = "hunt"
-                                                goal_param = "training_effigy"
-
-                                    else:
-                                        # Tutorial completed -> Head to the Old Pier ferry bell to sail to mainland!
-                                        goal_x, goal_z = -279.0, -10.0
-                                        goal_action = "ferry"
-                                        goal_param = "ps_ferry_bell"
-
-                                else:
-                                    # [On Eastbrook Vale Mainland!]
-                                    goal_x, goal_z = EASTBROOK_WAYPOINTS[wp_idx % len(EASTBROOK_WAYPOINTS)]
-                                    goal_action = "explore"
-                                    goal_param = "Eastbrook Highway"
+                                goal_x, goal_z, goal_action, goal_param = QuestNavigator.resolve_macro_objective(
+                                    my_x, my_z, qdone, qlog,
+                                    waypoint_index=wp_idx,
+                                    player_class=self.player_class,
+                                    is_ghost=self.self_state.get("ghost", False)
+                                )
 
                                 self.macro_goal_action = goal_action
                                 self.macro_goal_param = goal_param
@@ -1168,16 +1162,14 @@ class SingleBotInstance:
                                 angle_to_goal = math.atan2(goal_x - my_x, goal_z - my_z)
 
                                 # Check if reached goal for quest action
-                                if dist_to_goal <= 3.8 and now - self.last_quest_action_time > 2.5:
+                                if dist_to_goal <= 4.0 and now - self.last_quest_action_time > 2.0:
                                     # Human-like reading hesitation before clicking accept/turnin
                                     if now < self.npc_reading_until:
-                                        # Still reading dialog
                                         self.is_trying_to_move = False
                                         await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.smooth_turn_facing(angle_to_goal, 0.05)}))
                                         continue
 
                                     if self.npc_reading_until == 0.0 and goal_action in ("accept", "turnin", "ferry"):
-                                        # Start reading pause
                                         self.npc_reading_until = now + random.uniform(0.8, 1.6)
                                         continue
 
@@ -1187,17 +1179,83 @@ class SingleBotInstance:
                                         await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": goal_param}))
                                         print(f"  [Quest] Leader accepted '{goal_param}' from NPC!")
                                         self.last_quest_action_time = now
-                                        self.npc_reading_until = now + random.uniform(2.5, 3.5)
+                                        self.npc_reading_until = now + random.uniform(2.0, 3.0)
                                         if random.random() < 0.5:
                                             await ws.send(json.dumps({"t": "cmd", "cmd": "emote", "emote": "salute"}))
+
                                     elif goal_action == "turnin":
                                         await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": goal_param}))
                                         print(f"  [Quest] Leader turned in & completed '{goal_param}'!")
                                         self.last_quest_action_time = now
-                                        self.npc_reading_until = now + random.uniform(2.5, 3.5)
+                                        self.npc_reading_until = now + random.uniform(2.0, 3.0)
                                         vic_msg = random.choice(CHAT_VICTORY_LINES)
                                         await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {vic_msg}"}))
                                         await ws.send(json.dumps({"t": "cmd", "cmd": "emote", "emote": "cheer"}))
+
+                                    elif goal_action == "ability_drill":
+                                        effigy_id = None
+                                        for eid, e in self.entities.items():
+                                            if e.get("name") == "training_effigy" or e.get("dummy"):
+                                                effigy_id = eid
+                                                break
+                                        if effigy_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "target", "id": effigy_id}))
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": goal_param, "target": effigy_id}))
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "attack"}))
+                                            print(f"  [Quest] Landing ability drill '{goal_param}' on effigy #{effigy_id}!")
+                                            self.last_quest_action_time = now
+
+                                    elif goal_action == "crab_boss":
+                                        crab_alive = any(e.get("name") == "mister_crabs" and not e.get("dead") for e in self.entities.values())
+                                        if not crab_alive:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "use", "item": "ps_briny_lure"}))
+                                            print(f"  [Quest] Used Briny Lure at tide pool to summon Mister Crabs!")
+                                            self.last_quest_action_time = now
+
+                                    elif goal_action == "crate":
+                                        crate_id = None
+                                        for eid, e in self.entities.items():
+                                            if e.get("objectItemId") == "ps_castaway_crate" or "crate" in str(e.get("name", "")).lower():
+                                                crate_id = eid
+                                                break
+                                        if crate_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": crate_id}))
+                                        else:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                        print(f"  [Quest] Opened Castaway Crate ({goal_param})!")
+                                        self.last_quest_action_time = now
+
+                                    elif goal_action == "buy_pouch":
+                                        finch_id = None
+                                        for eid, e in self.entities.items():
+                                            if "finch" in str(e.get("name", "")).lower():
+                                                finch_id = eid
+                                                break
+                                        if finch_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "buy", "npc": finch_id, "item": "linen_pouch"}))
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "use", "item": "linen_pouch"}))
+                                        print(f"  [Quest] Bought & equipped Linen Pouch!")
+                                        self.last_quest_action_time = now
+
+                                    elif goal_action == "signpost":
+                                        board_id = None
+                                        for eid, e in self.entities.items():
+                                            if "noticeboard" in str(e.get("name", "")).lower() or "signpost" in str(e.get("name", "")).lower():
+                                                board_id = eid
+                                                break
+                                        if board_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": board_id}))
+                                        else:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                        print(f"  [Quest] Inspected guild signpost!")
+                                        self.last_quest_action_time = now
+
+                                    elif goal_action == "death_lesson":
+                                        if not self.self_state.get("dead") and not self.self_state.get("ghost"):
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "use", "item": "ps_passing_stone"}))
+                                            print(f"  [Quest] Used Passing Stone for the death lesson!")
+                                            self.last_quest_action_time = now
+
                                     elif goal_action == "ferry":
                                         await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": "/p 走，乘船去东溪谷大陆开荒！"}))
                                         bell_id = None
@@ -1211,11 +1269,13 @@ class SingleBotInstance:
                                             await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
                                         print(f"  [Ferry] Ringing Ferry Bell to sail across to Eastbrook mainland!")
                                         self.last_quest_action_time = now
-                                    elif goal_action in ("waypoint", "explore"):
-                                         wp_idx = (wp_idx + 1) % max(1, len(EASTBROOK_WAYPOINTS))
-                                         self.last_quest_action_time = now
 
-                                if dist_to_goal > 2.0:
+                                    elif goal_action in ("waypoint", "explore"):
+                                        wp_idx = (wp_idx + 1) % max(1, len(EASTBROOK_WAYPOINTS))
+                                        self.last_quest_action_time = now
+
+                                stop_dist = 1.2 if goal_action == "waypoint" else 2.2
+                                if dist_to_goal > stop_dist:
                                     self.is_trying_to_move = True
                                     self.travel_heading = angle_to_goal
                                     await ws.send(json.dumps(make_move_input(angle_to_goal)))
@@ -1225,7 +1285,7 @@ class SingleBotInstance:
                                     await ws.send(json.dumps({"t": "input", "mi": {}, "facing": smoothed_goal}))
 
                                 if now - last_log_time > 5.0:
-                                    print(f"  [Explore] Leader '{self.char_name}' -> Objective: {goal_action} ({goal_param}) at ({goal_x:.1f}, {goal_z:.1f})")
+                                    print(f"  [Explore] Leader '{self.char_name}' pos=({my_x:.1f}, {my_z:.1f}) -> Objective: {goal_action} ({goal_param}) at ({goal_x:.1f}, {goal_z:.1f}), dist={dist_to_goal:.1f}")
                                     last_log_time = now
 
                     async def safe_control_loop():
