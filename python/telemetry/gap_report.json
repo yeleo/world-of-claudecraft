@@ -1,11 +1,19 @@
 {
   "summary": {
     "total_bots_sampled": 9,
-    "quests_accepted": 20,
-    "quests_turned_in": 11,
-    "items_auto_equipped": 18,
-    "vendor_junk_disposals": 9,
-    "party_lifecycle_departures": 5
+    "quests_accepted": 54,
+    "quests_turned_in": 36,
+    "items_auto_equipped": 36,
+    "vendor_junk_disposals": 54,
+    "party_lifecycle_departures": 13
+  },
+  "human_mannerisms": {
+    "scenic_pauses": 32,
+    "curiosity_diversions": 6,
+    "vendor_transaction_sessions": 18,
+    "gear_tooltip_inspections": 36,
+    "bunny_hops_while_running": 31,
+    "human_likeness_score": "100/100"
   },
   "anomalies": {
     "stagnation_incidents": 0,

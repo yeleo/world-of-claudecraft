@@ -35,10 +35,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from macro.intents.gear_intent import evaluate_inventory_upgrades, decide_loot_roll
-from macro.intents.economy_intent import should_visit_vendor, find_nearby_vendor, get_vendor_disposal_actions
+from macro.intents.gear_intent import evaluate_inventory_upgrades, decide_loot_roll, HumanGearInspectionFSM
+from macro.intents.economy_intent import should_visit_vendor, find_nearby_vendor, HumanVendorInteractionFSM
 from macro.intents.party_intent import PartyLifecycleManager
 from macro.intents.quest_intent import QuestNavigator
+from macro.intents.curiosity_intent import CuriosityIntentManager
 
 import numpy as np
 import torch
@@ -326,8 +327,11 @@ class SingleBotInstance:
         # Known other player pids (for human greeting)
         self.last_greet_time = 0.0
 
-        # Autonomous Macro Intent Managers
+        # Autonomous Macro Intent Managers & Human-Paced FSMs
         self.party_mgr = PartyLifecycleManager(self.pid, self.player_class, is_solo_personality=(self.player_class == "rogue"))
+        self.vendor_fsm = HumanVendorInteractionFSM(self.pid)
+        self.gear_fsm = HumanGearInspectionFSM(self.pid, self.player_class)
+        self.curiosity_mgr = CuriosityIntentManager(self.pid, self.player_class)
         self.last_gear_eval_time = 0.0
         self.last_vendor_action_time = -999.0
 
@@ -655,26 +659,63 @@ class SingleBotInstance:
                         return {"t": "input", "mi": mi, "facing": smoothed}
 
                     # ---------------------------------------------------------
-                    # 1.5. Autonomous Gear Upgrade & Bag Economy Intents
+                    # 1.5. Authentic Multi-Stage Human Interaction FSMs
                     # ---------------------------------------------------------
-                    if now - self.last_gear_eval_time > 2.0:
-                        inv = self.self_state.get("inventory", [])
-                        equip = self.self_state.get("equipment", {})
+                    in_combat = bool(self.self_state.get("inCombat"))
+                    inv = self.self_state.get("inventory", [])
+                    equip = self.self_state.get("equipment", {})
+
+                    # A. Deliberate Multi-Step Merchant Session (Approach -> Open -> Browse -> Click-by-Click)
+                    if self.vendor_fsm.is_busy():
+                        v_cmds, note = self.vendor_fsm.step_transaction(now, inv)
+                        for c in v_cmds:
+                            await ws.send(json.dumps(c))
+                        continue
+
+                    if not in_combat and now - self.last_vendor_action_time > 20.0:
+                        nearby_v = find_nearby_vendor(self.entities, my_x, my_z, max_dist=12.0)
+                        if nearby_v and should_visit_vendor(inv, in_combat=False, opportunist=True):
+                            dist_v = math.hypot(nearby_v["x"] - my_x, nearby_v["z"] - my_z)
+                            if dist_v <= 3.5:
+                                self.vendor_fsm.start_transaction(nearby_v["id"], inv, now)
+                                self.last_vendor_action_time = now
+                                continue
+                            else:
+                                angle_v = math.atan2(nearby_v["x"] - my_x, nearby_v["z"] - my_z)
+                                self.is_trying_to_move = True
+                                await ws.send(json.dumps(make_move_input(angle_v)))
+                                continue
+
+                    # B. Human Gear Inspection & Tooltip Comparison
+                    if self.gear_fsm.is_busy():
+                        g_cmds, note = self.gear_fsm.step(now)
+                        for c in g_cmds:
+                            await ws.send(json.dumps(c))
+                        continue
+
+                    if not in_combat and now - self.last_gear_eval_time > 3.0:
                         upgrade = evaluate_inventory_upgrades(inv, equip, self.player_class)
                         if upgrade:
-                            inv_slot, to_slot = upgrade
-                            await ws.send(json.dumps({"t": "cmd", "cmd": "equip", "slot": inv_slot, "toSlot": to_slot}))
+                            self.gear_fsm.consider_upgrade(upgrade, now, in_combat)
                         self.last_gear_eval_time = now
 
-                    if now - self.last_vendor_action_time > 3.0:
-                        nearby_v = find_nearby_vendor(self.entities, my_x, my_z, max_dist=10.0)
-                        inv = self.self_state.get("inventory", [])
-                        if should_visit_vendor(inv, in_combat=bool(self.self_state.get("inCombat")), opportunist=(nearby_v is not None)):
-                            if nearby_v:
-                                cmds = get_vendor_disposal_actions(inv, nearby_v.get("id"))
-                                for c in cmds:
-                                    await ws.send(json.dumps(c))
-                                self.last_vendor_action_time = now
+                    # C. Curiosity & Scenic Wandering Intent
+                    if not in_combat:
+                        c_goal = self.curiosity_mgr.evaluate_curiosity(now, my_x, my_z, self.entities, in_combat)
+                        if c_goal:
+                            cx, cz, c_act, c_param = c_goal
+                            dist_c = math.hypot(cx - my_x, cz - my_z)
+                            angle_c = math.atan2(cx - my_x, cz - my_z)
+                            if c_act == "sightseeing":
+                                look_angle = (now * 0.4 + self.pid) % 6.28
+                                self.is_trying_to_move = False
+                                await ws.send(json.dumps({"t": "input", "mi": {}, "facing": look_angle}))
+                                continue
+                            elif c_act == "investigate":
+                                if dist_c > 2.2:
+                                    self.is_trying_to_move = True
+                                    await ws.send(json.dumps(make_move_input(angle_c)))
+                                    continue
 
                     # ---------------------------------------------------------
                     # 2. Living Social Interactions (Emotes & Chatter)

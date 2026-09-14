@@ -27,8 +27,11 @@ class MockWorldRealm:
         self.spawn_npc(102, "Drillmaster Rook", -345.0, -11.0, {"questGiver": True})
         self.spawn_npc(103, "Quartermaster Dag", -275.0, -15.0, {"vendor": True, "merchant": True})
 
-        # 2. Interactive Objects
+        # 2. Interactive Objects & Roadside Curiosities
         self.spawn_object(201, "Ferry Bell", -279.0, -10.0, "ps_ferry_bell")
+        self.spawn_object(202, "Weathered Memorial Stone", -320.0, -28.0, "scenic_landmark")
+        self.spawn_object(203, "Driftwood Supply Crate", -350.0, 18.0, "roadside_crate")
+        self.spawn_object(204, "Ancient Anchor Relic", -295.0, -12.0, "ancient_anchor")
 
         # 3. Training Effigies (Straw Dummies)
         self.spawn_mob(301, "Training Effigy", -336.0, -14.0, hp=120, mhp=120, template="training_effigy")
@@ -182,8 +185,12 @@ class MockWorldRealm:
                 # Empties junk
                 for i in range(len(p["inventory"])):
                     item = p["inventory"][i]
-                    if item and item.get("rarity") == "poor":
+                    if item and item.get("rarity") in ("poor", "junk", "gray"):
                         p["inventory"][i] = None
+            elif cmd == "sell":
+                slot = cmd_payload.get("slot")
+                if slot is not None and 0 <= slot < len(p["inventory"]):
+                    p["inventory"][slot] = None
             elif cmd == "equip":
                 slot = cmd_payload.get("slot")
                 to_slot = cmd_payload.get("toSlot")

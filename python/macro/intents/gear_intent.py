@@ -4,6 +4,7 @@ Supports all 9 player classes with canonical WoW stat weightings and armor restr
 """
 
 from __future__ import annotations
+import random
 from typing import Dict, Any, Optional, Tuple
 
 # Allowed armor types per class
@@ -123,3 +124,54 @@ def decide_loot_roll(item: Dict[str, Any], player_class: str) -> str:
         return "need"
     else:
         return "greed"
+
+
+class HumanGearInspectionFSM:
+    """
+    Simulates authentic player gear comparison behavior:
+    1. Pauses out of combat when an upgrade is detected in bags.
+    2. Spends 1.5 ~ 2.8 seconds hovering mouse and inspecting stat comparisons.
+    3. Equips the item, then lingers 0.5s to view character sheet changes.
+    """
+
+    def __init__(self, bot_pid: int, player_class: str):
+        self.bot_pid = bot_pid
+        self.player_class = player_class
+        self.state = "IDLE"  # IDLE -> INSPECTING -> EQUIPPING -> CONFIRMING -> FINISHED
+        self.pending_upgrade: Optional[Tuple[int, str]] = None
+        self.inspect_until = 0.0
+
+    def is_busy(self) -> bool:
+        return self.state not in ("IDLE", "FINISHED")
+
+    def consider_upgrade(self, upgrade: Tuple[int, str], now: float, in_combat: bool) -> bool:
+        """Starts gear inspection session if safe and out of combat."""
+        if in_combat or self.is_busy():
+            return False
+        self.state = "INSPECTING"
+        self.pending_upgrade = upgrade
+        # Human reading pause to compare tooltip stats
+        self.inspect_until = now + random.uniform(1.2, 2.5)
+        return True
+
+    def step(self, now: float) -> Tuple[List[Dict[str, Any]], str]:
+        if self.state == "INSPECTING":
+            if now < self.inspect_until:
+                # Hovering over item tooltip
+                return [{"t": "input", "mi": {}}], "Inspecting equipment stats in backpack"
+            else:
+                self.state = "EQUIPPING"
+                inv_slot, to_slot = self.pending_upgrade
+                cmd = {"t": "cmd", "cmd": "equip", "slot": inv_slot, "toSlot": to_slot}
+                self.inspect_until = now + random.uniform(0.5, 0.9)
+                return [cmd], f"Equipped upgrade from bag slot #{inv_slot} to {to_slot}"
+
+        elif self.state == "EQUIPPING":
+            if now < self.inspect_until:
+                return [{"t": "input", "mi": {}}], "Admiring newly equipped gear on character sheet"
+            else:
+                self.state = "FINISHED"
+                self.pending_upgrade = None
+                return [], "Gear swap complete"
+
+        return [], ""

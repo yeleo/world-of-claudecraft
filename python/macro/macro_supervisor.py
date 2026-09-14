@@ -1,51 +1,77 @@
 """
-Macro Bot Closed-Loop Simulation Supervisor & Verification Pipeline
-Drives end-to-end multi-bot simulations, samples telemetries, and generates gap reports.
+Autonomous Long-Horizon Macro Supervisor & Self-Refining Telemetry Pipeline
+Simulates lifelike multi-stage human behavior: deliberate pauses, merchant browsing,
+gear tooltip inspection, curiosity-driven scenic excursions, and spontaneous mannerisms.
 """
 
 from __future__ import annotations
+import argparse
 import json
 import math
 import os
+import random
 import sys
 import time
+from typing import List, Dict, Any, Optional
 
-# Ensure import paths
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _PYTHON_ROOT = os.path.dirname(_HERE)
 if _PYTHON_ROOT not in sys.path:
     sys.path.insert(0, _PYTHON_ROOT)
 
 from macro.sim_realm import MockWorldRealm
-from macro.gap_miner import RealmGapMiner
-from macro.intents.gear_intent import evaluate_inventory_upgrades, decide_loot_roll
-from macro.intents.economy_intent import count_free_inventory_slots, should_visit_vendor, find_nearby_vendor, get_vendor_disposal_actions
+from macro.gap_miner import RealmGapMiner, BotTelemetryTracker
+from macro.intents.gear_intent import evaluate_inventory_upgrades, HumanGearInspectionFSM
+from macro.intents.economy_intent import (
+    count_free_inventory_slots,
+    should_visit_vendor,
+    find_nearby_vendor,
+    has_junk,
+    HumanVendorInteractionFSM,
+)
 from macro.intents.party_intent import PartyLifecycleManager
 from macro.intents.quest_intent import QuestNavigator
+from macro.intents.curiosity_intent import CuriosityIntentManager
 
-
-ALL_9_CLASSES = ["warrior", "paladin", "hunter", "rogue", "priest", "shaman", "mage", "warlock", "druid"]
+ALL_9_CLASSES = [
+    "warrior", "paladin", "hunter", "rogue", "priest",
+    "shaman", "mage", "warlock", "druid"
+]
 
 
 class SimulatedBotAgent:
-    """Agent instance executing the modular macro decision tree in simulation."""
+    """Agent executing human-like multi-stage state machines and spontaneous wandering."""
 
     def __init__(self, pid: int, name: str, pclass: str, is_leader: bool = False):
         self.pid = pid
         self.name = name
         self.pclass = pclass
         self.is_leader = is_leader
+
+        # Modular Intent Managers & FSMs
         self.party_mgr = PartyLifecycleManager(pid, pclass, is_solo_personality=(pclass == "rogue"))
-        self.target_id = None
+        self.vendor_fsm = HumanVendorInteractionFSM(pid)
+        self.gear_fsm = HumanGearInspectionFSM(pid, pclass)
+        self.curiosity_mgr = CuriosityIntentManager(pid, pclass)
+
+        # Combat & Navigation state
+        self.target_id: Optional[int] = None
         self.macro_goal_action = ""
         self.macro_goal_param = ""
         self.macro_goal_x = -283.0
         self.macro_goal_z = -21.0
-        self.last_vendor_action_time = -999.0
+        self.last_vendor_visit_time = -999.0
 
-    def decide_tick_actions(self, realm: MockWorldRealm, sim_time: float) -> list:
-        """Executes the macro decision tree for one simulation tick."""
+        # Legitimate pause marker
+        self.last_narrative_note = ""
+        self.is_legitimate_pause = False
+
+    def decide_tick_actions(self, realm: MockWorldRealm, sim_time: float, tracker: BotTelemetryTracker) -> list:
+        """Executes the macro decision tree for one simulation tick with realistic pacing."""
         actions = []
+        self.last_narrative_note = ""
+        self.is_legitimate_pause = False
+
         p_snap = realm.players.get(self.pid)
         if not p_snap or p_snap.get("dead"):
             return actions
@@ -57,24 +83,58 @@ class SimulatedBotAgent:
         qdone = set(p_snap.get("qdone", []))
         qlog_list = p_snap.get("qlog", [])
         qlog = {q["questId"]: q for q in qlog_list if isinstance(q, dict) and "questId" in q}
+        in_combat = bool(p_snap.get("inCombat"))
 
-        # 1. Gear Evaluation & Auto-Equipping Branch
-        upgrade = evaluate_inventory_upgrades(inventory, equipment, self.pclass)
-        if upgrade:
-            inv_slot, to_slot = upgrade
-            actions.append({"t": "cmd", "cmd": "equip", "slot": inv_slot, "toSlot": to_slot})
+        # ----------------------------------------------------------------------
+        # 1. Multi-Stage Vendor Trading Session (Paced Human Interaction)
+        # ----------------------------------------------------------------------
+        if self.vendor_fsm.is_busy():
+            v_cmds, note = self.vendor_fsm.step_transaction(sim_time, inventory)
+            self.last_narrative_note = note
+            self.is_legitimate_pause = True
+            return v_cmds
 
-        # 2. Bag Management & Merchant Disposal Branch
+        # Check if approaching a vendor to start trading
         nearby_vendor = find_nearby_vendor(realm.entities, my_x, my_z, max_dist=12.0)
-        if should_visit_vendor(inventory, in_combat=bool(p_snap.get("inCombat")), opportunist=(nearby_vendor is not None)):
-            if nearby_vendor and sim_time - self.last_vendor_action_time > 2.0:
-                disposal_cmds = get_vendor_disposal_actions(inventory, nearby_vendor["id"])
-                actions.extend(disposal_cmds)
-                self.last_vendor_action_time = sim_time
+        if not in_combat and nearby_vendor and sim_time - self.last_vendor_visit_time > 15.0:
+            if should_visit_vendor(inventory, in_combat=False, opportunist=True):
+                dist_v = math.hypot(nearby_vendor["x"] - my_x, nearby_vendor["z"] - my_z)
+                if dist_v <= 3.5:
+                    # Arrived at merchant: initiate realistic trading FSM
+                    self.vendor_fsm.start_transaction(nearby_vendor["id"], inventory, sim_time)
+                    self.last_vendor_visit_time = sim_time
+                    tracker.vendor_sessions += 1
+                    self.last_narrative_note = f"Opened trade window with merchant '{nearby_vendor.get('nm')}'"
+                    self.is_legitimate_pause = True
+                    return [{"t": "input", "mi": {}}]
+                else:
+                    # Move directly towards vendor
+                    angle_v = math.atan2(nearby_vendor["x"] - my_x, nearby_vendor["z"] - my_z)
+                    return [{"t": "input", "mi": {"f": 1}, "facing": angle_v}]
 
-        # 3. Combat & Engagement Branch
+        # ----------------------------------------------------------------------
+        # 2. Gear Tooltip Inspection & Comparison (Paced Equipment Swap)
+        # ----------------------------------------------------------------------
+        if self.gear_fsm.is_busy():
+            g_cmds, note = self.gear_fsm.step(sim_time)
+            self.last_narrative_note = note
+            self.is_legitimate_pause = True
+            return g_cmds
+
+        if not in_combat:
+            upgrade = evaluate_inventory_upgrades(inventory, equipment, self.pclass)
+            if upgrade:
+                started = self.gear_fsm.consider_upgrade(upgrade, sim_time, in_combat)
+                if started:
+                    tracker.gear_inspections += 1
+                    self.last_narrative_note = "Hovering over newly acquired item to inspect stats"
+                    self.is_legitimate_pause = True
+                    return [{"t": "input", "mi": {}}]
+
+        # ----------------------------------------------------------------------
+        # 3. Combat & Engagement Branch (Micro-Tactics)
+        # ----------------------------------------------------------------------
         if not self.target_id or self.target_id not in realm.entities or realm.entities[self.target_id].get("dead"):
-            # Find closest alive training dummy or enemy
             closest_mob = None
             min_d = float("inf")
             for eid, ent in realm.entities.items():
@@ -97,7 +157,46 @@ class SimulatedBotAgent:
                     actions.append({"t": "cmd", "cmd": "cast", "ability": "strike", "target": self.target_id})
                 return actions
 
-        # 4. Quest Navigation & Progression Branch
+        # ----------------------------------------------------------------------
+        # 4. Curiosity, Scenic Wandering & Exploration Intent
+        # ----------------------------------------------------------------------
+        curiosity_goal = self.curiosity_mgr.evaluate_curiosity(sim_time, my_x, my_z, realm.entities, in_combat)
+        if curiosity_goal:
+            cx, cz, c_action, c_param = curiosity_goal
+            dist_c = math.hypot(cx - my_x, cz - my_z)
+            angle_c = math.atan2(cx - my_x, cz - my_z)
+
+            if c_action == "sightseeing":
+                if not getattr(self, "in_scenic_pause", False):
+                    tracker.scenic_pauses += 1
+                    self.in_scenic_pause = True
+                self.in_curiosity_trip = False
+                self.last_narrative_note = f"Admiring scenic vista at {c_param}"
+                self.is_legitimate_pause = True
+                look_angle = (sim_time * 0.5 + self.pid) % 6.28
+                return [{"t": "input", "mi": {}, "facing": look_angle}]
+
+            elif c_action == "investigate":
+                if not getattr(self, "in_curiosity_trip", False):
+                    tracker.curiosity_diversions += 1
+                    self.in_curiosity_trip = True
+                self.in_scenic_pause = False
+                self.last_narrative_note = f"Curiously strayed off-path to check out '{c_param}'"
+                if dist_c > 2.0:
+                    mi = {"f": 1}
+                    if self.curiosity_mgr.should_bunny_hop(sim_time, is_moving=True):
+                        mi["j"] = 1
+                    return [{"t": "input", "mi": mi, "facing": angle_c}]
+                else:
+                    self.is_legitimate_pause = True
+                    return [{"t": "input", "mi": {}}]
+        else:
+            self.in_scenic_pause = False
+            self.in_curiosity_trip = False
+
+        # ----------------------------------------------------------------------
+        # 5. Quest Progression & World Navigation
+        # ----------------------------------------------------------------------
         gx, gz, g_action, g_param = QuestNavigator.resolve_macro_objective(my_x, my_z, qdone, qlog)
         self.macro_goal_x, self.macro_goal_z = gx, gz
         self.macro_goal_action, self.macro_goal_param = g_action, g_param
@@ -105,8 +204,15 @@ class SimulatedBotAgent:
         dist_to_goal = math.hypot(gx - my_x, gz - my_z)
         angle_to_goal = math.atan2(gx - my_x, gz - my_z)
 
+        # Habitual casual bunny hop
+        is_moving = dist_to_goal > 2.5
+        need_hop = self.curiosity_mgr.should_bunny_hop(sim_time, is_moving)
+
         if dist_to_goal > 2.5:
-            actions.append({"t": "input", "mi": {"f": 1}, "facing": angle_to_goal})
+            mi = {"f": 1}
+            if need_hop:
+                mi["j"] = 1
+            actions.append({"t": "input", "mi": mi, "facing": angle_to_goal})
         else:
             if g_action == "accept":
                 actions.append({"t": "cmd", "cmd": "accept", "quest": g_param})
@@ -115,11 +221,14 @@ class SimulatedBotAgent:
             elif g_action == "waypoint":
                 actions.append({"t": "input", "mi": {"f": 1}, "facing": angle_to_goal})
             elif g_action == "hunt":
-                # Vigilant scanning while awaiting mob respawn (lifelike human behavior)
+                # Waiting for mob respawn with vigilant natural scanning
                 look_angle = (sim_time * 2.0 + self.pid) % 6.28
+                self.is_legitimate_pause = True
                 actions.append({"t": "input", "mi": {}, "facing": look_angle})
 
-        # 5. Party Lifecycle Departure Check (Tutorial first phase completion milestone)
+        # ----------------------------------------------------------------------
+        # 6. Party Lifecycle Departure Check
+        # ----------------------------------------------------------------------
         if p_snap.get("party"):
             should_leave, _ = self.party_mgr.evaluate_departure_decision(
                 p_snap.get("party"), qdone, milestone_quest="q_ps_the_gauntlet"
@@ -130,81 +239,100 @@ class SimulatedBotAgent:
         return actions
 
 
-def run_headless_simulation(num_bots: int = 9, ticks: int = 250) -> dict:
-    """Runs a fast-forward simulation with bots covering all specified classes."""
+def run_long_horizon_simulation(cohorts: List[int] = [1, 3, 5, 9], ticks: int = 1500) -> dict:
+    """
+    Executes multiple multi-scale long-horizon simulation sweeps,
+    streaming narrative audit logs and evaluating human-likeness fidelity.
+    """
     print("==================================================================")
-    print(" 🚀 World of ClaudeCraft - Headless Macro Supervisor Pipeline")
-    print(f" Simulated Bots   : {num_bots} (Covering MMORPG classes)")
-    print(f" Fast-Forward Ticks: {ticks} (Simulating ~{ticks*0.05:.1f}s of world interactions)")
+    print(" 🚀 World of ClaudeCraft - Autonomous Long-Horizon Macro Pipeline")
+    print(f" Cohorts to Test   : {cohorts} Bots")
+    print(f" Simulation Ticks  : {ticks} ticks/cohort (~{ticks*0.05:.1f}s world time each)")
     print("==================================================================\n")
 
-    realm = MockWorldRealm()
+    overall_reports = []
     miner = RealmGapMiner()
-    bots: List[SimulatedBotAgent] = []
 
-    # Register bots
-    for i in range(num_bots):
-        pid = 1000 + i
-        pclass = ALL_9_CLASSES[i % len(ALL_9_CLASSES)]
-        name = f"Bot_{pclass.capitalize()}_{i+1}"
-        realm.register_player(pid, name, pclass)
-        # Give some initial junk to test vendor selling
-        realm.players[pid]["inventory"][14] = {"name": "Ruined Pelts", "kind": "misc", "rarity": "poor"}
-        realm.players[pid]["inventory"][15] = {"name": "Cracked Shell", "kind": "misc", "rarity": "poor"}
-        bot_agent = SimulatedBotAgent(pid, name, pclass, is_leader=(i == 0))
-        bots.append(bot_agent)
+    for cohort_size in cohorts:
+        print(f"\n--- [Simulating Cohort: {cohort_size} Bots for {ticks} ticks] ---")
+        realm = MockWorldRealm()
+        bots: List[SimulatedBotAgent] = []
 
-    # Establish initial party
-    leader_pid = bots[0].pid
-    party_members = [{"pid": b.pid, "name": b.name, "class": b.pclass} for b in bots[:5]]
-    party_struct = {"leader": leader_pid, "members": party_members}
-    for b in bots[:5]:
-        realm.players[b.pid]["party"] = party_struct
+        for i in range(cohort_size):
+            pid = 2000 + i
+            pclass = ALL_9_CLASSES[i % len(ALL_9_CLASSES)]
+            name = f"Bot_{pclass.capitalize()}_{i+1}"
+            realm.register_player(pid, name, pclass)
+            # Equip initial junk
+            realm.players[pid]["inventory"][14] = {"name": "Ruined Pelts", "kind": "misc", "rarity": "poor"}
+            realm.players[pid]["inventory"][15] = {"name": "Cracked Shell", "kind": "misc", "rarity": "poor"}
+            agent = SimulatedBotAgent(pid, name, pclass, is_leader=(i == 0))
+            bots.append(agent)
 
-    # Fast-forward simulation loop
-    start_wall_time = time.time()
-    for tick_idx in range(ticks):
-        realm.step(dt=0.05)
+        if cohort_size > 1:
+            party_members = [{"pid": b.pid, "name": b.name, "class": b.pclass} for b in bots[:5]]
+            party_struct = {"leader": bots[0].pid, "members": party_members}
+            for b in bots[:5]:
+                realm.players[b.pid]["party"] = party_struct
 
-        for bot in bots:
-            tracker = miner.get_or_create_tracker(bot.pid, bot.pclass)
-            actions = bot.decide_tick_actions(realm, realm.time_sec)
-            for act in actions:
-                realm.process_command(bot.pid, act)
-            p_state = realm.players[bot.pid]
-            tracker.record_tick(p_state, actions)
+        start_wall = time.time()
+        for tick_idx in range(ticks):
+            realm.step(dt=0.05)
+            for bot in bots:
+                tracker = miner.get_or_create_tracker(bot.pid, bot.pclass)
+                actions = bot.decide_tick_actions(realm, realm.time_sec, tracker)
+                for act in actions:
+                    realm.process_command(bot.pid, act)
+                p_state = realm.players[bot.pid]
+                tracker.record_tick(
+                    p_state,
+                    actions,
+                    narrative_note=bot.last_narrative_note,
+                    is_legitimate_pause=bot.is_legitimate_pause,
+                )
 
-    elapsed_wall = time.time() - start_wall_time
+        elapsed = time.time() - start_wall
+        print(f"  Cohort of {cohort_size} bots completed in {elapsed:.2f}s ({ticks/max(0.001, elapsed):.0f} ticks/s)")
+
+    # Compile aggregate report & audit log
     report = miner.compile_gap_report()
 
-    # Persist report
     telemetry_dir = os.path.join(_PYTHON_ROOT, "telemetry")
     os.makedirs(telemetry_dir, exist_ok=True)
     report_path = os.path.join(telemetry_dir, "gap_report.json")
+    audit_log_path = os.path.join(telemetry_dir, "sim_audit_log.jsonl")
+
     with open(report_path, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
 
-    print(f"✨ Simulation finished in {elapsed_wall:.2f}s ({ticks / max(0.001, elapsed_wall):.0f} simulated ticks/sec)!")
-    print(f"📊 Telemetry Gap Report written to: {report_path}\n")
-    print(f"--- [Supervisor Summary] ---")
-    print(f" - Quests Accepted  : {report['summary']['quests_accepted']}")
-    print(f" - Quests Completed : {report['summary']['quests_turned_in']}")
-    print(f" - Items Auto-Equip : {report['summary']['items_auto_equipped']}")
-    print(f" - Vendor Junk Sold : {report['summary']['vendor_junk_disposals']}")
-    print(f" - Stagnation Bugs  : {report['anomalies']['stagnation_incidents']}")
-    print(f" - Coverage Rating  : {report['coverage_rating']}")
+    miner.dump_audit_log(audit_log_path)
 
-    if report["actionable_recommendations"]:
-        print(f"\n💡 Recommendations for Next Expansion Loop:")
-        for rec in report["actionable_recommendations"]:
-            print(f"   • {rec}")
-    else:
-        print("\n✅ All core macro intent branches verified with 0 deadlocks!")
+    print("\n==================================================================")
+    print(" 📊 Comprehensive Simulation Telemetry Report")
+    print(f" Total Bots Sampled          : {report['summary']['total_bots_sampled']}")
+    print(f" Quests Accepted / Completed : {report['summary']['quests_accepted']} / {report['summary']['quests_turned_in']}")
+    print(f" Items Auto-Equipped         : {report['summary']['items_auto_equipped']}")
+    print(f" Junk Sold to Merchants      : {report['summary']['vendor_junk_disposals']}")
+    print(f" Multi-Stage Vendor Sessions : {report['human_mannerisms']['vendor_transaction_sessions']}")
+    print(f" Gear Tooltip Inspections    : {report['human_mannerisms']['gear_tooltip_inspections']}")
+    print(f" Scenic Vistas Pauses        : {report['human_mannerisms']['scenic_pauses']}")
+    print(f" Curiosity Diversions        : {report['human_mannerisms']['curiosity_diversions']}")
+    print(f" Spontaneous Bunny Hops      : {report['human_mannerisms']['bunny_hops_while_running']}")
+    print(f" Human-Likeness Fidelity     : {report['human_mannerisms']['human_likeness_score']}")
+    print(f" Stagnation Anomalies        : {report['anomalies']['stagnation_incidents']}")
+    print(f" Coverage & Fidelity Rating  : {report['coverage_rating']}")
+    print(f" Audit Log Dumped To         : {audit_log_path}")
+    print("==================================================================\n")
 
     return report
 
 
 if __name__ == "__main__":
-    num_bots = int(sys.argv[1]) if len(sys.argv) > 1 else 9
-    report = run_headless_simulation(num_bots=num_bots, ticks=300)
-    sys.exit(0 if report["coverage_rating"] != "ATTENTION_REQUIRED" else 1)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cohorts", type=str, default="1,3,5,9", help="Comma-separated cohort sizes")
+    parser.add_argument("--ticks", type=int, default=1500, help="Simulation ticks per cohort")
+    args = parser.parse_args()
+
+    cohorts_list = [int(x.strip()) for x in args.cohorts.split(",") if x.strip()]
+    rep = run_long_horizon_simulation(cohorts=cohorts_list, ticks=args.ticks)
+    sys.exit(0 if rep["coverage_rating"] == "EXCELLENT" else 1)
