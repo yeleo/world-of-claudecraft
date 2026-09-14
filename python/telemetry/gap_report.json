@@ -1,18 +1,26 @@
 {
   "summary": {
-    "total_bots_sampled": 9,
-    "quests_accepted": 54,
-    "quests_turned_in": 36,
-    "items_auto_equipped": 36,
-    "vendor_junk_disposals": 54,
-    "party_lifecycle_departures": 13
+    "total_bots_sampled": 10,
+    "quests_accepted": 27,
+    "quests_turned_in": 17,
+    "items_auto_equipped": 20,
+    "vendor_junk_disposals": 30,
+    "party_lifecycle_departures": 5
+  },
+  "long_horizon_ecology": {
+    "equipment_repairs": 0,
+    "rested_inn_logouts": 0,
+    "refreshed_rejoins": 0,
+    "coop_mob_tag_resolutions": 20,
+    "social_class_buffs_shared": 12,
+    "social_greetings_emoted": 19
   },
   "human_mannerisms": {
-    "scenic_pauses": 32,
-    "curiosity_diversions": 6,
-    "vendor_transaction_sessions": 18,
-    "gear_tooltip_inspections": 36,
-    "bunny_hops_while_running": 31,
+    "scenic_pauses": 10,
+    "curiosity_diversions": 8,
+    "vendor_transaction_sessions": 10,
+    "gear_tooltip_inspections": 20,
+    "bunny_hops_while_running": 21,
     "human_likeness_score": "100/100"
   },
   "anomalies": {

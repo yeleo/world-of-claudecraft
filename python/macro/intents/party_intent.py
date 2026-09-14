@@ -4,6 +4,7 @@ Provides lifelike dynamic grouping, looting arbitration, and natural departure.
 """
 
 from __future__ import annotations
+import math
 import random
 from typing import Dict, Any, List, Optional, Tuple
 from .gear_intent import decide_loot_roll
@@ -105,3 +106,89 @@ class PartyLifecycleManager:
             "rollId": roll_id,
             "roll": decision,
         }
+
+    def resolve_mob_competition(
+        self,
+        target_mob: Dict[str, Any],
+        party_data: Optional[Dict[str, Any]],
+        now: float,
+    ) -> Tuple[str, Optional[int]]:
+        """
+        Evaluates a contested mob to avoid bottleneck congestion:
+        Returns: ('attack', None) | ('invite_coop', competitor_pid) | ('yield_and_switch', None)
+        """
+        if not target_mob.get("combat"):
+            return "attack", None
+
+        attacker_pid = target_mob.get("target") or target_mob.get("taggedBy")
+        if not attacker_pid or attacker_pid == self.bot_pid:
+            return "attack", None
+
+        # Check if attacker is a party member
+        if isinstance(party_data, dict):
+            member_pids = {m.get("pid") for m in party_data.get("members", []) if isinstance(m, dict)}
+            if attacker_pid in member_pids:
+                return "attack", None
+
+        # Contested by external competitor -> Attempt cooperative grouping
+        is_in_party = isinstance(party_data, dict) and len(party_data.get("members", [])) >= 2
+        is_leader = (party_data.get("leader") == self.bot_pid) if is_in_party else True
+        party_size = len(party_data.get("members", [])) if is_in_party else 1
+
+        if is_leader and party_size < 5 and now - self.last_invite_time > 8.0:
+            self.last_invite_time = now
+            return "invite_coop", attacker_pid
+
+        # In crowded bottlenecks, smart players yield contested mobs to find alternatives
+        return "yield_and_switch", None
+
+    def evaluate_social_flair(
+        self,
+        my_x: float,
+        my_z: float,
+        nearby_players: List[Dict[str, Any]],
+        now: float
+    ) -> Optional[Tuple[Dict[str, Any], str]]:
+        """
+        Simulates authentic MMORPG player mannerisms:
+        - Passing by friends/strangers and sharing class buffs (Arcane Intellect, Mark of Wild, Fortitude)
+        - Waving / nodding to peers at campfires and quest turn-in hubs
+        """
+        # 1. Class Buff Sharing
+        CLASS_BUFFS = {
+            "mage": ("arcane_intellect", "Arcane Intellect"),
+            "priest": ("power_word_fortitude", "Power Word: Fortitude"),
+            "druid": ("mark_of_the_wild", "Mark of the Wild"),
+            "paladin": ("blessing_of_might", "Blessing of Might"),
+        }
+        if self.player_class in CLASS_BUFFS and (now - getattr(self, "last_buff_time", -999.0)) > 20.0:
+            buff_key, buff_name = CLASS_BUFFS[self.player_class]
+            for p in nearby_players:
+                pid = p.get("id") or p.get("pid")
+                if pid and pid != self.bot_pid and not p.get("dead") and not p.get("offline"):
+                    p_buffs = p.get("buffs", [])
+                    if buff_key not in p_buffs:
+                        d = math.hypot(p.get("x", 0.0) - my_x, p.get("z", 0.0) - my_z)
+                        if d <= 12.0:
+                            self.last_buff_time = now
+                            return (
+                                {"t": "cmd", "cmd": "cast", "ability": buff_key, "target": pid},
+                                f"Cast beneficial buff '{buff_name}' on peer #{pid}"
+                            )
+
+        # 2. Friendly Emotes at social hubs (Campfire, pell)
+        if (now - getattr(self, "last_emote_time", -999.0)) > 35.0 and random.random() < 0.15:
+            for p in nearby_players:
+                pid = p.get("id") or p.get("pid")
+                if pid and pid != self.bot_pid and not p.get("dead") and not p.get("offline"):
+                    d = math.hypot(p.get("x", 0.0) - my_x, p.get("z", 0.0) - my_z)
+                    if d <= 6.0:
+                        self.last_emote_time = now
+                        emote_type = random.choice(["wave", "nod", "cheer"])
+                        return (
+                            {"t": "cmd", "cmd": "emote", "emote": emote_type, "target": pid},
+                            f"Friendly gesture /{emote_type} to fellow adventurer #{pid}"
+                        )
+
+        return None
+

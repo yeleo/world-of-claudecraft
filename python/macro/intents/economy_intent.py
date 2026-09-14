@@ -28,14 +28,37 @@ def has_junk(inventory: list) -> bool:
     )
 
 
-def should_visit_vendor(inventory: list, in_combat: bool, free_threshold: int = 3, opportunist: bool = False) -> bool:
-    """Decides if the bot needs to visit a merchant."""
+def needs_equipment_repair(equipment: dict, durability_threshold: float = 0.95) -> bool:
+    """Checks whether equipped gear has suffered wear and needs merchant repair."""
+    if not isinstance(equipment, dict) or not equipment:
+        return False
+    for item in equipment.values():
+        if isinstance(item, dict) and "durability" in item:
+            cur_dur = item.get("durability", 100)
+            max_dur = max(1, item.get("maxDurability", 100))
+            if (cur_dur / max_dur) < durability_threshold:
+                return True
+    return False
+
+
+def should_visit_vendor(inventory: list, in_combat: bool, free_threshold: int = 3, opportunist: bool = False, equipment: dict = None) -> bool:
+    """Decides if the bot needs to visit a merchant (bag space, junk sale, or repair)."""
     if in_combat:
         return False
     free_slots = count_free_inventory_slots(inventory)
     if free_slots <= free_threshold:
         return True
-    if opportunist and has_junk(inventory):
+    if has_junk(inventory):
+        return True
+    if opportunist and free_slots < 8:
+        return True
+    has_wear = any(
+        isinstance(i, dict) and i.get("durability", 100) < i.get("maxDurability", 100)
+        for i in equipment.values()
+    ) if equipment else False
+    if opportunist and has_wear:
+        return True
+    if equipment and needs_equipment_repair(equipment, durability_threshold=0.90):
         return True
     return False
 
@@ -105,7 +128,7 @@ class HumanVendorInteractionFSM:
                 self.pending_sell_indices.append(idx)
         self.current_sell_ptr = 0
 
-    def step_transaction(self, now: float, inventory: list) -> Tuple[List[Dict[str, Any]], str]:
+    def step_transaction(self, now: float, inventory: list, equipment: dict = None) -> Tuple[List[Dict[str, Any]], str]:
         """
         Advances the vendor interaction for the current tick.
         Returns: (commands_to_send, narrative_log)
@@ -129,13 +152,22 @@ class HumanVendorInteractionFSM:
         # 2. Done inspecting -> Click items one-by-one with realistic mouse click intervals
         elif self.state == "BROWSING_INVENTORY":
             if not self.pending_sell_indices or self.current_sell_ptr >= len(self.pending_sell_indices):
-                # Nothing to sell or already empty
-                self.state = "CLOSING_WINDOW"
-                self.next_action_time = now + random.uniform(0.5, 0.9)
-                return [{"t": "input", "mi": {}}], "No further junk to liquidate"
+                # Nothing to sell -> Check repair before closing
+                has_damaged_gear = any(
+                    isinstance(item, dict) and item.get("durability", 100) < item.get("maxDurability", 100)
+                    for item in equipment.values()
+                ) if equipment else False
+                if has_damaged_gear:
+                    self.state = "REPAIRING_EQUIPMENT"
+                    self.next_action_time = now + random.uniform(0.7, 1.3)
+                    return [{"t": "input", "mi": {}}], "Inspecting equipped gear durability before merchant repair"
+                else:
+                    self.state = "CLOSING_WINDOW"
+                    self.next_action_time = now + random.uniform(0.5, 0.9)
+                    return [{"t": "input", "mi": {}}], "No further junk to liquidate"
             else:
                 self.state = "SELLING_ITEMS"
-                return self.step_transaction(now, inventory)
+                return self.step_transaction(now, inventory, equipment)
 
         # 3. Selling item-by-item (staggered right-clicks)
         elif self.state == "SELLING_ITEMS":
@@ -164,12 +196,28 @@ class HumanVendorInteractionFSM:
                 self.next_action_time = now + click_delay
                 return cmds, f"Right-clicked item in bag slot #{slot_idx} to sell"
             else:
-                # Sold everything
-                self.state = "CLOSING_WINDOW"
-                self.next_action_time = now + random.uniform(0.6, 1.1)
-                return [{"t": "input", "mi": {}}], "Finished selling items; closing vendor window"
+                # Sold all pending items -> Check if gear has any wear before closing
+                has_damaged_gear = any(
+                    isinstance(item, dict) and item.get("durability", 100) < item.get("maxDurability", 100)
+                    for item in equipment.values()
+                ) if equipment else False
+                if has_damaged_gear:
+                    self.state = "REPAIRING_EQUIPMENT"
+                    self.next_action_time = now + random.uniform(0.7, 1.3)
+                    return [{"t": "input", "mi": {}}], "Inspecting equipped gear durability before merchant repair"
+                else:
+                    self.state = "CLOSING_WINDOW"
+                    self.next_action_time = now + random.uniform(0.6, 1.1)
+                    return [{"t": "input", "mi": {}}], "Finished selling items; closing vendor window"
 
-        # 4. Closing Window and stepping away
+        # 4. Repairing damaged armor
+        elif self.state == "REPAIRING_EQUIPMENT":
+            self.state = "CLOSING_WINDOW"
+            self.next_action_time = now + random.uniform(0.6, 1.0)
+            cmd = {"t": "cmd", "cmd": "repair_all", "vendorId": self.active_vendor_id}
+            return [cmd], "Clicked 'Repair All' to restore armor durability"
+
+        # 5. Closing Window and stepping away
         elif self.state == "CLOSING_WINDOW":
             self.state = "FINISHED"
             self.active_vendor_id = None

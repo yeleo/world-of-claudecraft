@@ -30,6 +30,15 @@ class BotTelemetryTracker:
         self.party_leaves = 0
         self.combat_strikes = 0
 
+        # Long-Horizon Economic & Session Metrics
+        self.repairs_performed = 0
+        self.copper_spent_on_repairs = 0
+        self.rested_logouts = 0
+        self.session_rejoins = 0
+        self.coop_mob_invites = 0
+        self.social_buffs_shared = 0
+        self.emotes_performed = 0
+
         # Human-Likeness Behavioral Counters
         self.scenic_pauses = 0
         self.curiosity_diversions = 0
@@ -76,8 +85,8 @@ class BotTelemetryTracker:
         if self.positions:
             prev_x, prev_z = self.positions[-1]
             dist = math.hypot(x - prev_x, z - prev_z)
-            # Legitimate pauses (sightseeing, vendor browsing, gear inspection, mob respawn wait) are not bugs
-            if dist < 0.05 and not state.get("inCombat") and not actions_sent and not is_legitimate_pause:
+            # Legitimate pauses (sightseeing, vendor browsing, gear inspection, mob respawn wait, resting) are not bugs
+            if dist < 0.05 and not state.get("inCombat") and not actions_sent and not is_legitimate_pause and not state.get("offline") and not state.get("is_resting"):
                 self.stagnant_ticks += 1
                 if self.stagnant_ticks == 60:
                     self.stagnation_events.append({
@@ -104,12 +113,31 @@ class BotTelemetryTracker:
             elif cmd in ("sell", "sell_all_junk"):
                 self.junk_sold += 1
                 self.log_narrative("ECONOMY", f"Sold item to merchant #{act.get('vendorId')}")
+            elif cmd == "repair_all":
+                self.repairs_performed += 1
+                self.log_narrative("ECONOMY", "Repaired all damaged gear at vendor")
+            elif cmd == "sit_rest":
+                self.log_narrative("SESSION", "Sat down at rest area / campfire for recuperation")
+            elif cmd == "logout":
+                self.rested_logouts += 1
+                self.log_narrative("SESSION", "Logged out peacefully at rest area")
+            elif cmd == "rejoin":
+                self.session_rejoins += 1
+                self.log_narrative("SESSION", "Rejoined realm refreshed after offline break")
             elif cmd == "pinvite":
                 self.party_invites += 1
+                if act.get("reason") == "mob_coop":
+                    self.coop_mob_invites += 1
                 self.log_narrative("SOCIAL", f"Sent party invite to PID #{act.get('id')}")
             elif cmd == "pleave":
                 self.party_leaves += 1
                 self.log_narrative("SOCIAL", "Parted ways with squad and left group")
+            elif cmd == "emote":
+                self.emotes_performed += 1
+                self.log_narrative("SOCIAL", f"Emoted /{act.get('emote')} to peer #{act.get('target')}")
+            elif cmd == "cast" and act.get("ability") in ("arcane_intellect", "power_word_fortitude", "mark_of_the_wild", "blessing_of_might"):
+                self.social_buffs_shared += 1
+                self.log_narrative("SOCIAL", f"Buffed companion #{act.get('target')} with {act.get('ability')}")
             elif cmd in ("attack", "cast"):
                 self.combat_strikes += 1
 
@@ -157,6 +185,13 @@ class RealmGapMiner:
         total_gear_inspections = sum(t.gear_inspections for t in self.trackers.values())
         total_bunny_hops = sum(t.bunny_hops for t in self.trackers.values())
 
+        total_repairs = sum(t.repairs_performed for t in self.trackers.values())
+        total_rested_logouts = sum(t.rested_logouts for t in self.trackers.values())
+        total_rejoins = sum(t.session_rejoins for t in self.trackers.values())
+        total_coop_invites = sum(t.coop_mob_invites for t in self.trackers.values())
+        total_buffs = sum(t.social_buffs_shared for t in self.trackers.values())
+        total_emotes = sum(t.emotes_performed for t in self.trackers.values())
+
         stagnation_issues = []
         for t in self.trackers.values():
             if t.stagnation_events:
@@ -200,6 +235,14 @@ class RealmGapMiner:
                 "items_auto_equipped": total_equipped,
                 "vendor_junk_disposals": total_junk_sold,
                 "party_lifecycle_departures": total_party_leaves,
+            },
+            "long_horizon_ecology": {
+                "equipment_repairs": total_repairs,
+                "rested_inn_logouts": total_rested_logouts,
+                "refreshed_rejoins": total_rejoins,
+                "coop_mob_tag_resolutions": total_coop_invites,
+                "social_class_buffs_shared": total_buffs,
+                "social_greetings_emoted": total_emotes,
             },
             "human_mannerisms": {
                 "scenic_pauses": total_scenic,

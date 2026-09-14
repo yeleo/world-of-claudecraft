@@ -75,11 +75,19 @@ class MockWorldRealm:
             "res": 100,
             "mres": 100,
             "rtype": "mana" if pclass in ("mage", "priest", "warlock", "druid", "shaman", "paladin") else ("rage" if pclass == "warrior" else "energy"),
+            "copper": 120,
+            "copper_spent_repair": 0,
             "dead": False,
             "inCombat": False,
+            "offline": False,
+            "is_resting": False,
+            "buffs": [],
             "party": None,
             "inventory": [None] * 16,
-            "equipment": {},
+            "equipment": {
+                "chest": {"name": "Trainee's Vest", "kind": "armor", "slot": "chest", "durability": 100, "maxDurability": 100},
+                "mainHand": {"name": "Training Weapon", "kind": "weapon", "slot": "mainHand", "durability": 100, "maxDurability": 100},
+            },
             "qlog": [],
             "qdone": [],
         }
@@ -100,6 +108,7 @@ class MockWorldRealm:
                     ent["loot"] = False
                     ent["hp"] = ent["mhp"]
                     ent["dead_time"] = 0.0
+                    ent.pop("taggedBy", None)
 
         # Server-authoritative Gauntlet Flag Proximity Trigger (mirrors tutorial/gauntlet_run.ts)
         from .intents.quest_intent import GAUNTLET_CHECKPOINTS
@@ -128,13 +137,19 @@ class MockWorldRealm:
             f = cmd_payload.get("facing", p.get("f", 0.0))
             p["f"] = f
             if mi.get("f"):
+                p["is_resting"] = False
                 speed = 7.0 * 0.05  # 7 m/s * dt
                 p["x"] += math.sin(f) * speed
                 p["z"] += math.cos(f) * speed
 
         elif t == "cmd":
             cmd = cmd_payload.get("cmd")
-            if cmd == "accept":
+            if cmd == "cast" and cmd_payload.get("target") in self.players:
+                tgt_p = self.players[cmd_payload["target"]]
+                ability = cmd_payload.get("ability", "")
+                if ability and ability not in tgt_p.get("buffs", []):
+                    tgt_p.setdefault("buffs", []).append(ability)
+            elif cmd == "accept":
                 qid = cmd_payload.get("quest")
                 if qid and not any(q.get("questId") == qid for q in p["qlog"]):
                     p["qlog"].append({"questId": qid, "state": "active", "counts": [0]})
@@ -143,6 +158,8 @@ class MockWorldRealm:
                 p["qlog"] = [q for q in p["qlog"] if q.get("questId") != qid]
                 if qid not in p["qdone"]:
                     p["qdone"].append(qid)
+                    # Reward quest completion copper
+                    p["copper"] = p.get("copper", 0) + 30
                     # Reward class-appropriate upgrade to test gear intent evaluation
                     pclass = p.get("class", "warrior")
                     armor_type = "mail" if pclass in ("warrior", "paladin") else ("leather" if pclass in ("hunter", "rogue", "druid", "shaman") else "cloth")
@@ -153,6 +170,8 @@ class MockWorldRealm:
                         "armorType": armor_type,
                         "slot": "chest",
                         "stats": {stat_key: 5, "sta": 4, "armor": 12},
+                        "durability": 100,
+                        "maxDurability": 100,
                         "rarity": "uncommon"
                     }
                     p["inventory"][1] = {
@@ -166,15 +185,34 @@ class MockWorldRealm:
                 tid = cmd_payload.get("target") or cmd_payload.get("id")
                 tgt = self.entities.get(tid)
                 if tgt and tgt.get("k") == "mob" and not tgt.get("dead"):
+                    # Claim mob tag if unclaimed
+                    if "taggedBy" not in tgt:
+                        tgt["taggedBy"] = pid
                     dmg = 35
                     tgt["hp"] = max(0, tgt["hp"] - dmg)
                     tgt["combat"] = True
                     p["inCombat"] = True
+
+                    # Durability wear & tear
+                    for item in p.get("equipment", {}).values():
+                        if isinstance(item, dict) and "durability" in item:
+                            item["durability"] = max(0, item["durability"] - 1)
+
                     if tgt["hp"] <= 0:
                         tgt["dead"] = True
-                        tgt["loot"] = True
-                        tgt["combat"] = False
+                        p["combat"] = False
                         p["inCombat"] = False
+                        p["copper"] = p.get("copper", 0) + 6
+                        # Realistic mob loot: drop vendor junk into first empty inventory slot
+                        for slot_idx in range(len(p["inventory"])):
+                            if p["inventory"][slot_idx] is None:
+                                p["inventory"][slot_idx] = {
+                                    "name": "Splintered Effigy Chunk",
+                                    "kind": "misc",
+                                    "rarity": "poor",
+                                    "value": 8,
+                                }
+                                break
                         # Advance strike_true quest count if applicable
                         for q in p["qlog"]:
                             if q.get("questId") == "q_ps_strike_true":
@@ -182,15 +220,33 @@ class MockWorldRealm:
                                 if q["counts"][0] >= 1:
                                     q["state"] = "ready"
             elif cmd == "sell_all_junk":
-                # Empties junk
+                # Empties junk and yields copper
                 for i in range(len(p["inventory"])):
                     item = p["inventory"][i]
                     if item and item.get("rarity") in ("poor", "junk", "gray"):
                         p["inventory"][i] = None
+                        p["copper"] = p.get("copper", 0) + 8
             elif cmd == "sell":
                 slot = cmd_payload.get("slot")
                 if slot is not None and 0 <= slot < len(p["inventory"]):
                     p["inventory"][slot] = None
+                    p["copper"] = p.get("copper", 0) + 8
+            elif cmd == "repair_all":
+                cost = 0
+                for item in p.get("equipment", {}).values():
+                    if isinstance(item, dict) and "durability" in item:
+                        missing = item.get("maxDurability", 100) - item.get("durability", 100)
+                        cost += missing // 2
+                        item["durability"] = item.get("maxDurability", 100)
+                p["copper"] = max(0, p.get("copper", 0) - cost)
+                p["copper_spent_repair"] = p.get("copper_spent_repair", 0) + cost
+            elif cmd == "sit_rest":
+                p["is_resting"] = True
+            elif cmd == "logout":
+                p["offline"] = True
+                p["is_resting"] = False
+            elif cmd == "rejoin":
+                p["offline"] = False
             elif cmd == "equip":
                 slot = cmd_payload.get("slot")
                 to_slot = cmd_payload.get("toSlot")

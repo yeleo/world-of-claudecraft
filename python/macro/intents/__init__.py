@@ -8,3 +8,4 @@ from .economy_intent import count_free_inventory_slots, should_visit_vendor, fin
 from .party_intent import PartyLifecycleManager
 from .quest_intent import QuestNavigator, PROVING_SHORE_QUEST_ORDER, PROVING_SHORE_QUESTS, GAUNTLET_CHECKPOINTS, EASTBROOK_WAYPOINTS
 from .curiosity_intent import CuriosityIntentManager, SCENIC_POINTS
+from .session_intent import SessionLifecycleManager, REST_AREAS

@@ -22,11 +22,13 @@ if _PYTHON_ROOT not in sys.path:
 from macro.sim_realm import MockWorldRealm
 from macro.gap_miner import RealmGapMiner, BotTelemetryTracker
 from macro.intents.gear_intent import evaluate_inventory_upgrades, HumanGearInspectionFSM
+from macro.intents.session_intent import SessionLifecycleManager
 from macro.intents.economy_intent import (
     count_free_inventory_slots,
     should_visit_vendor,
     find_nearby_vendor,
     has_junk,
+    needs_equipment_repair,
     HumanVendorInteractionFSM,
 )
 from macro.intents.party_intent import PartyLifecycleManager
@@ -50,6 +52,7 @@ class SimulatedBotAgent:
 
         # Modular Intent Managers & FSMs
         self.party_mgr = PartyLifecycleManager(pid, pclass, is_solo_personality=(pclass == "rogue"))
+        self.session_mgr = SessionLifecycleManager(pid, pclass, target_session_seconds=180.0)
         self.vendor_fsm = HumanVendorInteractionFSM(pid)
         self.gear_fsm = HumanGearInspectionFSM(pid, pclass)
         self.curiosity_mgr = CuriosityIntentManager(pid, pclass)
@@ -61,6 +64,7 @@ class SimulatedBotAgent:
         self.macro_goal_x = -283.0
         self.macro_goal_z = -21.0
         self.last_vendor_visit_time = -999.0
+        self.last_coop_invite_time = -999.0
 
         # Legitimate pause marker
         self.last_narrative_note = ""
@@ -86,18 +90,53 @@ class SimulatedBotAgent:
         in_combat = bool(p_snap.get("inCombat"))
 
         # ----------------------------------------------------------------------
+        # 0. Player Session Lifecycle & Rest Area Logout Ritual
+        # ----------------------------------------------------------------------
+        if p_snap.get("offline"):
+            s_state, _ = self.session_mgr.step_session(0.05, my_x, my_z, in_combat=False)
+            if s_state == "REJOIN":
+                return [{"t": "cmd", "cmd": "rejoin"}]
+            self.is_legitimate_pause = True
+            return []
+
+        session_state, session_goal = self.session_mgr.step_session(0.05, my_x, my_z, in_combat=in_combat)
+        if session_state == "RESTING_LOGOUT":
+            self.is_legitimate_pause = True
+            self.last_narrative_note = "Sitting peacefully at campfire/inn for Rest XP and preparing to log out"
+            return [{"t": "cmd", "cmd": "sit_rest"}]
+        elif session_state == "LOGOUT_NOW":
+            self.is_legitimate_pause = True
+            self.last_narrative_note = "Resting ritual complete; gracefully logging out"
+            return [{"t": "cmd", "cmd": "logout"}]
+        elif session_state == "SEEKING_REST_AREA" and session_goal:
+            rx, rz, _, r_note = session_goal
+            dist_r = math.hypot(rx - my_x, rz - my_z)
+            angle_r = math.atan2(rx - my_x, rz - my_z)
+            self.last_narrative_note = r_note
+            mi = {"f": 1}
+            if self.curiosity_mgr.should_bunny_hop(sim_time, is_moving=True):
+                mi["j"] = 1
+            return [{"t": "input", "mi": mi, "facing": angle_r}]
+
+        # ----------------------------------------------------------------------
         # 1. Multi-Stage Vendor Trading Session (Paced Human Interaction)
         # ----------------------------------------------------------------------
         if self.vendor_fsm.is_busy():
-            v_cmds, note = self.vendor_fsm.step_transaction(sim_time, inventory)
+            v_cmds, note = self.vendor_fsm.step_transaction(sim_time, inventory, equipment)
             self.last_narrative_note = note
             self.is_legitimate_pause = True
             return v_cmds
 
-        # Check if approaching a vendor to start trading
-        nearby_vendor = find_nearby_vendor(realm.entities, my_x, my_z, max_dist=12.0)
+        # Check if approaching a vendor to start trading / repair
+        # If inventory is full (free_slots <= 3) or gear badly damaged, actively seek nearest vendor across zone (150m)
+        free_slots = count_free_inventory_slots(inventory)
+        is_urgent_vendor_need = (free_slots <= 3) or (equipment and needs_equipment_repair(equipment, durability_threshold=0.60))
+        search_radius = 150.0 if is_urgent_vendor_need else 12.0
+
+        nearby_vendor = find_nearby_vendor(realm.entities, my_x, my_z, max_dist=search_radius)
         if not in_combat and nearby_vendor and sim_time - self.last_vendor_visit_time > 15.0:
-            if should_visit_vendor(inventory, in_combat=False, opportunist=True):
+            wants_trade = should_visit_vendor(inventory, in_combat=False, opportunist=True, equipment=equipment)
+            if wants_trade:
                 dist_v = math.hypot(nearby_vendor["x"] - my_x, nearby_vendor["z"] - my_z)
                 if dist_v <= 3.5:
                     # Arrived at merchant: initiate realistic trading FSM
@@ -110,7 +149,11 @@ class SimulatedBotAgent:
                 else:
                     # Move directly towards vendor
                     angle_v = math.atan2(nearby_vendor["x"] - my_x, nearby_vendor["z"] - my_z)
-                    return [{"t": "input", "mi": {"f": 1}, "facing": angle_v}]
+                    self.last_narrative_note = f"Traveling to merchant '{nearby_vendor.get('nm')}' to empty bags & repair"
+                    mi = {"f": 1}
+                    if self.curiosity_mgr.should_bunny_hop(sim_time, is_moving=True):
+                        mi["j"] = 1
+                    return [{"t": "input", "mi": mi, "facing": angle_v}]
 
         # ----------------------------------------------------------------------
         # 2. Gear Tooltip Inspection & Comparison (Paced Equipment Swap)
@@ -132,22 +175,41 @@ class SimulatedBotAgent:
                     return [{"t": "input", "mi": {}}]
 
         # ----------------------------------------------------------------------
-        # 3. Combat & Engagement Branch (Micro-Tactics)
+        # 3. Combat & Engagement Branch with Crowd Conflict Resolution
         # ----------------------------------------------------------------------
+        my_party = p_snap.get("party")
+        party_pids = {m.get("pid") for m in my_party.get("members", [])} if my_party else {self.pid}
+
+        # Select target, preferring untagged or party-tagged mobs
         if not self.target_id or self.target_id not in realm.entities or realm.entities[self.target_id].get("dead"):
-            closest_mob = None
+            best_mob = None
             min_d = float("inf")
             for eid, ent in realm.entities.items():
                 if ent.get("k") == "mob" and not ent.get("dead"):
                     d = math.hypot(ent.get("x", 0) - my_x, ent.get("z", 0) - my_z)
-                    if d < 15.0 and d < min_d:
-                        min_d = d
-                        closest_mob = eid
-            self.target_id = closest_mob
+                    if d < 18.0:
+                        # Prioritize untagged mobs
+                        tag = ent.get("taggedBy")
+                        is_friendly_tag = (tag is None or tag in party_pids)
+                        effective_dist = d if is_friendly_tag else (d + 20.0)
+                        if effective_dist < min_d:
+                            min_d = effective_dist
+                            best_mob = eid
+            self.target_id = best_mob
 
         if self.target_id:
             tgt = realm.entities.get(self.target_id)
             if tgt and not tgt.get("dead"):
+                tag = tgt.get("taggedBy")
+                # If mob is already tagged by a stranger, negotiate co-op or yield
+                if tag is not None and tag not in party_pids:
+                    # Try to invite tagger to share quest credit if group has space
+                    party_size = len(my_party.get("members", [])) if my_party else 1
+                    if party_size < 5 and self.pclass != "rogue" and sim_time - self.last_coop_invite_time > 10.0:
+                        self.last_coop_invite_time = sim_time
+                        actions.append({"t": "cmd", "cmd": "pinvite", "id": tag, "reason": "mob_coop"})
+                        self.last_narrative_note = f"Invited player #{tag} to party to share mob progress"
+
                 dist = math.hypot(tgt.get("x", 0) - my_x, tgt.get("z", 0) - my_z)
                 angle = math.atan2(tgt.get("x", 0) - my_x, tgt.get("z", 0) - my_z)
                 if dist > 2.5:
@@ -193,6 +255,19 @@ class SimulatedBotAgent:
         else:
             self.in_scenic_pause = False
             self.in_curiosity_trip = False
+
+        # ----------------------------------------------------------------------
+        # 4.5. Authentic Social Interaction (Class Buffs & Gestures)
+        # ----------------------------------------------------------------------
+        if not in_combat:
+            nearby_peers = [e for eid, e in realm.players.items() if eid != self.pid]
+            social_act = self.party_mgr.evaluate_social_flair(my_x, my_z, nearby_peers, sim_time)
+            if social_act:
+                s_cmd, s_note = social_act
+                actions.append(s_cmd)
+                self.last_narrative_note = s_note
+                self.is_legitimate_pause = True
+                return actions
 
         # ----------------------------------------------------------------------
         # 5. Quest Progression & World Navigation
@@ -315,6 +390,12 @@ def run_long_horizon_simulation(cohorts: List[int] = [1, 3, 5, 9], ticks: int = 
     print(f" Junk Sold to Merchants      : {report['summary']['vendor_junk_disposals']}")
     print(f" Multi-Stage Vendor Sessions : {report['human_mannerisms']['vendor_transaction_sessions']}")
     print(f" Gear Tooltip Inspections    : {report['human_mannerisms']['gear_tooltip_inspections']}")
+    print(f" Equipment Repairs At Vendor : {report['long_horizon_ecology']['equipment_repairs']}")
+    print(f" Campfire/Inn Rested Logouts : {report['long_horizon_ecology']['rested_inn_logouts']}")
+    print(f" Refreshed Session Rejoins   : {report['long_horizon_ecology']['refreshed_rejoins']}")
+    print(f" Mob Co-op Share Resolutions : {report['long_horizon_ecology']['coop_mob_tag_resolutions']}")
+    print(f" Class Buffs Shared with Peer: {report['long_horizon_ecology']['social_class_buffs_shared']}")
+    print(f" Friendly Emotes Performed   : {report['long_horizon_ecology']['social_greetings_emoted']}")
     print(f" Scenic Vistas Pauses        : {report['human_mannerisms']['scenic_pauses']}")
     print(f" Curiosity Diversions        : {report['human_mannerisms']['curiosity_diversions']}")
     print(f" Spontaneous Bunny Hops      : {report['human_mannerisms']['bunny_hops_while_running']}")
