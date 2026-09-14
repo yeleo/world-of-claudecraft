@@ -4,7 +4,16 @@
 // firewall: it only calls initDesktopDownload() once at landing bootstrap. The
 // pure helpers (detectDesktopPlatform, desktopDownloadUrl) are Node-tested.
 
-export type DesktopPlatform = 'mac' | 'win' | 'linux' | 'android' | 'other';
+export type DesktopPlatform =
+  | 'mac'
+  | 'win'
+  | 'win-x64'
+  | 'win-arm64'
+  | 'linux'
+  | 'linux-x86_64'
+  | 'linux-arm64'
+  | 'android'
+  | 'other';
 
 // The published desktop build on the update host, derived from package.json at
 // build time through the __APP_VERSION__ define (vite.config.ts), so it can
@@ -18,22 +27,21 @@ declare const __APP_VERSION__: string;
 // The standalone browser-test config injects no defines, so a bare identifier
 // would throw there; the guard keeps this module importable everywhere.
 export const DESKTOP_VERSION = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.0.0';
-const GITHUB_REPO = 'yeleo/world-of-claudecraft';
-const GITHUB_RELEASE_TAG = `v${DESKTOP_VERSION}-cn`;
-const GITHUB_RELEASE_BASE = `https://github.com/${GITHUB_REPO}/releases/download/${GITHUB_RELEASE_TAG}`;
-const MIRROR_PREFIX = 'https://ghproxy.net/';
+const DOWNLOAD_BASE = `https://worldofclaudecraft.aoruantech.com/releases/download/v${DESKTOP_VERSION}-cn`;
 
 // electron-builder website-channel artifact names (docs/desktop-release.md):
 // mac ships one universal dmg; the x64 Linux AppImage is named x86_64 (that is
 // electron-builder's arch token for AppImage, not "x64"). Windows ships a
 // separate single-arch NSIS installer per arch (build.nsis.buildUniversalInstaller
-// is false, issue 2013); this page links the x64 installer, matching every other
-// channel's precedent of running Windows-on-ARM visitors under x64 emulation
-// rather than shipping a second download button.
+// is false, issue 2013).
 const ARTIFACT: Partial<Record<DesktopPlatform, string>> = {
   // mac: 暂时停止发布，待配置证书后重新启用
   win: `world-of-claudecraft-${DESKTOP_VERSION}-win-x64.exe`,
+  'win-x64': `world-of-claudecraft-${DESKTOP_VERSION}-win-x64.exe`,
+  'win-arm64': `world-of-claudecraft-${DESKTOP_VERSION}-win-arm64.exe`,
   linux: `world-of-claudecraft-${DESKTOP_VERSION}-linux-x86_64.AppImage`,
+  'linux-x86_64': `world-of-claudecraft-${DESKTOP_VERSION}-linux-x86_64.AppImage`,
+  'linux-arm64': `world-of-claudecraft-${DESKTOP_VERSION}-linux-arm64.AppImage`,
   android: `world-of-claudecraft-${DESKTOP_VERSION}-android.apk`,
 };
 
@@ -41,7 +49,7 @@ const ARTIFACT: Partial<Record<DesktopPlatform, string>> = {
 export function desktopDownloadUrl(platform: DesktopPlatform): string | null {
   const file = ARTIFACT[platform];
   if (!file) return null;
-  return `${MIRROR_PREFIX}${GITHUB_RELEASE_BASE}/${file}`;
+  return `${DOWNLOAD_BASE}/${file}`;
 }
 
 // Best-effort desktop-OS detection from a userAgent string. Pure so Node tests
@@ -51,8 +59,14 @@ export function detectDesktopPlatform(userAgent: string): DesktopPlatform {
   const ua = userAgent.toLowerCase();
   if (ua.includes('android')) return 'android';
   if (ua.includes('mac')) return 'mac';
-  if (ua.includes('win')) return 'win';
-  if (ua.includes('linux') || ua.includes('x11')) return 'linux';
+  if (ua.includes('win')) {
+    if (ua.includes('arm64') || ua.includes('aarch64')) return 'win-arm64';
+    return 'win';
+  }
+  if (ua.includes('linux') || ua.includes('x11')) {
+    if (ua.includes('arm64') || ua.includes('aarch64') || ua.includes('armv8')) return 'linux-arm64';
+    return 'linux';
+  }
   return 'other';
 }
 
@@ -80,13 +94,22 @@ export function initDesktopDownload(doc: Document = document): void {
   const actions = section.querySelector('.desktop-download-actions');
   for (const link of links) {
     const platform = link.dataset.platform as DesktopPlatform | undefined;
-    const isSelf = !!platform && !!desktopDownloadUrl(platform) && platform === detected;
+    const isSelf = !!platform && !!desktopDownloadUrl(platform) && (
+      platform === detected ||
+      (detected === 'win' && platform === 'win-x64') ||
+      (detected === 'win-arm64' && platform === 'win-arm64') ||
+      (detected === 'linux' && platform === 'linux-x86_64') ||
+      (detected === 'linux-arm64' && platform === 'linux-arm64')
+    );
     link.classList.toggle('is-detected', isSelf);
-    if (isSelf && actions && link !== actions.firstElementChild) actions.prepend(link);
+    if (isSelf && link.parentElement && link !== link.parentElement.firstElementChild) link.parentElement.prepend(link);
   }
   const hints = section.querySelectorAll<HTMLElement>('[data-platform-hint]');
   for (const hint of hints) {
     const platform = hint.dataset.platformHint as DesktopPlatform | undefined;
-    hint.hidden = platform !== detected || !desktopDownloadUrl(platform);
+    const matches = platform === detected ||
+      (platform === 'linux' && (detected === 'linux' || detected === 'linux-arm64' || detected === 'linux-x86_64')) ||
+      (platform === 'win' && (detected === 'win' || detected === 'win-arm64' || detected === 'win-x64'));
+    hint.hidden = !matches || (platform ? !desktopDownloadUrl(platform) : true);
   }
 }

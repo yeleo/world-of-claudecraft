@@ -8256,8 +8256,8 @@ export const zh_CN: EnTranslations = {
     "viewAll": "在 GitHub 上查看全部更新"
   },
   "download": {
-    "title": "下载电脑版启动器",
-    "desc": "获取独立启动器，以获得更优化的性能和全屏游戏体验。",
+    "title": "多端游戏客户端下载",
+    "desc": "获取官方独立客户端，覆盖桌面电脑与移动手机，尽享极致性能与全屏沉浸体验。",
     "macCta": "下载 macOS 版",
     "windowsCta": "下载 Windows 版",
     "androidCta": "下载 Android 版 (APK)",

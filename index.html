@@ -1387,28 +1387,60 @@
             </svg>
           </div>
           <h2 class="skeleton-title" data-i18n="download.title">Download Desktop Launcher</h2>
-          <p class="skeleton-desc" data-i18n="download.desc">Get the standalone launcher for optimized performance and full-screen play.</p>
-          <div class="desktop-download-actions">
-            <a
-              class="btn btn-primary desktop-download-link"
-              data-platform="win"
-              href="https://ghproxy.net/https://github.com/yeleo/world-of-claudecraft/releases/download/v0.42.2-cn/world-of-claudecraft-0.42.2-win-x64.exe"
-              data-i18n="download.windowsCta"
-            >Download for Windows</a>
-            <a
-              class="btn btn-primary desktop-download-link"
-              data-platform="android"
-              href="https://ghproxy.net/https://github.com/yeleo/world-of-claudecraft/releases/download/v0.42.2-cn/world-of-claudecraft-0.42.2-android.apk"
-              data-i18n="download.androidCta"
-            >Download for Android (APK)</a>
-            <a
-              class="btn btn-primary desktop-download-link"
-              data-platform="linux"
-              href="https://ghproxy.net/https://github.com/yeleo/world-of-claudecraft/releases/download/v0.42.2-cn/world-of-claudecraft-0.42.2-linux-x86_64.AppImage"
-              data-i18n="download.linuxCta"
-            >Download for Linux</a>
+          <p class="skeleton-desc" data-i18n="download.desc">Get the standalone client for optimized performance, low latency, and full-screen play across all devices.</p>
+
+          <div class="download-groups-grid">
+            <!-- 电脑桌面客户端 -->
+            <div class="download-group-card">
+              <div class="download-group-header">
+                <span class="download-group-title">💻 电脑桌面版 (Windows &amp; Linux)</span>
+              </div>
+              <div class="desktop-download-actions">
+                <a
+                  class="btn btn-primary desktop-download-link"
+                  data-platform="win"
+                  href="https://worldofclaudecraft.aoruantech.com/releases/download/v0.42.2-cn/world-of-claudecraft-0.42.2-win-x64.exe"
+                  data-i18n="download.windowsCta"
+                >Download for Windows (x64)</a>
+                <a
+                  class="btn btn-primary desktop-download-link"
+                  data-platform="win-arm64"
+                  href="https://worldofclaudecraft.aoruantech.com/releases/download/v0.42.2-cn/world-of-claudecraft-0.42.2-win-arm64.exe"
+                >Windows (ARM64)</a>
+                <a
+                  class="btn btn-primary desktop-download-link"
+                  data-platform="linux"
+                  href="https://worldofclaudecraft.aoruantech.com/releases/download/v0.42.2-cn/world-of-claudecraft-0.42.2-linux-x86_64.AppImage"
+                  data-i18n="download.linuxCta"
+                >Download for Linux (x86_64)</a>
+                <a
+                  class="btn btn-primary desktop-download-link"
+                  data-platform="linux-arm64"
+                  href="https://worldofclaudecraft.aoruantech.com/releases/download/v0.42.2-cn/world-of-claudecraft-0.42.2-linux-arm64.AppImage"
+                >Linux (ARM64)</a>
+              </div>
+              <p class="desktop-download-hint" data-platform-hint="linux" data-i18n="download.linuxHint" hidden>AppImage: make it executable, then run it. No install needed.</p>
+            </div>
+
+            <!-- 移动手机客户端 -->
+            <div class="download-group-card">
+              <div class="download-group-header">
+                <span class="download-group-title">📱 移动手游版 (Android &amp; iOS)</span>
+              </div>
+              <div class="desktop-download-actions">
+                <a
+                  class="btn btn-primary desktop-download-link"
+                  data-platform="android"
+                  href="https://worldofclaudecraft.aoruantech.com/releases/download/v0.42.2-cn/world-of-claudecraft-0.42.2-android.apk"
+                  data-i18n="download.androidCta"
+                >Download for Android (APK)</a>
+                <span
+                  class="btn btn-secondary desktop-download-link is-pending-badge"
+                  aria-disabled="true"
+                >iOS (App Store 即将上线)</span>
+              </div>
+            </div>
           </div>
-          <p class="desktop-download-hint" data-platform-hint="linux" data-i18n="download.linuxHint" hidden>AppImage: make it executable, then run it. No install needed.</p>
         </div>
       </section>
 

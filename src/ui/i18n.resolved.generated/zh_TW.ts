@@ -8256,7 +8256,7 @@ export const zh_TW: EnTranslations = {
     "viewAll": "在 GitHub 上查看全部更新"
   },
   "download": {
-    "title": "下載電腦版啟動器",
+    "title": "多端遊戲客戶端下載",
     "desc": "獲取獨立啟動器，以獲得更優化的效能和全螢幕遊戲體驗。",
     "macCta": "下載 macOS 版",
     "windowsCta": "下載 Windows 版",

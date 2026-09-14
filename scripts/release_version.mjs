@@ -14,6 +14,8 @@ const LINUX_APPIMAGE_RE = /world-of-claudecraft-\d+\.\d+\.\d+-linux-x86_64\.AppI
 // buildUniversalInstaller is false, issue 2013): a per-arch installer, not
 // the old combined "-win.exe" that folded both arches into one download.
 const WINDOWS_INSTALLER_RE = /world-of-claudecraft-\d+\.\d+\.\d+-win-x64\.exe/g;
+const WINDOWS_ARM64_INSTALLER_RE = /world-of-claudecraft-\d+\.\d+\.\d+-win-arm64\.exe/g;
+const LINUX_ARM64_APPIMAGE_RE = /world-of-claudecraft-\d+\.\d+\.\d+-linux-arm64\.AppImage/g;
 const ANDROID_APK_RE = /world-of-claudecraft-\d+\.\d+\.\d+-android\.apk/g;
 // A page migrated before the per-arch cutover (or hand-edited afterward) can
 // still carry the legacy combined-installer filename. Both prepare and check
@@ -24,7 +26,7 @@ const LEGACY_WINDOWS_INSTALLER_RE = /world-of-claudecraft-\d+\.\d+\.\d+-win\.exe
 // surfaces: DESKTOP_VERSION derives from package.json at build time through the
 // __APP_VERSION__ define, so nothing there needs rewriting or checking. The
 // static html hrefs below stay release-owned as the no-JS fallback.
-const GAME_VERSION_RE = /(<div\b[^>]*\bid=["']game-version["'][^>]*>)v[^<]*(<\/div>)/;
+const GAME_VERSION_RE = /(<(?:div|span)\b[^>]*\bid=["']game-version["'][^>]*>)v[^<]*(<\/(?:div|span)>)/;
 const README_VERSION_BADGE_SOURCE = String.raw`img\.shields\.io/badge/version-(\d+\.\d+\.\d+)-blue`;
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -107,6 +109,8 @@ export function setDesktopDownloadVersion(html, version, path) {
     .replace(MAC_DMG_RE, `world-of-claudecraft-${normalized}-mac-universal.dmg`)
     .replace(LINUX_APPIMAGE_RE, `world-of-claudecraft-${normalized}-linux-x86_64.AppImage`)
     .replace(WINDOWS_INSTALLER_RE, `world-of-claudecraft-${normalized}-win-x64.exe`)
+    .replace(WINDOWS_ARM64_INSTALLER_RE, `world-of-claudecraft-${normalized}-win-arm64.exe`)
+    .replace(LINUX_ARM64_APPIMAGE_RE, `world-of-claudecraft-${normalized}-linux-arm64.AppImage`)
     .replace(ANDROID_APK_RE, `world-of-claudecraft-${normalized}-android.apk`)
     .replace(LEGACY_WINDOWS_INSTALLER_RE, `world-of-claudecraft-${normalized}-win-x64.exe`)
     .replace(/\/download\/v\d+\.\d+\.\d+(?:-cn)?\//g, `/download/v${normalized}-cn/`)
@@ -224,6 +228,8 @@ export function collectReleaseVersionFailures({
   const expectedArtifact = `world-of-claudecraft-${expected}-mac-universal.dmg`;
   const expectedLinuxArtifact = `world-of-claudecraft-${expected}-linux-x86_64.AppImage`;
   const expectedWindowsArtifact = `world-of-claudecraft-${expected}-win-x64.exe`;
+  const expectedWindowsArm64Artifact = `world-of-claudecraft-${expected}-win-arm64.exe`;
+  const expectedLinuxArm64Artifact = `world-of-claudecraft-${expected}-linux-arm64.AppImage`;
   for (const [path, html] of Object.entries(htmlFiles)) {
     const gameVersion = readGameVersion(html);
     if (gameVersion !== expected) {
@@ -243,6 +249,14 @@ export function collectReleaseVersionFailures({
     LEGACY_WINDOWS_INSTALLER_RE.lastIndex = 0;
     const hasWindowsInstallerLink =
       WINDOWS_INSTALLER_RE.test(html) || LEGACY_WINDOWS_INSTALLER_RE.test(html);
+    WINDOWS_ARM64_INSTALLER_RE.lastIndex = 0;
+    if (WINDOWS_ARM64_INSTALLER_RE.test(html) && !html.includes(expectedWindowsArm64Artifact)) {
+      failures.push(`${path} has a stale Windows ARM64 desktop download URL, expected ${expected}`);
+    }
+    LINUX_ARM64_APPIMAGE_RE.lastIndex = 0;
+    if (LINUX_ARM64_APPIMAGE_RE.test(html) && !html.includes(expectedLinuxArm64Artifact)) {
+      failures.push(`${path} has a stale Linux ARM64 desktop download URL, expected ${expected}`);
+    }
     if (hasWindowsInstallerLink && !html.includes(expectedWindowsArtifact)) {
       failures.push(`${path} has a stale Windows desktop download URL, expected ${expected}`);
     }
