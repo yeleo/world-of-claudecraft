@@ -1523,6 +1523,117 @@
     box-shadow: inset 0 0 8px #000;
   }
 
+  /* Download view responsive: mobile adaptation */
+  @media (max-width: 680px) {
+    #download-view .parchment-panel {
+      width: 100%;
+      max-width: calc(100vw - 20px);
+      padding: var(--spacing-md) var(--spacing-sm);
+      margin: 10px auto;
+      border-width: 2px;
+      box-sizing: border-box;
+    }
+
+    #download-view .skeleton-panel {
+      padding: var(--spacing-sm) 4px;
+      gap: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    #download-view .skeleton-title {
+      font-size: 19px;
+      letter-spacing: 0.5px;
+      line-height: 1.35;
+      margin: 0;
+      padding: 0 4px;
+    }
+
+    #download-view .skeleton-desc {
+      font-size: 12.5px;
+      line-height: 1.5;
+      max-width: 100%;
+      padding: 0 4px;
+      margin-bottom: 2px;
+    }
+
+    .download-groups-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 8px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .download-group-card {
+      padding: 12px 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .download-group-header {
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+    }
+
+    .download-group-title {
+      font-size: 13.5px;
+    }
+
+    .desktop-download-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      gap: 8px;
+      margin-top: 0;
+    }
+
+    .desktop-download-link {
+      min-width: 0;
+      width: 100%;
+      min-height: 42px;
+      padding: 9px 12px;
+      font-size: 13px;
+      box-sizing: border-box;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .desktop-download-hint {
+      font-size: 11px;
+      max-width: 100%;
+      padding: 0 4px;
+      text-align: center;
+    }
+  }
+
+  body.mobile-touch #download-view .parchment-panel {
+    width: 100%;
+    max-width: calc(100vw - 20px);
+    padding: var(--spacing-md) var(--spacing-sm);
+    box-sizing: border-box;
+  }
+
+  body.mobile-touch #download-view .desktop-download-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 8px;
+  }
+
+  body.mobile-touch #download-view .desktop-download-link {
+    min-width: 0;
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 12px;
+    font-size: 13px;
+    box-sizing: border-box;
+    text-align: center;
+    justify-content: center;
+  }
+
   /* "Browse the Wiki" launcher: reuses the .btn skin but renders as an anchor. */
   .wiki-cta {
     display: inline-block;
