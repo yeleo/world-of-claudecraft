@@ -327,6 +327,11 @@ class SingleBotInstance:
         # Known other player pids (for human greeting)
         self.last_greet_time = 0.0
 
+        # Connection & Resilient State
+        self.running = True
+        self.last_sent_target_id: int | None = None
+        self.last_attack_cmd_time = 0.0
+
         # Autonomous Macro Intent Managers & Human-Paced FSMs
         self.party_mgr = PartyLifecycleManager(self.pid, self.player_class, is_solo_personality=(self.player_class == "rogue"))
         self.vendor_fsm = HumanVendorInteractionFSM(self.pid)
@@ -513,709 +518,808 @@ class SingleBotInstance:
         return self.current_facing + tremor
 
     async def run(self, all_bots: list[SingleBotInstance]):
-        self.register_and_create_char()
-        print(f"  [+] Player #{self.bot_idx + 1} '{self.char_name}' ({self.player_class}/{self.role}) connecting...")
+        if not self.token or not self.char_id:
+            self.register_and_create_char()
 
-        async with websockets.connect(self.ws_url, origin=self.origin_url) as ws:
-            self.ws = ws
-            auth_msg = {
-                "t": "auth-world-29",
-                "token": self.token,
-                "character": self.char_id,
-                "clientSeed": "",
-                "dungeonEntryFacingWire": 1,
-                "timerWire": 3,
-                "petSpecialWire": 1,
-                "movementWire": 1,
-            }
-            await ws.send(json.dumps(auth_msg))
+        reconnect_delay = 1.0
+        while self.running:
+            try:
+                print(f"  [+] Player #{self.bot_idx + 1} '{self.char_name}' ({self.player_class}/{self.role}) connecting...")
+                async with websockets.connect(
+                    self.ws_url,
+                    origin=self.origin_url,
+                    ping_interval=15,
+                    ping_timeout=20,
+                    close_timeout=5,
+                ) as ws:
+                    self.ws = ws
+                    auth_msg = {
+                        "t": "auth-world-29",
+                        "token": self.token,
+                        "character": self.char_id,
+                        "clientSeed": "",
+                        "dungeonEntryFacingWire": 1,
+                        "timerWire": 3,
+                        "petSpecialWire": 1,
+                        "movementWire": 1,
+                    }
+                    await ws.send(json.dumps(auth_msg))
+                    reconnect_delay = 1.0
 
-            async def receive_loop():
-                async for raw in ws:
-                    msg = json.loads(raw)
-                    t = msg.get("t")
-                    if t == "hello":
-                        self.pid = msg.get("pid", -1)
-                        print(f"  >>> Player #{self.bot_idx + 1} '{self.char_name}' joined the realm! (PID: {self.pid})")
-                    elif t == "error":
-                        pass
-                    elif t == "snap":
-                        if "self" in msg:
-                            self.self_state.update(msg["self"])
-                        if "ents" in msg:
-                            for ent in msg["ents"]:
-                                eid = ent.get("id")
-                                if eid is not None:
-                                    if eid in self.entities:
-                                        self.entities[eid].update(ent)
-                                    else:
-                                        self.entities[eid] = ent
-                        keep = set(msg.get("keep", []))
-                        for ent_id in list(self.entities.keys()):
-                            if ent_id not in keep and ent_id not in [e["id"] for e in msg.get("ents", []) if "id" in e]:
-                                self.entities.pop(ent_id, None)
-                    elif t == "events":
-                        for ev in msg.get("list", []):
-                            ev_type = ev.get("type")
-                            if ev_type in ("partyInvite", "party_invite") and not self.is_leader:
-                                # Natural human reaction delay before accepting party invite
-                                await asyncio.sleep(random.uniform(0.3, 0.8))
-                                await ws.send(json.dumps({"t": "cmd", "cmd": "paccept"}))
-                            elif ev_type in ("lootRoll", "loot_roll"):
-                                roll_id = ev.get("rollId") or ev.get("id")
-                                item_data = ev.get("item", {})
-                                roll_cmd = self.party_mgr.process_loot_roll_event(roll_id, item_data)
-                                await asyncio.sleep(random.uniform(0.4, 0.9))
-                                await ws.send(json.dumps(roll_cmd))
+                    async def receive_loop():
+                        async for raw in ws:
+                            msg = json.loads(raw)
+                            t = msg.get("t")
+                            if t == "hello":
+                                self.pid = msg.get("pid", -1)
+                                print(f"  >>> Player #{self.bot_idx + 1} '{self.char_name}' joined the realm! (PID: {self.pid})")
+                            elif t == "error":
+                                err_text = msg.get("error", msg.get("message", ""))
+                                print(f"  [Bot #{self.bot_idx + 1} '{self.char_name}'] Server notice: {err_text}")
+                            elif t == "snap":
+                                if "self" in msg:
+                                    self.self_state.update(msg["self"])
+                                if "ents" in msg:
+                                    for ent in msg["ents"]:
+                                        eid = ent.get("id")
+                                        if eid is not None:
+                                            if eid in self.entities:
+                                                self.entities[eid].update(ent)
+                                            else:
+                                                self.entities[eid] = ent
+                                keep = set(msg.get("keep", []))
+                                for ent_id in list(self.entities.keys()):
+                                    if ent_id not in keep and ent_id not in [e["id"] for e in msg.get("ents", []) if "id" in e]:
+                                        self.entities.pop(ent_id, None)
+                            elif t == "events":
+                                for ev in msg.get("list", []):
+                                    ev_type = ev.get("type")
+                                    if ev_type in ("partyInvite", "party_invite") and not self.is_leader:
+                                        # Natural human reaction delay before accepting party invite
+                                        await asyncio.sleep(random.uniform(0.3, 0.8))
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "paccept"}))
+                                    elif ev_type in ("lootRoll", "loot_roll"):
+                                        roll_id = ev.get("rollId") or ev.get("id")
+                                        item_data = ev.get("item", {})
+                                        roll_cmd = self.party_mgr.process_loot_roll_event(roll_id, item_data)
+                                        await asyncio.sleep(random.uniform(0.4, 0.9))
+                                        await ws.send(json.dumps(roll_cmd))
 
-            async def control_loop():
-                wp_idx = 0
-                last_log_time = 0.0
-                bot_pids = {b.pid for b in all_bots}
+                    async def control_loop():
+                        wp_idx = 0
+                        last_log_time = 0.0
+                        bot_pids = {b.pid for b in all_bots}
 
-                while True:
-                    await asyncio.sleep(0.05)  # 20 Hz tick
-                    if not self.self_state or self.pid < 0:
-                        continue
-
-                    now = time.time()
-
-                    # Resurrect if dead
-                    if self.self_state.get("dead"):
-                        await asyncio.sleep(random.uniform(1.2, 2.5))  # human hesitation before release
-                        await ws.send(json.dumps({"t": "cmd", "cmd": "release"}))
-                        continue
-
-                    # ---------------------------------------------------------
-                    # 1. Zero-CLI Mode & Party Auto-Detection
-                    # ---------------------------------------------------------
-                    party_data = self.self_state.get("party")
-                    is_grouped = isinstance(party_data, dict) and len(party_data.get("members", [])) >= 2
-                    prev_mode = self.mode
-                    self.mode = "squad" if is_grouped else "solo"
-
-                    if prev_mode != self.mode and self.bot_idx == 0:
-                        print(f"  [*] Party status updated: [{self.mode.upper()}] Mode active (Squad: {len(party_data.get('members', [])) if is_grouped else 1} members)")
-
-                    if is_grouped:
-                        self.is_leader = (party_data.get("leader") == self.pid)
-                        # Natural Party Departure Check after finishing milestones
-                        if not self.is_leader:
-                            qdone_set = set(self.self_state.get("qdone", []))
-                            should_leave, farewell = self.party_mgr.evaluate_departure_decision(party_data, qdone_set, milestone_quest="q_ps_the_gauntlet")
-                            if should_leave:
-                                if farewell:
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {farewell}"}))
-                                    await asyncio.sleep(random.uniform(0.4, 0.8))
-                                await ws.send(json.dumps({"t": "cmd", "cmd": "pleave"}))
-                    else:
-                        self.is_leader = (self.bot_idx == 0)
-
-                    # Leader invites remaining bots with human-like staggering
-                    if self.is_leader and len(all_bots) > 1:
-                        for other in all_bots:
-                            if other != self and other.pid > 0 and other.pid not in self.party_invited_ids:
-                                await ws.send(json.dumps({"t": "cmd", "cmd": "pinvite", "id": other.pid}))
-                                self.party_invited_ids.add(other.pid)
-                                await asyncio.sleep(random.uniform(0.15, 0.35))
-
-                    my_x = self.self_state.get("x", 0.0)
-                    my_z = self.self_state.get("z", 0.0)
-                    my_hp = self.self_state.get("hp", 100)
-                    my_mhp = max(1, self.self_state.get("mhp", 100))
-                    my_hp_pct = my_hp / my_mhp
-                    my_res = self.self_state.get("res", 100)
-                    my_mres = max(1, self.self_state.get("mres", 100))
-                    my_mana_pct = my_res / my_mres
-
-                    # Anti-Stuck & Obstacle Jumping Detection
-                    moved_dist = math.hypot(my_x - self.prev_x, my_z - self.prev_z)
-                    self.prev_x = my_x
-                    self.prev_z = my_z
-
-                    if self.is_trying_to_move and moved_dist < 0.08:
-                        self.stuck_ticks += 1
-                    else:
-                        self.stuck_ticks = 0
-
-                    need_jump = self.stuck_ticks >= 2
-                    need_strafe_left = (self.stuck_ticks >= 6 and (self.stuck_ticks % 6 < 3))
-                    need_strafe_right = (self.stuck_ticks >= 6 and (self.stuck_ticks % 6 >= 3))
-
-                    # Habitual gamer casual jump while traversing
-                    if self.is_trying_to_move and not need_jump and now > self.last_casual_jump_time:
-                        need_jump = True
-                        self.last_casual_jump_time = now + random.uniform(8.0, 18.0)
-
-                    def make_move_input(facing: float):
-                        smoothed = self.smooth_turn_facing(facing, 0.05)
-                        mi = {"f": 1}
-                        if need_jump:
-                            mi["j"] = 1
-                        if need_strafe_left:
-                            mi["sl"] = 1
-                        elif need_strafe_right:
-                            mi["sr"] = 1
-                        return {"t": "input", "mi": mi, "facing": smoothed}
-
-                    # ---------------------------------------------------------
-                    # 1.5. Authentic Multi-Stage Human Interaction FSMs
-                    # ---------------------------------------------------------
-                    in_combat = bool(self.self_state.get("inCombat"))
-                    inv = self.self_state.get("inventory", [])
-                    equip = self.self_state.get("equipment", {})
-
-                    # A. Deliberate Multi-Step Merchant Session (Approach -> Open -> Browse -> Click-by-Click)
-                    if self.vendor_fsm.is_busy():
-                        v_cmds, note = self.vendor_fsm.step_transaction(now, inv)
-                        for c in v_cmds:
-                            await ws.send(json.dumps(c))
-                        continue
-
-                    if not in_combat and now - self.last_vendor_action_time > 20.0:
-                        nearby_v = find_nearby_vendor(self.entities, my_x, my_z, max_dist=12.0)
-                        if nearby_v and should_visit_vendor(inv, in_combat=False, opportunist=True):
-                            dist_v = math.hypot(nearby_v["x"] - my_x, nearby_v["z"] - my_z)
-                            if dist_v <= 3.5:
-                                self.vendor_fsm.start_transaction(nearby_v["id"], inv, now)
-                                self.last_vendor_action_time = now
-                                continue
-                            else:
-                                angle_v = math.atan2(nearby_v["x"] - my_x, nearby_v["z"] - my_z)
-                                self.is_trying_to_move = True
-                                await ws.send(json.dumps(make_move_input(angle_v)))
+                        while True:
+                            await asyncio.sleep(0.05)  # 20 Hz tick
+                            if not self.self_state or self.pid < 0:
                                 continue
 
-                    # B. Human Gear Inspection & Tooltip Comparison
-                    if self.gear_fsm.is_busy():
-                        g_cmds, note = self.gear_fsm.step(now)
-                        for c in g_cmds:
-                            await ws.send(json.dumps(c))
-                        continue
+                            now = time.time()
 
-                    if not in_combat and now - self.last_gear_eval_time > 3.0:
-                        upgrade = evaluate_inventory_upgrades(inv, equip, self.player_class)
-                        if upgrade:
-                            self.gear_fsm.consider_upgrade(upgrade, now, in_combat)
-                        self.last_gear_eval_time = now
-
-                    # C. Curiosity & Scenic Wandering Intent
-                    if not in_combat:
-                        c_goal = self.curiosity_mgr.evaluate_curiosity(now, my_x, my_z, self.entities, in_combat)
-                        if c_goal:
-                            cx, cz, c_act, c_param = c_goal
-                            dist_c = math.hypot(cx - my_x, cz - my_z)
-                            angle_c = math.atan2(cx - my_x, cz - my_z)
-                            if c_act == "sightseeing":
-                                look_angle = (now * 0.4 + self.pid) % 6.28
-                                self.is_trying_to_move = False
-                                await ws.send(json.dumps({"t": "input", "mi": {}, "facing": look_angle}))
+                            # Resurrect if dead or ghost
+                            if self.self_state.get("dead"):
+                                await asyncio.sleep(random.uniform(0.8, 1.5))
+                                await ws.send(json.dumps({"t": "cmd", "cmd": "release"}))
                                 continue
-                            elif c_act == "investigate":
-                                if dist_c > 2.2:
-                                    self.is_trying_to_move = True
-                                    await ws.send(json.dumps(make_move_input(angle_c)))
-                                    continue
+                            if self.self_state.get("ghost"):
+                                await asyncio.sleep(random.uniform(1.0, 2.0))
+                                await ws.send(json.dumps({"t": "cmd", "cmd": "resurrect_healer"}))
+                                continue
 
-                    # ---------------------------------------------------------
-                    # 2. Living Social Interactions (Emotes & Chatter)
-                    # ---------------------------------------------------------
-                    # Greet passing human players (non-bot players)
-                    if now - self.last_greet_time > 25.0:
-                        for ent in self.entities.values():
-                            if ent.get("k") == "player" and ent.get("id") not in bot_pids:
-                                p_dist = math.hypot(ent.get("x", 0) - my_x, ent.get("z", 0) - my_z)
-                                if p_dist < 6.5:
-                                    # Human wave or friendly say
-                                    if random.random() < 0.6:
-                                        await ws.send(json.dumps({"t": "cmd", "cmd": "emote", "emote": "wave"}))
-                                    else:
-                                        await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": "嗨~"}))
-                                    self.last_greet_time = now
-                                    break
+                            # ---------------------------------------------------------
+                            # 1. Zero-CLI Mode & Party Auto-Detection
+                            # ---------------------------------------------------------
+                            party_data = self.self_state.get("party")
+                            is_grouped = isinstance(party_data, dict) and len(party_data.get("members", [])) >= 2
+                            prev_mode = self.mode
+                            self.mode = "squad" if is_grouped else "solo"
 
-                    # ---------------------------------------------------------
-                    # 3. Team Vitals & Readiness Arbiter (Leader Mind)
-                    # ---------------------------------------------------------
-                    team_needs_rest = False
-                    team_needs_regroup = False
-                    lagging_target_facing = None
+                            if prev_mode != self.mode and self.bot_idx == 0:
+                                print(f"  [*] Party status updated: [{self.mode.upper()}] Mode active (Squad: {len(party_data.get('members', [])) if is_grouped else 1} members)")
 
-                    if self.mode == "squad" and self.is_leader and is_grouped:
-                        raw_members = party_data.get("members", [])
-                        members = [m.get("member", m) for m in raw_members if isinstance(m, dict)]
-
-                        min_hp_pct = min((m.get("hp", 100) / max(1, m.get("mhp", 100))) for m in members) if members else 1.0
-                        mana_members = [m for m in members if m.get("rtype") == "mana"]
-                        min_mana_pct = min((m.get("res", 100) / max(1, m.get("mres", 100))) for m in mana_members) if mana_members else 1.0
-
-                        member_dists = [(m, math.hypot(m.get("x", my_x) - my_x, m.get("z", my_z) - my_z)) for m in members if m.get("pid") != self.pid]
-                        max_dist = max([d for _, d in member_dists], default=0.0)
-                        party_in_combat = any(m.get("inCombat") for m in members) or bool(self.self_state.get("inCombat"))
-
-                        # Rest & Recovery assessment
-                        if self.team_state == "RESTING":
-                            if min_hp_pct >= 0.85 and min_mana_pct >= 0.70:
-                                self.team_state = "READY"
-                                print(f"  [Squad] Team vitals recovered (HP: {min_hp_pct*100:.0f}%, MP: {min_mana_pct*100:.0f}%). Advancing!")
-                                if now - self.last_chat_time > 4.0:
-                                    resume_msg = random.choice(CHAT_RESUME_LINES)
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {resume_msg}"}))
-                                    self.last_chat_time = now
+                            if is_grouped:
+                                self.is_leader = (party_data.get("leader") == self.pid)
+                                # Natural Party Departure Check after finishing milestones
+                                if not self.is_leader:
+                                    qdone_set = set(self.self_state.get("qdone", []))
+                                    should_leave, farewell = self.party_mgr.evaluate_departure_decision(party_data, qdone_set, milestone_quest="q_ps_the_gauntlet")
+                                    if should_leave:
+                                        if farewell:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {farewell}"}))
+                                            await asyncio.sleep(random.uniform(0.4, 0.8))
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "pleave"}))
                             else:
-                                team_needs_rest = True
-                        else:
-                            if not party_in_combat and (min_hp_pct < 0.65 or min_mana_pct < 0.40):
-                                self.team_state = "RESTING"
-                                team_needs_rest = True
-                                print(f"  [Squad] Leader halted squad for Rest & Recovery (Min HP: {min_hp_pct*100:.0f}%, Min MP: {min_mana_pct*100:.0f}%)")
-                                if now - self.last_chat_time > 5.0:
-                                    rest_msg = random.choice(CHAT_REST_LINES)
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {rest_msg}"}))
-                                    self.last_chat_time = now
+                                self.is_leader = (self.bot_idx == 0)
 
-                        # Cohesion & Lagging Tethering assessment
-                        if not team_needs_rest and not party_in_combat:
-                            if self.team_state == "REGROUPING":
-                                if my_x > -200.0:
-                                    still_on_island = any(m.get("x", 0) < -200.0 for m, _ in member_dists)
-                                    if still_on_island:
-                                        team_needs_regroup = True
-                                    elif max_dist <= 7.5 or (self.regroup_wait_start > 0 and now - self.regroup_wait_start > 15.0):
-                                        self.team_state = "READY"
-                                        self.regroup_wait_start = 0.0
-                                        print(f"  [Squad] Team regrouped ({max_dist:.1f}m)! Resuming advance.")
-                                    else:
-                                        team_needs_regroup = True
-                                else:
-                                    if max_dist <= 7.5 or (self.regroup_wait_start > 0 and now - self.regroup_wait_start > 6.0):
-                                        self.team_state = "READY"
-                                        self.regroup_wait_start = 0.0
-                                        print(f"  [Squad] Team regrouped ({max_dist:.1f}m)! Resuming advance.")
-                                    else:
-                                        team_needs_regroup = True
+                            # Leader invites remaining bots with human-like staggering
+                            if self.is_leader and len(all_bots) > 1:
+                                for other in all_bots:
+                                    if other != self and other.pid > 0 and other.pid not in self.party_invited_ids:
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "pinvite", "id": other.pid}))
+                                        self.party_invited_ids.add(other.pid)
+                                        await asyncio.sleep(random.uniform(0.15, 0.35))
+
+                            my_x = self.self_state.get("x", 0.0)
+                            my_z = self.self_state.get("z", 0.0)
+                            my_hp = self.self_state.get("hp", 100)
+                            my_mhp = max(1, self.self_state.get("mhp", 100))
+                            my_hp_pct = my_hp / my_mhp
+                            my_res = self.self_state.get("res", 100)
+                            my_mres = max(1, self.self_state.get("mres", 100))
+                            my_mana_pct = my_res / my_mres
+
+                            # Anti-Stuck & Obstacle Jumping Detection
+                            moved_dist = math.hypot(my_x - self.prev_x, my_z - self.prev_z)
+                            self.prev_x = my_x
+                            self.prev_z = my_z
+
+                            if self.is_trying_to_move and moved_dist < 0.08:
+                                self.stuck_ticks += 1
                             else:
-                                if max_dist > 14.0 or (my_x > -200.0 and any(m.get("x", 0) < -200.0 for m, _ in member_dists)):
-                                    self.team_state = "REGROUPING"
-                                    self.regroup_wait_start = now
-                                    team_needs_regroup = True
-                                    lagging_member = max(member_dists, key=lambda x: x[1])[0]
-                                    print(f"  [Squad] '{lagging_member.get('name')}' is lagging behind ({max_dist:.1f}m). Leader holding up!")
+                                self.stuck_ticks = 0
 
-                        if team_needs_regroup and member_dists:
-                            lagging_member, _ = max(member_dists, key=lambda x: x[1])
-                            lx = lagging_member.get("x", my_x)
-                            lz = lagging_member.get("z", my_z)
-                            lagging_target_facing = math.atan2(lx - my_x, lz - my_z)
+                            need_jump = self.stuck_ticks >= 2
+                            need_strafe_left = (self.stuck_ticks >= 6 and (self.stuck_ticks % 6 < 3))
+                            need_strafe_right = (self.stuck_ticks >= 6 and (self.stuck_ticks % 6 >= 3))
 
-                    effective_resting = (self.team_state == "RESTING" or (self.leader_ref and self.leader_ref.team_state == "RESTING"))
+                            # Habitual gamer casual jump while traversing
+                            if self.is_trying_to_move and not need_jump and now > self.last_casual_jump_time:
+                                need_jump = True
+                                self.last_casual_jump_time = now + random.uniform(8.0, 18.0)
 
-                    # Handle Eating/Drinking during Rest
-                    if effective_resting:
-                        my_hp_pct = self.self_state.get("hp", 100) / max(1, self.self_state.get("mhp", 100))
-                        my_mana_pct = self.self_state.get("res", 100) / max(1, self.self_state.get("mres", 100))
-                        if my_hp_pct < 0.85 or (self.self_state.get("rtype") == "mana" and my_mana_pct < 0.70):
-                            if now - self.last_rest_time > 3.0:
-                                await ws.send(json.dumps({"t": "cmd", "cmd": "eat_drink"}))
-                                self.last_rest_time = now
+                            def make_move_input(facing: float):
+                                smoothed = self.smooth_turn_facing(facing, 0.05)
+                                mi = {"f": 1}
+                                if need_jump:
+                                    mi["j"] = 1
+                                if need_strafe_left:
+                                    mi["sl"] = 1
+                                elif need_strafe_right:
+                                    mi["sr"] = 1
+                                return {"t": "input", "mi": mi, "facing": smoothed}
 
-                        self.is_trying_to_move = False
-                        await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.self_state.get("f", 0.0)}))
-                        continue
+                            # ---------------------------------------------------------
+                            # 1.5. Authentic Multi-Stage Human Interaction FSMs
+                            # ---------------------------------------------------------
+                            in_combat = bool(self.self_state.get("inCombat"))
+                            inv = self.self_state.get("inventory", [])
+                            equip = self.self_state.get("equipment", {})
 
-                    # Handle Leader waiting for lagging allies
-                    if team_needs_regroup:
-                        self.is_trying_to_move = False
-                        await ws.send(json.dumps({
-                            "t": "input",
-                            "mi": {},
-                            "facing": lagging_target_facing if lagging_target_facing is not None else self.self_state.get("f", 0.0),
-                        }))
-                        continue
+                            # A. Deliberate Multi-Step Merchant Session (Approach -> Open -> Browse -> Click-by-Click)
+                            if self.vendor_fsm.is_busy():
+                                v_cmds, note = self.vendor_fsm.step_transaction(now, inv)
+                                for c in v_cmds:
+                                    await ws.send(json.dumps(c))
+                                continue
 
-                    # ---------------------------------------------------------
-                    # 4. Smart Healing & Threat Peel (Role Coordination)
-                    # ---------------------------------------------------------
-                    # Smart Healing (Priest / Paladin)
-                    if self.role == "Healer" or self.player_class in ("priest", "paladin"):
-                        if is_grouped and now - self.last_heal_time > 1.6:
-                            raw_members = party_data.get("members", [])
-                            injured = []
-                            for rm in raw_members:
-                                m = rm.get("member", rm)
-                                hp_p = m.get("hp", 100) / max(1, m.get("mhp", 100))
-                                if hp_p < 0.75 and not m.get("dead"):
-                                    injured.append((m, hp_p))
-                            if injured:
-                                lowest_m, lowest_hp = min(injured, key=lambda x: x[1])
-                                heal_ability = "lesser_heal" if self.player_class == "priest" else "holy_light"
-                                await ws.send(json.dumps({
-                                    "t": "cmd",
-                                    "cmd": "cast",
-                                    "ability": heal_ability,
-                                    "target": lowest_m.get("pid"),
-                                }))
-                                self.last_heal_time = now
+                            if not in_combat and now - self.last_vendor_action_time > 20.0:
+                                nearby_v = find_nearby_vendor(self.entities, my_x, my_z, max_dist=12.0)
+                                if nearby_v and should_visit_vendor(inv, in_combat=False, opportunist=True):
+                                    dist_v = math.hypot(nearby_v["x"] - my_x, nearby_v["z"] - my_z)
+                                    if dist_v <= 3.5:
+                                        self.vendor_fsm.start_transaction(nearby_v["id"], inv, now)
+                                        self.last_vendor_action_time = now
+                                        continue
+                                    else:
+                                        angle_v = math.atan2(nearby_v["x"] - my_x, nearby_v["z"] - my_z)
+                                        self.is_trying_to_move = True
+                                        await ws.send(json.dumps(make_move_input(angle_v)))
+                                        continue
 
-                    # Threat Peel for Tanks (Warrior / Paladin)
-                    if self.role == "Tank" and is_grouped:
-                        raw_members = party_data.get("members", [])
-                        for rm in raw_members:
-                            m = rm.get("member", rm)
-                            if m.get("hasAggro") and m.get("role") in ("healer", "dps") and not m.get("dead"):
-                                ally_x = m.get("x", my_x)
-                                ally_z = m.get("z", my_z)
+                            # B. Human Gear Inspection & Tooltip Comparison
+                            if self.gear_fsm.is_busy():
+                                g_cmds, note = self.gear_fsm.step(now)
+                                for c in g_cmds:
+                                    await ws.send(json.dumps(c))
+                                continue
+
+                            if not in_combat and now - self.last_gear_eval_time > 3.0:
+                                upgrade = evaluate_inventory_upgrades(inv, equip, self.player_class)
+                                if upgrade:
+                                    self.gear_fsm.consider_upgrade(upgrade, now, in_combat)
+                                self.last_gear_eval_time = now
+
+                            # C. Curiosity & Scenic Wandering Intent
+                            if not in_combat:
+                                c_goal = self.curiosity_mgr.evaluate_curiosity(now, my_x, my_z, self.entities, in_combat)
+                                if c_goal:
+                                    cx, cz, c_act, c_param = c_goal
+                                    dist_c = math.hypot(cx - my_x, cz - my_z)
+                                    angle_c = math.atan2(cx - my_x, cz - my_z)
+                                    if c_act == "sightseeing":
+                                        look_angle = (now * 0.4 + self.pid) % 6.28
+                                        self.is_trying_to_move = False
+                                        await ws.send(json.dumps({"t": "input", "mi": {}, "facing": look_angle}))
+                                        continue
+                                    elif c_act == "investigate":
+                                        if dist_c > 2.2:
+                                            self.is_trying_to_move = True
+                                            await ws.send(json.dumps(make_move_input(angle_c)))
+                                            continue
+
+                            # ---------------------------------------------------------
+                            # 2. Living Social Interactions (Emotes & Chatter)
+                            # ---------------------------------------------------------
+                            # Greet passing human players (non-bot players)
+                            if now - self.last_greet_time > 25.0:
                                 for ent in self.entities.values():
-                                    if ent.get("k") == "mob" and not ent.get("dead"):
-                                        if math.hypot(ent.get("x", 0) - ally_x, ent.get("z", 0) - ally_z) < 8.0:
-                                            self.target_id = ent.get("id")
+                                    if ent.get("k") == "player" and ent.get("id") not in bot_pids:
+                                        p_dist = math.hypot(ent.get("x", 0) - my_x, ent.get("z", 0) - my_z)
+                                        if p_dist < 6.5:
+                                            # Human wave or friendly say
+                                            if random.random() < 0.6:
+                                                await ws.send(json.dumps({"t": "cmd", "cmd": "emote", "emote": "wave"}))
+                                            else:
+                                                await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": "嗨~"}))
+                                            self.last_greet_time = now
                                             break
 
-                    # Focus Fire Assist for DPS
-                    if self.role in ("DPS-Caster", "DPS-Ranged") and self.leader_ref:
-                        lead_tgt = self.leader_ref.target_id
-                        if lead_tgt and lead_tgt in self.entities and not self.entities[lead_tgt].get("dead"):
-                            self.target_id = lead_tgt
+                            # ---------------------------------------------------------
+                            # 3. Team Vitals & Readiness Arbiter (Leader Mind)
+                            # ---------------------------------------------------------
+                            team_needs_rest = False
+                            team_needs_regroup = False
+                            lagging_target_facing = None
 
-                    # ---------------------------------------------------------
-                    # 5. Combat & Target Engagement
-                    # ---------------------------------------------------------
-                    obs = self.build_obs()
-                    target_ent = self.entities.get(self.target_id) if self.target_id else None
+                            if self.mode == "squad" and self.is_leader and is_grouped:
+                                raw_members = party_data.get("members", [])
+                                members = [m.get("member", m) for m in raw_members if isinstance(m, dict)]
 
-                    # A. Combat Mode
-                    if target_ent and not target_ent.get("dead") and not target_ent.get("loot"):
-                        self.is_trying_to_move = True
-                        tx = target_ent.get("x", my_x)
-                        tz = target_ent.get("z", my_z)
-                        dist_to_tgt = math.hypot(tx - my_x, tz - my_z)
-                        angle_to_tgt = math.atan2(tx - my_x, tz - my_z)
+                                min_hp_pct = min((m.get("hp", 100) / max(1, m.get("mhp", 100))) for m in members) if members else 1.0
+                                mana_members = [m for m in members if m.get("rtype") == "mana"]
+                                min_mana_pct = min((m.get("res", 100) / max(1, m.get("mres", 100))) for m in mana_members) if mana_members else 1.0
 
-                        # Leader natural pull shout
-                        if self.is_leader and now - self.last_chat_time > 8.0:
-                            pull_msg = random.choice(CHAT_PULL_LINES)
-                            await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {pull_msg}"}))
-                            self.last_chat_time = now
+                                member_dists = [(m, math.hypot(m.get("x", my_x) - my_x, m.get("z", my_z) - my_z)) for m in members if m.get("pid") != self.pid]
+                                max_dist = max([d for _, d in member_dists], default=0.0)
+                                party_in_combat = any(m.get("inCombat") for m in members) or bool(self.self_state.get("inCombat"))
 
-                        if now - last_log_time > 4.0:
-                            tgt_name = target_ent.get("nm", "enemy")
-                            print(f"  [Combat] Player #{self.bot_idx + 1} '{self.char_name}' fighting {tgt_name} (Dist: {dist_to_tgt:.1f}m)")
-                            last_log_time = now
-
-                        is_ranged = self.player_class in ("mage", "hunter", "priest")
-                        desired_dist = 11.5 if is_ranged else 2.2
-
-                        # Melee tactical flanking (walk slightly to mob's flank/rear)
-                        move_angle = angle_to_tgt
-                        if not is_ranged and self.role != "Tank" and dist_to_tgt < 3.5:
-                            flank_side = 0.4 if (self.bot_idx % 2 == 0) else -0.4
-                            move_angle = angle_to_tgt + flank_side
-
-                        # --- Neural Micro-Combat Inference ---
-                        action_idx = self.predict_neural_action(obs)
-
-                        # Neural action mapping (0: noop, 1: fwd, 2: back, 3: left, 4: right, 5: strafe_l, 6: strafe_r, 7: jump, 8: target, 9: attack, 10+: abilities)
-                        # Tactical range arbitration:
-                        # Ranged classes back off if mob is dangerously close (<5m)
-                        if is_ranged and dist_to_tgt < 4.5:
-                            retreat_angle = angle_to_tgt + math.pi
-                            self.is_trying_to_move = True
-                            await ws.send(json.dumps(make_move_input(retreat_angle)))
-                        elif dist_to_tgt > desired_dist:
-                            self.is_trying_to_move = True
-                            await ws.send(json.dumps(make_move_input(move_angle)))
-                        else:
-                            self.is_trying_to_move = False
-                            # Strafe slightly if model recommends strafe, otherwise face target
-                            if action_idx in (5, 6):
-                                strafe_dir = 1.2 if action_idx == 5 else -1.2
-                                await ws.send(json.dumps(make_move_input(angle_to_tgt + strafe_dir)))
-                            else:
-                                smoothed_face = self.smooth_turn_facing(angle_to_tgt, 0.05)
-                                await ws.send(json.dumps({"t": "input", "mi": {}, "facing": smoothed_face}))
-
-                        await ws.send(json.dumps({"t": "cmd", "cmd": "target", "id": self.target_id}))
-                        await ws.send(json.dumps({"t": "cmd", "cmd": "attack"}))
-
-                        # Class ability execution guided by neural policy and class kit
-                        ability_map = {
-                            "warrior": "heroic_strike",
-                            "paladin": "seal_of_righteousness",
-                            "mage": "fireball",
-                            "priest": "smite",
-                            "hunter": "arcane_shot",
-                            "rogue": "sinister_strike",
-                            "warlock": "shadow_bolt",
-                            "druid": "wrath",
-                            "shaman": "lightning_bolt",
-                        }
-                        # Map ability actions (10 ~ 10+N) or default rotation
-                        chosen_ability = ability_map.get(self.player_class, "heroic_strike")
-                        if self.player_class == "mage" and dist_to_tgt > 8.0 and random.random() < 0.4:
-                            chosen_ability = "frostbolt"  # tactical slow
-                        elif self.player_class == "priest" and my_hp_pct < 0.5:
-                            chosen_ability = "lesser_heal"
-                        elif self.player_class == "paladin" and dist_to_tgt > 4.0:
-                            chosen_ability = "judgement"
-
-                        if now - self.last_cast_time > random.uniform(1.1, 1.4):
-                            await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": chosen_ability, "target": self.target_id}))
-                            self.last_cast_time = now
-                    elif target_ent and (target_ent.get("dead") or target_ent.get("loot")):
-                        # Target died - release lock and let team transition smoothly
-                        self.target_id = None
-                        self.is_trying_to_move = False
-
-                    # B. Out of Combat Auto-Looting with Human Pause
-                    elif not self.self_state.get("inCombat") and now - self.last_loot_time > 1.2:
-                        for ent_id, ent in self.entities.items():
-                            if ent.get("k") == "mob" and ent.get("loot"):
-                                if math.hypot(ent.get("x", 0) - my_x, ent.get("z", 0) - my_z) <= 4.5:
-                                    # Brief stop to loot
-                                    await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.self_state.get("f", 0.0)}))
-                                    await asyncio.sleep(0.4)
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "loot", "id": ent_id}))
-                                    self.last_loot_time = now
-                                    break
-
-                    # C. Squad Follower Mode (maintain loose breathing formation with Leader)
-                    if not target_ent and not self.is_leader and self.leader_ref and self.leader_ref.self_state:
-                        lx = self.leader_ref.self_state.get("x", my_x)
-                        lz = self.leader_ref.self_state.get("z", my_z)
-                        lf = self.leader_ref.self_state.get("f", self.leader_ref.self_state.get("facing", 0.0))
-
-                        # Sea Crossing Check:
-                        # If leader has already crossed to mainland (lx > -200) but follower is still on island (my_x < -200):
-                        if lx > -200.0 and my_x < -200.0:
-                            ferry_x, ferry_z = -279.0, -10.0
-                            dist_to_ferry = math.hypot(ferry_x - my_x, ferry_z - my_z)
-                            angle_to_ferry = math.atan2(ferry_x - my_x, ferry_z - my_z)
-
-                            if dist_to_ferry <= 5.5 and now - self.last_quest_action_time > 1.5:
-                                bell_id = None
-                                for eid, e in self.entities.items():
-                                    if e.get("objectItemId") == "ps_ferry_bell" or "ferry" in str(e.get("name", "")).lower():
-                                        bell_id = eid
-                                        break
-                                if bell_id is not None:
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": bell_id}))
+                                # Rest & Recovery assessment
+                                if self.team_state == "RESTING":
+                                    if min_hp_pct >= 0.85 and min_mana_pct >= 0.70:
+                                        self.team_state = "READY"
+                                        print(f"  [Squad] Team vitals recovered (HP: {min_hp_pct*100:.0f}%, MP: {min_mana_pct*100:.0f}%). Advancing!")
+                                        if now - self.last_chat_time > 4.0:
+                                            resume_msg = random.choice(CHAT_RESUME_LINES)
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {resume_msg}"}))
+                                            self.last_chat_time = now
+                                    else:
+                                        team_needs_rest = True
                                 else:
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
-                                self.last_quest_action_time = now
+                                    if not party_in_combat and (min_hp_pct < 0.65 or min_mana_pct < 0.40):
+                                        self.team_state = "RESTING"
+                                        team_needs_rest = True
+                                        print(f"  [Squad] Leader halted squad for Rest & Recovery (Min HP: {min_hp_pct*100:.0f}%, Min MP: {min_mana_pct*100:.0f}%)")
+                                        if now - self.last_chat_time > 5.0:
+                                            rest_msg = random.choice(CHAT_REST_LINES)
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {rest_msg}"}))
+                                            self.last_chat_time = now
 
-                            if dist_to_ferry > 2.0:
-                                self.is_trying_to_move = True
-                                await ws.send(json.dumps(make_move_input(angle_to_ferry)))
-                            else:
+                                # Cohesion & Lagging Tethering assessment
+                                if not team_needs_rest and not party_in_combat:
+                                    if self.team_state == "REGROUPING":
+                                        if my_x > -200.0:
+                                            still_on_island = any(m.get("x", 0) < -200.0 for m, _ in member_dists)
+                                            if still_on_island:
+                                                team_needs_regroup = True
+                                            elif max_dist <= 7.5 or (self.regroup_wait_start > 0 and now - self.regroup_wait_start > 15.0):
+                                                self.team_state = "READY"
+                                                self.regroup_wait_start = 0.0
+                                                print(f"  [Squad] Team regrouped ({max_dist:.1f}m)! Resuming advance.")
+                                            else:
+                                                team_needs_regroup = True
+                                        else:
+                                            if max_dist <= 7.5 or (self.regroup_wait_start > 0 and now - self.regroup_wait_start > 6.0):
+                                                self.team_state = "READY"
+                                                self.regroup_wait_start = 0.0
+                                                print(f"  [Squad] Team regrouped ({max_dist:.1f}m)! Resuming advance.")
+                                            else:
+                                                team_needs_regroup = True
+                                    else:
+                                        if max_dist > 14.0 or (my_x > -200.0 and any(m.get("x", 0) < -200.0 for m, _ in member_dists)):
+                                            self.team_state = "REGROUPING"
+                                            self.regroup_wait_start = now
+                                            team_needs_regroup = True
+                                            lagging_member = max(member_dists, key=lambda x: x[1])[0]
+                                            print(f"  [Squad] '{lagging_member.get('name')}' is lagging behind ({max_dist:.1f}m). Leader holding up!")
+
+                                if team_needs_regroup and member_dists:
+                                    lagging_member, _ = max(member_dists, key=lambda x: x[1])
+                                    lx = lagging_member.get("x", my_x)
+                                    lz = lagging_member.get("z", my_z)
+                                    lagging_target_facing = math.atan2(lx - my_x, lz - my_z)
+
+                            effective_resting = (self.team_state == "RESTING" or (self.leader_ref and self.leader_ref.team_state == "RESTING"))
+
+                            # Handle Eating/Drinking during Rest
+                            if effective_resting:
+                                my_hp_pct = self.self_state.get("hp", 100) / max(1, self.self_state.get("mhp", 100))
+                                my_mana_pct = self.self_state.get("res", 100) / max(1, self.self_state.get("mres", 100))
+                                if my_hp_pct < 0.85 or (self.self_state.get("rtype") == "mana" and my_mana_pct < 0.70):
+                                    if now - self.last_rest_time > 3.0:
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "eat_drink"}))
+                                        self.last_rest_time = now
+
                                 self.is_trying_to_move = False
-                                await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.smooth_turn_facing(angle_to_ferry, 0.05)}))
-                            continue
+                                await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.self_state.get("f", 0.0)}))
+                                continue
 
-                        # Formation breathing drift
-                        base_x, base_z = FORMATION_OFFSETS[self.bot_idx % len(FORMATION_OFFSETS)]
-                        drift_x = math.sin(now * 0.7 + self.bot_idx) * 0.35
-                        drift_z = math.cos(now * 0.6 + self.bot_idx) * 0.35
-                        off_x = base_x + drift_x
-                        off_z = base_z + drift_z
+                            # Handle Leader waiting for lagging allies
+                            if team_needs_regroup:
+                                self.is_trying_to_move = False
+                                await ws.send(json.dumps({
+                                    "t": "input",
+                                    "mi": {},
+                                    "facing": lagging_target_facing if lagging_target_facing is not None else self.self_state.get("f", 0.0),
+                                }))
+                                continue
 
-                        # Use travel heading so orientation doesn't invert when leader pauses/looks back
-                        heading = getattr(self.leader_ref, "travel_heading", lf)
-                        slot_x = lx + (off_x * math.cos(heading) + off_z * math.sin(heading))
-                        slot_z = lz + (-off_x * math.sin(heading) + off_z * math.cos(heading))
+                            # ---------------------------------------------------------
+                            # 4. Smart Healing & Threat Peel (Role Coordination)
+                            # ---------------------------------------------------------
+                            # Smart Healing (Priest / Paladin)
+                            if self.role == "Healer" or self.player_class in ("priest", "paladin"):
+                                if is_grouped and now - self.last_heal_time > 1.6:
+                                    raw_members = party_data.get("members", [])
+                                    injured = []
+                                    for rm in raw_members:
+                                        m = rm.get("member", rm)
+                                        hp_p = m.get("hp", 100) / max(1, m.get("mhp", 100))
+                                        if hp_p < 0.75 and not m.get("dead"):
+                                            injured.append((m, hp_p))
+                                    if injured:
+                                        lowest_m, lowest_hp = min(injured, key=lambda x: x[1])
+                                        heal_ability = "lesser_heal" if self.player_class == "priest" else "holy_light"
+                                        await ws.send(json.dumps({
+                                            "t": "cmd",
+                                            "cmd": "cast",
+                                            "ability": heal_ability,
+                                            "target": lowest_m.get("pid"),
+                                        }))
+                                        self.last_heal_time = now
 
-                        dist_to_slot = math.hypot(slot_x - my_x, slot_z - my_z)
-                        angle_to_slot = math.atan2(slot_x - my_x, slot_z - my_z)
+                            # Threat Peel for Tanks (Warrior / Paladin)
+                            if self.role == "Tank" and is_grouped:
+                                raw_members = party_data.get("members", [])
+                                for rm in raw_members:
+                                    m = rm.get("member", rm)
+                                    if m.get("hasAggro") and m.get("role") in ("healer", "dps") and not m.get("dead"):
+                                        ally_x = m.get("x", my_x)
+                                        ally_z = m.get("z", my_z)
+                                        for ent in self.entities.values():
+                                            if ent.get("k") == "mob" and not ent.get("dead"):
+                                                if math.hypot(ent.get("x", 0) - ally_x, ent.get("z", 0) - ally_z) < 8.0:
+                                                    self.target_id = ent.get("id")
+                                                    break
 
-                        # Follower synchronous quest acceptance & turn-in (staggered human-like)
-                        qdone_f = set(self.self_state.get("qdone", []))
-                        qlog_list_f = self.self_state.get("qlog", [])
-                        qlog_f = {q["questId"]: q for q in qlog_list_f if isinstance(q, dict) and "questId" in q}
+                            # Focus Fire Assist for DPS
+                            if self.role in ("DPS-Caster", "DPS-Ranged") and self.leader_ref:
+                                lead_tgt = self.leader_ref.target_id
+                                if lead_tgt and lead_tgt in self.entities and not self.entities[lead_tgt].get("dead"):
+                                    self.target_id = lead_tgt
 
-                        # Check Gauntlet
-                        if "q_ps_the_gauntlet" not in qdone_f:
-                            if "q_ps_the_gauntlet" not in qlog_f:
-                                if math.hypot(-283.0 - my_x, -21.0 - my_z) <= 8.5 and now - self.last_quest_action_time > 2.0:
-                                    await asyncio.sleep(random.uniform(0.3, 0.9))
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": "q_ps_the_gauntlet"}))
-                                    self.last_quest_action_time = now
-                            else:
-                                if math.hypot(-337.0 - my_x, -33.0 - my_z) <= 8.5 and now - self.last_quest_action_time > 2.0:
-                                    await asyncio.sleep(random.uniform(0.3, 0.9))
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": "q_ps_the_gauntlet"}))
-                                    self.last_quest_action_time = now
+                            # ---------------------------------------------------------
+                            # 5. Combat & Target Engagement
+                            # ---------------------------------------------------------
+                            obs = self.build_obs()
+                            target_ent = self.entities.get(self.target_id) if self.target_id else None
 
-                        # Check Strike True
-                        elif "q_ps_strike_true" not in qdone_f:
-                            if "q_ps_strike_true" not in qlog_f:
-                                if math.hypot(-337.0 - my_x, -33.0 - my_z) <= 8.5 and now - self.last_quest_action_time > 2.0:
-                                    await asyncio.sleep(random.uniform(0.3, 0.9))
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": "q_ps_strike_true"}))
-                                    self.last_quest_action_time = now
-                            else:
-                                if qlog_f["q_ps_strike_true"].get("state") == "ready":
-                                    if math.hypot(-345.0 - my_x, -11.0 - my_z) <= 8.5 and now - self.last_quest_action_time > 2.0:
-                                        await asyncio.sleep(random.uniform(0.3, 0.9))
-                                        await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": "q_ps_strike_true"}))
+                            # A. Combat Mode
+                            if target_ent and not target_ent.get("dead") and not target_ent.get("loot"):
+                                self.is_trying_to_move = True
+                                tx = target_ent.get("x", my_x)
+                                tz = target_ent.get("z", my_z)
+                                dist_to_tgt = math.hypot(tx - my_x, tz - my_z)
+                                angle_to_tgt = math.atan2(tx - my_x, tz - my_z)
+
+                                # Leader natural pull shout
+                                if self.is_leader and now - self.last_chat_time > 8.0:
+                                    pull_msg = random.choice(CHAT_PULL_LINES)
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {pull_msg}"}))
+                                    self.last_chat_time = now
+
+                                if now - last_log_time > 4.0:
+                                    tgt_name = target_ent.get("nm", "enemy")
+                                    print(f"  [Combat] Player #{self.bot_idx + 1} '{self.char_name}' fighting {tgt_name} (Dist: {dist_to_tgt:.1f}m)")
+                                    last_log_time = now
+
+                                is_ranged = self.player_class in ("mage", "hunter", "priest")
+                                desired_dist = 11.5 if is_ranged else 2.2
+
+                                # Melee tactical flanking (walk slightly to mob's flank/rear)
+                                move_angle = angle_to_tgt
+                                if not is_ranged and self.role != "Tank" and dist_to_tgt < 3.5:
+                                    flank_side = 0.4 if (self.bot_idx % 2 == 0) else -0.4
+                                    move_angle = angle_to_tgt + flank_side
+
+                                # --- Neural Micro-Combat Inference ---
+                                action_idx = self.predict_neural_action(obs)
+
+                                # Neural action mapping (0: noop, 1: fwd, 2: back, 3: left, 4: right, 5: strafe_l, 6: strafe_r, 7: jump, 8: target, 9: attack, 10+: abilities)
+                                # Tactical range arbitration:
+                                # Ranged classes back off if mob is dangerously close (<5m)
+                                if is_ranged and dist_to_tgt < 4.5:
+                                    retreat_angle = angle_to_tgt + math.pi
+                                    self.is_trying_to_move = True
+                                    await ws.send(json.dumps(make_move_input(retreat_angle)))
+                                elif dist_to_tgt > desired_dist:
+                                    self.is_trying_to_move = True
+                                    await ws.send(json.dumps(make_move_input(move_angle)))
+                                else:
+                                    self.is_trying_to_move = False
+                                    # Strafe slightly if model recommends strafe, otherwise face target
+                                    if action_idx in (5, 6):
+                                        strafe_dir = 1.2 if action_idx == 5 else -1.2
+                                        await ws.send(json.dumps(make_move_input(angle_to_tgt + strafe_dir)))
+                                    else:
+                                        smoothed_face = self.smooth_turn_facing(angle_to_tgt, 0.05)
+                                        await ws.send(json.dumps({"t": "input", "mi": {}, "facing": smoothed_face}))
+
+                                if self.target_id != self.last_sent_target_id:
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "target", "id": self.target_id}))
+                                    self.last_sent_target_id = self.target_id
+                                    self.last_attack_cmd_time = 0.0
+
+                                if now - self.last_attack_cmd_time > 1.2:
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "attack"}))
+                                    self.last_attack_cmd_time = now
+
+                                # Class ability execution guided by neural policy and class kit
+                                ability_map = {
+                                    "warrior": "heroic_strike",
+                                    "paladin": "seal_of_righteousness",
+                                    "mage": "fireball",
+                                    "priest": "smite",
+                                    "hunter": "arcane_shot",
+                                    "rogue": "sinister_strike",
+                                    "warlock": "shadow_bolt",
+                                    "druid": "wrath",
+                                    "shaman": "lightning_bolt",
+                                }
+                                # Map ability actions (10 ~ 10+N) or default rotation
+                                chosen_ability = ability_map.get(self.player_class, "heroic_strike")
+                                if self.player_class == "mage" and dist_to_tgt > 8.0 and random.random() < 0.4:
+                                    chosen_ability = "frostbolt"  # tactical slow
+                                elif self.player_class == "priest" and my_hp_pct < 0.5:
+                                    chosen_ability = "lesser_heal"
+                                elif self.player_class == "paladin" and dist_to_tgt > 4.0:
+                                    chosen_ability = "judgement"
+
+                                if now - self.last_cast_time > random.uniform(1.1, 1.4):
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": chosen_ability, "target": self.target_id}))
+                                    self.last_cast_time = now
+                            elif target_ent and (target_ent.get("dead") or target_ent.get("loot")):
+                                # Target died - release lock and let team transition smoothly
+                                self.target_id = None
+                                self.is_trying_to_move = False
+
+                            # B. Out of Combat Auto-Looting with Human Pause
+                            elif not self.self_state.get("inCombat") and now - self.last_loot_time > 1.2:
+                                for ent_id, ent in self.entities.items():
+                                    if ent.get("k") == "mob" and ent.get("loot"):
+                                        if math.hypot(ent.get("x", 0) - my_x, ent.get("z", 0) - my_z) <= 4.5:
+                                            # Brief stop to loot
+                                            await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.self_state.get("f", 0.0)}))
+                                            await asyncio.sleep(0.4)
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "loot", "id": ent_id}))
+                                            self.last_loot_time = now
+                                            break
+
+                            # C. Squad Follower Mode (maintain loose breathing formation with Leader)
+                            if not target_ent and not self.is_leader and self.leader_ref and self.leader_ref.self_state:
+                                lx = self.leader_ref.self_state.get("x", my_x)
+                                lz = self.leader_ref.self_state.get("z", my_z)
+                                lf = self.leader_ref.self_state.get("f", self.leader_ref.self_state.get("facing", 0.0))
+
+                                # Sea Crossing Check:
+                                # If leader has already crossed to mainland (lx > -200) but follower is still on island (my_x < -200):
+                                if lx > -200.0 and my_x < -200.0:
+                                    ferry_x, ferry_z = -279.0, -10.0
+                                    dist_to_ferry = math.hypot(ferry_x - my_x, ferry_z - my_z)
+                                    angle_to_ferry = math.atan2(ferry_x - my_x, ferry_z - my_z)
+
+                                    if dist_to_ferry <= 5.5 and now - self.last_quest_action_time > 1.5:
+                                        bell_id = None
+                                        for eid, e in self.entities.items():
+                                            if e.get("objectItemId") == "ps_ferry_bell" or "ferry" in str(e.get("name", "")).lower():
+                                                bell_id = eid
+                                                break
+                                        if bell_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": bell_id}))
+                                        else:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
                                         self.last_quest_action_time = now
 
-                        # Check Ferry Bell
-                        else:
-                            if math.hypot(-279.0 - my_x, -10.0 - my_z) <= 7.5 and now - self.last_quest_action_time > 3.0:
-                                await asyncio.sleep(random.uniform(0.5, 1.5))
-                                bell_id = None
-                                for eid, e in self.entities.items():
-                                    if e.get("objectItemId") == "ps_ferry_bell" or "ferry" in str(e.get("name", "")).lower():
-                                        bell_id = eid
-                                        break
-                                if bell_id is not None:
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": bell_id}))
-                                else:
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
-                                self.last_quest_action_time = now
-
-                        if dist_to_slot > 1.8:
-                            self.is_trying_to_move = True
-                            await ws.send(json.dumps(make_move_input(angle_to_slot)))
-                        else:
-                            self.is_trying_to_move = False
-                            smoothed_lf = self.smooth_turn_facing(heading, 0.05)
-                            await ws.send(json.dumps({"t": "input", "mi": {}, "facing": smoothed_lf}))
-
-                    # D. Autonomous Quest & World Navigation (Leader / Solo)
-                    elif not target_ent and self.is_leader:
-                        qdone = set(self.self_state.get("qdone", []))
-                        qlog_list = self.self_state.get("qlog", [])
-                        qlog = {q["questId"]: q for q in qlog_list if isinstance(q, dict) and "questId" in q}
-
-                        goal_x, goal_z = my_x, my_z
-                        goal_action = "patrol"
-                        goal_param = ""
-
-                        if my_x < -200.0:
-                            # [On Proving Shore tutorial island]
-                            if "q_ps_the_gauntlet" not in qdone:
-                                if "q_ps_the_gauntlet" not in qlog:
-                                    goal_x, goal_z = -283.0, -21.0
-                                    goal_action = "accept"
-                                    goal_param = "q_ps_the_gauntlet"
-                                else:
-                                    counts = qlog["q_ps_the_gauntlet"].get("counts", [0])
-                                    next_flag = counts[0] if counts else 0
-                                    if next_flag < len(GAUNTLET_CHECKPOINTS):
-                                        goal_x, goal_z = GAUNTLET_CHECKPOINTS[next_flag]
-                                        goal_action = "waypoint"
-                                        goal_param = f"Flag #{next_flag + 1}"
+                                    if dist_to_ferry > 2.0:
+                                        self.is_trying_to_move = True
+                                        await ws.send(json.dumps(make_move_input(angle_to_ferry)))
                                     else:
-                                        goal_x, goal_z = -337.0, -33.0
-                                        goal_action = "turnin"
-                                        goal_param = "q_ps_the_gauntlet"
+                                        self.is_trying_to_move = False
+                                        await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.smooth_turn_facing(angle_to_ferry, 0.05)}))
+                                    continue
 
-                            elif "q_ps_strike_true" not in qdone:
-                                if "q_ps_strike_true" not in qlog:
-                                    goal_x, goal_z = -337.0, -33.0
-                                    goal_action = "accept"
-                                    goal_param = "q_ps_strike_true"
+                                # Formation breathing drift
+                                base_x, base_z = FORMATION_OFFSETS[self.bot_idx % len(FORMATION_OFFSETS)]
+                                drift_x = math.sin(now * 0.7 + self.bot_idx) * 0.35
+                                drift_z = math.cos(now * 0.6 + self.bot_idx) * 0.35
+                                off_x = base_x + drift_x
+                                off_z = base_z + drift_z
+
+                                # Use travel heading so orientation doesn't invert when leader pauses/looks back
+                                heading = getattr(self.leader_ref, "travel_heading", lf)
+                                slot_x = lx + (off_x * math.cos(heading) + off_z * math.sin(heading))
+                                slot_z = lz + (-off_x * math.sin(heading) + off_z * math.cos(heading))
+
+                                dist_to_slot = math.hypot(slot_x - my_x, slot_z - my_z)
+                                angle_to_slot = math.atan2(slot_x - my_x, slot_z - my_z)
+
+                                # Follower synchronous quest acceptance & turn-in (staggered human-like)
+                                qdone_f = set(self.self_state.get("qdone", []))
+                                qlog_list_f = self.self_state.get("qlog", [])
+                                qlog_f = {q["questId"]: q for q in qlog_list_f if isinstance(q, dict) and "questId" in q}
+
+                                fgx, fgz, faction, fparam = QuestNavigator.resolve_macro_objective(
+                                    my_x, my_z, qdone_f, qlog_f,
+                                    waypoint_index=0,
+                                    player_class=self.player_class,
+                                    is_ghost=self.self_state.get("ghost", False)
+                                )
+
+                                dist_to_fgoal = math.hypot(fgx - my_x, fgz - my_z)
+                                if dist_to_fgoal <= 8.5 and now - self.last_quest_action_time > 2.0:
+                                    if faction == "accept":
+                                        await asyncio.sleep(random.uniform(0.3, 0.8))
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": fparam}))
+                                        self.last_quest_action_time = now
+                                    elif faction == "turnin":
+                                        await asyncio.sleep(random.uniform(0.3, 0.8))
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": fparam}))
+                                        self.last_quest_action_time = now
+                                    elif faction == "ability_drill":
+                                        effigy_id = None
+                                        for eid, e in self.entities.items():
+                                            if e.get("name") == "training_effigy" or e.get("dummy"):
+                                                effigy_id = eid
+                                                break
+                                        if effigy_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "target", "id": effigy_id}))
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": fparam, "target": effigy_id}))
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "attack"}))
+                                            self.last_quest_action_time = now
+                                    elif faction == "crate":
+                                        crate_id = None
+                                        for eid, e in self.entities.items():
+                                            if e.get("objectItemId") == "ps_castaway_crate" or "crate" in str(e.get("name", "")).lower():
+                                                crate_id = eid
+                                                break
+                                        if crate_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": crate_id}))
+                                        else:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                        self.last_quest_action_time = now
+                                    elif faction == "buy_pouch":
+                                        finch_id = None
+                                        for eid, e in self.entities.items():
+                                            if "finch" in str(e.get("name", "")).lower():
+                                                finch_id = eid
+                                                break
+                                        if finch_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "buy", "npc": finch_id, "item": "linen_pouch"}))
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "use", "item": "linen_pouch"}))
+                                        self.last_quest_action_time = now
+                                    elif faction == "signpost":
+                                        board_id = None
+                                        for eid, e in self.entities.items():
+                                            if "noticeboard" in str(e.get("name", "")).lower() or "signpost" in str(e.get("name", "")).lower():
+                                                board_id = eid
+                                                break
+                                        if board_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": board_id}))
+                                        else:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                        self.last_quest_action_time = now
+                                    elif faction == "death_lesson":
+                                        if not self.self_state.get("dead") and not self.self_state.get("ghost"):
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "use", "item": "ps_passing_stone"}))
+                                            self.last_quest_action_time = now
+                                    elif faction == "ferry" and (lx > -200.0 or math.hypot(-279.0 - lx, -10.0 - lz) <= 8.0):
+                                        bell_id = None
+                                        for eid, e in self.entities.items():
+                                            if e.get("objectItemId") == "ps_ferry_bell" or "ferry" in str(e.get("name", "")).lower():
+                                                bell_id = eid
+                                                break
+                                        if bell_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": bell_id}))
+                                        else:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                        self.last_quest_action_time = now
+
+                                if dist_to_slot > 1.8:
+                                    self.is_trying_to_move = True
+                                    await ws.send(json.dumps(make_move_input(angle_to_slot)))
                                 else:
-                                    if qlog["q_ps_strike_true"].get("state") == "ready":
-                                        goal_x, goal_z = -345.0, -11.0
-                                        goal_action = "turnin"
-                                        goal_param = "q_ps_strike_true"
-                                    else:
-                                        # Fight training effigies
-                                        goal_x, goal_z = -336.0, -14.0
-                                        goal_action = "hunt"
-                                        goal_param = "training_effigy"
+                                    self.is_trying_to_move = False
+                                    smoothed_lf = self.smooth_turn_facing(heading, 0.05)
+                                    await ws.send(json.dumps({"t": "input", "mi": {}, "facing": smoothed_lf}))
 
-                            else:
-                                # Tutorial completed -> Head to the Old Pier ferry bell to sail to mainland!
-                                goal_x, goal_z = -279.0, -10.0
-                                goal_action = "ferry"
-                                goal_param = "ps_ferry_bell"
+                            # D. Autonomous Quest & World Navigation (Leader / Solo)
+                            elif not target_ent and self.is_leader:
+                                qdone = set(self.self_state.get("qdone", []))
+                                qlog_list = self.self_state.get("qlog", [])
+                                qlog = {q["questId"]: q for q in qlog_list if isinstance(q, dict) and "questId" in q}
 
-                        else:
-                            # [On Eastbrook Vale Mainland!]
-                            goal_x, goal_z = EASTBROOK_WAYPOINTS[wp_idx % len(EASTBROOK_WAYPOINTS)]
-                            goal_action = "explore"
-                            goal_param = "Eastbrook Highway"
+                                goal_x, goal_z, goal_action, goal_param = QuestNavigator.resolve_macro_objective(
+                                    my_x, my_z, qdone, qlog,
+                                    waypoint_index=wp_idx,
+                                    player_class=self.player_class,
+                                    is_ghost=self.self_state.get("ghost", False)
+                                )
 
-                        self.macro_goal_action = goal_action
-                        self.macro_goal_param = goal_param
+                                self.macro_goal_action = goal_action
+                                self.macro_goal_param = goal_param
 
-                        dist_to_goal = math.hypot(goal_x - my_x, goal_z - my_z)
-                        angle_to_goal = math.atan2(goal_x - my_x, goal_z - my_z)
+                                dist_to_goal = math.hypot(goal_x - my_x, goal_z - my_z)
+                                angle_to_goal = math.atan2(goal_x - my_x, goal_z - my_z)
 
-                        # Check if reached goal for quest action
-                        if dist_to_goal <= 3.8 and now - self.last_quest_action_time > 2.5:
-                            # Human-like reading hesitation before clicking accept/turnin
-                            if now < self.npc_reading_until:
-                                # Still reading dialog
-                                self.is_trying_to_move = False
-                                await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.smooth_turn_facing(angle_to_goal, 0.05)}))
-                                continue
+                                # Check if reached goal for quest action
+                                if dist_to_goal <= 4.0 and now - self.last_quest_action_time > 2.0:
+                                    # Human-like reading hesitation before clicking accept/turnin
+                                    if now < self.npc_reading_until:
+                                        self.is_trying_to_move = False
+                                        await ws.send(json.dumps({"t": "input", "mi": {}, "facing": self.smooth_turn_facing(angle_to_goal, 0.05)}))
+                                        continue
 
-                            if self.npc_reading_until == 0.0 and goal_action in ("accept", "turnin", "ferry"):
-                                # Start reading pause
-                                self.npc_reading_until = now + random.uniform(0.8, 1.6)
-                                continue
+                                    if self.npc_reading_until == 0.0 and goal_action in ("accept", "turnin", "ferry"):
+                                        self.npc_reading_until = now + random.uniform(0.8, 1.6)
+                                        continue
 
-                            self.npc_reading_until = 0.0
+                                    self.npc_reading_until = 0.0
 
-                            if goal_action == "accept":
-                                await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": goal_param}))
-                                print(f"  [Quest] Leader accepted '{goal_param}' from NPC!")
-                                self.last_quest_action_time = now
-                                self.npc_reading_until = now + random.uniform(2.5, 3.5)
-                                if random.random() < 0.5:
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "emote", "emote": "salute"}))
-                            elif goal_action == "turnin":
-                                await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": goal_param}))
-                                print(f"  [Quest] Leader turned in & completed '{goal_param}'!")
-                                self.last_quest_action_time = now
-                                self.npc_reading_until = now + random.uniform(2.5, 3.5)
-                                vic_msg = random.choice(CHAT_VICTORY_LINES)
-                                await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {vic_msg}"}))
-                                await ws.send(json.dumps({"t": "cmd", "cmd": "emote", "emote": "cheer"}))
-                            elif goal_action == "ferry":
-                                await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": "/p 走，乘船去东溪谷大陆开荒！"}))
-                                bell_id = None
-                                for eid, e in self.entities.items():
-                                    if e.get("objectItemId") == "ps_ferry_bell" or "ferry" in str(e.get("name", "")).lower():
-                                        bell_id = eid
-                                        break
-                                if bell_id is not None:
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": bell_id}))
+                                    if goal_action == "accept":
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "accept", "quest": goal_param}))
+                                        print(f"  [Quest] Leader accepted '{goal_param}' from NPC!")
+                                        self.last_quest_action_time = now
+                                        self.npc_reading_until = now + random.uniform(2.0, 3.0)
+                                        if random.random() < 0.5:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "emote", "emote": "salute"}))
+
+                                    elif goal_action == "turnin":
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "turnin", "quest": goal_param}))
+                                        print(f"  [Quest] Leader turned in & completed '{goal_param}'!")
+                                        self.last_quest_action_time = now
+                                        self.npc_reading_until = now + random.uniform(2.0, 3.0)
+                                        vic_msg = random.choice(CHAT_VICTORY_LINES)
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {vic_msg}"}))
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "emote", "emote": "cheer"}))
+
+                                    elif goal_action == "ability_drill":
+                                        effigy_id = None
+                                        for eid, e in self.entities.items():
+                                            if e.get("name") == "training_effigy" or e.get("dummy"):
+                                                effigy_id = eid
+                                                break
+                                        if effigy_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "target", "id": effigy_id}))
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": goal_param, "target": effigy_id}))
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "attack"}))
+                                            print(f"  [Quest] Landing ability drill '{goal_param}' on effigy #{effigy_id}!")
+                                            self.last_quest_action_time = now
+
+                                    elif goal_action == "crab_boss":
+                                        crab_alive = any(e.get("name") == "mister_crabs" and not e.get("dead") for e in self.entities.values())
+                                        if not crab_alive:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "use", "item": "ps_briny_lure"}))
+                                            print(f"  [Quest] Used Briny Lure at tide pool to summon Mister Crabs!")
+                                            self.last_quest_action_time = now
+
+                                    elif goal_action == "crate":
+                                        crate_id = None
+                                        for eid, e in self.entities.items():
+                                            if e.get("objectItemId") == "ps_castaway_crate" or "crate" in str(e.get("name", "")).lower():
+                                                crate_id = eid
+                                                break
+                                        if crate_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": crate_id}))
+                                        else:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                        print(f"  [Quest] Opened Castaway Crate ({goal_param})!")
+                                        self.last_quest_action_time = now
+
+                                    elif goal_action == "buy_pouch":
+                                        finch_id = None
+                                        for eid, e in self.entities.items():
+                                            if "finch" in str(e.get("name", "")).lower():
+                                                finch_id = eid
+                                                break
+                                        if finch_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "buy", "npc": finch_id, "item": "linen_pouch"}))
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "use", "item": "linen_pouch"}))
+                                        print(f"  [Quest] Bought & equipped Linen Pouch!")
+                                        self.last_quest_action_time = now
+
+                                    elif goal_action == "signpost":
+                                        board_id = None
+                                        for eid, e in self.entities.items():
+                                            if "noticeboard" in str(e.get("name", "")).lower() or "signpost" in str(e.get("name", "")).lower():
+                                                board_id = eid
+                                                break
+                                        if board_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": board_id}))
+                                        else:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                        print(f"  [Quest] Inspected guild signpost!")
+                                        self.last_quest_action_time = now
+
+                                    elif goal_action == "death_lesson":
+                                        if not self.self_state.get("dead") and not self.self_state.get("ghost"):
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "use", "item": "ps_passing_stone"}))
+                                            print(f"  [Quest] Used Passing Stone for the death lesson!")
+                                            self.last_quest_action_time = now
+
+                                    elif goal_action == "ferry":
+                                        await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": "/p 走，乘船去东溪谷大陆开荒！"}))
+                                        bell_id = None
+                                        for eid, e in self.entities.items():
+                                            if e.get("objectItemId") == "ps_ferry_bell" or "ferry" in str(e.get("name", "")).lower():
+                                                bell_id = eid
+                                                break
+                                        if bell_id is not None:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact", "id": bell_id}))
+                                        else:
+                                            await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
+                                        print(f"  [Ferry] Ringing Ferry Bell to sail across to Eastbrook mainland!")
+                                        self.last_quest_action_time = now
+
+                                    elif goal_action in ("waypoint", "explore"):
+                                        wp_idx = (wp_idx + 1) % max(1, len(EASTBROOK_WAYPOINTS))
+                                        self.last_quest_action_time = now
+
+                                stop_dist = 1.2 if goal_action == "waypoint" else 2.2
+                                if dist_to_goal > stop_dist:
+                                    self.is_trying_to_move = True
+                                    self.travel_heading = angle_to_goal
+                                    await ws.send(json.dumps(make_move_input(angle_to_goal)))
                                 else:
-                                    await ws.send(json.dumps({"t": "cmd", "cmd": "interact"}))
-                                print(f"  [Ferry] Ringing Ferry Bell to sail across to Eastbrook mainland!")
-                                self.last_quest_action_time = now
-                            elif goal_action in ("waypoint", "explore"):
-                                wp_idx = (wp_idx + 1) % max(1, len(EASTBROOK_WAYPOINTS))
+                                    self.is_trying_to_move = False
+                                    smoothed_goal = self.smooth_turn_facing(angle_to_goal, 0.05)
+                                    await ws.send(json.dumps({"t": "input", "mi": {}, "facing": smoothed_goal}))
 
-                        if dist_to_goal > 2.0:
-                            self.is_trying_to_move = True
-                            self.travel_heading = angle_to_goal
-                            await ws.send(json.dumps(make_move_input(angle_to_goal)))
-                        else:
-                            self.is_trying_to_move = False
-                            smoothed_goal = self.smooth_turn_facing(angle_to_goal, 0.05)
-                            await ws.send(json.dumps({"t": "input", "mi": {}, "facing": smoothed_goal}))
+                                if now - last_log_time > 5.0:
+                                    print(f"  [Explore] Leader '{self.char_name}' pos=({my_x:.1f}, {my_z:.1f}) -> Objective: {goal_action} ({goal_param}) at ({goal_x:.1f}, {goal_z:.1f}), dist={dist_to_goal:.1f}")
+                                    last_log_time = now
 
-                        if now - last_log_time > 5.0:
-                            print(f"  [Explore] Leader '{self.char_name}' -> Objective: {goal_action} ({goal_param}) at ({goal_x:.1f}, {goal_z:.1f})")
-                            last_log_time = now
+                    async def safe_control_loop():
+                        while True:
+                            try:
+                                await control_loop()
+                                break
+                            except asyncio.CancelledError:
+                                break
+                            except Exception as err:
+                                if isinstance(err, (websockets.exceptions.ConnectionClosed, ConnectionResetError, BrokenPipeError, OSError)):
+                                    raise
+                                print(f"  [Bot #{self.bot_idx + 1} '{self.char_name}'] Auto-recovered from transient control loop error: {err}")
+                                await asyncio.sleep(0.5)
 
-            async def safe_control_loop():
-                while True:
-                    try:
-                        await control_loop()
-                        break
-                    except asyncio.CancelledError:
-                        break
-                    except Exception as err:
-                        print(f"  [Bot #{self.bot_idx + 1} '{self.char_name}'] Auto-recovered from transient control loop error: {err}")
-                        await asyncio.sleep(0.5)
-
-            await asyncio.gather(receive_loop(), safe_control_loop())
+                    await asyncio.gather(receive_loop(), safe_control_loop())
+            except (websockets.exceptions.ConnectionClosed, ConnectionResetError, BrokenPipeError, OSError) as e:
+                if not self.running:
+                    break
+                print(f"  [Bot #{self.bot_idx + 1} '{self.char_name}'] Network reset/disconnected ({type(e).__name__}). Reconnecting in {reconnect_delay:.1f}s...")
+                self.pid = -1
+                self.last_sent_target_id = None
+                await asyncio.sleep(reconnect_delay)
+                reconnect_delay = min(8.0, reconnect_delay * 1.5)
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                if not self.running:
+                    break
+                print(f"  [Bot #{self.bot_idx + 1} '{self.char_name}'] Unexpected error: {e}. Reconnecting in {reconnect_delay:.1f}s...")
+                self.pid = -1
+                self.last_sent_target_id = None
+                await asyncio.sleep(reconnect_delay)
+                reconnect_delay = min(8.0, reconnect_delay * 1.5)
 
 
 async def main_async(args):
@@ -1270,8 +1374,19 @@ async def main_async(args):
     print("\nAll players will enter the realm, form a cohesive party, and chat/emote naturally.")
     print(f"Watch live at {args.server}!\n")
 
-    # 4. Run all bots concurrently
-    await asyncio.gather(*(bot.run(bots) for bot in bots))
+    # 4. Run all bots concurrently with individual supervisor
+    async def run_supervised(bot_inst):
+        while True:
+            try:
+                await bot_inst.run(bots)
+                break
+            except asyncio.CancelledError:
+                break
+            except Exception as exc:
+                print(f"  [Supervisor] Player #{bot_inst.bot_idx + 1} '{bot_inst.char_name}' error: {exc}. Restarting in 2s...")
+                await asyncio.sleep(2.0)
+
+    await asyncio.gather(*(run_supervised(bot) for bot in bots), return_exceptions=True)
 
 
 def main():
