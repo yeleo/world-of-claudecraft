@@ -921,7 +921,8 @@
     grid-template-rows: 1fr;
     width: 100%;
     position: relative;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-lg) var(--spacing-lg) calc(var(--spacing-lg) + 50px);
+    box-sizing: border-box;
   }
 
   /* View Sections */
@@ -2169,7 +2170,10 @@
 
   /* Global Footer Styling */
   .homepage-footer {
-    position: relative;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     box-sizing: border-box;
     background: rgba(11, 11, 18, 0.96);
@@ -2180,11 +2184,11 @@
     flex-direction: column;
     align-items: center;
     gap: 2px;
-    padding: 4px var(--spacing-lg) 3px;
+    padding: 4px var(--spacing-lg) max(3px, env(safe-area-inset-bottom));
     flex-shrink: 0;
     text-align: center;
     margin-top: auto;
-    z-index: 10;
+    z-index: 50;
   }
 
   .footer-bar {
@@ -7565,6 +7569,70 @@
       width: 100%;
       font-size: 16px; /* Prevents mobile Safari auto-zoom */
       padding: 10px 36px 10px 16px; /* Increases height for a better touch target */
+    }
+  }
+
+  /* Responsive Footer: mobile compact adaptation */
+  @media (max-width: 680px) {
+    .homepage-footer {
+      padding: 4px 8px max(4px, env(safe-area-inset-bottom));
+      gap: 3px;
+    }
+
+    .footer-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      min-height: auto;
+    }
+
+    .footer-left {
+      width: 100%;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .footer-social-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .footer-legal-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .footer-lang-row {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-compliance-container {
+      padding: 2px 4px 0;
+      line-height: 1.2;
+    }
+
+    .footer-sub-compliance {
+      font-size: 9px;
+      gap: 4px;
+      line-height: 1.2;
+    }
+
+    .footer-sub-compliance p {
+      margin: 0;
     }
   }
 
