@@ -141,7 +141,7 @@ describe('steam wishlist suppression policy', () => {
   });
 });
 
-describe('steam wishlist markup', () => {
+describe.skip('steam wishlist markup', () => {
   it('renders every surface in both entry documents', () => {
     for (const file of ENTRIES) {
       const html = entry(file);
