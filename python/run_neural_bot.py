@@ -581,6 +581,12 @@ class SingleBotInstance:
 
                     my_x = self.self_state.get("x", 0.0)
                     my_z = self.self_state.get("z", 0.0)
+                    my_hp = self.self_state.get("hp", 100)
+                    my_mhp = max(1, self.self_state.get("mhp", 100))
+                    my_hp_pct = my_hp / my_mhp
+                    my_res = self.self_state.get("res", 100)
+                    my_mres = max(1, self.self_state.get("mres", 100))
+                    my_mana_pct = my_res / my_mres
 
                     # Anti-Stuck & Obstacle Jumping Detection
                     moved_dist = math.hypot(my_x - self.prev_x, my_z - self.prev_z)
@@ -852,6 +858,10 @@ class SingleBotInstance:
                         if now - self.last_cast_time > random.uniform(1.1, 1.4):
                             await ws.send(json.dumps({"t": "cmd", "cmd": "cast", "ability": chosen_ability, "target": self.target_id}))
                             self.last_cast_time = now
+                    elif target_ent and (target_ent.get("dead") or target_ent.get("loot")):
+                        # Target died - release lock and let team transition smoothly
+                        self.target_id = None
+                        self.is_trying_to_move = False
 
                     # B. Out of Combat Auto-Looting with Human Pause
                     elif not self.self_state.get("inCombat") and now - self.last_loot_time > 1.2:
@@ -1091,7 +1101,18 @@ class SingleBotInstance:
                             print(f"  [Explore] Leader '{self.char_name}' -> Objective: {goal_action} ({goal_param}) at ({goal_x:.1f}, {goal_z:.1f})")
                             last_log_time = now
 
-            await asyncio.gather(receive_loop(), control_loop())
+            async def safe_control_loop():
+                while True:
+                    try:
+                        await control_loop()
+                        break
+                    except asyncio.CancelledError:
+                        break
+                    except Exception as err:
+                        print(f"  [Bot #{self.bot_idx + 1} '{self.char_name}'] Auto-recovered from transient control loop error: {err}")
+                        await asyncio.sleep(0.5)
+
+            await asyncio.gather(receive_loop(), safe_control_loop())
 
 
 async def main_async(args):
