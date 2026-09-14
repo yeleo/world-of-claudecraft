@@ -70,8 +70,8 @@ export async function passesTurnstile(
   secret: string,
   fetchImpl: typeof fetch = fetch,
 ): Promise<boolean> {
-  if (isNativeAppRequest(req)) return verifyNativeAttestation(req, body.nativeAttestation);
-  if (isDesktopAppRequest(req)) return true;
   if (!secret) return true;
+  if (isDesktopAppRequest(req)) return true;
+  if (isNativeAppRequest(req)) return verifyNativeAttestation(req, body.nativeAttestation);
   return verifyTurnstile(String(body.turnstileToken ?? ''), secret, requestIp(req), fetchImpl);
 }

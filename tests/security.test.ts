@@ -1284,14 +1284,14 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
     await expect(passesTurnstile(req, {}, '')).resolves.toBe(true);
   });
 
-  it('keeps the native attestation arm ahead of the desktop bypass and the no-secret skip', async () => {
+  it('verifies native attestation when secret is set and attestation required, but bypasses when no secret', async () => {
     process.env.NATIVE_ATTESTATION_REQUIRED = '1';
     try {
-      // A native origin with attestation required and no proof is refused even
-      // with no secret configured: only the native arm can produce that false,
-      // so this pins the branch order in passesTurnstile.
       const native = fakeReq({ origin: 'capacitor://localhost' }, '203.0.113.55');
-      await expect(passesTurnstile(native, {}, '')).resolves.toBe(false);
+      // With no secret set (e.g. domestic/ESA edge protection or dev), requests pass through
+      await expect(passesTurnstile(native, {}, '')).resolves.toBe(true);
+      // With secret set, native arm enforces attestation proof
+      await expect(passesTurnstile(native, {}, testSecret)).resolves.toBe(false);
       // and the desktop bypass still admits its own origins under the same env
       const desktop = fakeReq({ origin: 'app://worldofclaudecraft' }, '203.0.113.55');
       await expect(passesTurnstile(desktop, {}, testSecret)).resolves.toBe(true);

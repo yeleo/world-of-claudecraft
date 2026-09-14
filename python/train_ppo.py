@@ -72,6 +72,34 @@ CLASS_REWARD_PROFILES: dict[str, dict[str, float]] = {
         "death": -6.0,
         "timePenalty": -0.0003,
     },
+    "rogue": {
+        "damageDealt": 0.0035,
+        "damageTaken": -0.0020,
+        "kill": 0.25,
+        "death": -6.0,
+        "timePenalty": -0.0003,
+    },
+    "warlock": {
+        "damageDealt": 0.0028,
+        "damageTaken": -0.0018,
+        "kill": 0.22,
+        "death": -6.5,
+        "timePenalty": -0.0002,
+    },
+    "druid": {
+        "damageDealt": 0.0022,
+        "damageTaken": -0.0012,
+        "kill": 0.20,
+        "death": -6.0,
+        "timePenalty": -0.0003,
+    },
+    "shaman": {
+        "damageDealt": 0.0026,
+        "damageTaken": -0.0015,
+        "kill": 0.22,
+        "death": -6.0,
+        "timePenalty": -0.0003,
+    },
 }
 
 class ActorCritic(nn.Module):

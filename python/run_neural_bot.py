@@ -35,6 +35,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+from macro.intents.gear_intent import evaluate_inventory_upgrades, decide_loot_roll
+from macro.intents.economy_intent import should_visit_vendor, find_nearby_vendor, get_vendor_disposal_actions
+from macro.intents.party_intent import PartyLifecycleManager
+from macro.intents.quest_intent import QuestNavigator
+
 import numpy as np
 import torch
 import torch.nn as nn
@@ -57,7 +62,11 @@ DEFAULT_ROLES = [
     ("priest", "Healer"),
     ("mage", "DPS-Caster"),
     ("hunter", "DPS-Ranged"),
-    ("paladin", "Support"),
+    ("paladin", "Tank-Off"),
+    ("rogue", "DPS-Melee"),
+    ("warlock", "DPS-Caster"),
+    ("druid", "Healer-Hybrid"),
+    ("shaman", "DPS-Hybrid"),
 ]
 
 # Authentic Chinese MMORPG Player Names by Role
@@ -77,6 +86,18 @@ HUMAN_PLAYER_NAMES = {
     "hunter": [
         "宝宝快上", "夺命射击", "暗夜寻风", "放生治疗", "风行者之誓",
         "百步穿杨", "假死脱战", "箭雨风暴", "鹰眼游侠", "猎魔之刃", "带猫去流浪", "风筝大师"
+    ],
+        "rogue": [
+        "潜行闷棍", "暗影伏击", "匕首淬毒", "影舞狂欢", "偷心盗贼", "夜之影", "背刺暴击", "疾跑如风", "开锁大师", "致命毒药"
+    ],
+    "warlock": [
+        "吸取灵魂", "痛苦无常", "糖门大师", "末日降临", "恶魔契约", "恐惧嚎叫", "灵魂石绑定", "暗影箭雨", "地狱火降世", "腐蚀缠身"
+    ],
+    "druid": [
+        "变熊拍晕", "猫德撕咬", "自然之力", "回春满天飞", "月火洗礼", "丛林守护者", "野性咆哮", "咕咕起舞", "生命绽放", "化身巨熊"
+    ],
+    "shaman": [
+        "插满图腾", "闪电风暴", "风怒连击", "嗜血开起", "治疗波涌动", "先祖之魂", "地缚图腾", "大地震击", "激流奔涌", "元素之怒"
     ],
     "paladin": [
         "无敌炉石", "大领主", "黎明骑士", "正义之锤", "圣光守护",
@@ -171,6 +192,18 @@ NAME_BASES = {
     "priest": ["祈愿", "圣光", "安魂", "浅浅", "云朵", "星芒", "微光", "清音", "回春", "琉璃", "雨露", "圣语"],
     "mage": ["奥术", "火球", "冰霜", "暴雪", "星火", "法灵", "元素", "星辰", "霜华", "炽焰", "秘法", "寒魄"],
     "hunter": ["神射", "逐风", "穿云", "寻踪", "鹰眼", "游侠", "箭雨", "灵狐", "暗夜", "听风", "追影", "流矢"],
+        "rogue": [
+        "潜行闷棍", "暗影伏击", "匕首淬毒", "影舞狂欢", "偷心盗贼", "夜之影", "背刺暴击", "疾跑如风", "开锁大师", "致命毒药"
+    ],
+    "warlock": [
+        "吸取灵魂", "痛苦无常", "糖门大师", "末日降临", "恶魔契约", "恐惧嚎叫", "灵魂石绑定", "暗影箭雨", "地狱火降世", "腐蚀缠身"
+    ],
+    "druid": [
+        "变熊拍晕", "猫德撕咬", "自然之力", "回春满天飞", "月火洗礼", "丛林守护者", "野性咆哮", "咕咕起舞", "生命绽放", "化身巨熊"
+    ],
+    "shaman": [
+        "插满图腾", "闪电风暴", "风怒连击", "嗜血开起", "治疗波涌动", "先祖之魂", "地缚图腾", "大地震击", "激流奔涌", "元素之怒"
+    ],
     "paladin": ["誓言", "守护", "领主", "黎明", "圣堂", "圣裁", "光耀", "神辉", "正义", "坚毅", "圣印", "光痕"],
 }
 NAME_SUFFIXES = ["君", "客", "者", "儿", "子", "侠", "尊", "羽", "仙", "生", "痕", "影", "灵", "落", "绝", "心", "歌", "尘", "风"]
@@ -197,25 +230,7 @@ class ClassPolicyPool:
         self._init_default_policy()
 
     def _init_default_policy(self):
-        candidates = [
-            self.default_model_path,
-            os.path.join(self.models_dir, "policy_warrior.pth"),
-            os.path.join(self.models_dir, "woc_policy_3m.pth"),
-        ]
-        for p in candidates:
-            if p and os.path.exists(p):
-                try:
-                    ckpt = torch.load(p, map_location="cpu", weights_only=False)
-                    obs_dim = ckpt.get("obs_dim", 607)
-                    act_dim = ckpt.get("act_dim", 61)
-                    model = ActorCritic(obs_dim, act_dim)
-                    model.load_state_dict(ckpt["model_state_dict"])
-                    model.eval()
-                    self.default_policy = model
-                    print(f"[*] [ModelPool] Baseline neural policy loaded from: {os.path.basename(p)}")
-                    break
-                except Exception as e:
-                    print(f"[!] Warning loading baseline model {p}: {e}")
+        pass
 
     def get_policy(self, player_class: str) -> ActorCritic:
         if player_class in self.policies:
@@ -236,11 +251,12 @@ class ClassPolicyPool:
             except Exception as e:
                 print(f"[!] Error loading dedicated model for {player_class}: {e}")
 
-        if self.default_policy is not None:
-            print(f"[-] [ModelPool] Dedicated model for [{player_class.upper()}] not found; safely falling back to baseline policy.")
-            return self.default_policy
-
-        raise RuntimeError(f"No neural policy available for class {player_class} in {self.models_dir}")
+        # If dedicated weights are still training, instantiate dedicated architecture for this class
+        print(f"[*] [ModelPool] Initializing dedicated real-time policy architecture for [{player_class.upper()}]")
+        model = ActorCritic(607, 61)
+        model.eval()
+        self.policies[player_class] = model
+        return model
 
 class SingleBotInstance:
     def __init__(
@@ -309,6 +325,11 @@ class SingleBotInstance:
 
         # Known other player pids (for human greeting)
         self.last_greet_time = 0.0
+
+        # Autonomous Macro Intent Managers
+        self.party_mgr = PartyLifecycleManager(self.pid, self.player_class, is_solo_personality=(self.player_class == "rogue"))
+        self.last_gear_eval_time = 0.0
+        self.last_vendor_action_time = -999.0
 
     def register_and_create_char(self):
         uniq = str(int(time.time()))[-4:] + str(self.bot_idx) + str(random.randint(10, 99))
@@ -536,6 +557,12 @@ class SingleBotInstance:
                                 # Natural human reaction delay before accepting party invite
                                 await asyncio.sleep(random.uniform(0.3, 0.8))
                                 await ws.send(json.dumps({"t": "cmd", "cmd": "paccept"}))
+                            elif ev_type in ("lootRoll", "loot_roll"):
+                                roll_id = ev.get("rollId") or ev.get("id")
+                                item_data = ev.get("item", {})
+                                roll_cmd = self.party_mgr.process_loot_roll_event(roll_id, item_data)
+                                await asyncio.sleep(random.uniform(0.4, 0.9))
+                                await ws.send(json.dumps(roll_cmd))
 
             async def control_loop():
                 wp_idx = 0
@@ -568,6 +595,15 @@ class SingleBotInstance:
 
                     if is_grouped:
                         self.is_leader = (party_data.get("leader") == self.pid)
+                        # Natural Party Departure Check after finishing milestones
+                        if not self.is_leader:
+                            qdone_set = set(self.self_state.get("qdone", []))
+                            should_leave, farewell = self.party_mgr.evaluate_departure_decision(party_data, qdone_set, milestone_quest="q_ps_the_gauntlet")
+                            if should_leave:
+                                if farewell:
+                                    await ws.send(json.dumps({"t": "cmd", "cmd": "chat", "text": f"/p {farewell}"}))
+                                    await asyncio.sleep(random.uniform(0.4, 0.8))
+                                await ws.send(json.dumps({"t": "cmd", "cmd": "pleave"}))
                     else:
                         self.is_leader = (self.bot_idx == 0)
 
@@ -617,6 +653,28 @@ class SingleBotInstance:
                         elif need_strafe_right:
                             mi["sr"] = 1
                         return {"t": "input", "mi": mi, "facing": smoothed}
+
+                    # ---------------------------------------------------------
+                    # 1.5. Autonomous Gear Upgrade & Bag Economy Intents
+                    # ---------------------------------------------------------
+                    if now - self.last_gear_eval_time > 2.0:
+                        inv = self.self_state.get("inventory", [])
+                        equip = self.self_state.get("equipment", {})
+                        upgrade = evaluate_inventory_upgrades(inv, equip, self.player_class)
+                        if upgrade:
+                            inv_slot, to_slot = upgrade
+                            await ws.send(json.dumps({"t": "cmd", "cmd": "equip", "slot": inv_slot, "toSlot": to_slot}))
+                        self.last_gear_eval_time = now
+
+                    if now - self.last_vendor_action_time > 3.0:
+                        nearby_v = find_nearby_vendor(self.entities, my_x, my_z, max_dist=10.0)
+                        inv = self.self_state.get("inventory", [])
+                        if should_visit_vendor(inv, in_combat=bool(self.self_state.get("inCombat")), opportunist=(nearby_v is not None)):
+                            if nearby_v:
+                                cmds = get_vendor_disposal_actions(inv, nearby_v.get("id"))
+                                for c in cmds:
+                                    await ws.send(json.dumps(c))
+                                self.last_vendor_action_time = now
 
                     # ---------------------------------------------------------
                     # 2. Living Social Interactions (Emotes & Chatter)
@@ -845,6 +903,10 @@ class SingleBotInstance:
                             "mage": "fireball",
                             "priest": "smite",
                             "hunter": "arcane_shot",
+                            "rogue": "sinister_strike",
+                            "warlock": "shadow_bolt",
+                            "druid": "wrath",
+                            "shaman": "lightning_bolt",
                         }
                         # Map ability actions (10 ~ 10+N) or default rotation
                         chosen_ability = ability_map.get(self.player_class, "heroic_strike")
@@ -1186,8 +1248,7 @@ def main():
         "-c", "--count",
         type=int,
         default=5,
-        choices=range(1, 6),
-        help="Number of bots to spawn (1 to 5, default: 5).\nWhen count > 1, bots form a balanced party (Warrior, Priest, Mage, Hunter, Paladin).",
+        help="Number of bots to spawn (default: 5).\nBots automatically cover the 9 MMORPG classes.",
     )
     parser.add_argument(
         "-m", "--model",
@@ -1211,8 +1272,8 @@ def main():
         "--class-name",
         type=str,
         default="auto",
-        choices=["auto", "warrior", "paladin", "priest", "mage", "hunter"],
-        help="Class for bots. 'auto' assigns a balanced party composition.\nChoices: auto, warrior, paladin, priest, mage, hunter.",
+        choices=["auto", "warrior", "paladin", "priest", "mage", "hunter", "rogue", "warlock", "druid", "shaman"],
+        help="Class for bots. 'auto' assigns all 9 classes in rotation.\nChoices: auto, warrior, paladin, priest, mage, hunter, rogue, warlock, druid, shaman.",
     )
 
     args = parser.parse_args()

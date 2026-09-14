@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Multi-Class Neural Policy Batch Trainer for World of Claudecraft.
 
-Trains distinct micro-combat policies across 5 core MMORPG classes,
+Trains distinct micro-combat policies across all 9 canonical MMORPG classes,
 optimized to support both Solo play (survival, self-sufficiency, DPS)
 and Squad/Party cooperative play (Tanking, Healing, Kiting, and Focus DPS).
 """
@@ -20,7 +20,10 @@ PYTHON_BIN = os.path.join(CONDA_PREFIX, "bin", "python")
 if not os.path.exists(PYTHON_BIN):
     PYTHON_BIN = sys.executable
 
-ALL_CLASSES = ["warrior", "mage", "priest", "hunter", "paladin"]
+ALL_CLASSES = [
+    "warrior", "mage", "priest", "hunter", "paladin",
+    "rogue", "warlock", "druid", "shaman"
+]
 
 CLASS_DESCRIPTIONS = {
     "warrior": {
@@ -53,6 +56,30 @@ CLASS_DESCRIPTIONS = {
         "party": "Off-Tank, Sustained Holy Striking & Emergency Support",
         "key_shaping": "Balanced offensive/defensive profile with self-sustain incentives",
     },
+    "rogue": {
+        "title": "Rogue (潜行者/盗贼)",
+        "solo": "High-Mobility Flanking, Energy/Combo Rhythm & Stealth Burst",
+        "party": "Melee Assassin DPS, Backstab/Sinister Strike Burst",
+        "key_shaping": "Flanking bonus, high DPS burst incentive, energy thrift",
+    },
+    "warlock": {
+        "title": "Warlock (术士)",
+        "solo": "Affliction DoT Stacking, Pet Synergy & Health Funneling",
+        "party": "Ranged Continuous Shadow Damage & Life Tap Management",
+        "key_shaping": "DoT duration reward, controlled health/mana conversion tolerance",
+    },
+    "druid": {
+        "title": "Druid (德鲁伊)",
+        "solo": "Shapeshifting Hybrid, Feral Claws, Rejuvenation & Bear Armor",
+        "party": "Versatile Off-Healer/Bruiser, HoT Maintenance & Emergency Taunt",
+        "key_shaping": "Shapeshift flexibility, hybrid healing & sustained melee reward",
+    },
+    "shaman": {
+        "title": "Shaman (萨满祭司)",
+        "solo": "Elemental Shock Burst, Lightning Bolt & Earthbind Kiting",
+        "party": "Totem Buff Support, Chain Heal / Lightning Burst DPS",
+        "key_shaping": "Shock burst timing, totem proximity reward, hybrid resilience",
+    },
 }
 
 
@@ -61,14 +88,14 @@ def parse_args():
     parser.add_argument(
         "--total-timesteps",
         type=int,
-        default=30_000_000,
-        help="Global total steps across all targeted classes (default: 30,000,000)",
+        default=54_000_000,
+        help="Global total steps across all targeted classes (default: 54,000,000)",
     )
     parser.add_argument(
         "--classes",
         type=str,
         default=",".join(ALL_CLASSES),
-        help="Comma-separated classes to train (default: warrior,mage,priest,hunter,paladin)",
+        help="Comma-separated classes to train (default: all 9 classes)",
     )
     parser.add_argument(
         "--steps-per-class",
@@ -78,7 +105,7 @@ def parse_args():
     )
     parser.add_argument("--num-envs", type=int, default=8, help="Number of parallel environments per class")
     parser.add_argument("--save-interval", type=int, default=500_000, help="Checkpoint interval")
-    parser.add_argument("--log-file", type=str, default=os.path.join(_HERE, "train_30m.log"), help="Path to write log")
+    parser.add_argument("--log-file", type=str, default=os.path.join(_HERE, "train_all_classes.log"), help="Path to write log")
     return parser.parse_args()
 
 
@@ -93,9 +120,9 @@ def main():
     global_total = steps_per_class * len(classes)
 
     print("==================================================================")
-    print(" ⚔️  World of ClaudeCraft - Multi-Class Neural Policy Batch Trainer")
+    print(" ⚔️  World of ClaudeCraft - 9-Class Neural Policy Batch Trainer")
     print(f" Target Classes     : {', '.join(classes).upper()} ({len(classes)} classes)")
-    print(f" Total Global Steps : {global_total:,} (三千万步规划)")
+    print(f" Total Global Steps : {global_total:,}")
     print(f" Steps per Class    : {steps_per_class:,}")
     print(f" Parallel Envs      : {args.num_envs}")
     print(f" Python Binary      : {PYTHON_BIN}")

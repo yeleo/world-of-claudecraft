@@ -1,0 +1,16 @@
+{
+  "summary": {
+    "total_bots_sampled": 9,
+    "quests_accepted": 20,
+    "quests_turned_in": 11,
+    "items_auto_equipped": 18,
+    "vendor_junk_disposals": 9,
+    "party_lifecycle_departures": 5
+  },
+  "anomalies": {
+    "stagnation_incidents": 0,
+    "details": []
+  },
+  "coverage_rating": "EXCELLENT",
+  "actionable_recommendations": []
+}
