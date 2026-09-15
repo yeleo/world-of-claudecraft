@@ -2168,181 +2168,365 @@
     }
   }
 
-  /* Global Footer Styling */
+  /* Global Footer Styling (Master-Grade Epic Dark-Gold Redesign) */
   .homepage-footer {
-    position: sticky;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
     width: 100%;
     box-sizing: border-box;
-    background: rgba(11, 11, 18, 0.96);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    border-top: 1px solid var(--color-border-default);
+    background: linear-gradient(180deg, rgba(14, 16, 26, 0.98) 0%, rgba(7, 8, 14, 0.99) 100%);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(215, 181, 109, 0.28);
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 225, 150, 0.12);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
-    padding: 4px var(--spacing-lg) max(3px, env(safe-area-inset-bottom));
+    padding: 16px var(--spacing-lg) max(14px, env(safe-area-inset-bottom));
     flex-shrink: 0;
-    text-align: center;
     margin-top: auto;
     z-index: 50;
+    color: #b8af96;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
   }
 
-  .footer-bar {
+  .footer-inner-wrapper {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  /* 1. 健康游戏忠告与适龄提示独立卡片 */
+  .footer-compliance-card {
     width: 100%;
     box-sizing: border-box;
+    background: linear-gradient(135deg, rgba(20, 24, 38, 0.75) 0%, rgba(12, 14, 24, 0.9) 100%);
+    border: 1px solid rgba(215, 181, 109, 0.24);
+    border-radius: 8px;
+    padding: 12px 22px;
+    box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    min-height: 28px;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .footer-left {
+  .footer-compliance-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 215, 100, 0.45) 50%, transparent 100%);
+  }
+
+  /* CADPA 16+ 黄金盾徽 */
+  .compliance-badge-area {
     display: flex;
     align-items: center;
-    gap: 8px;
     flex-shrink: 0;
-  }
-
-  .footer-social-row {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .footer-legal-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-family: var(--font-heading);
-    font-size: 12px;
-    letter-spacing: 0.5px;
-    flex: 1 1 auto;
-    margin: 0;
-  }
-
-  .legal-sep {
-    color: rgba(215, 181, 109, 0.4);
-    font-size: 11px;
-    user-select: none;
-  }
-
-  .footer-lang-row {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 8px;
-    flex-shrink: 0;
-  }
-
-  .footer-text-row {
-    color: var(--color-text-muted);
-    font-family: var(--font-heading);
-    font-size: 12px;
-    letter-spacing: 0.5px;
-    text-shadow: 1px 1px 1px #000;
-  }
-
-  .footer-link {
-    color: var(--color-text-muted);
-    text-decoration: none;
-    transition: color var(--transition-speed) var(--transition-ease);
-  }
-
-  .footer-link:hover,
-  .footer-link:focus-visible {
-    color: var(--color-primary);
-    outline: none;
-  }
-
-  .homepage-footer #game-version {
-    color: rgba(255, 255, 255, 0.35);
-    font-family: var(--font-heading);
-    font-size: 11px;
-    position: static;
-    margin: 0 0 0 4px;
-    text-shadow: none;
-    letter-spacing: 0.5px;
-    line-height: 1;
-    white-space: nowrap;
-  }
-
-  /* Footer Compliance and Advisory Section (compact single-line flow) */
-  .footer-compliance-container {
-    width: 100%;
-    max-width: 1200px;
-    box-sizing: border-box;
-    margin: 0 auto;
-    text-align: center;
-    padding: 1px 12px 0;
-    border-top: 1px solid rgba(215, 181, 109, 0.12);
-  }
-
-  .footer-sub-compliance {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    font-size: 10px;
-    color: #8c846f;
-    line-height: 1.25;
-    font-family: var(--font-ui);
-  }
-
-  .healthy-title {
-    color: #ffd100;
-    font-weight: 700;
-    margin-right: 2px;
-  }
-
-  .healthy-text {
-    color: #b3a88c;
   }
 
   .footer-age-tips {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 4px;
-    font-size: 10px;
-    color: #9e957c;
-    line-height: 1.2;
-    font-family: var(--font-ui);
+    gap: 12px;
   }
 
-  .age-badge {
+  .cadpa-shield {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 15px;
-    height: 15px;
-    border: 1px solid #ffd100;
-    border-radius: 3px;
-    color: #ffd100;
-    font-size: 8.5px;
-    font-weight: 800;
-    background: rgba(255, 209, 0, 0.12);
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #f5a623 0%, #d48806 60%, #9e6400 100%);
+    border: 1.5px solid #ffe58f;
+    box-shadow: 0 2px 8px rgba(245, 166, 35, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+    color: #1a1000;
+    font-weight: 900;
+    line-height: 1;
+    position: relative;
+    user-select: none;
     flex-shrink: 0;
   }
 
-  .footer-icp-row {
-    display: inline-flex;
-    align-items: center;
-    font-size: 10px;
-    color: #7d7560;
-    font-family: var(--font-ui);
+  .shield-num {
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    font-family: var(--font-heading, "Cinzel", Georgia, serif);
   }
 
-  .compliance-sep {
-    color: rgba(255, 255, 255, 0.2);
-    user-select: none;
+  .shield-plus {
+    font-size: 13px;
+    margin-left: 1px;
+    font-weight: 800;
   }
+
+  .age-desc-col {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 2px;
+  }
+
+  .age-main-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #ffd100;
+    letter-spacing: 0.5px;
+  }
+
+  .age-sub-desc {
+    font-size: 11.5px;
+    color: #a99d86;
+  }
+
+  .compliance-divider-v {
+    width: 1px;
+    height: 44px;
+    background: linear-gradient(180deg, transparent 0%, rgba(215, 181, 109, 0.35) 50%, transparent 100%);
+    flex-shrink: 0;
+  }
+
+  /* 健康忠告正文区域 */
+  .compliance-text-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .healthy-advice-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .healthy-gold-crest {
+    color: rgba(255, 209, 0, 0.7);
+    font-size: 12px;
+  }
+
+  .healthy-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #ffd100;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(255, 209, 0, 0.3);
+  }
+
+  .healthy-couplets {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .couplet-item {
+    font-size: 12.5px;
+    color: #ded6c8;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  }
+
+  /* 2. 功能偏好与操作控制栏 */
+  .footer-actions-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-top: 4px;
+  }
+
+  .footer-identity-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .modern-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: rgba(30, 35, 50, 0.7);
+    border: 1px solid rgba(215, 181, 109, 0.32);
+    color: #e5dcc7;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .modern-pill-btn:hover {
+    background: rgba(45, 52, 75, 0.9);
+    border-color: #ffd100;
+    color: #fff;
+    box-shadow: 0 0 12px rgba(255, 209, 0, 0.25);
+  }
+
+  .version-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: rgba(15, 18, 28, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 11px;
+    color: #9aa2b5;
+    font-family: var(--font-heading, "Cinzel", Georgia, serif);
+  }
+
+  .version-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #52c41a;
+    box-shadow: 0 0 6px #52c41a;
+  }
+
+  .homepage-footer #game-version {
+    color: #aab2c5;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-legal-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12.5px;
+  }
+
+  .footer-link {
+    color: #a8a08a;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: #ffd100;
+    text-shadow: 0 0 8px rgba(255, 209, 0, 0.35);
+  }
+
+  .legal-sep {
+    color: rgba(215, 181, 109, 0.3);
+  }
+
+  .footer-controls-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .custom-select-wrap {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(18, 21, 32, 0.85);
+    border: 1px solid rgba(215, 181, 109, 0.3);
+    border-radius: 6px;
+    padding: 2px 8px;
+    transition: all 0.2s ease;
+  }
+
+  .custom-select-wrap:hover,
+  .custom-select-wrap:focus-within {
+    border-color: #ffd100;
+    box-shadow: 0 0 10px rgba(255, 209, 0, 0.22);
+  }
+
+  .control-prefix-label {
+    font-size: 11px;
+    color: #a8a08a;
+    margin-right: 4px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .lang-select-dropdown,
+  .landing-graphics-select {
+    background: transparent;
+    border: none;
+    color: #e5dcc7;
+    font-size: 12px;
+    padding: 3px 6px;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+  }
+
+  .lang-select-dropdown option,
+  .landing-graphics-select option {
+    background: #141724;
+    color: #e5dcc7;
+  }
+
+  .landing-contrast-toggle {
+    background: rgba(18, 21, 32, 0.85);
+    border: 1px solid rgba(215, 181, 109, 0.3);
+    border-radius: 6px;
+    color: #e5dcc7;
+    font-size: 12px;
+    padding: 5px 11px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+    font-family: inherit;
+  }
+
+  .landing-contrast-toggle:hover {
+    border-color: #ffd100;
+    color: #ffd100;
+    box-shadow: 0 0 10px rgba(255, 209, 0, 0.22);
+  }
+
+  .landing-contrast-toggle[aria-pressed="true"] {
+    background: rgba(255, 209, 0, 0.2);
+    border-color: #ffd100;
+    color: #ffd100;
+  }
+
+  /* 3. 底层：版权与尾注 */
+  .footer-copyright-bar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-align: center;
+    border-top: 1px solid rgba(215, 181, 109, 0.12);
+    padding-top: 10px;
+  }
+
+  .copyright-line {
+    font-size: 11.5px;
+    color: #948b72;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .copyright-sub {
+    font-size: 10.5px;
+    color: #6d6653;
+    margin: 0;
+  }
+
 
   .social-link {
     display: inline-flex;
@@ -7463,31 +7647,32 @@
     justify-content: center;
     margin-top: 0;
   }
-  body.mobile-touch .footer-bar {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-  body.mobile-touch .footer-left {
-    align-items: center;
+  body.mobile-touch .homepage-footer {
+    padding: 12px 10px max(12px, env(safe-area-inset-bottom));
   }
-  body.mobile-touch .footer-legal-row {
-    margin: 0 auto;
-    justify-content: center;
+  body.mobile-touch .footer-compliance-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 12px;
   }
-  body.mobile-touch .footer-lang-row {
-    width: 100%;
+  body.mobile-touch .compliance-divider-v {
+    display: none;
+  }
+  body.mobile-touch .healthy-couplets {
+    flex-direction: column;
+    gap: 4px;
+  }
+  body.mobile-touch .footer-actions-bar {
     flex-direction: column;
     align-items: center;
+    gap: 10px;
   }
-  body.mobile-touch .language-selector {
+  body.mobile-touch .footer-controls-group {
     width: 100%;
-    max-width: 240px;
-  }
-  body.mobile-touch .lang-select-dropdown {
-    width: 100%;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
   }
 
   /* The added wishlist action makes the full localized desktop header too wide
