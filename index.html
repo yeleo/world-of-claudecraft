@@ -1581,79 +1581,109 @@
       </div>
     </div>
 
-    <footer class="homepage-footer">
-      <div class="footer-bar">
-        <div class="footer-left">
-          <div class="footer-social-row">
-            <a class="social-link" href="https://github.com/yeleo/world-of-claudecraft" target="_blank" rel="noopener noreferrer" data-i18n-aria="a11y.githubProject" aria-label="Open the World of ClaudeCraft GitHub project">
-              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-              <span data-i18n="footer.githubLabel">Open Source Project</span>
+    <footer class="homepage-footer" role="contentinfo">
+      <div class="footer-inner-wrapper">
+        <!-- 1. 健康游戏忠告与适龄提示（重点突出、庄重大气、独立卡片） -->
+        <div class="footer-compliance-card" id="footer-compliance-container">
+          <div class="compliance-badge-area">
+            <div class="footer-age-tips" id="footer-age-tips" title="国家新闻出版署 CADPA 游戏适龄提示标准">
+              <div class="cadpa-shield" aria-label="适龄提示 16+">
+                <span class="shield-num">16</span>
+                <span class="shield-plus">+</span>
+              </div>
+              <div class="age-desc-col">
+                <span class="age-main-title">适龄提示：16+</span>
+                <span class="age-sub-desc">本游戏适合16周岁及以上用户</span>
+              </div>
+            </div>
+          </div>
+          <div class="compliance-divider-v" aria-hidden="true"></div>
+          <div class="compliance-text-area">
+            <div class="healthy-advice-header">
+              <span class="healthy-gold-crest" aria-hidden="true">❖</span>
+              <span class="healthy-title">健康游戏忠告</span>
+              <span class="healthy-gold-crest" aria-hidden="true">❖</span>
+            </div>
+            <div class="healthy-couplets">
+              <span class="couplet-item">抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。</span>
+              <span class="couplet-item">适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 中层：功能偏好与体验控制栏（魔兽黑金质感胶囊组） -->
+        <div class="footer-actions-bar">
+          <!-- 左侧：项目与版本 -->
+          <div class="footer-identity-group">
+            <a class="social-link modern-pill-btn" href="https://github.com/yeleo/world-of-claudecraft" target="_blank" rel="noopener noreferrer" data-i18n-aria="a11y.githubProject" aria-label="Open the World of ClaudeCraft GitHub project">
+              <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              <span data-i18n="footer.githubLabel">开源项目</span>
             </a>
-            <span id="game-version">v0.42.2</span>
+            <div class="version-badge-pill">
+              <span class="version-dot"></span>
+              <span id="game-version">v0.42.2</span>
+            </div>
+          </div>
+
+          <!-- 中间：法律条款导航 -->
+          <div class="footer-legal-links">
+            <a href="/terms" class="footer-link" data-i18n="footer.terms">服务条款</a>
+            <span class="legal-sep" aria-hidden="true">·</span>
+            <a href="/privacy" class="footer-link" data-i18n="footer.privacy">隐私政策</a>
+            <a href="/support" id="footer-support-link" class="footer-link" style="display:none;" aria-hidden="true">Support</a>
+          </div>
+
+          <!-- 右侧：控件面板（语言、图形、对比度） -->
+          <div class="footer-controls-group">
+            <div class="language-selector custom-select-wrap">
+              <label for="lang-select" class="visually-hidden" data-i18n="a11y.languageSelection">Language selection</label>
+              <select id="lang-select" class="lang-select-dropdown">
+                <option value="en">English (US)</option>
+                <option value="es">Español (LatAm)</option>
+                <option value="es_ES">Español (España)</option>
+                <option value="fr_FR">Français (France)</option>
+                <option value="fr_CA">Français (Canada)</option>
+                <option value="en_CA">English (Canada)</option>
+                <option value="it_IT">Italiano</option>
+                <option value="de_DE">Deutsch</option>
+                <option value="zh_CN">简体中文</option>
+                <option value="zh_TW">繁體中文</option>
+                <option value="ko_KR">한국어</option>
+                <option value="ja_JP">日本語</option>
+                <option value="pt_BR">Português (Brasil)</option>
+                <option value="ru_RU">Русский</option>
+                <option value="cs_CZ">Čeština</option>
+                <option value="nl_NL">Nederlands</option>
+                <option value="pl_PL">Polski</option>
+                <option value="id_ID">Bahasa Indonesia</option>
+                <option value="tr_TR">Türkçe</option>
+                <option value="sv_SE">Svenska</option>
+                <option value="vi_VN">Tiếng Việt</option>
+                <option value="da_DK">Dansk</option>
+              </select>
+              <span id="lang-select-status" class="visually-hidden" role="status" aria-live="polite"></span>
+            </div>
+
+            <label class="landing-graphics-control custom-select-wrap" for="landing-graphics-select">
+              <span class="control-prefix-label" data-i18n="hud.options.graphics">图形</span>
+              <select id="landing-graphics-select" class="landing-graphics-select">
+                <option value="auto" data-i18n="hud.options.graphicsPresetAuto">Auto</option>
+                <option value="1" data-i18n="hud.options.graphicsPresetLow">Low</option>
+                <option value="2" data-i18n="hud.options.graphicsPresetMedium">Medium</option>
+                <option value="3" data-i18n="hud.options.graphicsPresetHigh">High</option>
+                <option value="4" data-i18n="hud.options.graphicsPresetUltra">Ultra</option>
+                <option value="5" data-i18n="hud.options.graphicsPresetAdvanced">Advanced</option>
+              </select>
+            </label>
+
+            <button type="button" id="landing-contrast-toggle" class="landing-contrast-toggle" aria-pressed="false" data-i18n="hudChrome.landing.highContrast" data-i18n-aria="hudChrome.landing.highContrastAria" aria-label="Toggle high-contrast background">高对比度</button>
           </div>
         </div>
-        <div class="footer-legal-row">
-          <a href="/terms" class="footer-link" data-i18n="footer.terms">Terms of Service</a>
-          <span class="legal-sep" aria-hidden="true">·</span>
-          <a href="/privacy" class="footer-link" data-i18n="footer.privacy">Privacy Policy</a>
-          <a href="/support" id="footer-support-link" class="footer-link" style="display:none;" aria-hidden="true">Support</a>
-        </div>
-        <div class="footer-lang-row">
-          <div class="language-selector">
-            <label for="lang-select" class="visually-hidden" data-i18n="a11y.languageSelection">Language selection</label>
-            <select id="lang-select" class="lang-select-dropdown">
-              <option value="en">English (US)</option>
-              <option value="es">Español (LatAm)</option>
-              <option value="es_ES">Español (España)</option>
-              <option value="fr_FR">Français (France)</option>
-              <option value="fr_CA">Français (Canada)</option>
-              <option value="en_CA">English (Canada)</option>
-              <option value="it_IT">Italiano</option>
-              <option value="de_DE">Deutsch</option>
-              <option value="zh_CN">简体中文</option>
-              <option value="zh_TW">繁體中文</option>
-              <option value="ko_KR">한국어</option>
-              <option value="ja_JP">日本語</option>
-              <option value="pt_BR">Português (Brasil)</option>
-              <option value="ru_RU">Русский</option>
-              <option value="cs_CZ">Čeština</option>
-              <option value="nl_NL">Nederlands</option>
-              <option value="pl_PL">Polski</option>
-              <option value="id_ID">Bahasa Indonesia</option>
-              <option value="tr_TR">Türkçe</option>
-              <option value="sv_SE">Svenska</option>
-              <option value="vi_VN">Tiếng Việt</option>
-              <option value="da_DK">Dansk</option>
-            </select>
-            <span id="lang-select-status" class="visually-hidden" role="status" aria-live="polite"></span>
-          </div>
-          <label class="landing-graphics-control" for="landing-graphics-select">
-            <span data-i18n="hud.options.graphics">Graphics</span>
-            <select id="landing-graphics-select" class="landing-graphics-select">
-              <option value="auto" data-i18n="hud.options.graphicsPresetAuto">Auto</option>
-              <option value="1" data-i18n="hud.options.graphicsPresetLow">Low</option>
-              <option value="2" data-i18n="hud.options.graphicsPresetMedium">Medium</option>
-              <option value="3" data-i18n="hud.options.graphicsPresetHigh">High</option>
-              <option value="4" data-i18n="hud.options.graphicsPresetUltra">Ultra</option>
-              <option value="5" data-i18n="hud.options.graphicsPresetAdvanced">Advanced</option>
-            </select>
-          </label>
-          <button type="button" id="landing-contrast-toggle" class="landing-contrast-toggle" aria-pressed="false" data-i18n="hudChrome.landing.highContrast" data-i18n-aria="hudChrome.landing.highContrastAria" aria-label="Toggle high-contrast background">High Contrast</button>
-        </div>
-      </div>
-      <div class="footer-compliance-container" id="footer-compliance-container">
-        <div class="footer-sub-compliance">
-          <span class="healthy-title">健康游戏忠告</span>
-          <span class="healthy-text">抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。</span>
-          <span class="compliance-sep" aria-hidden="true">|</span>
-          <div class="footer-age-tips" id="footer-age-tips">
-            <span class="age-badge">16+</span>
-            <span class="age-text">适龄提示：16+</span>
-          </div>
-          <span class="compliance-sep" aria-hidden="true">|</span>
-          <div class="footer-icp-row" id="footer-icp-row">
-            <span>World of ClaudeCraft 开源经典MMO定制版</span>
-          </div>
+
+        <!-- 3. 底层：版权与副标声明 -->
+        <div class="footer-copyright-bar" id="footer-icp-row">
+          <p class="copyright-line">World of ClaudeCraft 开源经典MMO定制版 · 传承经典魔兽冒险世界</p>
+          <p class="copyright-sub">本作品由社区开源爱好者基于经典 MMO 机制构建，非商业性独立游戏项目</p>
         </div>
       </div>
     </footer>
