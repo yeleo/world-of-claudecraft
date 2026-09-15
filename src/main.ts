@@ -5804,38 +5804,30 @@ function switchMainView(targetId: string): void {
     return;
   }
 
-  // Visual cross-fade and slide
+  // Visual cross-fade without transform to preserve fixed-positioning containers
   fromView.style.opacity = '0';
-  fromView.style.transform = 'translateY(-8px)';
 
   switchTransitionCleanup = () => {
     performSwitch();
     fromView.style.opacity = '';
-    fromView.style.transform = '';
     toView.style.opacity = '';
-    toView.style.transform = '';
   };
 
   switchTransitionTimeout = window.setTimeout(() => {
     performSwitch();
 
     toView.style.opacity = '0';
-    toView.style.transform = 'translateY(8px)';
-
     void toView.offsetHeight; // force reflow
 
     toView.style.opacity = '1';
-    toView.style.transform = 'translateY(0)';
 
     switchTransitionTimeout = window.setTimeout(() => {
       toView.style.opacity = '';
-      toView.style.transform = '';
       fromView.style.opacity = '';
-      fromView.style.transform = '';
       switchTransitionCleanup = null;
       switchTransitionTimeout = null;
     }, 150);
-  }, 150);
+  }, 100);
 }
 
 function show(el: string): void {
