@@ -3,7 +3,7 @@
     "id": 387802439,
     "tag": "v0.42.2-cn",
     "name": "v0.42.2-cn",
-    "body": "# World of ClaudeCraft v0.42.2-cn 团本体验升级与平衡性修复\n\n本次更新深度同步官方 v0.42.2 核心热修复与团本平衡性调整：\n\n- **奈斯拉西斯（Nythraxis）团本战斗体验优化**：全面移除灵魂之火（Soulfire）与墓穴之火（Gravefire）残留机制，告别场地火池干扰；骨刺机制改为按击打次数破坏（普通 4 次 / 英雄 6 次），添加 55 秒防连续点名保护，并大幅提升橙色视觉辨识度；束缚符文（Binding Sigil）移至王座两侧 30 码平台交替生成。\n- **双持武器附魔修复**：修复双持武器均附魔“末火之狂热（Last Flame's Zeal）”时力量增益错误叠加的问题，现统一为单层刷新机制。\n- **全服网络通信性能调优**：服务端与客户端接入 TCP_NODELAY 低延迟握手传输策略，显著降低弱网操作延迟。\n- **客户端多架构支持与国内加速分发**：下载中心升级，全面开放 Windows x64、ARM64 及 Linux/Android 客户端下载分发，优化国内加速通道。\n- **全面对齐官方 v0.42.2**：包含官方 v0.42.2 与 v0.42.1 全部核心修复与内容。\n\n**完整更新变更记录**：https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.42.2-cn",
+    "body": "# World of ClaudeCraft v0.42.2-cn 团本体验升级与平衡性修复\n\n本次更新深度同步官方 v0.42.2 核心热修复与团本平衡性调整：\n\n- **奈斯拉西斯（Nythraxis）团本战斗体验优化**：全面移除灵魂之火（Soulfire）与墓穴之火（Gravefire）残留机制，告别场地火池干扰；骨刺机制改为按击打次数破坏（普通 4 次 / 英雄 6 次），添加 55 秒防连续点名保护，并大幅提升橙色视觉辨识度；束缚符文（Binding Sigil）移至王座两侧 30 码平台交替生成。\n- **双持武器附魔修复**：修复双持武器均附魔“末火之狂热（Last Flame's Zeal）”时力量增益错误叠加的问题，现统一为单层刷新机制。\n- **客户端多架构支持与国内加速分发**：下载中心升级，全面开放 Windows x64、ARM64 及 Linux/Android 客户端下载分发，优化国内加速通道。\n- **全面对齐官方 v0.42.2**：包含官方 v0.42.2 与 v0.42.1 全部核心修复与内容。\n\n**完整更新变更记录**：https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.42.2-cn",
     "url": "https://github.com/yeleo/world-of-claudecraft/releases/tag/v0.42.2-cn",
     "prerelease": false,
     "publishedAt": "2026-09-13T05:30:49Z"
