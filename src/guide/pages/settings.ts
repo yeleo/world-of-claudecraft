@@ -336,10 +336,6 @@ const INTERFACE_TABS: InterfaceTabBlock[] = [
         body: 'guide.settingsPage.ifShowPlayerNameplates',
       },
       {
-        setting: 'hudChrome.options.showWalletOnCharacterScreen',
-        body: 'guide.settingsPage.ifWallet',
-      },
-      {
         setting: 'hudChrome.options.showDailyRewardsChest',
         body: 'guide.settingsPage.ifDailyChest',
       },

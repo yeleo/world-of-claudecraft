@@ -124,7 +124,6 @@ export const GLOSSARY_TERMS: { slug: string; term: TranslationKey; def: Translat
   { slug: 'mount', term: 'guide.glossary.mountTerm', def: 'guide.glossary.mountDef' },
   { slug: 'riding', term: 'guide.glossary.ridingTerm', def: 'guide.glossary.ridingDef' },
   { slug: 'reins', term: 'guide.glossary.reinsTerm', def: 'guide.glossary.reinsDef' },
-  { slug: 'claudium', term: 'guide.glossary.claudiumTerm', def: 'guide.glossary.claudiumDef' },
   { slug: 'world', term: 'guide.glossary.worldTerm', def: 'guide.glossary.worldDef' },
   {
     slug: 'spirit-healer',

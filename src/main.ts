@@ -5726,6 +5726,9 @@ const hoverTimeouts: Record<string, number | null> = {
   'charcreate-class-details': null,
 };
 
+let switchTransitionTimeout: number | null = null;
+let switchTransitionCleanup: (() => void) | null = null;
+
 function switchMainView(targetId: string): void {
   const views = ['#hero-view', '#highscores-view', '#news-view', '#download-view', '#account-view'];
   const currentViewId = views.find((id) => {
@@ -5734,6 +5737,15 @@ function switchMainView(targetId: string): void {
   });
 
   if (currentViewId === targetId) return;
+
+  if (switchTransitionTimeout !== null) {
+    window.clearTimeout(switchTransitionTimeout);
+    switchTransitionTimeout = null;
+  }
+  if (switchTransitionCleanup) {
+    switchTransitionCleanup();
+    switchTransitionCleanup = null;
+  }
 
   const navMap: Record<string, string> = {
     '#hero-view': 'nav-btn-play',
@@ -5764,6 +5776,8 @@ function switchMainView(targetId: string): void {
         const isTarget = id === targetId;
         el.toggleAttribute('hidden', !isTarget);
         el.setAttribute('aria-hidden', isTarget ? 'false' : 'true');
+        el.style.opacity = '';
+        el.style.transform = '';
       }
     });
 
@@ -5794,7 +5808,15 @@ function switchMainView(targetId: string): void {
   fromView.style.opacity = '0';
   fromView.style.transform = 'translateY(-8px)';
 
-  const handleTransitionEnd = () => {
+  switchTransitionCleanup = () => {
+    performSwitch();
+    fromView.style.opacity = '';
+    fromView.style.transform = '';
+    toView.style.opacity = '';
+    toView.style.transform = '';
+  };
+
+  switchTransitionTimeout = window.setTimeout(() => {
     performSwitch();
 
     toView.style.opacity = '0';
@@ -5804,9 +5826,16 @@ function switchMainView(targetId: string): void {
 
     toView.style.opacity = '1';
     toView.style.transform = 'translateY(0)';
-  };
 
-  window.setTimeout(handleTransitionEnd, 150);
+    switchTransitionTimeout = window.setTimeout(() => {
+      toView.style.opacity = '';
+      toView.style.transform = '';
+      fromView.style.opacity = '';
+      fromView.style.transform = '';
+      switchTransitionCleanup = null;
+      switchTransitionTimeout = null;
+    }, 150);
+  }, 150);
 }
 
 function show(el: string): void {
@@ -5835,6 +5864,7 @@ function show(el: string): void {
   // moment the player can actually read it, and the NEW-badge marker should
   // advance only then.
   if (el === '#charselect-panel') {
+    if (api.username) $('#charselect-user').textContent = api.username;
     startShaderWarmup();
     void loadCharselectNews($('#charselect-news-feed'), () => api.releases(20));
   }
@@ -5957,8 +5987,11 @@ const LAST_REALM_KEY = 'woc_last_realm';
 // the chosen realm). We remember the last realm and jump straight to its
 // characters, with a "Change Realm" button back to this list.
 async function enterRealmFlow(): Promise<void> {
+  if (api.username) {
+    $('#realm-list-user').textContent = api.username;
+    $('#charselect-user').textContent = api.username;
+  }
   const dir = await api.realms();
-  $('#realm-list-user').textContent = api.username ? `${api.username}` : '';
   const remembered = localStorage.getItem(LAST_REALM_KEY);
   const auto = dir.realms.find((r) => r.name === remembered);
   if (auto) {
@@ -6474,6 +6507,7 @@ function selectRealm(entry: import('./net/online').RealmEntry): void {
   api.setRealm(entry.url);
   api.realm = entry.name;
   localStorage.setItem(LAST_REALM_KEY, entry.name);
+  if (api.username) $('#charselect-user').textContent = api.username;
   show('#charselect-panel');
   void refreshCharacters();
 }
@@ -6654,6 +6688,7 @@ function openDeleteCharacterDialog(character: CharacterSummary): void {
 }
 
 async function refreshCharacters(): Promise<void> {
+  if (api.username) $('#charselect-user').textContent = api.username;
   if (api.realm) $('#charselect-realm').textContent = api.realm;
   updateSortButtonLabel();
   const listEl = $('#char-list');
