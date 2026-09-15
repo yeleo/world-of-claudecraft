@@ -5781,6 +5781,8 @@ function switchMainView(targetId: string): void {
       }
     });
 
+    document.body.dataset.activeView = targetId.slice(1);
+
     // The key-art backdrop is for the Play page only; hide it on other views.
     const onPlayPage = targetId === '#hero-view';
     const backdrop = document.getElementById('start-screen-backdrop');
@@ -10587,6 +10589,10 @@ function wireStartScreens(): void {
     show('#login-panel');
   });
   setupNavBtn($('#nav-btn-account'), '#account-view', () => {
+    if (!$('#account-view')) {
+      window.location.href = '/?view=account';
+      return;
+    }
     switchMainView('#account-view');
     void renderAccountPortal();
   });

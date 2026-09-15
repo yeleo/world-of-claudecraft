@@ -2398,16 +2398,18 @@
   .footer-controls-group {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
   }
 
   .custom-select-wrap {
     display: inline-flex;
     align-items: center;
+    height: 30px;
+    box-sizing: border-box;
     background: rgba(18, 21, 32, 0.85);
     border: 1px solid rgba(215, 181, 109, 0.3);
     border-radius: 6px;
-    padding: 2px 8px;
+    padding: 0 8px;
     transition: all 0.2s ease;
   }
 
@@ -2418,11 +2420,13 @@
   }
 
   .control-prefix-label {
-    font-size: 11px;
+    font-size: 12px;
     color: #a8a08a;
     margin-right: 4px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    font-weight: 500;
+    line-height: 28px;
+    white-space: nowrap;
+    user-select: none;
   }
 
   .lang-select-dropdown,
@@ -2433,7 +2437,10 @@
     border: none;
     color: #e5dcc7;
     font-size: 12px;
-    padding: 3px 4px;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 2px;
+    margin: 0;
     cursor: pointer;
     outline: none;
     font-family: inherit;
@@ -2453,16 +2460,23 @@
   }
 
   .landing-contrast-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    box-sizing: border-box;
     background: rgba(18, 21, 32, 0.85);
     border: 1px solid rgba(215, 181, 109, 0.3);
     border-radius: 6px;
     color: #e5dcc7;
     font-size: 12px;
-    padding: 5px 11px;
+    line-height: 28px;
+    padding: 0 12px;
     cursor: pointer;
     transition: all 0.2s ease;
     outline: none;
     font-family: inherit;
+    white-space: nowrap;
   }
 
   .landing-contrast-toggle:hover {
@@ -3509,16 +3523,23 @@
        KEEP the site menu bar (pinned below); only the offline quick-play
        panel still parks the whole chrome. The online arms keep the touch
        gate, matching their layout arms. */
-    body[data-start-panel="offline-select"] :is(
+    body:has(#hero-view:not([hidden]))[data-start-panel="offline-select"] :is(
         .homepage-header,
         .homepage-footer,
         .official-site-copy
       ),
-    body:not(.mobile-touch)[data-start-panel="charselect-panel"]
+    body:not(.mobile-touch):has(#hero-view:not([hidden]))[data-start-panel="charselect-panel"]
       :is(.homepage-footer, .official-site-copy),
-    body:not(.mobile-touch)[data-start-panel="charcreate-panel"]
+    body:not(.mobile-touch):has(#hero-view:not([hidden]))[data-start-panel="charcreate-panel"]
       :is(.homepage-footer, .official-site-copy) {
       visibility: hidden;
+    }
+
+    /* When switched to secondary views (Downloads, Highscores, News, Account), guarantee footer is visible */
+    body:has(#hero-view[hidden]) .homepage-footer,
+    body:is([data-active-view="download-view"], [data-active-view="highscores-view"], [data-active-view="news-view"], [data-active-view="account-view"]) .homepage-footer {
+      visibility: visible !important;
+      display: flex !important;
     }
 
     /* The online character screens keep the site menu bar: pin it over the
@@ -6999,12 +7020,12 @@
     padding-top: max(8px, env(safe-area-inset-top)) !important;
     padding-bottom: max(8px, env(safe-area-inset-bottom)) !important;
   }
-  body.mobile-touch[data-start-panel="login-panel"] .homepage-footer,
-  body.mobile-touch[data-start-panel="discord-choice-panel"] .homepage-footer,
-  body.mobile-touch[data-start-panel="realm-panel"] .homepage-footer,
-  body.mobile-touch[data-start-panel="charselect-panel"] .homepage-footer,
-  body.mobile-touch[data-start-panel="charcreate-panel"] .homepage-footer,
-  body.mobile-touch[data-start-panel="offline-select"] .homepage-footer {
+  body.mobile-touch:not(:has(#hero-view[hidden])):not([data-active-view="download-view"]):not([data-active-view="highscores-view"]):not([data-active-view="news-view"]):not([data-active-view="account-view"])[data-start-panel="login-panel"] .homepage-footer,
+  body.mobile-touch:not(:has(#hero-view[hidden])):not([data-active-view="download-view"]):not([data-active-view="highscores-view"]):not([data-active-view="news-view"]):not([data-active-view="account-view"])[data-start-panel="discord-choice-panel"] .homepage-footer,
+  body.mobile-touch:not(:has(#hero-view[hidden])):not([data-active-view="download-view"]):not([data-active-view="highscores-view"]):not([data-active-view="news-view"]):not([data-active-view="account-view"])[data-start-panel="realm-panel"] .homepage-footer,
+  body.mobile-touch:not(:has(#hero-view[hidden])):not([data-active-view="download-view"]):not([data-active-view="highscores-view"]):not([data-active-view="news-view"]):not([data-active-view="account-view"])[data-start-panel="charselect-panel"] .homepage-footer,
+  body.mobile-touch:not(:has(#hero-view[hidden])):not([data-active-view="download-view"]):not([data-active-view="highscores-view"]):not([data-active-view="news-view"]):not([data-active-view="account-view"])[data-start-panel="charcreate-panel"] .homepage-footer,
+  body.mobile-touch:not(:has(#hero-view[hidden])):not([data-active-view="download-view"]):not([data-active-view="highscores-view"]):not([data-active-view="news-view"]):not([data-active-view="account-view"])[data-start-panel="offline-select"] .homepage-footer {
     display: none !important;
   }
 
