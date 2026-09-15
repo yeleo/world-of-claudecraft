@@ -809,66 +809,7 @@
     color: var(--color-primary);
     outline: none;
   }
-  .landing-graphics-control {
-    min-height: 40px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 10px;
-    font-family: var(--font-ui);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--color-text-light, #e8dcc0);
-    background: rgba(21, 21, 31, 0.7);
-    border: 1px solid var(--color-border-default, #4e3d1d);
-    border-radius: var(--radius-sm, 6px);
-  }
-  .landing-graphics-select {
-    min-height: 32px;
-    padding: 0 26px 0 10px;
-    font-family: var(--font-ui);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--color-text-light, #e8dcc0);
-    background: rgba(9, 10, 16, 0.9);
-    border: 1px solid rgba(255, 209, 0, 0.28);
-    border-radius: var(--radius-sm, 6px);
-    cursor: var(--cursor-point, pointer);
-  }
-  .landing-graphics-control:focus-within,
-  .landing-graphics-control:hover {
-    border-color: var(--color-primary, #ffd100);
-  }
-  /* Landing accessibility toggle: cinematic trailer vs static high-contrast
-     backdrop. Sits beside the language picker (the page's preferences area).
-     ≥40px tall tap target, aria-pressed reflects state. */
-  .landing-contrast-toggle {
-    min-height: 40px;
-    padding: 0 14px;
-    font-family: var(--font-ui);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    color: var(--color-text-light, #e8dcc0);
-    background: rgba(21, 21, 31, 0.7);
-    border: 1px solid var(--color-border-default, #4e3d1d);
-    border-radius: var(--radius-sm, 6px);
-    cursor: var(--cursor-point, pointer);
-    transition:
-      border-color 0.15s,
-      color 0.15s,
-      background 0.15s;
-  }
-  .landing-contrast-toggle:hover,
-  .landing-contrast-toggle:focus-visible {
-    border-color: var(--color-primary, #ffd100);
-    color: #fff;
-  }
-  .landing-contrast-toggle[aria-pressed="true"] {
-    background: rgba(255, 209, 0, 0.16);
-    border-color: var(--color-primary, #ffd100);
-    color: var(--color-primary, #ffd100);
-  }
+  /* Note: landing-graphics-control, landing-graphics-select, and landing-contrast-toggle are now unified under .footer-controls-group */
   .social-link.donate:hover,
   .social-link.donate:focus-visible {
     color: #ff9db3;
@@ -2401,94 +2342,95 @@
     gap: 8px;
   }
 
-  .custom-select-wrap {
-    display: inline-flex;
-    align-items: center;
-    height: 30px;
-    box-sizing: border-box;
-    background: rgba(18, 21, 32, 0.85);
-    border: 1px solid rgba(215, 181, 109, 0.3);
-    border-radius: 6px;
-    padding: 0 8px;
-    transition: all 0.2s ease;
+  /* 统一所有底部控件的外层盒模型（语言选择、图形选择、对比度按钮） */
+  .footer-controls-group .language-selector,
+  .footer-controls-group .landing-graphics-control,
+  .footer-controls-group .custom-select-wrap,
+  .footer-controls-group .landing-contrast-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    box-sizing: border-box !important;
+    background: rgba(18, 21, 32, 0.85) !important;
+    border: 1px solid rgba(215, 181, 109, 0.3) !important;
+    border-radius: 6px !important;
+    padding: 0 10px !important;
+    margin: 0 !important;
+    font-family: inherit !important;
+    font-size: 12px !important;
+    line-height: 30px !important;
+    color: #e5dcc7 !important;
+    cursor: pointer !important;
+    vertical-align: middle !important;
+    transition: all 0.2s ease !important;
+    outline: none !important;
+    box-shadow: none !important;
   }
 
-  .custom-select-wrap:hover,
-  .custom-select-wrap:focus-within {
-    border-color: #ffd100;
-    box-shadow: 0 0 10px rgba(255, 209, 0, 0.22);
+  .footer-controls-group .custom-select-wrap:hover,
+  .footer-controls-group .custom-select-wrap:focus-within,
+  .footer-controls-group .landing-contrast-toggle:hover,
+  .footer-controls-group .landing-contrast-toggle:focus-visible {
+    border-color: #ffd100 !important;
+    color: #ffd100 !important;
+    box-shadow: 0 0 10px rgba(255, 209, 0, 0.22) !important;
   }
 
-  .control-prefix-label {
-    font-size: 12px;
-    color: #a8a08a;
-    margin-right: 4px;
-    font-weight: 500;
-    line-height: 28px;
-    white-space: nowrap;
-    user-select: none;
+  .footer-controls-group .control-prefix-label {
+    font-size: 12px !important;
+    color: #a8a08a !important;
+    margin-right: 4px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    user-select: none !important;
   }
 
-  .lang-select-dropdown,
-  .landing-graphics-select {
-    appearance: auto;
-    -webkit-appearance: auto;
-    background: transparent;
-    border: none;
-    color: #e5dcc7;
-    font-size: 12px;
-    height: 28px;
-    line-height: 28px;
-    padding: 0 2px;
-    margin: 0;
-    cursor: pointer;
-    outline: none;
-    font-family: inherit;
+  /* 内部原生下拉菜单：完全透明、无边框、自适应高度，由外层包裹容器控制尺寸 */
+  .footer-controls-group .lang-select-dropdown,
+  .footer-controls-group .landing-graphics-select {
+    appearance: auto !important;
+    -webkit-appearance: auto !important;
+    background: transparent !important;
+    border: none !important;
+    color: #e5dcc7 !important;
+    font-size: 12px !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    line-height: 30px !important;
+    padding: 0 2px !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+    outline: none !important;
+    box-shadow: none !important;
+    font-family: inherit !important;
   }
 
-  .lang-select-dropdown:hover,
-  .lang-select-dropdown:focus-visible,
-  .landing-graphics-select:hover,
-  .landing-graphics-select:focus-visible {
-    color: #ffd100;
+  .footer-controls-group .lang-select-dropdown:hover,
+  .footer-controls-group .lang-select-dropdown:focus-visible,
+  .footer-controls-group .landing-graphics-select:hover,
+  .footer-controls-group .landing-graphics-select:focus-visible {
+    color: #ffd100 !important;
   }
 
-  .lang-select-dropdown option,
-  .landing-graphics-select option {
-    background: #141724;
-    color: #e5dcc7;
+  .footer-controls-group .lang-select-dropdown option,
+  .footer-controls-group .landing-graphics-select option {
+    background: #141724 !important;
+    color: #e5dcc7 !important;
   }
 
-  .landing-contrast-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 30px;
-    box-sizing: border-box;
-    background: rgba(18, 21, 32, 0.85);
-    border: 1px solid rgba(215, 181, 109, 0.3);
-    border-radius: 6px;
-    color: #e5dcc7;
-    font-size: 12px;
-    line-height: 28px;
-    padding: 0 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    outline: none;
-    font-family: inherit;
-    white-space: nowrap;
+  .footer-controls-group .landing-contrast-toggle {
+    white-space: nowrap !important;
   }
 
-  .landing-contrast-toggle:hover {
-    border-color: #ffd100;
-    color: #ffd100;
-    box-shadow: 0 0 10px rgba(255, 209, 0, 0.22);
-  }
-
-  .landing-contrast-toggle[aria-pressed="true"] {
-    background: rgba(255, 209, 0, 0.2);
-    border-color: #ffd100;
-    color: #ffd100;
+  .footer-controls-group .landing-contrast-toggle[aria-pressed="true"] {
+    background: rgba(255, 209, 0, 0.18) !important;
+    border-color: #ffd100 !important;
+    color: #ffd100 !important;
   }
 
   /* 3. 底层：版权与尾注 */
@@ -7743,11 +7685,11 @@
       justify-content: center;
       margin-top: 0;
     }
-    .language-selector {
+    .header-menu-container .language-selector {
       width: 100%;
       max-width: 240px;
     }
-    .lang-select-dropdown {
+    .header-menu-container .lang-select-dropdown {
       width: 100%;
       font-size: 16px; /* Prevents mobile Safari auto-zoom */
       padding: 8px 12px; /* Increases height for a better touch target */
