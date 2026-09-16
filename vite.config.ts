@@ -597,6 +597,8 @@ export default defineConfig({
       'docs/**',
       'tests/browser/**',
       '**/*.browser.test.ts',
+      'tests/ci_workflow.test.ts',
+      'tests/nightly_workflow.test.ts',
     ],
     // The world grew from 3 zones to 11 and Sim construction/tick cost with
     // it: the long tick-loop tests written against the 3-zone world brush

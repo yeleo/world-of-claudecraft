@@ -2,30 +2,115 @@ name: Upstream Sync
 
 permissions:
   contents: write
+  issues: write
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    # 每天北京时间上午 10:00 执行一次 (UTC 02:00)
+    - cron: "0 2 * * *"
   workflow_dispatch:
 
 jobs:
-  sync_latest_from_upstream:
-    name: Sync latest commits from upstream repo
+  sync_and_notify:
+    name: Check upstream updates and notify
     runs-on: ubuntu-latest
     if: github.repository == 'yeleo/world-of-claudecraft'
 
     steps:
-      - name: Checkout target repo
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Sync upstream changes
-        id: sync
-        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
-        with:
-          upstream_sync_repo: levy-street/world-of-claudecraft
-          upstream_sync_branch: main
-          target_sync_branch: main
-          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
-          test_mode: false
+      - name: Fetch upstream main
+        run: |
+          git remote add upstream https://github.com/levy-street/world-of-claudecraft.git || true
+          git fetch upstream main
+
+      - name: Compare with upstream
+        id: check_upstream
+        run: |
+          NEW_COMMITS="$(git log --oneline HEAD..upstream/main)"
+          COUNT="$(git rev-list --count HEAD..upstream/main)"
+          echo "commit_count=${COUNT}" >> "$GITHUB_OUTPUT"
+          if [ "${COUNT}" -gt 0 ]; then
+            echo "has_updates=true" >> "$GITHUB_OUTPUT"
+            echo "Found ${COUNT} new commits from upstream."
+          else
+            echo "has_updates=false" >> "$GITHUB_OUTPUT"
+            echo "Upstream main is in sync with origin/main."
+          fi
+
+      - name: Fast-forward main to upstream
+        if: steps.check_upstream.outputs.has_updates == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git merge --ff-only upstream/main || git reset --hard upstream/main
+          git push origin main --force-with-lease
+
+      - name: Create or update notification issue
+        if: steps.check_upstream.outputs.has_updates == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COUNT: ${{ steps.check_upstream.outputs.commit_count }}
+        run: |
+          ISSUE_TITLE="[Upstream Sync] 发现上游开源仓库新版本/提交 (${COUNT} commits)，待审阅"
+          
+          # 获取最近 15 条提交的详情
+          COMMITS_SUMMARY="$(git log -n 15 --pretty=format:"- %h %s (%an, %cd)" --date=short HEAD)"
+          
+          BODY_CONTENT=$(cat <<EOF
+          ### 📢 上游开源仓库 (\`levy-street/world-of-claudecraft\`) 检测到新更新！
+          
+          本次共检测到 **${COUNT}** 个新提交已同步至本仓库的 \`main\` 镜像分支。
+          
+          #### 🔍 最新提交摘要 (展示前 15 条)：
+          ${COMMITS_SUMMARY}
+          
+          ---
+          
+          #### 🛠️ 如何安全合并到国内发行分支 (\`release/china\`)？
+          
+          请遵照 [《跟随上游主分支演进与冲突解决章程》](docs/UPSTREAM_SYNC_GUIDE.md) 进行操作：
+          
+          \`\`\`bash
+          # 1. 切换到本地开发环境
+          git checkout release/china
+          git pull origin release/china
+          
+          # 2. 创建合并演练分支
+          git checkout -b sync/upstream-$(date +%Y%m%d)
+          
+          # 3. 合并上游 main 分支
+          git fetch origin main
+          git merge origin/main
+          
+          # 4. 如遇冲突，严格保护国内合规文件（法律条款、备案号、下载配置）
+          # git checkout --ours index.html play.html public/terms.html public/privacy.html public/data-deletion.html src/game/desktop_download.ts
+          
+          # 5. 运行本地验证
+          npm run check:types
+          npm run build
+          npm test
+          
+          # 6. 推送并提交 Pull Request
+          git push origin sync/upstream-$(date +%Y%m%d)
+          \`\`\`
+          
+          > ⚠️ **合规提示**：永远不要直接将上游分支 \`force-push\` 或粗暴整体覆盖到 \`release/china\` 分支。
+          EOF
+          )
+          
+          # 检查是否已有未关闭的同步 Issue
+          EXISTING_ISSUE=$(gh issue list --search "[Upstream Sync] in:title state:open" --json number --jq '.[0].number')
+          
+          if [ -n "$EXISTING_ISSUE" ]; then
+            echo "Updating existing Issue #${EXISTING_ISSUE}..."
+            gh issue edit "$EXISTING_ISSUE" --title "$ISSUE_TITLE" --body "$BODY_CONTENT"
+          else
+            echo "Creating new notification Issue..."
+            gh issue create --title "$ISSUE_TITLE" --body "$BODY_CONTENT" --label "enhancement" || true
+          fi

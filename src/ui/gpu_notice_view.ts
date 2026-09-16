@@ -63,7 +63,16 @@ export interface GpuNoticeState {
  * direction); the caller (src/game/software_render_notice.ts) computes it
  * with that module's detectDesktopPlatform and passes the value in.
  */
-export type DesktopPlatform = 'mac' | 'win' | 'linux' | 'android' | 'other';
+export type DesktopPlatform =
+  | 'mac'
+  | 'win'
+  | 'win-x64'
+  | 'win-arm64'
+  | 'linux'
+  | 'linux-x86_64'
+  | 'linux-arm64'
+  | 'android'
+  | 'other';
 
 export type GpuNoticeBodyKey =
   | 'gpuNotice.bodyDesktop'
@@ -199,7 +208,7 @@ export function gpuNoticeBodyKey(input: {
   if (!input.verdict.hybridGpuLikely && input.verdict.requestedBackendUnavailable) {
     return 'gpuNotice.bodyRequestedBackend';
   }
-  if (input.desktopPlatform === 'win') return 'gpuNotice.hybridBodyWindows';
-  if (input.desktopPlatform === 'linux') return 'gpuNotice.hybridBodyLinux';
+  if (input.desktopPlatform === 'win' || input.desktopPlatform === 'win-x64' || input.desktopPlatform === 'win-arm64') return 'gpuNotice.hybridBodyWindows';
+  if (input.desktopPlatform === 'linux' || input.desktopPlatform === 'linux-x86_64' || input.desktopPlatform === 'linux-arm64') return 'gpuNotice.hybridBodyLinux';
   return 'gpuNotice.hybridBodyOther';
 }

@@ -42,7 +42,11 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: 'Upload to the live update host (leave unchecked for a build-only dry run)'
+        description: 'Upload to GitHub Release (uncheck for build-only dry run)'
+        type: boolean
+        default: true
+      build_linux:
+        description: 'Build Linux artifacts (AppImage) [default: false]'
         type: boolean
         default: false
 
@@ -115,6 +119,7 @@ jobs:
   linux:
     name: Build and publish Linux artifacts
     needs: verify
+    if: github.event_name == 'workflow_dispatch' && inputs.build_linux == true
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
