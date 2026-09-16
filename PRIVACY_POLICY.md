@@ -14,8 +14,8 @@ By using the Service you agree to this Policy. If you do not agree, do not use t
 
 ## 1. The short version
 
-- You can play the offline browser version without an account and without giving us personal information.
-- To play online you create an account with a username and password. Your password is hashed. We do not store it in readable form.
+- You can browse the website and read the guide without an account and without giving us personal information.
+- To play the Game you create an account with a username and password. Your password is hashed. We do not store it in readable form.
 - We store your characters and progress so the world is there when you return.
 - Chat, character names, trades, and leaderboard scores are visible to other players. Treat anything you type or name as public.
 - We use limited technical data (such as your IP address) to run the servers, stop abuse, and keep the Game secure.

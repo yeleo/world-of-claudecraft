@@ -469,7 +469,7 @@ body {
 &lt;div&gt;
 &lt;p class=&quot;woc-kicker&quot;&gt;Community player encyclopedia&lt;/p&gt;
 &lt;h1&gt;World of Claudecraft Wiki&lt;/h1&gt;
-World of Claudecraft is a browser-playable, classic-style micro-MMO with online persistence, offline play, deterministic simulation logic, and a launch-week community that quickly turned jokes, dungeon clears, level races, bug reports, and feature requests into game history.
+World of Claudecraft is a browser-playable, classic-style micro-MMO with online persistence, deterministic simulation logic, and a launch-week community that quickly turned jokes, dungeon clears, level races, bug reports, and feature requests into game history.
 
 &apos;&apos;&apos;Start here:&apos;&apos;&apos; [[Quick Start]] · [[All Pages]] · [[Zones]] · [[Classes]] · [[Gameplay Systems]] · [[Community Lore]] · [[Development Timeline]]
 &lt;/div&gt;
@@ -500,7 +500,7 @@ World of Claudecraft is a browser-playable, classic-style micro-MMO with online 
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text xml:space="preserve" bytes="844">== First hour route ==
-* Create an online character for persistence, or use offline play for a quick solo test.
+* Create an online character to explore the world solo or team up with other adventurers.
 * Speak to [[Marshal Redbrook (NPC)|Marshal Redbrook]] for [[Wolves at the Door]].
 * Collect nearby Eastbrook quests before leaving town so wolf, boar, spider, lake, mine, bandit, and chapel objectives overlap.
 * Sell poor-quality junk, buy food and water, and keep your action bar filled.

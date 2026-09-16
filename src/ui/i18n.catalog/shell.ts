@@ -18,7 +18,7 @@ export const shellStrings = {
       operatingSystem: 'Web browser',
       officialLabel: 'Official World of ClaudeCraft website',
       officialBody:
-        'worldofclaudecraft.com is the official free browser MMO for the Claudemoon world. Play online with a persistent character, explore solo offline, read the wiki, and follow verified community links from this site.',
+        'worldofclaudecraft.com is the official free browser MMO for the Claudemoon world. Play online with a persistent character, quest solo or team up with friends, read the wiki, and follow verified community links from this site.',
     },
     a11y: {
       goHome: 'Go to homepage',

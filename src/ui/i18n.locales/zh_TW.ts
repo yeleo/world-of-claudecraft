@@ -5803,7 +5803,7 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'hud.pet.petEatsFoodOnly': '你的寵物只能吃食物。',
   'mode.play': '開始遊戲',
   'mode.playAria': '遊玩 World of ClaudeCraft',
-  'mode.serverAria': '選擇世界：線上或離線',
+  'mode.serverAria': '選擇伺服器',
   'mode.serverLabel': '選擇你的世界',
   'mode.serverOffline': '離線',
   'mode.serverOfflineSub': '即時本地世界',
@@ -6580,7 +6580,7 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'guide.home.faq.q2': '我需要加密貨幣錢包嗎？',
   'guide.home.faq.a2':
     '不需要。沒有它遊戲也能完整遊玩。選用的社群代幣僅增添外觀裝飾，以及每日獎勵獎池的一份分紅，絕不影響戰力。',
-  'guide.home.faq.q3': '我可以離線遊玩嗎？',
+  'guide.home.faq.q3': '可以單人遊玩嗎？',
   'guide.home.faq.a3': '可以。瀏覽器中提供即時的單人模式，另外還有共享的線上世界。',
   'guide.home.faq.q4': '達到最高等級需要多久？',
   'guide.home.faq.a4': '等級上限為 {cap} 級，需橫跨三座區域，透過任務、地城與探索達成。',
@@ -6797,7 +6797,7 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'guide.faqPage.q3': '我可以在手機上玩嗎？',
   'guide.faqPage.a3':
     '可以。遊戲能在任何現代行動瀏覽器中以觸控操作執行，也有應用程式：iOS 與 Android 版本，以及一款會自行保持更新的 Windows、macOS 和 Linux 桌面應用程式。',
-  'guide.faqPage.q4': '我可以離線或單人遊玩嗎？',
+  'guide.faqPage.q4': '可以一個人單人遊玩嗎？',
   'guide.faqPage.a4':
     '可以。遊戲提供即時的單人離線模式，而線上世界除了地城、團隊副本與世界首領之外，皆可完全單人完成。',
   'guide.faqPage.q5': '總共有幾種職業？',

@@ -1861,7 +1861,7 @@ export const en: EnTranslations = {
           "copyBlocked": "Copy blocked: report logged",
           "retestLowGraphics": "Retest on Low graphics"
         },
-        "instruction": "For the best signal, enter Play Offline, move through the slow area, rotate the camera, and trigger the effect that stutters while the scan is running.",
+        "instruction": "For the best signal, enter the game world, move through the slow area, rotate the camera, and trigger the effect that stutters while the scan is running.",
         "status": {
           "pausedHiddenRestart": "Scan paused while this tab is hidden. It will restart when you return.",
           "restoredRestart": "Tab restored. Restarting a clean 15-second active-gameplay capture.",
@@ -1874,7 +1874,7 @@ export const en: EnTranslations = {
           "waitingFrames": "Waiting for representative gameplay frames: {current}/{minimum}",
           "collectingNow": "Collecting active gameplay: move through the problem area now.",
           "ready": "Ready to scan. Press Start and reproduce the slowdown.",
-          "waitingWorld": "Waiting for the game world. Choose Play Offline or enter an online character."
+          "waitingWorld": "Waiting for the game world. Enter with a character to begin."
         },
         "metrics": {
           "waitingRenderer": "renderer: waiting",
@@ -1977,7 +1977,7 @@ export const en: EnTranslations = {
             "graphics": "Retest the same camera path on Low graphics to confirm graphics pressure.",
             "cpu": "Repeat the scan while idle and while moving to isolate the CPU phase.",
             "loading": "Repeat the same route or first-use action to confirm when the hitch occurs.",
-            "network": "Compare Play Offline with the same movement and camera path."
+            "network": "Retest with the same movement and camera path to isolate network vs rendering delays."
           },
           "codeFix": {
             "environment": "Keep the detected fallback path within the shared graphics and memory budgets.",
@@ -5760,8 +5760,8 @@ export const en: EnTranslations = {
         "a1": "Yes. The whole game is free to the level cap, and it is open source on GitHub.",
         "q2": "Do I need a crypto wallet?",
         "a2": "No. The game is fully playable without one. The optional community token only adds cosmetic flair and a share of the daily rewards prize pool, and it never affects power.",
-        "q3": "Can I play offline?",
-        "a3": "Yes. There is an instant single-player mode in your browser, plus the shared online world.",
+        "q3": "Can I play solo?",
+        "a3": "Yes. Most of the world, quests, and storyline are fully soloable, while dungeons and raids offer team play when you want it.",
         "q4": "How long to reach max level?",
         "a4": "The cap is level {cap}, reached across three zones of quests, dungeons, and exploration.",
         "a4Count": "The cap is level {cap}, reached across zones of quests, dungeons, and exploration. There are {zones} zones in all, and the farthest of them are built for characters already at the cap."
@@ -5800,12 +5800,12 @@ export const en: EnTranslations = {
       "deathBody": "If you fall, your body stays where it dropped and you rise as a ghost at the nearest graveyard. Run your spirit back to your body to revive on the spot, penalty free, or accept the Pale Keeper at the graveyard for an instant raise at the cost of a passing weakness. Brand-new heroes are spared the weakness entirely, and nothing you own or have earned is ever lost. The game also tells you what did it: a line in your chat names whatever landed the killing blow, which is usually the quickest way to work out what went wrong.",
       "groupingTitle": "Playing together",
       "groupingBody": "Invite others to a party to share quest credit and take on dungeons. Most of the world is soloable, so grouping is a choice, not a chore.",
-      "onlineTitle": "Online or offline",
-      "onlineBody": "Play the shared online world with everyone else, or start an instant offline world in your browser to learn the ropes.",
+      "onlineTitle": "A shared living world",
+      "onlineBody": "Quest across a persistent online world with players from across the globe, or explore at your own pace.",
       "reassure": "Talents start at level 5, and there are six rows in all, one each at levels 5, 8, 11, 14, 17, and 20. Every row is a single pick of three, and you can reset whenever you are out of combat and not in an arena match, so your early choices are never permanent. Experiment freely.",
       "controlsLink": "See the full controls reference",
       "step0Title": "Get in",
-      "step0Body": "Offline play asks for nothing: choose Offline on the start screen and press Play. To play with everyone else, make a free account (a username, a password, and an email address for recovery) or sign in to the one you have, then pick a world from the World List.",
+      "step0Body": "Getting started is quick and free: create an account with a username, password, and recovery email (or sign in to your existing one), then pick a realm from the World List and press Play.",
       "worldsTitle": "Choosing a world",
       "worldsBody": "Online play happens on worlds, and each one is a full copy of the game with its own players, its own World Market, and its own standings. The World List shows how busy each world is, from Low to Full, so pick a quiet one for elbow room or a busy one for company. Your characters live on the world you made them on, and you can keep characters on more than one.",
       "charactersTitle": "Your characters",
@@ -6126,7 +6126,7 @@ export const en: EnTranslations = {
       "groupChannels": "Channels",
       "channelsIntro": "General reaches the whole realm and you are in it from the moment you log in. World and LFG are opt in: join one first, then you can read and talk in it.",
       "general": "The realm-wide General channel.",
-      "gAlias": "A short form with two meanings, so it is worth knowing: offline it sends to General, but online it is your guild channel. Type /general or /1 when you definitely mean General.",
+      "gAlias": "A short form for your guild channel: type /g followed by your message to chat privately with your guildmates. Type /general or /1 when you want to speak in the public General channel.",
       "guild": "Talk to your guild. Online play only, and you need to be in a guild.",
       "officer": "The officer channel of your guild, open to officers and the Guild Master. Online play only.",
       "join": "Join or leave an optional channel. The two you can join are world and lfg, and typing /join on its own lists them. Opening a chat tab for one of them joins it for you.",
@@ -6337,15 +6337,15 @@ export const en: EnTranslations = {
       "a2": "No. The game is fully playable without one. The optional community token only adds cosmetic flair and a share of the daily rewards prize pool, and it never affects power or progression.",
       "q3": "Can I play on my phone?",
       "a3": "Yes. The game runs in any modern mobile browser with touch controls, and there are apps too: iOS and Android builds, and a desktop app for Windows, macOS, and Linux that keeps itself up to date.",
-      "q4": "Can I play offline or solo?",
-      "a4": "Yes. There is an instant single-player offline mode, and the online world is fully soloable apart from dungeons, the raid, and the world boss.",
+      "q4": "Can I play solo?",
+      "a4": "Yes. The world and storyline are fully soloable apart from group dungeons, the raid, and the world boss, so grouping is always a choice rather than a requirement.",
       "q5": "How many classes are there?",
       "a5": "Nine, covering the classic tank, healer, and damage roles, each with a resource system (rage, mana, or energy) and its own signature abilities.",
       "q6": "What is the level cap?",
       "a6": "Level {cap}, reached across three connected zones of quests, dungeons, and exploration.",
       "a6Count": "Level {cap}, reached across zones of quests, dungeons, and exploration. There are {zones} zones in all, from the starting valley to regions built for characters already at the cap.",
       "q7": "Will my character be saved?",
-      "a7": "Online characters are saved on the server automatically. Offline characters live in your browser for quick sessions and testing.",
+      "a7": "Online characters and progression are saved on the server automatically whenever you play.",
       "q8": "Can I host my own copy?",
       "a8": "Yes. The project is open source, so you can run your own server. See the GitHub repository.",
       "q9": "Is there PvP?",
@@ -6361,7 +6361,7 @@ export const en: EnTranslations = {
       "q14": "What do I need to run it?",
       "a14": "A recent browser on a laptop, desktop, phone, or tablet. On your first launch the game reads your device and picks a graphics tier to match, from Low to Ultra, and any choice you make yourself always wins. Mouse and keyboard, touch, and a game controller all work. The settings and controls pages have the detail.",
       "q15": "Do I need an account?",
-      "a15": "Only to play online. The offline world asks for nothing: choose Offline on the start screen and press Play. An online account is free, takes a username, a password, and an email address for account recovery, and keeps your characters saved on the server. Once you have one you can turn on two-factor authentication from the options.",
+      "a15": "Yes, to play and save your characters. Creating an account is completely free, only requires a username, a password, and an email address for account recovery, and keeps your progress secure on the server. Once you have an account, you can also turn on two-factor authentication from the options.",
       "q16": "What is a world?",
       "a16": "Online play happens on worlds, and each one is a full copy of the game with its own players, its own World Market, and its own standings. When you sign in, the World List shows how busy each world is, from Low to Full, so you can pick a quiet one for elbow room or a busy one for company. Your characters live on the world you made them on, and you can keep characters on more than one.",
       "q17": "How many characters can I have, and can I delete one?",
@@ -6766,7 +6766,7 @@ export const en: EnTranslations = {
       "typeEscortTitle": "Escort",
       "typeEscortBody": "Someone needs walking somewhere dangerous. Take the quest, find the person waiting at the start of the road, and speak to them to set off. They walk their own path while you keep pace, and the trouble that lives along it comes for them, not always for you. Stay close: enemies ambush the walk in waves, and the walk only resumes once a wave is down. You cannot attack the person you are escorting, but you can heal them, and if they fall the run simply resets so you can try again. Reach the far end with them alive and you beside them, and the quest credits.",
       "cardMasterTitle": "Not every NPC has a quest: the Card Master",
-      "cardMasterBody": "One NPC in Eastbrook deals cards instead of errands. Talk to the Card Master, pick the Card Duel line out of his menu, and you join a queue that pairs you with the next player waiting. Any class can sit down, and nothing about your level or your gear comes into it. You each play from your own deck of twenty cards, values one to ten, holding four of them at a time and drawing a fresh one each round: the higher card takes the round, and two matching cards are a push that scores for neither of you. First to two rounds takes the match, so a duel is best of three. Rounds run on a clock, so leave your card unplayed for ninety seconds and the match goes to the other side, unless no round has been scored yet, in which case it is simply thrown out with no winner. The same is true if you walk away from a duel yourself. You have to be standing with the Card Master to join the queue, but once you are matched the board opens itself and you can play from anywhere. It takes two, so the offline world never offers it."
+      "cardMasterBody": "One NPC in Eastbrook deals cards instead of errands. Talk to the Card Master, pick the Card Duel line out of his menu, and you join a queue that pairs you with the next player waiting. Any class can sit down, and nothing about your level or your gear comes into it. You each play from your own deck of twenty cards, values one to ten, holding four of them at a time and drawing a fresh one each round: the higher card takes the round, and two matching cards are a push that scores for neither of you. First to two rounds takes the match, so a duel is best of three. Rounds run on a clock, so leave your card unplayed for ninety seconds and the match goes to the other side, unless no round has been scored yet, in which case it is simply thrown out with no winner. The same is true if you walk away from a duel yourself. You have to be standing with the Card Master to join the queue, but once you are matched the board opens itself and you can play from anywhere. It is a duel for two players, so you will always be paired with an opponent ready for a match."
     },
     "lore": {
       "figuresTitle": "Faces you will come to know",
@@ -6802,7 +6802,7 @@ export const en: EnTranslations = {
       "heroicHowBody": "Choose the difficulty before your group claims the instance: type /dungeon heroic, or pick Set Dungeon Difficulty on your own portrait menu. On your own you set it yourself; in a group only the leader can, and the choice covers everyone and locks in at the door, so a run stays what it was claimed as.",
       "heroicRewardsTitle": "Heroic Marks and upgraded spoils",
       "heroicRewardsBody": "Heroic bosses drop the loot you know, upgraded and tagged Heroic on the tooltip, and the final boss of each run adds epics found nowhere else. That last kill also leaves Heroic Marks for every participant: a currency spent with Quartermaster Vex in Highwatch, whose counter is a shelf of rings and pendants that nothing but proof of the heroic depths will buy.",
-      "heroicLockoutBody": "Normal dungeons can be run all day. Heroic asks patience: the final boss kill locks everyone in the run to one heroic clear of that dungeon per day, and the raid keeps a daily lockout for each difficulty. On a live realm every daily lockout clears together at the realm's own nightly reset hour, so a clear taken just before that hour and one taken just after fall on two different days; play offline in your browser instead and a lockout simply runs out a day after your own kill. A cleared five-player run stays open to its own party for corpse runs and loot, so nobody is locked away from what they earned there. The raid is stricter: once its kill locks you the door stays shut until the reset, and the only way back through it is a corpse run by someone who fell in the very run that locked them, so a living raider who walks out has walked out for the day. Collect your spoils before you leave the arena. Every one of these lockouts belongs to the character that earned it, so a clear on your main leaves your other characters free.",
+      "heroicLockoutBody": "Normal dungeons can be run all day. Heroic asks patience: the final boss kill locks everyone in the run to one heroic clear of that dungeon per day, and the raid keeps a daily lockout for each difficulty. On a live realm every daily lockout clears together at the realm's own nightly reset hour, so a clear taken just before that hour and one taken just after fall on two different days. A cleared five-player run stays open to its own party for corpse runs and loot, so nobody is locked away from what they earned there. The raid is stricter: once its kill locks you the door stays shut until the reset, and the only way back through it is a corpse run by someone who fell in the very run that locked them, so a living raider who walks out has walked out for the day. Collect your spoils before you leave the arena. Every one of these lockouts belongs to the character that earned it, so a clear on your main leaves your other characters free.",
       "resetTitle": "Resetting your instances",
       "resetBody": "Switch difficulty while your group still holds claimed runs and the old claims linger for a while before clearing on their own. The party leader can let them go at once instead: choose Reset All Instances on their own portrait menu, or type /dungeon reset. A reset works only after the difficulty has actually been changed, only while nobody, living or fallen, remains inside, only once every corpse in there has been looted clean, and a short cooldown separates one reset from the next. Arrive at the door on the wrong difficulty and the game says so before the run starts. The raid resets the same way, its own lockout and corpse-return rules still standing on top.",
       "templeLoreTitle": "The Drowned Temple, a little deeper",
@@ -6968,7 +6968,7 @@ export const en: EnTranslations = {
         "feat": "Feats"
       },
       "bookHeading": "Inside the Book",
-      "bookBody": "The Book sorts every deed into categories you can flip between, with a search box and filters for everything, for what you have earned, for what you have not, and for the ones you are nearly done with. A Recent strip near the top holds your latest unlocks, and clicking one jumps straight to its card, as does clicking a deed name someone posts in chat. Beside it, Nearly there points you at the handful you are closest to finishing. Out in a realm each deed also carries its rarity, the share of adventurers who have earned it, so you can see at a glance which ones are common and which are a real climb; the offline world has no population to count, so it shows none. At the end of the rail sits the Titles and Borders shelf, with a picker for each: one for the title you wear, one for the border that frames your nameplate.",
+      "bookBody": "The Book sorts every deed into categories you can flip between, with a search box and filters for everything, for what you have earned, for what you have not, and for the ones you are nearly done with. A Recent strip near the top holds your latest unlocks, and clicking one jumps straight to its card, as does clicking a deed name someone posts in chat. Beside it, Nearly there points you at the handful you are closest to finishing. Out in a realm each deed also carries its rarity, the share of adventurers who have earned it, so you can see at a glance which ones are common and which are a real climb. At the end of the rail sits the Titles and Borders shelf, with a picker for each: one for the title you wear, one for the border that frames your nameplate.",
       "platformHeading": "Steam and Epic achievements",
       "platformBody": "If you link a Steam or Epic Games account from the desktop app, the deeds you earn are mirrored outward as achievements on that account. The game world stays the authority: you earn the deed here, it is recorded on your character, and the achievement follows after. Not every deed has a matching achievement, and if one does not arrive right away it catches up the next time you log in. Linking is only ever a link, never a way to sign in."
     },
@@ -7044,7 +7044,7 @@ export const en: EnTranslations = {
       "playtestTitle": "Play your map",
       "playtestBody": "Playtest hands the map to the game and drops you into it as a warrior. Everything you made is underfoot: camps spawn, blocker walls hold, and placements with collision push you around them. When you have seen enough, come back to the editor and keep working.",
       "sandboxTitle": "A sandbox, not the live world",
-      "sandboxBody": "Custom maps never change the game everyone else is playing. A playtest runs offline in your own browser and never talks to the server, so nothing that happens in it reaches your characters or the shared world.",
+      "sandboxBody": "Custom maps never change the game everyone else is playing. A playtest runs locally in your own browser and never talks to the server, so nothing that happens in it reaches your characters or the shared world.",
       "saveTitle": "Saving your work",
       "saveBody": "Ctrl+S saves, and while there are unsaved edits a dot sits beside the map name and the Save button calls for your attention. Without an account the editor still works: maps are kept in your own browser, an autosave can be switched on, and Export writes a map out as a plain JSON file that Import reads straight back.\n\nSigned in with your game account, a save also goes to the server, so your maps follow you to another machine. The Open window has one tab for the drafts in this browser and another for the maps saved to your account. If the editor shows an offline badge, sign in to the game in another tab, then reload the editor.",
       "shareTitle": "Publishing and forking",
@@ -9453,7 +9453,7 @@ export const en: EnTranslations = {
     "applicationCategory": "Game",
     "operatingSystem": "Web browser",
     "officialLabel": "Official World of ClaudeCraft website",
-    "officialBody": "worldofclaudecraft.com is the official free browser MMO for the Claudemoon world. Play online with a persistent character, explore solo offline, read the wiki, and follow verified community links from this site."
+    "officialBody": "worldofclaudecraft.com is the official free browser MMO for the Claudemoon world. Play online with a persistent character, quest solo or team up with friends, read the wiki, and follow verified community links from this site."
   },
   "a11y": {
     "goHome": "Go to homepage",
@@ -10370,7 +10370,7 @@ export const en: EnTranslations = {
       "raidGroupTitle": "Group {position} ({count}/5)",
       "raidMoveToGroup": "Move to group {position}",
       "raidLeader": "Raid Leader",
-      "offlineEmpty": "Friends, guilds, and ignore lists are available in online play.",
+      "offlineEmpty": "Friends, guilds, and ignore lists are available in the online realm.",
       "friendsEmpty": "No friends yet. Search for someone by name below.",
       "ignoreEmpty": "Your ignore list is empty.",
       "noGuild": "You are not in a guild. Found one below, or get invited by an existing guild.",
@@ -10441,7 +10441,7 @@ export const en: EnTranslations = {
       "title": "The Ashen Coliseum",
       "subtitle": "1v1 Ranked",
       "close": "Close arena",
-      "offlineNote": "The Ashen Coliseum is a ranked 1v1 arena for the live world. Play online to enter the queue and climb the ladder.",
+      "offlineNote": "The Ashen Coliseum is a ranked 1v1 arena for the live world. Enter the queue to battle and climb the standings.",
       "playerClassTitle": "{name} - {className}",
       "playerLevelClassTitle": "{name} - Lv {level} {className}",
       "noChallengers": "No challengers ranked yet - be the first.",

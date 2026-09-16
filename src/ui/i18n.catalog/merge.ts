@@ -644,7 +644,7 @@ const mergeStringsEn = {
       raidGroupTitle: 'Group {position} ({count}/5)',
       raidMoveToGroup: 'Move to group {position}',
       raidLeader: 'Raid Leader',
-      offlineEmpty: 'Friends, guilds, and ignore lists are available in online play.',
+      offlineEmpty: 'Friends, guilds, and ignore lists are available in the online realm.',
       friendsEmpty: 'No friends yet. Search for someone by name below.',
       ignoreEmpty: 'Your ignore list is empty.',
       noGuild: 'You are not in a guild. Found one below, or get invited by an existing guild.',
@@ -710,7 +710,7 @@ const mergeStringsEn = {
       subtitle: '1v1 Ranked',
       close: 'Close arena',
       offlineNote:
-        'The Ashen Coliseum is a ranked 1v1 arena for the live world. Play online to enter the queue and climb the ladder.',
+        'The Ashen Coliseum is a ranked 1v1 arena for the live world. Enter the queue to battle and climb the standings.',
       playerClassTitle: '{name} - {className}',
       playerLevelClassTitle: '{name} - Lv {level} {className}',
       noChallengers: 'No challengers ranked yet - be the first.',

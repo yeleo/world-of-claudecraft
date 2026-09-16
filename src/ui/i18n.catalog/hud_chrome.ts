@@ -2378,7 +2378,7 @@ export const hudChromeStrings = {
         retestLowGraphics: 'Retest on Low graphics',
       },
       instruction:
-        'For the best signal, enter Play Offline, move through the slow area, rotate the camera, and trigger the effect that stutters while the scan is running.',
+        'For the best signal, enter the game world, move through the slow area, rotate the camera, and trigger the effect that stutters while the scan is running.',
       status: {
         pausedHiddenRestart:
           'Scan paused while this tab is hidden. It will restart when you return.',
@@ -2394,7 +2394,7 @@ export const hudChromeStrings = {
         collectingNow: 'Collecting active gameplay: move through the problem area now.',
         ready: 'Ready to scan. Press Start and reproduce the slowdown.',
         waitingWorld:
-          'Waiting for the game world. Choose Play Offline or enter an online character.',
+          'Waiting for the game world. Enter with a character to begin.',
       },
       metrics: {
         waitingRenderer: 'renderer: waiting',
@@ -2508,7 +2508,7 @@ export const hudChromeStrings = {
           graphics: 'Retest the same camera path on Low graphics to confirm graphics pressure.',
           cpu: 'Repeat the scan while idle and while moving to isolate the CPU phase.',
           loading: 'Repeat the same route or first-use action to confirm when the hitch occurs.',
-          network: 'Compare Play Offline with the same movement and camera path.',
+          network: 'Retest with the same movement and camera path to isolate network vs rendering delays.',
         },
         codeFix: {
           environment:
