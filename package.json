@@ -285,7 +285,7 @@
     "artifactName": "${name}-${version}-${os}-${arch}.${ext}",
     "publish": {
       "provider": "generic",
-      "url": "https://updates.worldofclaudecraft.com/desktop"
+      "url": "https://worldofclaudecraft.aoruantech.com/desktop"
     }
   },
   "allowScripts": {

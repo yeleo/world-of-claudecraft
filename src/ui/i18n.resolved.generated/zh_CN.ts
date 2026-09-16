@@ -9453,7 +9453,7 @@ export const zh_CN: EnTranslations = {
     "applicationCategory": "游戏",
     "operatingSystem": "网页浏览器",
     "officialLabel": "World of ClaudeCraft 官方网站",
-    "officialBody": "worldofclaudecraft.com 是 Claudemoon 世界的官方免费浏览器 MMO。你可以用持久角色在线游玩，也可以离线单人探索，阅读 wiki，并从本站访问已验证的社区链接。"
+    "officialBody": "worldofclaudecraft.aoruantech.com 是 Claudemoon 世界的官方免费浏览器 MMO。你可以用持久角色在线游玩，也可以离线单人探索，阅读 wiki，并从本站访问已验证的社区链接。"
   },
   "a11y": {
     "goHome": "前往主页",

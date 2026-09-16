@@ -50,7 +50,7 @@ export interface CharacterSheetInput {
   row: CharacterRow;
   visibility: SheetVisibility;
   realm: string;
-  origin: string; // e.g. https://worldofclaudecraft.com ('' = relative)
+  origin: string; // e.g. https://worldofclaudecraft.aoruantech.com ('' = relative)
   guild: string | null;
   rank: SheetRank | null;
   // The character's latest earned deeds (newest first, already limited),

@@ -144,9 +144,10 @@ export const CONFIGURED_PUBLIC_ORIGIN = resolvePublicOrigin(process.env.PUBLIC_O
 export const REALM_PUBLIC_ORIGIN =
   CONFIGURED_PUBLIC_ORIGIN || publicOriginForRealm(REALM, REALM_DIRECTORY);
 
-const DEFAULT_PRODUCTION_PUBLIC_ORIGIN = 'https://worldofclaudecraft.com';
+const DEFAULT_PRODUCTION_PUBLIC_ORIGIN = 'https://worldofclaudecraft.aoruantech.com';
 const TRUSTED_PUBLIC_HOST_ORIGINS = new Map([
-  ['worldofclaudecraft.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
+  ['worldofclaudecraft.aoruantech.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
+  ['worldofclaudecraft.com', 'https://worldofclaudecraft.com'],
   ['www.worldofclaudecraft.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
   ['dev.worldofclaudecraft.com', 'https://dev.worldofclaudecraft.com'],
 ]);

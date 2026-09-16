@@ -210,7 +210,7 @@ export type {
 // there. A bump moves this constant, scripts/lib/world_auth.mjs and its
 // .d.mts, tests/bank_wire_epoch.test.ts, and tests/world_auth_scripts.test.ts
 // together.
-export const ONLINE_WORLD_LAYOUT_VERSION = 30 as const;
+export const ONLINE_WORLD_LAYOUT_VERSION = 29 as const;
 export const ONLINE_WORLD_AUTH_TYPE = `auth-world-${ONLINE_WORLD_LAYOUT_VERSION}` as const;
 // The one wire literal both sides emit for a layout-epoch mismatch. The server
 // rejects with it, the client synthesizes it for pre-epoch servers, and the UI

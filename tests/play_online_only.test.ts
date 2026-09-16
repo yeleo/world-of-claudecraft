@@ -106,9 +106,9 @@ describe('/play keeps its tracking and SEO head', () => {
 
   it('play.html keeps its canonical /play SEO surface', () => {
     expect(playHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/play" />',
+      '<link rel="canonical" href="https://worldofclaudecraft.aoruantech.com/play" />',
     );
-    expect(playHtml).toContain('property="og:url" content="https://worldofclaudecraft.com/play"');
+    expect(playHtml).toContain('property="og:url" content="https://worldofclaudecraft.aoruantech.com/play"');
   });
 });
 

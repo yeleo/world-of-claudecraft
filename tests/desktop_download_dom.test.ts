@@ -68,13 +68,37 @@ describe('initDesktopDownload', () => {
     expect(win.classList.contains('is-detected')).toBe(true);
   });
 
-  it('highlights and floats the Windows button for Windows visitors', () => {
+  it('highlights and floats the Windows button for Windows visitors with hero CTA and badge', () => {
     setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/125');
     initDesktopDownload(document);
     const actions = document.querySelector('.desktop-download-actions') as HTMLElement;
     const first = actions.firstElementChild as HTMLElement;
     expect(first.dataset.platform).toBe('win');
     expect(first.classList.contains('is-detected')).toBe(true);
+    expect(first.classList.contains('is-hero-cta')).toBe(true);
+    expect(first.getAttribute('data-badge-text')).toContain('推荐');
+    expect(actions.classList.contains('has-detected')).toBe(true);
+  });
+
+  it('marks mobile visitors and applies mobile-device badge', () => {
+    document.body.innerHTML = `
+      <section id="download-view">
+        <div class="download-groups-grid">
+          <div class="download-group-card mobile-group-card">
+            <div class="desktop-download-actions">
+              <a class="desktop-download-link" data-platform="android" href="#">android</a>
+            </div>
+          </div>
+        </div>
+      </section>`;
+    setUserAgent('Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 Chrome/125 Mobile Safari/537.36');
+    initDesktopDownload(document);
+    const grid = document.querySelector('.download-groups-grid') as HTMLElement;
+    expect(grid.classList.contains('is-mobile-visitor')).toBe(true);
+    const androidBtn = document.querySelector('[data-platform="android"]') as HTMLElement;
+    expect(androidBtn.classList.contains('is-detected')).toBe(true);
+    expect(androidBtn.classList.contains('is-hero-cta')).toBe(true);
+    expect(androidBtn.getAttribute('data-badge-text')).toContain('当前设备');
   });
 
   it('no-ops when the download view is absent', () => {

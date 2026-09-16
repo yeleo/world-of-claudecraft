@@ -332,7 +332,7 @@ describe('Guide entry wiring', () => {
   });
 
   it('lists the guide in the sitemap', () => {
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/wiki</loc>');
+    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.aoruantech.com/wiki</loc>');
   });
 
   // A route with no registered page silently renders the placeholder; a route or class
@@ -350,7 +350,7 @@ describe('Guide entry wiring', () => {
   // paint procedural icons through a canvas and so need a DOM environment.
 
   it('lists every route and class-detail page in the sitemap', () => {
-    const origin = 'https://worldofclaudecraft.com';
+    const origin = 'https://worldofclaudecraft.aoruantech.com';
     for (const r of GUIDE_ROUTES) {
       const loc = `${origin}${hrefFor(r.sub)}`;
       expect(sitemapXml, `sitemap missing route "${r.id}" (${loc})`).toContain(`<loc>${loc}</loc>`);
@@ -373,10 +373,10 @@ describe('guide.html shell', () => {
 
   it('ships crawlable canonical + social metadata for /wiki', () => {
     expect(guideHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/wiki" />',
+      '<link rel="canonical" href="https://worldofclaudecraft.aoruantech.com/wiki" />',
     );
     expect(guideHtml).toContain(
-      '<meta property="og:url" content="https://worldofclaudecraft.com/wiki" />',
+      '<meta property="og:url" content="https://worldofclaudecraft.aoruantech.com/wiki" />',
     );
     expect(guideHtml).toContain('content="index, follow, max-image-preview:large"');
   });
@@ -4448,7 +4448,7 @@ describe('Guide professions pages and routes', () => {
   });
 
   it('lists every professions detail page in the sitemap', () => {
-    const origin = 'https://worldofclaudecraft.com';
+    const origin = 'https://worldofclaudecraft.aoruantech.com';
     for (const id of GUIDE_PROF_PAGES) {
       const loc = `${origin}${hrefFor(`professions/${id}`)}`;
       expect(sitemapXml, `sitemap missing professions page "${id}"`).toContain(`<loc>${loc}</loc>`);

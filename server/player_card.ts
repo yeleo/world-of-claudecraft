@@ -36,9 +36,10 @@ const CARD_PNG_DIMENSIONS = [
 const MAX_CARD_DECODED_BYTES = (2400 * 4 + 1) * 1260;
 const MAX_SLUG_LENGTH = 64;
 const MAX_SLUG_ATTEMPTS = 25;
-const DEFAULT_PRODUCTION_PUBLIC_ORIGIN = 'https://worldofclaudecraft.com';
+const DEFAULT_PRODUCTION_PUBLIC_ORIGIN = 'https://worldofclaudecraft.aoruantech.com';
 const TRUSTED_PUBLIC_HOST_ORIGINS = new Map([
-  ['worldofclaudecraft.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
+  ['worldofclaudecraft.aoruantech.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
+  ['worldofclaudecraft.com', 'https://worldofclaudecraft.com'],
   ['www.worldofclaudecraft.com', DEFAULT_PRODUCTION_PUBLIC_ORIGIN],
   ['dev.worldofclaudecraft.com', 'https://dev.worldofclaudecraft.com'],
 ]);

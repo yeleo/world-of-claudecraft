@@ -100,6 +100,6 @@ export function buildPlayerCardData(world: IWorld, input: PlayerCardDataInput): 
     devMergedPrs: input.showDevBadges ? (player.devMergedPrs ?? null) : null,
     referralHandle: input.referral?.slug ?? playerCardSlug(player.name),
     referralCount: input.referral?.count ?? null,
-    siteUrl: 'worldofclaudecraft.com',
+    siteUrl: 'worldofclaudecraft.aoruantech.com',
   };
 }

@@ -18,7 +18,7 @@ const config: CapacitorConfig = {
     // via notifyAppReady, or the plugin reverts it on the next launch.
     CapacitorUpdater: {
       autoUpdate: true,
-      updateUrl: 'https://worldofclaudecraft.com/api/ota/updates',
+      updateUrl: 'https://worldofclaudecraft.aoruantech.com/api/ota/updates',
       statsUrl: '',
     },
   },

@@ -18,7 +18,7 @@ export type DesktopPlatform =
 // The published desktop build on the update host, derived from package.json at
 // build time through the __APP_VERSION__ define (vite.config.ts), so it can
 // never drift from the release version. The artifacts uploaded to
-// updates.worldofclaudecraft.com/desktop/ carry that same version (see
+// worldofclaudecraft.aoruantech.com/desktop/ carry that same version (see
 // docs/desktop-release.md). The static hrefs in index.html and play.html remain
 // the no-JS fallback: scripts/release_version.mjs rewrites them at release
 // prepare, and tests/desktop_download_dom.test.ts cross-checks them against
@@ -70,8 +70,25 @@ export function detectDesktopPlatform(userAgent: string): DesktopPlatform {
   return 'other';
 }
 
+function getBadgeText(isMobile: boolean, doc: Document): string {
+  const lang = (doc.documentElement?.lang) || 'zh-CN';
+  if (lang.startsWith('en')) {
+    return isMobile ? '★ Recommended (This Device)' : '★ Recommended (This OS)';
+  }
+  if (lang.startsWith('zh-TW')) {
+    return isMobile ? '★ 推薦 · 當前設備' : '★ 推薦 · 當前系統';
+  }
+  if (lang.startsWith('ja')) {
+    return isMobile ? '★ おすすめ (この端末)' : '★ おすすめ (このOS)';
+  }
+  if (lang.startsWith('ko')) {
+    return isMobile ? '★ 추천 (현재 기기)' : '★ 추천 (현재 OS)';
+  }
+  return isMobile ? '★ 推荐 · 当前设备' : '★ 推荐 · 当前系统';
+}
+
 // Wire the landing download view: sync hrefs to the version constant, highlight
-// the visitor's platform button (and float it first), and reveal any note keyed
+// the visitor\'s platform button (and float it first), and reveal any note keyed
 // to that platform. No-ops when the view is absent (every non-index entry).
 export function initDesktopDownload(doc: Document = document): void {
   const section = doc.getElementById('download-view');
@@ -91,7 +108,13 @@ export function initDesktopDownload(doc: Document = document): void {
     }
   }
   const detected = detectDesktopPlatform(navigator.userAgent);
-  const actions = section.querySelector('.desktop-download-actions');
+  const isMobile = detected === 'android' || /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
+
+  const grid = section.querySelector('.download-groups-grid');
+  if (grid) {
+    grid.classList.toggle('is-mobile-visitor', isMobile);
+  }
+
   for (const link of links) {
     const platform = link.dataset.platform as DesktopPlatform | undefined;
     const isSelf = !!platform && !!desktopDownloadUrl(platform) && (
@@ -102,14 +125,30 @@ export function initDesktopDownload(doc: Document = document): void {
       (detected === 'linux-arm64' && platform === 'linux-arm64')
     );
     link.classList.toggle('is-detected', isSelf);
-    if (isSelf && link.parentElement && link !== link.parentElement.firstElementChild) link.parentElement.prepend(link);
+    link.classList.toggle('is-hero-cta', isSelf);
+    if (isSelf) {
+      link.setAttribute('data-badge-text', getBadgeText(isMobile, doc));
+      if (link.parentElement && link !== link.parentElement.firstElementChild) {
+        link.parentElement.prepend(link);
+      }
+    } else {
+      link.removeAttribute('data-badge-text');
+    }
   }
+
+  const allActions = section.querySelectorAll('.desktop-download-actions');
+  for (const actions of allActions) {
+    actions.classList.toggle('has-detected', !!actions.querySelector('.is-detected'));
+  }
+
   const hints = section.querySelectorAll<HTMLElement>('[data-platform-hint]');
   for (const hint of hints) {
-    const platform = hint.dataset.platformHint as DesktopPlatform | undefined;
-    const matches = platform === detected ||
+    const platform = hint.dataset.platformHint as DesktopPlatform | 'ios' | undefined;
+    const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const matches = (platform === 'ios' && isIos) ||
+      platform === detected ||
       (platform === 'linux' && (detected === 'linux' || detected === 'linux-arm64' || detected === 'linux-x86_64')) ||
       (platform === 'win' && (detected === 'win' || detected === 'win-arm64' || detected === 'win-x64'));
-    hint.hidden = !matches || (platform ? !desktopDownloadUrl(platform) : true);
+    hint.hidden = !matches || (platform === 'ios' ? false : (platform ? !desktopDownloadUrl(platform as DesktopPlatform) : true));
   }
 }

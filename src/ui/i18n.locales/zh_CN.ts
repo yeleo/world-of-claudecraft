@@ -13133,7 +13133,7 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'seo.applicationCategory': '游戏',
   'seo.description': '在 World of ClaudeCraft 展开史诗冒险。这是一款可直接在浏览器中游玩的经典风格微型 MMO。加入持续共享的世界，提升职业等级，击败敌人！',
   'seo.genre': 'MMORPG',
-  'seo.officialBody': 'worldofclaudecraft.com 是 Claudemoon 世界的官方免费浏览器 MMO。你可以用持久角色在线游玩，也可以离线单人探索，阅读 wiki，并从本站访问已验证的社区链接。',
+  'seo.officialBody': 'worldofclaudecraft.aoruantech.com 是 Claudemoon 世界的官方免费浏览器 MMO。你可以用持久角色在线游玩，也可以离线单人探索，阅读 wiki，并从本站访问已验证的社区链接。',
   'seo.officialLabel': 'World of ClaudeCraft 官方网站',
   'seo.operatingSystem': '网页浏览器',
   'seo.playMode': '多人游戏',

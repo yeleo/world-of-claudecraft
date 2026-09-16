@@ -9,16 +9,16 @@ curated, spoiler-light handbook. The community-edited encyclopedia lives at /wik
 
 ## Guide
 
-- [How to Play](https://worldofclaudecraft.com/wiki/how-to-play): The newcomer walkthrough, from making a character to your first quest, combat, and leveling.
-- [Classes](https://worldofclaudecraft.com/wiki/classes): The nine playable classes, their roles (tank, healer, damage), resources, and signature abilities.
-- [Bestiary](https://worldofclaudecraft.com/wiki/bestiary): The creatures of the open world, grouped by family, with level bands.
-- [World](https://worldofclaudecraft.com/wiki/world): The three zones laid south to north, their hubs, and notable places.
-- [Quests](https://worldofclaudecraft.com/wiki/quests): How quests work and why they are the fastest way to level.
-- [Dungeons and Raids](https://worldofclaudecraft.com/wiki/dungeons): Instanced group content for a party of five, plus the ten-player raid.
-- [FAQ](https://worldofclaudecraft.com/wiki/faq): The questions new players ask most often, with plain answers.
-- [Glossary](https://worldofclaudecraft.com/wiki/reference/glossary): Short definitions of the MMO terms used across the guide and in chat.
+- [How to Play](https://worldofclaudecraft.aoruantech.com/wiki/how-to-play): The newcomer walkthrough, from making a character to your first quest, combat, and leveling.
+- [Classes](https://worldofclaudecraft.aoruantech.com/wiki/classes): The nine playable classes, their roles (tank, healer, damage), resources, and signature abilities.
+- [Bestiary](https://worldofclaudecraft.aoruantech.com/wiki/bestiary): The creatures of the open world, grouped by family, with level bands.
+- [World](https://worldofclaudecraft.aoruantech.com/wiki/world): The three zones laid south to north, their hubs, and notable places.
+- [Quests](https://worldofclaudecraft.aoruantech.com/wiki/quests): How quests work and why they are the fastest way to level.
+- [Dungeons and Raids](https://worldofclaudecraft.aoruantech.com/wiki/dungeons): Instanced group content for a party of five, plus the ten-player raid.
+- [FAQ](https://worldofclaudecraft.aoruantech.com/wiki/faq): The questions new players ask most often, with plain answers.
+- [Glossary](https://worldofclaudecraft.aoruantech.com/wiki/reference/glossary): Short definitions of the MMO terms used across the guide and in chat.
 
 ## Play and community
 
-- [Play now](https://worldofclaudecraft.com/play): Launch the game directly in your browser, online realm or instant offline mode.
-- [Community wiki](https://worldofclaudecraft.com/wiki): The community-edited encyclopedia with deeper, player-maintained detail.
+- [Play now](https://worldofclaudecraft.aoruantech.com/play): Launch the game directly in your browser, online realm or instant offline mode.
+- [Community wiki](https://worldofclaudecraft.aoruantech.com/wiki): The community-edited encyclopedia with deeper, player-maintained detail.

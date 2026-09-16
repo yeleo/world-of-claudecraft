@@ -363,7 +363,7 @@ describe('OTA wiring pins', () => {
     const config = read('capacitor.config.ts');
     expect(config).toContain('CapacitorUpdater');
     expect(config).toContain('autoUpdate: true');
-    expect(config).toContain("updateUrl: 'https://worldofclaudecraft.com/api/ota/updates'");
+    expect(config).toContain("updateUrl: 'https://worldofclaudecraft.aoruantech.com/api/ota/updates'");
     expect(config).toContain("statsUrl: ''");
   });
 
@@ -374,7 +374,7 @@ describe('OTA wiring pins', () => {
     const routePath = read('server/ota_updates.ts').match(/path: '([^']+)'/)?.[1];
     expect(routePath).toBe('/api/ota/updates');
     expect(read('capacitor.config.ts')).toContain(
-      `updateUrl: 'https://worldofclaudecraft.com${routePath}'`,
+      `updateUrl: 'https://worldofclaudecraft.aoruantech.com${routePath}'`,
     );
   });
 
