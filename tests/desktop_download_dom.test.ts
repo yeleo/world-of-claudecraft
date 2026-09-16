@@ -10,8 +10,11 @@ function buildView(): void {
         <a class="desktop-download-link" data-platform="win" href="#">win</a>
         <a class="desktop-download-link" data-platform="win-arm64" href="#">win-arm64</a>
         <a class="desktop-download-link" data-platform="android" href="#">android</a>
+        <a class="desktop-download-link" data-platform="linux" href="#">linux</a>
+        <a class="desktop-download-link" data-platform="linux-arm64" href="#">linux-arm64</a>
         <span class="desktop-download-link is-pending-badge" data-platform="mac">mac</span>
       </div>
+      <p class="desktop-download-hint" data-platform-hint="linux" hidden>hint</p>
     </section>`;
 }
 
@@ -23,10 +26,16 @@ describe('initDesktopDownload', () => {
   beforeEach(buildView);
 
   it('syncs each button href to the versioned artifact URL', () => {
-    setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64)');
+    setUserAgent('Mozilla/5.0 (X11; Linux x86_64)');
     initDesktopDownload(document);
     const android = document.querySelector('[data-platform="android"]') as HTMLAnchorElement;
+    const linux = document.querySelector('[data-platform="linux"]') as HTMLAnchorElement;
+    const linuxArm = document.querySelector('[data-platform="linux-arm64"]') as HTMLAnchorElement;
     expect(android.href).toBe(desktopDownloadUrl('android'));
+    expect(linux.href).toBe(desktopDownloadUrl('linux'));
+    expect(linux.getAttribute('aria-disabled')).toBe('false');
+    expect(linux.classList.contains('is-unavailable')).toBe(false);
+    expect(linuxArm.href).toBe(desktopDownloadUrl('linux-arm64'));
     const win = document.querySelector('[data-platform="win"]') as HTMLAnchorElement;
     const winArm = document.querySelector('[data-platform="win-arm64"]') as HTMLAnchorElement;
     expect(win.href).toBe(desktopDownloadUrl('win'));
@@ -37,6 +46,26 @@ describe('initDesktopDownload', () => {
     const mac = document.querySelector('[data-platform="mac"]') as HTMLElement;
     expect(mac.getAttribute('aria-disabled')).toBe('true');
     expect(mac.classList.contains('is-unavailable')).toBe(true);
+  });
+
+  it('highlights and floats the visitor OS button first, and reveals its hint', () => {
+    setUserAgent('Mozilla/5.0 (X11; Linux x86_64) Chrome/125');
+    initDesktopDownload(document);
+    const actions = document.querySelector('.desktop-download-actions') as HTMLElement;
+    const first = actions.firstElementChild as HTMLElement;
+    expect(first.dataset.platform).toBe('linux');
+    expect(first.classList.contains('is-detected')).toBe(true);
+    const hint = document.querySelector('.desktop-download-hint') as HTMLElement;
+    expect(hint.hidden).toBe(false);
+  });
+
+  it('keeps the Linux hint hidden for non-Linux visitors and highlights their OS', () => {
+    setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/125');
+    initDesktopDownload(document);
+    const hint = document.querySelector('.desktop-download-hint') as HTMLElement;
+    expect(hint.hidden).toBe(true);
+    const win = document.querySelector('[data-platform="win"]') as HTMLElement;
+    expect(win.classList.contains('is-detected')).toBe(true);
   });
 
   it('highlights and floats the Windows button for Windows visitors', () => {
@@ -66,6 +95,14 @@ function entryLinks(path: string, platform: string): HTMLAnchorElement[] {
 describe('desktop download entry markup', () => {
   it.each(['index.html', 'play.html'])('%s pins its Windows and Android hrefs', (path) => {
     for (const platform of ['win', 'win-arm64', 'android'] as const) {
+      const links = entryLinks(path, platform);
+      expect(links).toHaveLength(1);
+      expect(links[0]?.getAttribute('href')).toBe(desktopDownloadUrl(platform));
+    }
+  });
+
+  it.each(['index.html', 'play.html'])('%s pins its Linux hrefs', (path) => {
+    for (const platform of ['linux', 'linux-arm64'] as const) {
       const links = entryLinks(path, platform);
       expect(links).toHaveLength(1);
       expect(links[0]?.getAttribute('href')).toBe(desktopDownloadUrl(platform));

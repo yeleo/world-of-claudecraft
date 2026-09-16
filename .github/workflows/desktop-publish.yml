@@ -46,9 +46,9 @@ on:
         type: boolean
         default: true
       build_linux:
-        description: 'Build Linux artifacts (AppImage) [default: false]'
+        description: 'Build Linux artifacts (AppImage & deb) [default: true]'
         type: boolean
-        default: false
+        default: true
 
 permissions:
   contents: write
@@ -119,7 +119,7 @@ jobs:
   linux:
     name: Build and publish Linux artifacts
     needs: verify
-    if: github.event_name == 'workflow_dispatch' && inputs.build_linux == true
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.build_linux != false)
     runs-on: ubuntu-latest
     timeout-minutes: 60
 

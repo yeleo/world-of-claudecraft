@@ -30,7 +30,7 @@
 | 资产类型 | 涉及核心文件 | 保护原则与要求 |
 | :--- | :--- | :--- |
 | **法律与合规页面** | `public/terms.html`<br>`public/privacy.html`<br>`public/data-deletion.html`<br>`public/links.html` | 必须为纯中文合规文案，涵盖 CADPA 12+ 适龄提示、ICP 备案号、数据删除与注销协议。 |
-| **客户端分发与下载配置** | `src/game/desktop_download.ts`<br>`index.html`<br>`play.html` (下载区域) | 保持国内下载基址 (`DOWNLOAD_BASE`)，保持 Windows (x64/ARM64) 与 Android APK 下载，保持 macOS (即将上线) 状态，不包含 Linux 图标。 |
+| **客户端分发与下载配置** | `src/game/desktop_download.ts`<br>`index.html`<br>`play.html` (下载区域) | 保持国内下载基址 (`DOWNLOAD_BASE`)，保持 Windows (x64/ARM64)、Linux (x86_64/ARM64) 与 Android APK 下载，保持 macOS (即将上线) 状态。 |
 | **国内原生端与 API 映射** | `android/`<br>`capacitor.config.ts`<br>`.github/workflows/` (已重构的工作流) | `VITE_API_ORIGIN` 必须指向 `https://worldofclaudecraft.aoruantech.com`，禁用 Discord/海外钱包插件。 |
 | **汉化覆盖表** | `src/ui/i18n.locales/zh_CN.ts`<br>`src/ui/i18n.catalog/` | 保持国内版 100% 汉化与专属润色。 |
 
