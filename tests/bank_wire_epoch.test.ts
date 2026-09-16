@@ -112,9 +112,9 @@ describe('wire compatibility epoch', () => {
     // fire it cannot see and would render geography the server no longer
     // stands anywhere near; it must be fenced out alongside every earlier
     // incompatible epoch.
-    expect(ONLINE_WORLD_LAYOUT_VERSION).toBe(29);
+    expect(ONLINE_WORLD_LAYOUT_VERSION).toBe(30);
     expect(ONLINE_WORLD_AUTH_TYPE).toBe(`auth-world-${ONLINE_WORLD_LAYOUT_VERSION}`);
-    expect(ONLINE_WORLD_AUTH_TYPE).toBe('auth-world-29');
+    expect(ONLINE_WORLD_AUTH_TYPE).toBe('auth-world-30');
     expect(ONLINE_WORLD_AUTH_TYPE).not.toBe('auth-world-28');
     expect(ONLINE_WORLD_AUTH_TYPE).not.toBe('auth-world-27');
     expect(ONLINE_WORLD_AUTH_TYPE).not.toBe('auth-world-26');
