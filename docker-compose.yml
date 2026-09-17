@@ -34,7 +34,12 @@ services:
     image: eastbrook-game:${EASTBROOK_IMAGE_TAG:-local}
     build:
       context: .
+      network: host
       args:
+        HTTP_PROXY: ${HTTP_PROXY:-}
+        HTTPS_PROXY: ${HTTPS_PROXY:-}
+        http_proxy: ${HTTP_PROXY:-}
+        https_proxy: ${HTTPS_PROXY:-}
         # Build-time public client config inlined into the bundle (see .env.example).
         VITE_TURNSTILE_SITEKEY: ${VITE_TURNSTILE_SITEKEY:-}
         VITE_REOWN_PROJECT_ID: ${VITE_REOWN_PROJECT_ID:-}

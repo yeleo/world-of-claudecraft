@@ -4,6 +4,23 @@
 # ==============================================================================
 set -e
 
+# 0. 智能检测宿主机本地 VPN / 代理 (优先识别 10808 和 7890 端口)
+if [ -z "$HTTP_PROXY" ] && [ -z "$http_proxy" ]; then
+    for port in 10808 7890 10809 20171 7897; do
+        if (exec 3<>/dev/tcp/127.0.0.1/$port) 2>/dev/null; then
+            exec 3>&-
+            echo "⚡ [代理加速] 检测到本地代理在 127.0.0.1:$port 监听，已自动启用环境与构建代理..."
+            export HTTP_PROXY="http://127.0.0.1:$port"
+            export HTTPS_PROXY="http://127.0.0.1:$port"
+            export http_proxy="http://127.0.0.1:$port"
+            export https_proxy="http://127.0.0.1:$port"
+            export ALL_PROXY="socks5://127.0.0.1:$port"
+            export all_proxy="socks5://127.0.0.1:$port"
+            break
+        fi
+    done
+fi
+
 # 防呆检查: 避免用户误用 source 或 . 执行导致 set -e 意外退出父 Shell
 if [ "${BASH_SOURCE[0]}" != "$0" ]; then
     echo "❌ 错误: 请勿使用 'source' 或 '.' 执行此脚本，这可能会在命令出错时意外退出您的终端窗口！"
