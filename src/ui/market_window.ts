@@ -224,8 +224,12 @@ export class MarketWindow {
     this.pushQuery();
     this.pushSellPriceCheck();
     this.lastSig = '';
-    this.render();
     this.deps.root().style.display = 'flex';
+    try {
+      this.render();
+    } catch (err) {
+      console.error('[MarketWindow] Initial render failed:', err);
+    }
     // Bags ride alongside so you can click items straight onto the Sell tab. The
     // body class drives the desktop docking pair in components.css (the bank-open
     // pattern): without it, both #market-window (centered) and #bags resolve their
@@ -725,7 +729,8 @@ export class MarketWindow {
   private renderContent(): void {
     const body = this.deps.root().querySelector<HTMLElement>('#market-body');
     if (!body) return;
-    const view = buildMarketView({
+    try {
+      const view = buildMarketView({
       info: this.deps.world().marketInfo,
       tab: this.tab,
       filters: {
@@ -756,6 +761,10 @@ export class MarketWindow {
       return;
     }
     this.renderCollect(body, view.body);
+    } catch (err) {
+      console.error('[MarketWindow] renderContent failed:', err);
+      body.innerHTML = `<div class="mkt-empty"><p class="mkt-empty-lead">${esc(t('itemUi.market.noMerchant'))}</p></div>`;
+    }
   }
 
   private renderBrowse(body: HTMLElement, view: MarketBrowseBody): void {

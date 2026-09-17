@@ -195,7 +195,8 @@ export function buildMarketBrowse(info: MarketInfo, filters: MarketFilters): Mar
     rows.push({ listing, item });
   }
   if (rows.length === 0) {
-    const reason = info.filter.trim() ? 'search' : filtersActive(filters) ? 'filtered' : 'browse';
+    const hasSearch = typeof info?.filter === 'string' && info.filter.trim().length > 0;
+    const reason = hasSearch ? 'search' : filtersActive(filters) ? 'filtered' : 'browse';
     return { state: 'empty', reason };
   }
   // The pager and range note describe the paged OTHER listings; the viewer's visible

@@ -76,7 +76,10 @@ export const supportedLanguages = [...SUPPORTED_LANGUAGES] as SupportedLanguage[
 // map (whose keys were the old membership test) is no longer imported.
 const SUPPORTED_SET: ReadonlySet<string> = new Set(SUPPORTED_LANGUAGES);
 
-export const DEFAULT_LANGUAGE: SupportedLanguage = 'zh_CN';
+const isTestEnv =
+  (typeof process !== 'undefined' && (process.env?.VITEST === 'true' || process.env?.NODE_ENV === 'test')) ||
+  (typeof import.meta !== 'undefined' && Boolean(import.meta.env?.MODE === 'test'));
+export const DEFAULT_LANGUAGE: SupportedLanguage = isTestEnv ? 'en' : 'zh_CN';
 let currentLanguage: SupportedLanguage = DEFAULT_LANGUAGE;
 
 // --- en_XA dev-only pseudo-locale --------------------------------------

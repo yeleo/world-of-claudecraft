@@ -15787,7 +15787,11 @@ export class Hud {
   // -------------------------------------------------------------------------
 
   openMarket(): void {
-    this.marketWindow.open();
+    try {
+      this.marketWindow.open();
+    } catch (err) {
+      console.error('[HUD] openMarket failed:', err);
+    }
   }
 
   closeMarket(): void {
