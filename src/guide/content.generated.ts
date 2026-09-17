@@ -265,7 +265,6 @@ export interface GuideProfCurve {
   rareEvent: { oneIn: number; yieldMult: number; flavors: { ore: string; wood: string; herb: string } };
   specimenChancePct: number;
   farm: {
-    plantCastSec: number;
     lifeFloor: number;
     keepChancePctAtZero: number;
     keepChancePctAtCap: number;
@@ -2013,7 +2012,7 @@ export const GUIDE_CLASSES: GuideClassInfo[] = [
       },
       {
         "id": "cat_form",
-        "name": "Wolf Form"
+        "name": "Cat Form"
       },
       {
         "id": "prowl",
@@ -2076,12 +2075,16 @@ export const GUIDE_CLASSES: GuideClassInfo[] = [
         "name": "Slinkstrike"
       },
       {
+        "id": "hamstring_bite",
+        "name": "Takedown"
+      },
+      {
         "id": "insect_swarm",
         "name": "Stinging Swarm"
       },
       {
         "id": "tigers_fury",
-        "name": "Wolfsblood"
+        "name": "Lynxblood"
       },
       {
         "id": "rip",
@@ -2557,9 +2560,7 @@ export const GUIDE_DRUID_FORMS: GuideDruidForm[] = [
   {
     "id": "form_cat",
     "model": "form_cat",
-    "tint": "#d08b45",
-    "tintStrength": 0.35,
-    "still": "/guide-stills/form_cat__d08b45__s35.webp"
+    "still": "/guide-stills/form_cat.webp"
   },
   {
     "id": "form_travel",
@@ -14257,17 +14258,17 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
           {
             "itemId": "arcane_shard",
             "name": "Chime Shard",
-            "count": 5
+            "count": 1
           },
           {
             "itemId": "arcane_essence",
             "name": "Chime Essence",
-            "count": 4
+            "count": 14
           },
           {
             "itemId": "arcane_dust",
             "name": "Chime Dust",
-            "count": 6
+            "count": 10
           }
         ],
         "output": {
@@ -14295,17 +14296,17 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
           {
             "itemId": "arcane_shard",
             "name": "Chime Shard",
-            "count": 5
+            "count": 1
           },
           {
             "itemId": "arcane_essence",
             "name": "Chime Essence",
-            "count": 4
+            "count": 14
           },
           {
             "itemId": "arcane_dust",
             "name": "Chime Dust",
-            "count": 6
+            "count": 10
           }
         ],
         "output": {
@@ -18263,7 +18264,7 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "priceCopper": null,
         "vendors": [],
         "craftedBy": "engineering",
-        "wieldProficiency": 40
+        "wieldProficiency": 25
       },
       {
         "name": "Skysilver Hoe",
@@ -18272,7 +18273,7 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "priceCopper": null,
         "vendors": [],
         "craftedBy": "engineering",
-        "wieldProficiency": 70
+        "wieldProficiency": 50
       },
       {
         "name": "Osmium Hoe",
@@ -18283,7 +18284,7 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "craftedBy": "engineering",
         "priceMarks": 24,
         "marksClears": 3,
-        "wieldProficiency": 85
+        "wieldProficiency": 75
       },
       {
         "name": "Evergarden Hoe",
@@ -18332,7 +18333,6 @@ export const GUIDE_PROF_CURVE: GuideProfCurve = {
   },
   "specimenChancePct": 16,
   "farm": {
-    "plantCastSec": 2,
     "lifeFloor": 3,
     "keepChancePctAtZero": 15,
     "keepChancePctAtCap": 50,
@@ -20256,10 +20256,9 @@ export const GUIDE_MODELS: Record<string, GuideModelSpec> = {
     "height": 2.35
   },
   "form_cat": {
-    "url": "models/creatures/wolf_basic.glb",
-    "idle": "Idle",
-    "height": 1.6,
-    "tintStrength": 0.35
+    "url": "models/creatures/druid_cat_form.glb",
+    "idle": "Idle_Look",
+    "height": 1.92
   },
   "form_travel": {
     "url": "models/creatures/chicken_cow.glb",

@@ -44,9 +44,9 @@ import {
   NYTHRAXIS_BONE_STORM_RADIUS,
   NYTHRAXIS_BONE_STORM_SECONDS,
   NYTHRAXIS_BONE_STORM_SPEED_MULT,
-  NYTHRAXIS_BONE_STORM_SPIKE_AT_SECONDS,
   nythraxisBoneSlamDamageMaxHp,
   nythraxisBoneStormCadence,
+  nythraxisBoneStormOpeningSlamMaxHp,
   nythraxisBoneStormWhirlTickMaxHp,
 } from '../src/sim/nythraxis_bone_storm';
 import {
@@ -292,11 +292,27 @@ describe('raid boss guide view', () => {
         whirlHeroic: nythraxisBoneStormWhirlTickMaxHp('heroic'),
         slamNormal: nythraxisBoneSlamDamageMaxHp('normal'),
         slamHeroic: nythraxisBoneSlamDamageMaxHp('heroic'),
-        spikeAt: NYTHRAXIS_BONE_STORM_SPIKE_AT_SECONDS,
+        openingSlamNormal: nythraxisBoneStormOpeningSlamMaxHp('normal'),
+        openingSlamHeroic: nythraxisBoneStormOpeningSlamMaxHp('heroic'),
         rearm: NYTHRAXIS_BONE_STORM_GRAVEBREAKER_REARM_SECONDS,
       },
-      percentValues: ['whirlNormal', 'whirlHeroic', 'slamNormal', 'slamHeroic'],
+      percentValues: [
+        'whirlNormal',
+        'whirlHeroic',
+        'slamNormal',
+        'slamHeroic',
+        'openingSlamNormal',
+        'openingSlamHeroic',
+      ],
     });
+    // Literal pins beside the values block above, which is otherwise compared
+    // against the same helper the view calls; and the retired mid-storm spike
+    // value must be gone from the row (toMatchObject would not notice it).
+    expect(nythraxisBoneStormOpeningSlamMaxHp('normal')).toBe(0.23);
+    expect(nythraxisBoneStormOpeningSlamMaxHp('heroic')).toBe(0.37);
+    expect(
+      normalMechanics.find((mechanic) => mechanic.id === 'bone-storm')?.values,
+    ).not.toHaveProperty('spikeAt');
     expect(normalMechanics.find((mechanic) => mechanic.id === 'crown-endures')).toMatchObject({
       roles: ['damage'],
       flags: ['deadly'],
@@ -506,6 +522,17 @@ describe('raid boss guide view', () => {
     expect(summaryOf(heroic, 'bone-storm')).toContain(
       `${pct(nythraxisBoneSlamDamageMaxHp('heroic'))} of maximum health`,
     );
+    expect(summaryOf(normal, 'bone-storm')).toContain(
+      `${pct(nythraxisBoneStormOpeningSlamMaxHp('normal'))} instead`,
+    );
+    expect(summaryOf(heroic, 'bone-storm')).toContain(
+      `${pct(nythraxisBoneStormOpeningSlamMaxHp('heroic'))} instead`,
+    );
+    // The storm row no longer tells the raid a spike lands mid-storm; the
+    // spike row is the positive control that the matcher sees the name.
+    expect(summaryOf(normal, 'bone-storm')).not.toContain('Bone Spike');
+    expect(summaryOf(heroic, 'bone-storm')).not.toContain('Bone Spike');
+    expect(summaryOf(normal, 'bone-spike')).toContain('Bone Spike');
     expect(summaryOf(normal, 'crown-endures')).toContain(
       `At ${nythraxisEnrageSeconds('normal')} sec from the pull`,
     );

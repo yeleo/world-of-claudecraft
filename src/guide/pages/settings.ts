@@ -536,7 +536,9 @@ export const settings: GuidePage = {
         )}
         ${section(
           'guide.settingsPage.keybindsHeading',
-          p('guide.settingsPage.keybindsBody') + p('guide.settingsPage.keybindsMouseBody'),
+          p('guide.settingsPage.keybindsBody') +
+            p('guide.settingsPage.keybindsMouseBody') +
+            p('guide.settingsPage.keybindsWheelBody'),
         )}
         ${section('guide.settingsPage.audioTitle', p('guide.settingsPage.audioBody') + p('guide.settingsPage.autolootBody'))}
         ${callout(

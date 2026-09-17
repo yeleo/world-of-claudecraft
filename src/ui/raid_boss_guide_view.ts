@@ -76,9 +76,9 @@ import {
   NYTHRAXIS_BONE_STORM_RADIUS,
   NYTHRAXIS_BONE_STORM_SECONDS,
   NYTHRAXIS_BONE_STORM_SPEED_MULT,
-  NYTHRAXIS_BONE_STORM_SPIKE_AT_SECONDS,
   nythraxisBoneSlamDamageMaxHp,
   nythraxisBoneStormCadence,
+  nythraxisBoneStormOpeningSlamMaxHp,
   nythraxisBoneStormWhirlTickMaxHp,
 } from '../sim/nythraxis_bone_storm';
 import {
@@ -793,10 +793,18 @@ const NYTHRAXIS_PHASES: readonly PhaseDefinition[] = [
           whirlHeroic: nythraxisBoneStormWhirlTickMaxHp('heroic'),
           slamNormal: nythraxisBoneSlamDamageMaxHp('normal'),
           slamHeroic: nythraxisBoneSlamDamageMaxHp('heroic'),
-          spikeAt: NYTHRAXIS_BONE_STORM_SPIKE_AT_SECONDS,
+          openingSlamNormal: nythraxisBoneStormOpeningSlamMaxHp('normal'),
+          openingSlamHeroic: nythraxisBoneStormOpeningSlamMaxHp('heroic'),
           rearm: NYTHRAXIS_BONE_STORM_GRAVEBREAKER_REARM_SECONDS,
         },
-        percentValues: ['whirlNormal', 'whirlHeroic', 'slamNormal', 'slamHeroic'],
+        percentValues: [
+          'whirlNormal',
+          'whirlHeroic',
+          'slamNormal',
+          'slamHeroic',
+          'openingSlamNormal',
+          'openingSlamHeroic',
+        ],
       },
       {
         id: 'crown-endures',

@@ -13,15 +13,15 @@ import {
   NYTHRAXIS_BONE_STORM_RADIUS,
   NYTHRAXIS_BONE_STORM_SECONDS,
   NYTHRAXIS_BONE_STORM_SPEED_MULT,
-  NYTHRAXIS_BONE_STORM_SPIKE_AT_SECONDS,
   NYTHRAXIS_BONE_STORM_WHIRL_TICK_SECONDS,
   nythraxisBoneSlamDamageMaxHp,
   nythraxisBoneStormCadence,
   nythraxisBoneStormChargeIndex,
   nythraxisBoneStormChargeTarget,
   nythraxisBoneStormDone,
+  nythraxisBoneStormOpeningSlamMaxHp,
   nythraxisBoneStormReached,
-  nythraxisBoneStormSpikeDue,
+  nythraxisBoneStormSlamMaxHp,
   nythraxisBoneStormWhirlTickMaxHp,
   pointInNythraxisBoneStorm,
 } from '../src/sim/nythraxis_bone_storm';
@@ -51,8 +51,22 @@ describe('Nythraxis Bone Storm', () => {
       nythraxisBoneSlamDamageMaxHp('normal'),
       nythraxisBoneSlamDamageMaxHp('heroic'),
     ]).toEqual([0.35, 0.55]);
+    // The storm's first slam lands on a raid that has not spread yet: about a
+    // third softer than the full slam. Every later window slams for the full
+    // fraction.
+    expect([
+      nythraxisBoneStormOpeningSlamMaxHp('normal'),
+      nythraxisBoneStormOpeningSlamMaxHp('heroic'),
+    ]).toEqual([0.23, 0.37]);
+    expect([
+      nythraxisBoneStormSlamMaxHp('normal', true),
+      nythraxisBoneStormSlamMaxHp('heroic', true),
+    ]).toEqual([0.23, 0.37]);
+    expect([
+      nythraxisBoneStormSlamMaxHp('normal', false),
+      nythraxisBoneStormSlamMaxHp('heroic', false),
+    ]).toEqual([0.35, 0.55]);
     expect(NYTHRAXIS_BONE_STORM_ARRIVE_DIST).toBe(3);
-    expect(NYTHRAXIS_BONE_STORM_SPIKE_AT_SECONDS).toBe(6);
     expect(NYTHRAXIS_BONE_STORM_GRAVEBREAKER_REARM_SECONDS).toBe(3);
   });
 
@@ -67,8 +81,6 @@ describe('Nythraxis Bone Storm', () => {
     expect(nythraxisBoneStormChargeIndex(-1)).toBe(0);
     expect(nythraxisBoneStormDone(11.95)).toBe(false);
     expect(nythraxisBoneStormDone(12)).toBe(true);
-    expect(nythraxisBoneStormSpikeDue(5.95)).toBe(false);
-    expect(nythraxisBoneStormSpikeDue(6)).toBe(true);
   });
 
   it('ranks charge targets by hash, deterministically, never repeating while others remain', () => {
@@ -114,8 +126,8 @@ describe('Nythraxis Bone Storm', () => {
       chargeIndex: 0,
       chargeTargetId: null,
       slammed: false,
+      openingSlamSpent: false,
       whirlTickTimer: 1,
-      spikeCast: false,
       chargedIds: [],
     });
   });
