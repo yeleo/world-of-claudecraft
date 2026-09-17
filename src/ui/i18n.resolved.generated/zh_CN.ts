@@ -651,97 +651,97 @@ export const zh_CN: EnTranslations = {
         "guildmark_arming_sword": {
           "name": "公会印记武装剑",
           "look": "发蓝钢剑刃、青铜鱼尾形十字护手、青绿色染皮握柄，以及一枚小巧的公会钢印。",
-          "lore": "一般成品剑无名无姓，这一把却有署名。只有当 全境拍卖行 的 行商 愿为其钢材作保，铠甲匠才有权在剑根刻下自己的印记；铁匠哈尔登 的印记正有这份担保。剑身经发蓝处理，足以抵御 东溪谷地 的湿气，平衡精准至毫厘。你付的钱有一半买的是钢印，但它物有所值。"
+          "lore": "一般成品剑无名无姓，这一把却有署名。只有当 World Market 的 Merchant 愿为其钢材作保，铠甲匠才有权在剑根刻下自己的印记；Smith Haldren 的印记正有这份担保。剑身经发蓝处理，足以抵御 the Vale 的湿气，平衡精准至毫厘。你付的钱有一半买的是钢印，但它物有所值。"
         },
         "brasscap_axe": {
           "name": "黄铜帽手斧",
           "look": "抛光钢斧刃，漆制白蜡木柄上装有黄铜顶帽与护木铁，缠带整洁，并刻有匠人钢印。",
-          "lore": "带钢印的斧头是握在手里的炫耀。黄铜顶帽和护木铁一半是护甲，一半是签名：既防斧柄劈裂，也映着酒馆灯火，让人人都知道你买的是 护甲大师霍德 的作品，不是民兵传下来的旧货。“能砍，我就卖。”高望要塞 的铁匠如此说。这一把确实能砍。"
+          "lore": "带钢印的斧头是握在手里的炫耀。黄铜顶帽和护木铁一半是护甲，一半是签名：既防斧柄劈裂，也映着酒馆灯火，让人人都知道你买的是 Armorer Hode 的作品，不是民兵传下来的旧货。“能砍，我就卖。”Highwatch 的铁匠如此说。这一把确实能砍。"
         },
         "tempered_flanged_mace": {
           "name": "淬火凸缘锤",
           "look": "六棱淬火蓝钢锤头、黄铜颈环与柄首，以及酒红色皮革握柄。",
-          "lore": "六道发蓝淬火钢棱，每一道都磨得足以劈开头盔，再配黄铜端饰与酒红皮革。哪怕用途再残酷，王国的铠甲匠也不肯造丑陋的武器。这一把经 全境拍卖行 专门委制，并非货架上的现成货；某处账簿里还写着那位自豪买家的名字，以及他付给 霍德 的价钱。"
+          "lore": "六道发蓝淬火钢棱，每一道都磨得足以劈开头盔，再配黄铜端饰与酒红皮革。哪怕用途再残酷，王国的铠甲匠也不肯造丑陋的武器。这一把经 World Market 专门委制，并非货架上的现成货；某处账簿里还写着那位自豪买家的名字，以及他付给 Hode 的价钱。"
         },
         "guildmark_dirk": {
           "name": "公会印记短剑",
           "look": "纤细的淬火钢短剑、青铜护手与柄尾螺帽、深绿色绳缠握柄，以及压印徽记。",
-          "lore": "这是有身份者把长剑留在家中时佩戴的武器：纤细、淬火，盖着与整柄长剑同样的认证钢印，挂在腰间，如同一枚带刃的印戒。除非懂得铠甲匠的凭证，否则只会觉得它低调。Quartermaster Bree 在 高望要塞 留着整整一抽屉，专供赢得城墙敬意的军官。"
+          "lore": "这是有身份者把长剑留在家中时佩戴的武器：纤细、淬火，盖着与整柄长剑同样的认证钢印，挂在腰间，如同一枚带刃的印戒。除非懂得铠甲匠的凭证，否则只会觉得它低调。Quartermaster Bree 在 Highwatch 留着整整一抽屉，专供赢得城墙敬意的军官。"
         },
         "brasscrown_staff": {
           "name": "黄铜冠手杖",
           "look": "硬木杖顶装有车制黄铜冠饰，配黄铜杖脚与染色皮带。",
-          "lore": "杖身取自风干硬木，顶上是 Eastbrook 铁匠成百铸造却件件精修的黄铜冠饰。它属于那种无论走到 沼桥镇 城门还是 高望要塞 城墙，都希望被认真对待的旅人。这根手杖从未真正需要支撑步伐；染色皮带与那件一眼便知价值不菲的外套恰好相配。"
+          "lore": "杖身取自风干硬木，顶上是 Eastbrook 铁匠成百铸造却件件精修的黄铜冠饰。它属于那种无论走到 Fenbridge 城门还是 Highwatch 城墙，都希望被认真对待的旅人。这根手杖从未真正需要支撑步伐；染色皮带与那件一眼便知价值不菲的外套恰好相配。"
         },
         "lacquered_wand": {
           "name": "漆木短杖",
           "look": "纤细的深红漆杖，饰有两道抛光黄铜环和小巧圆润的黄铜杖头。",
-          "lore": "深红漆面耐心涂了七层，再以两道抛光黄铜束起。这正是乡野法师开始收取真金白银后，会从 全境拍卖行 买来装点门面的法杖。它引导 圣光 的能力并不比白桦枝更强，却能在 行商 的柜台上耀眼夺目；小法术向来有一半靠别人相信。"
+          "lore": "深红漆面耐心涂了七层，再以两道抛光黄铜束起。这正是乡野法师开始收取真金白银后，会从 World Market 买来装点门面的法杖。它引导 Light 的能力并不比白桦枝更强，却能在 Merchant 的柜台上耀眼夺目；小法术向来有一半靠别人相信。"
         },
         "fletcher_s_guild_bow": {
           "name": "制弓师公会弓",
           "look": "漆制胡桃木反曲弓、黄铜弓梢、上蜡亚麻弦，弓把上刻有公会钢印。",
-          "lore": "弓把上的制弓师钢印，是王国最接近公会凭证的东西；它承诺着弓身内在的品质，就像酿酒师为木桶封印。漆制胡桃木、黄铜弓梢，还有经上蜡、不会在 泥泞沼泽 雨中磨损的亚麻弦，每一处接合都在为价格辩护。越过 寡妇灌木丛 后拉一次弓，这场辩论便有了答案。"
+          "lore": "弓把上的制弓师钢印，是王国最接近公会凭证的东西；它承诺着弓身内在的品质，就像酿酒师为木桶封印。漆制胡桃木、黄铜弓梢，还有经上蜡、不会在 Mirefen 雨中磨损的亚麻弦，每一处接合都在为价格辩护。越过 Widow Thicket 后拉一次弓，这场辩论便有了答案。"
         },
         "cinderbrand_sword": {
           "name": "烬痕",
           "look": "深色锻钢剑刃，血槽中嵌着橙红发光符文与热裂纹，护手内有一枚阴燃宝石。",
-          "lore": "这是第一把不用水淬火，而以从 风暴峭壁 耙出的 神圣余烬 淬炼的剑。高望要塞 的铁匠发誓，那些煤火“燃得湛蓝而纯净，因为山仍记得古老的誓言”。火焰被封进血槽后只余橙红暗燃，却永不熄灭；即便在城墙最寒冷的夜晚，符文也能温暖裸手。烬烙之剑 从不需要点燃，它只是拒绝熄灭。"
+          "lore": "这是第一把不用水淬火，而以从 Stormcrag 耙出的 Blessed Embers 淬炼的剑。Highwatch 的铁匠发誓，那些煤火“燃得湛蓝而纯净，因为山仍记得古老的誓言”。火焰被封进血槽后只余橙红暗燃，却永不熄灭；即便在城墙最寒冷的夜晚，符文也能温暖裸手。Cinderbrand 从不需要点燃，它只是拒绝熄灭。"
         },
         "emberbite_axe": {
           "name": "余烬之噬",
           "look": "熏黑铁斧，斧刃间透出橙红裂光，嵌有一枚封存炭火的宝石，周围热气缭绕。",
-          "lore": "护甲大师霍德 把一块山火活炭锻进斧刃核心，使刃口在两次挥砍之间也从未真正冷却。下劈时裂纹吐出橙光，仿佛撞击唤醒了初次锻造时沉睡在铁里的东西。有人说一只 风暴峭壁 元素为此交出了余烬；高望要塞 起风时，人们总会说出许多故事。"
+          "lore": "Armorer Hode 把一块山火活炭锻进斧刃核心，使刃口在两次挥砍之间也从未真正冷却。下劈时裂纹吐出橙光，仿佛撞击唤醒了初次锻造时沉睡在铁里的东西。有人说一只 Stormcrag 元素为此交出了余烬；Highwatch 起风时，人们总会说出许多故事。"
         },
         "smoulderfall_mace": {
           "name": "闷燃坠击",
           "look": "黑铁锤棱的内侧裂缝泛着橙红光芒，锤头中嵌有熔核宝石。",
-          "lore": "这柄战锤自带炉火：从那道“以山火铸成”的 Sanctum 封印上凿下一块熔核石，嵌在锤头中发光。锤棱触手温热，落下时更烫；一名 高望要塞 中士发誓，被它击中的瘀伤会微微发亮直到清晨。山中之火终于不再用于封印，而用于破坏。"
+          "lore": "这柄战锤自带炉火：从那道“以山火铸成”的 Sanctum 封印上凿下一块熔核石，嵌在锤头中发光。锤棱触手温热，落下时更烫；一名 Highwatch 中士发誓，被它击中的瘀伤会微微发亮直到清晨。山中之火终于不再用于封印，而用于破坏。"
         },
         "ashspark_dagger": {
           "name": "灰火匕",
           "look": "短小的熏黑刀刃遍布橙红发光纹路，柄首嵌着微小的阴燃宝石，灰烬与火星相随。",
-          "lore": "一把将山火偷藏进柄首宝石的巷战短刀，也是铠甲匠无声的玩笑：就连扒手也能带着初次锻造的一点余烬。刀身熏黑、橙纹密布，在鞘中总比应有的温度更暖。于 高望要塞 下方的黑暗中拔出它，微光恰好能照亮你的手，也足以找到对手守势中的缝隙。"
+          "lore": "一把将山火偷藏进柄首宝石的巷战短刀，也是铠甲匠无声的玩笑：就连扒手也能带着初次锻造的一点余烬。刀身熏黑、橙纹密布，在鞘中总比应有的温度更暖。于 Highwatch 下方的黑暗中拔出它，微光恰好能照亮你的手，也足以找到对手守势中的缝隙。"
         },
         "forgeheart_staff": {
           "name": "炉心法杖",
           "look": "铁箍法杖顶端囚着发光余烬核心，火焰符文沿杖身攀升，热浪在上方摇曳。",
-          "lore": "一块山火活炭被囚在杖冠的铁笼中。博学者卡迪斯 称它证明了初次锻造之火不仅能用于封印，也能被束缚来服务。热浪化作纤细而无尽的丝带升起；携带它的法师永远不缺锻炉或守夜火。传言这块余烬取自 烬翼巨龙沃斯卡 的吐息，自此从未冷却。"
+          "lore": "一块山火活炭被囚在杖冠的铁笼中。Loremaster Caddis 称它证明了初次锻造之火不仅能用于封印，也能被束缚来服务。热浪化作纤细而无尽的丝带升起；携带它的法师永远不缺锻炉或守夜火。传言这块余烬取自 Voskar the Emberwing 的吐息，自此从未冷却。"
         },
         "emberwrought_wand": {
           "name": "余烬锻造魔杖",
           "look": "熏黑金属魔杖，铁爪扣住发光炭火，细微热裂纹间透出温暖内光。",
-          "lore": "正是这根魔杖为整个品级命名。高望要塞 的铠甲匠第一次以铁爪扣住山火余炭，并让它听命于凡人之手时，就连 圣光 的祭司也不再称其为异端，转而说它很实用。温暖、耐心，又悄然危险：杖尖的余烬从主人出生前便持续燃烧，从未中断。"
+          "lore": "正是这根魔杖为整个品级命名。Highwatch 的铠甲匠第一次以铁爪扣住山火余炭，并让它听命于凡人之手时，就连 Light 的祭司也不再称其为异端，转而说它很实用。温暖、耐心，又悄然危险：杖尖的余烬从主人出生前便持续燃烧，从未中断。"
         },
         "cinderlatch_crossbow": {
           "name": "烬锁",
           "look": "熏黑钢弩，弩臂裂缝渗出橙红光芒，弩身中封着一块阴燃煤炭。",
-          "lore": "这是余烬锻造中最奇异的一件：把山火灌进一台机械。橙光从弩臂裂缝渗出，弩身内的阴燃煤炭令弓弦在 荆棘峰 的严寒或 泥泞沼泽 的湿气中都不会僵硬。弩矢离槽时已有温度，命中时更为灼热。对于城墙外那些同样不畏严寒的敌人，这是猎人的回答。"
+          "lore": "这是余烬锻造中最奇异的一件：把山火灌进一台机械。橙光从弩臂裂缝渗出，弩身内的阴燃煤炭令弓弦在 Thornpeak 的严寒或 Mirefen 的湿气中都不会僵硬。弩矢离槽时已有温度，命中时更为灼热。对于城墙外那些同样不畏严寒的敌人，这是猎人的回答。"
         },
         "ice_fang_sword": {
           "name": "冰牙",
           "look": "苍白冰川弯刃，刃背生着锯齿状霜晶，血槽内有发光的青蓝冰核，护手如冰柱。",
-          "lore": "这是冰封品级的旗舰，也是每位收藏家最先伸手的一件。冰封之牙 并非锻造，而是从覆盖 高望要塞 上方 荆棘峰 的冰川尖牙中雕成；青蓝核心寒冷燃烧，如 微光之湖 水面的冷光。它劈过之处连空气都会结霜。城墙守卫发誓，大雪挡住 巨龙邪教徒 的那一夜，一名士兵带着它，“为城墙买下了一个冬天”。"
+          "lore": "这是冰封品级的旗舰，也是每位收藏家最先伸手的一件。Ice Fang 并非锻造，而是从覆盖 Highwatch 上方 Thornpeak 的冰川尖牙中雕成；青蓝核心寒冷燃烧，如 Glimmermere 水面的冷光。它劈过之处连空气都会结霜。城墙守卫发誓，大雪挡住 Broodsworn 的那一夜，一名士兵带着它，“为城墙买下了一个冬天”。"
         },
         "glaciersplit_axe": {
           "name": "裂冰",
           "look": "半透明蓝色冰川斧头，裂开的内部泛着青蓝光，霜晶密布，斧柄拖曳寒雾。",
-          "lore": "它凿自 荆棘峰 冰川的蓝色核心，两个世纪的重压把寒意压到自行发光。即使静止也拖着白雾，落下时的巨响如同 潜伏者山脊 下方裂开一道冰隙。高望要塞 将阵亡者交给那里的冰雪；因此这件武器生来便要阻挡融雪，以及融雪可能唤醒的一切。"
+          "lore": "它凿自 Thornpeak 冰川的蓝色核心，两个世纪的重压把寒意压到自行发光。即使静止也拖着白雾，落下时的巨响如同 Stalker Ridge 下方裂开一道冰隙。Highwatch 将阵亡者交给那里的冰雪；因此这件武器生来便要阻挡融雪，以及融雪可能唤醒的一切。"
         },
         "rimecrusher_mace": {
           "name": "霜碎",
           "look": "锯齿状冰晶簇拥着发光的青蓝核心，白霜沿镀银锤柄向下蔓延。",
-          "lore": "它不是雕刻出来，而是生长而成：匠人诱导 荆棘峰 寒冰包裹青蓝冷核，直到坚硬得不逊于 霍德 最好的钢。白霜沿镀银锤柄爬向手掌，却始终差一点触及。它击中之处水会冻结，停放之处地面会泛白。山峰的墓穴寒意，被缩小到足以挥向那些攀爬城墙之物。"
+          "lore": "它不是雕刻出来，而是生长而成：匠人诱导 Thornpeak 寒冰包裹青蓝冷核，直到坚硬得不逊于 Hode 最好的钢。白霜沿镀银锤柄爬向手掌，却始终差一点触及。它击中之处水会冻结，停放之处地面会泛白。山峰的墓穴寒意，被缩小到足以挥向那些攀爬城墙之物。"
         },
         "frostbite_dagger": {
           "name": "霜针",
           "look": "透明蓝冰制成的极细匕首，中央贯穿青蓝发光脉络，针状霜晶与白霜覆盖刀柄。",
-          "lore": "薄如屏息，却比呼吸冷上两倍：一片 荆棘峰 冰川碎屑被磨成单一发光脉络，锋利到伤口会在血液想起流动前先被冻结。它的名字借自死者从群峰带下的墓穴寒意。它从不需要磨刃；博学者卡迪斯 冷冷地说，冰不会变钝，它只会等待。"
+          "lore": "薄如屏息，却比呼吸冷上两倍：一片 Thornpeak 冰川碎屑被磨成单一发光脉络，锋利到伤口会在血液想起流动前先被冻结。它的名字借自死者从群峰带下的墓穴寒意。它从不需要磨刃；Loremaster Caddis 冷冷地说，冰不会变钝，它只会等待。"
         },
         "hoarfrost_vigil_staff": {
           "name": "白霜守望",
           "look": "镀银法杖顶端漂浮着缓慢旋转的青蓝冰片，放射霜晶与寒雾。",
-          "lore": "这是 高望要塞 城墙上永不沉睡的守望之杖。杖冠是一片青蓝湖冰，脱离银托悬浮，并自行缓缓转动；守卫发誓，它总是指向群峰下正在聚集的寒意。携带这份守望，便是在一夜间站完两百年的岗，并承诺绝不移开目光。"
+          "lore": "这是 Highwatch 城墙上永不沉睡的守望之杖。杖冠是一片青蓝湖冰，脱离银托悬浮，并自行缓缓转动；守卫发誓，它总是指向群峰下正在聚集的寒意。携带这份守望，便是在一夜间站完两百年的岗，并承诺绝不移开目光。"
         },
         "everwinter_wand": {
           "name": "永冬碎片",
@@ -751,22 +751,22 @@ export const zh_CN: EnTranslations = {
         "winterbite": {
           "name": "寒冬之啮",
           "look": "镀银钢与蓝冰制成的弓，弓把内有青蓝冰核，弦上搭着实冰箭矢，寒雾缭绕。",
-          "lore": "这把弓由镀银钢与 荆棘峰 寒冰制成，弓把内的青蓝冷核将箭冻结在弦上。每次拉弓都会重新凝成一支冰川实冰箭；城墙上的弓手不带箭袋，只携寒意。高望要塞 曾靠一把这样的弓守住遭围攻的 潜伏者山脊：据说只有一名弓手，以及一整个冬天取之不尽的箭。"
+          "lore": "这把弓由镀银钢与 Thornpeak 寒冰制成，弓把内的青蓝冷核将箭冻结在弦上。每次拉弓都会重新凝成一支冰川实冰箭；城墙上的弓手不带箭袋，只携寒意。Highwatch 曾靠一把这样的弓守住遭围攻的 Stalker Ridge：据说只有一名弓手，以及一整个冬天取之不尽的箭。"
         },
         "solheim_sword": {
           "name": "Solheim，黎明最后之光",
           "look": "以陨星锻成的巨剑，熔金核心贯裂剑刃，宇宙黑钢边缘闪着星光，金色碎片环绕护手，极光如带。",
-          "lore": "那颗星从西方天空坠落，在 寡妇灌木丛 之外“如锻炉般爆裂”时，阿尔德里克修士 从 泥泞沼泽 陨坑取出仍在阴燃的星核，恳求王国铁匠加工“并不属于这个世界的东西”。他们将其锻成唯一一柄巨剑：索尔海姆之刃。熔金核心如黎明撕开夜空般劈开宇宙黑刃，星金碎片沿无人设定的轨道绕护手运行。世上只锻成这一把，也绝不会有第二把。"
+          "lore": "那颗星从西方天空坠落，在 Widow Thicket 之外“如锻炉般爆裂”时，Brother Aldric 从 Mirefen 陨坑取出仍在阴燃的星核，恳求王国铁匠加工“并不属于这个世界的东西”。他们将其锻成唯一一柄巨剑：Solheim。熔金核心如黎明撕开夜空般劈开宇宙黑刃，星金碎片沿无人设定的轨道绕护手运行。世上只锻成这一把，也绝不会有第二把。"
         },
         "skyrender_axe": {
           "name": "裂天者，苍穹之伤",
           "look": "斧头像一块撕裂的夜空，遍布熔金裂缝与星座刻纹，星光碎片悬浮，刃后拖着极光。",
-          "lore": "它锻自陨坑边缘，那里坠星从 泥泞沼泽 水面撕走了天空的倒影，留下至今仍冒蒸汽的伤口。斧头像一片被扯下的夜：熔金裂缝、高望要塞 学者也叫不出名字的星座，以及每次挥动都从刃缘流出的极光。阿尔德里克修士 为它赐福，却拒绝碰触。举起它，就像握住苍穹留下的缺口。"
+          "lore": "它锻自陨坑边缘，那里坠星从 Mirefen 水面撕走了天空的倒影，留下至今仍冒蒸汽的伤口。斧头像一片被扯下的夜：熔金裂缝、Highwatch 学者也叫不出名字的星座，以及每次挥动都从刃缘流出的极光。Brother Aldric 为它赐福，却拒绝碰触。举起它，就像握住苍穹留下的缺口。"
         },
         "starfall_mace": {
           "name": "星陨，诸天裁决",
           "look": "被囚的熔金星核由轨道碎片环绕，宇宙黑锤棱中流淌星光，极光从接缝溢出。",
-          "lore": "一颗星核在死亡前一瞬被捕获，随它坠落的残片环绕四周，永远停在湮灭前最后一寸。宇宙黑锤棱中流淌着被困的星光，举起时极光便从接缝溢出。古老的 圣光 祭司称流星为裁决，是从天而降、任何盾牌都无意阻挡的判决；此锤便以坠落 泥泞沼泽 的那颗星命名。"
+          "lore": "一颗星核在死亡前一瞬被捕获，随它坠落的残片环绕四周，永远停在湮灭前最后一寸。宇宙黑锤棱中流淌着被困的星光，举起时极光便从接缝溢出。古老的 Light 祭司称流星为裁决，是从天而降、任何盾牌都无意阻挡的判决；此锤便以坠落 Mirefen 的那颗星命名。"
         },
         "astravyr_dagger": {
           "name": "Astravyr，陨星之牙",
@@ -776,22 +776,22 @@ export const zh_CN: EnTranslations = {
         "cosmarch_staff": {
           "name": "Cosmarch，无尽虚空尖塔",
           "look": "金色星片环绕熔金核心运行，宇宙黑杖身刻满星座，极光丝带向上盘绕。",
-          "lore": "星金杖身顶着熔金核心，金色碎片沿缓慢而无尽的轨道环行，宛如一座微型宇宙；其星座不属于 荆棘峰 上空的任何天幕。极光如忘记升起的烟，沿杖身向上缠绕。曾持有它的人说能感到虚空在杖中转动，就像 Ysolei 的湖水“饮下月光”：耐心、寒冷，并回望着你。"
+          "lore": "星金杖身顶着熔金核心，金色碎片沿缓慢而无尽的轨道环行，宛如一座微型宇宙；其星座不属于 Thornpeak 上空的任何天幕。极光如忘记升起的烟，沿杖身向上缠绕。曾持有它的人说能感到虚空在杖中转动，就像 Ysolei 的湖水“饮下月光”：耐心、寒冷，并回望着你。"
         },
         "emberwish_wand": {
           "name": "余烬之愿，垂死太阳之火种",
           "look": "被囚的熔金垂死星火由火星环绕，宇宙黑杖身刻着发光星座。",
-          "lore": "这并非陨星本身，而是一颗垂死恒星最后的微光：一轮早已熄灭的太阳留下的熔金余烬，周围盘旋着它最后的火花。宇宙黑杖身刻有见证其死亡的星座。泥泞沼泽 佃农说，真黄昏时持有它便可许下一个愿望；他们也说，每个持有过它的灵魂都只愿获得更多时间，而 Drowned Moon 从未答应任何人。"
+          "lore": "这并非陨星本身，而是一颗垂死恒星最后的微光：一轮早已熄灭的太阳留下的熔金余烬，周围盘旋着它最后的火花。宇宙黑杖身刻有见证其死亡的星座。Mirefen 佃农说，真黄昏时持有它便可许下一个愿望；他们也说，每个持有过它的灵魂都只愿获得更多时间，而 Drowned Moon 从未答应任何人。"
         },
         "encore_bow": {
           "name": "Encore，第二颗坠星",
           "look": "夸张巨大的星炮：宇宙黑炮管刻着金色发光星座，喇叭形炮口内装有熔金彗星弹，配黄铜构件与木质肩托。",
-          "lore": "加工陨星的铁匠造出六件遗物后，还剩下整整一炮管星金；到了那时，学徒们也有了自己的主意。铁砧上诞生的东西，要么是王国第一支火枪，要么是最小的攻城器：一门肩扛星炮，与其说它发射弹丸，不如说它瞄准后请求第二颗星落下。阿尔德里克修士 拒绝赐福，理由是如此响亮的东西早已被天堂注意。猎人深爱它，射线前方的一切则从未如此。"
+          "lore": "加工陨星的铁匠造出六件遗物后，还剩下整整一炮管星金；到了那时，学徒们也有了自己的主意。铁砧上诞生的东西，要么是王国第一支火枪，要么是最小的攻城器：一门肩扛星炮，与其说它发射弹丸，不如说它瞄准后请求第二颗星落下。Brother Aldric 拒绝赐福，理由是如此响亮的东西早已被天堂注意。猎人深爱它，射线前方的一切则从未如此。"
         },
         "meteorlatch_crossbow": {
           "name": "星陨锁扣，苍穹最后的裁决",
           "look": "陨星金属弩身，熔金核心贯穿弩托，宇宙黑弩臂刻满星座，弦上搭着纯粹星火之矢。",
-          "lore": "它在 泥泞沼泽 陨坑仍发着光时，以“烫得无法触碰”的原始陨星金属锻成；碎片被敲成刻满星座的宇宙黑弩臂，熔金核心沿弩托封存。它不搭弩矢，而是召来一束星火：发射如宣判，落地如判决的终结。当 高望要塞 担心 Nythraxis 的不死王冠或许还不是群峰下最可怕的东西时，他们希望城墙上摆着的正是这件武器。务必瞄准。"
+          "lore": "它在 Mirefen 陨坑仍发着光时，以“烫得无法触碰”的原始陨星金属锻成；碎片被敲成刻满星座的宇宙黑弩臂，熔金核心沿弩托封存。它不搭弩矢，而是召来一束星火：发射如宣判，落地如判决的终结。当 Highwatch 担心 Nythraxis 的不死王冠或许还不是群峰下最可怕的东西时，他们希望城墙上摆着的正是这件武器。务必瞄准。"
         }
       },
       "seasonOne": "第一赛季",
@@ -1077,7 +1077,7 @@ export const zh_CN: EnTranslations = {
       "clearArmed": "点击一个槽位即可清除。"
     },
     "tutorialGreeting": {
-      "eastbrookGuidanceNote": "Welcome to Eastbrook! Marshal Redbrook has work for you in the town square. Turn on golden guidance to find him and follow Wolves at the Door, or explore on your own. You can change this later in Options, Interface, Combat.",
+      "eastbrookGuidanceNote": "欢迎来到东溪镇！雷德布鲁克元帅在城镇广场有工作交给你。开启金色引导，找到他并完成“狼群来袭”，也可以自行探索。你可以稍后在选项、界面、战斗中更改此设置。",
       "guidanceOn": "开启引导",
       "guidanceOff": "关闭引导",
       "guidanceSetting": "东溪金色引导",
@@ -1468,8 +1468,8 @@ export const zh_CN: EnTranslations = {
       "mouseHint": "鼠标按键同样可用：绑定时按下中键 (M3) 或拇指键 (M4、M5)。左键和右键保留给镜头、点击移动和点击世界中的目标使用。",
       "zoomIn": "拉近镜头",
       "zoomOut": "拉远镜头",
-      "wheelHint": "The mouse wheel binds too: roll it up or down while binding, with Ctrl, Alt, or Shift held if you like. Zoom Camera In and Out sit on the bare wheel by default; move them to a chord such as Ctrl+wheel to free the wheel for abilities.",
-      "wheelHeldRefused": "A wheel notch cannot drive a held action such as movement. Pick a key or a mouse button for it."
+      "wheelHint": "鼠标滚轮也可以绑定：绑定时向上或向下滚动滚轮，也可以同时按住 Ctrl、Alt 或 Shift。拉近镜头和拉远镜头默认占用裸滚轮，把它们移到 Ctrl+滚轮之类的组合上，就能把滚轮留给技能使用。",
+      "wheelHeldRefused": "滚轮的一格无法驱动移动这类需要按住的操作。请为它选择一个按键或鼠标按钮。"
     },
     "actionBar": {
       "editKeys": "编辑动作条按键",
@@ -1741,7 +1741,7 @@ export const zh_CN: EnTranslations = {
       "confirmVendorSell": "出售前确认",
       "confirmVendorSellNote": "关闭后，出售物品只需单击即可完成，不再确认；如果背包格位发生变化，可能会卖错物品。",
       "confirmVendorSellMinQuality": "确认出售的最低品质",
-      "confirmVendorSellMinQualityNote": "Items below this quality sell with a single click; a mis-sold item can still be bought back from the vendor.",
+      "confirmVendorSellMinQualityNote": "低于此品质的物品单击即可出售；误售的物品仍可从商人处回购。",
       "itemLevelLine": "物品等级 {level}",
       "itemScoreLine": "评分 {score}",
       "showSecondaryActionBar": "显示副动作条",
@@ -1822,7 +1822,7 @@ export const zh_CN: EnTranslations = {
       "crossHotbarHelp": "按住扳机键即可点亮方向键和面板按键上的八个动作条格位。轻按另一个扳机键可切换到第二组。",
       "crossHotbarResetLayout": "重置十字热键栏",
       "crossHotbarPosition": "{trigger} + {button}",
-      "crossHotbarOwnsButtons": "十字热键栏启用时，扳机键和方向键归它所有，请在下方设置，而非此处。",
+      "crossHotbarOwnsButtons": "十字热键栏启用时，扳机键用于操作该热键栏。方向键在此处仍可编辑，用于菜单与移动。",
       "cancelAction": "取消 / 返回",
       "subcommandsAction": "子命令 / 地图",
       "cycleHudAction": "切换界面",
@@ -1833,7 +1833,7 @@ export const zh_CN: EnTranslations = {
       "crossHotbarDisplayMinimal": "仅按住时显示",
       "crossHotbarArrangeChord": "{bumper} + {button}",
       "crossHotbarCarrying": "正在拿着{action}：在格子上按确认放置，按取消放回。",
-      "crossHotbarEditHint": "整理中：确认键可从格子或法术书中拿起技能并放到格子上，取消键清空格子。",
+      "crossHotbarEditHint": "整理中 · 方向键移动 · 确认键拾取并放置 · 取消键清空格子",
       "crossHotbarEditHelp": "按住左肩键并按上方面键，即可用手柄整理十字热键栏。"
     },
     "perf": {
@@ -1930,7 +1930,7 @@ export const zh_CN: EnTranslations = {
           "copyBlocked": "复制受阻：报告已记录",
           "retestLowGraphics": "使用低画质重新测试"
         },
-        "instruction": "为获得最佳信号，请进入游戏世界，在卡顿区域移动并旋转镜头，然后在扫描期间触发造成卡顿的效果。",
+        "instruction": "为获得最佳信号，请进入离线游戏，在卡顿区域移动并旋转镜头，然后在扫描期间触发造成卡顿的效果。",
         "status": {
           "pausedHiddenRestart": "此标签页隐藏时扫描已暂停。返回后扫描将重新开始。",
           "restoredRestart": "标签页已恢复。正在重新开始一次干净的 15 秒活跃游戏采集。",
@@ -1943,7 +1943,7 @@ export const zh_CN: EnTranslations = {
           "waitingFrames": "正在等待有代表性的游戏帧：{current}/{minimum}",
           "collectingNow": "正在采集活跃游戏：现在请穿过问题区域。",
           "ready": "已准备扫描。按开始并重现卡顿。",
-          "waitingWorld": "正在等待游戏世界。请选择角色进入游戏以开始扫描。"
+          "waitingWorld": "正在等待游戏世界。请选择离线游戏或进入一个在线角色。"
         },
         "metrics": {
           "waitingRenderer": "渲染器：等待中",
@@ -2046,7 +2046,7 @@ export const zh_CN: EnTranslations = {
             "graphics": "以低画质重复相同镜头路径，确认图形压力。",
             "cpu": "分别在静止和移动时重复扫描，以隔离 CPU 阶段。",
             "loading": "重复相同路线或首次使用操作，确认卡顿发生时机。",
-            "network": "使用相同的移动和镜头路径重新测试，以确认是网络延迟还是渲染压力。"
+            "network": "在离线游戏中使用相同移动和镜头路径进行比较。"
           },
           "codeFix": {
             "environment": "让检测到的备用路径遵守共享图形和内存预算。",
@@ -2113,7 +2113,7 @@ export const zh_CN: EnTranslations = {
       "reset": "重置位置",
       "spellPosition": "法术顺序 {position} / {count}",
       "watchlist": "监视的法术",
-      "watchlistHint": "Pick any spell that buffs you to give it its own aura. Picked spells get a full card below, with their own icon, color, position and ground ring.",
+      "watchlistHint": "选择任何会为你附加增益的法术，为它启用专属光环。选中的法术会在下方获得完整卡片，拥有各自的图标、颜色、位置和地面圆环。",
       "watchlistEmpty": "你的法术书中没有其他会为你附加增益的法术。",
       "watchlistWatch": "监视{spell}",
       "watchlistUnwatch": "停止监视{spell}",
@@ -2123,7 +2123,7 @@ export const zh_CN: EnTranslations = {
       "soundVolume": "音量",
       "soundPreview": "试听",
       "soundPreviewAria": "试听“{sound}”提示音",
-      "soundHint": "A sound plays each time this spell procs. Turn the icon, crescents and ground ring off to have the sound alone announce it.",
+      "soundHint": "此法术每次触发时都会播放该声音。关闭图标、弧形和地面圆环，即可只用声音提示。",
       "readyGlow": "快捷栏高亮",
       "readyGlowHint": "当该法术的增益生效时，在动作条上高亮显示它。",
       "reticleTick": "准星刻度",
@@ -3054,7 +3054,7 @@ export const zh_CN: EnTranslations = {
         "phaseWardstonesName": "护符石",
         "phaseWardstonesSummary": "生命值降至{health}时，震颤践踏使团队定身，奥德里克修士随后赶到并点亮护符石。所有骨刺随即粉碎，地面停止燃烧，接着灵魂撕裂和不死之怒会加入王座阶段的机制。",
         "phaseKingsWrathName": "国王之怒",
-        "phaseKingsWrathSummary": "生命值降至 {health} 时，尼思拉克西斯怒吼着进入国王之怒，此后在战斗剩余时间内获得 {bonusNormal} 伤害加成（英雄难度为 {bonusHeroic}）。坟场爆裂的间隔缩短为每 {eruptionEveryNormal} 秒（英雄难度为 {eruptionEveryHeroic} 秒）。其余机制的节奏保持不变。",
+        "phaseKingsWrathSummary": "生命值降至{health}时，尼思拉克西斯怒吼着进入国王之怒，此后在战斗剩余时间内获得 {bonusNormal} 伤害加成（英雄难度为 {bonusHeroic}）。坟场爆裂的间隔缩短为每 {eruptionEveryNormal} 秒（英雄难度为 {eruptionEveryHeroic} 秒）。其余机制的节奏保持不变。",
         "gravebreakerName": "碎墓打击",
         "gravebreakerSummary": "每 {seconds} 秒，尼思拉克西斯蓄力下一次命中的挥击。他的目标只承受挥击本身的伤害，但站在他正面 {arc} 度扇形范围内 {range} 码内的其他所有人，都会承受该次挥击 {splash} 的物理伤害，并按自身护甲减免。",
         "gravebreakerResponse": "坦克始终让尼思拉克西斯背对团队。其余所有人站在他身后或侧面，绝不进入扇形范围。",
@@ -3063,16 +3063,16 @@ export const zh_CN: EnTranslations = {
         "dreadCurseHeroicSummary": "每 {every} 秒，尼思拉克西斯打击当前坦克，造成 {hitHeroic} 最大生命值的暗影伤害，并叠加一层恐惧诅咒。持续 {duration} 秒内，每层都会使该坦克受到尼思拉克西斯的伤害提高 {perStackHeroic}，最多叠加 {max} 层。",
         "dreadCurseResponse": "坦克应在 {stacks} 层时轮换：另一名坦克嘲讽接怪，被诅咒的坦克则远离碎墓打击的扇形范围，直到层数消退。治疗在轮换前为即将接怪的坦克做好准备。",
         "boneSpikeName": "骨刺",
-        "boneSpikeSummary": "每 {everyNormal} 秒，尼思拉克西斯会将当前目标以外的 {victimsNormal} 名队员穿刺在骨刺上。被穿刺的队员无法行动，且每秒损失 {drainNormal} 最大生命值，直到骨刺被击碎。任何人的任意攻击累计命中 {hitsNormal} 次即可击碎骨刺。被穿刺过的队员在 {cooldown} 秒内不会再次被点名，因此骨刺会在全团分摊。",
-        "boneSpikeHeroicSummary": "每 {everyHeroic} 秒，尼思拉克西斯会将当前目标以外的 {victimsHeroic} 名队员穿刺在骨刺上。被穿刺的队员无法行动，且每秒损失 {drainHeroic} 最大生命值，直到骨刺被击碎。任何人的任意攻击累计命中 {hitsHeroic} 次即可击碎骨刺。被穿刺过的队员在 {cooldown} 秒内不会再次被点名，因此骨刺会在全团分摊。",
-        "boneSpikeResponse": "输出职业立即转火骨刺并将其摧毁，以解救被穿刺的队员。治疗在骨刺被摧毁前为被穿刺者续命。",
+        "boneSpikeSummary": "每 {everyNormal} 秒，尼思拉克西斯会用骨刺穿刺除当前目标外的 {victimsNormal} 名队员。被穿刺的队员无法行动，每秒损失 {drainNormal} 最大生命值，直到骨刺被摧毁。任何人命中骨刺 {hitsNormal} 次即可将其击碎，无论伤害多少。已被穿刺过的队员在 {cooldown} 秒内不会再次被选中，因此骨刺会分散到整个团队。",
+        "boneSpikeHeroicSummary": "每 {everyHeroic} 秒，尼思拉克西斯会用骨刺穿刺除当前目标外的 {victimsHeroic} 名队员。被穿刺的队员无法行动，每秒损失 {drainHeroic} 最大生命值，直到骨刺被摧毁。任何人命中骨刺 {hitsHeroic} 次即可将其击碎，无论伤害多少。已被穿刺过的队员在 {cooldown} 秒内不会再次被选中，因此骨刺会分散到整个团队。",
+        "boneSpikeResponse": "离得最近的人攻击骨刺：任何人命中几次即可击碎，无论伤害多少。治疗者在骨刺被击碎前保住被穿刺队员的性命。",
         "graveEruptionName": "坟场爆裂",
         "graveEruptionSummary": "每 {everyNormal} 秒，森森白骨之手会在队员脚下标记 {countNormal} 个半径 {radius} 码的圆圈。{warning} 秒后，每个圆圈都会爆裂，造成 {burstNormal} 最大生命值的暗影伤害，随后化为坟场烈焰燃烧 {flameNormal} 秒，对站在其中的任何人每秒造成 {tickNormal} 最大生命值的伤害。",
         "graveEruptionHeroicSummary": "每 {everyHeroic} 秒，森森白骨之手会在队员脚下标记 {countHeroic} 个半径 {radius} 码的圆圈。{warning} 秒后，每个圆圈都会爆裂，造成 {burstHeroic} 最大生命值的暗影伤害，随后化为坟场烈焰燃烧 {flameHeroic} 秒，对站在其中的任何人每秒造成 {tickHeroic} 最大生命值的伤害。",
         "graveEruptionResponse": "在每个预警圆圈爆裂前离开，并远离燃烧地面。坦克应将尼思拉克西斯拉离火焰区域，为近战输出留出空间。",
         "bindingSigilName": "束缚法阵",
-        "bindingSigilSummary": "每 {everyNormal} 秒，王座两侧平台之一会亮起古老结界的符印（位于开怪点左侧或右侧 {sideOffset} 码，每次轮换方向），同时他开始不朽飞升，每 {ascensionEvery} 秒提高 {ascensionNormal} 伤害与攻击速度。若他在 {bindNormal} 秒内站在符印上则会被束缚：飞升被净化，昏迷 {stunNormal} 秒，且在 {boundNormal} 秒内受到的伤害提高 {vulnerability}。否则全团受到 {unboundHitNormal} 最大生命值的暗影伤害，且在下一次束缚前保持 {unboundBonusNormal} 额外伤害。",
-        "bindingSigilHeroicSummary": "每 {everyHeroic} 秒，王座两侧平台之一会亮起古老结界的符印（位于开怪点左侧或右侧 {sideOffset} 码，每次轮换方向），同时他开始不朽飞升，每 {ascensionEvery} 秒提高 {ascensionHeroic} 伤害与攻击速度。若他在 {bindHeroic} 秒内站在符印上则会被束缚：飞升被净化，昏迷 {stunHeroic} 秒，且在 {boundHeroic} 秒内受到的伤害提高 {vulnerability}。否则全团受到 {unboundHitHeroic} 最大生命值的暗影伤害，且在下一次束缚前保持 {unboundBonusHeroic} 额外伤害。",
+        "bindingSigilSummary": "每 {everyNormal} 秒，一座古老结界的法阵会在王座两侧的两座平台之一浮现（以团队视角，位于开战时尼思拉克西斯所站位置左侧或右侧 {sideOffset} 码处），每次施放交替换边，同时他开始不死飞升，每 {ascensionEvery} 秒获得 {ascensionNormal} 伤害与攻击速度加成。若他在 {bindNormal} 秒内站上法阵，便会受缚：不死飞升被清除，他被眩晕 {stunNormal} 秒，并在接下来的 {boundNormal} 秒内受到的伤害提高 {vulnerability}。否则每名队员都会受到 {unboundHitNormal} 最大生命值的暗影伤害，且他会一直保持 {unboundBonusNormal} 的伤害加成，直到下一次束缚。",
+        "bindingSigilHeroicSummary": "每 {everyHeroic} 秒，一座古老结界的法阵会在王座两侧的两座平台之一浮现（以团队视角，位于开战时尼思拉克西斯所站位置左侧或右侧 {sideOffset} 码处），每次施放交替换边，同时他开始不死飞升，每 {ascensionEvery} 秒获得 {ascensionHeroic} 伤害与攻击速度加成。若他在 {bindHeroic} 秒内站上法阵，便会受缚：不死飞升被清除，他被眩晕 {stunHeroic} 秒，并在接下来的 {boundHeroic} 秒内受到的伤害提高 {vulnerability}。否则每名队员都会受到 {unboundHitHeroic} 最大生命值的暗影伤害，且他会一直保持 {unboundBonusHeroic} 的伤害加成，直到下一次束缚。",
         "bindingSigilResponse": "坦克应立即将尼思拉克西斯拖上法阵，无视团队留下的任何燃烧地面。近战跟随拖拽路线，远程则避开新的碎墓打击扇形范围。他受缚期间，全队火力全开。",
         "raiseFallenName": "亡者复生",
         "raiseFallenSummary": "在王座阶段，每 {every} 秒，尼思拉克西斯会在其身后唤起复苏王室卫兵。它们会冲向他的当前目标，战斗至被摧毁为止。",
@@ -3089,11 +3089,11 @@ export const zh_CN: EnTranslations = {
         "courtSummary": "英雄难度下，每次不死之怒结算后（无论是否被打断），只要上一批王庭众魂已被消灭，尼思拉克西斯就会唤起新的王庭众魂：奥德伦，亡魂战卫会用王室劈砍横扫其目标附近的所有人；马尔里克，亡魂大祭司会引导马尔里克的治疗，每次施法都为尼思拉克西斯恢复更多生命；沃斯，亡魂之刃无视嘲讽，专注猎杀团队成员。",
         "courtResponse": "坦克接管奥德伦并使其劈砍背对团队。马尔里克的治疗一旦开始引导，立即眩晕或沉默他并优先将其击杀；随后用定身或眩晕将沃斯从治疗身边引开（他无法被嘲讽），并第二个将其击杀。",
         "kingsWrathName": "国王之怒",
-        "kingsWrathSummary": "尼思拉克西斯在战斗剩余时间内，普通难度造成 {bonusNormal} 额外伤害，英雄难度为 {bonusHeroic}。坟场爆裂每 {eruptionEveryNormal} 秒发生一次（英雄难度为 {eruptionEveryHeroic} 秒）。",
+        "kingsWrathSummary": "尼思拉克西斯在本场战斗剩余时间内，普通难度造成 {bonusNormal} 更多伤害，英雄难度为 {bonusHeroic}。坟场爆裂每 {eruptionEveryNormal} 秒发生一次（英雄难度为 {eruptionEveryHeroic} 秒）。",
         "kingsWrathResponse": "使用剩余的防御技能应对无法躲避的伤害。在团队结束战斗前，继续干净地应对此前的所有机制。",
         "boneStormName": "白骨风暴",
-        "boneStormSummary": "国王之怒开始后 {first} 秒，以及此后每隔 {everyNormal} 秒，尼思拉克西斯都会开始持续 {duration} 秒的白骨风暴。此时他无视仇恨，以 {speed} 倍常速移动，并发起 {charges} 次冲锋，每次持续 {chargeSeconds} 秒。他的旋转攻击会在 {radius} 码内每秒造成 {whirlNormal} 最大生命值的伤害。每次冲锋都会以一次白骨重击结束，在相同范围内造成 {slamNormal} 最大生命值的伤害。风暴开始 {spikeAt} 秒后他会施放骨刺，随后碎墓打击会在风暴结束 {rearm} 秒后重新启用。",
-        "boneStormHeroicSummary": "国王之怒开始后 {first} 秒，以及此后每隔 {everyHeroic} 秒，尼思拉克西斯都会开始持续 {duration} 秒的白骨风暴。此时他无视仇恨，以 {speed} 倍常速移动，并发起 {charges} 次冲锋，每次持续 {chargeSeconds} 秒。他的旋转攻击会在 {radius} 码内每秒造成 {whirlHeroic} 最大生命值的伤害。每次冲锋都会以一次白骨重击结束，在相同范围内造成 {slamHeroic} 最大生命值的伤害。风暴开始 {spikeAt} 秒后他会施放骨刺，随后碎墓打击会在风暴结束 {rearm} 秒后重新启用。",
+        "boneStormSummary": "国王之怒开始后 {first} 秒，以及此后每隔 {everyNormal} 秒，尼思拉克西斯都会开始持续 {duration} 秒的白骨风暴。此时他无视仇恨，以 {speed} 倍常速移动，并发起 {charges} 次冲锋，每次持续 {chargeSeconds} 秒。他的旋转攻击会在 {radius} 码内每秒造成 {whirlNormal} 最大生命值的伤害。每次冲锋都会以一次白骨重击结束，在相同范围内造成 {slamNormal} 最大生命值的伤害。每场风暴的第一次重击改为造成 {openingSlamNormal}。碎墓打击会在风暴结束 {rearm} 秒后重新启用。",
+        "boneStormHeroicSummary": "国王之怒开始后 {first} 秒，以及此后每隔 {everyHeroic} 秒，尼思拉克西斯都会开始持续 {duration} 秒的白骨风暴。此时他无视仇恨，以 {speed} 倍常速移动，并发起 {charges} 次冲锋，每次持续 {chargeSeconds} 秒。他的旋转攻击会在 {radius} 码内每秒造成 {whirlHeroic} 最大生命值的伤害。每次冲锋都会以一次白骨重击结束，在相同范围内造成 {slamHeroic} 最大生命值的伤害。每场风暴的第一次重击改为造成 {openingSlamHeroic}。碎墓打击会在风暴结束 {rearm} 秒后重新启用。",
         "boneStormResponse": "分散站位并持续远离尼思拉克西斯。被冲锋锁定的队员应逃离，其他人则为冲锋路径留出空间，风暴结束后由坦克重新接回仇恨。",
         "crownEnduresName": "王冠不朽",
         "crownEnduresSummary": "从开战起 {enrageNormal} 秒后（奥德里克修士在生命值70%时登场的期间计时会暂停），王冠不朽将触发强制狂暴。尼思拉克西斯获得 {damage} 更多伤害和 {haste} 更快的攻击速度，此后每 {rampEveryNormal} 秒再获得 {rampStep} 伤害提升。此机制没有计时条，警告会在剩余 {warn60}、{warn30} 和 {warn10} 秒时以呐喊形式出现。",
@@ -3144,7 +3144,7 @@ export const zh_CN: EnTranslations = {
       "elementalConvergencePrimed": "你的下一个不同元素学派法术将触发元素汇聚",
       "hunterFerocity": "{stacks} 层兽群凶性：你的宠物造成的伤害提高 {pct}%",
       "cooldownCap": "此时间窗已使用 {used}/{cap} 秒冷却缩减",
-      "bruinRushWindow": "Cat Form costs no mana and Pins your Bruin Rush target, slowing it by {pct}% for {sec} sec",
+      "bruinRushWindow": "狼形态无需法力，并钉制你的巨熊冲锋目标，使其减速 {pct}%，持续 {sec} 秒",
       "funeralHarvestLock": "葬礼收割暂时无法再次生成灵魂碎片",
       "leadenHexLock": "铅沉妖术暂时无法再次定身此目标",
       "forbiddenReflectionReady": "下一个符合条件的术士冷却技能可再次施放",
@@ -3168,7 +3168,7 @@ export const zh_CN: EnTranslations = {
       "suddenDeath": "下一次斩杀不消耗怒气并无视生命值要求",
       "aoeEcho": "剩余 {charges} 次回响：单体技能对附近最多 {targets} 个敌人造成 {pct}% 伤害",
       "sureCrit": "接下来 {charges} 个伤害技能必定暴击",
-      "temporalEcho": "施法者的奥术伤害会治疗你，单体伤害转化 {singlePct}%，范围伤害转化 {areaPct}%",
+      "temporalEcho": "施法者的奥术伤害会治疗你，单体伤害转化 {singlePct}%，范围伤害转化 {areaPct}%。以太涌动和以太飞镖在单独的时光回响上按4倍加成计算。群体回响会产生等量的治疗储备，按照缺失生命值在生命低于60%的被标记盟友之间分配",
       "arcaneCharge": "{stacks} 层奥术充能：以太涌动伤害提高 {damagePct}%，施法加快 {castPct}%，法力消耗变为 {costMult} 倍",
       "physicalReduction": "受到的物理伤害降低 {pct}%",
       "temporalHourglass": "免疫伤害且无法行动；恢复生命并加速冷却。右键点击可取消。",
@@ -3192,7 +3192,7 @@ export const zh_CN: EnTranslations = {
       "coldsightRead": "你的下一次引弓长射造成的伤害提高{longDrawPct}%，或你的下一次凶邪射击造成的伤害提高{fellShotPct}%",
       "duskEconomy": "技能的能量消耗降低{pct}%",
       "moontide": "月潮：第{stacks}/{max}层。月翼形态下，野性弹、天陨与月种的施法各累积1层。达到{max}层时：月种变为月涌，天陨变为日醒，使用任意一个都会消耗全部3层",
-      "oldBlood": "古血：第{stacks}/{max}层。裂爪、剐削、血裂、血噬、横扫利爪与碎骨击的命中各累积1层。达到{max}层时：狼形态下血噬变为血收，巨熊形态下碎骨击变为碎髓",
+      "oldBlood": "古血：第{stacks}/{max}层。裂爪、剐削、血裂、血噬、横扫利爪与碎骨击的命中各累积1层。达到{max}层时：豹形态下血噬变为血收，巨熊形态下碎骨击变为碎髓",
       "verdance": "繁茂：第{stacks}/{max}层。每种下一个新的野性绽放或二度绽放累积1层。达到{max}层时，迅捷治愈变为盛放",
       "freeExecute": "下一个符合条件的斩杀技能不消耗资源",
       "resourceSap": "每 {interval} 秒恢复 {value} 点当前资源",
@@ -3607,7 +3607,7 @@ export const zh_CN: EnTranslations = {
     },
     "materialHint": {
       "fineGrade": "优质品级。以等级高于该材料的工具在满级矿脉采集所得，在任何需要普通版本的地方均可替代使用。",
-      "fineFarmGrade": "Fine grade. Some picks of a harvest come up fine, more often at higher Farming skill or with a charged Artisan's Eye. Ordinary produce never counts where the fine grade is required.",
+      "fineFarmGrade": "优质品级。收获时部分产物会成为优质品，农艺技能越高，或装有充能的匠人之眼时更常出现。需要优质品级时普通农产品一律不算数，需要普通农产品时优质品级也一律不算数。",
       "cookingCatch": "烹饪材料。必须先烹饪后才能食用。",
       "usedBy": "用于制作{crafts}。",
       "arcaneDust": "制作材料。分解普通和优秀品质的装备可得。",
@@ -3966,7 +3966,7 @@ export const zh_CN: EnTranslations = {
       "sortAria": "排序银行物品",
       "searchAria": "按名称搜索银行物品",
       "depositAll": "存入所有材料",
-      "depositAllTooltip": "将背包中的所有制作材料和废品一次性存入银行。采集工具、已装备的装备、任务物品和消耗品不会受到影响。",
+      "depositAllTooltip": "将背包中的所有制作材料（提示中标示为“材料”或“优质材料”的所有物品）一次性存入银行。其余物品全部留在背包中，包括采集工具、任务物品、消耗品和灰色物品。",
       "depositAllDone": "已存入材料：{count}。",
       "depositAllFull": "已存入材料：{count}。银行已满。",
       "depositAllNone": "银行已满：未存入任何物品。",
@@ -4395,16 +4395,16 @@ export const zh_CN: EnTranslations = {
       "none": "无"
     },
     "archetypePair": {
-      "engineering+alchemy": "Bombardier",
-      "alchemy+cooking": "Apothecary",
-      "cooking+leatherworking": "Trapper",
-      "leatherworking+tailoring": "Outfitter",
-      "tailoring+inscription": "Inkweaver",
-      "inscription+enchanting": "Arcanist",
-      "enchanting+jewelcrafting": "Gembinder",
-      "jewelcrafting+weaponcrafting": "Bladewright",
-      "weaponcrafting+armorcrafting": "Smith",
-      "armorcrafting+engineering": "Gearwright"
+      "engineering+alchemy": "爆破师",
+      "alchemy+cooking": "药剂师",
+      "cooking+leatherworking": "捕兽人",
+      "leatherworking+tailoring": "制装师",
+      "tailoring+inscription": "织墨师",
+      "inscription+enchanting": "秘法师",
+      "enchanting+jewelcrafting": "缚晶师",
+      "jewelcrafting+weaponcrafting": "铸刃师",
+      "weaponcrafting+armorcrafting": "铁匠",
+      "armorcrafting+engineering": "齿轮匠"
     },
     "craftName": {
       "armorcrafting": "护甲锻造",
@@ -4469,7 +4469,7 @@ export const zh_CN: EnTranslations = {
       "enchant_lucent_infusion": "莹光灌注"
     },
     "enchantDescription": {
-      "enchant_weapon_lastflame_zeal": "命中的近战攻击有几率使你获得50点力量，持续15秒，并为你恢复200点生命值。治疗加成与减益生效。每次命中的触发几率为攻击武器基础速度每0.6秒对应1%。没有内置冷却时间。双手各有独立增益；同一只手再次触发会刷新其增益。远程攻击不会触发此效果。狼形态改用其1秒的基础挥击速度。"
+      "enchant_weapon_lastflame_zeal": "命中的近战攻击有几率使你获得50点力量，持续15秒，并为你恢复200点生命值。治疗加成与减益生效。每次命中的触发几率为攻击武器基础速度每0.6秒对应1%。没有内置冷却时间。双手共享同一个增益；任一只手触发都会刷新该增益，且永不叠加。远程攻击不会触发此效果。狼形态改用其1秒的基础挥击速度。"
     },
     "professions": {
       "title": "专业",
@@ -4513,7 +4513,7 @@ export const zh_CN: EnTranslations = {
           "quickeningCharm": "缩短其触发的资源节点重生计时。",
           "makersCharm": "充能期间每次采集产出+2，在农具上为+1。"
         },
-        "howToSlot": "在专业窗口中将其镶嵌到采矿、伐木或草药学工具上。镶嵌后即消耗。",
+        "howToSlot": "在专业窗口中将其镶嵌到采矿、伐木、草药学或耕作工具上。镶嵌后即消耗。",
         "charges": "普通品质工具初始有{base}次充能（稀有度每升一级+{bonus}次）。",
         "landOnly": "无法镶嵌到鱼竿上。",
         "openProfessions": "打开专业窗口，将其镶嵌到采集工具上。"
@@ -4702,8 +4702,8 @@ export const zh_CN: EnTranslations = {
       "attunedBanner": "已调谐：{title}",
       "tierTutorial": {
         "title": "你的第一个阶级",
-        "tierCap": "一门技艺在技能 {skill} 时达到第一个阶级，每提升一个阶级都会改善其制作能力。但只有当某门技艺成为你两门主修之一时，才能制作超越稀有品质的作品。",
-        "radar": "你的专业构成一个环轮。调谐到相邻的一对，这两门技艺便成为无上限的主修；环轮对面的一门技艺成为上限为稀有的爱好；其余技艺则进入休眠：知识仍会保留，但在你重新拾起之前上限为普通。",
+        "tierCap": "一项专业在技能 {skill} 时达到第一个阶级，每提升一个阶级都会改善其产出或可制作的内容。不过，具体到你的制造类专业，只有当某门技艺成为你的两门主修之一后，才能提升到超越稀有品质的作品。",
+        "radar": "你的制造类专业构成一个环轮。调谐到相邻的一对，这两门技艺便成为无上限的主修；环轮对面的一门技艺成为上限为稀有的爱好；其余技艺则进入休眠：知识仍会保留，但在你重新拾起之前上限为普通。",
         "masters": "各城镇的工艺大师提供调谐任务。准备好后去拜访他们，选择你的组合。你所学到的一切都不会失去。",
         "dismiss": "明白了"
       },
@@ -4716,7 +4716,7 @@ export const zh_CN: EnTranslations = {
       "commissionBound": "委托制品：已绑定给收货人"
     },
     "marketWindow": {
-      "mixedListingsFooter": "The Merchant restocks common goods; player listings sit beside them at their asking price."
+      "mixedListingsFooter": "商人会补充普通商品；玩家上架的物品会以其要价并列显示。"
     },
     "itemMenu": {
       "use": "使用",
@@ -5078,7 +5078,7 @@ export const zh_CN: EnTranslations = {
         "deathless_rage": "不死之怒（需在护符石处打断）",
         "wardstones": "护符石引导（阶段转换）",
         "dread_curse": "恐惧诅咒（累加坦克轮换减益，2层后轮换）",
-        "bone_spike": "骨刺（被穿刺者会持续掉血，直到骨刺被摧毁）",
+        "bone_spike": "骨刺（被穿刺的玩家持续损失生命值，直到有人用几次攻击击碎骨刺）",
         "grave_eruption": "坟场爆裂（预警圆圈会留下燃烧地面）",
         "binding_sigil": "束缚法阵（把首领拖上法阵，否则全团遭殃）",
         "kings_wrath": "国王之怒（30%时触发：永久伤害加成，地面机制加快）",
@@ -5321,7 +5321,7 @@ export const zh_CN: EnTranslations = {
       "earnedBy": "由 {names} 获得",
       "earnerWithDate": "{name}（{date}）",
       "accountScopeNote": "账号下所有角色共享",
-      "accountScopeHint": "A deed any character on your account accomplishes is earned here too, and the Book names who earned it.",
+      "accountScopeHint": "账号内任一角色完成的功业在此同样算达成，且书中会记下是谁完成的。",
       "featRibbon": "壮举",
       "hiddenBadge": "隐藏",
       "titleChip": "头衔奖励",
@@ -6051,7 +6051,7 @@ export const zh_CN: EnTranslations = {
         "q1": "游戏免费吗?",
         "a1": "是的。整个游戏在满级之前完全免费,并且在 GitHub 上开源。",
         "q2": "我需要加密货币钱包吗?",
-        "a2": "完全没有。本游戏为开源社区项目，倡导绿色纯粹的经典游戏乐趣，无任何战力商城或付费门槛，所有装备、坐骑与外观均在游戏内探索获得。",
+        "a2": "不需要。没有钱包也能完整畅玩游戏。可选的社区代币仅增添外观装饰，以及每日奖励奖池的一份分成，绝不影响战力。",
         "q3": "可以离线游玩吗?",
         "a3": "可以。浏览器中有即开即玩的单人模式，此外还有共享的在线世界。",
         "q4": "升到满级要多久?",
@@ -6093,11 +6093,11 @@ export const zh_CN: EnTranslations = {
       "groupingTitle": "携手同行",
       "groupingBody": "邀请他人组队,即可共享任务进度并挑战地下城。世界中的大部分内容都可单人完成,因此组队是一种选择,而非负担。",
       "onlineTitle": "在线或离线",
-      "onlineBody": "在充满生机的持久在线世界中与各地玩家一同冒险，或按自己的节奏独行探索。",
+      "onlineBody": "在共享的在线世界与其他所有人一同游玩，或在浏览器中开启一个即开即玩的离线世界来熟悉门道。",
       "reassure": "天赋从 5 级开始，一共六排，分别在 5、8、11、14、17 和 20 级各开一排。每一排都是三选一，只要脱离战斗且不在竞技场比赛中，你随时可以重置，所以早期的选择绝非一成不变。放心大胆地尝试吧。",
       "controlsLink": "查看完整操作键参考",
       "step0Title": "进入游戏",
-      "step0Body": "开始游戏快捷而免费：只需注册一个免费账号（填写用户名、密码及用于找回的邮箱）或直接登录已有账号，从服务器列表中挑选一个服务器，即可点击进入游戏。",
+      "step0Body": "离线游玩什么都不需要：在开始界面选择“离线”，再按“开始游戏”。想和大家一起玩，就注册一个免费账号（一个用户名、一个密码，以及一个用于找回账号的邮箱），或登录你已有的账号，然后从服务器列表里挑一个服务器。",
       "worldsTitle": "选择服务器",
       "worldsBody": "在线游玩发生在各个服务器上，每个服务器都是一份完整的游戏副本，有自己的玩家、自己的世界市场，也有自己的排名。服务器列表会显示每个服务器有多繁忙，从“低”到“已满”，所以你可以挑一个清静的落得宽敞，也可以挑一个热闹的不缺同伴。你的角色属于你创建它的那个服务器，而你可以在不止一个服务器上保留角色。",
       "charactersTitle": "你的角色",
@@ -6293,7 +6293,7 @@ export const zh_CN: EnTranslations = {
       "keybindsHeading": "“按键绑定”面板",
       "keybindsBody": "按键列表只是那个面板的一半。它上面还有一排开关，决定你的鼠标如何驾驭这个游戏：鼠标镜头、旋转视角时是否锁定光标、点击移动以及由哪个鼠标键触发、攻击移动、左手触控布局，还有聊天的脏话过滤。",
       "keybindsMouseBody": "那里有两件事很容易被忽略。鼠标按键可以像键盘按键一样绑定，所以滚轮点击和拇指键都能承载技能，而左右键则保留给镜头和点击世界。此外，你可以直接从动作条上绑定：在这里打开条上绑定模式，然后点一个格子，按下你想要的键。",
-      "keybindsWheelBody": "The wheel itself binds too. Zoom Camera In and Zoom Camera Out are ordinary bindings that sit on the bare wheel by default, so you can move them to Ctrl plus the wheel, or to keys, and then roll the freed wheel to fire action bar slots. A wheel notch has no release, so it cannot drive a held action like moving forward."
+      "keybindsWheelBody": "滚轮本身也可以绑定。拉近镜头和拉远镜头是普通绑定，默认占用裸滚轮，因此你可以把它们移到 Ctrl+滚轮或按键上，再用空出来的滚轮触发动作条格位。滚轮的一格没有松开动作，所以无法驱动向前移动这类需要按住的操作。"
     },
     "combat": {
       "intro": "战斗遵循经典 MMO 中熟悉的规则。你完全不必钻研这些就能玩得很好,这里只是介绍一下战斗大致的运作方式。",
@@ -6314,7 +6314,7 @@ export const zh_CN: EnTranslations = {
       "deathTitle": "当你倒下时",
       "deathBody": "若你的生命值归零，你便会当场倒下，你的身体会留在那里。释放你的灵魂，你会化作鬼魂在最近的墓地复起：比生者的脚步更快，敌人无法伤及，却也无法战斗、拾取，或与悬浮在墓碑上方的灵魂医者以外的任何人交谈。接下来由你选择。让鬼魂跑回你的身体旁，你便会就地复活，恢复部分生命与法力，毫无任何惩罚。或者接受灵魂医者的立即复生，就地起身，代价是复活后遗症：一段对你全身的暂时削弱，你越是历练深厚，它持续得越久，而全新的角色则完全免受其扰。若你倒在地下城之中，你的灵魂会在门外的墓地等候；让鬼魂走回门口，你便会在入口处复活。探秘则是例外：在那里倒下，你只会被重新扶起、置于探秘的入口处，不过第二次倒下就会结束这趟探秘。无论走哪条路，你都不会损失经验、装备或钱币。战斗间隙，坐下来进食饮水，让下一场战斗从满状态开始。",
       "threatTitle": "敌人会打谁",
-      "threatBody": "每个敌人都在心里记着一笔账，算清是谁最惹恼了它。伤害会加到账上，治疗同样如此：一次治疗会把威胁值加到正与被治疗者交战的那些敌人身上，并在它们之间分摊，因此最安全的治疗，是治疗那位已经被坦克拉稳的同伴。坦克会开启防御姿态或防护形态，让自己产生的一切威胁成倍增加，而德鲁伊的狼形态则相反，会甩掉威胁；嘲讽则把施放者直接抬到账目顶端，并在几秒内把敌人钉在他身上。敌人不会在有人刚刚超过坦克的那一瞬间就转火：要把它拉走需要明显的领先，远程需要的领先幅度又比近战更大，因此起手时稍有耐心，就能让战斗留在它该在的地方。",
+      "threatBody": "每个敌人都在心里记着一笔账，算清是谁最惹恼了它。伤害会加到账上，治疗同样如此：一次治疗会把威胁值加到正与被治疗者交战的那些敌人身上，并在它们之间分摊，因此最安全的治疗，是治疗那位已经被坦克拉稳的同伴。坦克会开启防御姿态或防护形态，让自己产生的一切威胁成倍增加，而德鲁伊的豹形态则相反，会甩掉威胁；嘲讽则把施放者直接抬到账目顶端，并在几秒内把敌人钉在他身上。敌人不会在有人刚刚超过坦克的那一瞬间就转火：要把它拉走需要明显的领先，远程需要的领先幅度又比近战更大，因此起手时稍有耐心，就能让战斗留在它该在的地方。",
       "hazardsTitle": "水也能要你的命",
       "breathBody": "深水可以游泳，你也可以潜到水面之下。当你的头没入水中时，屏幕上方附近会出现一条蓝色的呼吸条并不断减少；浮出水面后，它回满的速度远快于消耗的速度。若在水下把它耗尽，你就会开始溺水，每秒失去一大块生命值，直到重新呼吸到空气为止，所以长时间下潜时务必留意那条呼吸条。死亡会清空它，因此跑尸总是从满满的一口气开始。",
       "fatigueBody": "大海没有围墙。世界本就打算让你游过去的那些水域，也就是陆地与陆地之间的海峡与水湾，以及内陆的湖泊，无论花多久横渡都很安全。可若你从岸边一路游进真正的外海，它就会开始榨干你的体力：先是出现一则警告，你有足够的时间掉头，之后大海便会造成不断加重、任何手段都无法阻止的伤害，直到你朝陆地折返为止。在离岸那么远的地方溺死或力竭而亡，都和其他任何死亡一样需要释放灵魂，所以请把地平线当作风景，而不是目的地。",
@@ -6345,9 +6345,9 @@ export const zh_CN: EnTranslations = {
       "framePetBody": "猎人、术士，以及任何放出了宠物的人，都会在自己的框体旁得到一个小框体，显示宠物的名字、等级和生命值。点击那个框体即可选中你的宠物，用键盘按 Ctrl+6 也是一样。",
       "framesMoveBody": "你的框体、目标框体和队伍框体都可以移动。每个框体角上都有一个小小的移动按钮：解开它，把框体拖到你想要的位置，再锁上，这样一次误点就挪不动它。如果挪到了让你后悔的地方，选项里的“重置框体位置”会把它们统统弹回最初的位置。",
       "framesMoveBodyEditFrames": "你的框体、目标框体和队伍框体都可以移动。每个框体角上都有一个小小的移动按钮：解开它，把框体拖到你想要的位置，再锁上，这样一次误点就挪不动它。界面选项里“头像框”标签页顶部的“编辑框体”会一次松开界面的其余部分，这三个框体也随之一起松开：动作条、施法条、挥击条、经验条、小地图、按钮栏、宠物框体、姿态条、增益行与减益行，还有“愿望单提醒”小标签，松开期间每一件都挂着自己的名牌。如果挪到了让你后悔的地方，同一个“头像框”标签页底部的“恢复默认”会把它们统统弹回最初的位置。",
-      "framesGovernedExtra": "“编辑框体”还会一并松开下方的追踪器堆栈(你追踪的任务及其目标、你的功绩进度、你的圣物库页面、你所在的探秘、你正在参与的任何裂隙，以及你正在追踪的配方或委托)、宠物框体旁的宠物动作条、显示你对附近敌人所施减益的“目标减益”框体、圣骑士的“虔诚”勋章、术士的“痛苦资源条”、法术触发浮层、双持武器时的副手挥击条，以及带标签页的伤害统计窗口，松开期间每一件都挂着自己的名牌。",
+      "framesGovernedExtra": "“编辑框体”还会一并松开下方的追踪器堆栈(你追踪的任务及其目标、你的功绩进度、你的圣物库页面、你从制作中置顶的配方、你所在的探秘、你正在参与的任何裂隙，以及你正在追踪的配方或委托)、宠物框体旁的宠物动作条、显示你对附近敌人所施减益的“目标减益”框体、圣骑士的“虔诚”勋章、术士的“痛苦资源条”、法术触发浮层、双持武器时的副手挥击条，以及带标签页的伤害统计窗口，松开期间每一件都挂着自己的名牌。",
       "framesGovernedAuraTracks": "“编辑框体”还会松开六条可选的光环轨道，前提是你已在同一“界面”选项的“战斗”页中开启它们：“我的增益”轨道、“防御性冷却”轨道、“我的护盾”轨道、“攻击性冷却”轨道、“移动与潜行”轨道，以及“我给队友的增益”轨道。所有轨道默认关闭，松开期间每一条都挂着自己的名牌。",
-      "framesGovernedTalkingHead": "Edit Frames also loosens the Dialogue panel, which carries an NPC's spoken line while that NPC is out of your view; it wears its name chip while it is loose.",
+      "framesGovernedTalkingHead": "“编辑框体”也会解锁对话面板：当某个 NPC 不在你的视野内时，它承载该 NPC 说出的台词；处于解锁状态时它会显示自己的名称标签。",
       "barsTitle": "各类条、计时与战斗文字",
       "barsBody": "你施法或引导时，施法条会出现在屏幕中央、动作条正上方，并带着法术的名称与剩余时间。你的目标在它自己的框体上也有一条施法条，好让你看清接下来会发生什么并作出应对。\n\n施法条下方是一条细细的挥击条，它在你两次武器挥击之间填充，让近战或远程攻击者看清下一次自动攻击何时落下。\n\n你的经验条横贯动作条下方的整个宽度，被刻成一段一段，其中较亮的一截表示你已经存下的休息经验。\n\n潜入水下时，屏幕顶部会出现一条蓝色的呼吸条。头没在水里时它会一直下降，耗尽后会闪红并让你开始溺水，而你一浮出水面它就迅速回满。空格键让你上浮，下潜键（默认为 Ctrl）带你潜得更深。\n\n伤害与治疗会以小小的数字从命中之处向上飘起，让你不必读文字也能看懂一场战斗。聊天框里的“战斗”标签页保留着完整的文字记录。",
       "aurasTitle": "增益与减益",
@@ -6358,7 +6358,7 @@ export const zh_CN: EnTranslations = {
       "minimapBody": "右上角：一张圆形小地图，上方是区域名，下方是你的坐标，外面环着一圈标出一天时辰的表盘。\n\n有话要说时，它上面会冒出一些小小的指示：有未读信件在等你时是一只信封，有售出所得或退回的货物在商人处等你时是一枚硬币，还有一个列出你团队副本锁定的按钮。",
       "mapTitle": "世界地图与你的追踪器",
       "mapBody": "M 打开世界地图：整块大陆铺展开来，上面有你自己的箭头、各个区域及其名称、你周围的兴趣点、传送门，还有你已经发现的采集资源点。你的队伍也会显示在上面。在探秘里，地图会切换成你目前已探索房间的示意图。\n\n右侧、小地图下方，一叠追踪器让你不必打开任何窗口就能盯住手头的事：你追踪的任务及其目标、你的功绩进度、你所在的探秘，以及你正在参与的任何裂隙。想把屏幕空间要回来时，任务追踪器可以折叠。",
-      "mapBodyZoneFirst": "M 打开世界地图，直接落在你所站的区域上，上面有你自己的箭头、你周围的兴趣点、带着标记的任务发布者和你的任务目标所在的地带、制作站、邮箱、告示板和菜畦、地下城入口，还有这个区域里的每一处采集资源点，它们在重新生长期间显示为灰色，你的工具不够格时则带上标记。你的队伍也会显示在上面。右键点击地图，或按下它的“世界地图”按钮，视野便拉远到整块大陆，每个区域都连同名称一起画出，点击某个区域即可打开那个区域的地图。走进探秘、地下城、裂隙或城堡，地图会切换成你所在之处的平面图；荆谷原野战场则有自己专属的战场地图。\n\n右侧、小地图下方，一叠追踪器让你不必打开任何窗口就能盯住手头的事：你追踪的任务及其目标、你的功绩进度、你的圣物库页面、你所在的探秘，以及你正在参与的任何裂隙。想把屏幕空间要回来时，任务追踪器可以折叠。",
+      "mapBodyZoneFirst": "M 打开世界地图，直接落在你所站的区域上，上面有你自己的箭头、你周围的兴趣点、带着标记的任务发布者和你的任务目标所在的地带、制作站、邮箱、告示板和菜畦、地下城入口，还有这个区域里的每一处采集资源点，它们在重新生长期间显示为灰色，你的工具不够格时则带上标记。你的队伍也会显示在上面。右键点击地图，或按下它的“世界地图”按钮，视野便拉远到整块大陆，每个区域都连同名称一起画出，点击某个区域即可打开那个区域的地图。走进探秘、地下城、裂隙或城堡，地图会切换成你所在之处的平面图；荆谷原野战场则有自己专属的战场地图。\n\n右侧、小地图下方，一叠追踪器让你不必打开任何窗口就能盯住手头的事：你追踪的任务及其目标、你的功绩进度、你的圣物库页面、你从制作中置顶的配方、你所在的探秘，以及你正在参与的任何裂隙。想把屏幕空间要回来时，任务追踪器可以折叠。",
       "gatheringGoalTrackerBody": "在制作窗口追踪一个配方，或在委托公告栏追踪一个委托后，采集目标追踪器就会加入这个堆栈：它会显示你正在追踪的配方或委托、你要收集的数量，以及你随身携带和仓库中的材料能满足多少。追踪会替换你当前的目标，清除则会明确取消它；两者都不会改变你的采集偏好。",
       "hubPracticeTrackerBody": "在 Eastbrook 枢纽附近，一旦你开始那里的引导式练习课程，练习追踪器就会加入这个堆栈：它会让你时刻看到自己对练习假人的最佳战绩。课程进行中时，它旁边的指导条会引导你完成当前步骤，从打开伤害统计到比较第二轮成绩。",
       "chatTitle": "聊天框",
@@ -6423,7 +6423,7 @@ export const zh_CN: EnTranslations = {
       "groupChannels": "频道",
       "channelsIntro": "综合频道触及整个王国，你一登录就身在其中。世界与 LFG 则需要自行加入：先加入，然后才能在里面阅读和发言。",
       "general": "全王国的综合频道。",
-      "gAlias": "公会频道的简写指令：输入 /g 并在后方加上内容即可与公会成员私密交谈。确定要在公共综合频道发言时，请输入 /general 或 /1。",
+      "gAlias": "一个有两种含义的简写，因此值得记住：离线时它发往综合频道，在线时它是你的公会频道。确定要说综合频道时，请输入 /general 或 /1。",
       "guild": "与你的公会交谈。仅限在线游玩，而且你需要身在一个公会中。",
       "officer": "你公会的官员频道，向官员与会长开放。仅限在线游玩。",
       "join": "加入或离开一个可选频道。可加入的有 world 与 lfg 两个，单独输入 /join 会把它们列出来。为其中之一打开一个聊天标签页，也会替你加入它。",
@@ -6631,18 +6631,18 @@ export const zh_CN: EnTranslations = {
       "q1": "真的免费吗?",
       "a1": "是的。整个游戏在满级之前完全免费畅玩,源代码也在 GitHub 上开源。",
       "q2": "我需要加密货币钱包或任何代币吗?",
-      "a2": "完全没有。本游戏为开源社区项目，倡导绿色纯粹的经典游戏乐趣，无任何战力商城或付费门槛，所有装备、坐骑与外观均在游戏内探索获得。",
+      "a2": "不需要。没有它也能完整畅玩游戏。可选的社区代币仅增添外观装饰，以及每日奖励奖池的一份分成，绝不影响战力或进度。",
       "q3": "可以在手机上玩吗?",
       "a3": "可以。游戏能在任何现代移动浏览器中以触控操作运行，也有应用：iOS 与安卓版本，以及一款会自行保持更新的 Windows、macOS 和 Linux 桌面应用。",
       "q4": "可以离线或单人游玩吗?",
-      "a4": "可以。除多人地下城、团队副本和世界首领外，主线世界与大部分任务均完全支持单人探索与通关，组队始终是自由选择而非强制要求。",
+      "a4": "可以。有即开即玩的单人离线模式，而除地下城、团队副本和世界首领之外，在线世界也完全可以单人通关。",
       "q5": "一共有多少个职业?",
       "a5": "九个，涵盖经典的坦克、治疗与输出定位，每个职业都拥有一套资源系统（怒气、法力或能量）以及各自的招牌技能。",
       "q6": "等级上限是多少?",
       "a6": "{cap} 级,需横跨三片相连的区域,通过任务、地下城与探索达成。",
       "a6Count": "{cap} 级，需通过任务、地下城与探索横跨各处区域达成。全世界共有 {zones} 个区域，从最初的山谷，一直到专为满级角色打造的地带。",
       "q7": "我的角色会被保存吗?",
-      "a7": "角色与游戏进度会在游玩时自动保存在服务器上，换设备登录也能无缝继续。",
+      "a7": "在线角色会自动保存在服务器上。离线角色存放在你的浏览器中,适合快速游玩和测试。",
       "q8": "我可以自己搭建一份服务器吗?",
       "a8": "可以。本项目是开源的,因此你可以运行自己的服务器。详见 GitHub 仓库。",
       "q9": "有 PvP 吗？",
@@ -6658,7 +6658,7 @@ export const zh_CN: EnTranslations = {
       "q14": "运行它需要什么配置？",
       "a14": "一台笔记本、台式机、手机或平板上的较新浏览器。首次启动时，游戏会读一读你的设备，挑一个相配的画质档位，从“低”到“超高”；而你自己做出的选择永远优先。鼠标键盘、触控与手柄都可以用。设置页面与操作页面有更细的说明。",
       "q15": "我需要一个账号吗？",
-      "a15": "是的，创建账号才能开始游玩并保存角色。注册账号完全免费，仅需用户名、密码以及用于找回账号的邮箱，你的所有进度都会安全保存在服务器上。创建账号后，你还可以在选项中开启双重验证。",
+      "a15": "只有在线游玩才需要。离线世界什么都不问：在开始界面选择“离线”，按下“开始游戏”即可。在线账号是免费的，需要一个用户名、一个密码，以及一个用来找回账号的邮箱，你的角色会保存在服务器上。有了账号之后，你还可以在选项中开启双重验证。",
       "q16": "什么是世界？",
       "a16": "在线游玩发生在一个个世界上，而每个世界都是这个游戏的一份完整副本，有自己的玩家、自己的世界市场、自己的排名。登录时，世界列表会显示每个世界有多热闹，从“清闲”到“满员”，你可以挑一个安静的图个宽敞，或挑一个热闹的图个人气。你的角色住在创建它的那个世界上，而你也可以在不止一个世界里各留角色。",
       "q17": "我可以拥有多少个角色？可以删除角色吗？",
@@ -6705,7 +6705,7 @@ export const zh_CN: EnTranslations = {
       "formsNote": "德鲁伊靠变形作战。大多数德鲁伊技能都归属于某一种形态，因此你当前所处的形态决定了你能施放什么，而变形本身会消耗少量法力。无论是否身处战斗，你都可以随时变形，次数不限。",
       "formsAutoUnshift": "变身时施放治疗或伤害法术会自动为你解除变身。以这种方式离开形态不消耗法力，也不占用公共冷却时间，因此瞬发法术会在你按下的那一刻释放。重新变身是普通技能，依然消耗法力并占用公共冷却时间。",
       "formsMoonwing": "平衡系德鲁伊还会多得到一种形态：枭兽形态，也就是平衡德鲁伊作战时所用的施法形态。它是唯一保留法术的野兽形态，而你的魔杖也只在这个形态或你普通的施法形态下才能使用。",
-      "formsWolfEngage": "A Cat opens a fight with Bruin Rush, shifts straight into Cat Form to Pin the target, closes the gap with Lunge when it is not stalking, and holds an enemy still with Takedown.",
+      "formsWolfEngage": "狼以巨熊冲锋开战，随即变为狼形态钉制目标，未潜行时用扑击拉近距离，再用扑倒把敌人钉在原地。",
       "formLine": {
         "form_bear": "坦克形态：厚实的兽皮，以怒气取代法力，还有额外的威胁值，让敌人始终朝你挥拳。",
         "form_cat": "近战输出形态：像盗贼一样使用能量与连击点，威胁值也低得多。",
@@ -6986,19 +6986,19 @@ export const zh_CN: EnTranslations = {
       "gardenGreeter": "守门人，篱苑镇",
       "valePlaceNotes": "东溪镇是你的第一个大本营。狼奔谷与野猪草甸是温和的狩猎场；镜湖是供垂钓的好水域，只是浅滩处泥鳍鱼成群；墨网林与铜矿坑藏着蜘蛛和贪婪掘矿的家伙；一处强盗营地与陷落礼拜堂里有更棘手的活儿；圣物库山丘向下通往坍塌的圣物库，这是王国的第一座探秘；明木林地是北方一片宁静、阳光普照的林地；而母猪场则是东溪镇有围墙的野猪球场，溪谷杯就在丰收休战的庇护下在那里开赛。",
       "marshPlaceNotes": "芬桥守着唯一一条干燥的道路。潜行者芦苇荡与深沼浅滩里满是沼泽野兽和泥鳍；寡妇密林被蛛网织得密不透风；溺亡礼拜堂与巨魔土丘藏着更古老的危险，而这片湿地自己的探秘，溺亡连祷，就在土丘以北不远处开放；唤墓者营地是邪教的盘踞之处，沉没堡垒则是这片湿地的副本核心。",
-      "peaksPlaceNotes": "高守哨站扼守着城墙。潜猎者山脊与深岩洞穴属于山脊猫和穴居者；食人魔丘陵与卓格玛的战营属于受雇的莽夫；风暴岩中元素噼啪作响，其下方泛着微光的便是微光湖，这座山中小湖的湖畔守着一道通往溺亡神殿的苍白之光之门；蜿龙教帐篷与亡魂之野环绕着邪教的制高点，墓龙圣所则居于其巅。",
+      "peaksPlaceNotes": "高守哨站扼守着城墙。潜猎者山脊与深岩洞穴属于山脊猫和穴居者；食人魔丘陵与卓格玛的战营属于受雇的莽夫；风暴岩中元素噼啪作响，其下方泛着微光的便是微光湖，这座山中小湖的湖畔守着一道通往溺亡神殿的苍白之光之门；蜿龙誓帐篷与亡魂之野环绕着邪教的制高点，墓龙圣所则居于其巅。",
       "duskPlaceNotes": "古辉镇聚居在巨树之下。暮落洞穴与其瞭望台是入口，也是初见山谷的地方；古木林地与星落盆地守着宁静的南方；沉没王庭在东面藏着草木蔓生的废墟；辉光深处与水晶浅滩则在北方闪着微光。",
       "emberPlaceNotes": "望龙哨扼守着大门。门林是荒漠前最后一片绿意；烬沙丘随风飘着灰烬，还有更糟的东西；巨魔集会是沙丘巨魔燃起篝火聚集之处；血玻璃原野闪烁着锋利的碎片；而龙喉火山口则是群龙盘旋其上的冒烟王冠。",
       "frostPlaceNotes": "冰幔镇守着最后一座温暖的炉火。雪线隘口标记着积雪接管一切的地方；冰川湖是冰层之下漆黑而静止的水；极光台阶在舞动的光芒下向上攀升；颤栗沼泽是一片从未真正沉睡的冰封泥沼；而呼啸台地每到夜里都名副其实。",
       "amberPlaceNotes": "灯湖镇在丰收之地的中心闪着光。融金隘口是那条覆着琥珀的进山之路；鎏金果园与丰收谷藏着最甜的果实和最大胆的窃贼；大湖倒映着燃烧的秋叶；烬枫坡上的枫树最高也最红；而斜碑还记得比秋天更古老的事。",
       "fenPlaceNotes": "桥湖镇横跨在缓缓的水面上。琥珀沼石阶从丰收之乡蜿蜒而下；睡莲泽与泽光池间闪烁着鬼火与蜻蜓；垂柳湾的柳枝垂入湖中；而沉眠浅滩已是这片土地最温柔的去处。",
-      "nightPlaceNotes": "月栖镇守着长夜的警戒。夜门是通往午夜国度的入口；月井盛着可以伫立其旁的星光；暮光花田在黑暗中绽放；守望石阵一动不动地凝视着；而不眠古冢是这里唯一从不做梦的地方。",
+      "nightPlaceNotes": "月栖镇守着长夜的警戒。夜门是通往午夜国度的入口；月泉盛着可以伫立其旁的星光；暮光花田在黑暗中绽放；守望石阵一动不动地凝视着；而不眠古冢是这里唯一从不做梦的地方。",
       "hauntPlaceNotes": "绞湖镇蜷缩在自己的灯笼之间。鸦门是这片森林阴森的正门；寡妇棘丛被蛛网织得密不透风；吊影林地与哀石礼拜堂承载着森林最古老的悲恸；而猎手林隙属于至今仍在那里狩猎的东西。",
       "galePlaceNotes": "烛港迎风而立。风道是进来的悬崖之路；啸风丘陵在狂风下光秃起伏；老灯塔燃烧的岁月已无人能说清；断崖直落入海；沉船滩让人不敢小看这段海岸；而镜湖是整个国度里唯一静止的东西。",
       "junglePlaceNotes": "漂流港在海滩上燃着篝火。缠木隘口是大河汇入绿墙之处；棕榈长滩沿着浪缘铺展，洁白而温暖；翠绿丛林与垂藤林吞没了内陆；蓝宝石潟湖清澈而幽深地发着光；而沉没神像则在水下静静注视。",
       "gardenPlaceNotes": "篱苑镇候在花园之门前。花坛步道绽放着修剪齐整的色彩；晨曦堡在新筑的城墙后操练骑士；花瓣池终年漂着粉色的花瓣；老磨坊在自己的环形花坛上转动；大迷宫会为每一位客人重新排布自己的礼数，拱门有绿叶狐狸守望；北望哨守着出口之路；睡莲池在这一切之外静卧；而喷泉庭院仍在花园中心流淌着清泉。",
       "gladeTitle": "宁静一隅：明木林地",
-      "gladeBody": "东溪谷地 里的故事并不全都关于亡者。北方有一片阳光照耀的林地，名为 Brightwood Glade，自有它更为温和的节奏：尽是安静的小径，以及枝叶下斑驳的光影。它是你所追寻的踪迹之外一段柔和的对照，若道路给你余裕闲逛，很值得去看一看。",
+      "gladeBody": "the Vale 里的故事并不全都关于亡者。北方有一片阳光照耀的林地，名为 Brightwood Glade，自有它更为温和的节奏：尽是安静的小径，以及枝叶下斑驳的光影。它是你所追寻的踪迹之外一段柔和的对照，若道路给你余裕闲逛，很值得去看一看。",
       "worldBossTitle": "当山峰苏醒：世界首领",
       "worldBossBody": "在荆峰高地的高处，风暴岩上空的风暴时而会凝聚成形。“觉醒之峰”桑扎尔以稳定的节奏在那里崛起，这是一头在开放世界中由所有响应号召者共同讨伐的团队级元素生物，而与他对峙的挑战者越多，他就越发强大。每一位参战者都能掷得属于自己的一份战利品，按团队副本锁定的规矩结算；他倒下后也会停留足够久，让阵亡者来得及跑尸回来领取应得之物。集结的刀剑，要比你自以为需要的更多。",
       "farshoreBlurb": "一座满是鸥鸣与咸风的海岛，浮在东溪谷东岸之外；裂隙在这里毫无预兆地撕开，而渔镇鸥港守着自己的这片海岸。",
@@ -7051,10 +7051,10 @@ export const zh_CN: EnTranslations = {
       "sagaMarshTitle": "湿地：一笔灵魂的贡赋",
       "sagaMarshBody": "在泥沼，溺亡绝非意外。有人正像填满纳贡之箱一般填满这片湿地，从每一个被湖水吞没的旅人身上唤起听命的死者。沿着命令的链条向上追查，直至沉没堡垒中的一名缚雾者，他的临终之言道出了某种更为古老、正在峰巅之下蠢动之物。",
       "sagaPeaksTitle": "峰巅：贡赋所为何来",
-      "sagaPeaksBody": "在 荆棘峰，整个图谋终于水落石出。自 东溪谷地 以来被窃走的每一个灵魂，都是为这座山岳腹心深处邪教的阴森勾当而倾注的贡赋。始于一座礼拜堂院落的踪迹在此终结，化作一场五人的深入，去直面这一切背后的黑手。至于谁在尽头等候，我们就留给你自己去揭晓吧。",
+      "sagaPeaksBody": "在 Thornpeak，整个图谋终于水落石出。自 the Vale 以来被窃走的每一个灵魂，都是为这座山岳腹心深处邪教的阴森勾当而倾注的贡赋。始于一座礼拜堂院落的踪迹在此终结，化作一场五人的深入，去直面这一切背后的黑手。至于谁在尽头等候，我们就留给你自己去揭晓吧。",
       "sideTitle": "主路之外的支线",
       "sideWardenTitle": "扬名立万",
-      "sideWardenBody": "在剧情之外，东溪谷地 与湿地的法警和守望者们还会发布一份常驻的赏金阶梯。一个敌人接一个敌人地往上爬，就像你之前的每一位赏金猎人赢得自己的位置那样。这是踏实的升级，也是一趟遍历各区域最恶劣捣乱分子的巡礼。",
+      "sideWardenBody": "在剧情之外，the Vale 与湿地的法警和守望者们还会发布一份常驻的赏金阶梯。一个敌人接一个敌人地往上爬，就像你之前的每一位赏金猎人赢得自己的位置那样。这是踏实的升级，也是一趟遍历各区域最恶劣捣乱分子的巡礼。",
       "sideCryptTitle": "被遗忘的君王",
       "sideCryptBody": "在高耸的峰巅，潜藏着一桩更幽静的谜团：古老的坟墓刻着无人记得的王冠。读懂死者，收集他们守护之物，再开启一座本该长闭的陵墓。这是一条侦探般的线索，会为你开启通往这片位面十人终局团队副本之路。",
       "sideTempleTitle": "溺没的神庙",
@@ -7064,7 +7064,7 @@ export const zh_CN: EnTranslations = {
       "typeEscortTitle": "护送",
       "typeEscortBody": "有人需要被护送着走过一段危险的路。接下任务，到路口找到等在那里的人，与他交谈便可动身。他会按自己的步调走，你在旁边跟上；沿途潜伏的麻烦冲着的是他，并不总是冲着你。跟紧一点：敌人会一波波地伏击这段路，只有把一波清掉，队伍才会继续前进。你无法攻击被护送的人，但可以为他治疗；万一他倒下了，这一趟只是重置一次，你可以再来。带着他活着走到另一头，而你也在他身旁，任务便会记功。",
       "cardMasterTitle": "并非每个 NPC 都有任务：牌局大师",
-      "cardMasterBody": "东溪镇里有一位 NPC 发的是牌，而不是差事。找牌局大师聊聊，从他的菜单里选出“纸牌对决”，你就会加入一个队列，与下一位等待中的玩家配对。任何职业都可以坐下来玩，等级和装备完全不作数。你们各自从自己那副二十张的牌组出牌，牌面一到十，手上同时握着四张，每一轮再抽一张：点数大的赢下这一轮，两张一样的牌算作平局，双方都不得分。先赢两轮者赢下这一场，所以一场对决是三局两胜。每一轮都有时限，若你九十秒不出牌，这一场就判给对方，除非当时还没有任何一轮分出胜负，那样它便直接作废，无人取胜。你自己中途走开，结果也一样。加入队列时你必须站在牌局大师身边，但一旦配上对手，牌桌会自行打开，你在任何地方都能玩。这是一场双人对决，因此你总会与另一位准备就绪的对手匹配竞技。"
+      "cardMasterBody": "东溪镇里有一位 NPC 发的是牌，而不是差事。找牌局大师聊聊，从他的菜单里选出“纸牌对决”，你就会加入一个队列，与下一位等待中的玩家配对。任何职业都可以坐下来玩，等级和装备完全不作数。你们各自从自己那副二十张的牌组出牌，牌面一到十，手上同时握着四张，每一轮再抽一张：点数大的赢下这一轮，两张一样的牌算作平局，双方都不得分。先赢两轮者赢下这一场，所以一场对决是三局两胜。每一轮都有时限，若你九十秒不出牌，这一场就判给对方，除非当时还没有任何一轮分出胜负，那样它便直接作废，无人取胜。你自己中途走开，结果也一样。加入队列时你必须站在牌局大师身边，但一旦配上对手，牌桌会自行打开，你在任何地方都能玩。它需要两个人，所以离线世界从不提供它。"
     },
     "lore": {
       "figuresTitle": "你将渐渐熟识的面孔",
@@ -7100,7 +7100,7 @@ export const zh_CN: EnTranslations = {
       "heroicHowBody": "在队伍占用副本之前先选好难度：输入 /dungeon heroic，或在自己的头像菜单中选择“设置地下城难度”。独自一人时由你自己设定；在队伍中只有队长可以设定，而这一选择对所有人生效并在门口锁定，因此一段副本会始终保持它被占用时的样子。",
       "heroicRewardsTitle": "英雄徽记与升级版战利品",
       "heroicRewardsBody": "英雄难度的首领掉落你熟悉的战利品，只是经过升级并在提示中标注为“英雄”，而每段副本的最终首领还会额外掉落别处找不到的史诗物品。那最后一次击杀也会为每位参与者留下英雄印记：一种在高瞭的军需官维克斯处使用的货币，他的柜台是一排戒指和吊坠，除了来自英雄深处的证明之外，别无他物能够购得。",
-      "heroicLockoutBody": "普通地下城可以整天地跑。英雄难度则要求耐心：最终首领的击杀会把这趟副本中的所有人限制为该地下城每天一次英雄通关，而团队副本对每种难度各保有一份每日锁定。在联机的国度上，所有每日锁定都会在该国度自己的夜间重置时刻一并解除，因此在那个时刻之前不久完成的一趟，与刚过之后完成的一趟，会落在两个不同的日子里。已经通关的五人副本仍对它自己的队伍开放，可用于跑尸和拾取，因此没有人会被挡在自己在那里挣得的收获之外。团队副本更为严格：一旦它的击杀锁定了你，门便会关闭直到重置，而唯一回到里面的途径，是由恰好在那趟锁定他们的副本中倒下的人跑尸带入，因此活着走出去的团队成员，就是这一天都走出去了。离开竞技场之前请收齐你的战利品。这些锁定各自属于挣得它的那个角色，因此在主力角色上的一次通关，并不妨碍你其他角色的自由。",
+      "heroicLockoutBody": "普通地下城可以整天地跑。英雄难度则要求耐心：最终首领的击杀会把这趟副本中的所有人限制为该地下城每天一次英雄通关，而团队副本对每种难度各保有一份每日锁定。在联机的国度上，所有每日锁定都会在该国度自己的夜间重置时刻一并解除，因此在那个时刻之前不久完成的一趟，与刚过之后完成的一趟，会落在两个不同的日子里；若改在浏览器中离线游玩，锁定则只是在你自己击杀之后一天到期。已经通关的五人副本仍对它自己的队伍开放，可用于跑尸和拾取，因此没有人会被挡在自己在那里挣得的收获之外。团队副本更为严格：一旦它的击杀锁定了你，门便会关闭直到重置，而唯一回到里面的途径，是由恰好在那趟锁定他们的副本中倒下的人跑尸带入，因此活着走出去的团队成员，就是这一天都走出去了。离开竞技场之前请收齐你的战利品。这些锁定各自属于挣得它的那个角色，因此在主力角色上的一次通关，并不妨碍你其他角色的自由。",
       "resetTitle": "重置你的副本",
       "resetBody": "在队伍仍占用着副本时切换难度，旧的占用会滞留一阵，然后自行释放。队长也可以让它们一次性释放：在自己的头像菜单中选择“重置所有副本”，或输入 /dungeon reset。重置只有在难度确实更改之后才生效，只有在里面不再有任何人（无论活着还是倒下）时才生效，只有在里面每具尸体都被拾取干净之后才生效，而且两次重置之间隔着一段短暂的冷却。若你们带着错误的难度来到门口，游戏会在副本开始前告知。团队副本从不以这种方式重置；适用的是它自己的锁定规则。",
       "templeLoreTitle": "沉没神殿，更深一层",
@@ -7235,7 +7235,7 @@ export const zh_CN: EnTranslations = {
     "deedsPage": {
       "intro": "功绩之书记录着你在这个世界所做的一切，从走出新手山谷的第一步，到王国所能提供的最艰难的战斗。一边游玩一边赢得功绩，佩戴它们授予的头衔，看着你的名望不断攀升。",
       "howHeading": "功绩如何运作",
-      "howBody": "功绩以单个角色为单位逐一赢得并留存，因此你所扮演的每一位英雄都会各自积累自己的功绩之书；只有王国的排行榜才会汇总你所扮演的所有角色的名望，且每个功绩只计一次。每个功绩都在游戏内的功绩之书中清楚写明它的要求，让你始终知道该追求什么；你还可以对心仪的功绩设置追踪，让它们在你游玩时时刻不离视线。少数功绩会保持隐秘，只有在你赢得它们之后才会揭晓。这本书还讲求诚实：凡是你过往的记录足以证明的，它都会当场记上，因此老玩家绝不会翻开一页空白；只有计数类的功绩才从零开始累计。",
+      "howBody": "功业由每个角色各自完成，但功业之书由账号内所有角色共享：任一角色完成的功业对所有角色都算达成，书中会记下是谁在何时完成的，它奖励的称号或边框也可由你的任何角色佩戴。领域排行榜以同样的方式汇总你的声望，每项功业只计一次。每项功业都在游戏内的功业之书中清楚写明要求，让你始终知道该追求什么，还可以把想要的功业加入关注，在游玩时随时留意。少数功业保持隐秘，只有在你达成后才会显现。这本书也会保持诚实：凡是你过去的记录能够证明的，都会当场记入，因此老玩家翻开时绝不会是空白一页；只有计数类功业会重新开始计数。",
       "renownHeading": "名望",
       "renownBody": "名望是功绩之书背后的分数。你所获得的每一项功绩都值一个固定的数额，而你的总数只会上升，因此清闲的一周绝不会让你失去阵地。其中少数靠的是运气而非本事，另一些收藏类功绩本身即是回报，而壮举则是另一种荣誉，所以这几类都不值任何名望。没有名望的功绩仍计入你这本书的完成度；它们只是从不计分。壮举是唯一的例外，被完全排除在计数之外。",
       "rewardsHeading": "头衔与边框",
@@ -7266,14 +7266,14 @@ export const zh_CN: EnTranslations = {
         "feat": "壮举"
       },
       "bookHeading": "走进功绩之书",
-      "bookBody": "功绩之书把每一个功绩归入可以随手切换的类别，并配有搜索框，以及“全部”“已获得”“未获得”和“即将完成”几种筛选。靠近顶部的“最近”一栏收着你最新解锁的功绩，点击其中一条便会直接跳到它的卡片；点击别人发在聊天里的功绩名，同样如此。它旁边的“即将完成”会指出你最接近达成的那寥寥几个。在线上世界里，每个功绩还带着自己的稀有度，也就是已经获得它的冒险者比例，让你一眼看出哪些寻常、哪些是真正的攀登。侧栏的末尾是头衔与边框的架子，那里有两个挑选栏：一个选你佩戴的头衔，一个选环绕你铭牌的边框。",
+      "bookBody": "功绩之书把每一个功绩归入可以随手切换的类别，并配有搜索框，以及“全部”“已获得”“未获得”和“即将完成”几种筛选。靠近顶部的“最近”一栏收着你最新解锁的功绩，点击其中一条便会直接跳到它的卡片；点击别人发在聊天里的功绩名，同样如此。它旁边的“即将完成”会指出你最接近达成的那寥寥几个。在线上世界里，每个功绩还带着自己的稀有度，也就是已经获得它的冒险者比例，让你一眼看出哪些寻常、哪些是真正的攀登；离线世界没有可供统计的人口，因此不显示稀有度。侧栏的末尾是头衔与边框的架子，那里有两个挑选栏：一个选你佩戴的头衔，一个选环绕你铭牌的边框。",
       "platformHeading": "Steam 与 Epic 成就",
       "platformBody": "如果你在桌面客户端中关联了 Steam 或 Epic Games 账号，你所获得的功绩会向外同步为该账号上的成就。游戏世界始终是准绳：功绩在这里挣得，记录在你的角色身上，成就随后跟上。并非每一项功绩都有对应的成就；若某个成就没有立刻到账，它会在你下次登录时补上。关联永远只是关联，绝不是一种登录方式。"
     },
     "reliquaryPage": {
       "intro": "圣物库是你已收录的独特战利品博物馆：地下城追逐装备、专业奖杯、坐骑、武器外观与头衔。它与功绩之书的关系，就像奖杯厅与成就簿的关系。",
       "howHeading": "收藏如何运作",
-      "howBody": "在游戏中打开圣物库（默认 Shift+X）。每个架上有多页独特圣物。角色首次获得该件时填满剪影；一页上的圣物全部填满时点亮该页。少数页面标注“绝版”或“专属”：它们不计入达成，不会阻碍书架或全库的完成。实时发现会弹出提示并刷新已打开的窗口；进度按角色计算，武器外观除外（账号外观）。",
+      "howBody": "在游戏中打开圣物库（默认 Shift+X）。每个架上有多页独特圣物。账号内任一角色首次获得该件时填满剪影；一页上的圣物全部填满时点亮该页。少数页面标注“绝版”或“专属”：它们不计入达成，不会阻碍书架或全库的完成。实时发现会弹出提示并刷新已打开的窗口；进度由账号内所有角色共享，一个角色找到的圣物会为所有角色填满该页。",
       "ranksHeading": "策展人等级",
       "ranksBody": "策展人等级随已收录的独特圣物上升，仅授予装饰性头衔与边框。不会提供战斗强度、掉落率或保底。账号武器外观不计策展人等级，因此声望保持角色持久。绝版与专属页面上的圣物同样不计入等级。",
       "retiredTag": "绝版",
@@ -7342,7 +7342,7 @@ export const zh_CN: EnTranslations = {
       "playtestTitle": "游玩你的地图",
       "playtestBody": "“试玩”会把地图交给游戏，让你以一名战士的身份落进其中。你造的一切都在脚下：营地会刷出怪物，空气墙拦得住人，带碰撞的摆放物会把你挤到一边。看够了就回到编辑器，接着干活。",
       "sandboxTitle": "一个沙盒，而非正式世界",
-      "sandboxBody": "自定义地图绝不会改动别人正在玩的那个游戏。一次试玩在你自己的浏览器中本地运行，从不与服务器说话，所以其中发生的一切都碰不到你的角色，也碰不到共享的世界。",
+      "sandboxBody": "自定义地图绝不会改动别人正在玩的那个游戏。一次试玩在你自己的浏览器中离线运行，从不与服务器说话，所以其中发生的一切都碰不到你的角色，也碰不到共享的世界。",
       "saveTitle": "保存你的作品",
       "saveBody": "Ctrl+S 保存，而只要还有未保存的改动，“保存”按钮上就会带着一个圆点。没有账号，编辑器照样能用：地图存在你自己的浏览器里，自动保存可以随手打开，“导出”会把一张地图写成一个普通的 JSON 文件，“导入”则能原样读回来。\n\n用你的游戏账号登录之后，保存还会同时送到服务器，于是你的地图会跟着你换到另一台机器上。“打开”窗口有两个标签页，一个装着这个浏览器里的草稿，另一个装着存到你账号上的地图。如果编辑器显示离线标记，请在另一个标签页登录游戏，然后重新加载编辑器。",
       "shareTitle": "发布与派生",
@@ -7425,7 +7425,7 @@ export const zh_CN: EnTranslations = {
       "offhandBody": "副手能拿什么，取决于你的职业。盾牌放在那里，宝珠或典籍之类的手持法器也放在那里，猎人的箭袋同样如此。能够双持的职业则会在副手放上第二把武器。双手武器通常要占去两只手，所以装备一把双手武器会让副手原本拿着的东西下场，除非你的专精正是少数几个能同时挥舞两把双手武器的那种。",
       "bagsSort": "背包乱起来的时候，背包窗口里的“整理”按钮一按就能收拾妥当。同一种东西的零散堆叠会被合并到一起，所有物品也会按一个好读的顺序重新排开：先是武器与护甲，然后是背包、消耗品、工具与坐骑，接着是制作材料，每一种精细品级都紧挨着它的普通版本，再往后是任务物品，灰色废品排在最末，好让你一眼看清哪些该卖。整理绝不会凭空造出或弄丢任何东西，只是重新排列，所以任何时候按下去都是安全的。",
       "requiredLevelBody": "有些装备还带着一个需求等级，写在提示上。任何等级的你都可以拾取、买下或收下这样一件装备，但在达到那个等级之前都穿不上它。这个要求跟着装备的来源走，而不只看它的颜色，所以在自己等级上赢来的一件稀有装备通常立刻就能穿；而来自远高于你等级之处的转手货，则要在你的背包里等你追上它。",
-      "sourcesHonor": "荣誉是与其他阵营玩家厮杀赢得的荣耀报酬。荣誉军需官（东溪镇的“怒火”与高望要塞的战争元帅德雷文·科尔）镇守着只有荣誉才能购买的战争军械库：包含全套职业PVP战争套装、顶级勋章饰品，以及任何金币商人都不敢售卖的夺命神兵！",
+      "sourcesHonor": "荣誉是与其他玩家作战换来的报酬，而荣誉军需官（东溪镇的 FURY 与高守哨站的 Warmarshal Draven Kole）守着只有荣誉买得到的战争商店：整套的护甲系列、饰品，以及任何钱币商人都不进货的武器。竞技场页面讲的是荣誉本身如何挣得。",
       "sourcesRifts": "到了等级上限，裂隙又添上一处来源，而裂隙是一场竞速：最先通关的那支队伍赢得它的奖励。这份首杀会在这一趟留下的所有东西之外额外给出装备，其中包括一枚按你职业定位打造的 Riftbound 指环，这是一枚在世界的其他任何地方都找不到的戒指。第二个完成的队伍照样跑完了自己的这一趟，通关的记录也归他们；他们失去的只有首杀奖励。裂隙页面讲的是这场竞速本身。",
       "bindOnTradeBody": "同一个道理还有更温和的一种：有些东西是交易绑定，也就是说它们只能易手一次，之后便归接下它的人所有。受人委托打造的成品，会在制作者交出去的那一刻绑定。受这条规则约束的副本绝不会登上市场，也不会走邮驿，因为那两处都是匿名的；它只能当面交接，否则就不成交，而一旦交出去，它就绑定了。提示会写明一件物品遵循哪一条规则，所以打算转卖之前先看一眼。",
       "cosmeticsWeapons": "武器皮肤是第三条线，它改变的是你手中所持之物，而不是持有它的人。一款皮肤会重涂一整类武器，因此这份模样会跟着你当前装备的剑、法杖或弓走，也绝不触碰武器的属性、攻击距离或速度。皮肤按账号解锁，而不是按角色解锁，并且和其他外观一样，分成一个个收藏系列与稀有度层级。它们出自兵器库的赛季收藏，而不是在世界中拾得；设置皮肤同样在兵器库里进行，每类武器一款，而不是在外观那一栏中设定。站在你身边的每一个人，都能看见你所佩的皮肤。",
@@ -7434,7 +7434,7 @@ export const zh_CN: EnTranslations = {
     "professions": {
       "intro": "除了战斗和任务之外，这个世界还会奖励你耕耘土地与执掌熔炉：采集原材料，通过十种制作行业将其打造成装备与货物，并在这些行业所代表的十种命途之一中确立自己的身份。",
       "harvestTitle": "收获狩猎本身",
-      "harvestBodyChoice": "采集并不止步于资源节点。许多被击杀的野兽都可以被采集一次，先到先得：兽皮、尖牙、丝线与兽肉，与它的普通战利品一并直接取自尸体，一次按键就会同时打开两者。当一头野兽掉落无瑕兽皮、完美的蜘蛛丝、烈性毒液或其它完美标本时，世界便会铭记住是谁剥下了这具尸体：那件材料会永远带着你的名字，连同后来用它打造出的任何装备。",
+      "harvestBodyChoice": "采集并不止步于资源节点。许多被击杀的野兽都可以被采集一次，先到先得：兽皮、尖牙、丝线与兽肉，与它的普通战利品一并直接取自尸体，一次按键就会同时打开两者。当一头野兽身上不止一种可用材料时，如何取舍便由你决定：把它能给的全部取走，或专注于更少的材料，换取你所取之物明显更精细的品级。\n\n在能产出标本的族群身上掷出精良或更高的采集品质时，除普通产出之外还会额外获得一件署名的完美标本（一块Pristine Hide、一块Pristine Silk、一枚Pristine Venom Gland或一份Prime Cut），并在你的功绩之书中记下A Perfect Specimen。任何角色都可以采集，无需训练；而你拥有的任何采集工具，无论属于哪一门行业，都会计入最上等材料的判定。",
       "focusTitle": "城镇专注",
       "focusBody": "每座主城都为过路的采集者备有一块城镇专注面板：站在城镇里，从小地图旁打开它，把一小笔专注点数投向你在意的那些材料种类。此后每具尸体上产出的受专注材料都会精细一个品级、也略微丰厚一些；你的分配会跟随你的角色走遍各地，而且日后任何一次回到城镇，都可以免费重新调整。",
       "craftHowTitle": "制作窗口",
@@ -7444,14 +7444,14 @@ export const zh_CN: EnTranslations = {
       "archetypeChooseBody": "宣告命途是一个剧情时刻：一个正式接纳你进入该身份的任务。在你宣告之前，每种行业的技能都能提升到稀有层级。一旦你选定一对行业，这两门行业便完全放开；轮盘对侧的一门行业会作为爱好留在你身边，仍能练到稀有层级；而在你保有这一身份期间，其余所有行业都停留在普通层级。",
       "archetypeSwitchBody": "宣告也不会是一纸终身判决。按照规划，在改投新的命途之前，你需要先向旧行业完成一次可重复的赎罪，而每转换一次，下一次赎罪的代价都会更沉，因此这个选择始终有分量，而非毫无代价。与宣告本身一样，它也仍在路上。",
       "whatHeading": "剑之外的一门手艺",
-      "whatBody": "专业是这个世界的营生：四种采集行业从大地中获取原料，十种制作行业把它们变成装备、饭菜、药水与工具。万物环环相扣：你挖出的矿石成为刀剑，刀剑接受附魔，而附魔又需要从旧装备中分解出的粉尘。这里没有专业数量限制：每个角色都能同时修习全部八种已有内容的制作行业与全部四种采集行业，唯一的排他选择是你最终宣誓的命途，而一旦宣誓，落入休眠的制作行业便不再上升。技能永不下降，学会的东西也永远不会被夺走。",
+      "whatBody": "专业是这个世界的营生：各类采集行业从大地中直接获取原料，十种制作行业围成一环，把它们变成装备、饭菜、药水与工具。在这里万物环环相扣：你挖出的矿石成为刀剑，刀剑接受附魔，而附魔又需要从旧装备中分解出的粉尘，所以采集者、工匠与巧匠都是同一条链上的环。\n\n这里没有值得纠结的专业数量限制。每个角色都能同时修习十种制作行业中的九种与全部采集行业（工程学是唯一的例外：它的配方全部始于自由上限之上，所以它的梯子要等爆破师的誓言）；唯一的排他选择是你最终宣誓的命途，不过一旦调谐，落在它身后休眠的制作行业便只能靠普通配方爬升，过了技能75便再无寸进。技能永不下降，学会的东西也永远不会被夺走。",
       "ringHeading": "制作之轮",
-      "ringBody": "十种制作行业排列在一个轮环上，各自独立记录技能；点开一张卡片即可查看完整的配方表与数值。",
-      "ringWaveNote": "珠宝加工与铭文如今已在轮环上，但尚未提供任何配方；它们的内容将随后续的区域扩展一同到来。",
+      "ringBody": "轮环上的每门手艺都以125技能为上限：武器锻造、护甲锻造、珠宝加工、铭文、裁缝、制皮、烹饪、炼金术、工程学与附魔。到了上限手艺照常运转：采集依旧有产出，制作依旧能完成，杰作依旧可能出现，只是数字不再攀升。点开下方的一张卡片，即可查看该手艺完整的配方表与数值。",
+      "ringWaveNote": "随着铭文提起羽笔，轮环上的每个席位如今都有了真正的配方。轮环是齐全了，而非到头了：上限会随未来的区域一同提升，所以今天练满的一门手艺是那次扩展的抢跑，而不是终点线。",
       "capFmt": "上限{cap}",
       "comingSoon": "暂无配方",
       "gatherHubHeading": "采集",
-      "gatherHubBody": "四种采集行业为制作供给材料：采矿、伐木与草药学的上限为100，钓鱼为200。",
+      "gatherHubBody": "采集行业为制作供给材料：采矿、伐木与草药学的上限为100，耕作在照料的田畦中从种子育出作物，上限同为100，钓鱼为200。",
       "archetypesHeading": "十大命途",
       "archetypesBody": "调谐到两个相邻行业即可获得一个成对头衔：两门主修可以一路练到最高层级，对侧的一门行业作为爱好保留在精良层级，其余行业则停留在普通层级。",
       "pairFmt": "{a}与{b}",
@@ -7460,7 +7460,7 @@ export const zh_CN: EnTranslations = {
       "provenanceHeading": "出处",
       "provenanceBody": "精良及以上的成品带有制作者的名字，杰作会额外提升一个品质层级，而委托制品会绑定给它的收货人（制作者之约）。",
       "endgameHeading": "大师锻造终局",
-      "endgameBody": "每门手艺的训练师阶梯之上，都坐落着同一座峰顶：大师锻造家族，也就是装备与物品页面所述、带着金色",
+      "endgameBody": "每门手艺的训练师阶梯之上，都坐落着同一座峰顶：大师锻造家族，也就是装备与物品页面所述、带着金色\"装备唯一：大师锻造\"标签的制造装备。无论哪门手艺攀登，这条链都是同一个形状：顶级图样靠寻获而非传授，按日限定的中间制作为整件事定下节奏，三种共享材料供每架阶梯取用。成品像任何其他制造品一样自由交易（交易规则载于制作经济页面），而两件的穿戴上限让它们是配装上的点睛，而非整套行头，所以从不踏足最深终局的工匠，照样把货卖给住在那里的人。",
       "endgameBodyRaidCollections": "大师锻造是带有“唯一装备：大师锻造”标记的共同装备家族。旧有的巅峰制作路线仍需寻找图样、制作每日限次的中间材料，并消耗共同的终局材料。熔炉套装则是由团队副本材料支持的独立路线，并非在旧路线之上再加一套费用。两条路线共用最多穿戴两件的限制，因此会竞争配装中的同两个位置。成品在臻至完美或委托绑定该件物品之前都可自由交易。",
       "endgamePatternsBody": "图样经由三条渠道而来，而每个手艺页面的配方表都会标注各行自己的渠道：在最深的终局胜利中寻获、由英雄军需官以英雄纹章出售，或两者兼有。这样划分是有意为之。装备图样只能寻获、从不出售；消耗品图样从第一天起就摆在军需官的柜台上；耕作图样则两条路都走。图样本身也是寻常的可交易货物，所以你用不上的发现，正是你可以卖掉的发现。",
       "endgamePatternsBodyCollections": "旧有的装备图样只能通过掉落获得；旧有的消耗品图样由英雄军需官以英雄印记出售，农耕图样则兼有两条获取路线。熔炉套装手册与末焰热忱配方改由熔炉的任一首领在任一难度下掉落。它们共用一个掉落组，每个首领有30%几率掉落其中一张，十二张卷轴等概率被选中。熔炉军需官也以每张1个末焰之核的价格出售全部卷轴，为等待幸运掉落提供确定的替代途径。每本套装手册在技能100时教授该套装全部三个配方。若已学过其中部分配方，使用手册只补齐未学内容，并只消耗一张卷轴。手册和附魔配方均可交易。",
@@ -7468,22 +7468,22 @@ export const zh_CN: EnTranslations = {
       "endgameMaterialsBodyAnyRaid": "三种共享材料供养着整条链。坠龙核心是可交易的催化剂：最深终局的每一场最终胜利，都会付给记入战功的角色 1 到 3 枚核心，每个来源每日一次；最高阶的裂隙通关按同样的每日时钟支付固定数量；而英雄军需官以 12 枚英雄纹章出售一枚，作为坏运气的兜底。核心自由交易。断裂精华是灵魂绑定的，裂断是它唯一的来源：任何角色不需要任何专业就能裂断，这段吟唱会把一件团队副本打下的史诗装备，无论出自哪个团队副本、普通还是英雄难度，都裂断为恰好一份断裂精华，史诗本身就是代价。匠人余烬同样灵魂绑定，它是这条链的时钟：每个角色每周一枚，在你当周第一次合格的终局通关时发放；错过的一周绝不会丢失，余烬会累积起来，在你下一次通关时一并补发。",
       "perfectingHeading": "臻至完美与橙色晋升",
       "crucibleCollectionsBody": "十一种熔炉套装均按各自的原生护甲类型与职责属性提供胸部、腰部和脚部装备。任意两件即可激活唯一的套装加成，无须先臻至完美；没有三件套加成。每件基础物品为物品等级35，需3个末焰之核和普通的高品级采集材料，因此两件共需6个核心，另可选择付费购买手册。基础制作不需要坠龙核心、每日限次的中间材料或匠人余烬。达到臻至完美第四阶时，主属性预算提升至物品等级38。臻至完美仍沿用每周余烬进度，与获取并穿戴基础装备相互独立。\n\n在对应制作站旁，相关技能达到125且存活、空闲、脱离战斗时，可交换同一套装内两件物品的臻至完美阶数。阶数是互换而非复制，每个槽位应用自身的完美属性加成。交换不消耗材料，也没有冷却时间。两件物品都会与你绑定；各自名称、附魔与制作者印记仍保留在原物品上。",
-      "perfectingBody": "一件做好的顶级装备并不是它故事的终点。它的主人只要在做出它的那门手艺上有 125 点技能，就能带着这件装备走完臻至完美的四个等级。每次尝试花费一枚匠人余烬、一份断裂精华和一个棱晶琉璃镶座，五次里成功四次；失手只损失材料，别无其他，装备永远不会受损或倒退。第一次尝试就会把装备绑定给臻至它的人，所以打算出售的副本要在动工之前卖掉。臻至完美的装备在原有基础上带有属性加成，而臻至完美正是莹光灌注所等待的：附魔页面上标着",
+      "perfectingBody": "一件做好的顶级装备并不是它故事的终点。它的主人只要在做出它的那门手艺上有 125 点技能，就能带着这件装备走完臻至完美的四个等级。每次尝试花费一枚匠人余烬、一份断裂精华和一个棱晶琉璃镶座，五次里成功四次；失手只损失材料，别无其他，装备永远不会受损或倒退。第一次尝试就会把装备绑定给臻至它的人，所以打算出售的副本要在动工之前卖掉。臻至完美的装备在原有基础上带有属性加成，而臻至完美正是莹光灌注所等待的：附魔页面上标着\"仅限臻至完美\"的那一件附魔，非它不落。",
       "promotionBody": "最后一步是橙色晋升，而这正是造物契据的全部用途。带上一件臻至完美的装备和一份造物契据（铭文师的 125 技能文书），这份副本就会晋升为一件由你亲自命名的传说装备。这里没有任何掷骰：晋升是确定性的，属性完全不变，变的只是名字和颜色。契据本身可以交易，所以书写者与佩戴者不必是同一个人；而家族上限多出的那一行依然生效：角色穿戴的两件之中，传说品质的大师锻造装备同时至多一件。",
       "stationsHeading": "工位与大师",
-      "stationsBody": "三座主城中共设六座分类工位，常驻大师在此传授配方并发布工作订单。",
+      "stationsBody": "六座分类工位服务着九门绑定工位的手艺，分布在三座主城之间。Eastbrook拥有锻造坊（武器锻造、护甲锻造与珠宝加工共用）、厨房、织机与工坊；Fenbridge守着制革坊，Highwatch守着药坊（炼金术与铭文共用那张工作台）。每座工位旁都有一位常驻大师，传授配方、发布工作订单，并提供解绑服务。\n\n工作半径为20码，大致就是工位自己的院落，所以你是站在铁砧旁制作，而不是隔着半座城。唯有附魔没有工位：它天生随处可施展。",
       "deedsHeading": "铭记旅程的功业",
-      "deedsBody": "功业之书伴随这一切：首次调谐获得Craftsworn，首次杰作获得Masterwright，均可作为头衔佩戴。八种可修行业各在技能50设有里程碑功业，并在上限125加冕Grandmaster头衔；钓鱼在100熟练获得Old Salt，200获得Master Angler头衔。\n\n此外还有更静默的篇章：首次采集与首次制作的功业、野外奇遇中的意外收获，以及拾起拆解之路的印记。这一切皆为装饰，只有头衔与声望。功业永不赋予力量，它只证明你曾在场。",
+      "deedsBody": "功绩之书伴随这一切的每一步。首次调谐获得“誓艺者”，首次杰作获得“杰作锻师”，均可作为头衔佩戴。十种可修制作行业各在技能50记下一个里程碑功绩，并在各自的上限处加冕宗师头衔；钓鱼则在熟练度100获得“老渔翁”，200获得“垂钓宗师”头衔。\n\n此外还有更静默的篇章：首次采集与首次制作的功绩、野外撞见的稀罕发现，以及拾起拆解之路的功绩。这一切皆为装饰，只有头衔与名望。功绩永不赋予力量，它只证明你曾在场。",
       "startHeading": "从哪里开始",
-      "startBody": "初到东溪镇？找工头奥德尔接下“行行出状元”，他会指给你镇东北铜矿采掘场一带的矿脉，让你磨出最初的老茧。留意矿坑本身：驻扎在那里的深岩挖掘者等级比新手高出几级，所以先采外围的矿脉，等级练起来一些之后再去碰营地核心。此后旅途中经过的每处矿脉、树木与草药都值得采集，熟练度自然而然会随旅途积累。\n\n回到镇上按 T 打开制作窗口，先做人人都会的普通配方，再去锻造坊、厨房、织机与工坊拜访诸位大师，看看他们教些什么，顺便接下他们的工作订单换取稳定的铜币。等公会的信找到你时，你早已知道哪一对专业才是归宿。",
+      "startBody": "初到Eastbrook？找Foreman Odell接下A Trade for Every Hand，他会指给你镇东北Copper Dig一带的矿脉，让你磨出最初的老茧。留意矿坑本身：驻扎在那里的深岩挖掘者等级比新手高出几级，所以先采外围的矿脉，等级练起来一些之后再去碰营地核心。此后旅途中经过的每处矿脉、树木与草药都值得采集，熟练度自然而然会随旅途积累。\n\n回到镇上按T打开制作窗口，先做人人都会的普通配方，再去锻造坊、厨房、织机与工坊拜访诸位大师，看看他们教些什么，顺便接下他们的工作订单换取稳定的铜板。等公会的信找到你时，你早已知道哪一对行业才是归宿。",
       "colStation": "工位",
       "colHub": "主城",
       "colMaster": "大师",
       "masterCellFmt": "{name}（{title}）",
-      "harvestBodyFamilies": "采集并不止步于资源节点。许多被击杀的野兽都可以被采集一次，先到先得：兽皮、尖牙、利爪、獠牙、丝线、毒液、布料与兽肉，与它的普通战利品一并直接取自尸体，一次按键就会同时打开两者。当一头野兽掉落无瑕兽皮、完美的蜘蛛丝或其他完美标本时，世界便会铭记住是谁剥下了这具尸体：那件材料会永远带着你的名字，连同后来用它打造出的任何装备。",
+      "harvestBodyFamilies": "采集并不止步于资源节点。许多被击杀的野兽都可以被采集一次，先到先得：兽皮、尖牙、利爪、獠牙、兽角、鱼鳃、丝线、毒液、布料与兽肉，与它的普通战利品一并直接取自尸体。互动键只会拾取战利品；采集是另一项选择，需在战利品窗口的“采集”一栏中进行。当一头野兽身上不止一种可用材料时，如何取舍便由你决定：把它能给的全部取走，或专注于更少的材料，换取你所取之物明显更精细的品级。\n\n在能产出标本的族群身上掷出精良或更高的采集品质时，除普通产出之外还会额外获得一件署名的完美标本（一块Pristine Hide、一份Pristine Silk、一枚Pristine Venom Gland、一只Pristine Claw或一份Prime Cut），并在你的功绩之书中记下A Perfect Specimen。任何角色都可以采集，无需训练；而你拥有的任何采集工具，无论属于哪一门行业，都会计入最上等材料的判定。",
       "focusBodyTiers": "每座主城都为过路的采集者备有一块城镇专注面板：站在城镇里，从小地图旁打开它，把 10 点专注点数的预算摊到你在意的那些材料种类上。某种材料每投入 5 点，它的采集品级就提升一档（最多两档），而每一点都会让它的产量增加 10%；未获专注的材料绝不会因此变差。\n\n你的分配会跟随你的角色走遍各地，日后任何一次回到城镇都可以重新调整，快慢由你决定。慢慢来是免费的：每移动 1 点，重新调整需要 1 分钟。花点小钱可以加快，每点 15 秒，另加每点 5 铜与 1 个铃音之尘；全额付费则立刻完成，每点 25 铜与 5 个铃音之尘。只有你实际移动的点数才算钱，所以挪动一个点很便宜，而打开面板又原样关上，在任何档位下都分文不取。",
       "toolEffectsHeading": "工具效果",
-      "toolEffectsBody": "采集工具身上有一个插槽，而附魔师的护符正是嵌进去的东西。采集者储囊会为一次采集的产出多加一个单位；匠人之眼则提升它采上来之物的品级。Eastbrook的工坊宗师Tinker Gizzel会把两者传授给附魔技能达到 25 的附魔师，两者也都在他的工坊里制作。\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n新嵌入的护符在普通品质工具上带有 20 次充能，工具稀有度每高一阶再加 10 次，所以同一枚护符嵌在史诗采矿镐上时起始便是 50 次。只有当护符真正改变了结果时才会消耗一次充能，对它没能改善的采集绝不扣减；插槽还可以设成每次使用前询问，让护符一直等到你说“使用一次充能”为止。嵌入一枚新护符，会围绕你当时携带的工具把这个插槽重铸一遍，因此它填到的是那件工具所能容纳的量，而不是退回从前的某个高点；而一次什么都不会改变的重嵌会被挡回来，不会白白吃掉护符。\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n充能用尽并不会毁掉护符：由工具的主人为插槽补充，每花一份奥术材料补 10 次充能；至于它要哪种材料，取决于你携带的工具与这个插槽历来被填过的最好工具之中更好的那件：普通或优秀工具用铃音之尘，精良工具用铃音精华，史诗工具用铃音碎片。把好工具留在银行并不会换来更便宜的补充，只会在同样价钱下更少；真正降到更便宜一档的老实办法，是带着较差的工具嵌入一枚新护符，把插槽在那里重铸。如果插槽的上限高过你当前工具能填到的量，补充会停在那件工具的上限处，并提醒你带上更好的那一件。若你正是署名这枚护符的附魔师，补充只需一半材料，若你还专精附魔则更少；其他人一律付全价。补充是一段短读条，和这门手艺的其余部分一样。"
+      "toolEffectsBody": "采集工具身上有一个插槽，而制作出来的护符正是嵌进去的东西。采集者储囊会为一次采集的产出多加一个单位；匠人之眼则提升它采上来之物的品级；匠人护符则以同样的方式多加两个单位。前两者是附魔的活计：Eastbrook的工坊宗师Tinker Gizzel会把它们传授给附魔技能达到 25 的附魔师。匠人护符则是工程学的活计，图样由掉落获得，需 100 技能制作；三者都在他的工坊里制作。\n\n新嵌入的护符在普通品质工具上带有 20 次充能，工具稀有度每高一阶再加 10 次，所以同一枚护符嵌在史诗采矿镐上时起始便是 50 次。只有当护符真正改变了结果时才会消耗一次充能，对它没能改善的采集绝不扣减；插槽还可以设成每次使用前询问，让护符一直等到你说“使用一次充能”为止。嵌入一枚新护符，会围绕你当时携带的工具把这个插槽重铸一遍，因此它填到的是那件工具所能容纳的量，而不是退回从前的某个高点；而一次什么都不会改变的重嵌会被挡回来，不会白白吃掉护符。\n\n充能用尽并不会毁掉护符：由工具的主人为插槽补充，每花一份奥术材料补 10 次充能；至于它要哪种材料，取决于你携带的工具与这个插槽历来被填过的最好工具之中更好的那件：普通或优秀工具用铃音之尘，精良工具用铃音精华，史诗工具用铃音碎片。把好工具留在银行并不会换来更便宜的补充，只会在同样价钱下更少；真正降到更便宜一档的老实办法，是带着较差的工具嵌入一枚新护符，把插槽在那里重铸。如果插槽的上限高过你当前工具能填到的量，补充会停在那件工具的上限处，并提醒你带上更好的那一件。若你正是署名这枚护符的制作者，补充只需一半材料；若你还专精该护符所属的行业（采集者储囊与匠人之眼属附魔，匠人护符属工程学），则更少；其他人一律付全价。补充是一段短读条，和这门手艺的其余部分一样。"
     },
     "profPages": {
       "back": "返回专业总览",
@@ -7533,9 +7533,9 @@ export const zh_CN: EnTranslations = {
         "armorcrafting": "护甲锻造锤出锁甲，那是工匠能打造的最重护甲，从铆接铜甲基础款到精良的锇鳞套装，旁边还有两件法系属性件。它的客户是那些站在挨打最前线的人。",
         "tailoring": "裁缝织就施法者赖以生存的智力与精神布甲，从家纺基础款经鎏金织套装爬到精良的日织系列，并缝制Silkspun Satchel，一只十格背包，没有人会拒绝。",
         "leatherworking": "制皮在芬桥的制革坊鞣制灵巧的皮甲，从兽皮基础款到精良的泽守系列。",
-        "cooking": "烹饪在东溪的厨房把鱼、野味和草药做成坐下享用的餐食，最高可达精良的盛宴佳肴。",
-        "alchemy": "炼金术在高望的药坊调配治疗与法力药剂，以及耐力合剂。",
-        "engineering": "工程学在东溪的工坊打造4阶与5阶采集工具，每一件都要消耗低一阶的工具。",
+        "cooking": "烹饪在东溪的厨房把鱼、野味和草药做成坐下享用的餐食，顶端是三道分职佳肴：回复量胜过其他任何食物，还会给吃完整盘的人留下精神饱满效果。",
+        "alchemy": "炼金术在高望的药坊调配治疗与法力药剂、耐力合剂，顶端则是每个职责一瓶的药壶，连你自己的死亡都留得住。",
+        "engineering": "工程学打造每位认真的采集者最终都会想要的工具：4阶与5阶的镐、斧与镰，以及三根从4阶攀到6阶的鱼竿，其中没有一件会有柜台用金币出售，每一件都要消耗低一阶的工具。",
         "enchanting": "附魔将不需要的装备分解成奥术材料，再将其用于永久性的装备附魔，无需任何工位。",
         "jewelcrafting": "珠宝加工是Eastbrook锻造坊里更精细的那张工作台：铜、铁与精良锇金的戒指与项链，每一档都有一枚力量戒指、一枚智力戒指和一条敏捷项链。首饰没有护甲、不限职业，所以它的顾客就是所有长着手指和脖子的人。",
         "inscription": "铭文是Highwatch药坊里的那张书案：给施法者副手的典籍，给所有人的耐力卷轴，都用旁边药剂所用的同一批草药研墨而成。它的卷轴是通往战斗药剂增益的第二扇门，所以哪怕从不捧书的战士也有理由来敲门。"
@@ -7543,83 +7543,83 @@ export const zh_CN: EnTranslations = {
       "craftProse": {
         "weaponcrafting": {
           "identityHeading": "人人都要买的锋刃",
-          "identityBody": "精良一档就覆盖了三种需求：力量近战的锇金战刃、敏捷战士的铭钢战斧，以及施法者的智力精神法杖高松战棍。\n\n在专业之环上它位于护甲锻造与珠宝加工之间。现役命途是神匠铁尊（武器锻造与护甲锻造），可在锻造坊的锻造宗师达尔娃处宣誓，以亲手挖掘的三处矿脉完成试炼；刃匠（与珠宝加工搭档）也标注在专业之环上，但需等待珠宝加工开放后方可宣誓。",
+          "identityBody": "精良一档就覆盖三种胃口：力量近战的Osmium Warblade、敏捷战士的Glyphsteel War Axe，以及施法者的智力精神法杖Highpine Battle Staff。\n\n在制作之轮上它位于护甲锻造与珠宝加工之间。现役命途是铁匠（武器锻造与护甲锻造），可在锻造坊的锻造宗师Darva处宣誓，以自己双手挖掘三处矿脉方可；铸刃师（与珠宝加工的搭档）也标注在制作之轮上，如今珠宝加工已在同一座锻造坊里锤打自己的0到50首饰梯子，但这对命途仍要等它的宣誓任务出现方可宣誓。",
           "materialsHeading": "锻炉吞噬什么",
-          "materialsBody": "采矿是根基。铜矿出自东溪谷地的一级矿脉，铁矿出自泥泞沼泽，锇矿出自荆棘峰，每一阶阶梯都随之步步攀升。伐木的重要性超出预期：铁皮木做野猪长矛的矛柄，梣木扛起重锤之柄，一根高松原木成就那把坚韧的战棍。\n\n其余材料来自野外狩猎与材料商：粗皮直接从狼和野猪尸体上剥取，碎骨来自日常猎杀，锻造全阶图样都需要锻造助熔剂（达尔娃处20枚铜币一罐）。若自己采矿跟不上，达尔娃在锻造坊柜台备有锇矿，技工吉泽尔在工坊也出售铭钢锭，但高昂的价格绝对会让你觉得交几个采矿好友要划算得多。",
+          "materialsBody": "采矿是根基。铜矿出自Eastbrook Vale的一级矿脉，铁矿出自Mirefen Marsh，锇矿出自Thornpeak Heights，每一档梯子都如此升级。伐木的重要性超出预期：铁皮木做野猪矛的矛杆，梣木扛起锤柄，一根高松原木成就那根战棍。\n\n其余材料来自猎获与柜台：粗皮直接从狼和野猪尸体上剥取，碎骨来自日常猎杀，锻造梯子要烧Smithing Flux（Darva处20铜一罐）。若自己采矿跟不上，Darva在锻造坊柜台卖锇矿，Tinker Gizzel在工坊备有铭钢锭，价格之高让人觉得还是交几个采矿朋友合算。",
           "ladderHeading": "一级一级的梯子",
-          "ladderBody": "野外配方东溪武装剑人人初始即会，可在任何地方用猎获材料（几根狼牙与碎骨）加六罐锻造助熔剂打造，无需锻炉工位。真正的阶梯是三档九个训练师配方，全部绑定锻造坊：铜质档技能0点免费，铁质档技能25点每张25银币，锇金档技能50点每张1金币。达尔娃在你技能达到门槛的那一刻便会倾囊相授，正好与技能段同步解锁。\n\n命途之外还有一张特殊图样：墓龙护手，由训练师传授的组合重甲，唯有武器锻造与护甲锻造均达到25点的调谐铁匠方能打造，且无需任何固定工位。",
+          "ladderBody": "野外配方Eastbrook Arming Sword人人初始即会，可在任何地方用猎获材料（几根狼牙与碎骨）加六罐Smithing Flux打造，无需工位。真正的梯子是三档九个训练师配方，全部绑定锻造坊：铜档技能0免费，铁档技能25每个25银，锇档技能50每个1金。Darva在你该行业的档位达到其门槛的那一刻便会传授，所以每档正好在自身技能段开启时解锁。\n\n命途之外还有一件配方：Gravewyrm Gauntlets，由训练师传授的组合件，只有武器锻造与护甲锻造都达到技能25的调谐铁匠才能制作，且完全不需要任何工位。",
           "routeHeading": "杰作与通往125之路",
-          "routeBody": "锻造阶梯上有真实属性加成的兵刃（即铁质档及以上）才有机会触发暴击杰作；无属性的铜质新手件绝不触发，因为杰作提升的是属性词缀。铁矿算作一级材料，高松木与铭钢算作二级，因此顶级神兵的暴击率更高。\n\n冲级路线：铜质武器做到25点，铁质武器一开即练并做到50点，随后打造锇金神兵推至75点。75点之后暂无更高配方，锇金配方经验收益先降至半速再降至四分之一：预计约需锻造150次才能登顶125点上限，批量制作时请留意每分钟十次的制作频率限制。\n\n边练边回本：达尔娃的锻造工作订单每30分钟收购八块铜矿，换来丰厚赏钱与经验；铁质与锇金成品深受练级近战勇士的青睐。功业之书在技能50点记下“淬火开刃”，125点最终加冕“武器锻造大宗师”！"
+          "routeBody": "凡是带真实属性行的成品（在这条梯子上即铁档及以上）都可能作为杰作出砧，前提是那份更精细的品质落在你的层级上限之内；无属性的铜档普通件永远不会触发，因为它们身上没有可提升的东西。就杰作加成而言，铁与锇算一级材料，高松与铭钢算二级；技能高于配方自身的层级时，每高一层再加一点，所以锇档三件之中，占着材料便宜的是战斧与战棍，而且一个档位在你成长超过它之后，触发反而更好。\n\n铜档做到25，铁档一开放就去学并做到50，再用锇档做到75。锇档三件之上还有一个达尔瓦不传授的顶级档位：它的配方靠拾得，而非花钱购买。对于主修里含武器锻造的匠人（如今即已宣誓的铁匠），一件顶级制作会一路满速给到125上限；在主修的上限之下它什么都教不了你，所以未宣誓或以之为爱好的匠人做它是为了那把武器，不是为了点数。无论哪种情况，攀升都由锇档配方承担，收益先降至一半再降至四分之一：预计约还需150次制作才能到达125上限；而且每次制作都要花去真实的施法时间，所以一长批的节奏由时长决定，而不是由配额决定。\n\n边练边回本：达尔瓦的锻造工作订单每30分钟从你手里收走八块铜矿石，换来一点铜钱与经验；铁档与锇档的成品也实实在在卖得动正在练级的近战玩家。功业之书在技能50记下锋刃与淬炼，并在125加冕武器锻造宗师。"
         },
         "armorcrafting": {
           "identityHeading": "前线的锁甲",
-          "identityBody": "护甲锻造的阶梯如同士兵的履历：铆接铜甲起步，铁链甲一档有了真正的属性，精良的锇鳞头盔、胸甲与护腿则是工匠能敲出的最大护甲数值。\n\n还有安静的一面：野外普通件东溪护法护腿与技能75点的窑鳞披肩（智力精神锁甲护肩）能留住法系锁甲客户。它位于武器锻造与工程学之间；铁匠可在达尔娃处宣誓，重装齿轮师（与工程学搭档）已标注在专业之环上，但尚无誓约任务。",
+          "identityBody": "梯子如同士兵的履历：铆接铜甲起步，ironlink一档有了真正的属性，精良的osmiumscale头盔、胸甲与护腿则是工匠能敲出的最大护甲数值。\n\n还有安静的一面：野外普通件Eastbrook Warded Leggings与技能75的Kilnscale Mantle（智力精神锁甲肩）留住法系锁甲客户。它位于武器锻造与工程学之间；铁匠可在Darva处宣誓，齿轮匠（与工程学搭档）已标注在制作之轮上，但尚无誓约任务。",
           "materialsHeading": "成袋的矿石",
-          "materialsBody": "没有哪个专业吃矿更快：铁链锁甲一件就要五块铁矿，每件锇鳞装备要三到四块锇矿外加一块铭钢锭，认真的甲匠要么自己挖遍泥泞沼泽与荆棘峰，要么花钱请人。铜矿从矿坑旁的铜矿脉出发供给第一档。\n\n金属之外还有软料：粗皮从狼和野猪尸体上剥取，碎骨与亚麻碎布来自日常猎杀，几乎每个配方都要一罐锻造助熔剂（锻造坊20枚铜币）。急用时达尔娃柜台就有售锇矿。",
+          "materialsBody": "没有哪个行业吃矿更快：ironlink hauberk一件就要五块铁矿，每件osmiumscale要三到四块锇矿外加一块铭钢锭，认真的甲匠要么自己挖遍Mirefen Marsh和Thornpeak Heights，要么花钱请人。铜矿从矿坑旁的铜矿脉出发供给第一档。\n\n金属之外还有软料：粗皮从狼和野猪尸体上剥取，碎骨与亚麻碎布来自日常猎杀，几乎每个配方都要一罐Smithing Flux（锻造坊20铜）。急用时Darva柜台就卖锇矿。",
           "ladderHeading": "在Darva的锻炉学艺",
-          "ladderBody": "两件基础锁甲（东溪链甲背心与守备护腿）初始即会，随处可做。训练师进阶阶梯位于东溪镇铁匠工坊：铜甲阶0点免费，铁环阶25点每张25银，锇鳞阶50点每张1金，各阶图样在达到技能门槛时即可学习。\n\n阶梯之外有两个特殊配方：缚石面甲是铁匠的双专业组合图纸，由训练师传授，随处可打，但只有武器锻造与护甲锻造双达25点的调谐神匠才能锻造；窑鳞斗篷无需任何导师指点，人人皆知，但需要技能达到75点且需在大型锻炉旁敲打，是本专业的巅峰大作。",
+          "ladderBody": "两件野外普通件（Eastbrook Chainmail Vest与Warded Leggings）人人都会、随处可做。训练师梯子是Eastbrook锻造坊的三档九个配方：铜档技能0免费，ironlink档25技能每个25银，osmiumscale档50技能每个1金，各档在你达到其门槛的那一刻即可学习。\n\n梯子之外有两件特例：Boundstone Helm是铁匠组合配方，由训练师传授，无需工位，但只有武器锻造与护甲锻造双技能25的调谐铁匠才能制作；Kilnscale Mantle无需任何训练师，人人都会，但要技能75且绑定锻造坊，是本行业的三层压轴。",
           "routeHeading": "杰作与通往125之路",
-          "routeBody": "从铁环阶及以上开始，每次锻造都有几率触发杰作暴击！仅有基础护甲值的铜制白装不会暴击，因为杰作只提升属性。铁锭算作一阶材料，符文钢算作二阶材料。\n\n常规冲级路线：铜矿练至25点，铁环练至50点，锇鳞练至75点。护甲锻造的优势在于75点之后：窑鳞斗篷是三阶高难度配方，冲击满级仅需约75次锻造，耗材大幅减半。每件斗篷消耗七块锇矿石与五份锻造助熔剂，请提前备足材料。\n\n达尔瓦女铁匠的订单每30分钟收购八块铜矿，换取丰厚赏金与经验；功绩之书在技能50点与满级时，分别授予‘钢铁之躯’与‘重装护甲大宗师’至高头衔。"
+          "routeBody": "ironlink档及以上都掷杰作；只有护甲值的铜档普通件不会触发，因为杰作是对属性的提升，而它们没有属性。铁算一级材料，铭钢算二级。\n\n路线照常三档：铜到25，ironlink到50，osmiumscale到75，每档一开即学。护甲锻造的运气在于75之后：Kilnscale Mantle是三层配方，到99全速、之后半速，最后五十点约75次而非其他行业没有压轴配方时所需的150次。每件要七块锇矿五份Smithing Flux，先在Thornpeak和锻造坊柜台备货再开跑。\n\nDarva的订单每30分钟收八块铜矿，换来铜钱与经验，是消化低级矿的好去处。功业之书在技能50记下Hammer and Plate，125等着Grandmaster Armorcrafting。"
         },
         "tailoring": {
           "identityHeading": "施法者的布衣，所有人的背包",
-          "identityBody": "裁缝的进阶之路从朴素的粗麻便服起步，贯穿鎏金织锦套装，最终攀上精良与史诗的巅峰：缚丝者法衣与日曜法袍。裁缝还掌握着全职业通用的核心命脉——丝织行囊是一只足足十格的珍贵背囊，在这个世界上，没有任何职业、专精或等级的冒险者会拒绝更多的行囊空间。\n\n在专业之环上，裁缝紧邻制皮与铭文。它当前最活跃的同盟是‘皮布裁造大师’（制皮与裁缝同修）：在猎杀四只织网毒蛛取得蛛丝后，于东溪镇织布机前的织匠奥蒂莉面前起誓结契。",
+          "identityBody": "梯子从homespun基础布装经鎏金织套装爬到精良档：Silkbinder's Raiment与sunweave件。第二门生意人人需要：Silkspun Satchel是十格背包，没有哪个职业、专精或等级嫌包多。\n\n在制作之轮上裁缝位于制皮与铭文之间。现役命途是制装师（制皮与裁缝），先猎四只webwood蜘蛛取丝，再在Eastbrook织机旁的Weaver Ottilie处宣誓；与铭文组成的织墨师也标注在轮环上，如今铭文的基础配方目录已然落墨，它只差一个属于自己的宣誓任务。",
           "materialsHeading": "线、丝，还有草药",
-          "materialsBody": "织布机全凭荒野狩猎的缴获与田野的收成运转。亚麻碎布与土布来自人形敌怪的掉落，蛛丝采自毒蛛的腹腔；而精良阶梯的核心——缚丝者法衣，则需要极为罕见的原生无瑕蛛丝，只有运气极佳的勇士才能从残骸中剥取。\n\n草药学对裁缝的助力远超其他护甲专业：润光叶修饰轻盈的便鞋，金叶草为鎏金织锦染上尊贵的光华，日瓣草则穿引着整阶精良法袍。一位精通草药的裁缝能省下巨额开销。奥蒂莉出售的丝线每轴仅需12枚铜币，且织布机无需任何金属：就连巅峰之作‘结界编织兜帽’，也是由顶级草药、无瑕蛛丝、毒蛛丝和优质缝线共同织就。",
+          "materialsBody": "织机靠猎获与田野运转：亚麻碎布与家纺布来自人形生物，蜘蛛丝从蛛尸上采取，精良档的核心Silkbinder's Raiment要一块Pristine Silk（尸体采集的署名标本）。\n\n草药喂养裁缝胜过任何装备行业：润光叶镶拖鞋，金叶染鎏金织，日瓣草贯穿整个精良档，所以自己采药的裁缝能持续节省材料。Spool of Thread在Ottilie处12铜一轴，织机根本不用金属，连Wardweave Cowl顶阶也是用高级草药、Pristine Silk、蛛丝与线织成。",
           "ladderHeading": "在Ottilie的织机学艺",
-          "ladderBody": "两件野外普通件（东溪羊毛长裤与东溪仪典法衣）随处可做。训练师阶梯在东溪镇水井南侧的织机：粗麻档技能0点免费，鎏金织档（包含丝纺挎包）技能25点每张图纸25银币，精良档技能50点每张1金币。\n\n织卫兜帽无需训练师：人人都会，但需要技能达到75点且绑定织机，是本专业的三阶压轴。如同其他专业，奥蒂莉会在你的裁缝技能达到门槛的那一刻倾囊相授。",
+          "ladderBody": "两件野外普通件（Eastbrook Wool Trousers与Ritual Vestments）随处可做。训练师梯子在Eastbrook水井南侧的织机：homespun档技能0免费，鎏金织档（含Silkspun Satchel）技能25每个25银，精良档技能50每个1金。\n\nWardweave Cowl无需训练师：人人都会，但要技能75且绑定织机，是本行业的三层压轴。如同其他行业，Ottilie在你的裁缝档位达到配方档位的那一刻便会传授。",
           "routeHeading": "杰作与通往125之路",
-          "routeBody": "长袍里的完美的蜘蛛丝本身就补足了署名材料加成，金叶草与日瓣草分别算作一、二级原料，精良档因此暴击触发率最高；背包等无属性成品永不出杰作，因为杰作只针对属性加成。\n\n冲级路线：粗麻图样推到25点，鎏金织一开即练并做到50点，再制作精良法袍到75点；75点之后依靠织卫兜帽（三阶配方，到99全速、之后半速），冲刺最后50点约需缝制75次，每次消耗两份完美的蜘蛛丝、四束蛛丝、日瓣草与金叶草各两株，以及两份缝线。\n\n自给自足的循环：背包可以卖给任何冒险者，奥蒂莉的织机订单每30分钟收购六束蛛丝。功业之书在技能50点记下“细密缝线”，125点等候着“裁缝大宗师”荣耀加身。"
+          "routeBody": "长袍里的Pristine Silk本身就补足署名材料加成，金叶与日瓣草分别算一、二级材料，精良档因此触发率最高；背包之类无属性的成品永不触发，因为杰作是对属性的提升，而背包没有属性。\n\n路线：homespun到25，鎏金织一开即练并做到50，再做精良档到75；75之后靠Wardweave Cowl（三层配方，到99全速、之后半速），最后五十点约75次，每次两块Pristine Silk、四束蛛丝、日瓣草与金叶各两、两份线。\n\n让攀升自给自足：背包卖给所有人，Ottilie的织机订单每30分钟收六束蛛丝。功业之书在技能50记下A Fine Seam，125等着Grandmaster Tailoring。"
         },
         "leatherworking": {
           "identityHeading": "迅捷者的皮甲",
-          "identityBody": "制皮的技艺从芬桥镇朴素的生皮护腿、长靴与束带起步，途经优秀的潜沼者紧身皮甲、兜帽与护肩，直至问鼎精良的泥沼卫士套装——这是匠人巧手所能裁剪出的最强韧皮甲。此外，两件兼具法术加成的皮甲为其锦上添花：初入江湖即可随时缝制的东溪德鲁伊皮甲，以及50点技能即可习得的暮皮裹臂。\n\n在专业之环上，它坐落于烹饪与裁缝之间。它的现行同盟是‘皮布裁造大师’，需在东溪镇织匠奥蒂莉面前起誓缔结。",
+          "identityBody": "梯子从朴素的Fenbridge硬皮件经优秀的marshstalker件爬到精良的mirewarden套装，工匠能裁出的最好皮甲。两件法系皮件补全阵容：野外普通件Eastbrook Druid's Hide与技能50的Duskhide Wraps。制皮位于烹饪与裁缝之间；制装师在Eastbrook的Weaver Ottilie处宣誓，与烹饪组成的Trapper暂无誓约任务。",
           "materialsHeading": "狩猎即收获",
-          "materialsBody": "在制皮专业中，冲级路线与供应链是完全重合的：粗皮直接从野兽尸体上剥取（狼和野猪产出最多），每具尸体仅供先到的一人剥皮。精良及以上的采集还会产出完美的兽皮，泥沼守卫皮甲正需要这种署名原料，见一块务必存一块。\n\n辅助材料不多：蛛腿与蛛丝、人形生物掉落的布料、每件泥沼守卫精良皮甲所需的一块锇矿（暮影裹手需要六块），以及制革坊柜台16枚铜币的鞣革剂。锇矿本身从不在柜台出售：只能在荆棘峰或高阶矿脉亲自开采，或是向其他玩家收购。",
+          "materialsBody": "在制皮这里，练级路线与供应线是同一条：粗皮直接从带皮尸体上剥取（狼和野猪最多），每具尸体只服务先到的一人。精良及以上的采集还会给出Pristine Hide，Mirewarden Jerkin正需要这种署名标本，见一块存一块。\n\n配角不多：蛛腿与蛛丝、人形生物的家纺布、每件mirewarden精良品一块锇矿（Duskhide Wraps要六块），以及制革坊柜台16铜的Tanning Agent。锇矿本身从不在柜台出售：只能自己开采，无论是在荆峰还是几乎任何新手区域的入门矿脉（唯独远岸只挖得到铁矿），或是向其他玩家购买。",
           "ladderHeading": "在Fenbridge受训",
-          "ladderBody": "制皮有一处独特的门道：大制革工坊坐落于泥泞沼泽路上的芬桥镇，这使得制皮成为唯一一门需要深入沼泽求学的高阶手艺。制革大师赫斯克在巨大的鞣制桶前传授技艺：0点技能免费传授芬桥生皮阶梯，25点技能以每张图纸25枚银币传授潜沼者阶梯，50点技能以每张1枚金币传授泥沼卫士阶梯。\n\n有三样配方无需训练师指点：野外基础图纸（鞣制皮甲与东溪德鲁伊皮甲）从起步便可随时随地制作，而暮皮裹臂在技能达到50点时全员知晓（需在制革厂鞣制）。请牢记：裁造誓言需在东溪镇向奥蒂莉宣誓，只有深造求学才需远赴沼泽。",
+          "ladderBody": "特别之处：制革坊在Mirefen Marsh路上的Fenbridge，这是唯一在Eastbrook之外受训的深度行业。Tanner Hesk在他的鞣池边授课：硬皮档技能0免费，marshstalker档技能25每个25银，mirewarden档技能50每个1金。三件配方跳过训练师：野外普通件（Tanned Leather Jerkin与Druid's Hide）随处可做，Duskhide Wraps人人都会，技能50起即可在制革坊制作。注意制装师誓约本身在Eastbrook的Ottilie处宣誓，只有授课在沼泽。",
           "routeHeading": "杰作与通往125之路",
-          "routeBody": "任何带有真实属性的皮甲都有几率触发杰作锻造，一件带有制作者署名的泥沼卫士皮甲还会自动提供材料加成；锇矿在判定中视同1阶材料。无属性的粗糙白装无法触发暴击杰作。\n\n最自然的冲级路线：从1级起剥取每一头死于你刀下的狼和野猪，依靠两张野外基础图纸将技能推至25点；待任务引你踏入沼泽时，顺势前往工坊学习生皮配方。潜沼者图样可带你冲至50点，随后泥沼卫士与暮皮裹臂将伴随你从50点精良阶梯跨越至75点。\n\n便携制革工具有着不可替代的战略价值：在75点完成特化后，满满一马鞍袋的兽皮在野外营火旁便能直接缝制成成套装备，免去了频繁折返芬桥的奔波之苦。赫斯克的制革工坊每30分钟以丰厚赏金收购8张粗皮，功绩之书更在50点与满级时分别封赏‘制革名家’与‘大宗师’荣耀头衔。"
+          "routeBody": "marshstalker档及以上都掷杰作，Mirewarden Jerkin里的Pristine Hide自动提供署名材料加成；锇矿算一级材料。无属性的硬皮普通件不会触发。\n\n自然而然地练：从一级起剥下每只狼和野猪，硬皮档随地做到25，随任务进沼泽时顺路受训；marshstalker到50，而mirewarden各件与Duskhide Wraps会将稀有档从50带到75。过了75，这些二层配方的收益减半、再减至四分之一，最后五十点约需150次才能到达125点上限；未达到主修上限时，它们仍与精良品质的制作上限持平，而不会直接归零。75专精后移动制革坊尤其宝贵：营火边就能把一袋皮子变成成品。Hesk的订单每30分钟收八张粗皮。技能50记下Tanner's Trade，上限处是Grandmaster Leatherworking。"
         },
         "cooking": {
           "identityHeading": "喂饱队伍的锅",
-          "identityBody": "享用一顿热气腾腾的烹饪大餐，可在18秒的休整中持续恢复生命值——在两场血战之间，这是全游戏中最经济高效的疗伤手段。食谱的阶梯从恢复90点生命值的香煎河鲈，一路攀升至恢复980点巨量生命值的马洛秘制盛宴大烤肉，其恢复效果冠绝全境。\n\n在专业之环上，烹饪坐落于炼金与制皮之间。它最默契的搭档是‘药剂医师’（炼金与烹饪同修）：在猎杀四头野猪为大锅备齐鲜肉后，于东溪镇大厨房的马洛大厨面前起誓缔结。",
-          "identityBodyOneMeal": "吃下熟食会在18秒的休息中治疗你，这是拉怪间隙最便宜的治疗。梯子从90点治疗的Pan-Seared River Perch经980点的Marlow",
+          "identityBody": "吃下熟食会在18秒的休息中治疗你，这是拉怪间隙最便宜的治疗。梯子从90点治疗的Pan-Seared River Perch经980点的Marlow's Grand Roast，一路做到其上的三道顶级分职佳肴（1392点），这是游戏中最大的坐地回复，也是吃完整盘后所能留下的最强精神饱满效果（农场厨房的增益菜肴填补其下的各级）。烹饪位于炼金术与制皮之间；药剂师（炼金术与烹饪）在Eastbrook厨房的Cook Marlow处宣誓（先为锅猎四头野猪），与制皮组成的Trapper暂无誓约任务。",
+          "identityBodyOneMeal": "吃下熟食会在18秒的休息中治疗你，这是拉怪间隙最便宜的治疗。梯子从90点治疗的Pan-Seared River Perch经980点的Marlow's Grand Roast，一路做到其上的三道顶级分职佳肴（1392点），这是游戏中最大的坐地回复，也是吃完整盘后所能留下的最强精神饱满效果（农场厨房的增益菜肴填补其下的各级；耕作页面讲述那一侧的故事）。同时只能有一种精神饱满效果：更新的一餐会顶替它。烹饪位于炼金术与制皮之间；药剂师（炼金术与烹饪）在Eastbrook厨房的Cook Marlow处宣誓（先为锅猎四头野猪），与制皮组成的Trapper暂无誓约任务。",
           "materialsHeading": "钓竿与猎刀供养的食柜",
-          "materialsBody": "钓鱼按区域供应招牌食材：东溪谷地的镜鳟与河鲈，泥泞沼泽的沼狗鱼与泥鳗，荆棘峰的霜鳃鳟与板鳍鲤，每一档都烹制本区域的鱼鲜。屠宰的一侧来自野兽尸体采集：野味肉，以及精良采集掷出的署名上等肉块（大烤肉的核心）。草药调味，梣木熏鳗，烹饪用盐在马洛摊位仅售8枚铜币一袋。",
+          "materialsBody": "钓鱼按区域供应招牌食材：Eastbrook Vale的镜鳟与河鲈，Mirefen Marsh的沼狗鱼与泥鳗，Thornpeak Heights的霜鳃鳟与板鳍鲤，每一档都烹本档的鱼。屠夫的一侧来自尸体采集：野味肉，以及精良采集掷出的署名Prime Cut（大烤肉的核心）。草药调味，梣木熏鳗，Cooking Salt在Marlow摊位8铜一袋。",
           "ladderHeading": "从肉干到大烤肉",
-          "ladderBody": "咸肉干是最实用的野外口粮：初始即可掌握，仅需一条毒蛛腿，随时随地皆可制作，是每一位初出茅庐的冒险者居家旅行的干粮首选。训练师阶梯位于东溪镇中央广场东侧的大厨房：0点免费传授基础阶（香煎河鲈、猎手野味烤串、香草沼泽狗鱼），25点以每道菜谱25银币传授进阶阶（灰木熏鳗鱼、金叶野味乱炖、霜鳃浓汤），50点以每道1金币传授珍馐阶（白银鲤鱼大餐、钓客饕餮拼盘、马洛秘制盛宴大烤肉）。\n\n大锅料理能让你的食材成倍发挥效用：熏鳗鱼和野味乱炖每次烹饪可出两份，而饕餮拼盘更可供三人分食！只要你的烹饪造诣达到门槛，马洛大厨便会倾囊相授。",
+          "ladderBody": "Salted Jerky是野外配方：初始即会、一条蛛腿、随处可做。训练师梯子在广场东侧的Eastbrook厨房：免费档技能0（河鲈、Hunter's Game Skewer、Herbed Marsh Pike），中档技能25每个25银（Ashwood Smoked Eel、Goldleaf Game Stew、Frostgill Chowder），精良档技能50每个1金（Silvered Carp Supper、Angler's Feast Platter、Marlow's Grand Roast）。批量菜省料：熏鳗与炖肉每次两份，宴会拼盘三份。",
           "routeHeading": "专精而非杰作，以及通往125之路",
-          "routeBody": "烹饪是杰作故事里诚实的例外：菜肴没有属性可提升，永不触发暴击杰作，也无需强求。这门手艺的精通在于75点的专精：每样食材节省五分之一（批量烹饪时收益极大），外加便携野外厨房，能让丰盛宴席在地下城门口开锅。边钓边做，两门技能相辅相成：免费基础档到25点，中档到50点，精良档到75点；此后精良菜肴收益衰减为半速与四分之一，推到上限约需再烹饪150次。马洛的订单每30分钟收购八块野味肉。技能50点记下“熟练大厨”，125点加冕“烹饪大宗师”头衔。"
+          "routeBody": "烹饪是杰作故事里诚实的例外：一道菜没有可提升的属性行，所以菜肴永不触发杰作，厨师也不该去追它。这门手艺的精通在于75的专精：每样食材省下五分之一（在批量菜上叠加得极快），外加一座移动野外厨房，让宴席在副本门口出锅。\n\n钓什么就做什么：把攀升与一场垂钓配在一起，两门技能会一路互相供养。盐渍肉干与免费档以每次制作一点把你带到25，中档到50，精良档到75。精良档之上是顶级厨房：三道分职佳肴与丰盛炉灶，没有导师传授它们，它们只出自拾得的配方。对于主修里含烹饪的厨师（如今即已宣誓的药剂师），一件顶级制作会一路满速给到125上限；在主修的上限之下它什么都教不了你，所以未宣誓或以之为爱好的厨师做它是为了这盘菜，不是为了点数。无论哪种情况，最后一段都由精良菜承担，收益衰减为一半再到四分之一，约还需150次制作。把它当作备货而非苦练：一个公会连每一份都吃得下。\n\n马洛的厨房工作订单每30分钟收八块野味肉，换来铜钱与经验；功业之书在技能50记下老练厨师，一路通向125的烹饪宗师头衔。"
         },
         "alchemy": {
           "identityHeading": "赢下战斗的瓶子",
-          "identityBody": "这门手艺在高望要塞的药坊操持，主人是炼金大师维兰：传授配方、出售12枚铜币的玻璃瓶、通过工作订单收购草药。炼金术位于工程学与烹饪之间，因此有两条命途：爆破师（工程学与炼金术，在东溪镇的技工吉泽尔处起誓）与药剂师（炼金术与烹饪，在大厨马洛处宣誓）。调谐任一对即可让炼金成为主修直至上限；此前它像所有未宣誓专业一样练到精良层。",
+          "identityBody": "这门手艺在高望的药坊操持，那里是韦兰炼金术士（药坊大师）的居所：她传授整条配方梯子，以12铜出售玻璃瓶，还通过自己的工作订单收草药付钱。\n\n在制作之轮上，炼金术与讲究试错的手艺为伴，一侧挨着工程学，另一侧挨着烹饪，由此得到两条命途：爆破师（工程学与炼金术，在东溪的吉泽尔修补匠面前领受）与药剂师（炼金术与烹饪，在马洛厨师面前宣誓）。调谐任一对都能让炼金术成为主修，并让你自己署名的作品反过来教你；爆破师这一对还开启它的组合酿造巨熊药剂，而药剂师这一对目前尚未推出组合配方。不过0到50的梯子本身从不等人：那些档位无一例外都落在未宣誓行业所受的精良层之内，所以在任何誓言之前，通往上限的攀登就已敞开。有两样东西高于这道上限，而且只把技能付给主修：活化催化剂，也就是韦兰同样传授的75档中级配方，以及梯子之上那些拾得配方的档位；未宣誓或以之为爱好的炼金师酿它们是为了成品，不是为了点数。",
           "materialsHeading": "草药、毒腺与玻璃",
-          "materialsBody": "调制每瓶药水都需要一个空玻璃药瓶，加上对应阶梯的草药：润光叶生长在东溪谷地，金叶草生长在泥泞沼泽，日瓣草盛开在荆棘峰之巅——一域一草，药水伴随你的冒险足迹共同成长。草药学是炼金术最天然的搭档，当然直接从采集者或拍卖行购买也同样可行。高阶草药需要更锋利的草药镰刀，自己采药请务必及时更新工具。\n\n耐力药剂分支额外需要猎手的战利品：从带毒野兽尸体上剥取的毒囊，顶级药剂更需要一枚极为罕见的无瑕毒囊。如果不修剥皮，这正是托猎人朋友顺路带回的紧俏硬通货。",
+          "materialsBody": "每瓶药剂要一个Glass Vial外加对应档位的草药：润光叶生于Eastbrook Vale，金叶生于Mirefen Marsh，日瓣草生于Thornpeak Heights，一区一药，瓶子随世界一起攀升。草药学是天然的伙伴技能，不过从采集者或市场购买同样奏效；深区的高阶草丛需要更好的镰刀，所以若自己采药，记得及时更新工具。\n\n强化药剂一线另需猎手的材料：从带毒尸体采集的Venom Gland，顶级药剂还要一块Pristine Venom Gland（署名稀有标本）。若不自己采集，这正是值得托猎手朋友顺路带回的好物。",
           "ladderHeading": "配方阶梯",
-          "ladderBody": "初级治疗药水人人初始即会、随处可调，无需专门炼金台。真正的进阶阶梯是维兰在药剂工坊传授的九大核心配方，分为三档：0点技能免费学习，25点技能每张配方25银，50点技能每张配方1金。每一阶都包含治疗药水、法力药水与耐力药剂，从基础润光叶瓶（恢复120生命、160法力）经优秀金叶药水（恢复200生命、260法力），直到精良日瓣药水（恢复280生命、360法力）。\n\n耐力药剂同样逐级提升：野猪之耐力药剂提升6点耐力，持续10分钟；灼蛇之耐力药剂提升9点耐力，持续15分钟；巨蛇之耐力药剂提升12点耐力，持续15分钟且每次调制可得两瓶！此外还有一个特殊的双专业组合配方‘巨熊之耐力药剂’：炼金达到25点时维兰以25银币传授，随处可调，但只有同时掌握炼金术与工程学的调谐爆破师才能调制。",
+          "ladderBody": "Minor Healing Potion人人初始即会、随处可调，无需工位。真正的梯子由Verane在药坊逐档传授：技能0免费，25档每个25银，50档每个1金；每档都是治疗药剂、法力药剂与耐力强化剂，从普通润光叶瓶（120生命、160法力）经优秀金叶（200、260）到精良日瓣（335、425）；自战利品经济起，25档还传授一瓶以兽脂调制的Lesser Healing Potion，比金叶药剂便宜、效力略逊一筹。\n\n强化剂同样攀升：Elixir of the Boar给6耐力10分钟，Vipersear Elixir给9耐力15分钟，Elixir of the Serpent给12耐力15分钟且一次两瓶。旁边还有一个组合配方Elixir of the Bear：炼金达到25时Verane以25银传授，随处可调，但只有炼金术与工程学双技能25的调谐爆破师才能调制。\n\n整条强化剂线之上还有药壶档，无人传授，只能从拾得的配方学会。药壶给13点、持续20分钟，并开出强化剂从未有过的两条轴：攻击强度与智力，与熟悉的耐力并列，每个职责一瓶。它还有自己的规矩：无论属性，同时只能有一瓶药壶生效；该属性更弱的药剂或卷轴无法顶替它；驱散、偷取或手动取消都无法移除它；它能陪你越过自己的死亡，但登出后就会消失。",
           "routeHeading": "酿药师的125之路",
-          "routeBody": "药剂与强化剂永不出杰作，那属于有属性的装备。你的名字仍会流传：精良的日瓣药剂单瓶酿造、出瓶即署名，而双瓶的巨蛇药剂则是无名的。75专精后每个配方省20%材料。\n\n早学草药、边练边采：润光叶遍布山谷，到了维兰的工作台，免费档就能靠顺手采的草药干净地推到25。25档一开即学，采药转往沼泽采金叶，维兰的订单（六株金叶草换45铜，每30分钟一次）顺路回本。\n\n50点以后用荆棘峰的草药酿造日瓣与巨蛇药剂批次。100到125是刻意的涓流，酿造能卖得出去的东西，别为了追赶数字白白消耗草药，记住消耗品是唯一人人都反复购买的制作品。功业之书在技能50点记下“奇妙佳酿”，满级上限处加冕“炼金大宗师”。"
+          "routeBody": "药水与药剂永不掷出杰作，那种触发属于带属性的装备。不过你的名字依然会流传：精良的阳瓣药水出瓶即带着匠人印记署名，双瓶产出的巨蛇药剂每一瓶也是如此，所以这门手艺里没有哪件精良品是不署名地离开工作台的。技能75时你会专精，从那以后每个炼金配方都少耗20%的材料。\n\n早学草药学，边升级边采：润光叶遍布东溪谷，等你走到韦兰的工作台前，免费档就能靠这些你顺手也会采的草药，干干净净地把你送到技能25。25档一开放就学，把采集转往泥沼湿地采金叶草，让韦兰的工作订单（六株金叶草换45铜，每30分钟可再接一次）一路给你捎回一点铜钱。\n\n50以后，用荆峰高地的阳瓣草酿阳瓣药水与巨蛇药剂的批次，配方里仍会掺一点东溪谷与湿地的草木。巨蛇之上是顶级工作台：三种药壶，以及位于最顶端、技能125的压轴之作宏伟坩埚。没有导师传授它们，它们只出自拾得的配方，而且只把技能付给已宣誓的主修（在主修的上限之下，它们什么都教不了你）。100到125的最后一段是刻意的涓流，所以酿真正卖得掉的东西，别为了数字烧草药，并且记住：消耗品是唯一人人永远反复购买的制作品。功业之书在技能50记下奇药异酿，在上限处记下炼金术宗师。"
         },
         "engineering": {
           "identityHeading": "工具匠的独门生意",
-          "identityBody": "这门手艺在东溪镇广场东南角的工坊操持，主人是工坊宗师技工吉泽尔。每条工具线的1到3级都是寻常商店货；4级与5级只出自工程师之手。\n\n在专业之环上它与炼金术及护甲锻造相邻，由此形成两条命途：爆破师（工程学与炼金术，向吉泽尔本人起誓）和重装齿轮师（护甲锻造与工程学，已标注但尚无誓约任务）。这里有一条比其他任何专业都更要紧的警告：工程学的两档配方都高于业余爱好与未宣誓者的精良层上限，因此技能只为主修包含工程学的人（如今即爆破师）增长。任何人都能制作这些工具，未调谐者只是无法获得技能成长。",
+          "identityBody": "这门手艺在Eastbrook广场西南角的工坊操持，主人是Tinker Gizzel，工坊宗师。每条工具线的1到3级都是寻常商店货；再往上的每一级都出自工程师的工作台，或在满足溺亡连祷的通关条件后于其印记柜台用探秘印记购买，永远不会有柜台用金币出售。陆上的工具线止于5级；鱼竿这条线再往上一级，直到6级的齿轮轮钓竿。\n\n在制作之轮上它与试错类手艺同列，与炼金术及护甲锻造相邻，由此形成两条命途：爆破师（工程学与炼金术，向Gizzel本人宣誓）和齿轮匠（护甲锻造与工程学，已标注但尚无誓约任务）。这条警告如今依然要紧：工具梯子本身的每一档都高于爱好与未宣誓者的精良层上限，因此梯子上的活只为主修包含工程学的人（如今即爆破师）增长技能。但工作台不再对其他人关门：Gizzel在技能0免费传授齿轮坯件与青铜锄，在技能25按寻常档位费用传授铜透镜目镜，所以未调谐或以此为爱好的工匠都能靠早期档位提升技能；在别的命途背后休眠的手艺，则仍只能从两门技能0的课里成长。任何人都能制作陆上工具，未调谐者只是做那些学不到东西；而三个鱼竿配方中有两个还要Gizzel传授，6级那一档则改由图纸获得。",
           "materialsHeading": "材料与前置工具",
-          "materialsBody": "每个工具配方都需要消耗低一级的工具外加精良材料：四块锇矿加一把天银采矿镐成为锇金采矿镐，再用两块铭钢锭加锇金镐成为铭钢采矿镐；斧与镰两条线以梣木与高松原木、金叶草与日瓣草如法炮制。\n\n吉泽尔在工坊备齐了全部六种高级材料，但矿石、原木与草药都能在泥泞沼泽与荆棘峰自行采集，亲自采掘才是利润所在；唯一例外是仅商店有售的铭钢锭，给每件铭钢级工具锁定了固定的成本底价。",
+          "materialsBody": "每个工具配方都吞掉低一级的工具外加高级材料：四块锇矿加一把天银采矿镐成为锇金采矿镐，再用两块铭钢锭加锇金镐成为铭钢采矿镐；斧与镰两条线以梣木与高松原木、金叶与日瓣草如法炮制。\n\nGizzel在工坊备齐全部六种高级材料，但矿石、原木与草药都能在Mirefen Marsh与Thornpeak Heights自采，自采才是利润所在；唯一例外是仅商店有售的铭钢锭，给每件铭钢级工具垫了固定的成本底价。",
           "materialsBodyThreeRods": "每个陆上工具配方都要消耗低一级的那件工具，外加一份“优质”材料，这一组合就是整条陆上阶梯：四块优质铁矿石加一把天银采矿镐做成锇金采矿镐，再以两块铭钢锭、两块优质锇矿石加那把锇金镐做成铭钢采矿镐。斧与镰两条线以优质灰木原木与优质高松原木、优质金叶草与优质阳瓣草照搬“优质材料加前置工具”的形式，只是它们的5级那一档不要铭钢锭：采矿镐是唯一一条越到顶端越昂贵的线。三个鱼竿配方则是有意打破这一模式：风暴轮钓竿要四条日辉锦鲤加一根银溪钓竿，潮铸钓竿要两条锦鲤、八条生板鳍鲤鱼加那根风暴轮钓竿，齿轮轮钓竿要两条锦鲤、十条生空鳃鲟鱼加那根潮铸钓竿，因此钓手阶梯的顶端是在水上而非矿脉边付账的。\n\n优质材料在任何地方都不出售，也不会从寻常采集中掉落：要得到它，得用等级高于该材料本身的工具去开采一个区域的完整品级矿脉，实际上也就是比你想打造的那件低一档的工具（区域为旅行者保留的简易矿脉，无论你挥什么工具都只出普通材料）。这是刻意为之。走制作路线，5级工具来自真正挥动4级工具，而不是一趟购物；探秘印记柜台是绕开它的唯一办法。唯一的例外是铭钢锭，它是精炼品且仅商店有售，在高望的布里军需官处或吉泽尔修补匠自己的柜台上每锭1银60铜，因此只有铭钢采矿镐的成本里嵌着一道固定的金币底价。",
           "ladderHeading": "工具阶梯",
-          "ladderBody": "整条梯子只有六个配方，全部绑定工坊且自动学会、永不收费：技能75的4级镐、斧、镰，与技能150的5级版本。150不是笔误，故意高于当前125上限：技能需求从不阻止制作，只影响成长，材料与前置工具到手当天就能做出5级工具。每件成品都是精良或史诗品质且出厂署名。工程学还撑起一件组合配方的一半：巨熊之耐力药剂，由双技能25的调谐爆破师调制。",
+          "ladderBody": "工具梯子的每一档都绑定工坊工位（工具匠另外传授的手工锄头见采集页的说明；他的两门入门课就是上文提到的那一对）。其中六个陆上工具配方自动学会、永不收费：技能75的4级镐、斧、镰，与技能125（上限档位本身）的5级版本。技能需求从不阻止制作，只影响成长，材料与前置工具到手当天就能做出5级工具。三根制作鱼竿中有两根是需要拜师的例外：Gizzel在技能75时以4金传授风暴轮钓竿，在技能125时以16金传授潮铸钓竿，两者都在你于这门手艺中的层级够到它自身的那一刻开授。第三根是6级的齿轮轮钓竿，没有任何导师为它开价：它的图纸摆在英雄军需官的柜台上，直接把配方教给你。\n\n每件成品都是精良或史诗品质且出厂署名，于是你的名字会随其他玩家的工具带走遍各个区域。工程学还撑起一件组合配方的一半：Elixir of the Bear，由双技能25的调谐爆破师调制。",
           "routeHeading": "工程师的125之路",
-          "routeBody": "工具没有战斗属性，永不出暴击杰作。75点照常专精：节省20%材料，外加把任何采集之旅变成移动车间的临时便携工坊。成长几乎不衰减：75档配方到100全速、之后半速，150档配方到125上限一路全速，真正的瓶颈是材料与铜币。先定命途，从技工吉泽尔处取得爆破师调谐；再按阶梯提升：自练采集或结交采集好友，商店买齐3级工具，把吉泽尔的订单（八根铁皮木原木换16铜，每30分钟一次）当零花钱。核心优势不言自明：高阶工具每次挥动从2.5秒采集读条中削去0.4秒（下限1.5秒）。技能50点记下“齿轮与链轮”，125点荣登“工程学大宗师”。"
+          "routeBody": "工具没有战斗属性，永不出杰作。75照常专精：省20%材料，外加把任何采集之旅变成车间的临时野外工坊。成长几乎不衰减：75档配方到100全速、之后半速，125档配方到上限一路全速，真正的瓶颈是材料与铜板。命途宜早定，工具梯子没有它不会动：从Tinker Gizzel处取爆破师调谐；再喂梯子：自练采集或结交采集者，商店买齐3级工具，把Gizzel的订单（八根Ironbark Log换16铜，每30分钟一次）当零花钱。卖点不言自明：高于节点的每级工具都从2.5秒采集读条里削去0.4秒（下限1.5秒）。技能50记下Cogs and Sprockets，125是Grandmaster Engineering。"
         },
         "enchanting": {
           "identityHeading": "拆开装备，注回力量",
-          "identityBody": "没有工位、没有训练师、没有要买的配方书：所有附魔初始即会，谁都能从第一天开始分解，技能与各专业一样以125为上限。它位于铭文与珠宝加工之间，两条命途是秘法奥术师与缚宝石匠，均因相关专业尚未开放配方而暂不可宣誓；因此附魔是属于所有人的手艺：宣誓前自由练到精良层，也是爆破师或药剂师天然的副修之选。附魔师还维系着采集世界：三种可镶嵌的工具效果都是附魔师的作品，原作者为自己的作品充能享有折扣，专业精通还能进一步降低消耗。",
+          "identityBody": "所有附魔初始即会，谁都能从第一天开始分解，而且两者都永远不需要工位；技能与各行业一样以125为上限。这门手艺唯一需要拜师的角落是三个配方，全部出自东溪广场西南角工坊的吉泽尔修补匠，也全部在那座工位制作：两枚护符，采集者储囊与匠人之眼，待你的附魔达到25便以寻常的档位费用传授；在它们之上是莹光试剂，顶级层级自己的材料，需技能75。\n\n在制作之轮上它位于铭文与珠宝加工之间，因此拥有两条命途：秘法师（铭文与附魔）与缚晶师（附魔与珠宝加工）。两者都还不能宣誓：两门相邻手艺如今都在经营自己的梯子（铭文在药坊，珠宝加工在锻造坊），但两条命途都还没有宣誓任务。所以今天附魔是所有人的手艺：宣誓前自由练到精良层，也是爆破师或药剂师天然的爱好选择。附魔师还维系着采集世界：两种可镶嵌的工具效果都是附魔师的作品，原作者为自己的作品充能享有折扣，专精后更深。",
           "levelingHeading": "附魔如何升级",
-          "levelingBody": "两种行动推动技能：分解与施加附魔，每次成功最多一点，按工作的分量折算：普通分解与纯粉尘附魔算普通活；优秀分解与精华附魔算优秀活；精良分解与所有符文或强效附魔算精良活；史诗与传说分解更高。熟悉的精通衰减按25点层级作用：普通活在技能75点变灰，优秀活在100点，精良活恰在125点上限。附魔另有一份仁慈：高于命途上限的输入向下取整而非归零，宣誓前史诗分解按精良计而非一无所获；若附魔沦为休眠，所学的一切依然保留等待重新唤醒。",
+          "levelingBody": "推动技能的有三种行动：分解物品、施加附魔，以及制作那两个护符配方（它们沿寻常的制作曲线攀升）。第三个可传授的配方莹光试剂是例外：它位于技能75，高于每位附魔师所受的精良层上限（附魔没有可宣誓的命途，因此永远不会成为主修），而高于你上限的配方什么都教不了你，所以制作它是为了那份试剂，不是为了点数。每次成功最多值一点，按这份活计的分量折算：你拆解的物品的稀有度，或你施加的附魔的试剂层级。普通分解与只耗铃音之尘的附魔算普通活；优秀分解与耗铃音精华的附魔算优秀活；精良分解与所有符文或强效附魔算精良活；史诗与传说分解，以及所有莹光附魔，在表上还要更高，只是如今没有哪条含附魔的命途能越过精良这一档，因此实际收益与精良活相同。拆解台上有一条诚实的规矩：出自玩家工位的物品（制作、署名或杰作）依然能磨成材料，却什么都教不了你，所以自造自拆的循环谁也练不起来，真正的学问在世界里拾得的装备中。\n\n熟悉的精通衰减按25点一层作用：普通档的活计在技能75变灰，优秀档在100，精良档恰好在125上限。附魔另有一份属于自己的仁慈：高于你命途上限的输入会被向下取整到该上限，而不是归零，所以在你调谐之前，一次史诗分解只是按精良计，而不是一无所获。若附魔最终沦为另一条命途之下的休眠技能，拆解与施加都按普通活计，爬升停在75，而那两枚护符踩在高于普通层上限的制作曲线上，对休眠的附魔师完全无所教益；把它留作爱好，精良档的活计依旧有收益，只是过了75会慢一些。",
           "marketHeading": "附魔副本、出处与市场",
-          "marketBody": "施加附魔消耗材料并标记特定的一件装备。用在背包中的装备上，交还一件独立的附魔副本；用在已穿戴的装备上，则就地附魔，无需脱下再穿上。无论哪种，属性加成都永远跟随。一件装备仅可附魔一次：对已附魔的装备施加另一个附魔会先要求确认，然后直接替换旧附魔，旧附魔被摧毁且不退还材料；出售、丢弃与分解都优先取用普通副本，成品不会被误吞；完全相同的附魔装备还能叠加存放。暴击杰作与附魔是最佳拍档：杰作完全可附魔，附魔叠加在杰作加成与制作者署名之上互不干扰。"
+          "marketBody": "施加附魔消耗材料并标记特定的一件副本。用在背包中的副本上，交还一件独立的附魔副本；用在已穿戴的装备上，则就地附魔，无需脱下再穿上。无论哪种，加成都永远跟随。一件一附魔：对附魔副本施加另一个附魔会先要求确认，然后直接替换旧附魔，旧附魔被摧毁且不退还材料；出售、丢弃与分解都优先取用普通副本，成品不会被误吞；完全相同的附魔副本还能叠放。杰作与附魔是朋友：杰作完全可附魔，附魔叠加在杰作加成与署名之上互不干扰；署名杰作配Greater附魔是工艺品的极致，仍按设计低于团本战利品。附魔与署名件如今也能上架：每件以单件挂单出售，物品提示会显示附魔与制作者印记，渡鸦邮驿同样可以寄送；材料依旧是稳定的一半：粉尘、精华与碎片自由挂单，挂单免费，成交才抽5%。"
         },
         "jewelcrafting": {
           "identityHeading": "锻造坊里的细活",
@@ -7653,7 +7653,7 @@ export const zh_CN: EnTranslations = {
       "masterworkBody": "每次成功制作都有{base}%的杰作几率，你每高于配方一层再加{perTier}%，使用任何署名材料加{signed}%，专精后加{spec}%，上限为{cap}%。",
       "masterworkBodyRaidCollections": "每次成功制作都会得到配方承诺的成品，有时还会更好：杰作会将同一物品的品质提升一级，并在制作时赋予额外属性。它只会提升，不会降级。普通制作沿用既有装备阶梯；由团队副本材料支持的熔炉套装则在当前团队副本层级提供独立的替代选择。\n\n巅峰大师锻造制品是唯一例外，同一次杰作触发会带来不同回报。巅峰物品已经位于本身路线的顶端，无法再提升品质，因此杰作会让物品直接获得臻至完美第一阶，即专业页面所述四阶进度中的免费第一阶。制作时不会直接增加属性，触发几率与条件如下。\n\n几率公开透明：基础{base}%，技能每高于配方一层加{perTier}%，使用任意署名材料加{signed}%，专精后加{spec}%，更高阶材料再加1%至2%，总上限为{cap}%。只有具有实际属性的物品才能提升，因此无属性的普通物品、工具和消耗品都不会触发；休眠专业不会产出杰作，业余专业的杰作品质也不能超过精良上限。\n\n佳作会记住制作者。每一件精良及以上的成品都会署名，标明“制作者”；采集材料则标明“采集者”。杰作无论品质如何总会署名。署名记录来源，并非锁定物品：署名商品仍可自由交易、邮寄和在世界市场上架。",
       "trainingHeading": "训练",
-      "trainingBody": "当你在本行业的层级达到配方自身的层级时，大师即可传授：0层配方免费，1层需{tier1}，2层需{tier2}。",
+      "trainingBody": "训练师配方来自常驻的大师，在他们各自的工位上传授。规矩只有一句：当你在该行业的层级达到配方自身的层级时，大师便会传授，此外再无别的门槛，既不看你的等级，也不看你的命途。装备与消耗品这两条梯子把档位设在技能0、25、50，而每门手艺都在它们之上添了一个75档的中级配方，同样在本行业的工位传授（附魔的那个是莹光试剂，与它那两个位于25档的护符配方相邻）；工程学的两门钓竿课程则把它的梯子延续到75与125，因此随着你的层级攀升，总会有新的一档开启。\n\n费用是一次性的，并按档位统一定价：起始档免费，技能25档每个配方{tier1}，技能50档{tier2}，而它们之上的75与125档各有自己的费用，都列在表中每个配方的旁边。学艺时你必须站在大师真正的工位旁，移动工位一律不算数。通用的野外配方与六种可制作的陆上工具配方完全不需要训练：每个角色一开始就会。",
       "specializationHeading": "专精",
       "specializationBody": "技能达到{at}即在本行业专精，配方材料消耗减少{pct}%。",
       "specializationBodyUndiscounted": "该专业技能达到{at}时自动获得专精，无须任务：此后可享折扣的配方材料用量减少{pct}%，专精也会增加杰作几率。团队副本核心的用量绝不打折。\n\n专精工匠还可把工坊带到野外：搭建持续十分钟的移动制作站，在矿口就能制作需要工作站的配方，无须返回城镇。它有明确限制：不能用于向大师学习或解除委托物品的绑定，无论是否使用，都会在计时结束后消失。",
@@ -7681,9 +7681,9 @@ export const zh_CN: EnTranslations = {
         "salvageHeading": "回收",
         "salvageNote": "任何人都可以把武器或护甲按品质回收成普通材料，无需附魔技能。",
         "bonusFmt": "+{value}{stat}",
-        "enchantsNoteOffhand": "附魔分三个层级。基础层级消耗铃音之尘（高端配方还需少量铃音精华），覆盖武器槽、副手以及每一个护甲槽，属性轴选项之丰令每种配装都能在每个槽位找到合适的附魔：盾牌与施法者手持副手有属于自己的耐力附魔，因此没有哪个装备槽是附魔的死角。进阶层级每件消耗一个铃音碎片加若干铃音精华：对影响最大的槽位给出更强的加成。碎片此外还有两个去处，两个护符配方各要五个，以及工具效果补充的最高一档，所以动手花用之前先攒下几个。\n\n夹在两者之间的是五种符文附魔，各对应一种定向副产物，确保你磨出的任何材料都不会白费：符文锋刃（武器，力量，消耗共鸣钢片），符文印记（武器，智力，共鸣木片），符文织纹（胸甲，精神，共鸣线段），符文皮甲（护腿，敏捷，共鸣皮料），符文锁链（头盔，耐力，共鸣链片）。每件还各需两个铃音精华；对于同时拥有基础与进阶附魔的槽位和属性，符文附魔的加成介于两者之间，唯有符文织纹是迄今最强的胸甲精神附魔，符文皮甲则是唯一的护腿敏捷附魔。确切加成详见下方表格。",
+        "enchantsNoteOffhand": "附魔分四个层级。基础层级消耗铃音之尘（高端配方还需少量铃音精华），覆盖武器槽、副手以及每一个护甲槽，属性轴选项之丰令每种配装都能在每个槽位找到合适的附魔：盾牌与施法者手持副手有属于自己的耐力附魔，因此没有哪个装备槽是附魔的死角。强效层级每件消耗一个铃音碎片加若干铃音精华：对影响最大的槽位给出更强的加成。碎片此外还有三个去处：两个护符配方各要五个，工具效果充能的最高一档，以及莹光层级（其中武器附魔与胸甲附魔各要一个，灌注要两个），所以动手花用之前先攒下几个。\n\n夹在两者之间的是五种符文附魔，各对应一种定向副产物，确保你磨出的任何材料都不会白费：符文利刃（武器，力量，消耗共鸣钢材），符文印记（武器，智力，共鸣木材），符文织纹（胸甲，精神，共鸣丝线），符文兽皮（护腿，敏捷，共鸣兽皮），符文锁环（头盔，耐力，共鸣锁环）。每件还各需两个铃音精华；对于同时拥有基础与强效附魔的槽位和属性，符文附魔的加成介于两者之间，唯有符文织纹是迄今最强的胸甲精神附魔，符文兽皮则是唯一的护腿敏捷附魔。确切加成详见下方表格。\n\n凌驾于三者之上的是莹光层级，本行当的巅峰之作，也是唯一对技能本身提出要求的附魔：那四件需要附魔100，莹光灌注需要125，见下方表格的“技能”一列。每一件都需要一份莹光试剂，并在武器（威力与法术强度两种选择）、胸甲与长靴各自的槽位上再迈出一级。其中最后一件莹光灌注，只会在臻至完美的物品上生效，而目前还没有任何物品能臻至完美：它是先于自己所等待的完美化工序写就的。",
         "enchantsNoteInfusionLive": "附魔分四个层级。基础层级消耗铃音之尘（高端配方还需少量铃音精华），覆盖武器槽、副手以及每一个护甲槽，属性轴选项之丰令每种配装都能在每个槽位找到合适的附魔：盾牌与施法者手持副手有属于自己的耐力附魔，因此没有哪个装备槽是附魔的死角。强效层级每件消耗一个铃音碎片加若干铃音精华：对影响最大的槽位给出更强的加成。碎片此外还有三个去处：两个护符配方各要五个，工具效果充能的最高一档，以及莹光层级（其中武器附魔与胸甲附魔各要一个，灌注要两个），所以动手花用之前先攒下几个。\n\n夹在两者之间的是五种符文附魔，各对应一种定向副产物，确保你磨出的任何材料都不会白费：符文利刃（武器，力量，消耗共鸣钢材），符文印记（武器，智力，共鸣木材），符文织纹（胸甲，精神，共鸣丝线），符文兽皮（护腿，敏捷，共鸣兽皮），符文锁环（头盔，耐力，共鸣锁环）。每件还各需两个铃音精华；对于同时拥有基础与强效附魔的槽位和属性，符文附魔的加成介于两者之间，唯有符文织纹是迄今最强的胸甲精神附魔，符文兽皮则是唯一的护腿敏捷附魔。确切加成详见下方表格。\n\n凌驾于三者之上的是莹光层级，本行当的巅峰之作，也是唯一对技能本身提出要求的附魔：那四件需要附魔100，莹光灌注需要125，见下方表格的“技能”一列。每一件都需要一份莹光试剂，并在武器（威力与法术强度两种选择）、胸甲与长靴各自的槽位上再迈出一级。其中最后一件莹光灌注，只会在臻至完美的物品上生效：臻至完美是佩戴者自己的工作，而非附魔师的，物品如何走到那一步由专业页面讲述。",
-        "enchantsNoteRaidFormula": "附魔分四个层级。基础层级消耗铃音之尘（高端配方还需少量铃音精华），覆盖武器槽、副手以及每一个护甲槽，属性轴选项之丰令每种配装都能在每个槽位找到合适的附魔：盾牌与施法者手持副手有属于自己的耐力附魔，因此没有哪个装备槽是附魔的死角。强效层级每件消耗一个铃音碎片加若干铃音精华：对影响最大的槽位给出更强的加成。碎片此外还有三个去处：两个护符配方各要五个，工具效果充能的最高一档，以及莹光层级（其中武器附魔与胸甲附魔各要一个，灌注要两个），所以动手花用之前先攒下几个。\n\n夹在两者之间的是五种符文附魔，各对应一种定向副产物，确保你磨出的任何材料都不会白费：符文利刃（武器，力量，消耗共鸣钢材），符文印记（武器，智力，共鸣木材），符文织纹（胸甲，精神，共鸣丝线），符文兽皮（护腿，敏捷，共鸣兽皮），符文锁环（头盔，耐力，共鸣锁环）。每件还各需两个铃音精华；对于同时拥有基础与强效附魔的槽位和属性，符文附魔的加成介于两者之间，唯有符文织纹是迄今最强的胸甲精神附魔，符文兽皮则是唯一的护腿敏捷附魔。确切加成详见下方表格。\n\n在普通低阶附魔之上的是莹光层级，即本行当普通附魔的巅峰之作：那四件需要附魔100，莹光灌注需要125，见下方表格的“技能”一列。每一件都需要一份莹光试剂，并在武器（威力与法术强度两种选择）、胸甲与长靴各自的槽位上再迈出一级。其中最后一件莹光灌注，只会在臻至完美的物品上生效：臻至完美是佩戴者自己的工作，而非附魔师的，物品如何走到那一步由专业页面讲述。\n\n末焰热忱是独立的团队副本配方，并非免费掌握的普通附魔。施加之前，须在附魔技能100时学习这张可交易的配方。每次附魔消耗3个末焰之核和2个铃音碎片；配方可在熔炉掉落，也可向熔炉军需官支付1个末焰之核购买。其近战触发效果与武器速度规则完整列于下方。",
+        "enchantsNoteRaidFormula": "附魔分四个层级。基础层级消耗铃音之尘（高端配方还需少量铃音精华），覆盖武器槽、副手以及每一个护甲槽，属性轴选项之丰令每种配装都能在每个槽位找到合适的附魔：盾牌与施法者手持副手有属于自己的耐力附魔，因此没有哪个装备槽是附魔的死角。强效层级每件消耗一个铃音碎片加若干铃音精华：对影响最大的槽位给出更强的加成。碎片此外还有三个去处：两个护符配方各要一个（护符其余的材料是精华和粉尘），工具效果充能的最高一档，以及莹光层级（其中武器附魔与胸甲附魔各要一个，灌注要两个），所以动手花用之前先攒下几个。\n\n夹在两者之间的是五种符文附魔，各对应一种定向副产物，确保你磨出的任何材料都不会白费：符文利刃（武器，力量，消耗共鸣钢材），符文印记（武器，智力，共鸣木材），符文织纹（胸甲，精神，共鸣丝线），符文兽皮（护腿，敏捷，共鸣兽皮），符文锁环（头盔，耐力，共鸣锁环）。每件还各需两个铃音精华；对于同时拥有基础与强效附魔的槽位和属性，符文附魔的加成介于两者之间，唯有符文织纹是迄今最强的胸甲精神附魔，符文兽皮则是唯一的护腿敏捷附魔。确切加成详见下方表格。\n\n在普通低阶附魔之上的是莹光层级，即本行当普通附魔的巅峰之作：那四件需要附魔100，莹光灌注需要125，见下方表格的“技能”一列。每一件都需要一份莹光试剂，并在武器（威力与法术强度两种选择）、胸甲与长靴各自的槽位上再迈出一级。其中最后一件莹光灌注，只会在臻至完美的物品上生效：臻至完美是佩戴者自己的工作，而非附魔师的，物品如何走到那一步由专业页面讲述。\n\n末焰热忱是独立的团队副本配方，并非免费掌握的普通附魔。施加之前，须在附魔技能100时学习这张可交易的配方。每次附魔消耗3个末焰之核和2个铃音碎片；配方可在熔炉掉落，也可向熔炉军需官支付1个末焰之核购买。其近战触发效果与武器速度规则完整列于下方。",
         "charmsHeading": "给采集者工具的护符",
         "formulaRequired": "需要配方",
         "charmsBody": "采集者的护符也出自附魔。你的附魔技能达到 25 后，Tinker Gizzel会在Eastbrook的工具工坊传授两者：为一次采集多加一个单位产出的采集者储囊，以及提升采上来之物品级的匠人之眼。每一枚都只制作一次，然后嵌进采矿镐、斧或镰刀，只在真正被它改善的采集上消耗一次充能。\n\n补充充能才是这门手艺持续赚钱的地方。充能由工具的主人恢复，而不是由上门的附魔师来做；当那位主人正是署名这枚护符的附魔师时，补充只需一半材料，若还带着附魔专精则更少。因此隔着柜台卖出的护符只是一锤子买卖，而嵌在你自己工具上的那些，才是养起来便宜的。完整的充能与材料阶梯见任意一门采集专业页面的“工具效果”一节。"
@@ -7722,10 +7722,10 @@ export const zh_CN: EnTranslations = {
       "specimenBody": "采集尸体还可能获得署名的完美标本：约{pct}%的尸体采集会掷出精良或更高品质。",
       "gatherDeedsHeading": "沿途的功业",
       "gatherDeeds": {
-        "mining": "任意采集专业的第一次采集获得“原野硕果”，采矿达到100点上限铭刻“矿脉之血”。采矿、伐木、草药学与钓鱼中任意三项达到100点可得“采集大师”（25点声望），凿开纯净矿脉另有收藏印记。功业只有头衔与声望，永不赋予力量。",
-        "logging": "任意采集专业的第一次采集获得“原野硕果”，伐木达到100点上限铭刻“心材伐匠”。四种采集专业中任意三项达到100点可得“采集大师”（25点声望），劈出远古心材另有收藏印记。功业只有头衔与声望，永不赋予力量。",
-        "herbalism": "任意采集专业的第一次采集获得“原野硕果”，草药学达到100点上限铭刻“草场大师”。四种采集专业中任意三项达到100点可得“采集大师”（25点声望），采下月光花另有收藏印记。功业只有头衔与声望，永不赋予力量。",
-        "fishing": "钓鱼达到100点熟练铭刻“老海晶”，200点满级铭刻“垂钓大师”及其头衔，那是垂钓技艺的顶点；钓鱼同样计入“采集大师”（任意三项采集达到100点）。在每个区域的水域钓起第一条鱼各有其功绩页，钓起日辉锦鲤则记下“希望之光”，所以包里常备鱼竿的旅人往往比预想中更快填满功业之书。",
+        "mining": "任意行业的第一次采集获得Fruits of the Field，采矿100上限铭刻Ore in the Blood。任意三项采集行业达到100可得Master Gatherer（25声望），凿开纯净矿脉另有收藏印记。功业只有头衔与声望，永不赋予力量。",
+        "logging": "任意行业的第一次采集获得Fruits of the Field，伐木100上限铭刻Heartwood Hewer。任意三项采集行业达到100可得Master Gatherer（25声望），劈出远古心材另有收藏印记。功业只有头衔与声望，永不赋予力量。",
+        "herbalism": "任意行业的第一次采集获得Fruits of the Field，草药学100上限铭刻Master of the Meadow。任意三项采集行业达到100可得Master Gatherer（25声望），采下月光绽放另有收藏印记。功业只有头衔与声望，永不赋予力量。",
+        "fishing": "钓鱼100熟练铭刻Old Salt，200铭刻Master Angler及其头衔，那是垂钓技艺的顶点；钓鱼同样计入Master Gatherer（任意三项采集达到100）。在每个区域的水域钓起第一条鱼各有其页，钓起日辉锦鲤则记下Glimmer of Hope，所以包里常备鱼竿的旅人往往比预想中更快填满功业之书。",
         "farming": "耕作暂无专属功业：如今田畦与作物已经扎根，标记其他行业的里程碑与上限功业将随后续更新一并到来。它的熟练已经计入Master Gatherer（任意三项采集达到100），耕作者能像旁人一样填满那一页。功业只给头衔与名望，绝不给予力量。",
         "farmingSown": "耕作如今在功业之书里有了自己的一栏。Sow It Begins标记你种下的第一株作物，四页编年记则标记你在每处田畦所在地的第一次成活收成，从Eastbrook Vale直到Evergarden。一次金色的丰收会记下自己的零声望收藏印记，而耕作的熟练同样计入Master Gatherer（任意三项采集行业达到100）。Every Furrow Filled把整份名录收进一页：把四座园圃所种的每一种作物都种上一轮，这项收藏便告完成。它之上的压卷之作是Harvestmaster，这门行业的100熟练头衔，而山地与花圃的种子如今已摆上各自农夫的柜台，这段攀登今天就能走完。功业只有头衔与声望，永不赋予力量。"
       },
@@ -7752,7 +7752,7 @@ export const zh_CN: EnTranslations = {
       },
       "farm": {
         "rhythmHeading": "耕作节奏",
-        "rhythmBody": "播种才是那段短暂而看得见的施法：每一级都固定是{plant}秒，因为锄头开放的是土地，而不是买来速度。拔起成熟的作物则是瞬发。没有可打断的施法，也没有背包检查会把它挡回来，而一畦成熟的作物你放多久它等多久，所以背包装满对农夫的代价，不过是走一趟把它腾空。\n\n一次收成付给你的是农产品和耕作熟练度。与一处矿脉不同，它完全不给角色经验，所以田畦是一门去经营的手艺，而不是一条升级的路。",
+        "rhythmBody": "播种是瞬发的，因为锄头开放的是土地，而不是买来速度：没有需要等待的施法，所以转身走开的农夫也一样已经种下了。拔起成熟的作物同样是瞬发。没有可打断的施法，也没有背包检查会把它挡回来，而一畦成熟的作物你放多久它等多久，所以背包装满对农夫的代价，不过是走一趟把它腾空。\n\n一次收成付给你的是农产品和耕作熟练度。与一处矿脉不同，它完全不给角色经验，所以田畦是一门去经营的手艺，而不是一条升级的路。",
         "gainHeading": "一次收成教会什么",
         "gainBody": "技能成长是确定的，而且只看你自己的计数，不看作物：熟练度在{p1}以下时，一次收成给{g1}点，在{p2}以下给{g2}点，在{p3}以下给{g3}点，此后直到{cap}的上限一律{g4}点。它从不掷技能提升的骰子，所以这段攀登有多长，全由这笔算术说了算。\n\n作物的阶决定的是一畦田能把你带到多远。第1阶作物教到{c1}便在那里变灰，第2阶作物教到{c2}，第3阶及以上一路教到上限，所以只有往上换田畦，计数才会继续往前走。",
         "yieldsHeading": "一次收成的产出",
@@ -7786,7 +7786,7 @@ export const zh_CN: EnTranslations = {
         "marketHeading": "世界市场与抽成",
         "marketBody": "世界市场是全服交易所，由Eastbrook的Merchant与Highwatch的Auctioneer Voss主持。挂单免费，没有押金，流拍原样退回；只在成交时抽取5%。特殊物品同样欢迎：署名、杰作或附魔的副本会以单件挂单上架，提示中带着完整的身份与署名，且绝不与普通堆叠混同。唯一拒收的是已绑定的副本：被制作者之约锁定（或仍待绑定）的物品既不能上市也不能邮寄，绑定无法被洗白。特殊物品请自行定价；普通挂单只能告诉你普通版的行情。",
         "workOrdersHeading": "工作订单",
-        "workOrdersNote": "每位大师都会以商店价的{pct}%收购一批本行常用材料，每{minutes}分钟可重复一次。",
+        "workOrdersNote": "每位大师都张贴工单，每种常用材料一张，按商店价的{pct}%收购工单要求的一批。每张工单各有{minutes}分钟的计时：交付后只有那张工单关闭，同一位大师的其他工单照常开放。",
         "colOrder": "工作订单",
         "colMaster": "大师",
         "colAsks": "需求",
@@ -7795,9 +7795,9 @@ export const zh_CN: EnTranslations = {
         "commissionsBody": "自愿选择的委托制作会附上制作者之约：成品会绑定给交易中收到它的人，而任意工位大师都可按层级费用为其解绑。",
         "provenanceHeading": "署名作品",
         "provenanceBody": "精良及以上的成品与发现都带有制作者的署名，而署名完全相同的物品仍可堆叠。",
-        "provenanceBodyUndiscounted": "有些物品带着名字。素材的来源行会说明是谁采集了每一组单位，若存在高级署名者，则会有单独的署名标记指明其身份。这两个事实相互独立：普通采集素材会记录采集者，却不一定获得署名；旧有的已署名库存可能只写明署名者，同时如实说明未记录采集者。成品则改为说明是谁制作了它。这些记录会随物品经历交易、银行、邮件、世界市场，甚至商人回购而保留，永不褪去。\n\n采集会自动为最佳成果署名：掷出精良及以上品质的收获都会带有署名，稀有发现则为其整份五倍额外收获全部署名。尸体采集触发幸运结果时，如果该分类没有可给出的标本，则为产出署名；如果有标本，则让产出保持无署名，并在旁边额外铸造一个已署名的完美标本。制作遵循相同原则：每件精良及以上的产出都会铸造为已署名，杰作无论品质如何都会署名，因此任何物品的最佳版本都会记录制作者之名。普通素材的署名附着在单位本身上，不会仅因为兼容的堆叠中已经包含另一位采集者或署名者而丢失。独立的完美标本是单独的物品，仍然需要空间；如果放不下，普通的尸体产出会保留，但标本会遗失。\n\n成品保持单一的严格身份，因此两件物品只有在所有标记完全一致时才会合并：同一物品、同一署名者、同一杰作属性、同一附魔、同一绑定。兼容的素材会在不同采集者与署名者之间共用同一个格子，同时为每个来源分别保留数量。悬停提示会概括来源；打开”来源”可查看完整列表。选择按采集者拆分会让背包中的这些堆叠保持分开，排序也会遵循这一选择。转移得到的素材可以照常与接收者的素材堆叠在一起。\n\n署名也会回报工匠：在工作台旁持有任意一份所需材料的已署名个体，无论由谁署名，都会让杰作几率增加2个百分点；若材料由你亲自署名，其所需数量还会减少1个（最低为1个），但被标记为不可折扣的材料除外，团队副本核心的用量始终保持全额。亲手署名的精良及以上作品目前仍只通过制作的药水继续传授技能：喝下自己酿造并署名的稀有饮品，只要对应专业仍是你启用的主修专业之一，就会有少量技能回流到制作它的专业。这的确只是药水的效果，别无其他：无论签署得多么精美，药剂、卷轴或巅峰长颈瓶都不会回馈技能。",
+        "provenanceBodyUndiscounted": "有些物品带着名字。素材的来源行会说明是谁采集了每一组单位，若存在高级署名者，则会有单独的署名标记指明其身份。这两个事实相互独立：普通采集素材会记录采集者，却不一定获得署名；旧有的已署名库存可能只写明署名者，同时如实说明未记录采集者。成品则改为说明是谁制作了它。这些记录会随物品经历交易、银行、邮件、世界市场，甚至商人回购而保留，永不褪去。\n\n采集会自动为最佳成果署名：掷出精良及以上品质的收获都会带有署名，稀有发现则为其整份五倍额外收获全部署名。尸体采集触发幸运结果时，如果该分类没有可给出的标本，则为产出署名；如果有标本，则让产出保持无署名，并在旁边额外铸造一个已署名的完美标本。制作遵循相同原则：每件精良及以上的产出都会铸造为已署名，杰作无论品质如何都会署名，因此任何物品的最佳版本都会记录制作者之名。普通素材的署名附着在单位本身上，不会仅因为兼容的堆叠中已经包含另一位采集者或署名者而丢失。独立的完美标本是单独的物品，仍然需要空间；如果放不下，普通的尸体产出会保留，但标本会遗失。\n\n成品保持单一的严格身份，因此两件物品只有在所有标记完全一致时才会合并：同一物品、同一署名者、同一杰作属性、同一附魔、同一绑定。兼容的素材会在不同采集者与署名者之间共用同一个格子，同时为每个来源分别保留数量。悬停提示会概括来源；右键点击该堆叠可查看完整列表（触屏设备请点击其”来源”按钮）。选择按采集者拆分会让背包中的这些堆叠保持分开，排序也会遵循这一选择。转移得到的素材可以照常与接收者的素材堆叠在一起。\n\n署名也会回报工匠：在工作台旁持有任意一份所需材料的已署名个体，无论由谁署名，都会让杰作几率增加2个百分点；若材料由你亲自署名，其所需数量还会减少1个（最低为1个），但被标记为不可折扣的材料除外，团队副本核心的用量始终保持全额。亲手署名的精良及以上作品目前仍只通过制作的药水继续传授技能：喝下自己酿造并署名的稀有饮品，只要对应专业仍是你启用的主修专业之一，就会有少量技能回流到制作它的专业。这的确只是药水的效果，别无其他：无论签署得多么精美，药剂、卷轴或巅峰长颈瓶都不会回馈技能。",
         "collectorsHeading": "收藏家、战利品与故事的价格",
-        "collectorsBody": "商人看不见出处：署名物品卖给NPC只值普通价，签名的溢价只存在于玩家之间。名家署名的横财矿石、一块上等肉块、一柄署着已退隐工匠之名的杰作之刃，价格全凭同行识货者的出价。纯净矿脉、远古心材、月光花与日辉锦鲤等稀有采集物同样也是如此。",
+        "collectorsBody": "商人看不见出处：署名物品卖给NPC只值普通价，签名的溢价只存在于玩家之间。名家署名的横财矿石、一块Prime Cut、一柄署着已退隐工匠之名的杰作之刃，价格全凭记忆开价。功业之书里的Pristine Vein、Ancient Heartwood、Moonlit Bloom、A Perfect Specimen与Glimmer of Hope都是零声望的收藏印记，只为证明那一刻发生在你身上。出处不买属性也不赢战斗，它是这游戏里美好日子的存根。",
         "castPaceHeading": "读条时间与金币消耗",
         "castPaceBody": "专业动作需要真实读条时间：简单的野外配方不到两秒，高阶阶梯配方则需要数秒；分解、附魔、拆解与工具效果充能各自有固定的短读条。中途取消不会损失材料。每次成功制作还会按物品预算支付铜币费用。加上材料、工作台与技能上限，这种节奏在不设额外动作配额的情况下，也能让市场保持健康。各技能区间的精确读条时间见下表。",
         "castPaceField": "无技能要求的野外配方：施放 {seconds} 秒",
@@ -7838,30 +7838,30 @@ export const zh_CN: EnTranslations = {
         "title": "专业常见问题",
         "intro": "制作者最常问的问题，一并作答。",
         "q1": "为什么我的署名物品不能堆叠？",
-        "a1": "每个角色都可以提升全部八种可修炼制作行业和全部四种采集行业；只有命途身份是唯一的选择。",
+        "a1": "署名物品是一件独立实例的物品：它带有自己的一份小档案（署名者、掷出的品质、杰作属性、附魔、绑定），而不是一件无名的普通副本。只有当这些档案完全一致时，两件副本才会并入同一堆叠。\n\n实际来看：你亲手采集的精良矿石可以与更多你亲手采集的精良矿石堆叠，因为两者都写着“采集者：你”，其余记录毫无差别。同样的材料若由朋友署名，就会占据自己单独的一格；而无署名的普通副本永远不会并入署名堆叠。背包、银行、交易、邮件与世界市场全都遵循这同一条规则。",
         "q2": "普通配方能永远提升我的技能吗？",
-        "a2": "训练师阶梯配方由各工位的常驻大师传授，而九个通用野外配方和工具配方所有人从一开始就会。",
+        "a2": "不会。每个配方都按它落在你当前档位之下多远来计分，也就是经典的橙、黄、绿、灰读法：在你档位或以上为全额成长，低一档减半，低两档四分之一，低三档及以上毫无成长。每25点技能为一档，所以免费的技能0配方到了技能75就再也教不了你什么。\n\n各项上限也低于你可能预期的经典300：十种可修制作行业各以125为上限，采矿、伐木与草药学以100为上限，钓鱼则一路放长到200。攀升靠的是换上你自己档位的配方，而不是死磨最便宜的那一个。",
         "q3": "拾取尸体和采集尸体有什么区别？",
-        "a3": "1阶节点徒手即可；2阶或3阶节点需要至少同阶级的对应工具。",
+        "a3": "这是对同一具尸体的两个独立操作。尸体身上的一切，钱币与掉落物，外加任何可采集的材料，都在同一个窗口里打开，但互动键与“拾取战利品”只会取走普通战利品，它照常按普通的拾取规则走。采集则是专业这一侧，直接从尸身上剥下材料，只有当你在那个窗口里选择“采集”时才会发生。\n\n采集先到先得，且只有一次：每具尸体只能被采集一次，由最先取走的人拿下，在线上也一样。你的城镇专注决定你能采到什么：站在主城里，你可以把10点专注点数摊到你在意的那些材料种类上，每一种获得专注的材料都会掷出更好的品级（每5点提升一档，最多两档），产量也更高（每点10%）。未获专注的材料绝不会因此变差。",
         "q4": "我的铁皮木原木为什么带着署名？",
-        "a4": "当配方落到你之下时，精通曲线会把成长减为一半、四分之一直至归零，而每种专业都会在上限处停止。",
+        "a4": "你撞上了一笔横财。大约每90次采集会触发一次稀有发现（伐木时的远古心木，采矿时的纯净矿脉，采草药时的月光之花）：产量乘以五，每一份产出都打上你的署名，并向全区域播报这次发现。普通采集掷出精良或更高的品质时，产出同样会带上署名。\n\n署名材料值得留着，或者卖个好价：在工位上制作时，只要你手里有所需材料的任意一份署名副本，杰作几率便增加2个百分点。只要记住它们只与署名完全相同的副本堆叠，因此会各自占去一格背包。",
         "q5": "委托制品要怎么解绑？要花多少钱？",
-        "a5": "每次制作都有一个小几率（3%起，上限15%）产出品质高一层的成品，但绝不会超过团队副本的底线。",
+        "a5": "把那件东西带在背包里，走到任意制作工位前付钱给大师。费用随物品品质而定：优秀品质25银，精良1金，史诗4金；传说按史诗的价钱，而委托制作的普通品质件按优秀的价钱。工位必须是真的：移动工位从不提供这项服务。\n\n这笔钱买来的是一次清账，不是根治：那件东西依然是委托制品，因此下一次交易时又会绑定给收下它的人。若一个堆叠里有好几件已绑定的副本，每付一次钱只剥出一件解绑。",
         "q6": "配方去哪里学？要花多少钱？",
         "a6ThreeRods": "九种通用的野外配方与六种可制作的陆上工具配方人人从一开始便已知晓，三件绑定工位的压轴配方（窑鳞披肩、织卫兜帽与暮影裹手）也是如此，它们无需训练师，只需对应的工位。其余一切都由三座枢纽城镇中各工位旁的常驻师傅传授：多数在东溪，制革师守着芬桥的制革坊，炼金师守着高望的药坊。\n\n训练师配方按档位排布：装备与消耗品类手艺分技能0、25、50三档，作为一次性费用分别是免费、25银和1金；每门手艺还在它们之上、于本行业的工位添了一个75档的中级配方（附魔的那个是莹光试剂，与它那两个位于25档的护符配方相邻）；工具匠另外还在75与125传授三根可制作的钓竿中的两根，售价4金与16金（压轴的那一档改为从图纸学得，因此没有训练师为它开价）。当你在该行业的档位达到配方自身的档位时，师傅便会传授，而且学习时你必须站在其工位旁：移动工位不算数。",
         "q7": "我的采集怎么突然变慢了？",
         "a7RetunedTaper": "采集读条起始为2.5秒，可从两处削减：你随身携带且能够挥用的工具每高出节点自身层级一级，减0.4秒；当你该行业的计数越过100这一段时，再减0.15秒，下限为1.5秒。从1级节点转到3级节点，你的富余便随之消失，同一把镐挥起来又会变慢。恰好持有所需层级并不会带来速度，它只是让你能开采该节点。\n\n技能增长与制作以同样的方式衰减：当你的熟练度攀过节点的层级时，它便会变灰（1级节点自熟练度75起不再教授任何东西），因此增长变慢的解法是更高层级的节点。这些节点要求你背包中有不低于其层级的工具（任何节点都不能赤手采集，1级节点也不例外），而1级以上的陆上工具还需要先取得它的挥用标记，2到5级分别是本行业的40/70/85/100。钓鱼另有自己的递减：熟练度50以下每次上钩0.08，100以下0.05，150以下0.04，200以下0.03，杂物渔获自100起完全不再教授任何东西，而水域本身也为教学设下上限（1级水域到100便不再教授，沼泽到150），因此计数停滞也可能意味着你已经超出了这片水域。",
         "q8": "离开城镇还能制作吗？",
-        "a8": "从未持有过的组合只需一次全新的调谐任务，而回到曾经持有的组合则需要完成代价递增的赎罪差事。",
+        "a8": "算是能。九种通用的野外配方（入门的武器、护甲、食物与药水这些主力）随时随地都能做，各条宣誓命途的三个组合配方也是如此。它们之上的其余一切都绑定某一类工位：锻造坊、厨房、药坊、制革坊、织机或工坊，而且你必须站在工位20码之内，制作才能进行。\n\n某门手艺技能达到75即在本行业专精，除了20%的材料折扣，你还会获得一座移动工位：把它放在野外，它会立住10分钟，像真正的工位那样供应该行业的配方。移动工位只管制作：学配方与为委托制品解绑，永远需要城里那座真正的工位。",
         "q9": "我要怎么请别人替我制作东西？",
         "a9": "把它发布到委托订单板上。打开制作窗口，从它的标题栏打开订单板，说明你想要做的配方：把订单留作公开，让任何工匠都能接下，或者指定给某位你已经认识的工匠。接单便意味着这位工匠承诺了这份活儿，而一份订单在同一时间只会由一个人握着。\n\n发布时不会扣下金币和材料，所以价格与由谁提供材料请你们自行商定，就像委托历来的谈法一样。只要订单还开着，你可以取消自己发布的订单，而无人接下的订单会在一天后过期。交付是当面的：东西做好时，带着一个空背包格站到你的工匠身边。它到手时会通过制作者之约绑定给你，任何工位的大师都可以按常规费用为你解绑。",
         "q10": "什么是护符？充能用尽之后又会怎样？",
-        "a10": "护符是一种嵌入式的工具效果：附魔师的手艺，安在采集工具里，改善它采上来的东西。采集者储囊为一次采集多加一个单位，匠人之眼提升它的品级，而Tinker Gizzel会在Eastbrook的工具工坊向附魔技能达到 25 的人传授两者。只有当护符真正改变了结果时才会消耗一次充能，所以它无法改善的那一次采集不会让你有任何损耗；插槽还可以设成每次使用前询问，方便你一次一次地拿主意。\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n一枚新护符在普通品质工具上带有 20 次充能，稀有度每高一阶再加 10 次，所以史诗工具起始便是 50 次。用尽了也不会毁掉护符：由工具的主人为插槽补充，每份奥术材料补 10 次充能，材料取决于他携带的工具与这个插槽历来被填过的最好工具之中更好的那件（普通或优秀工具用铃音之尘，精良工具用铃音精华，史诗工具用铃音碎片）。补充前把好工具存进银行绝不会让它更便宜，只会在同样价钱下更少；而带着较差的工具嵌入一枚新护符，才是回到更便宜一档的办法。署名这枚护符的附魔师为自己的护符补充只付一半，带着附魔专精则更少。",
+        "a10": "护符是一种嵌入式的工具效果：附魔师的手艺，安在采集工具里，改善它采上来的东西。采集者储囊为一次采集多加一个单位，匠人之眼提升它的品级，而Tinker Gizzel会在Eastbrook的工具工坊向附魔技能达到 25 的人传授两者。只有当护符真正改变了结果时才会消耗一次充能，所以它无法改善的那一次采集不会让你有任何损耗；插槽还可以设成每次使用前询问，方便你一次一次地拿主意。\n\n一枚新护符在普通品质工具上带有 20 次充能，稀有度每高一阶再加 10 次，所以史诗工具起始便是 50 次。用尽了也不会毁掉护符：由工具的主人为插槽补充，每份奥术材料补 10 次充能，材料取决于他携带的工具与这个插槽历来被填过的最好工具之中更好的那件（普通或优秀工具用铃音之尘，精良工具用铃音精华，史诗工具用铃音碎片）。补充前把好工具存进银行绝不会让它更便宜，只会在同样价钱下更少；而带着较差的工具嵌入一枚新护符，才是回到更便宜一档的办法。署名这枚护符的附魔师为自己的护符补充只付一半，带着附魔专精则更少。",
         "q11": "我要怎么做出一件橙色装备？",
         "a11Promotion": "先制作或购入一件顶级的大师锻造装备，然后将它臻至完美：在做出它的那门手艺上有 125 点技能，每次尝试花费一枚匠人余烬、一份断裂精华和一个棱晶琉璃镶座，五次里成功四次，失手也绝不会损伤装备。第一次尝试会把装备绑定给你，四次成功的等级让它臻至完美。之后花费一份造物契据（铭文师的 125 技能文书，任何人都可以购买或委托），把这份臻至完美的副本晋升为一件随你命名的传说装备。晋升是确定性的：没有掷骰，属性不变，改变的只有名字和颜色。"
       },
       "findingNodesNote": "你不必全靠眼睛去找。区域里的每一处资源点，只要地图正显示着那片地面，都会画在区域地图上，你经过时也会出现在小地图上，因此一条采集路线可以在出发之前就在地图界面上规划好。你的工具还够不着的资源点是标出来而不是藏起来：它留在原处，只是标记被划掉并变暗，好让你看见自己正在为之训练的那片地。在桌面端，把鼠标悬停在世界里的矿脉、林木或草丛上，会说出它的名字、告诉你它需要哪种工具，而且在你采过之后，还会以秒为单位为你自己倒数它的重生时间。触屏上没有悬停可言，于是小地图上的标记讲的是同一件事。",
-      "specimenBodyFamilies": "采集时请留出一点背包空间：一件署名的意外之喜需要属于它自己的空位，或者一个可以并进去的同款署名堆叠；若实在放不下，产出仍然会到手，只是署名就此失去。尸体采集也有属于自己的一份大奖机制：每种被采集的材料大约有 {pct}% 的几率掷出精良或更高品质。能给出完美标本的族群（兽皮、丝线、毒液、利爪、兽肉）会让普通产出保持朴素，另外在旁边铸出那件署名标本；其余三种，尖牙、布料与獠牙，则直接把署名打在产出本身上。"
+      "specimenBodyFamilies": "采集时请留出一点背包空间：一件署名的意外之喜需要属于它自己的空位，或者一个可以并进去的同款署名堆叠；若实在放不下，产出仍然会到手，只是署名就此失去。尸体采集也有属于自己的一份大奖机制：每种被采集的材料大约有 {pct}% 的几率掷出精良或更高品质。能给出完美标本的族群（兽皮、丝线、毒液、利爪、兽肉）会让普通产出保持朴素，另外在旁边铸出那件署名标本；其余五种，尖牙、布料、獠牙、兽角与鱼鳃，则直接把署名打在产出本身上。"
     },
     "economy": {
       "intro": "钱币让整个世界运转：它能购买你的装备、补给与旅行用具，还能在玩家之间易手。这一切只需游玩便能逐渐到手，所以不妨把本页看作一张地图，标明你的钱从何而来、又向何处去。",
@@ -7893,7 +7893,7 @@ export const zh_CN: EnTranslations = {
       "marketPost": "上架：从背包中挑出一摞，定下你的价格，然后挂上去。货物由商人保管，直到有人买下为止。未售出的挂单过一阵会回到你手上，若你改变主意，也可以提前取回其中一件。上架本身是免费的，因此一个乐观的价格只会花掉你一点时间。",
       "marketCollect": "收取：当你的货物售出时，收益会在商人处等着你。回去领取金币，连同任何未售出而退回的东西。商人会从每笔完成的交易中抽取一小部分。“收取”标签页会逐项列出等着你的东西，每笔完成的交易一行，写明货物、买家以及你赚到的数目，因此在你取走金币之前，就能确切看到卖出了什么。",
       "marketPricing": "定价由你说了算。比别人略低一点往往卖得更快，而要价过高则可能无人问津。挂单前不妨先浏览一番，看看当下的行情如何。",
-      "honorBody": "与其他玩家进行殊死较量会带来第三种荣耀货币：荣誉点数。赢下一场排位竞技场对决，或是在荆棘原野战场打满整场比赛（无论胜败），都会奖励丰厚的荣誉。荣誉直接记录在你的角色面板上，与钱币完全隔离。你可以在荣誉军需官处消费它——东溪镇的“怒火”与高望要塞的战争元帅德雷文·科尔共享全套军需库：专属战争护甲、饰品与战场神兵，唯有真正的勇士才能用荣誉换取！所有荣誉装备购买即绑定。",
+      "honorBody": "与其他玩家作战会带来第三种货币：荣誉。赢下一场排位竞技场对决可以获得荣誉，而在荆谷原野打满一整场比赛，无论胜负都会发放荣誉，所以原野上的一场苦战永远不算白打。荣誉积攒在你的角色面板上，绝不与你的钱币混在一起。你可以在荣誉军需官处花掉它，也就是东溪镇的 FURY 与高守哨站的 Warmarshal Draven Kole，两人共用同一批存货：整套战争护甲系列、饰品与武器，都只有荣誉买得到。这些购买是最终的，装备在你买下的那一刻便绑定于你，所以确认之前先把它读清楚。竞技场页面讲的是荣誉本身如何挣得。",
       "guildBankNote": "在你个人的银行之外，公会还守着一座自己的金库，在同一位司库处开启，并从同一个窗口的一个标签页进入：一份共享的钱币储备，加上一处集中存放货物的仓库。每位成员都可以查看它，而能把东西存进取出的只有官员。社交页面有更详细的说明。"
     },
     "social": {
@@ -8581,7 +8581,7 @@ export const zh_CN: EnTranslations = {
     "play": "开始游戏",
     "playAria": "开始游玩 World of ClaudeCraft",
     "serverLabel": "选择你的世界",
-    "serverAria": "选择服务器",
+    "serverAria": "选择世界：在线或离线",
     "serverOfflineSub": "即时本地世界"
   },
   "auth": {
@@ -9420,8 +9420,8 @@ export const zh_CN: EnTranslations = {
     "intro": {
       "normal": "楼梯井又冷又暗。破碎的圣徒石散落在下行的台阶上，潮湿的空气中悬着一缕轻柔的钟音。侍僧泰莎低声道：“圣物库不该开到这么深的地方。靠紧些，{playerName}。”",
       "heroic": "门在你身后呻吟着合上。一个个名字像指甲般刮过石面。泰莎的烛火燃成幽蓝。“他们如今召唤的已不是亡者了，{playerName}。他们是在回应某种东西。”",
-      "litanyNormal": "芦苇丛生的阶梯没入芬桥之下。艾达·芦手举起她的提灯。“沼泽铭记着被他们溺亡的每一个名字，{playerName}。留在光芒之中。”",
-      "litanyHeroic": "黑水拍打着堤道的石头。艾达的火焰闪烁着幽绿的光芒。“它们又在下方歌唱了，{playerName}。千万不要回应合唱团的呼唤。”"
+      "litanyNormal": "芦苇堵塞的阶梯没入芬桥之下。艾达·芦手举起她的提灯。\"沼泽记得每一个被淹死之人的名字，{playerName}。留在光中。\"",
+      "litanyHeroic": "黑水拍打着堤道的石头。艾达的火焰闪烁成绿色。\"他们又在下面歌唱了，{playerName}。不要回应那唱诗队。\""
     },
     "module": {
       "reliquary_sunken_ossuary": "水从葬架间渗出，挟着陈年灰烬汇成银黑色的细流。",
@@ -9803,7 +9803,7 @@ export const zh_CN: EnTranslations = {
     "nothingInteract": "附近没有可互动目标。",
     "noEnemyNearby": "附近没有敌人。",
     "characterNameRequired": "请输入角色名称。",
-    "characterNameInvalid": "名称必须为 2-16 个字符，以字母或汉字开头，并且只能包含汉字、字母、空格、连字符或撇号。",
+    "characterNameInvalid": "名称必须为 2-16 个字符，以字母开头，并且只能包含字母、空格、连字符或撇号。",
     "selectClass": "请选择一个职业。",
     "pickClass": "选择一个职业。",
     "returnToLogin": "返回登录",
@@ -10636,7 +10636,7 @@ export const zh_CN: EnTranslations = {
       "felboltTitle": "邪能箭",
       "felboltDesc": "命令烬裔向你的目标额外发射一枚邪能弹。冷却时间 8 秒。右键点击、长按或按 Shift+Enter 可切换自动施放。",
       "abyssalChainTitle": "深渊锁链",
-      "abyssalChainDesc": "命令幽影将 8 码以外、20 码以内的普通敌人拖回自己身边。首领无法被拖拽。冷却时间 15 秒。右键点击、长按或按 Shift+Enter 可切换自动施放。",
+      "abyssalChainDesc": "命令暮影将 8 码以外、20 码以内的普通敌人拖回自己身边。首领无法被拖拽。冷却时间 15 秒。右键点击、长按或按 Shift+Enter 可切换自动施放。",
       "petTauntTitle": "宠物嘲讽",
       "petTauntDesc": "命令你的宠物接战，并在进入范围时使用低吼。10 秒冷却。",
       "healDemonDesc": "消耗法力，在 5 秒内向你的恶魔引导治疗。",
@@ -11008,8 +11008,8 @@ export const zh_CN: EnTranslations = {
       "stat": "+{value} {stat}",
       "useFood": "使用：在 {seconds} 秒内恢复 {amount} 点生命值。进食时必须保持坐下。",
       "useDrink": "使用：在 {seconds} 秒内恢复 {amount} 点法力值。饮水时必须保持坐下。",
-      "useElixir": "使用：使你的{stat}提高 {value} 点，持续 {minutes} 分钟。战斗中可用。",
-      "useElixirAura": "使用：获得{aura}效果，持续 {minutes} 分钟。战斗中可用。",
+      "useElixir": "使用：使你的{stat}提高 {value} 点，持续 {minutes} 分钟。会顶替其他任何同属性的药剂或卷轴。战斗中可用。",
+      "useElixirAura": "使用：获得{aura}效果，持续 {minutes} 分钟。会顶替其他任何同类药剂或卷轴。战斗中可用。",
       "flaskOnlyOne": "同时只能有一种药壶效果。饮用另一瓶药壶会顶替当前效果。",
       "flaskOutranks": "同属性中更弱的药剂或卷轴无法顶替它。",
       "flaskUnremovable": "它无法被驱散或偷取，也无法手动取消。",
@@ -11178,14 +11178,14 @@ export const zh_CN: EnTranslations = {
       "sweepAria": "在市场扫货购买{item}",
       "sweepTitle": "市场扫货：{item}",
       "sweepClose": "关闭",
-      "sweepNote": "Buys whole listings from other sellers, cheapest per unit first, until your count is covered. You may receive a few more than you asked for.",
+      "sweepNote": "按单价从低到高整批买下其他卖家的上架，直到凑够你要的数量。你可能会比要求的多收到几件。",
       "sweepQuantity": "需要数量",
       "sweepQuoteNone": "没有可扫货的该物品上架。",
       "sweepQuoteLine": "{listings}条上架共{units}件，合计{total}（每件{each}）",
       "sweepQuoteShort": "仅有{listings}条上架共{units}件可购，合计{total}（每件{each}）",
       "sweepButton": "扫货",
       "sweepConfirmTitle": "确认市场扫货",
-      "sweepConfirmBody": "Buy {item} x{units} across {listings} listings for {total} ({each} each)?",
+      "sweepConfirmBody": "以{total}（每件{each}）从{listings}条上架购买{item} x{units}？",
       "sweepChanged": "扫货报价在你确认前已变化。请核对总价后重试。",
       "sellNote": "从背包上架货物。物品售出时商人抽取 {cut}%。你正在使用 {used}/{max} 个上架位。",
       "sellPickEmpty": "点击背包中的物品来选择要出售的货物。",
@@ -11443,7 +11443,7 @@ export const zh_CN: EnTranslations = {
       },
       "cold_snap": {
         "name": "冬之召还",
-        "description": "立即结束闪烁步、霜幕和强效隐形术的冷却时间。（法师天赋）"
+        "description": "立即结束轻掠步、霜幕和强效隐形术的冷却时间。（法师天赋）"
       },
       "greater_invisibility": {
         "name": "强效隐形术",
@@ -11637,11 +11637,11 @@ export const zh_CN: EnTranslations = {
       },
       "melting_acid": {
         "name": "溶解酸",
-        "description": "为你的武器涂抹强酸，持续 30 分钟。你的每次近战攻击都会向目标泼洒腐蚀性强酸，使其护甲降低 5%，持续 12 秒。"
+        "description": "为你的武器涂覆 30 分钟。你的每次近战挥击都会向目标溅洒腐蚀酸液，使其护甲降低 5%，持续 12 秒。"
       },
       "nightshade_coating": {
         "name": "夜影涂层",
-        "description": "为你的武器涂抹龙葵毒素，持续 30 分钟。你的每次近战攻击都会使目标沾染龙葵，使其受到的治疗效果降低 25%，持续 12 秒。"
+        "description": "为你的武器涂覆 30 分钟。你的每次近战挥击都会让目标沾染夜影，使其受到的治疗降低 25%，持续 12 秒。"
       },
       "expose_armor": {
         "name": "护甲突破",
@@ -11661,7 +11661,7 @@ export const zh_CN: EnTranslations = {
       },
       "deadly_poison": {
         "name": "溃烂毒液",
-        "description": "为你的武器淬毒，持续 30 分钟。你的每次近战攻击都会使目标叠加一层剧毒（最多 5 层）并刷新 12 秒持续时间。每层剧毒每 2 秒造成 {damage} 点自然伤害。"
+        "description": "为你的武器淬毒，持续 30 分钟。你的每次近战攻击都会在目标身上叠加一层毒液，最多 5 层，并刷新 12 秒持续时间。每层每 2 秒造成 {damage} 点自然伤害。"
       },
       "blind": {
         "name": "扬尘",
@@ -12066,7 +12066,7 @@ export const zh_CN: EnTranslations = {
       },
       "hex_of_violence": {
         "name": "暴行咒",
-        "description": "诅咒敌人8秒。其接下来的3次伤害行为各生成7点谴罪，并反噬17点暗影伤害。"
+        "description": "诅咒敌人8秒，造成暗影伤害并每2秒生成2点谴罪。其接下来的3次伤害行为各生成7点谴罪，并反噬17点暗影伤害。"
       },
       "cruel_pact": {
         "name": "残酷契约",
@@ -12102,7 +12102,7 @@ export const zh_CN: EnTranslations = {
       },
       "ruinous_brand": {
         "name": "毁灭烙印",
-        "description": "为敌人烙印15秒。你接下来的3个直接法术会对被烙印的敌人回响25%的伤害；若对其他目标施放，则会向其复制50%的伤害。"
+        "description": "为敌人烙印15秒。你接下来的3个直接法术会对被烙印的敌人回响25%的伤害；若对其他目标施放，则会向其复制50%的伤害。毁灭箭的回响伤害同样视为暴击，但不会因此再叠加额外的暴击伤害加成。"
       },
       "wrath": {
         "name": "野性弹",
@@ -12141,7 +12141,7 @@ export const zh_CN: EnTranslations = {
       },
       "bear_form": {
         "name": "巨熊形态",
-        "description": "变形为熊：护甲 +110%，最大生命值 +30%，攻击强度大幅提高，你的攻击会产生怒气并额外产生 30% 威胁值。再次施放可返回施法者形态。"
+        "description": "变形为熊：护甲 +110%，最大生命值 +30%，攻击强度大幅提高，你的攻击会产生怒气并额外产生 30% 威胁值。变形进入任意形态都会获得大步疾驰，带来短暂的移动速度提升。再次施放可返回施法者形态。"
       },
       "maul": {
         "name": "碎骨击",
@@ -12158,11 +12158,11 @@ export const zh_CN: EnTranslations = {
       },
       "cat_form": {
         "name": "豹形态",
-        "description": "将你化为一头狼：敏捷随你的等级提升，攻击强度 +8 外加每级 2 点，你的攻击消耗能量与连击点，并且你产生的威胁降低 29%。再次施放即可变回施法形态。"
+        "description": "将你化为一头狼：敏捷随你的等级提升，攻击强度 +8 外加每级 2 点，你的攻击消耗能量与连击点，并且你产生的威胁降低 29%。变为任意形态都会获得疾跃步伐：移动速度提高 60%，持续 3 秒，每 20 秒一次。再次施放即可变回施法形态。"
       },
       "claw": {
         "name": "裂爪",
-        "description": "用利爪攻击敌人，造成武器伤害加 {damage}。奖励 1 个连击点。仅限狼形态。",
+        "description": "用利爪攻击敌人，造成武器伤害加 {damage}。奖励 1 个连击点。仅限豹形态。",
         "specNote_feral": "每次命中累积1层古血（最多3层）。"
       },
       "ferocious_bite": {
@@ -12199,7 +12199,7 @@ export const zh_CN: EnTranslations = {
       },
       "travel_form": {
         "name": "迅捷形态",
-        "description": "立刻化为轻捷的迅捷形态，使移动速度提高 40%。变形状态下你无法使用其他技能，但可以在战斗中或脱离战斗时变形，非常适合逃离。"
+        "description": "立刻化为轻捷的迅捷形态，使移动速度提高 40%，并解除可解除的定身与减速效果。变形状态下你无法使用其他技能，但可以在战斗中或脱离战斗时变形，非常适合逃离。变形进入任意形态都会获得大步疾驰，带来短暂的移动速度提升。"
       },
       "enrage": {
         "name": "煽怒",
@@ -12223,15 +12223,15 @@ export const zh_CN: EnTranslations = {
       },
       "pounce": {
         "name": "匿袭",
-        "description": "一个潜行开场技，昏迷目标 2 秒。奖励 1 个连击点。仅限狼形态。"
+        "description": "一个潜行开场技，昏迷目标 2 秒。奖励 1 个连击点。仅限狼形态。 未潜行时，此按钮为扑击。"
       },
       "lunge": {
         "name": "扑击",
-        "description": "Lunge at an enemy up to 12 yd away. On arrival, deals 60% weapon damage and awards 1 combo point; a lunge cut short refunds its cooldown. Cat Form only."
+        "description": "扑向最远12码外的敌人，造成60%武器伤害并获得1个连击点。仅限狼形态使用。"
       },
       "hamstring_bite": {
         "name": "扑倒",
-        "description": "Finishing move that stuns the target for 1 sec plus 1 sec per combo point (5 combo points: 6 sec). Cat Form only."
+        "description": "终结技，昏迷目标 1 秒外加每点连击点 1 秒（5 点连击点：6 秒）。仅限狼形态使用。"
       },
       "insect_swarm": {
         "name": "蜇刺虫群",
@@ -12239,11 +12239,11 @@ export const zh_CN: EnTranslations = {
       },
       "tigers_fury": {
         "name": "豹血",
-        "description": "涌起{rage}点能量，并使攻击强度提高 {buff}，持续 {duration} 秒。仅限狼形态。"
+        "description": "涌起{rage}点能量，并使攻击强度提高 {buff}，持续 {duration} 秒。仅限豹形态。"
       },
       "rip": {
         "name": "血隙",
-        "description": "终结技，使目标每 2 秒流血一次，持续 24 秒：36 点伤害外加每消耗 1 点连击点 24 点（5 点连击点：共 {damage} 点）。仅限狼形态。",
+        "description": "终结技，使目标每 2 秒流血一次，持续 24 秒：36 点伤害外加每消耗 1 点连击点 24 点（5 点连击点：共 {damage} 点）。仅限豹形态。",
         "specNote_feral": "命中的这一击累积1层古血（最多3层）。"
       },
       "mortal_strike": {
@@ -12440,11 +12440,11 @@ export const zh_CN: EnTranslations = {
       },
       "moonkin_form": {
         "name": "枭兽形态",
-        "description": "进入枭兽形态，强化施法直到你切换回来。再次施放可返回普通形态。（平衡专精招牌）"
+        "description": "进入枭兽形态，强化施法直到你切换回来。变形进入任意形态都会获得大步疾驰，带来短暂的移动速度提升。再次施放可返回普通形态。（平衡专精招牌）"
       },
       "feral_charge": {
         "name": "原始涌动",
-        "description": "释放一股原始涌动。狼形态下，能量恢复速度提高100%，持续10秒。巨熊形态下，立即产生50点怒气。（野性专精招牌）"
+        "description": "释放一股原始涌动。豹形态下，能量恢复速度提高100%，持续10秒。巨熊形态下，立即产生50点怒气。（野性专精招牌）"
       },
       "swiftmend": {
         "name": "迅捷治愈",
@@ -12664,7 +12664,7 @@ export const zh_CN: EnTranslations = {
       },
       "chaos_bolt": {
         "name": "毁灭箭",
-        "description": "消耗 3 点毁坏，掷出一发沉重的混乱之火，造成 {damage} 点火焰伤害。毁灭性使其施法时间缩短 30%。"
+        "description": "消耗 3 点毁坏，掷出一发沉重的混乱之火，造成 {damage} 点火焰伤害（暴击加成生效前）。命中时必定暴击。毁灭性使其施法时间缩短 30%。"
       },
       "dark_pact": {
         "name": "血契",
@@ -12776,7 +12776,7 @@ export const zh_CN: EnTranslations = {
       },
       "temporal_echo": {
         "name": "时光回响",
-        "description": "以更健康时刻的回响标记一名盟友，立即为其恢复 {damage} 点生命值。在 {duration} 秒内，你的其他单体奥术伤害的 {echoSinglePct}% 以及群体奥术伤害的 {echoAreaPct}% 会转化为对其的治疗。以太涌动和以太飞弹则会按造成伤害的 {echoDriverPct}% 为其提供治疗。"
+        "description": "以更健康时刻的回响标记一名盟友，立即恢复{damage}点生命值。{duration}秒内，你其他单体奥术伤害的{echoSinglePct}%和范围奥术伤害的{echoAreaPct}%会治疗该盟友。以太涌动和以太飞镖改为按其造成伤害的{echoDriverPct}%治疗该盟友。"
       },
       "temporal_cascade": {
         "name": "时光奔流",
@@ -12808,7 +12808,7 @@ export const zh_CN: EnTranslations = {
       },
       "perfect_moment": {
         "name": "完美时刻",
-        "description": "抓住完美时刻：立即获得 4 层奥术充能，并且在 10 秒内，以太飞矢不会消耗这些充能。（时光术）"
+        "description": "抓住完美时刻：立即获得 4 层奥术充能，并且在 10 秒内，以太飞镖不会消耗这些充能，且造成的伤害提高 20%。（时光术）"
       },
       "arcane_surge": {
         "name": "以太涌动",
@@ -12921,7 +12921,7 @@ export const zh_CN: EnTranslations = {
       },
       "scouring_mercy": {
         "name": "涤罪慈悲",
-        "description": "对一名敌人造成 {damage} 点神圣伤害，或为一名友方目标恢复 {healing} 点生命值。伤害受法术强度加成，治疗受治疗强度加成。教义专属技能。"
+        "description": "对敌人造成{damage}点神圣伤害，或为一名友方目标治疗{healing}点生命值。伤害随法术强度提高，治疗随治疗强度提高。教义会通过你的纽带将此伤害转化为治疗。若30米内没有已建立纽带且受伤的队伍成员，则治疗30米内生命值最低的受伤队伍成员，治疗量为伤害的15%。治疗一名队伍成员时，还会为该目标10米内、且处于你视野中的至多2名其他受伤队伍成员治疗，每人恢复量为已恢复生命值的50%。这些额外治疗不会触发暴击，也不会建立教义纽带。（教义专属技能）"
       },
       "seraphic_vigil": {
         "name": "炽天使守望",
@@ -12945,7 +12945,7 @@ export const zh_CN: EnTranslations = {
       },
       "bear_charge": {
         "name": "巨熊冲锋",
-        "description": "冲向一名敌人，生成9点怒气并将其昏迷1秒。射程8-25码。仅限巨熊形态使用。"
+        "description": "冲向一名敌人，生成9点怒气并将其昏迷1秒。之后3秒内，狼形态无需消耗并钉制目标，使其减速50%，持续4秒。射程8-25码。仅限巨熊形态使用。"
       },
       "demoralizing_roar": {
         "name": "怯懦咆哮",
@@ -12957,7 +12957,7 @@ export const zh_CN: EnTranslations = {
       },
       "rake": {
         "name": "剐削",
-        "description": "撕裂敌人，造成武器伤害外加 {damage} 点，并造成持续 18 秒的流血伤害。给予 1 点连击点。仅限狼形态。",
+        "description": "撕裂敌人，造成武器伤害外加 {damage} 点，并造成持续 18 秒的流血伤害。给予 1 点连击点。仅限豹形态。",
         "specNote_feral": "每次命中累积1层古血（最多3层）。"
       },
       "revive_pet": {
@@ -17392,7 +17392,7 @@ export const zh_CN: EnTranslations = {
       "the_merchant": {
         "name": "商人",
         "title": "世界市场守护者",
-        "greeting": "欢迎来到全境市场，{className}。从王国各地的冒险者手中选购物品——或是摆出你自己的货物，让金币滚滚而来。"
+        "greeting": "欢迎来到世界市场，{className}。从王国各地的冒险者手中购买，或出售你自己的货物。"
       },
       "marshal_redbrook": {
         "name": "雷德布鲁克元帅",
@@ -17432,7 +17432,7 @@ export const zh_CN: EnTranslations = {
       "stablemaster_marla": {
         "name": "玛拉·希琴",
         "title": "马厩总管",
-        "greeting": "每一名骑手最初都是两条腿走进来的，{className}。在你能够稳稳骑上英勇战马不摔个狗啃泥之前，我可不会把缰绳交给你——疾风峰顶的狂风对坐不稳的人可不会手下留情。"
+        "greeting": "每个骑手都是两条腿走进来的，{className}。你能骑稳英勇战马、不摔进泥里之前，我是不会把缰绳交给你的，高望这儿可没有多余的医者去治断骨。"
       },
       "warden_fenwick": {
         "name": "芬威克守望者",
@@ -17442,12 +17442,12 @@ export const zh_CN: EnTranslations = {
       "brother_aldric_fen": {
         "name": "奥德里克修士",
         "title": "山谷牧师",
-        "greeting": "愿圣光保佑你涉水前行，{playerName}。这片沼泽里的亡者从未安息——他们正在污泥中向我们逼近。"
+        "greeting": "愿圣光让你不沉入水下，{playerName}。这片湿地的死者不睡觉，他们在泥水中跋涉。"
       },
       "provisioner_hale": {
         "name": "海尔补给官",
         "title": "补给商",
-        "greeting": "干燥的皮靴、没发霉的面包、没受潮的火药——在沼桥这鬼地方，赶上好天气你也只能指望凑齐其中两样！"
+        "greeting": "干靴子，干面包，干火药：在芬桥，一天能有两样就算不错。"
       },
       "herbalist_yara": {
         "name": "雅拉草药师",
@@ -17462,22 +17462,22 @@ export const zh_CN: EnTranslations = {
       "captain_thessaly": {
         "name": "瑟萨莉队长",
         "title": "高望队长",
-        "greeting": "这座城墙已经屹立了两百年，{className}。只要我当值一天，它就绝不会陷落——哪怕它已在重压下呻吟！"
+        "greeting": "这面墙已经站了两百年，{className}。只要我守着它，它就不会倒，虽然它正在呻吟。"
       },
       "brother_aldric_highwatch": {
         "name": "奥德里克修士",
         "title": "山谷牧师",
-        "greeting": "从溪谷的小礼拜堂，一路追索到这世界的屋脊……我们所循的踪迹终于在这里汇合。我能感觉到，整座雪山都在屏息聆听。"
+        "greeting": "从礼拜堂墓地到世界屋脊... 线索到这里结束。我感觉山正在聆听。"
       },
       "scout_maren_highwatch": {
         "name": "玛伦斥候",
         "title": "元帅的斥候",
-        "greeting": "我曾与你并肩穿过沼泽追踪邪教徒，线索一路指到了这里。绝顶之上的情况更糟，{className}。保持警惕！"
+        "greeting": "我和你一起在湿地追踪那些邪教徒，而线索通向这里。群峰更糟，{className}。保持警惕。"
       },
       "quartermaster_bree": {
         "name": "布里军需官",
         "title": "高望军需官",
-        "greeting": "保暖的羊毛斗篷、坚硬的行军干粮、钉紧铁掌的防滑靴——高望要塞全靠这三样撑着，而现在我手头样样吃紧！"
+        "greeting": "羊毛，硬饼，铁掌靴：高望靠这三样维持，而我什么都缺。"
       },
       "armorer_hode": {
         "name": "霍德护甲匠",
@@ -17487,7 +17487,7 @@ export const zh_CN: EnTranslations = {
       "heroic_quartermaster": {
         "name": "军需官维克斯",
         "title": "英雄军需官",
-        "greeting": "只有踏平英雄深渊的勇士，才有资格换取高望要塞最顶级的戒律指环与护符项圈。亮出你的英雄印记吧！"
+        "greeting": "英雄深渊的凭证能换来高崖望最上等的戒指和吊坠。把你的徽记拿给我看。"
       },
       "fury": {
         "name": "怒焰",
@@ -17497,17 +17497,17 @@ export const zh_CN: EnTranslations = {
       "warmarshal_draven_kole": {
         "name": "战帅德拉文·科尔",
         "title": "战争军备库总管",
-        "greeting": "在这里，荣誉是我唯一认同的硬通货！在浴血沙场上证明你的军阶，我自然会为你披上下一次征战的无上重甲！"
+        "greeting": "我只收荣誉这一种货币，战争军备库由我看守。在战场上挣得你的军阶，我便为你披上迎接下一战的甲胄。"
       },
       "loremaster_caddis": {
         "name": "凯迪斯博学者",
         "title": "博学者",
-        "greeting": "留心脚下松动的页岩，{className}。群山近来……躁动不安。我誓要查明缘由。"
+        "greeting": "小心松动的页岩，{className}。这座山近来不安，我想知道原因。"
       },
       "auctioneer_voss": {
         "name": "拍卖师沃斯",
         "title": "世界市场守护者",
-        "greeting": "全境拍卖行在此设立分舵，{className}！从王国各地的豪杰手中采买，或是摆上你的奇珍，让金币滚滚而来！"
+        "greeting": "世界市场在此亦可使用，{className}。从王国各地的冒险者手中购买，或出售你自己的货物。"
       },
       "bursar_fernando": {
         "name": "司库费尔南多",
@@ -17522,22 +17522,22 @@ export const zh_CN: EnTranslations = {
       "bursar_petra_vell": {
         "name": "司库佩特拉·维尔",
         "title": "镀金保险箱",
-        "greeting": "镀金金库账目分毫不差，金库重地更是一尘不染。今天想为你在秘库中封存些什么，贵客？"
+        "greeting": "镀金保险箱账目清晰，金库更是一尘不染。想让我们为你存放些什么？"
       },
       "bursar_aldous_crane": {
         "name": "司库奥尔多斯·克莱恩",
         "title": "镀金保险箱",
-        "greeting": "无论是沉重的铁箱、满溢的金柜，还是精巧的饰品，只要托付给镀金金库，便万无一失。"
+        "greeting": "每一只木箱、每一个钱柜、每一件饰物，交给镀金保险箱都万无一失。"
       },
       "brother_aldric_raid": {
         "name": "奥德里克修士",
         "title": "山谷牧师",
-        "greeting": "从溪谷的小礼拜堂，一路追索到这世界的屋脊……我们所循的踪迹终于在这里汇合。我能感觉到，整座雪山都在屏息聆听。"
+        "greeting": "从礼拜堂墓地到世界屋脊... 线索到这里结束。我感觉山正在聆听。"
       },
       "archivist_maelin_emberward": {
         "name": "余烬守望者梅琳",
         "title": "熔炉档案员",
-        "greeting": "这座熔炉工坊里的每一道重锤刻痕，都是一段不可磨灭的历史。帮我解读它吧，查清当年瓦克胡尔竭力掩盖的真相！"
+        "greeting": "这里的每一道锤印都是一句话。帮我读懂瓦尔库尔想隐藏的真相。"
       },
       "archivist_maelin_ember_projection": {
         "name": "梅琳的余烬投影",
@@ -17547,7 +17547,7 @@ export const zh_CN: EnTranslations = {
       "crucible_quartermaster": {
         "name": "军需官布隆恩·余烬守卫",
         "title": "熔炉军需官",
-        "greeting": "烈火熔炉只会铭记真正的勇士。从大熔炉深处带回古老魔印，我便会为你换上征战四方的终极神兵！"
+        "greeting": "熔炉会铭记自己人。把坩埚里的印记带给我，我就为你披挂上阵。"
       },
       "brother_halven": {
         "name": "哈尔文修士",
@@ -17557,37 +17557,37 @@ export const zh_CN: EnTranslations = {
       "brother_halven_marsh": {
         "name": "哈尔文修士",
         "title": "圣物库守护人",
-        "greeting": "踪迹一路向北蔓延。又一座失落的圣物库，又一场生死洗礼。选定你的试炼阶位吧，我会在此为你拉稳归途的绳索！"
+        "greeting": "小径向北延伸。又一座圣物库，又一场仪式。选择你的难度，我会为你守住绳索，直到你归来。"
       },
       "spirit_healer": {
         "name": "灵魂医者",
         "title": "亡者的守护者",
-        "greeting": "安息吧，迷途的灵魂……我可以引导你重返凡躯，但穿梭生死彼岸的痛苦，会让你暂时虚弱不堪。"
+        "greeting": "安息吧，灵魂。我可以让你重返躯体，但归途会让你变得虚弱。"
       },
       "chronicler_saul": {
         "name": "编年史者绍尔",
         "title": "东溪谷编年史",
-        "greeting": "凡是值得一做的功绩，都值得被书写两次，{playerName}：一次记入账册，一次在炉火边传唱。"
+        "greeting": "值得做的事迹，就值得写下两遍，{playerName}：一遍记进账册，一遍留给炉边。"
       },
       "chronicler_osric_fenn": {
         "name": "编年史者奥斯里克·芬恩",
         "title": "泥沼湿地编年史",
-        "greeting": "翻阅书页时留心湿气，{playerName}。这片沼泽吞掉的古籍，可比读者翻过的还要多！"
+        "greeting": "当心书页受潮，{playerName}。沼泽吞掉的书可比读者读掉的多。"
       },
       "chronicler_edda_hartwell": {
         "name": "编年史者赞茜",
         "title": "荆峰高地编年史",
-        "greeting": "高山从不遗忘任何事迹，{playerName}，老埃达也是。让我翻开史册，看看你在此留下了怎样的壮举。"
+        "greeting": "高山什么都不会忘记，{playerName}，我也一样。让我看看你都做过什么吧。"
       },
       "keeper_saelwyn": {
         "name": "守护者塞尔文",
         "title": "幽谷守护者",
-        "greeting": "鲜有你的同族曾驻足于这片古老枝桠之下，{className}。放轻脚步，欢迎到来。"
+        "greeting": "你的同族鲜少踏足这片树荫，{className}。轻声慢行，欢迎你的到来。"
       },
       "loremother_bryn": {
         "name": "传识之母布琳",
         "title": "圣祠之声",
-        "greeting": "这座山谷中的每一缕幽光都铭记着往事，{playerName}。来帮我一同倾听。"
+        "greeting": "这山谷里的每一盏光都铭记着什么，{playerName}。帮我听听它们的低语。"
       },
       "provisioner_fenna": {
         "name": "补给员芬娜",
@@ -17597,12 +17597,12 @@ export const zh_CN: EnTranslations = {
       "wardsmith_orun": {
         "name": "结界铁匠欧伦",
         "title": "古炉看守",
-        "greeting": "这些锻炉在数个世纪前便已冷却，{className}，但它们的铸造之物至今依然锋利逼人！"
+        "greeting": "这些熔炉几百年前就冷了，{className}，但它们锻出的兵刃至今锋利。"
       },
       "archivist_tullo": {
         "name": "档案员图洛",
         "title": "读石者",
-        "greeting": "这里的每一卷卷轴都浸透着岁月与尘埃。轻拿轻放，凡人，你指尖触碰的是古帝国的兴亡。"
+        "greeting": "外面那些石碑已经许久不曾对人开口。也许它们正等着新的耳朵。"
       },
       "huntsman_deral": {
         "name": "猎人德拉尔",
@@ -17642,7 +17642,7 @@ export const zh_CN: EnTranslations = {
       "quartermaster_sela": {
         "name": "军需官塞拉",
         "title": "驻军仓库看守",
-        "greeting": "这营地里的每一口物资箱，都是跨越了四十里漫天飞灰才运过来的！拿取时动作轻点，省着点用！"
+        "greeting": "这院子里的每只箱子都是跨过四十里灰烬才到这儿的。对它们好一点。"
       },
       "scout_yerrin": {
         "name": "斥候耶琳",
@@ -17657,17 +17657,17 @@ export const zh_CN: EnTranslations = {
       "waywatcher_sorrel": {
         "name": "望道者索雷尔",
         "title": "融金隘口守望者",
-        "greeting": "身后是皑皑暴雪，眼前是漫山金秋。很少有人能活着走过两次融金隘口，走好脚下的每一步吧，旅人。"
+        "greeting": "身后是雪，前方是金。走融金隘口第二遍的人不多，所以这一趟要走得值。"
       },
       "ferrymaster_caddow": {
         "name": "渡船长卡多",
         "title": "灯火渡船看守",
-        "greeting": "每一条夜渡的渔船都挂着避水灯笼。风浪我们见得多了，可最近从湖渊里浮上来的那些巨影……连最老练的水手看了都腿软！"
+        "greeting": "大湖又起雾了。水面上的灯笼一灭，聪明人就该待在岸上。"
       },
       "orchardist_pomeline": {
         "name": "果园主帕梅琳",
         "title": "鎏金果园看守",
-        "greeting": "全镇的灯油和丰收麦酒全指望我这片果林产出的琥珀树脂！可这群该死的小偷妖精，快把我的采脂桶掀个底朝天了！"
+        "greeting": "脚下留神。这些果树的每一条根都比镇子古老，而且它们记性很好。"
       },
       "waykeeper_pell": {
         "name": "道口看守佩尔",
@@ -17692,7 +17692,7 @@ export const zh_CN: EnTranslations = {
       "lamplighter_sorrel": {
         "name": "点灯人索雷尔",
         "title": "夜门看守",
-        "greeting": "盯紧这些灯火，朋友。穿过这扇木门，太阳便彻底落山了，幽暗密林里的魔物就要出来活动了。"
+        "greeting": "留意这些灯，朋友。过了这道门，太阳就放弃了，接班的是花。"
       },
       "lira_dewsong": {
         "name": "莉拉·露歌",
@@ -17717,7 +17717,7 @@ export const zh_CN: EnTranslations = {
       "sexton_marrow": {
         "name": "司墓人马罗",
         "title": "绞湖镇司墓人",
-        "greeting": "在绞湖镇，我们把死人埋得格外深，还要日夜撞响丧钟——好叫底下的尸骨记住，老老实实躺着，别想爬起来！"
+        "greeting": "在这里我们把死者埋得很深，还要敲响钟声，好让他们记得安分躺着。"
       },
       "widow_tansy": {
         "name": "遗孀坦茜",
@@ -17732,17 +17732,17 @@ export const zh_CN: EnTranslations = {
       "strandwatcher_pell": {
         "name": "滩岸守望者佩尔",
         "title": "缠木隘口守望者",
-        "greeting": "呼……总算活着走出那片黑森林了！深吸一口气吧陌生人，至少在海峡的这一侧，阳光依然眷顾着我们。"
+        "greeting": "总算走出那片黑树林了。喘口气吧，陌生人，隘口这一侧还归太阳管。"
       },
       "salvage_boss_ryna": {
         "name": "打捞头目莱娜",
         "title": "沉船线女主人",
-        "greeting": "一个手脚麻利的{className}，很好。沉船残骸的回报很丰厚，前提是那些螃蟹给你留下了足够数钱的手指！"
+        "greeting": "一位胳膊还能使唤的{className}，好。沉船线上的报酬不薄，前提是螃蟹给你留下够数钱的手指。"
       },
       "pearlmother_isha": {
         "name": "珍珠之母伊莎",
         "title": "采珠人长老",
-        "greeting": "大海慷慨赐予，黄沙永远埋葬，而雨林则吞噬一切。紧紧守在海滩上，陌生人，切莫涉足深处的迷雾。"
+        "greeting": "海会给予，沙会保存，丛林只会夺取。待在沙滩上吧，陌生人。"
       },
       "hermit_okku": {
         "name": "奥克里姆",
@@ -17752,22 +17752,22 @@ export const zh_CN: EnTranslations = {
       "gatewarden_pell": {
         "name": "门卫佩尔",
         "title": "花园之门看守",
-        "greeting": "在草坪上走动时轻一点。这片神秘花园有它自己的规矩，它喜欢一切整整齐齐、一尘不染。"
+        "greeting": "在草坪上走路当心些。花园亲自修剪它们，也喜欢它们整整齐齐。"
       },
       "head_gardener_amaranth": {
         "name": "园丁长阿玛兰丝",
         "title": "常青园园丁长",
-        "greeting": "修剪枝桠不仅是为了美观，更是为了斩断那些潜藏在阴影中的腐蚀寄生虫。你也是为此而来的吗？"
+        "greeting": "别在意我眼下的阴影。花园做梦的时候，总得有人醒着。"
       },
       "wickmother_sorrel": {
         "name": "烛芯大娘索雷尔",
         "title": "篱苑旅店老板娘",
-        "greeting": "快进屋坐下，炉火上正温着热气腾腾的烈酒呢！只是手头带铁的物件可得抓紧了，近来林子里的小妖精手脚可不太老实。"
+        "greeting": "进来坐吧，火上温着甜酒。只是铁器都看牢些：那帮地精最近手脚不太干净。"
       },
       "gardener_yew": {
         "name": "园丁尤伊",
         "title": "最后的园丁",
-        "greeting": "万物皆有其生长与枯萎的律法。即便在最险峻的断崖与裂隙之中，依然有野性坚韧的荆棘在悄然抽枝。"
+        "greeting": "把那辆手推车递给我，好吗？不管小镇怎么想，这些草坪总得有人走上一遍。"
       },
       "watcher_maren": {
         "name": "瞭望者玛伦",
@@ -17777,7 +17777,7 @@ export const zh_CN: EnTranslations = {
       "harbormaster_odile": {
         "name": "港务长奥黛尔",
         "title": "烛港港务长",
-        "greeting": "这港湾里的每一艘战船，都得仰仗老灯塔指引方向才能平安靠港。有话快说，怒涛可不会等人！"
+        "greeting": "这湾里每一条船的龙骨都欠着老灯塔的情。有话快说，潮水可不等人。"
       },
       "keeper_bram": {
         "name": "守灯人布拉姆",
@@ -17787,37 +17787,37 @@ export const zh_CN: EnTranslations = {
       "salvager_edda": {
         "name": "打捞者艾妲",
         "title": "沉船滩打捞者",
-        "greeting": "沉船残骸里到处都是生锈的铁钉和盘踞的海怪。下水前务必握紧你的匕首，朋友。"
+        "greeting": "沉船木、缆绳，还有死人的货。大海付我工钱，只要沉船守卫肯放行。"
       },
       "warden_coalfast": {
         "name": "守望者·煤耐",
         "title": "堡垒指挥官",
-        "greeting": "虚空裂隙可不在乎鸥港有多小，{className}。我们要么守住这片海岸，要么就再无立足之地！与我们并肩作战吧，我绝不会忘记你的相助！"
+        "greeting": "裂隙才不管鸥港有多小，{className}。我们守住这片海岸，否则就再没有海岸可守。与我们并肩而战，我不会忘记你的付出。"
       },
       "riftwatch_ollun": {
         "name": "裂察·奥伦",
         "title": "裂隙学者",
-        "greeting": "每一道裂隙在被撕开之前都会发出尖锐的嘶鸣，只要你懂得辨别。我此刻就能听见海岛深处有三处正在剧烈震颤，其中一道……就在附近！"
+        "greeting": "每道裂隙开启之前都会歌唱，只要你有听它的耳朵。此刻我能听见岛上三道裂隙正在骚动，其中一道就在近处。"
       },
       "quartermaster_edda": {
         "name": "军需官·艾达",
         "title": "堡垒军械师",
-        "greeting": "冰冷的钢铁与海盐，{className}，这是我手头仅剩能分发的物资了。拿上它们，让虚空裂隙后悔开在我能够得着的地方！"
+        "greeting": "钢铁与海盐，{className}，这就是我还能发给你的全部了。拿上它，让那些裂隙后悔在我够得着的地方裂开。"
       },
       "mender_saul": {
         "name": "疗愈者·索尔",
         "title": "战地外科医",
-        "greeting": "我这一个月接好的断骨，比我过去十年见过的加起来还要多！裂隙里的魔物根本不会留下活口……尽你所能，全须全尾地活着走回来吧！"
+        "greeting": "这一个月里我接的骨头，比过去十年医治渔民跌伤加起来还多。裂隙夺走的东西，很少留下什么。若你办得到，就囫囵着回来见我。"
       },
       "bellkeeper_tam": {
         "name": "守钟人·塔姆",
         "title": "警钟守",
-        "greeting": "警钟是我们抵御虚空裂隙唯一的预警，{className}。一声响彻田野，两声回荡悬崖，若连撞三声急响……那便是血战降临之刻！留神倾听，它能保全你的性命。"
+        "greeting": "这口钟，是裂隙留给我们的唯一预警，{className}。一声,是田野;两声,是断崖;三声,便是它已近得逃也无用。留心听着,它或许能保你全身。"
       },
       "fisher_nell": {
         "name": "受惊的奈尔",
         "title": "鸥港渔民",
-        "greeting": "裂隙……裂隙就在晾晒渔网的滩头上撕开了！就在我每天早晨站立的地方！我不敢再去海边了……我哪儿都不敢去了！"
+        "greeting": "它就在晾网的地方裂开了。就在那儿，我这辈子每天清晨都站着的地方。我再也不下到海岸去了。如今我哪儿都不太去了。"
       },
       "riftwright_maelis": {
         "name": "裂隙锻匠梅莉丝",
@@ -17827,12 +17827,12 @@ export const zh_CN: EnTranslations = {
       "forgemistress_darva": {
         "name": "达尔瓦锻造师",
         "title": "熔炉大师",
-        "greeting": "锻炉听命于我，{className}。带上优质矿石，它也会听从你的号令。"
+        "greeting": "熔炉听我的话，{className}。带来好矿石，它也会听你的。"
       },
       "cook_marlow": {
         "name": "马洛厨师",
         "title": "厨房大师",
-        "greeting": "我厨房里端出去的菜绝没有半生不熟的，{className}。坐下，吃饱，然后再出去拼命！"
+        "greeting": "没有半生不熟的东西能离开我的厨房，{className}。坐下吃完，再回去闯荡。"
       },
       "weaver_ottilie": {
         "name": "奥蒂莉织工",
@@ -17842,7 +17842,7 @@ export const zh_CN: EnTranslations = {
       "tinker_gizzel": {
         "name": "吉泽尔修补匠",
         "title": "工坊大师",
-        "greeting": "弹簧、链轮与锋利的刀刃，{className}：只要是你手头欠缺的工具，工坊里应有尽有！"
+        "greeting": "弹簧、齿轮、锋利的刃口，{className}：你手上缺什么，工坊里就有什么。"
       },
       "tanner_hesk": {
         "name": "赫斯克制革匠",
@@ -17852,7 +17852,7 @@ export const zh_CN: EnTranslations = {
       "alchemist_verane": {
         "name": "韦兰炼金术士",
         "title": "药坊大师",
-        "greeting": "量药需再三核准，倾倒只需一瞬，{className}。炼金工坊可经不起毛手毛脚打翻珍贵药剂！"
+        "greeting": "量两次，倒一次，{className}。药坊里容不得洒掉的药剂。"
       },
       "farmer_jessica": {
         "name": "农妇杰西卡",
@@ -17877,47 +17877,47 @@ export const zh_CN: EnTranslations = {
       "wayfarer_bryn": {
         "name": "旅人布琳",
         "title": "港口向导",
-        "greeting": "东溪谷地欢迎四方豪杰，朋友。对于刚涉足江湖的新手，试炼之滨永远是最好的起点：乌鸦驿站信箱旁的渡船铃铛，随时能将你送去苦修，敲响对岸的铃声又能带你载誉归乡！"
+        "greeting": "东溪谷来者不拒，朋友。而对脚下还不稳的人来说，总还有试炼之滨：鸦邮信箱旁的渡船铃一年到头随时送你过去，岛上那口孪生铃再送你回家。"
       },
       "instructor_maren": {
         "name": "教官玛伦",
         "title": "试炼导师",
-        "greeting": "溪谷里每一个受万民敬仰的英雄，最初都像你一样站在这里，{className}，甚至没人分得清该握刀刃的哪一头！这就是试炼之滨的意义。尽管提问、苦练，在这里失败可不会要你的命。"
+        "greeting": "谷地感激过的每一位英雄，都曾站在你现在站的地方，{className}，而且当时没有一个人分得清剑该握哪头。这片海滨就是为此而设。尽管问，尽管练，在失败不要紧的地方尽管失败。"
       },
       "quartermaster_finch": {
         "name": "军需官芬奇",
         "title": "营地补给商",
-        "greeting": "我柜台上只卖一样东西，{playerName}：一只备用行囊，供你在修行路上装载拾取的物资。其余一切全是指向谷地的战利品。出钱买包，出力赚钱——整个经济就这么简单，绝不会变复杂，只会越来越大。"
+        "greeting": "我的柜台只卖一样东西，{playerName}：一只装路上零碎的备用小袋，等课业用得着它的时候才卖。这里其余的都是要运回谷地的打捞货。铜板能买下小袋，而铜板要靠干活挣来。这就是全部的经济学，它永远不会变得更复杂。只会变得更大。"
       },
       "ferryman_odo": {
         "name": "渡船人奥多",
         "title": "渡口看守",
-        "greeting": "刚渡海过来吗，{playerName}？塔姆守卫在栈桥南面的海滩上主持疾风试炼：先跑跑他的跑道，你的腿脚会感谢你的。这片海滩上的每一位守卫都会在你完成任务后引荐你给下一位，屏幕上方的指引卡也始终通晓前路。当东溪谷地召唤你返回时，敲响我栈桥旁的大钟，渡船便会载你前往东溪镇。"
+        "greeting": "刚下渡船吗，{playerName}？看守塔姆就在码头正南的海滩上守着试炼跑道：先去跑一趟他的跑道，你的双腿会感谢你的。这片海滨的每一位看守都会在你办完差事后把你交给下一位，屏幕顶端的那张卡片永远知道下一步该往哪儿走。等谷地召唤你回去时，敲响立在我码头旁的那口铃，渡航会把你送到东溪镇上。"
       },
       "bursar_wick": {
         "name": "司库威克",
         "title": "镀金保险箱",
-        "greeting": "镀金金库在此也设有柜台，{playerName}。凡是存放在我这里的财物，在每一座城镇的金库都完好无损，野狼叼不走、洪水泡不烂，更能省得你自己一时糊涂败光！"
+        "greeting": "镀金保险箱连这里也设了一张桌子，{playerName}。凡是存到我这里的东西，都躺在每座城镇每位司库身后的同一座金库里，狼咬不着，水泡不着，连你自己的糊涂决定也碰不着。"
       },
       "warden_tam": {
         "name": "看守塔姆",
         "title": "试炼跑道的看守",
-        "greeting": "眼前这几条跑道便是‘疾风试炼’，{playerName}，谷地里每一个受人尊敬的冒险者都在这里奔跑过。路边的提灯整夜长明，试炼从未关闭。"
+        "greeting": "这几条跑道就是试炼跑道，{playerName}，谷地敬重的每一位冒险者都跑过它。栏杆上的灯柱整夜不灭，跑道从不打烊。"
       },
       "overseer_pell": {
         "name": "监工佩尔",
         "title": "试炼跑道监工",
-        "greeting": "我记录着每一位冲过这些跑道的人，{playerName}，而且我见过比你笨拙得多的步伐。我身后的山路通向演武场：在那里，扎实的步伐才能化为致命的剑术。"
+        "greeting": "每一趟从这几条跑道下来的成绩都由我掐表，{playerName}，比这难看得多的脚步我也见过。我身后的路通往练武场：脚上功夫变成剑上功夫，就在那里。"
       },
       "drillmaster_rook": {
         "name": "操练官鲁克",
         "title": "练武场主管",
-        "greeting": "先砍草人，再碎坚甲，{playerName}。稻草假人教你的手臂学会挥砍，海滩上的掠行蟹则会教你如何劈中有痛觉的活物！"
+        "greeting": "先打稻草，再打壳，{playerName}。草人教你的手臂怎么挥刀；海滩那头的掠蟹教它落在一个会计较的对象身上。"
       },
       "tidewarden_nel": {
         "name": "守潮人奈尔",
         "title": "海滩的看守",
-        "greeting": "潮水有所取亦有所偿，{playerName}。我掌管着这两笔账：掠行蟹从残骸里偷走了什么，以及诚实勤劳的双手顺着小道带回了什么。"
+        "greeting": "潮水会拿走，潮水也会偿还，{playerName}。这两笔账都由我来记：掠蟹从残骸里夹走的，和诚实的双手沿这条路扛上来的。"
       },
       "drillmaster_hale": {
         "name": "操练官黑尔",
@@ -17927,14 +17927,14 @@ export const zh_CN: EnTranslations = {
       "tidewatcher_ondrel": {
         "name": "翁德雷尔·凡恩",
         "title": "守潮者",
-        "greeting": "湖水饱饮着月光，{className}，并将溺亡之人吐还人间。我在此守望着那道大门整整三十个夜晚——就在今夜，它敞开了。"
+        "greeting": "潭水饮尽月光，{className}，又将溺者吐还。我守望那道门户已有三十夜——而今夜，它开了。"
       }
     },
     "quests": {
       "q_prof_intro": {
         "title": "人人都有一技之长",
-        "text": "在东溪谷地，人人除了舞刀弄剑，手里都得有一门能谋生的好手艺，{playerName}。去镇子东北方、铜矿坑周围的岩壁采掘5处原生矿脉！亲手挥动矿镐，让我看看你的筋骨！",
-        "completion": "瞧？矿石采到了，手上也磨出了老茧。赶路时继续留心路旁的采矿、伐木和草药；回到镇上时，多注意市场旁的城镇焦点告示板和附近的制作台。只要你愿意，这些手艺都能换来公道的生计。",
+        "text": "东溪人人除了舞刀弄剑，还得有门手艺，{playerName}。镇子东北方、狼径外的铜矿坑周围岩石里有矿脉。拿起矿镐，亲手开采5处；别想蒙我，我看得出差别。",
+        "completion": "看吧？矿石采到了，手上也磨出了茧。赶路时继续采矿、伐木和采药；回城后，别忘了市场旁的城镇专注告示板和附近的制作台。只要你愿意，这些手艺都能换来公道的生计。",
         "objectives": {
           "0": {
             "label": "已开采矿脉"
@@ -17956,7 +17956,7 @@ export const zh_CN: EnTranslations = {
       },
       "q_wolves": {
         "title": "门前群狼",
-        "text": "森林狼越来越大胆了，在北路上扑咬旅人。去削减它们的数量，{playerName}。消灭 8 只森林狼，东溪镇的乡邻们也能松一口气。",
+        "text": "森林狼已经敢扑咬北路旅人，{playerName}。击败8只森林狼，让东溪能松一口气。",
         "completion": "干得好。道路已经安全多了。",
         "objectives": {
           "0": {
@@ -17966,7 +17966,7 @@ export const zh_CN: EnTranslations = {
       },
       "q_greyjaw": {
         "title": "老狼",
-        "text": "有一头残暴嗜血的恶狼，从来没有任何捕兽夹能困住它——那就是‘老灰颚’！它已经咬死了三条凶猛的猎犬，还咬断了马厩小伙计的一条臂膀！宰了它，把它的獠牙给我拔回来！",
+        "text": "老灰颚从未被陷阱困住。它在狼径北面的深林游荡，把它的尖牙带回来。",
         "completion": "那头老恶狼终于死了。马厩里的孩子能睡安稳些，我也是。",
         "objectives": {
           "0": {
@@ -17976,7 +17976,7 @@ export const zh_CN: EnTranslations = {
       },
       "q_boars": {
         "title": "粗鬃野猪皮",
-        "text": "野猪皮坚韧防水，是缝制结实行囊与护甲内衬的上上之选。镇子西北草场野猪成群，去剥下5张厚实的硬鬃猪皮，我必有重谢！",
+        "text": "野猪皮能做最好的行囊，镇子西北的草地到处都是野猪。带回5张硬鬃野猪皮，我必有重谢。",
         "completion": "好结实的硬鬃皮！这些能卖个好价钱。",
         "objectives": {
           "0": {
@@ -17986,7 +17986,7 @@ export const zh_CN: EnTranslations = {
       },
       "q_spiders": {
         "title": "墨网之患",
-        "text": "东北密林深处的黑蛛吐出的粘丝，是我调配特效伤药不可或缺的良材。何况那些毒物繁殖得太快了！去剿杀6只黑蛛潜伏者，并带回4枚饱满的丝腺！",
+        "text": "东北部林中的潜伏者会吐出一种丝，我制作药膏正需要它，何况它们的数量也已经太过泛滥。清剿 6 只墨网潜伏者，再从它们腹中割下 4 枚丝腺。",
         "completion": "呃，还在抽动。正合适。这是你应得的。",
         "objectives": {
           "0": {
@@ -18122,7 +18122,7 @@ export const zh_CN: EnTranslations = {
       },
       "q_bandits": {
         "title": "谷地强盗",
-        "text": "一帮落草为寇的亡命之徒盘踞在南面隘口，打劫运粮马车、残害过往商旅！以雷德布鲁克元帅之名，消灭8名强盗，捍卫东溪法度！",
+        "text": "一群割喉强盗在西北山丘扎营，本周已经抢了三辆货车。击杀10名谷地强盗。",
         "completion": "黑夜里少了十把刀。拿着吧，这是你挣来的。",
         "objectives": {
           "0": {
@@ -18381,8 +18381,8 @@ export const zh_CN: EnTranslations = {
       },
       "q_highwatch_summons": {
         "title": "群峰守望",
-        "text": "瓦尔临终的遗言一直萦绕在我心头，{playerName}：巨龙在群峰之下蠢蠢欲动。塞萨莉女队长正在北方山道尽头统领高望要塞的城墙。她门前张贴着一份征召令——揭下它，并告诉她阿尔德里克修士正在你身后登山赶来。",
-        "completion": "阿尔德里克修士的话传得很远。如果谷地的神官都在亲自攀登山峦，情况正如我所担忧的那样糟糕。欢迎来到高望要塞，{playerName}。",
+        "text": "维尔的遗言仍在我耳边，{playerName}：墓龙在群峰下苏醒。取下高望召令，告诉瑟萨莉我随后上山。",
+        "completion": "奥德里克的消息传得很远。若他亲自上山，事情就和我担心的一样糟。{playerName}，欢迎来到高望。",
         "objectives": {
           "0": {
             "label": "高望召令"
@@ -18501,7 +18501,7 @@ export const zh_CN: EnTranslations = {
       },
       "q_drogmar": {
         "title": "督军德罗格玛",
-        "text": "德罗格玛收了龙教的报酬，把氏族献给山脉苏醒。他是砸向城墙的锤——而当他砸向地面时，{playerName}，别站在他身边。进营地杀了他。",
+        "text": "德罗格玛收了龙誓的报酬，把氏族献给山脉苏醒。他是砸向城墙的锤——而当他砸向地面时，{playerName}，别站在他身边。进营地杀了他。",
         "completion": "德罗格玛死在自己的营地。氏族会散向高山隘口，你为我的城墙买来一个冬天，{playerName}。",
         "objectives": {
           "0": {
@@ -18541,7 +18541,7 @@ export const zh_CN: EnTranslations = {
       },
       "q_zealots": {
         "title": "风中圣歌",
-        "text": "{playerName}，南峰吹来的风带着圣歌。龙教不再隐藏，他们在圣所下扎营，对地下沉睡之物歌唱。让12名狂热者闭嘴。",
+        "text": "{playerName}，南峰吹来的风带着圣歌。龙誓不再隐藏，他们在圣所下扎营，对地下沉睡之物歌唱。让12名狂热者闭嘴。",
         "completion": "风安静了些。但让我不安的不是歌声，{playerName}，而是也许有什么在回应。",
         "objectives": {
           "0": {
@@ -18664,8 +18664,8 @@ export const zh_CN: EnTranslations = {
       },
       "q_the_codfather": {
         "title": "鳕鱼教父",
-        "text": "“鳕鱼教父”可不光是一条鱼，{playerName}，他是个冷血杀手。老江湖发誓说它早餐都吃泥沼潜行者，连泥泞沼泽寡妇蛛都吓得不敢在深泽浅滩附近结网。它统治着那片水域，而沼泽水域至少需要一根铁轮钓竿，我的柜台就有卖。握上一根，把那个老魔鬼拖出水面，我就承认你也是我们行家里的人。",
-        "completion": "天哪……真是“鳕鱼教父”本尊！瞧瞧那长须！关于这次渔获的故事，芬桥镇的人足够谈论上一整年了，{playerName}！",
+        "text": "鳕鱼教父不只是一条鱼，{playerName}，它是个冷血杀手。老人们发誓说它拿湿地徘徊者当早饭，就连米尔芬寡妇也会因恐惧而不敢在深沼浅滩附近结网。那片水域归它统治，而沼泽水域非得用一根铁轮钓竿不可，我柜台上就有卖。拿上一根，把那个老恶魔从它的水域里拖出来，我就承认你入了这个家族。",
+        "completion": "湿地诸圣在上……鳕鱼教父本尊。看看那些胡须。芬桥会把这次收获讲上一整年，{playerName}。",
         "objectives": {
           "0": {
             "label": "鳕鱼教父"
@@ -19387,7 +19387,7 @@ export const zh_CN: EnTranslations = {
       },
       "q_af_lanterns_on_the_water": {
         "title": "水上的灯火",
-        "text": "大湖上的每一条夜渡渔船都挂着一盏防浪船尾灯，{playerName}，而今天拂晓，我有三条船回来时灯不见了。是深浓的黑雾吞噬了它们……或者是迷雾中盘踞的某种怪物。风向一转，它们就会被冲上东岸。沿着湖岸路走一遭，把我的灯带回家。",
+        "text": "大湖上的每条渡船都挂着一盏船尾灯，{playerName}，而今天拂晓，我有三条船回来时灯不见了。是雾拿走了它们，或者是雾里的什么东西。风向一转，它们就会被冲上东岸。沿着湖岸路走一遭，把我的灯带回家。",
         "completion": "三盏俱全，而且还亮着。渡船灯在水里也不会熄，{playerName}。它们生来如此。让我担心的，是究竟什么把它们扯了下来。",
         "objectives": {
           "0": {
@@ -19397,7 +19397,7 @@ export const zh_CN: EnTranslations = {
       },
       "q_af_orchard_call": {
         "title": "果园的货车",
-        "text": "果园主帕梅琳照看着西路上的鎏金果园，她的树脂货车已经迟了三天。全镇的夜灯与丰收麦酒全指望那种珍贵的琥珀树脂，{playerName}：灯用树脂、甜料，还有丰收麦酒。沿西路走一趟，看看是什么绊住了她。",
+        "text": "果园主帕梅琳照看着西路上的鎏金果园，她的树脂货车已经迟了三天。全镇都靠那种琥珀树脂过活，{playerName}：灯用树脂、甜料，还有丰收麦酒。沿西路走一趟，看看是什么绊住了她。",
         "completion": "镇务官在数她的货车，是吗？那就让她再多数几天空缺吧。看看我的果林，{playerName}。比起迟到的货，我有更大的麻烦。",
         "objectives": {
           "0": {
@@ -19417,7 +19417,7 @@ export const zh_CN: EnTranslations = {
       },
       "q_af_what_took_the_moorings": {
         "title": "是什么咬断了缆绳",
-        "text": "现在我要告诉你我没在镇上人面前说的话。那些缆绳不是松脱的，是被咬断的。潜伏在深水中的怪物一晚比一晚猖狂，拖拽着缆绳和船舵。让八只永远沉回水底吧，{playerName}，别等哪个船夫跟着一起沉下去。",
+        "text": "现在我要告诉你我没在镇上人面前说的话。那些缆绳不是松脱的，是被咬断的。湖泽潜伏者一晚比一晚大胆，拖拽着缆绳和船舵。让八只永远沉回水底吧，{playerName}，别等哪个船夫跟着一起沉下去。",
         "completion": "浅水里少了八条影子，今天的渡船两周来头一次准点。可潜伏者变得大胆，是因为有东西在驱赶它们，{playerName}。大湖底下有什么正在搅动。",
         "objectives": {
           "0": {
@@ -19440,8 +19440,8 @@ export const zh_CN: EnTranslations = {
       },
       "q_af_the_meredark": {
         "title": "湖渊暗影",
-        "text": "老渡夫们有一个只在岸上才敢提起的名号：“湖渊暗影”，最初的潜伏者，与这片大湖同岁，耐心更胜两倍。在废弃栈桥沉没的那一年它曾浮现过一次，如今它又再度现身了。黄昏时分它会在南岸附近的栈桥废墟上晒太阳，{playerName}。带上一两个朋友，趁它还能被解决的时候彻底消灭它。",
-        "completion": "今早湖上的大雾散去了，{playerName}，全镇的人都看在眼里。夜间渡船将重新启航，水面上的每一盏明灯都将为你而点亮。收下这个：这是从被淹没的栈桥打捞上来的，没有人比你更有资格佩戴它。",
+        "text": "老船夫们有一个只敢在岸上说的名字：湖渊暗影，第一头潜伏者，和湖一样古老，耐心还要多上一倍。它从前浮起过一次，就在沉没栈桥没入水中的那一年，而如今它又在上浮。黄昏时分，它会趴在南岸外的栈桥残骸上晒着余晖，{playerName}。带上一个朋友，带上两个，趁它还能被终结时终结它。",
+        "completion": "今天清晨，大湖上的雾散了，{playerName}，全镇的人都看见了。夜渡将会重开，水面上的每一盏灯都将为你的名字而亮。收下这个：它是从沉没栈桥打捞上来的，没有人比你更有资格披上它。",
         "objectives": {
           "0": {
             "label": "已击杀湖渊暗影"
@@ -19573,7 +19573,7 @@ export const zh_CN: EnTranslations = {
       },
       "q_nb_eyes_on_the_vigil": {
         "title": "望向石阵的眼睛",
-        "text": "有什么东西让疾行者变得大胆、兽群惶惶不安，{playerName}，而我从花里读不出缘由。卡西安能从天上读出来。他的观星营地就在东边的守望石阵旁，夜裔在石间飘荡的地方。找到他，问问星星都在说些什么。",
+        "text": "有什么东西让疾行者变得大胆、兽群惶惶不安，{playerName}，而我从花里读不出缘由。卡西安能从天上读出来。他的观星营地就在东边的守望石阵旁，暮裔在石间飘荡的地方。找到他，问问星星都在说些什么。",
         "completion": "莉拉派你来的？那就是说花园也感觉到了。到望远镜边坐一会儿吧，{playerName}。星星已经躁动一个月了，我画的每一张星图都朝北偏向古冢。",
         "objectives": {
           "0": {
@@ -19583,7 +19583,7 @@ export const zh_CN: EnTranslations = {
       },
       "q_nb_charts_of_the_stones": {
         "title": "石上星图",
-        "text": "石阵的立石比月栖镇古老，比照看它们的夜裔更古老，石面上刻着我用一生学着解读的星图。天空移位了，{playerName}，我必须知道移了多远。读取三座立石上的星图，把方位带回来给我。",
+        "text": "石阵的立石比月栖镇古老，比照看它们的暮裔更古老，石面上刻着我用一生学着解读的星图。天空移位了，{playerName}，我必须知道移了多远。读取三座立石上的星图，把方位带回来给我。",
         "completion": "再没有疑问了。每一个方位都朝不眠古冢挪去，仿佛天空亲自俯身盯着那座坟丘。古时的王要葬在群星连线之下，是有缘由的，{playerName}。",
         "objectives": {
           "0": {
@@ -19607,7 +19607,7 @@ export const zh_CN: EnTranslations = {
       "q_nb_the_barrow_king": {
         "title": "古冢之王苏醒",
         "text": "每一个方位、每一颗躁动的星、每一座开启的坟丘都指向同一件事：古冢之王正在大坟丘之下苏醒，而这片国度没有黎明可以拦他。必须赶在他想起自己的王冠之前送他安息，{playerName}。不要独自前往：带上一个朋友，让花光始终照在你背后。",
-        "completion": "星星安定了下来，一季以来头一回，{playerName}。坟丘闭合了，夜裔在他们的立石旁归于静止，王也重新沉睡于地下。披上这件披风吧：月栖镇裁下它，就是留给夜晚最终信任的那个人。",
+        "completion": "星星安定了下来，一季以来头一回，{playerName}。坟丘闭合了，暮裔在他们的立石旁归于静止，王也重新沉睡于地下。披上这件披风吧：月栖镇裁下它，就是留给夜晚最终信任的那个人。",
         "objectives": {
           "0": {
             "label": "已让古冢之王安息"
@@ -19656,8 +19656,8 @@ export const zh_CN: EnTranslations = {
       },
       "q_ww_the_last_vicar": {
         "title": "最后的牧师",
-        "text": "往南的黑潭边矗立着荒废的哀石礼拜堂，只有一人仍留守在那里：克里尔牧师，即使屋顶坍塌他也不肯离去。他比我的钟声更通晓古老的仪式，{playerName}，但他已经整整一个月毫无音讯了。去礼拜堂的小道看看他是否还安好。",
-        "completion": "马洛在挂念我？这倒是新鲜事。告诉他哀石礼拜堂还算立得住，我也一样。多待一会儿吧，{playerName}。黑潭一直在低语，我可不想独自倾听。",
+        "text": "从这里往南，哀石礼拜堂在它那片黑水潭边一点点朽坏，只剩一个人还在照看它：牧师克里尔，当年屋顶塌下来他也不肯走。论古老的仪轨，他比我的钟还熟，{playerName}，可他已经一个月没捎来只言片语了。走一趟礼拜堂的路，亲眼看看他还喘着气。",
+        "completion": "马罗居然惦记起我来了？倒是新鲜。告诉他，哀石礼拜堂还立着，勉强算立着，我也一样。留一会儿吧，{playerName}。水潭最近总在低语，我不想独自听着。",
         "objectives": {
           "0": {
             "label": "找到牧师克里尔"
@@ -19749,7 +19749,7 @@ export const zh_CN: EnTranslations = {
       },
       "q_pr_the_man_who_went_in": {
         "title": "走进丛林的人",
-        "text": "采珠人不肯踏过林线一步，{playerName}，我也不会开这个口。鼓声你如今该听过了：到第二夜，人人都会听见。这座岛上只有一个人朝那声音走过去，还走了回来。奥库。他在垂藤林的大榕树下扎营，得沿缠木路走进深处。找到他，问问绿荫里藏着什么。",
+        "text": "采珠人不肯踏过林线一步，{playerName}，我也不会开这个口。鼓声你如今该听过了：到第二夜，人人都会听见。这座岛上只有一个人朝那声音走过去，还走了回来。奥克里姆。他在垂藤林的大榕树下扎营，得沿缠木路走进深处。找到他，问问绿荫里藏着什么。",
         "completion": "伊莎派你来的？珍珠之母已经多年没提过我的名字了。坐到藤蔓够不着的地方来，{playerName}，我把知道的都告诉你：鼓声不是危险。鼓声是警告。",
         "objectives": {
           "0": {
@@ -19978,8 +19978,8 @@ export const zh_CN: EnTranslations = {
       },
       "q_ps_the_gauntlet": {
         "title": "跑过试炼跑道",
-        "text": "谷地里每一对受人尊敬的双腿都曾先跑过这些跑道，{playerName}。沿着第一条道向西跑到旗帜处，转身，沿着南边的道跑到第二面旗帜，然后侧步沿着最后一条道冲向红旗。依次通过这些旗帜，屏幕上方的指引卡会提示你沿途该按的每个按键。佩尔监工在尽头记录成绩：当你把红旗甩在身后时，他就在那里登记你的成绩。",
-        "completion": "我给你的奔跑掐了表，{playerName}，比你更快的脚力我都淘汰过。疾风试炼你合格了。我身后的山道通往演武场，鲁克训练官在那里把步伐转化为剑法：他有你的下一项任务。",
+        "text": "谷地敬重的每一双腿，都是先从这几条跑道跑出来的，{playerName}。沿第一条跑道向西走到旗帜处，原地转过身来，沿南边的跑道走到第二面旗，最后沿末尾的跑道横移到红旗处。旗帜要按顺序经过；屏幕上方的卡片会随时告诉你该按哪个键。监工佩尔在跑道尽头掐着每一趟的表：等红旗被你甩在身后，他就站在那里等着收你的成绩。",
+        "completion": "这一趟我掐了表，{playerName}，比你脚快的人我也刷下去过。试炼跑道是你的了。我身后的路通往练武场，操练官鲁克在那里把脚上功夫变成剑上功夫：你的下一件差事在他手里。",
         "objectives": {
           "0": {
             "label": "经过试炼跑道旗帜"
@@ -19988,8 +19988,8 @@ export const zh_CN: EnTranslations = {
       },
       "q_ps_strike_true": {
         "title": "击中要害",
-        "text": "先练步伐，再练膀臂，{playerName}。演武场就在我身后的山道上方，那里的稻草假人就是为了挨打而建的。要是迷路了，按 M 键打开地图：你接到的每项任务都在上面标明。走近假人并左键点击选中它，名字就会显示在屏幕上方。然后按 1 键或点击底部动作条的第一个图标挥击。持续攻击直到打碎一个；它不会还手，稻草人从不还手。鲁克训练官在演武场西侧通往海滩的小道旁监视：对他按 F 交付战果。",
-        "completion": "干净利落的一击，你的握剑姿势已经沉稳多了。记住这种感觉，{playerName}：锁定目标，挥击，并持续攻击。稻草人不知痛，但你下次挥向的活物可就不同了。",
+        "text": "练完了脚，该练手臂了，{playerName}。练武场就在我身后沿路而上的地方，那里的草人生来就是挨打的。要是找不着路，按 M 打开地图：你身上的每件差事都会标在上面。走到一个草人跟前，按 Tab 或用鼠标左键点击它，把它设为目标，然后按 1，或者点击屏幕底部动作条上的第一个图标，挥出这一刀。一直打到一个散架为止；它不会还手，草人从来不还手。操练官鲁克在练武场西侧、通往海滩的小路启程的地方看着场子：对着他按 F，交上这份战果。",
+        "completion": "干净利落的一击，手也已经稳多了。记住这种感觉，{playerName}：选定目标，挥刀，然后一直打下去。稻草挨打从不计较。你下一个挥刀的对象可就计较了。",
         "objectives": {
           "0": {
             "label": "击倒训练草人"
@@ -20008,8 +20008,8 @@ export const zh_CN: EnTranslations = {
       },
       "q_ps_shell_and_claw": {
         "title": "甲壳与利螯",
-        "text": "稻草人可不知疼痛，{playerName}，但有样东西会在乎。海滩掠行蟹正在远处滩涂的沉船残骸带游荡觅食：顺着我演武场往西的小道走就能找到它们。它们可是会反击的，注意生命值并持续挥击：左键点击选中一只作为目标，然后使用在演武场学会的技能，不停挥击直到击破硬壳。消灭三只即可。然后顺着北坡的小道上去：潮汐守卫内尔负责记录战绩，她会清点你的收获。",
-        "completion": "砸碎了三副硬壳，手指一根都没少：漂亮的初战，{playerName}。掠行蟹从残骸上钳走物资的速度比潮水冲上来的还快，你每消灭一只，都是在保全大伙的钱财。",
+        "text": "稻草从不计较，{playerName}，所以给你找个计较的。滩涂掠蟹正在远滩的沉船滩上翻拣残骸：从我的练武场沿小路向西走，它会一直把你领到它们跟前。它们会夹回来，所以盯着你的生命条，别停下挥刀：用鼠标左键选定一只，然后使用校场教你的那个技能，打到它的壳裂开为止。三只就够。然后沿路爬上北边的坡：守潮人奈尔管着海滩的账，你的蟹壳她都记数。",
+        "completion": "敲开三只壳，十根手指一根没少：头一仗打得不赖，{playerName}。掠蟹从残骸里夹走东西的速度，比潮水送来的还快，所以你每除掉一只，就有人多保住一枚铜板。",
         "objectives": {
           "0": {
             "label": "除灭滩涂掠蟹"
@@ -20018,8 +20018,8 @@ export const zh_CN: EnTranslations = {
       },
       "q_ps_mother_of_pearl": {
         "title": "珍珠之母",
-        "text": "三只蟹壳已经砸碎了，{playerName}，但沉船残骸带盘踞着一位真正的霸主，他守护的珍宝比这条海滩上的所有板条箱加起来还要值钱。带上这只咸水鱼饵，前往沉船废墟以西最远端的潮汐池。站在水边，按 B 打开背包并左键点击鱼饵唤醒它。巨蟹先生夹人的力道可比它那些小表亲狠得多，时刻注意你的生命值，持续挥击，需要喘息时就退回沙滩上。击败它后，走近它的外壳按 F 搜刮璀璨珍珠，把珍珠带回来交给我。",
-        "completion": "璀璨珍珠，从浅滩老霸王身上亲手撬下来的战利品。我父亲工作时每天清晨都会向那只巨蟹致敬，它是值得尊敬的对手。别动……好了。串好、镶嵌完工，现在它是你的了，{playerName}：珠母之戒。按 B 键打开背包并左键点击戒指即可戴上，然后按 C 键打开角色面板就能看到它戴在你的手上。虽然是件小物件，但戴上它能让你浑身充满力量！",
+        "text": "三只蟹壳都敲开了，{playerName}。但沉船线上还有一位王，他守着的宝贝比这片沙滩上所有木箱加起来还值钱。带上这枚咸水诱饵，穿过残骸，去沙滩最西端的潮池。站在水边，按 B 打开背包，用鼠标左键点击诱饵，把他唤醒。螃蟹先生的钳子比他那些小个子亲戚狠得多，盯紧你的生命条，别停下攻击，喘不过气就沿着沙滩往后退。等他倒下，走到他的蟹壳前直到名字浮现，按 F 或用左键点击，取走他攥着的莹润珍珠。把那颗珍珠带回来给我。",
+        "completion": "莹润珍珠，还是从浅滩老王自己身上撬下来的。我父亲干活的每个清晨都会对那只螃蟹脱帽致意；该给的敬意总要给。别动... 好了。穿好线，镶好座，归你了，{playerName}：珍珠之母。按 B 打开背包，用左键点击戒指戴上它，再按 C 打开角色面板，看看它戴在你手上的样子。小小一件东西，戴上它，你的每一分都会更强。",
         "objectives": {
           "0": {
             "label": "击败螃蟹先生"
@@ -20031,8 +20031,8 @@ export const zh_CN: EnTranslations = {
       },
       "q_ps_the_wreck_line": {
         "title": "沉船滩",
-        "text": "我的搬运工把从旧沉船打捞的物资搬上山坡运往暮歇营地，{playerName}，但有一半板条箱半路就落下了：它们被随手放在路边然后被遗忘。沿着通往营地的小道走，你就会经过这些遗落的箱子。打开箱子很简单：走近直到显示名字，按 F 或左键点击箱子即可拾取其中的物品。收集六个就能清理干净。记住，今后遇到的所有宝箱、采集点和门扉都是按 F 键交互。芬奇军需官守着营地货摊并收购一切打捞物资：把收获交给她。",
-        "completion": "绳索、焦油，还有大海不知怎么留下的半个奶酪轮：我全收下了，{playerName}。对这座营地来说，能把拾获物资带回来的背脊比任何刀剑都管用，而你一趟就把整条海岸线的遗落物资清理干净了。",
+        "text": "我的搬运工把海货从旧沉船上卸下来，沿坡道扛往晨憩营地，{playerName}，可半数货箱从来到不了坡顶：它们被搁在路边，就此没人记得。沿我这条路朝营地走，你正好会从这些落单的货箱旁边经过。开箱很简单：走到货箱跟前，直到它的名字显示出来，然后按 F，或者用鼠标左键点击货箱本身，它就会把里面的东西交出来。开六只就能清完这条线，并且记住：你今后遇到的每一只箱子、每一处采集点、每一道门扉，用的都是同一个 F 键。军需官芬奇守着营地的货摊，残骸海货连一根木棍都收：把这批货交给她。",
+        "completion": "绳子、焦油，还有半轮大海竟然放过的奶酪：我全要了，{playerName}。一副肯弯腰扛货的脊背，对这座营地来说比任何刀剑都值钱，而你这一趟就把整条线清了个干净。",
         "objectives": {
           "0": {
             "label": "开启漂流货箱"
@@ -20041,8 +20041,8 @@ export const zh_CN: EnTranslations = {
       },
       "q_ps_pouch_and_purse": {
         "title": "钱囊与背袋",
-        "text": "前往谷地前还有最后一课，{playerName}，这也是能让冒险者保命的关键：你的随身负重。你的基础背包有十六个槽位，旁边还有四个空置的行囊环；系上的每个行囊都会增加背包空间。所以：再次对我按 F 打开货摊，左键点击货物里的亚麻行囊进行购买，然后按 B 打开背包并左键点击行囊系入空置槽位。马伦教官就在东面几步远的集结营火旁受训：去向她展示你腰带上的行囊。",
-        "completion": "很棒的行囊。如果你还没装备上就系好它：按 B 打开背包，左键点击行囊把它放入空置的背包槽位，你就能多出六个格子装载战利品了。现在进行行囊装不下的另一半课程，{playerName}：凡是你随身带不下的，镀金金库替你保管。财务官威克在西侧小道旁设有金库柜台，他开启的金库与每个城镇的柜台完全互通；等你的钱包鼓起来后还能购买更多仓库空间。贵重品存仓库，背包留余地。超重的行囊葬送的冒险，可比野狼咬死的还要多。",
+        "text": "去谷地之前还有最后一课，{playerName}，也是保住冒险者性命的一课：你随身带的东西。你的背包有十六格，旁边还空着四个袋扣；每系上一只袋子，它的空间就并入总容量。所以：再对我按一次 F，打开我的货摊，在我的货品里用鼠标左键点击亚麻小袋买下它，然后按 B 打开背包，再用鼠标左键点击袋中的亚麻小袋，把它系进一个空着的袋扣。教官玛伦就在东边几步外的集合篝火旁操练：把你腰带上的小袋给她看看。",
+        "completion": "好袋子。要是还没系上，现在就系：按 B 打开背包，用鼠标左键点击小袋，把它系进一个空着的袋扣，多出的六格就归你装麻烦了。接下来是任何袋子都装不下的另一半课，{playerName}：背不下的，交给镀金保险箱。司库威克的保险箱桌就设在西边沿路而上的地方，他为你打开的正是每座城镇每位司库共用的同一座金库；等你的钱袋鼓起来，还能购买更多金库空间。贵重的存进金库，袋子留出空当。塞满的行囊断送过的冒险，比任何狼都多。",
         "objectives": {
           "0": {
             "label": "购买亚麻小袋"
