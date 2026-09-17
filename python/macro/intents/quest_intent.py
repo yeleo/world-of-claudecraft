@@ -40,10 +40,10 @@ PROVING_SHORE_QUEST_ORDER = [
 
 # Class-specific level-1 ability for q_ps_hone_the_edge
 CLASS_STARTER_ABILITIES: Dict[str, str] = {
-    "warrior": "reaver_strike",
+    "warrior": "heroic_strike",
     "paladin": "hammer_of_grace",
     "rogue": "sinister_strike",
-    "hunter": "steady_shot",
+    "hunter": "raptor_strike",
     "mage": "fireball",
     "warlock": "shadow_bolt",
     "priest": "smite",
@@ -229,7 +229,7 @@ class QuestNavigator:
 
                     elif q_id == "q_ps_hone_the_edge":
                         gx, gz = info.get("hunt_pos", (-336.0, -14.0))
-                        ability = CLASS_STARTER_ABILITIES.get(player_class.lower(), "reaver_strike")
+                        ability = CLASS_STARTER_ABILITIES.get(player_class.lower(), "heroic_strike")
                         return gx, gz, "ability_drill", ability
 
                     elif q_id == "q_ps_shell_and_claw":
