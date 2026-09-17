@@ -8287,9 +8287,9 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
     '為無法避免的傷害使用剩餘的防禦技能冷卻。在團隊結束這場戰鬥前，持續乾淨地應對先前所有機制。',
   'hudChrome.raidBossGuide.nythraxis.boneStormName': '骨風暴',
   'hudChrome.raidBossGuide.nythraxis.boneStormSummary':
-    '自國王之怒開始後{first}秒，以及此後每{everyNormal}秒，尼思拉克西斯都會展開持續{duration}秒的骨風暴。他會無視仇恨，以{speed}倍的正常速度移動，並進行{charges}次各持續{chargeSeconds}秒的衝撞。他的橫掃每秒對{radius}碼內造成相當於最大生命值{whirlNormal}的傷害。每次衝撞結束時都會在同樣範圍內施展骨擊，造成相當於最大生命值{slamNormal}的傷害。每場風暴的第一次骨擊改為造成{openingSlamNormal}。他會在風暴結束{rearm}秒後重新啟用碎墓打擊。',
+    '自國王之怒開始後{first}秒，以及此後每{everyNormal}秒，尼思拉克西斯都會展開持續{duration}秒的骨風暴。他會無視仇恨，以{speed}倍的正常速度移動，並進行{charges}次各持續{chargeSeconds}秒的衝撞。他的橫掃每秒對{radius}碼內造成相當於最大生命值{whirlNormal}的傷害。每次衝撞結束時都會在同樣範圍內施展骨擊，造成相當於最大生命值{slamNormal}的傷害。他會在風暴結束{rearm}秒後重新啟用碎墓打擊。',
   'hudChrome.raidBossGuide.nythraxis.boneStormHeroicSummary':
-    '自國王之怒開始後{first}秒，以及此後每{everyHeroic}秒，尼思拉克西斯都會展開持續{duration}秒的骨風暴。他會無視仇恨，以{speed}倍的正常速度移動，並進行{charges}次各持續{chargeSeconds}秒的衝撞。他的橫掃每秒對{radius}碼內造成相當於最大生命值{whirlHeroic}的傷害。每次衝撞結束時都會在同樣範圍內施展骨擊，造成相當於最大生命值{slamHeroic}的傷害。每場風暴的第一次骨擊改為造成{openingSlamHeroic}。他會在風暴結束{rearm}秒後重新啟用碎墓打擊。',
+    '自國王之怒開始後{first}秒，以及此後每{everyHeroic}秒，尼思拉克西斯都會展開持續{duration}秒的骨風暴。他會無視仇恨，以{speed}倍的正常速度移動，並進行{charges}次各持續{chargeSeconds}秒的衝撞。他的橫掃每秒對{radius}碼內造成相當於最大生命值{whirlHeroic}的傷害。每次衝撞結束時都會在同樣範圍內施展骨擊，造成相當於最大生命值{slamHeroic}的傷害。他會在風暴結束{rearm}秒後重新啟用碎墓打擊。',
   'hudChrome.raidBossGuide.nythraxis.boneStormResponse':
     '分散站位並持續遠離尼思拉克西斯。被鎖定衝撞的團員應遠離逃跑，其餘人則在衝撞路徑周圍留出空間，風暴結束後由坦克接回仇恨。',
   'hudChrome.raidBossGuide.nythraxis.crownEnduresName': '王冠永存',

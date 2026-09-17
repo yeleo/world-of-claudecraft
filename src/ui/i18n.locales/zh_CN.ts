@@ -8283,9 +8283,9 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
     '使用剩余的防御技能应对无法躲避的伤害。在团队结束战斗前，继续干净地应对此前的所有机制。',
   'hudChrome.raidBossGuide.nythraxis.boneStormName': '白骨风暴',
   'hudChrome.raidBossGuide.nythraxis.boneStormSummary':
-    '国王之怒开始后 {first} 秒，以及此后每隔 {everyNormal} 秒，尼思拉克西斯都会开始持续 {duration} 秒的白骨风暴。此时他无视仇恨，以 {speed} 倍常速移动，并发起 {charges} 次冲锋，每次持续 {chargeSeconds} 秒。他的旋转攻击会在 {radius} 码内每秒造成 {whirlNormal} 最大生命值的伤害。每次冲锋都会以一次白骨重击结束，在相同范围内造成 {slamNormal} 最大生命值的伤害。每场风暴的第一次重击改为造成 {openingSlamNormal}。碎墓打击会在风暴结束 {rearm} 秒后重新启用。',
+    '国王之怒开始后 {first} 秒，以及此后每隔 {everyNormal} 秒，尼思拉克西斯都会开始持续 {duration} 秒的白骨风暴。此时他无视仇恨，以 {speed} 倍常速移动，并发起 {charges} 次冲锋，每次持续 {chargeSeconds} 秒。他的旋转攻击会在 {radius} 码内每秒造成 {whirlNormal} 最大生命值的伤害。每次冲锋都会以一次白骨重击结束，在相同范围内造成 {slamNormal} 最大生命值的伤害。碎墓打击会在风暴结束 {rearm} 秒后重新启用。',
   'hudChrome.raidBossGuide.nythraxis.boneStormHeroicSummary':
-    '国王之怒开始后 {first} 秒，以及此后每隔 {everyHeroic} 秒，尼思拉克西斯都会开始持续 {duration} 秒的白骨风暴。此时他无视仇恨，以 {speed} 倍常速移动，并发起 {charges} 次冲锋，每次持续 {chargeSeconds} 秒。他的旋转攻击会在 {radius} 码内每秒造成 {whirlHeroic} 最大生命值的伤害。每次冲锋都会以一次白骨重击结束，在相同范围内造成 {slamHeroic} 最大生命值的伤害。每场风暴的第一次重击改为造成 {openingSlamHeroic}。碎墓打击会在风暴结束 {rearm} 秒后重新启用。',
+    '国王之怒开始后 {first} 秒，以及此后每隔 {everyHeroic} 秒，尼思拉克西斯都会开始持续 {duration} 秒的白骨风暴。此时他无视仇恨，以 {speed} 倍常速移动，并发起 {charges} 次冲锋，每次持续 {chargeSeconds} 秒。他的旋转攻击会在 {radius} 码内每秒造成 {whirlHeroic} 最大生命值的伤害。每次冲锋都会以一次白骨重击结束，在相同范围内造成 {slamHeroic} 最大生命值的伤害。碎墓打击会在风暴结束 {rearm} 秒后重新启用。',
   'hudChrome.raidBossGuide.nythraxis.boneStormResponse':
     '分散站位并持续远离尼思拉克西斯。被冲锋锁定的队员应逃离，其他人则为冲锋路径留出空间，风暴结束后由坦克重新接回仇恨。',
   'hudChrome.raidBossGuide.nythraxis.crownEnduresName': '王冠不朽',

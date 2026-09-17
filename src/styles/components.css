@@ -1769,9 +1769,13 @@
     flex: 1 1 auto;
     min-height: 0;
   }
+  /* z-index 0 makes the stage its own stacking context: the preview inside it
+     carries z-index 1, which otherwise ties with the overlays and lets DOM order
+     paint it over the left column, the one overlay that precedes the stage. */
   body:not(.mobile-touch) #char-window .char-model-panel {
     position: absolute;
     inset: 0;
+    z-index: 0;
     flex: none;
     min-height: 0;
   }

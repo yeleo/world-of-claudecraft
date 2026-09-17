@@ -8618,9 +8618,9 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
     '피할 수 없는 피해에 남은 방어 재사용 기술을 사용하세요. 공격대가 전투를 마무리하는 동안 앞선 모든 메커니즘을 깔끔하게 처리하세요.',
   'hudChrome.raidBossGuide.nythraxis.boneStormName': '뼈 폭풍',
   'hudChrome.raidBossGuide.nythraxis.boneStormSummary':
-    '왕의 분노 시작 {first}초 후부터 이후 {everyNormal}초마다 나이트락시스가 {duration}초 동안 뼈 폭풍을 시작합니다. 그는 위협 수준을 무시하고 평소의 {speed}배 속도로 이동하며, 각각 {chargeSeconds}초씩 지속되는 돌진을 {charges}회 합니다. 회전 공격은 {radius}야드 이내에 매초 최대 생명력의 {whirlNormal}만큼 피해를 입힙니다. 각 돌진은 같은 범위 안에서 뼈 강타로 끝나 최대 생명력의 {slamNormal}만큼 피해를 입힙니다. 각 폭풍의 첫 번째 강타는 대신 {openingSlamNormal}만큼 피해를 입힙니다. 폭풍이 끝난 {rearm}초 후 무덤파괴자가 다시 준비됩니다.',
+    '왕의 분노 시작 {first}초 후부터 이후 {everyNormal}초마다 나이트락시스가 {duration}초 동안 뼈 폭풍을 시작합니다. 그는 위협 수준을 무시하고 평소의 {speed}배 속도로 이동하며, 각각 {chargeSeconds}초씩 지속되는 돌진을 {charges}회 합니다. 회전 공격은 {radius}야드 이내에 매초 최대 생명력의 {whirlNormal}만큼 피해를 입힙니다. 각 돌진은 같은 범위 안에서 뼈 강타로 끝나 최대 생명력의 {slamNormal}만큼 피해를 입힙니다. 폭풍이 끝난 {rearm}초 후 무덤파괴자가 다시 준비됩니다.',
   'hudChrome.raidBossGuide.nythraxis.boneStormHeroicSummary':
-    '왕의 분노 시작 {first}초 후부터 이후 {everyHeroic}초마다 나이트락시스가 {duration}초 동안 뼈 폭풍을 시작합니다. 그는 위협 수준을 무시하고 평소의 {speed}배 속도로 이동하며, 각각 {chargeSeconds}초씩 지속되는 돌진을 {charges}회 합니다. 회전 공격은 {radius}야드 이내에 매초 최대 생명력의 {whirlHeroic}만큼 피해를 입힙니다. 각 돌진은 같은 범위 안에서 뼈 강타로 끝나 최대 생명력의 {slamHeroic}만큼 피해를 입힙니다. 각 폭풍의 첫 번째 강타는 대신 {openingSlamHeroic}만큼 피해를 입힙니다. 폭풍이 끝난 {rearm}초 후 무덤파괴자가 다시 준비됩니다.',
+    '왕의 분노 시작 {first}초 후부터 이후 {everyHeroic}초마다 나이트락시스가 {duration}초 동안 뼈 폭풍을 시작합니다. 그는 위협 수준을 무시하고 평소의 {speed}배 속도로 이동하며, 각각 {chargeSeconds}초씩 지속되는 돌진을 {charges}회 합니다. 회전 공격은 {radius}야드 이내에 매초 최대 생명력의 {whirlHeroic}만큼 피해를 입힙니다. 각 돌진은 같은 범위 안에서 뼈 강타로 끝나 최대 생명력의 {slamHeroic}만큼 피해를 입힙니다. 폭풍이 끝난 {rearm}초 후 무덤파괴자가 다시 준비됩니다.',
   'hudChrome.raidBossGuide.nythraxis.boneStormResponse':
     '흩어져서 나이트락시스로부터 계속 도망치세요. 돌진 대상으로 지목된 플레이어는 멀리 달아나고 나머지는 돌진 경로 주변에 공간을 남겨 두며, 폭풍이 끝나면 방어 담당이 대상을 확보합니다.',
   'hudChrome.raidBossGuide.nythraxis.crownEnduresName': '굴하지 않는 왕관',
