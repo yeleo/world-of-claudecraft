@@ -62,7 +62,7 @@ Last updated: [draft of 13 August 2026; not in force]
 
 ## 1. Who we are and what these terms cover
 
-These Terms and Conditions (the "Terms") are a legal agreement between you and Dream Home AI Limited, trading as Levy Street, New Zealand company number 8703066 ("we," "us," "our"). They govern your use of World of ClaudeCraft (the "Game"), worldofclaudecraft.com (the "Site"), and our mobile application (the "App"), together the "Service."
+These Terms and Conditions (the "Terms") are a legal agreement between you and Dream Home AI Limited, trading as Levy Street, New Zealand company number 8703066 ("we," "us," "our"). They govern your use of World of ClaudeCraft (the "Game"), worldofclaudecraft.aoruantech.com (the "Site"), and our mobile application (the "App"), together the "Service."
 
 By using the Service you agree to these Terms and to our Privacy Policy. If you do not agree, do not use the Service.
 
@@ -281,6 +281,6 @@ These terms apply if you obtain the App from Google Play. Your use of the App mu
 
 ## 23. Contact us
 
-Email: tony@levystreet.com
+Email: yeleiao@aoruantech.com
 
 Postal: Dream Home AI Limited, 262 Thorndon Quay, Wellington 6011, New Zealand

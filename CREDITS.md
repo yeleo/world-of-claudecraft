@@ -12,7 +12,7 @@ license**.
 License.** This register is still being completed, so an asset missing from it
 means we have not recorded its terms yet, not that it is free to take. If you
 want to use or redistribute something that is not listed, ask first
-(tony@levystreet.com). Source code is the other way around: everything not
+(yeleiao@aoruantech.com). Source code is the other way around: everything not
 carved out here is MIT. Bundled third-party runtime dependencies carry their own
 notices in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
@@ -59,7 +59,7 @@ get written permission.
   mage artwork, and the `temporal_clock` sound effect. These are used in World
   of ClaudeCraft under a permission granted to Levy Street, which does not
   extend to third parties. **Redistribution requires permission, and must be
-  arranged through Levy Street** (tony@levystreet.com).
+  arranged through Levy Street** (yeleiao@aoruantech.com).
 
 The **@jamiecypher** sound effects are a separate case: they are CC BY-NC 4.0,
 so you *may* redistribute them non-commercially with attribution, but you may
@@ -377,4 +377,4 @@ licence; the only licence file at the repository root is `LICENSE`, which is the
 MIT License covering the source code.
 
 If you are unsure whether you may use an asset, or you want permission for
-something this file marks as restricted, ask first: tony@levystreet.com.
+something this file marks as restricted, ask first: yeleiao@aoruantech.com.

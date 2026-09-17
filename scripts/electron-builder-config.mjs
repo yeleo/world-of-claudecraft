@@ -122,6 +122,7 @@ export function desktopBuilderConfig({
     throw new Error(`unknown desktop distribution: ${distribution}`);
   }
   const config = structuredClone(base);
+  config.npmRebuild = false;
   config.extraMetadata = {
     ...(config.extraMetadata ?? {}),
     wocDesktop: {

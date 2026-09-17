@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -10,8 +10,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="screen-orientation" content="landscape" />
 <meta name="orientation" content="landscape" />
-<title data-i18n="seo.title">World of ClaudeCraft: Classic-Style Web MMO</title>
-<meta name="description" data-i18n-content="seo.description" content="Embark on an epic adventure in World of ClaudeCraft, a classic-style micro-MMO playable directly in your browser. Join a persistent shared realm, level up classes, and defeat enemies!" />
+<title data-i18n="seo.title">World of ClaudeCraft：经典风格网页 MMO</title>
+<meta name="description" data-i18n-content="seo.description" content="在 World of ClaudeCraft 展开史诗冒险。这是一款可直接在浏览器中游玩的经典风格微型 MMO。加入持续共享的世界，提升职业等级，击败敌人！" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="manifest" href="/manifest.webmanifest" />
 
@@ -29,7 +29,7 @@
 <script>
   (function () {
     try {
-      var loc = localStorage.getItem('locale');
+      var loc = localStorage.getItem('locale') || 'zh_CN';
       if (!loc) return;
       var map = __I18N_LOCALE_CHUNKS__;
       var href = map && map[loc];
@@ -77,15 +77,15 @@
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="World of ClaudeCraft" />
-<meta property="og:title" data-i18n-content="seo.title" content="World of ClaudeCraft: Classic-Style Web MMO" />
-<meta property="og:description" data-i18n-content="seo.description" content="Embark on an epic adventure in World of ClaudeCraft, a classic-style micro-MMO playable directly in your browser. Join a persistent shared realm, level up classes, and defeat enemies!" />
+<meta property="og:title" data-i18n-content="seo.title" content="World of ClaudeCraft：经典风格网页 MMO" />
+<meta property="og:description" data-i18n-content="seo.description" content="在 World of ClaudeCraft 展开史诗冒险。这是一款可直接在浏览器中游玩的经典风格微型 MMO。加入持续共享的世界，提升职业等级，击败敌人！" />
 <meta property="og:image" content="https://worldofclaudecraft.aoruantech.com/woc_logo_square.webp" />
 <meta property="og:url" content="https://worldofclaudecraft.aoruantech.com/play" />
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" data-i18n-content="seo.title" content="World of ClaudeCraft: Classic-Style Web MMO" />
-<meta name="twitter:description" data-i18n-content="seo.description" content="Embark on an epic adventure in World of ClaudeCraft, a classic-style micro-MMO playable directly in your browser. Join a persistent shared realm, level up classes, and defeat enemies!" />
+<meta name="twitter:title" data-i18n-content="seo.title" content="World of ClaudeCraft：经典风格网页 MMO" />
+<meta name="twitter:description" data-i18n-content="seo.description" content="在 World of ClaudeCraft 展开史诗冒险。这是一款可直接在浏览器中游玩的经典风格微型 MMO。加入持续共享的世界，提升职业等级，击败敌人！" />
 <meta name="twitter:image" content="https://worldofclaudecraft.aoruantech.com/woc_logo_square.webp" />
 
 <!-- Structured Data (Schema.org JSON-LD VideoGame) -->
@@ -101,8 +101,8 @@
   "operatingSystem": "Web Browser",
   "url": "https://worldofclaudecraft.aoruantech.com/play",
   "image": "https://worldofclaudecraft.aoruantech.com/woc_logo_square.webp",
-  "description": "Embark on an epic adventure in World of ClaudeCraft, a classic-style micro-MMO playable directly in your browser. Join a persistent shared realm, level up classes, and defeat enemies!",
-  "inLanguage": "en",
+  "description": "在 World of ClaudeCraft 展开史诗冒险。这是一款可直接在浏览器中游玩的经典风格微型 MMO。加入持续共享的世界，提升职业等级，击败敌人！",
+  "inLanguage": "zh-CN",
   "sameAs": [
     "https://github.com/yeleo/world-of-claudecraft"
       ]
@@ -148,8 +148,8 @@
 <body class="steam-wishlist-pending" data-start-panel="mode-select">
   <!-- Skip links: the first focusable elements, visually hidden until focused (a11y
        infra). Targets live inside #game-ui-template, cloned into the page in-game. -->
-  <a class="hud-skip" href="#ui" data-i18n="hudChrome.skipLinks.mainHud">Skip to Main HUD</a>
-  <a class="hud-skip" href="#chatlog" data-i18n="hudChrome.skipLinks.chat">Skip to Chat</a>
+  <a class="hud-skip" href="#ui" data-i18n="hudChrome.skipLinks.mainHud">跳转到主界面</a>
+  <a class="hud-skip" href="#chatlog" data-i18n="hudChrome.skipLinks.chat">跳转到聊天</a>
   <canvas id="game-canvas"></canvas>
   <div id="nameplates" aria-hidden="true"></div>
   <img
@@ -561,7 +561,7 @@
         <button class="micro-btn" id="mm-leaderboard" data-i18n-title="game.leaderboard.title" data-i18n-aria="game.leaderboard.title" title="Leaderboard" aria-label="Leaderboard" data-icon="leaderboard"><span class="keybind">k</span></button>
         <button class="micro-btn" id="mm-wocmarket" hidden data-i18n-title="hudChrome.wocMarket.launcherLabel" data-i18n-aria="hudChrome.wocMarket.launcherLabel" title="$WOC Exchange" aria-label="$WOC Exchange" data-icon="market"></button>
         <button class="micro-btn" id="mm-emote" data-i18n-aria="hudChrome.emoteWheel.label" aria-label="Emotes" data-icon="emote"><span class="keybind">x</span></button>
-        <button class="micro-btn" id="mm-music" data-i18n-title="hud.options.music" data-i18n-aria="hud.options.music" title="Music" aria-label="Music" data-icon="music"></button>
+        <button class="micro-btn" id="mm-music" data-i18n-title="hud.options.music" data-i18n-aria="hud.options.music" title="音乐" aria-label="音乐" data-icon="music"></button>
         <button class="micro-btn" id="mm-social" data-i18n-title="hud.keybinds.actions.social" data-i18n-aria="hud.keybinds.actions.social" title="Friends &amp; Guild" aria-label="Friends &amp; Guild" data-icon="social"><span class="keybind">o</span></button>
         <button class="micro-btn" id="mm-discord" hidden data-i18n-title="hudChrome.discord.title" data-i18n-aria="hudChrome.discord.title" title="Discord" aria-label="Discord" data-icon="discord"><span class="keybind">u</span></button>
         <button class="micro-btn" id="mm-wiki" data-i18n-title="nav.wiki" data-i18n-aria="nav.wiki" title="Wiki" aria-label="Wiki" data-icon="wiki"></button>
@@ -622,8 +622,8 @@
         <input id="discord-keep-username" type="text" autocomplete="username" readonly />
       </div>
       <div class="auth-field">
-        <label for="discord-keep-pass" class="auth-label" data-i18n="auth.password">Password</label>
-        <input id="discord-keep-pass" type="password" maxlength="128" autocomplete="new-password" data-i18n-placeholder="auth.passwordPlaceholder" placeholder="Enter password" />
+        <label for="discord-keep-pass" class="auth-label" data-i18n="auth.password">密码</label>
+        <input id="discord-keep-pass" type="password" maxlength="128" autocomplete="new-password" data-i18n-placeholder="auth.passwordPlaceholder" placeholder="请输入密码" />
       </div>
       <div class="auth-field">
         <label for="discord-keep-confirm" class="auth-label" data-i18n="hudChrome.discord.keep.confirmLabel">Confirm password</label>
@@ -645,7 +645,7 @@
       <h2 id="recovery-email-title" data-i18n="auth.recovery.title">Add a recovery email</h2>
       <p data-i18n="auth.recovery.body">Set an email address so you can recover your account. We only use it to confirm you own this account if you ever need to reset your password.</p>
       <div class="auth-field">
-        <label for="recovery-email-input" class="auth-label" data-i18n="auth.email">Email</label>
+        <label for="recovery-email-input" class="auth-label" data-i18n="auth.email">邮箱</label>
         <input id="recovery-email-input" type="email" maxlength="254" autocomplete="email" data-i18n-placeholder="auth.emailPlaceholder" placeholder="you@example.com" />
       </div>
       <div id="recovery-email-error" class="auth-error" aria-live="polite"></div>
@@ -686,58 +686,58 @@
 
     <header class="homepage-header">
       <div class="header-logo-container">
-        <button type="button" class="header-logo-btn" id="header-logo-btn" data-i18n-aria="a11y.goHome" data-i18n-title="a11y.goHome" aria-label="Go to homepage" title="Go to homepage">
+        <button type="button" class="header-logo-btn" id="header-logo-btn" data-i18n-aria="a11y.goHome" data-i18n-title="a11y.goHome" aria-label="前往主页" title="前往主页">
           <img class="header-logo" src="/icon-192.png" data-i18n-alt="serverUnavailable.logoAlt" alt="World of ClaudeCraft" />
         </button>
       </div>
       
-      <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" data-i18n-aria="a11y.toggleMenu" aria-label="Toggle menu" aria-expanded="false">
+      <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" data-i18n-aria="a11y.toggleMenu" aria-label="切换菜单" aria-expanded="false">
         <span class="hamburger-bar"></span>
         <span class="hamburger-bar"></span>
         <span class="hamburger-bar"></span>
       </button>
       
       <div class="header-menu-container" id="header-menu-container">
-        <nav data-i18n-aria="a11y.mainNavigation" aria-label="Main navigation" class="homepage-nav">
+        <nav data-i18n-aria="a11y.mainNavigation" aria-label="主导航" class="homepage-nav">
           <ul class="nav-list" role="list">
             <li class="nav-item">
-              <button type="button" class="nav-link active" id="nav-btn-play" aria-selected="true" aria-pressed="true" data-i18n="nav.play">Play</button>
+              <button type="button" class="nav-link active" id="nav-btn-play" aria-selected="true" aria-pressed="true" data-i18n="nav.play">开始游戏</button>
             </li>
             <li class="nav-item">
-              <button type="button" class="nav-link" id="nav-btn-highscores" aria-selected="false" aria-pressed="false" data-i18n="nav.highscores">High Scores</button>
+              <button type="button" class="nav-link" id="nav-btn-highscores" aria-selected="false" aria-pressed="false" data-i18n="nav.highscores">排行榜</button>
             </li>
             <li class="nav-item">
-              <button type="button" class="nav-link" id="nav-btn-wiki" aria-selected="false" aria-pressed="false" data-i18n="nav.wiki">Wiki</button>
+              <button type="button" class="nav-link" id="nav-btn-wiki" aria-selected="false" aria-pressed="false" data-i18n="nav.wiki">百科指南</button>
             </li>
             <li class="nav-item">
-              <button type="button" class="nav-link" id="nav-btn-news" aria-selected="false" aria-pressed="false" data-i18n="nav.news">News</button>
+              <button type="button" class="nav-link" id="nav-btn-news" aria-selected="false" aria-pressed="false" data-i18n="nav.news">新闻资讯</button>
             </li>
             <li class="nav-item">
-              <button type="button" class="nav-link" id="nav-btn-download" aria-selected="false" aria-pressed="false" data-i18n="nav.download">Download</button>
+              <button type="button" class="nav-link" id="nav-btn-download" aria-selected="false" aria-pressed="false" data-i18n="nav.download">下载客户端</button>
             </li>
             <li class="nav-item">
-              <button type="button" class="nav-link" id="nav-btn-login" aria-selected="false" aria-pressed="false" data-i18n="nav.loginRegister">Login/Register</button>
+              <button type="button" class="nav-link" id="nav-btn-login" aria-selected="false" aria-pressed="false" data-i18n="nav.loginRegister">登录/注册</button>
             </li>
             <li class="nav-item" id="nav-item-account" hidden>
-              <button type="button" class="nav-link" id="nav-btn-account" aria-selected="false" aria-pressed="false" data-i18n="nav.account">Account</button>
+              <button type="button" class="nav-link" id="nav-btn-account" aria-selected="false" aria-pressed="false" data-i18n="nav.account">账户</button>
             </li>
             <li class="nav-item" id="nav-item-logout" hidden>
-              <button type="button" class="nav-link" id="nav-btn-logout" aria-selected="false" aria-pressed="false" data-i18n="nav.logout">Logout</button>
+              <button type="button" class="nav-link" id="nav-btn-logout" aria-selected="false" aria-pressed="false" data-i18n="nav.logout">退出登录</button>
             </li>
           </ul>
         </nav>
 
         <div class="header-actions">
-          <button type="button" class="homepage-music-btn" id="homepage-music-toggle" data-i18n-title="hud.options.music" data-i18n-aria="hud.options.music" title="Music" aria-label="Music" aria-pressed="true" data-icon="music"></button>
+          <button type="button" class="homepage-music-btn" id="homepage-music-toggle" data-i18n-title="hud.options.music" data-i18n-aria="hud.options.music" title="音乐" aria-label="音乐" aria-pressed="true" data-icon="music"></button>
           <button
             type="button"
             class="desktop-login-exit"
             id="desktop-login-exit"
             data-i18n="desktop.titlebar.exitGame"
             data-i18n-title="desktop.titlebar.exitGame"
-            title="Exit Game"
+            title="退出游戏"
             hidden
-          >Exit Game</button>
+          >退出游戏</button>
           <!-- The wishlist reminder (src/ui/steam_wishlist.ts owns the URL and the
                suppression policy). Quiet by construction: it takes the ink-and-bronze
                chrome of the surface it sits on rather than Steam's own blue, and only
@@ -759,13 +759,13 @@
             <!-- /play goes straight to the online realm: no Online/Offline selector on
                  this entry (the landing page keeps it). The Play button commits directly
                  to the online flow (login, or realm select when a session is restored). -->
-            <button type="button" class="btn-play" id="btn-play" data-i18n-aria="mode.playAria" aria-label="Play World of ClaudeCraft">
+            <button type="button" class="btn-play" id="btn-play" data-i18n-aria="mode.playAria" aria-label="开始游玩 World of ClaudeCraft">
               <span class="btn-play-sheen" aria-hidden="true"></span>
-              <span class="btn-play-label" data-i18n="mode.play">Play</span>
+              <span class="btn-play-label" data-i18n="mode.play">开始游戏</span>
             </button>
             <div class="play-online-status">
               <span class="server-dot" data-mode="online" aria-hidden="true"></span>
-              <b class="stats-value js-stat-characters">…</b> <span data-i18n="stats.charactersCreated">Characters Created</span>
+              <b class="stats-value js-stat-characters">…</b> <span data-i18n="stats.charactersCreated">已创建角色</span>
             </div>
           </div>
 
@@ -776,7 +776,7 @@
 
           <!-- Tip — part of the same play container (divider above). -->
           <div class="play-tip">
-            <p id="performance-tip"><b data-i18n="mode.tipTitle">TIP:</b> <span data-i18n="mode.tipText">For the smoothest experience, turn off ad blocker extensions on this site. Community reports found some blockers can cause lag.</span></p>
+            <p id="performance-tip"><b data-i18n="mode.tipTitle">提示：</b> <span data-i18n="mode.tipText">为了获得最流畅的游玩体验，请在此网站上关闭广告拦截插件。根据社区反馈，部分拦截器可能会导致游戏卡顿。</span></p>
           </div>
         </div>
 
@@ -785,20 +785,20 @@
           <!-- First-class onboarding: Continue with Discord at the top of the form. -->
           <button type="button" class="btn" id="btn-login-discord" hidden style="width:100%;margin:4px 0 12px;background:linear-gradient(180deg,#5865f2,#404ac4);border-color:#2a2f7a;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600;min-height:42px;">
             <svg viewBox="0 0 127.14 96.36" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15zM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69z"/></svg>
-            <span data-i18n="hudChrome.discord.loginCta">Continue with Discord</span>
+            <span data-i18n="hudChrome.discord.loginCta">使用 Discord 继续</span>
           </button>
-          <div id="auth-or-divider" class="auth-or" hidden><span data-i18n="hudChrome.discord.orEmail">or use email</span></div>
+          <div id="auth-or-divider" class="auth-or" hidden><span data-i18n="hudChrome.discord.orEmail">或使用邮箱</span></div>
 
           <div class="auth-field">
-            <label for="login-user" class="auth-label" data-i18n="auth.username">Username</label>
-            <div id="login-user-error" class="auth-field-error" aria-live="polite" data-i18n="auth.usernameError">Please enter your username.</div>
+            <label for="login-user" class="auth-label" data-i18n="auth.username">用户名</label>
+            <div id="login-user-error" class="auth-field-error" aria-live="polite" data-i18n="auth.usernameError">请输入用户名。</div>
             <input 
               id="login-user" 
               name="username"
               type="text" 
               maxlength="24" 
               data-i18n-placeholder="auth.usernamePlaceholder"
-              placeholder="Enter username" 
+              placeholder="请输入用户名" 
               autocomplete="username" 
               required 
               aria-describedby="login-user-error"
@@ -806,8 +806,8 @@
           </div>
 
           <div class="auth-field">
-            <label for="login-pass" class="auth-label" data-i18n="auth.password">Password</label>
-            <div id="login-pass-error" class="auth-field-error" aria-live="polite" data-i18n="auth.passwordError">Please enter your password.</div>
+            <label for="login-pass" class="auth-label" data-i18n="auth.password">密码</label>
+            <div id="login-pass-error" class="auth-field-error" aria-live="polite" data-i18n="auth.passwordError">请输入密码。</div>
             <div class="password-wrapper">
               <input 
                 id="login-pass" 
@@ -815,12 +815,12 @@
                 type="password" 
                 maxlength="128" 
                 data-i18n-placeholder="auth.passwordPlaceholder"
-                placeholder="Enter password" 
+                placeholder="请输入密码" 
                 autocomplete="current-password" 
                 required 
                 aria-describedby="login-pass-error"
               />
-              <button type="button" class="password-toggle" id="btn-toggle-password" data-i18n-aria="auth.showPassword" aria-label="Show password" aria-pressed="false">
+              <button type="button" class="password-toggle" id="btn-toggle-password" data-i18n-aria="auth.showPassword" aria-label="显示密码" aria-pressed="false">
                 <svg class="eye-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                   <circle cx="12" cy="12" r="3"></circle>
@@ -833,8 +833,8 @@
           <!-- Email is captured at signup as the account recovery address. Shown in
                register mode only; setAuthMode toggles its visibility + required. -->
           <div class="auth-field" id="login-email-field" hidden>
-            <label for="login-email" class="auth-label" data-i18n="auth.email">Email</label>
-            <div id="login-email-error" class="auth-field-error" aria-live="polite" data-i18n="auth.emailError">Please enter a valid email address.</div>
+            <label for="login-email" class="auth-label" data-i18n="auth.email">邮箱</label>
+            <div id="login-email-error" class="auth-field-error" aria-live="polite" data-i18n="auth.emailError">请输入有效的邮箱地址。</div>
             <input
               id="login-email"
               name="email"
@@ -869,8 +869,8 @@
           <div id="login-error" class="auth-error" aria-live="polite"></div>
 
           <div class="auth-actions auth-actions-row">
-            <button type="button" class="btn btn-back" id="btn-login-back" data-i18n="auth.back">Back</button>
-            <button type="submit" class="btn btn-primary" id="btn-login" data-i18n="auth.logIn">Log In</button>
+            <button type="button" class="btn btn-back" id="btn-login-back" data-i18n="auth.back">返回</button>
+            <button type="submit" class="btn btn-primary" id="btn-login" data-i18n="auth.logIn">登录</button>
           </div>
           <p class="auth-switch">
             <span id="auth-switch-prompt" data-i18n="auth.noAccountPrompt">New to the realm?</span>
@@ -880,9 +880,9 @@
 
         <div id="realm-panel" class="panel auth-panel auth-panel-premium" hidden>
           <h2 class="auth-title"><span data-i18n="auth.realmList">Realm List</span> <span id="realm-list-user" class="cs-realm"></span></h2>
-          <div id="realm-list"><div class="realm-loading" data-i18n="auth.loadingRealms">Loading realms...</div></div>
+          <div id="realm-list"><div class="realm-loading" data-i18n="auth.loadingRealms">正在加载服务器列表...</div></div>
           <div class="auth-actions auth-actions-split">
-            <button type="button" class="btn btn-secondary" id="btn-realm-back" data-i18n="auth.back">Back</button>
+            <button type="button" class="btn btn-secondary" id="btn-realm-back" data-i18n="auth.back">返回</button>
           </div>
         </div>
 
@@ -950,7 +950,7 @@
               <ul id="char-list" role="list"></ul>
               <div class="cs-list-actions">
                 <button type="button" class="btn btn-primary" id="btn-charselect-enter" data-i18n="auth.enterWorld">Enter World</button>
-                <button type="button" class="btn btn-secondary" id="btn-charselect-back" data-i18n="auth.back">Back</button>
+                <button type="button" class="btn btn-secondary" id="btn-charselect-back" data-i18n="auth.back">返回</button>
                 <button type="button" class="btn btn-primary cs-new-btn" id="btn-new-character" data-i18n="auth.newCharacter">New Character</button>
               </div>
             </div>
@@ -966,7 +966,7 @@
             <div id="charselect-news" class="cs-news-panel">
               <div class="cs-news-title" data-i18n="news.title">News &amp; Updates</div>
               <div id="charselect-news-feed" class="cs-news-feed" aria-live="polite">
-                <div class="news-loading" data-i18n="news.loading">Loading the latest updates...</div>
+                <div class="news-loading" data-i18n="news.loading">正在加载最新资讯...</div>
               </div>
             </div>
             <!-- One-shot appearance redesign for pre-creator characters. Docks
@@ -1014,8 +1014,8 @@
                   <div id="charcreate-appearance"></div>
                 </div>
                 <div class="auth-actions cs-form-actions">
-                  <button class="btn btn-secondary" id="btn-charcreate-back" data-i18n="auth.back">Back</button>
-                  <button class="btn btn-primary" id="btn-create-char" data-i18n="auth.create">Create</button>
+                  <button class="btn btn-secondary" id="btn-charcreate-back" data-i18n="auth.back">返回</button>
+                  <button class="btn btn-primary" id="btn-create-char" data-i18n="auth.create">创建</button>
                 </div>
               </div>
             </div>
@@ -1041,7 +1041,7 @@
           <h2 class="skeleton-title" data-i18n="highscores.title">High Scores Leaderboard</h2>
           <p class="skeleton-desc" data-i18n="game.leaderboard.globalSubtitle">Top champions across all realms</p>
           <div id="hs-leaderboard" class="hs-leaderboard" aria-live="polite">
-            <div class="hs-loading" data-i18n="game.leaderboard.loading">Loading rankings…</div>
+            <div class="hs-loading" data-i18n="game.leaderboard.loading">正在加载排行榜…</div>
           </div>
         </div>
       </section>
@@ -1056,7 +1056,7 @@
           <h2 class="skeleton-title" data-i18n="news.title">News & Updates</h2>
           <p class="skeleton-desc" data-i18n="news.desc">Read the latest patch notes, events, and community updates.</p>
           <div id="news-feed" class="news-feed" aria-live="polite">
-            <div class="news-loading" data-i18n="news.loading">Loading the latest updates…</div>
+            <div class="news-loading" data-i18n="news.loading">正在加载最新资讯…</div>
           </div>
         </div>
       </section>
@@ -1200,7 +1200,7 @@
           <!-- 右侧：控件面板（语言、图形、对比度） -->
           <div class="footer-controls-group">
             <div class="language-selector custom-select-wrap">
-              <label for="lang-select" class="visually-hidden" data-i18n="a11y.languageSelection">Language selection</label>
+              <label for="lang-select" class="visually-hidden" data-i18n="a11y.languageSelection">语言选择</label>
               <select id="lang-select" class="lang-select-dropdown">
                 <option value="en">English (US)</option>
                 <option value="es">Español (LatAm)</option>
@@ -1210,7 +1210,7 @@
                 <option value="en_CA">English (Canada)</option>
                 <option value="it_IT">Italiano</option>
                 <option value="de_DE">Deutsch</option>
-                <option value="zh_CN">简体中文</option>
+                <option value="zh_CN" selected>简体中文</option>
                 <option value="zh_TW">繁體中文</option>
                 <option value="ko_KR">한국어</option>
                 <option value="ja_JP">日本語</option>

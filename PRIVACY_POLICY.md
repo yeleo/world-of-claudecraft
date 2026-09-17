@@ -154,7 +154,7 @@ The Service links to and integrates third-party services, including GitHub, Ko-f
 
 For privacy questions or to exercise your rights:
 
-Email: tony@levystreet.com
+Email: yeleiao@aoruantech.com
 
 Postal: Dream Home AI Limited, 262 Thorndon Quay, Wellington 6011, New Zealand
 

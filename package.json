@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": {
     "name": "Levy Street",
-    "email": "woc@levystreet.com"
+    "email": "yeleiao@aoruantech.com"
   },
   "type": "module",
   "main": "electron/main.cjs",

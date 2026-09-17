@@ -7142,6 +7142,14 @@
   body.desktop-app .official-site-copy {
     display: none !important;
   }
+  body.desktop-app #nav-btn-wiki,
+  body.desktop-app #nav-btn-download,
+  body.desktop-app #download-view,
+  body.desktop-app #performance-tip,
+  body.desktop-app #mm-wiki,
+  body.desktop-app #mobile-wiki {
+    display: none !important;
+  }
 
   /* ---------- Steam wishlist reminder ---------- */
   /* One permanently visible ask, never a takeover. src/ui/steam_wishlist.ts owns

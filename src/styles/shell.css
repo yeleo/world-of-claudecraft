@@ -1363,15 +1363,6 @@
     width: 100%;
   }
 
-  .desktop-download-link.is-pending-badge {
-    background: rgba(35, 30, 25, 0.55);
-    border: 1px dashed rgba(215, 181, 109, 0.35);
-    color: #8c8270;
-    cursor: default;
-    pointer-events: none;
-    box-shadow: none;
-  }
-
   .desktop-download-actions {
     display: flex;
     justify-content: center;
@@ -1384,14 +1375,16 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 42px;
-    min-width: 190px;
+    min-height: 38px;
+    min-width: 146px;
     margin: 0;
-    padding: 8px 18px;
+    padding: 7px 16px;
     text-decoration: none;
+    box-sizing: border-box;
+    position: relative;
   }
 
-  /* 1. 主推荐下载大按钮（Hero CTA） */
+  /* 1. 主推荐下载大按钮（Hero CTA / 当前系统检测） */
   .desktop-download-link.is-detected,
   .desktop-download-link.is-hero-cta {
     order: -2;
@@ -1425,25 +1418,25 @@
     outline: none;
   }
 
-  /* 推荐金色角标 Badge */
+  /* 推荐/当前系统标记 Badge：重构为中世纪魔幻暗金立体铭牌，完美契合魔兽界面基调 */
   .desktop-download-link.is-detected::after,
   .desktop-download-link.is-hero-cta::after {
     content: attr(data-badge-text);
     position: absolute;
-    top: -10px;
-    right: -8px;
-    background: linear-gradient(135deg, #ffd100 0%, #c87a00 100%);
-    color: #1a0f00;
-    font-size: 10.5px;
-    font-weight: 800;
+    top: -9px;
+    right: -6px;
+    background: linear-gradient(180deg, #3d2612 0%, #1c1106 100%);
+    color: #ffd566;
+    font-size: 11px;
+    font-weight: 700;
     padding: 2px 8px;
-    border-radius: 9px;
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.75), 0 0 8px rgba(255, 209, 0, 0.45);
-    letter-spacing: 0.5px;
-    line-height: 1.25;
+    border-radius: 3px;
+    border: 1px solid #d4a742;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 225, 130, 0.35);
+    letter-spacing: 0.8px;
+    line-height: 1.35;
     pointer-events: none;
-    text-shadow: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
     z-index: 3;
     white-space: nowrap;
   }
@@ -1476,23 +1469,52 @@
     background: linear-gradient(90deg, transparent, rgba(215, 181, 109, 0.35), transparent);
   }
 
-  /* 3. 次要下载按钮样式 */
-  .desktop-download-actions.has-detected .desktop-download-link:not(.is-detected) {
-    min-width: 140px;
-    min-height: 36px;
-    padding: 6px 14px;
-    font-size: 12.5px;
-    background: linear-gradient(180deg, #242018 0%, #15130f 100%);
-    border: 1px solid rgba(215, 181, 109, 0.28);
-    color: #b8ac94;
-    opacity: 0.88;
+  /* 3. 统一所有区域的次要/非主推可用下载按钮样式（包括桌面次要项与移动端可用项） */
+  .desktop-download-actions .desktop-download-link:not(.is-detected):not(.is-pending-badge) {
+    min-width: 146px;
+    min-height: 38px;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    background: linear-gradient(180deg, #262016 0%, #15120c 100%);
+    border: 1px solid rgba(215, 181, 109, 0.32);
+    color: #d2c4a4;
+    border-radius: var(--radius-sm, 4px);
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.35);
+    opacity: 0.95;
+    transition: all 0.18s ease-in-out;
   }
 
-  .desktop-download-actions.has-detected .desktop-download-link:not(.is-detected):hover {
+  .desktop-download-actions .desktop-download-link:not(.is-detected):not(.is-pending-badge):hover,
+  .desktop-download-actions .desktop-download-link:not(.is-detected):not(.is-pending-badge):focus-visible {
     opacity: 1;
-    background: linear-gradient(180deg, #342c1f 0%, #1f1b14 100%);
-    border-color: rgba(255, 209, 0, 0.5);
-    color: #ffd100;
+    background: linear-gradient(180deg, #3d301b 0%, #241c10 100%);
+    border-color: #ffd100;
+    color: #fff2bd;
+    box-shadow: 0 0 10px rgba(255, 209, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    outline: none;
+  }
+
+  /* 4. 统一所有区域的“即将上线”占位按钮样式（统一暗金蚀刻虚线与低透明度禁用感） */
+  .desktop-download-actions .desktop-download-link.is-pending-badge,
+  .desktop-download-link.is-pending-badge {
+    min-width: 146px;
+    min-height: 38px;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    background: rgba(20, 16, 12, 0.45) !important;
+    border: 1px dashed rgba(215, 181, 109, 0.28) !important;
+    color: #8a7e6b !important;
+    border-radius: var(--radius-sm, 4px);
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    box-shadow: none !important;
+    opacity: 0.72;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+    transform: none !important;
+    transition: none;
   }
 
   .desktop-download-desktop-tip {
@@ -2469,6 +2491,7 @@
   .footer-controls-group {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
   }
 
@@ -2483,14 +2506,19 @@
     height: 32px !important;
     min-height: 32px !important;
     max-height: 32px !important;
+    width: 114px !important;
+    min-width: 114px !important;
+    max-width: 114px !important;
+    flex: 0 0 114px !important;
     box-sizing: border-box !important;
     background: rgba(18, 21, 32, 0.85) !important;
     border: 1px solid rgba(215, 181, 109, 0.3) !important;
     border-radius: 6px !important;
-    padding: 0 10px !important;
+    padding: 0 6px !important;
     margin: 0 !important;
-    font-family: inherit !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif !important;
     font-size: 12px !important;
+    font-weight: 500 !important;
     line-height: 30px !important;
     color: #e5dcc7 !important;
     cursor: pointer !important;
@@ -2498,6 +2526,11 @@
     transition: all 0.2s ease !important;
     outline: none !important;
     box-shadow: none !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+    letter-spacing: 0.2px !important;
   }
 
   .footer-controls-group .custom-select-wrap:hover,
@@ -2510,13 +2543,15 @@
   }
 
   .footer-controls-group .control-prefix-label {
+    font-family: inherit !important;
     font-size: 12px !important;
-    color: #a8a08a !important;
-    margin-right: 4px !important;
+    color: #dcd3bd !important;
+    margin-right: 2px !important;
     font-weight: 500 !important;
-    line-height: 1 !important;
+    line-height: 30px !important;
     white-space: nowrap !important;
     user-select: none !important;
+    flex-shrink: 0 !important;
   }
 
   /* 内部原生下拉菜单：完全透明、无边框、自适应高度，由外层包裹容器控制尺寸 */
@@ -2527,7 +2562,9 @@
     background: transparent !important;
     border: none !important;
     color: #e5dcc7 !important;
+    font-family: inherit !important;
     font-size: 12px !important;
+    font-weight: 500 !important;
     height: 100% !important;
     min-height: 0 !important;
     max-height: none !important;
@@ -2537,7 +2574,27 @@
     cursor: pointer !important;
     outline: none !important;
     box-shadow: none !important;
-    font-family: inherit !important;
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+    letter-spacing: inherit !important;
+  }
+
+  .footer-controls-group .lang-select-dropdown {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    text-align-last: center !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .footer-controls-group .landing-graphics-select {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: calc(100% - 28px) !important;
+    text-align: center !important;
+    text-align-last: center !important;
   }
 
   .footer-controls-group .lang-select-dropdown:hover,
@@ -2551,9 +2608,13 @@
   .footer-controls-group .landing-graphics-select option {
     background: #141724 !important;
     color: #e5dcc7 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
   }
 
   .footer-controls-group .landing-contrast-toggle {
+    text-align: center !important;
     white-space: nowrap !important;
   }
 
@@ -7719,6 +7780,11 @@
   body.mobile-touch .homepage-footer {
     padding: 12px 10px max(12px, env(safe-area-inset-bottom));
   }
+  body.mobile-touch .footer-lang-row {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
   body.mobile-touch .footer-compliance-card {
     flex-direction: column;
     text-align: center;
@@ -7738,10 +7804,92 @@
     gap: 10px;
   }
   body.mobile-touch .footer-controls-group {
-    width: 100%;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+  body.mobile-touch .footer-controls-group .language-selector,
+  body.mobile-touch .footer-controls-group .landing-graphics-control,
+  body.mobile-touch .footer-controls-group .custom-select-wrap,
+  body.mobile-touch .footer-controls-group .landing-contrast-toggle {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    width: 0 !important;
+    max-width: none !important;
+    padding: 0 4px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+  }
+  body.mobile-touch .footer-controls-group .lang-select-dropdown,
+  body.mobile-touch .footer-controls-group .landing-graphics-select,
+  body.mobile-touch .footer-controls-group .control-prefix-label,
+  body.mobile-touch .footer-controls-group .landing-contrast-toggle {
+    font-size: 12px !important;
+    font-weight: 500 !important;
+  }
+
+  /* Responsive media queries for all mobile browsers (touch & non-touch) */
+  @media (max-width: 768px) {
+    .footer-actions-bar {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-controls-group {
+      width: 100% !important;
+      max-width: 440px !important;
+      margin: 0 auto !important;
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 6px !important;
+    }
+    .footer-controls-group .language-selector,
+    .footer-controls-group .landing-graphics-control,
+    .footer-controls-group .custom-select-wrap,
+    .footer-controls-group .landing-contrast-toggle {
+      flex: 1 1 0 !important;
+      min-width: 0 !important;
+      width: 0 !important;
+      max-width: none !important;
+      padding: 0 4px !important;
+      font-size: 12px !important;
+      font-weight: 500 !important;
+    }
+    .footer-controls-group .lang-select-dropdown,
+    .footer-controls-group .landing-graphics-select,
+    .footer-controls-group .control-prefix-label,
+    .footer-controls-group .landing-contrast-toggle {
+      font-size: 12px !important;
+      font-weight: 500 !important;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .footer-controls-group {
+      gap: 4px !important;
+    }
+    .footer-controls-group .language-selector,
+    .footer-controls-group .landing-graphics-control,
+    .footer-controls-group .custom-select-wrap,
+    .footer-controls-group .landing-contrast-toggle {
+      padding: 0 2px !important;
+      font-size: 11px !important;
+    }
+    .footer-controls-group .lang-select-dropdown,
+    .footer-controls-group .landing-graphics-select,
+    .footer-controls-group .control-prefix-label,
+    .footer-controls-group .landing-contrast-toggle {
+      font-size: 11px !important;
+    }
   }
 
   /* The added wishlist action makes the full localized desktop header too wide

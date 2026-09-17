@@ -370,6 +370,10 @@ function registerAppProtocol() {
   try {
     const html = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
     scriptHashes = extractInlineScriptHashes(html);
+    if (fs.existsSync(path.join(distDir, 'guide.html'))) {
+      const guideHtml = fs.readFileSync(path.join(distDir, 'guide.html'), 'utf8');
+      scriptHashes.push(...extractInlineScriptHashes(guideHtml));
+    }
   } catch {
     scriptHashes = [];
   }
@@ -378,7 +382,13 @@ function registerAppProtocol() {
     new Response('not found', { status: 404, headers: { 'Content-Security-Policy': csp } });
   protocol.handle('app', async (request) => {
     const url = new URL(request.url);
-    const requestedPath = decodeURIComponent(url.pathname === '/' ? '/index.html' : url.pathname);
+    const rawPath = decodeURIComponent(url.pathname === '/' ? '/index.html' : url.pathname);
+    let requestedPath = rawPath;
+    if (rawPath === '/wiki' || rawPath === '/wiki/' || rawPath.startsWith('/wiki/')) {
+      requestedPath = '/guide.html';
+    } else if (rawPath === '/play' || rawPath === '/play/') {
+      requestedPath = '/play.html';
+    }
     const candidate = path.normalize(path.join(distDir, requestedPath));
     if (!fileInside(distDir, candidate)) {
       return notFound();

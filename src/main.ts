@@ -9493,7 +9493,9 @@ function wireStartScreens(): void {
   // homepage hidden. The stored-locale modulepreload will shrink the non-en hold toward zero.
   const bootLang = getLanguage();
   const startScreen = document.getElementById('start-screen');
-  const gated = !!startScreen && !isLocaleResident(bootLang);
+  // The homepage static HTML is pre-rendered in Chinese (zh_CN). Only gate visibility
+  // for other non-resident locales (e.g. es, fr_FR, ja_JP) while their chunk is in flight.
+  const gated = !!startScreen && bootLang !== 'zh_CN' && !isLocaleResident(bootLang);
   if (gated && startScreen) startScreen.style.visibility = 'hidden';
   const revealLocalized = () => {
     // Restore visibility even if translatePage() throws (e.g. a dev-build untracked-key
@@ -10576,6 +10578,7 @@ function wireStartScreens(): void {
   // The wiki is the curated guide SPA at /wiki (its own page), so this nav item
   // navigates there rather than switching an in-page view.
   setupNavBtn(navBtnWiki, '', () => {
+    if (DESKTOP_APP || NATIVE_APP) return;
     window.location.href = '/wiki';
   });
   setupNavBtn(navBtnNews, '#news-view', () => {

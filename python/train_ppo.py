@@ -391,6 +391,8 @@ def main():
             print(f"  >>> Checkpoint saved: {ckpt_path} -> {class_latest_path}")
             last_save_step = global_step
 
+    elapsed = time.time() - start_time
+
     # Save final model
     class_dir = os.path.join(args.models_dir, args.player_class)
     os.makedirs(class_dir, exist_ok=True)

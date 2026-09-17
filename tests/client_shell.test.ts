@@ -947,65 +947,58 @@ describe('client HTML shell', () => {
     expect(html).toContain(
       '<meta name="robots" content="index, follow, max-image-preview:large" />',
     );
-    expect(html).toContain('<link rel="canonical" href="https://worldofclaudecraft.com/" />');
+    expect(html).toContain('<link rel="canonical" href="https://worldofclaudecraft.aoruantech.com/" />');
     expect(html).toContain('<meta property="og:site_name" content="World of ClaudeCraft" />');
     expect(html).toContain('"alternateName": "World of Claudecraft"');
-    expect(html).toContain('"https://github.com/levy-street/world-of-claudecraft"');
+    expect(html).toContain('"https://github.com/yeleo/world-of-claudecraft"');
     expect(mainTs).toContain("alternateName: 'World of Claudecraft'");
-    expect(mainTs).toContain("'https://github.com/levy-street/world-of-claudecraft'");
+    expect(mainTs).toContain("'https://github.com/yeleo/world-of-claudecraft'");
     expect(robotsTxt.trim()).toBe(
-      'User-agent: *\nAllow: /\n\nSitemap: https://worldofclaudecraft.com/sitemap.xml\nSitemap: https://worldofclaudecraft.com/sitemap-characters.xml',
+      'User-agent: *\nAllow: /\n\nSitemap: https://worldofclaudecraft.aoruantech.com/sitemap.xml\nSitemap: https://worldofclaudecraft.aoruantech.com/sitemap-characters.xml',
     );
-    expect(robotsTxt).toContain('Sitemap: https://worldofclaudecraft.com/sitemap.xml');
+    expect(robotsTxt).toContain('Sitemap: https://worldofclaudecraft.aoruantech.com/sitemap.xml');
     // The dynamic per-character sitemap (served by the game server) is advertised too.
-    expect(robotsTxt).toContain('Sitemap: https://worldofclaudecraft.com/sitemap-characters.xml');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/links</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/play</loc>');
+    expect(robotsTxt).toContain('Sitemap: https://worldofclaudecraft.aoruantech.com/sitemap-characters.xml');
+    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.aoruantech.com/</loc>');
+    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.aoruantech.com/links</loc>');
+    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.aoruantech.com/play</loc>');
     expect(playHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/play" />',
+      '<link rel="canonical" href="https://worldofclaudecraft.aoruantech.com/play" />',
     );
     expect(playHtml).toContain(
-      '<meta property="og:url" content="https://worldofclaudecraft.com/play" />',
+      '<meta property="og:url" content="https://worldofclaudecraft.aoruantech.com/play" />',
     );
-    expect(playHtml).toContain('"url": "https://worldofclaudecraft.com/play"');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/privacy</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/terms</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/data-deletion</loc>');
-    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/support</loc>');
+    expect(playHtml).toContain('"url": "https://worldofclaudecraft.aoruantech.com/play"');
+    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.aoruantech.com/privacy</loc>');
+    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.aoruantech.com/terms</loc>');
+    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.aoruantech.com/data-deletion</loc>');
+    expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.aoruantech.com/support</loc>');
     expect(privacyHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/privacy" />',
+      '<link rel="canonical" href="https://worldofclaudecraft.aoruantech.com/privacy" />',
     );
     expect(privacyHtml).toContain('<h1>Privacy Policy</h1>');
     expect(privacyHtml).toContain('href="/support">Support</a>');
     expect(privacyHtml).toContain('href="/data-deletion">Data Deletion</a>');
     expect(termsHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/terms" />',
+      '<link rel="canonical" href="https://worldofclaudecraft.aoruantech.com/terms" />',
     );
     expect(termsHtml).toContain('<h1>Terms and Conditions</h1>');
     expect(termsHtml).toContain('href="/support">Support</a>');
     expect(termsHtml).toContain('href="/data-deletion">Data Deletion</a>');
     expect(dataDeletionHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/data-deletion" />',
+      '<link rel="canonical" href="https://worldofclaudecraft.aoruantech.com/data-deletion" />',
     );
     expect(dataDeletionHtml).toContain('<h1>Data Deletion</h1>');
-    expect(dataDeletionHtml).toContain('href="mailto:woc@levystreet.com"');
-    expect(dataDeletionHtml).toContain('href="https://discord.com/invite/worldofclaudecraft"');
+    expect(dataDeletionHtml).toContain('href="mailto:yeleiao@aoruantech.com"');
     expect(dataDeletionHtml).toContain('href="/support">Support</a>');
     expect(supportHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/support" />',
+      '<link rel="canonical" href="https://worldofclaudecraft.aoruantech.com/support" />',
     );
     expect(supportHtml).toContain('<h1>Support</h1>');
-    expect(supportHtml).toContain('href="mailto:woc@levystreet.com"');
-    expect(supportHtml).toContain('href="https://discord.com/invite/worldofclaudecraft"');
+    expect(supportHtml).toContain('href="mailto:yeleiao@aoruantech.com"');
     expect(supportHtml).toContain('href="/data-deletion">Data Deletion page</a>');
     expect(supportHtml).toContain('"@type": "ContactPage"');
-    expect(html).toContain(
-      'href="/World-of-ClaudeCraft-Whitepaper-v1.0.pdf" class="footer-link" data-i18n="footer.whitepaper"',
-    );
-    expect(html.indexOf('data-i18n="footer.whitepaper"')).toBeLessThan(
-      html.indexOf('data-i18n="footer.terms"'),
-    );
+    expect(html).not.toContain('href="/World-of-ClaudeCraft-Whitepaper-v1.0.pdf"');
     expect(existsSync(whitepaperUrl)).toBe(true);
     expect(statSync(whitepaperUrl).size).toBeGreaterThan(0);
     expect(html).toContain('href="/terms" class="footer-link" data-i18n="footer.terms"');
@@ -1222,10 +1215,7 @@ describe('client HTML shell', () => {
       // Starts hidden; main.ts reveals it at boot on any build with Discord UI
       // enabled (it stays hidden in the native-app build).
       expect(entry, name).toMatch(/id="mobile-discord"\s+hidden/);
-      expect(entry, name).toContain('id="mobile-donate"');
-      expect(entry, name).toMatch(/id="mobile-donate"[^>]*data-icon="donate"/);
-      // Donate is never gated on the web: no hidden attribute on it.
-      expect(entry, name).not.toMatch(/id="mobile-donate"\s+hidden/);
+      expect(entry, name).not.toContain('id="mobile-donate"');
     }
     // The native-app build strips every donation link (store payment-steering
     // policy); the tray entry joins the same suppression block as the desktop
@@ -1247,7 +1237,7 @@ describe('client HTML shell', () => {
       ['index.html', html],
       ['play.html', playHtml],
     ] as const) {
-      expect(entry.match(/href="https:\/\/ko-fi\.com\/worldofclaudecraft"/g), name).toHaveLength(2);
+      expect(entry.match(/href="https:\/\/ko-fi\.com\/worldofclaudecraft"/g), name).toBeNull();
       expect(entry, name).not.toContain('https://github.com/sponsors/levy-street');
     }
   });
@@ -1685,7 +1675,7 @@ describe('client HTML shell', () => {
     // Steam wishlist chip is the tray's one remaining entry, and the
     // homepage marketing links stay where they are.
     for (const entry of [html, playHtml]) {
-      expect(entry).toContain('<a class="community-link steam-wishlist steam-wishlist-chip"');
+      expect(entry).not.toContain('<a class="community-link steam-wishlist');
       expect(entry).not.toContain('<a class="community-link github"');
       expect(entry).not.toContain('<a class="community-link donate"');
       expect(entry).not.toContain('<a class="community-link discord"');
@@ -1777,13 +1767,13 @@ describe('client HTML shell', () => {
     // homepage still use it); only the in-game touch HUD hides it, because
     // its two-person toggle icon under the minimap masqueraded as a Friends
     // button next to the real Social button in the top-left trio.
-    expect(html).toContain('<a class="donate-cta"');
+    expect(html).not.toContain('<a class="donate-cta"');
     expect(html).toContain('<details id="community-menu">');
     expect(html).toContain('<summary class="community-toggle"');
     expect(html).toContain('<div class="community-tray">');
     // The tray is wishlist-only now (its GitHub/Donate links were removed,
     // owner request); the marketing donate-cta above stays.
-    expect(html).toContain('<a class="community-link steam-wishlist steam-wishlist-chip"');
+    expect(html).not.toContain('<a class="community-link steam-wishlist');
     expect(html).not.toContain('<a class="community-link github"');
     expect(html).not.toContain('<a class="community-link donate"');
     // No separate Discord invite link here: it duplicated the Discord (U)

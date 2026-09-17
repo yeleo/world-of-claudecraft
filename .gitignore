@@ -159,3 +159,4 @@ output/
 docs/screenshots/goblin-rocket-sled/
 python/*.out
 python/*.log
+python/models/*/
