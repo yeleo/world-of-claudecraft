@@ -8561,7 +8561,7 @@ export const ja_JP: EnTranslations = {
     "androidCta": "Android版をダウンロード (APK)",
     "linuxCta": "Linux版をダウンロード",
     "linuxHint": "AppImage形式です。実行権限を付けてそのまま起動でき、インストールは不要です。",
-    "windowsPending": "Windows版は准备中です。"
+    "windowsPending": "Windows版は準備中です。"
   },
   "comingSoon": {
     "placeholder": "近日公開...",
