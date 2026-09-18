@@ -132,6 +132,19 @@ $$\text{VoiceDesign (设计抽卡)} \longrightarrow \text{固化为音色锚点 
 - 变量替换：`{playerName}`、`{className}` 等占位符统一替换为自然的朗读称谓「冒险者」。
 - 标点净化：严禁产生 `，。`、`，，` 等冲突重叠标点，杜绝 TTS 模型因标点异常引发的卡顿与高频破音。
 
+### 4. 全量自动化增量重绘执行指令 (方案A 标准操作)
+当扫描发现存在变动条目时，必须执行自动化增量重绘：
+```bash
+# 1. 确保本地 TTS 服务已启动 (http://127.0.0.1:7860)
+# 若未启动，可执行: cd ~/src/tts && bash start.sh
+
+# 2. 执行两阶段增量合成 (Phase 1 母本 VoiceDesign -> Phase 2 衍生台词 VoiceClone)
+conda activate tts
+python scripts/gen_chinese_voices.py
+```
+- **自动清单同步**：脚本执行完毕后会自动根据实际生成的 MP3 物理文件哈希更新 `src/game/voice_manifest.zh_CN.generated.ts`，并写入 `scripts/voices/zh_voice_cache.json`。
+- **验证与提交**：执行 `npm run check:types` 确认无报错后，将变动的音频文件、缓存及 Manifest 统一提交至分支。
+
 ## 6. Post-Merge Restoration
 
 Once all checks and tests pass:
