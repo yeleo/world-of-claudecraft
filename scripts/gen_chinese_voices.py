@@ -36,6 +36,24 @@ MANIFEST_ZH_FILE = ROOT / "src" / "game" / "voice_manifest.zh_CN.generated.ts"
 MANIFEST_EN_FILE = ROOT / "src" / "game" / "voice_manifest.generated.ts"
 ZH_LOCALE_FILE = ROOT / "src" / "ui" / "i18n.locales" / "zh_CN.ts"
 PROMPTS_FILE = ROOT / "scripts" / "voices" / "npc_voice_prompts.mjs"
+ANCHORS_DIR = ROOT / "scripts" / "voices" / "anchors"
+ANCHOR_MANIFEST_FILE = ANCHORS_DIR / "anchor_manifest.json"
+
+def load_anchor_manifest() -> dict[str, dict]:
+    """读取已固化的 NPC 永久声纹母本元数据清单"""
+    if ANCHOR_MANIFEST_FILE.exists():
+        try:
+            return json.loads(ANCHOR_MANIFEST_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            return {}
+    return {}
+
+def save_anchor_manifest(manifest: dict[str, dict]):
+    """原子保存 NPC 永久声纹母本元数据清单"""
+    ANCHORS_DIR.mkdir(parents=True, exist_ok=True)
+    tmp = ANCHOR_MANIFEST_FILE.with_suffix(".tmp")
+    tmp.write_text(json.dumps(dict(sorted(manifest.items())), ensure_ascii=False, indent=2), encoding="utf-8")
+    tmp.replace(ANCHOR_MANIFEST_FILE)
 
 # 48 条战斗与护送大喊的优质中文翻译对照表
 YELL_TRANSLATIONS = {
@@ -376,35 +394,57 @@ def load_all_chinese_lines(manifest_keys: dict[str, str]) -> dict[str, dict]:
         'q_ps_set_sail': 'wayfarer_bryn',
     }
 
-    # 3. 设定合成模式 (方案A：所有角色的 greeting 打招呼台词均独立 VoiceDesign 捏声，其余任务台词严格以主角母本进行解耦克隆)
+    # 3. 设定合成模式 (声纹资产与业务台词解耦架构：优先以 anchors/ 永久母本进行 VoiceClone 解耦克隆)
+    anchor_manifest = load_anchor_manifest()
+
     for line_key, item in catalog.items():
         voice_npc = item["voice_npc"]
+        actual_npc = item.get("actual_npc", voice_npc)
         primary_anchor = npc_primary_anchors[voice_npc]
         
-        if line_key.startswith("greeting__"):
-            # 所有打招呼台词均作为独立声学母本捏声
-            is_anchor = True
-            anchor_key = line_key
-            mode = "design"
-        else:
-            # 所有任务与衍生台词，以该目录正统主角或专属发放人母本进行克隆
-            is_anchor = False
-            anchor_key = primary_anchor
-            # 优先匹配新手试炼任务的专属次要 NPC 问候母本
-            if line_key.startswith("quest__"):
-                for qid, gid in tutorial_givers.items():
-                    if qid in line_key:
-                        candidate_anchor = f"greeting__{gid}"
-                        if candidate_anchor in npc_lines_map.get(voice_npc, []):
-                            anchor_key = candidate_anchor
-                        break
-            mode = "clone"
+        # 1. 查找是否存在已固化的角色声纹永久母本 (scripts/voices/anchors/<npc>.mp3)
+        anchor_info = anchor_manifest.get(actual_npc) or anchor_manifest.get(voice_npc)
         
+        # 教学关次要 NPC 特殊映射
+        if line_key.startswith("quest__"):
+            for qid, gid in tutorial_givers.items():
+                if qid in line_key:
+                    candidate_anchor = anchor_manifest.get(gid)
+                    if candidate_anchor:
+                        anchor_info = candidate_anchor
+                    break
+
+        anchor_file = None
+        anchor_ref_text = ""
+        if anchor_info:
+            c_file = ANCHORS_DIR / anchor_info["file"]
+            if c_file.exists() and c_file.stat().st_size >= 1024:
+                anchor_file = c_file
+                anchor_ref_text = anchor_info.get("reference_text", "")
+
+        if anchor_file:
+            # 永久母本已存在：无论该台词是 greeting 还是 quest，一律以母本资产进行解耦克隆
+            is_anchor = False
+            anchor_key = anchor_info.get("npc_id", actual_npc)
+            mode = "clone"
+        else:
+            # 尚无母本（全新 NPC）：若为打招呼台词，则作为初始母本候选进行 VoiceDesign 捏声
+            if line_key.startswith("greeting__"):
+                is_anchor = True
+                anchor_key = line_key
+                mode = "design"
+            else:
+                is_anchor = False
+                anchor_key = primary_anchor
+                mode = "clone"
+
         item["is_anchor"] = is_anchor
         item["anchor_key"] = anchor_key
+        item["anchor_file"] = str(anchor_file) if anchor_file else None
+        item["anchor_ref_text"] = anchor_ref_text
         item["mode"] = mode
+        # 保持与历史指纹结构一致，无损利用缓存
         item["fingerprint"] = compute_fingerprint(item["text"], item["instruct"], mode, anchor_key)
-
     return catalog
 
 
@@ -499,8 +539,8 @@ def run_predict_voicedesign(client_ctx: TTSClientContext, item: dict, timeout_se
         return future.result(timeout=timeout_sec)
 
 
-def run_predict_voiceclone(client_ctx: TTSClientContext, item: dict, anchor_item: dict, anchor_audio_path: Path, timeout_sec: int = 240):
-    """VoiceClone 模式：以母本音频为音色参考，开启情感解耦模式 (decouple=True)"""
+def run_predict_voiceclone(client_ctx: TTSClientContext, item: dict, anchor_ref_text: str, anchor_audio_path: Path, timeout_sec: int = 240):
+    """VoiceClone 模式：以永久母本音频为音色参考，开启情感解耦模式 (decouple=True)"""
     with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
         def _call():
             ref_handle = handle_file(str(anchor_audio_path))
@@ -508,7 +548,7 @@ def run_predict_voiceclone(client_ctx: TTSClientContext, item: dict, anchor_item
                 item["text"],          # 待合成目标台词文本
                 "中文 / Chinese",       # 语言
                 ref_handle,             # 上传/录制参考音频 (必填)
-                anchor_item["text"],   # 参考音频台词文本 (greeting 真实文本)
+                anchor_ref_text,       # 参考音频台词母本文本
                 True,                   # 开启情感解耦模式 (使用 x-vector 纯音色提取，不被参考音频情绪带跑)
                 api_name=client_ctx.clone_endpoint
             )
@@ -550,17 +590,26 @@ def synthesize_single_line(
             
             if mode == "clone":
                 anchor_key = item["anchor_key"]
-                anchor_item = catalog.get(anchor_key, item)
-                anchor_file = target_dir / item["voice_npc"] / f"{anchor_key}.mp3"
+                anchor_file_str = item.get("anchor_file")
+                anchor_ref_text = item.get("anchor_ref_text")
                 
-                # 检查母本音频是否存在
-                if not anchor_file.exists() or anchor_file.stat().st_size < 1024:
-                    print(" [母本缺失, 自动回退VoiceDesign] ", end="", flush=True)
-                    actual_mode_used = "design(fallback_no_anchor)"
-                    res = run_predict_voicedesign(client_ctx, item, timeout_sec=240)
-                else:
-                    res = run_predict_voiceclone(client_ctx, item, anchor_item, anchor_file, timeout_sec=240)
+                # 优先使用解耦声纹母本资产库
+                if anchor_file_str and Path(anchor_file_str).exists() and anchor_ref_text:
+                    anchor_file = Path(anchor_file_str)
+                    res = run_predict_voiceclone(client_ctx, item, anchor_ref_text, anchor_file, timeout_sec=240)
                     actual_mode_used = "clone(decoupled)"
+                else:
+                    # 回退到目录内本地查找
+                    anchor_item = catalog.get(anchor_key, item)
+                    anchor_file = target_dir / item["voice_npc"] / f"{anchor_key}.mp3"
+                    if not anchor_file.exists() or anchor_file.stat().st_size < 1024:
+                        print(" [母本缺失, 自动回退VoiceDesign] ", end="", flush=True)
+                        actual_mode_used = "design(fallback_no_anchor)"
+                        res = run_predict_voicedesign(client_ctx, item, timeout_sec=240)
+                    else:
+                        ref_text = anchor_item.get("text", "")
+                        res = run_predict_voiceclone(client_ctx, item, ref_text, anchor_file, timeout_sec=240)
+                        actual_mode_used = "clone(decoupled)"
             else:
                 actual_mode_used = "design"
                 res = run_predict_voicedesign(client_ctx, item, timeout_sec=240)

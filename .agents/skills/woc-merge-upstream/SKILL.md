@@ -139,50 +139,55 @@ After resolving conflicts and committing the merge:
 
 每次完成上游代码合并（尤其是涉及 `src/ui/i18n.locales/` 与任务剧情文本变动）后，**必须强制执行离线配音一致性门禁检查**。
 
-### 1. 强制变更扫描与指纹校验
+### 1. 架构革新：角色声纹资产与业务台词物理解耦 (Decoupled Voice Anchor Architecture)
+为根治“上游打招呼文案变动导致 NPC 音色突变、连带全量重算”的系统性隐患，配音系统实行**角色声纹资产 (Anchor) 与游戏业务台词 (Dialogue) 的物理解耦架构**：
+
+$$\text{全新 NPC} \xrightarrow{\text{VoiceDesign 抽卡}} \text{固化永久声纹母本 (scripts/voices/anchors/)} \xrightarrow{\text{VoiceClone(decouple=True)}} \text{全量业务台词 (Greeting / Quest / Yell)}$$
+
+1. **核心痛点与认知**：
+   - 过去把游戏打招呼（Greeting）直接当母本，只要上游或本地化润色修改了 Greeting 的文字，就会被迫重新调用 VoiceDesign（随机采样），导致 NPC 音色彻底突变，玩家听觉认知锚点崩塌；且该 NPC 下辖的数十条任务台词会被迫连带重绘。
+2. **声纹资产库化 (`scripts/voices/anchors/`)**：
+   - 每个 NPC 拥有专属、独立且永久冻结的音频母本 `scripts/voices/anchors/<npc_id>.mp3` 及其元数据 `anchor_manifest.json`。
+   - 声纹母本是角色的数字声学 DNA，**永远不随游戏业务文本变动而变动**。
+3. **业务台词 100% 受体化 (含 Greeting)**：
+   - 游戏内所有台词（包括 Greeting、Quest Offer/Complete、Yell），全部被视为受体台词。
+   - 所有台词统一以 `scripts/voices/anchors/<npc_id>.mp3` 为基准母本，执行 **`VoiceClone(decouple=True)` 纯声纹解耦克隆**。
+4. **零扩散增量更新**：
+   - 当上游合并修改了某 NPC 的 Greeting 或任务对白时，**母本完全不动**，系统仅对变动的那一句台词执行单条解耦克隆。
+   - **音色绝对稳定**（100% 继承母本 x-vector），且**绝无连锁重绘**！
+5. **VoiceDesign 的唯一准入场景**：
+   - 仅当游戏引入了**数据库从未收录过的全新 NPC** 时，才使用 VoiceDesign 抽卡调试出最佳音色，固化写入 `scripts/voices/anchors/`，此后永久转入解耦克隆模式。
+
+### 2. 强制变更扫描与指纹校验
 执行增量状态检查命令：
 ```bash
 conda activate tts
 python scripts/gen_chinese_voices.py --status
 ```
-该命令会自动比对 `src/ui/i18n.locales/zh_CN.ts` 当前最新台词与 `scripts/voices/zh_voice_cache.json` 中的配置指纹（MD5/SHA256）。
+该命令会自动比对 `src/ui/i18n.locales/zh_CN.ts` 最新台词与 `scripts/voices/zh_voice_cache.json` 中的配置指纹（MD5/SHA256）。
 - 若提示 `✨ 所有语音均已处于最新状态`：表示全部 578 条语音与文本 100% 同步，无需重新生成。
-- 若提示 `待生成/待更新: N 条`：表明上游合并修改了任务文本或 NPC 问候语，必须对变更条目进行同步重绘。
-
-### 2. 标准 TTS 角色配音工作流规范 (VoiceDesign 抽卡 -> 固化母本 -> VoiceClone 解耦锁定)
-为了保证同一 NPC 在游戏内与玩家交互时（打招呼 Greeting、任务承接 Offer、任务交付 Complete）音色绝对统一，严禁直接对不同台词滥用 VoiceDesign 跨文本直接合成。必须严格执行三步法标准规范：
-
-$$\text{VoiceDesign (设计抽卡)} \longrightarrow \text{固化为音色锚点 (Anchor)} \longrightarrow \text{VoiceClone (情感解耦锁定)}$$
-
-1. **第一步：VoiceDesign 抽卡 (设计基准音色)**
-   - 在 `qwen_design` 模式下，输入角色专属设定提示词（`NPC_VOICE_INSTRUCTS`），为角色代表性问候语（Greeting）生成候选音频。
-   - **底层认知**：Prompt 描述词只是概率分布，自回归解码序列会随不同文本发散，固定 Seed 无法跨台词锁定音色。因此需通过抽卡选出一句发音饱满、语调自然、无爆音/变调失真的高分母本。
-2. **第二步：固化角色音色锚点 (Anchor Audio)**
-   - 将抽卡合格的音频保存并固化为该 NPC 的基准母本文件：
-     `public/audio/voice_zh/<voice_npc>/greeting__<npcId>.mp3`
-   - 验证音频声学质量：使用声学分析脚本检查基频（F0），确认无异常高频尖叫或假音跳变（如老年/中年男声中突现 >350Hz 破音）。
-3. **第三步：VoiceClone 批量合成所有台词 (情感解耦锁定)**
-   - 该角色所有任务、剧情及衍生台词，100% 切换至 `qwen_clone` 模式。
-   - 以第二步固化的基准音频为参考源，**强制开启情感解耦模式 (`decouple=True`，即 `x_vector_only_mode=True`)**。
-   - **效果保证**：参考音频死锁全局声纹向量（x-vector），而情感解耦避免新剧情台词的情绪被参考音频带跑，实现音色 100% 统一稳定，且台词情感自然演变。
+- 若提示 `待生成/待更新: N 条`：表明上游合并修改了剧情文本或问候语，只需执行自动化增量重绘。
 
 ### 3. 文本规整与变量插值防崩规范
 合成前必须经过 `clean_spoken_text()` 规整：
 - 变量替换：`{playerName}`、`{className}` 等占位符统一替换为自然的朗读称谓「冒险者」。
 - 标点净化：严禁产生 `，。`、`，，` 等冲突重叠标点，杜绝 TTS 模型因标点异常引发的卡顿与高频破音。
 
-### 4. 全量自动化增量重绘执行指令 (方案A 标准操作)
-当扫描发现存在变动条目时，必须执行自动化增量重绘：
+### 4. 自动化增量重绘与母本固化执行指令
+当扫描发现存在变动条目时，执行自动化增量重绘：
 ```bash
 # 1. 确保本地 TTS 服务已启动 (http://127.0.0.1:7860)
 # 若未启动，可执行: cd ~/src/tts && bash start.sh
 
-# 2. 执行两阶段增量合成 (Phase 1 母本 VoiceDesign -> Phase 2 衍生台词 VoiceClone)
+# 2. 执行自动化增量合成 (读取 anchors/ 声纹母本，以 VoiceClone decouple=True 生成)
 conda activate tts
 python scripts/gen_chinese_voices.py
+
+# 3. (可选) 如有新 NPC 引入或需重建基准母本库，可执行母本资产固化快照：
+python scripts/snapshot_voice_anchors.py
 ```
 - **自动清单同步**：脚本执行完毕后会自动根据实际生成的 MP3 物理文件哈希更新 `src/game/voice_manifest.zh_CN.generated.ts`，并写入 `scripts/voices/zh_voice_cache.json`。
-- **验证与提交**：执行 `npm run check:types` 确认无报错后，将变动的音频文件、缓存及 Manifest 统一提交至分支。
+- **验证与提交**：执行 `npm run check:types` 确认无报错后，将变动的音频文件、母本库、缓存及 Manifest 统一提交至分支。
 
 ## 7. Post-Merge Restoration
 
