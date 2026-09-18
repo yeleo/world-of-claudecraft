@@ -67,7 +67,46 @@ git merge upstream/main
      ```
    - This ensures browser/production clients default to `zh_CN`, while automated Vitest runs evaluate in `en`.
 
-## 4. Verification Pipeline
+## 4. Bidirectional Change Audit (双向变更审查：正向变动梳理 + 反向本地化防回归审查)
+
+在代码合并解决冲突后、进入自动化测试验证前，**必须执行严格的“双向变更审查”**，杜绝潜在隐式 Bug：
+
+### 1. 正向变更审查 (Upstream Forward Audit - 逐项剖析上游变动)
+梳理上游从上一个合并基准（Base Tag/Commit）到本次目标版本的所有改动点，明确上游改了什么：
+```bash
+# 1. 查找上一个合并基准点或 Tag
+BASE_COMMIT=$(git merge-base HEAD upstream/main)
+
+# 2. 输出上游全部变更 Commits 清单
+git log --oneline --no-merges ${BASE_COMMIT}..upstream/main
+
+# 3. 查看变动涉及的目录与文件统计
+git diff --stat ${BASE_COMMIT}..upstream/main
+```
+**审查重点与影响面排查**：
+- **协议与数据契约 (Wire Format & Protocols)**：检查 `headless/`、`src/sim/obs.ts`、WebSocket 消息类型是否变动。若协议变更，必须同步镜像检查 Python RL 绑定与 Bot 宏观控制脚本。
+- **UI 架构与生命周期 (DOM / HUD / Svelte)**：检查上游是否重构了弹窗管理器、HUD 布局、事件监听器，识别哪些变动碰到了国内定制的挂载点。
+- **经济与任务逻辑 (Economy & Quests)**：检查任务触发链条、物品 ID、NPC 刷新坐标的变动，标记新增或重写的任务剧情。
+- **存储与状态 (State & Storage)**：检查 LocalStorage、IndexedDB 或角色存档 Schema 是否发生向下不兼容迁移。
+
+### 2. 反向影响审查 (Localization Backward Audit - 本地化反向代入防回归)
+将国内分支的所有特有定制与合规模块，反向代入新合并的代码树中进行二次审视，严防“上游看似正常的改动”与“本地定制”碰撞产生新 Bug：
+
+1. **合规隔离防泄漏审查 (Compliance Guardrail Integrity)**：
+   - 上游新提交是否在新的界面（如设置面板、新手引导、状态栏）中增加了对 `$WOC`、加密货币钱包或 Web3 的隐式调用？
+   - 反向验证：国内分支对 `#woc-market-window`、`#mm-wocmarket` 的屏蔽是否彻底无遗漏；同时确保正常的纯游戏金币市场（`#market-window`）功能未受附带损伤。
+2. **UI 容器与 DOM 结构稳定性审查 (DOM Stability)**：
+   - 检查上游对 `index.html` / `play.html` 的结构重构是否会冲刷或挤压国内定制元素（CADPA 12+ 适龄提示、国家健康游戏忠告、ICP 备案号、国内全平台下载网格）。
+   - 检查 CSS 层叠与 Z-index：确保国内版弹窗与悬浮层在新的 HUD 层级下没有被遮挡或阻断鼠标指针。
+3. **环境语言隔离防回归审查 (Language Isolation)**：
+   - 确认 `src/ui/i18n.ts` 中的环境隔离逻辑依然完备：
+     浏览器端/生产环境强制默认 `zh_CN`；Automated Test (`vitest`) 强制锁定 `en`，防止上游新增的单元测试因中文断言直接暴碎。
+4. **离线配音与音画一致性联动 (Voice Alignment)**：
+   - 若上游对白发生增删改，必须联动执行第 6 节的离线配音门禁，保证字幕与配音 100% 对应，杜绝“字幕显示新版，配音读旧版”。
+5. **Bot 与多智能体兼容性反向验证 (Bot Protocol Check)**：
+   - 若上游触碰底层物理或空间动作，反向拉起快速 smoke test（如 `python example_random_agent.py`），确认无未知反序列化报错。
+
+## 5. Verification Pipeline
 
 After resolving conflicts and committing the merge:
 
@@ -96,7 +135,7 @@ After resolving conflicts and committing the merge:
    ```
    Ensures bundle compilation, backdrop filter preservation, and media manifest generation succeed.
 
-## 5. Offline TTS & Voice Line Synchronicity (强制离线配音与文本变更检查)
+## 6. Offline TTS & Voice Line Synchronicity (强制离线配音与文本变更检查)
 
 每次完成上游代码合并（尤其是涉及 `src/ui/i18n.locales/` 与任务剧情文本变动）后，**必须强制执行离线配音一致性门禁检查**。
 
@@ -145,7 +184,7 @@ python scripts/gen_chinese_voices.py
 - **自动清单同步**：脚本执行完毕后会自动根据实际生成的 MP3 物理文件哈希更新 `src/game/voice_manifest.zh_CN.generated.ts`，并写入 `scripts/voices/zh_voice_cache.json`。
 - **验证与提交**：执行 `npm run check:types` 确认无报错后，将变动的音频文件、缓存及 Manifest 统一提交至分支。
 
-## 6. Post-Merge Restoration
+## 7. Post-Merge Restoration
 
 Once all checks and tests pass:
 1. Restore previously stashed bot changes:
@@ -154,7 +193,7 @@ Once all checks and tests pass:
    ```
 2. Verify tree status and confirm with the user before pushing to `origin/release/china`.
 
-## 7. Release Notes & User Presentation Protocol (发版日志与用户直接交付规范)
+## 8. Release Notes & User Presentation Protocol (发版日志与用户直接交付规范)
 
 每次完成上游合并（或版本热修复发布）后，**严禁仅在仓库中生成文件或只提供链接简写**，必须严格执行以下两项标准：
 
