@@ -96,7 +96,43 @@ After resolving conflicts and committing the merge:
    ```
    Ensures bundle compilation, backdrop filter preservation, and media manifest generation succeed.
 
-## 5. Post-Merge Restoration
+## 5. Offline TTS & Voice Line Synchronicity (强制离线配音与文本变更检查)
+
+每次完成上游代码合并（尤其是涉及 `src/ui/i18n.locales/` 与任务剧情文本变动）后，**必须强制执行离线配音一致性门禁检查**。
+
+### 1. 强制变更扫描与指纹校验
+执行增量状态检查命令：
+```bash
+conda activate tts
+python scripts/gen_chinese_voices.py --status
+```
+该命令会自动比对 `src/ui/i18n.locales/zh_CN.ts` 当前最新台词与 `scripts/voices/zh_voice_cache.json` 中的配置指纹（MD5/SHA256）。
+- 若提示 `✨ 所有语音均已处于最新状态`：表示全部 578 条语音与文本 100% 同步，无需重新生成。
+- 若提示 `待生成/待更新: N 条`：表明上游合并修改了任务文本或 NPC 问候语，必须对变更条目进行同步重绘。
+
+### 2. 标准 TTS 角色配音工作流规范 (VoiceDesign 抽卡 -> 固化母本 -> VoiceClone 解耦锁定)
+为了保证同一 NPC 在游戏内与玩家交互时（打招呼 Greeting、任务承接 Offer、任务交付 Complete）音色绝对统一，严禁直接对不同台词滥用 VoiceDesign 跨文本直接合成。必须严格执行三步法标准规范：
+
+$$\text{VoiceDesign (设计抽卡)} \longrightarrow \text{固化为音色锚点 (Anchor)} \longrightarrow \text{VoiceClone (情感解耦锁定)}$$
+
+1. **第一步：VoiceDesign 抽卡 (设计基准音色)**
+   - 在 `qwen_design` 模式下，输入角色专属设定提示词（`NPC_VOICE_INSTRUCTS`），为角色代表性问候语（Greeting）生成候选音频。
+   - **底层认知**：Prompt 描述词只是概率分布，自回归解码序列会随不同文本发散，固定 Seed 无法跨台词锁定音色。因此需通过抽卡选出一句发音饱满、语调自然、无爆音/变调失真的高分母本。
+2. **第二步：固化角色音色锚点 (Anchor Audio)**
+   - 将抽卡合格的音频保存并固化为该 NPC 的基准母本文件：
+     `public/audio/voice_zh/<voice_npc>/greeting__<npcId>.mp3`
+   - 验证音频声学质量：使用声学分析脚本检查基频（F0），确认无异常高频尖叫或假音跳变（如老年/中年男声中突现 >350Hz 破音）。
+3. **第三步：VoiceClone 批量合成所有台词 (情感解耦锁定)**
+   - 该角色所有任务、剧情及衍生台词，100% 切换至 `qwen_clone` 模式。
+   - 以第二步固化的基准音频为参考源，**强制开启情感解耦模式 (`decouple=True`，即 `x_vector_only_mode=True`)**。
+   - **效果保证**：参考音频死锁全局声纹向量（x-vector），而情感解耦避免新剧情台词的情绪被参考音频带跑，实现音色 100% 统一稳定，且台词情感自然演变。
+
+### 3. 文本规整与变量插值防崩规范
+合成前必须经过 `clean_spoken_text()` 规整：
+- 变量替换：`{playerName}`、`{className}` 等占位符统一替换为自然的朗读称谓「冒险者」。
+- 标点净化：严禁产生 `，。`、`，，` 等冲突重叠标点，杜绝 TTS 模型因标点异常引发的卡顿与高频破音。
+
+## 6. Post-Merge Restoration
 
 Once all checks and tests pass:
 1. Restore previously stashed bot changes:
@@ -105,7 +141,7 @@ Once all checks and tests pass:
    ```
 2. Verify tree status and confirm with the user before pushing to `origin/release/china`.
 
-## 6. Release Notes & User Presentation Protocol (发版日志与用户直接交付规范)
+## 7. Release Notes & User Presentation Protocol (发版日志与用户直接交付规范)
 
 每次完成上游合并（或版本热修复发布）后，**严禁仅在仓库中生成文件或只提供链接简写**，必须严格执行以下两项标准：
 

@@ -217,23 +217,27 @@ NPC_VOICE_INSTRUCTS = {
 
 def clean_spoken_text(text: str) -> str:
     """清理台词文本中的运行时插值变量与特殊字符，使朗读自然流畅"""
+    if not text:
+        return ""
     cleaned = text
-    # 替换玩家名称/职业变量
     cleaned = re.sub(r'\{playerName\}|\$N', '冒险者', cleaned)
     cleaned = re.sub(r'\{className\}|\$C', '冒险者', cleaned)
-    cleaned = re.sub(r'\{[a-zA-Z0-9_]+\}', '', cleaned)  # 其余占位符若有则略过
-    cleaned = re.sub(r'\$[a-zA-Z0-9_]', '', cleaned)
-    # 合并多余空白
+    cleaned = re.sub(r'\{[a-zA-Z0-9_]+\}', '', cleaned)
+    cleaned = re.sub(r'\$[a-zA-Z0-9_]+', '', cleaned)
+    cleaned = re.sub(r'\([^)]*\)', '', cleaned)
+    cleaned = re.sub(r'（[^）]*）', '', cleaned)
+    cleaned = re.sub(r'\[[^\]]*\]', '', cleaned)
+    cleaned = re.sub(r'【[^】]*】', '', cleaned)
+    cleaned = re.sub(r'https?://\S+', '', cleaned)
+    cleaned = re.sub(r'[@#^&*<>~`|/\\_]', '', cleaned)
+    cleaned = re.sub(r'[，,]+[。.]+', '。', cleaned)
+    cleaned = re.sub(r'[，,]{2,}', '，', cleaned)
+    cleaned = re.sub(r'[。.]+ {2,}', '。', cleaned)
+    cleaned = re.sub(r'[。.]+', '。', cleaned)
+    cleaned = re.sub(r'^[，,。、\s]+', '', cleaned)
     cleaned = re.sub(r'\s+', ' ', cleaned).strip()
     return cleaned
 
-
-def compute_fingerprint(text: str, instruct: str) -> str:
-    """计算单条语音的配置指纹，用于变更检测"""
-    h = hashlib.md5()
-    h.update(text.encode('utf-8'))
-    h.update(instruct.encode('utf-8'))
-    return h.hexdigest()[:16]
 
 
 def compute_file_hash12(path: Path) -> str:
@@ -260,20 +264,6 @@ def compute_fingerprint(text: str, instruct: str, mode: str = "design", anchor_k
     return h.hexdigest()[:16]
 
 
-def clean_spoken_text(text: str) -> str:
-    """清理并规整台词文本，适配中文语音合成"""
-    if not text:
-        return ""
-    text = re.sub(r'\$[a-zA-Z0-9_]+', '', text)
-    text = re.sub(r'\{[^}]*\}', '', text)
-    text = re.sub(r'\([^)]*\)', '', text)
-    text = re.sub(r'（[^）]*）', '', text)
-    text = re.sub(r'\[[^\]]*\]', '', text)
-    text = re.sub(r'【[^】]*】', '', text)
-    text = re.sub(r'https?://\S+', '', text)
-    text = re.sub(r'[@#^&*<>~`|/\\_]', '', text)
-    text = re.sub(r'\s+', ' ', text).strip()
-    return text
 
 
 def load_manifest_keys() -> dict[str, str]:
@@ -372,6 +362,20 @@ def load_all_chinese_lines(manifest_keys: dict[str, str]) -> dict[str, dict]:
             g_key = next((k for k in line_keys if k.startswith("greeting__")), None)
             npc_primary_anchors[voice_npc] = g_key if g_key else sorted(line_keys)[0]
 
+    # 教学关次要 NPC 专属任务发放人映射 (避免别名目录主角母本混淆)
+    tutorial_givers = {
+        'q_ps_the_gauntlet': 'warden_tam',
+        'q_ps_strike_true': 'overseer_pell',
+        'q_ps_hone_the_edge': 'drillmaster_rook',
+        'q_ps_shell_and_claw': 'drillmaster_rook',
+        'q_ps_mother_of_pearl': 'tidewarden_nel',
+        'q_ps_the_wreck_line': 'tidewarden_nel',
+        'q_ps_pouch_and_purse': 'quartermaster_finch',
+        'q_ps_the_signpost': 'instructor_maren',
+        'q_ps_the_long_walk': 'instructor_maren',
+        'q_ps_set_sail': 'wayfarer_bryn',
+    }
+
     # 3. 设定合成模式 (方案A：所有角色的 greeting 打招呼台词均独立 VoiceDesign 捏声，其余任务台词严格以主角母本进行解耦克隆)
     for line_key, item in catalog.items():
         voice_npc = item["voice_npc"]
@@ -383,9 +387,17 @@ def load_all_chinese_lines(manifest_keys: dict[str, str]) -> dict[str, dict]:
             anchor_key = line_key
             mode = "design"
         else:
-            # 所有任务与衍生台词，100% 严格以该目录正统主角为克隆母本
+            # 所有任务与衍生台词，以该目录正统主角或专属发放人母本进行克隆
             is_anchor = False
             anchor_key = primary_anchor
+            # 优先匹配新手试炼任务的专属次要 NPC 问候母本
+            if line_key.startswith("quest__"):
+                for qid, gid in tutorial_givers.items():
+                    if qid in line_key:
+                        candidate_anchor = f"greeting__{gid}"
+                        if candidate_anchor in npc_lines_map.get(voice_npc, []):
+                            anchor_key = candidate_anchor
+                        break
             mode = "clone"
         
         item["is_anchor"] = is_anchor

@@ -1676,8 +1676,8 @@
     "anchor_key": "greeting__warden_fenwick",
     "npc_seed": 18974907,
     "audio_path": "warden_fenwick/quest__q_deepfen__offer.mp3",
-    "audio_hash": "94bb0cca77d8",
-    "updated_at": "2026-09-12T16:01:35.940068+00:00"
+    "audio_hash": "120d653cb0d4",
+    "updated_at": "2026-09-18T03:31:21.668503+00:00"
   },
   "quest__q_deepfen_purge__complete": {
     "text": "冷酷又彻底。如果这片湿地有天干涸，你倒适合做守望者。",
@@ -2112,16 +2112,16 @@
     "updated_at": "2026-09-12T16:22:14.786120+00:00"
   },
   "greeting__warden_fenwick": {
-    "text": "在营门前止步，。穿过那些芦苇丛，沼泽自会替我们收拾掉他们。",
-    "text_hash": "f8a224c6db1ce622",
+    "text": "在门口停下，冒险者。芦苇后面的沼泽会替我们杀人。",
+    "text_hash": "4e2762205fd01f25",
     "speaker": "(由 instruct 描述生成)",
     "instruct": "40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音",
     "mode": "design",
     "anchor_key": "greeting__warden_fenwick",
     "npc_seed": 18974907,
     "audio_path": "warden_fenwick/greeting__warden_fenwick.mp3",
-    "audio_hash": "4d7762242f49",
-    "updated_at": "2026-09-12T16:22:31.684732+00:00"
+    "audio_hash": "d72ec18ffe2b",
+    "updated_at": "2026-09-18T03:31:11.421214+00:00"
   },
   "greeting__warden_tam": {
     "text": "眼前这几条跑道便是‘疾风试炼’，，谷地里每一个受人尊敬的冒险者都在这里奔跑过。路边的提灯整夜长明，试炼从未关闭。",
