@@ -10,6 +10,7 @@
 
 import argparse
 import hashlib
+import shutil
 import json
 import concurrent.futures
 import os
@@ -122,6 +123,9 @@ YELL_TRANSLATIONS = {
 # 全量 92 位 NPC 专属 VoiceDesign 声音指导词库 (基于官方原版人设提取)
 DEFAULT_INSTRUCT = "自然流畅的中世纪奇幻冒险者口吻，清晰生动"
 NPC_VOICE_INSTRUCTS = {
+    'riftwright_maelis': '40多岁研究虚空与裂隙法术的女奥术工匠，语调神秘冷静、条理分明且带着法术回响的成熟女性嗓音',
+    'archivist_maelin_ember_projection': '空灵微弱、伴随余烬火光回响的学者女性微弱投影回音',
+    'archivist_maelin_emberward': '30多岁在熔炉前潜心考证的学者女档案官，专注深沉、带着学术探究执着的干练女性嗓音',
     'drillmaster_rook': '40多岁体格强壮的军团操练教官，声音洪亮粗犷、中气十足的大嗓门军人男性嗓音',
     'drillmaster_hale': '40多岁精壮练武场陪练教头，嗓音威武洪亮、干练沉稳的成年男性嗓音',
     'quartermaster_finch': '30多岁精明务实的营地装备商贩，语速利落干脆的市井男性男中音',
@@ -130,46 +134,46 @@ NPC_VOICE_INSTRUCTS = {
     'warden_tam': '30多岁热情洋溢的赛道守望者，声音高亢充满活力的年轻男性嗓音',
     'overseer_pell': '40多岁沙哑干练的工程监工，粗粝有力的成年男性嗓音',
     'wayfarer_bryn': '20多岁热情开朗的年轻旅行女向导，语调亲切热情的年轻女性嗓音',
-    'crucible_quartermaster': '50多岁威严沉稳的熔炉要塞军需官，深沉有力、声如洪钟的军人男低音',
+    'crucible_quartermaster': '40多岁在熔炉烈火旁久经历练的铁甲军需官，嗓音厚重深沉、威严干练的军人男中音',
     'tidewarden_nel': '30多岁机敏干练的海滩潮汐看守者，声音清脆明快、富有警惕性的年轻女性嗓音',
-    'farmer_jessica': '30多岁质朴勤劳的农场女主人，嗓音亲切温厚、带有乡土气息的女性嗓音',
-    'farmer_teasel': '50多岁淳朴老实的农夫，语调朴实憨厚的老年男性男中音',
-    'farmer_hollis': '40多岁常年在田间劳作的壮年农夫，嗓音浑厚自然的中年男性男中音',
-    'farmer_verbena': '60多岁热情慈祥的果园农妇，声音温暖爽朗的年长女性嗓音',
+    'farmer_jessica': '20多岁在田间劳作的年轻女农夫，阳光清脆、随和利落的年轻女性嗓音',
+    'farmer_teasel': '50多岁精明务实的沼泽水稻老农夫，沙哑低沉、沉稳朴实的劳动长者男低音',
+    'farmer_hollis': '40多岁梯田庄稼汉，语速缓慢平稳、字字沉实的中年农夫嗓音',
+    'farmer_verbena': '30多岁精心打理花草花坛的女花匠农夫，温柔细致、优雅从容的成熟女性嗓音',
 
     'alchemist_verane': '30多岁至40岁的高冷女药剂大师，冷峻克制、咬字精准干练的女中音，带着严谨威严的成熟女性嗓音',
     'apothecary_lin': '30多岁至40岁轻柔谨慎的女草药医师，嗓音温和清润、带着细致关切的女中音',
     'apprentice_wren': '年轻怯生生、有些慌乱的见习女学徒嗓音',
     'archivist_tullo': '60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
-    'armorer_hode': '50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'armorer_hode': '40多岁身披厚重锁甲的铠甲匠大师，声音洪亮爽朗、性格豪爽，大嗓门如在铁砧上捶打玄铁的中年男高音',
     'astronomer_cassian': '40多岁中年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
     'auctioneer_voss': '节奏明快、充满诱惑力与市井喜感的拍卖商口吻',
     'aurorist_veyla': '空灵悠扬、宁静专注的极光学者女性口吻',
     'bellkeeper_tam': '50多岁成熟饱经沧桑的长者，声音沉稳和蔼、语调舒缓的中老年男性男低音',
     'bridgewright_alden': '40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
     'brother_aldric': '60多岁庄重慈悲的圣光大牧师，饱经沧桑、沉稳肃穆的长者男中音',
-    'brother_halven': '40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'brother_halven': '80岁在沼泽中守望死者残魂的圣洁老修道士，嗓音苍老颤抖、带着无尽虔诚与轻声敬畏的年迈长者男声',
     'bursar_aldous_crane': '60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
     'bursar_fernando': '40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
     'bursar_petra_vell': '金库女司库主管，精明干练、咬字干脆利落的成熟职场女性中音',
     'captain_thessaly': '英姿飒爽、威严果断的要塞女卫队长，坚决洪亮的军官女性口吻',
     'card_master': '轻松戏谑、玩世不恭的年轻卡牌大师口吻',
-    'castaway_navigator': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'castaway_navigator': '30多岁在礁石中获救的落难女领航员，嗓音低沉沙哑、精疲力竭却极度倔强、拒绝示弱的独行女水手口吻',
     'chronicler_edda_hartwell': '年轻的高山女学者，语速轻快敏锐、朝气蓬勃且求知欲强的年轻女性清脆嗓音',
     'chronicler_osric_fenn': '40多岁中年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
     'chronicler_saul': '50多岁成熟威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
-    'cook_marlow': '40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
-    'ferryman_odo': '60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
-    'ferrymaster_caddow': '50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
-    'fisher_bram': '60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
+    'cook_marlow': '40多岁系着围裙的厨房大师傅，大嗓门、热烈粗犷带着市井炊烟烟火气的中年男中音',
+    'ferryman_odo': '70多岁饱经沧桑的老船长，沙哑中带着无尽慈爱，语调舒缓沉稳、充满长辈关怀与鼓励的慈祥老爷爷男低音',
+    'ferrymaster_caddow': '50多岁大雾弥漫湖泊上的摆渡长，声音低沉潮湿、语速缓慢而谨慎，习惯压低嗓音说话的沉稳中年男中音',
+    'fisher_bram': '30多岁遭遇海难、浑身湿透惊魂未定、失声痛哭想念妻子的悲喜交加年轻渔夫嗓音',
     'fisher_nell': '20多岁在海边惊魂未定的年轻渔妇，声音轻微颤抖、带着后怕与柔弱的年轻女性嗓音',
     'fisherman_brandt': '常年在海边抽烟斗、有点怪癖的粗犷老渔民口吻',
     'foreman_odell': '沙哑暴躁的矿工工头大嗓门，粗犷有力',
     'forgemistress_darva': '城镇铁匠铺女主管，粗犷刚毅、声音如击打玄铁般有力的成熟女性低中音',
-    'fury': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
-    'gardener_yew': '60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'fury': '40多岁角斗场荣誉军需官，暴烈如雷、带有金属共鸣质感与死斗压迫感的半吼叫式残酷军人男声',
+    'gardener_yew': '90多岁看守草坪百年的极老园丁，低沉缓慢、如同苔藓与泥土般充满神秘神性的苍老男低音',
     'gatecaptain_brannoc': '50多岁成熟威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
-    'gatewarden_pell': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'gatewarden_pell': '30多岁看守古老花园大门的小守卫官，声音温和尽责、略带神经质紧张，说话时忍不住回头张望灌木丛的年轻男声',
     'gravedigger_mosley': '战战兢兢、神情紧张的掘墓人口吻',
     'harbormaster_odile': '峭壁渔港的女港口长，饱经风霜海盐、爽朗干练的海港女主管嗓音',
     'head_gardener_amaranth': '守护古老花园十年的老女园丁，嗓音轻柔沙哑、略带疲惫与细致关怀的年长女性嗓音',
@@ -177,29 +181,29 @@ NPC_VOICE_INSTRUCTS = {
     'herbalist_yara': '沼泽深处的神秘草药女巫，声音低沉沙哑、慢条斯理且深不可测的女性烟嗓',
     'hermit_okku': '50多岁成熟饱经沧桑的长者，声音沉稳和蔼、语调舒缓的中老年男性男低音',
     'heroic_quartermaster': '40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
-    'huntsman_deral': '40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'huntsman_deral': '40多岁身穿苔藓皮甲的猎兽哨兵守望者，声音低沉平稳、刻意压低气息以防惊扰猎物、字字沉实坚毅的中年男低音',
     'ignivar': '狂暴烈焰与熔炉巨兽魔神咆哮口吻，炽热低沉且充满毁灭压迫感',
     'keeper_bram': '60多岁老年粗犷硬朗的劳动工人，中气十足、声音洪亮有力的成年男性嗓音',
     'keeper_saelwyn': '30多岁从容干练的女性，自然沉稳、清晰流畅的女性中音',
-    'lamplighter_sorrel': '40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'lamplighter_sorrel': '40多岁在永夜无光之路上坚守的点灯人，嗓音从容随和、略带戏谑与值夜人的从容沉稳中年男声',
     'lampman_cobb': '60多岁老年饱经沧桑的长者，声音沉稳和蔼、语调舒缓的中老年男性男低音',
     'lira_dewsong': '清澈空灵、宛如夜莺的精灵女歌者嗓音',
     'loremaster_caddis': '50多岁成熟热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
     'loremother_bryn': '神社守护者老妇人，温和沧桑、慢条斯理如诵读经卷的年长女性嗓音',
     'marshal_redbrook': '50多岁饱经风霜的军团老元帅，沙哑低沉、刚毅如磐石的威严军人男低音',
-    'mender_saul': '40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'mender_saul': '40多岁战场战地医师外科军医，疲惫温和、语气严谨精准，字里行间流露真挚悲悯之心的成年医者男性嗓音',
     'mother_sedge': '慈祥神秘、深邃安详的沼泽老妇人女性嗓音',
     'netter_maris': '熟练的捕鳗女渔民，语速极快、热情唠叨且带着市井烟火气的女性嗓音',
     'nythraxis': '极度霸道低沉的古代暗黑君王巨龙咆哮口吻，古老威严且充满毁灭压迫感',
     'orchardist_pomeline': '看守古老果园的老妇人，声音酸甜干练、带有护食倔强的年长女性嗓音',
     'pearlmother_isha': '采珠部族的德高望重女族长，深沉从容、慈爱威严的年长母性嗓音',
-    'provisioner_fenna': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'provisioner_fenna': '30多岁热情大方的村庄女物资官，面带微笑、语速轻快温和的亲切成熟女性女中音',
     'provisioner_hale': '40多岁中年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
     'quartermaster_bree': '利落高效、有条不紊的女军需官口吻',
     'quartermaster_edda': '要塞军需女官，疲惫坚毅、雷厉风行的军旅女性嗓音',
     'quartermaster_sela': '物资军需女官，务实利落、略带疲倦的干练女性嗓音',
     'reeve_ottoline': '丰收镇女执政官，干练从容、略带威严幽默的年长女性嗓音',
-    'riftwatch_ollun': '40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'riftwatch_ollun': '40多岁能提前听到空间裂隙异响的学者，声音紧张急促、时而骤然停顿屏息侧耳倾听的神经质狂热学者男声',
     'salvage_boss_ryna': '豪迈坚毅、雷厉风行的打捞队女首领口吻',
     'salvager_edda': '沙滩拾荒沉船的女打捞者，干练冷峻、略带讥讽与世故的独行女性嗓音',
     'scout_einna': '常年在雪原巡逻的年轻女斥候，嗓音紧凑短促、冷静戒备的年轻女性嗓音',
@@ -209,15 +213,15 @@ NPC_VOICE_INSTRUCTS = {
     'smith_haldren': '40多岁至50岁粗犷洪亮的铁匠大师，在熔炉旁中气十足、声音如钢铁般有力的男低音',
     'spirit_healer': '空灵神圣、超然物外的远古灵魂女医者语气',
     'stablemaster_marla': '干练爽朗、热情洋溢的马厩女老板口吻',
-    'strandwatcher_pell': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
-    'tanner_hesk': '40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'strandwatcher_pell': '30多岁走出幽暗丛林来到阳光海滩的守卫哨兵，嗓音爽朗阳光、开阔放松、带着海岛惬意笑意的青年男中音',
+    'tanner_hesk': '40多岁深褐皮革工坊的制革大师，声音沙哑扁平、字句极其简短短促、绝不多说半句废话的冷硬干练中年男低音',
     'the_merchant': '50多岁精明能干的商会拍卖官，语调温润连贯、充满诱惑力与市井喜感的从容中年男中音',
-    'tidewatcher_ondrel': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
-    'tinker_gizzel': '30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音',
+    'tidewatcher_ondrel': '30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语',
+    'tinker_gizzel': '工坊地精疯狂技师，语速极快、神经质高亢跳跃、时而尖叫时而窃笑的科学狂人男高音',
     'trader_wilkes': '40多岁热情洋溢的市井小贩，语速明快、带着爽朗笑意的亲切中年男高音',
     'trapper_brosk': '60多岁老年饱经沧桑的长者，声音沉稳和蔼、语调舒缓的中老年男性男低音',
     'varkhul': '古老苍劲、坚如磐石的终焉熔炉锻造之父，深沉浑厚的远古神明低音',
-    'vicar_creel': '50多岁成熟热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音',
+    'vicar_creel': '50多岁荒废礼拜堂的末代教士，疲惫干瘪、沙哑空洞、心灰意冷看透生死的年长教士男声',
     'warden_coalfast': '40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
     'warden_fenwick': '40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音',
     'warden_kaldra': '冷峻坚决、忠诚警惕的女守望者口吻',
@@ -234,7 +238,7 @@ NPC_VOICE_INSTRUCTS = {
 
 
 def clean_spoken_text(text: str) -> str:
-    """清理台词文本中的运行时插值变量与特殊字符，使朗读自然流畅"""
+    """清理台词文本中的运行时插值变量与操作提示，保留剧情独白与口头禅"""
     if not text:
         return ""
     cleaned = text
@@ -242,10 +246,9 @@ def clean_spoken_text(text: str) -> str:
     cleaned = re.sub(r'\{className\}|\$C', '冒险者', cleaned)
     cleaned = re.sub(r'\{[a-zA-Z0-9_]+\}', '', cleaned)
     cleaned = re.sub(r'\$[a-zA-Z0-9_]+', '', cleaned)
-    cleaned = re.sub(r'\([^)]*\)', '', cleaned)
-    cleaned = re.sub(r'（[^）]*）', '', cleaned)
-    cleaned = re.sub(r'\[[^\]]*\]', '', cleaned)
-    cleaned = re.sub(r'【[^】]*】', '', cleaned)
+    # 仅精准过滤 UI 快捷键操作提示 (如 Shift+K、按 B 打开背包等)，保留角色神韵独白 (如“相信我，好戏就在那儿”)
+    cleaned = re.sub(r'[（(](?:Shift\+[A-Za-z0-9]+.*?|按[A-Za-z0-9\s]+打开.*?|触屏设备.*?)[）)]', '', cleaned)
+    cleaned = re.sub(r'\[[^\]]*\]|【[^】]*】', '', cleaned)
     cleaned = re.sub(r'https?://\S+', '', cleaned)
     cleaned = re.sub(r'[@#^&*<>~`|/\\_]', '', cleaned)
     cleaned = re.sub(r'[，,]+[。.]+', '。', cleaned)
@@ -285,20 +288,35 @@ def compute_fingerprint(text: str, instruct: str, mode: str = "design", anchor_k
 
 
 def load_manifest_keys() -> dict[str, str]:
-    """从主仓库的 voice_manifest.generated.ts 中解析出全部 key 及其所属 npc"""
-    if not MANIFEST_EN_FILE.exists():
-        raise FileNotFoundError(f"找不到英文清单文件: {MANIFEST_EN_FILE}")
-    content = MANIFEST_EN_FILE.read_text(encoding="utf-8")
-    m = re.search(r'export const VOICE_LINES: Record<string, string> =\s*(\{[\s\S]*?\})\s*as const;', content)
-    if not m:
-        raise ValueError("无法解析 voice_manifest.generated.ts 中的 JSON 数据")
-    raw_dict = json.loads(m.group(1))
+    """调用 export_catalog.mjs 从 sim 数据层收集全部 611 条真实台词 (解耦上游残缺清单)"""
+    import subprocess
+    catalog_tool = ROOT / "scripts" / "voices" / "export_catalog.mjs"
+    env = dict(os.environ)
+    env["PATH"] = f"/home/yeleo/miniconda3/envs/claudecraft/bin:/usr/bin:/bin:{env.get('PATH', '')}"
     
+    raw_list = None
+    if catalog_tool.exists():
+        try:
+            out = subprocess.check_output(["node", str(catalog_tool)], cwd=str(ROOT), env=env, encoding="utf-8")
+            raw_list = json.loads(out)
+        except Exception as e:
+            print(f"[Warn] 动态调用 export_catalog.mjs 失败 ({e})，尝试静态缓存")
+
+    if not raw_list:
+        fallback_file = ROOT / "scripts" / "voices" / "all_lines_catalog.json"
+        if fallback_file.exists():
+            raw_list = json.loads(fallback_file.read_text(encoding="utf-8"))
+        else:
+            raise RuntimeError("无法获取全量 611 条台词列表")
+
+    # 缓存一份全量 catalog
+    (ROOT / "scripts" / "voices" / "all_lines_catalog.json").write_text(
+        json.dumps(raw_list, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
     res = {}
-    for key, val in raw_dict.items():
-        m2 = re.match(r'/audio/voice/([^/]+)/', val)
-        voice_npc = m2.group(1) if m2 else "unknown"
-        res[key] = voice_npc
+    for item in raw_list:
+        res[item["key"]] = item["voiceNpc"]
     return res
 
 
@@ -315,6 +333,13 @@ def load_all_chinese_lines(manifest_keys: dict[str, str]) -> dict[str, dict]:
 
     guide_map = {
         'greeting__ferryman_odo': entries.get('guide.odo.greeting', '欢迎来到东溪谷，冒险者。若你准备启航，随时告诉我。'),
+        'guide__odo__arrival': entries.get('hudChrome.bootcamp.voiceArrival', '放轻松，朋友，靠岸了。看到脚下的金色道路了吗？它比我更识路。跟着它走。'),
+        'guide__odo__first_flag': entries.get('hudChrome.bootcamp.voiceFirstFlag', '第一面旗帜拿下了。步子别停，只剩最后两面了。'),
+        'guide__odo__run_done': entries.get('hudChrome.bootcamp.voiceRunDone', '跑得漂亮。监督者佩尔拿着你的酬劳，快去领吧。'),
+        'guide__odo__station_done_a': entries.get('hudChrome.bootcamp.voiceStationDoneA', '干得好。前往下一处，前面的道路已经为你照亮了。'),
+        'guide__odo__station_done_b': entries.get('hudChrome.bootcamp.voiceStationDoneB', '你已经掌握要领了，毫无疑问。'),
+        'guide__odo__veer_off': entries.get('hudChrome.bootcamp.voiceVeerOff', '等一下，朋友，走错方向了。金色道路在你的身后。'),
+        'guide__odo__graduate': entries.get('hudChrome.bootcamp.voiceGraduate', '钟声已经为你敲响。东溪镇就在对岸等着你，你已经准备好了。'),
         'guide__movement': '使用 W、A、S、D 键移动，按住鼠标右键可以自由转动视野。',
         'guide__quest_log': '按下快捷键 L 可以随时打开任务日志，查看你当前接取的所有委托与奖励。',
         'guide__combat_basics': '选中目标后按下数字键释放技能。注意保持安全距离与法力值消耗。',
@@ -429,7 +454,7 @@ def load_all_chinese_lines(manifest_keys: dict[str, str]) -> dict[str, dict]:
             mode = "clone"
         else:
             # 尚无母本（全新 NPC）：若为打招呼台词，则作为初始母本候选进行 VoiceDesign 捏声
-            if line_key.startswith("greeting__"):
+            if line_key.startswith("greeting__") or line_key == primary_anchor:
                 is_anchor = True
                 anchor_key = line_key
                 mode = "design"
@@ -814,6 +839,21 @@ def main():
                     "updated_at": datetime.now(timezone.utc).isoformat()
                 }
                 save_cache(cache)
+                if item["is_anchor"]:
+                    anchor_dest = ANCHORS_DIR / f"{item['actual_npc']}.mp3"
+                    shutil.copy2(dest_file, anchor_dest)
+                    a_manifest = load_anchor_manifest()
+                    a_manifest[item["actual_npc"]] = {
+                        "npc_id": item["actual_npc"],
+                        "file": f"{item['actual_npc']}.mp3",
+                        "source_key": item["key"],
+                        "reference_text": item["text"],
+                        "instruct": item["instruct"],
+                        "mode": "anchor_frozen",
+                        "audio_hash": h12,
+                        "created_at": datetime.now(timezone.utc).isoformat()
+                    }
+                    save_anchor_manifest(a_manifest)
                 success += 1
                 total_processed += 1
             except KeyboardInterrupt:

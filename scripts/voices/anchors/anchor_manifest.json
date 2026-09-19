@@ -44,10 +44,10 @@
     "file": "armorer_hode.mp3",
     "source_key": "greeting__armorer_hode",
     "reference_text": "炉火正旺，砂轮正转。能砍的东西，我都卖。",
-    "instruct": "50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "40多岁身披厚重锁甲的铠甲匠大师，声音洪亮爽朗、性格豪爽，大嗓门如在铁砧上捶打玄铁的中年男高音",
     "mode": "anchor_frozen",
-    "audio_hash": "e5e37db77816",
-    "created_at": "2026-09-18T07:32:13.137989+00:00"
+    "audio_hash": "cb963540d139",
+    "created_at": "2026-09-19T04:29:18.384309+00:00"
   },
   "astronomer_cassian": {
     "npc_id": "astronomer_cassian",
@@ -144,10 +144,10 @@
     "file": "brother_halven.mp3",
     "source_key": "greeting__brother_halven",
     "reference_text": "下方的圣物库又移位了。",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "80岁在沼泽中守望死者残魂的圣洁老修道士，嗓音苍老颤抖、带着无尽虔诚与轻声敬畏的年迈长者男声",
     "mode": "anchor_frozen",
-    "audio_hash": "70959a8f86fd",
-    "created_at": "2026-09-18T07:32:13.139002+00:00"
+    "audio_hash": "3d6d2c17ac03",
+    "created_at": "2026-09-19T04:29:45.525402+00:00"
   },
   "brother_halven_marsh": {
     "npc_id": "brother_halven_marsh",
@@ -224,10 +224,10 @@
     "file": "castaway_navigator.mp3",
     "source_key": "yell__drifthaven_i_can_smell_the_cookfires_from_here_i_owe_you_my_",
     "reference_text": "避风港！我都闻到炊烟里热汤的香气了！我的航海图和这条老命，全都是你给的，朋友！",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁在礁石中获救的落难女领航员，嗓音低沉沙哑、精疲力竭却极度倔强、拒绝示弱的独行女水手口吻",
     "mode": "anchor_frozen",
-    "audio_hash": "6e1737b89df4",
-    "created_at": "2026-09-18T07:32:13.155335+00:00"
+    "audio_hash": "af71769ed105",
+    "created_at": "2026-09-19T03:47:54.509274+00:00"
   },
   "chronicler_edda_hartwell": {
     "npc_id": "chronicler_edda_hartwell",
@@ -279,35 +279,55 @@
     "audio_hash": "59ac8f43a49c",
     "created_at": "2026-09-18T07:32:13.150257+00:00"
   },
+  "farmer_hollis": {
+    "npc_id": "farmer_hollis",
+    "file": "farmer_hollis.mp3",
+    "source_key": "greeting__farmer_hollis",
+    "reference_text": "梯田只给山肯给的那么多，冒险者。我卖种子和堆肥，要是你的庄稼枯萎了，我可以把谷壳重新沤成好土给你。",
+    "instruct": "40多岁梯田庄稼汉，语速缓慢平稳、字字沉实的中年农夫嗓音",
+    "mode": "anchor_frozen",
+    "audio_hash": "9adea0330a6c",
+    "created_at": "2026-09-19T04:29:36.453391+00:00"
+  },
+  "farmer_jessica": {
+    "npc_id": "farmer_jessica",
+    "file": "farmer_jessica.mp3",
+    "source_key": "greeting__farmer_jessica",
+    "reference_text": "祝你土好天晴，冒险者。从我这里买粒种子，播到那边任意一块田畦里，然后该忙什么忙什么去。你不在的时候它也一直在长，而且永远不会坏。收成日志列出了每块已播种的田畦和它的计时。",
+    "instruct": "20多岁在田间劳作的年轻女农夫，阳光清脆、随和利落的年轻女性嗓音",
+    "mode": "anchor_frozen",
+    "audio_hash": "84784c2588df",
+    "created_at": "2026-09-19T03:45:27.668454+00:00"
+  },
   "ferryman_odo": {
     "npc_id": "ferryman_odo",
     "file": "ferryman_odo.mp3",
     "source_key": "greeting__ferryman_odo",
     "reference_text": "刚下渡船吗，冒险者？看守塔姆就在码头正南的海滩上守着试炼跑道：先去跑一趟他的跑道，你的双腿会感谢你的。这片海滨的每一位看守都会在你办完差事后把你交给下一位，屏幕顶端的那张卡片永远知道下一步该往哪儿走。等谷地召唤你回去时，敲响立在我码头旁的那口铃，渡航会把你送到东溪镇上。",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "70多岁饱经沧桑的老船长，沙哑中带着无尽慈爱，语调舒缓沉稳、充满长辈关怀与鼓励的慈祥老爷爷男低音",
     "mode": "anchor_frozen",
-    "audio_hash": "58bffe0498bd",
-    "created_at": "2026-09-18T07:32:13.140311+00:00"
+    "audio_hash": "f56746c4b900",
+    "created_at": "2026-09-19T03:47:38.872636+00:00"
   },
   "ferrymaster_caddow": {
     "npc_id": "ferrymaster_caddow",
     "file": "ferrymaster_caddow.mp3",
     "source_key": "greeting__ferrymaster_caddow",
     "reference_text": "大湖又起雾了。水面上的灯笼一灭，聪明人就该待在岸上。",
-    "instruct": "50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "50多岁大雾弥漫湖泊上的摆渡长，声音低沉潮湿、语速缓慢而谨慎，习惯压低嗓音说话的沉稳中年男中音",
     "mode": "anchor_frozen",
-    "audio_hash": "36004225fb14",
-    "created_at": "2026-09-18T07:32:13.140458+00:00"
+    "audio_hash": "c9a66ee0fa65",
+    "created_at": "2026-09-19T04:30:16.341847+00:00"
   },
   "fisher_bram": {
     "npc_id": "fisher_bram",
     "file": "fisher_bram.mp3",
     "source_key": "yell__gullhaven_i_can_see_our_roof_from_here_go_on_ahead_friend_i_",
     "reference_text": "鸥港！我在这儿都能看见自家的屋顶了！你先请吧朋友，我得赶紧飞奔回去拥抱我的妻子！",
-    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "instruct": "30多岁遭遇海难、浑身湿透惊魂未定、失声痛哭想念妻子的悲喜交加年轻渔夫嗓音",
     "mode": "anchor_frozen",
-    "audio_hash": "fe0d7b72fb93",
-    "created_at": "2026-09-18T07:32:13.155583+00:00"
+    "audio_hash": "538506f88f9d",
+    "created_at": "2026-09-19T03:48:19.792601+00:00"
   },
   "fisher_nell": {
     "npc_id": "fisher_nell",
@@ -354,20 +374,20 @@
     "file": "fury.mp3",
     "source_key": "greeting__fury",
     "reference_text": "战场黄沙铭记每一场胜利。愿你妥善运用这份荣誉。",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "40多岁角斗场荣誉军需官，暴烈如雷、带有金属共鸣质感与死斗压迫感的半吼叫式残酷军人男声",
     "mode": "anchor_frozen",
-    "audio_hash": "334d1070b1f8",
-    "created_at": "2026-09-18T07:32:13.141402+00:00"
+    "audio_hash": "3971ee8fd605",
+    "created_at": "2026-09-19T03:46:00.346254+00:00"
   },
   "gardener_yew": {
     "npc_id": "gardener_yew",
     "file": "gardener_yew.mp3",
     "source_key": "greeting__gardener_yew",
     "reference_text": "把那辆手推车递给我，好吗？不管小镇怎么想，这些草坪总得有人走上一遍。",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "90多岁看守草坪百年的极老园丁，低沉缓慢、如同苔藓与泥土般充满神秘神性的苍老男低音",
     "mode": "anchor_frozen",
-    "audio_hash": "72e28f80075d",
-    "created_at": "2026-09-18T07:32:13.141519+00:00"
+    "audio_hash": "96ade166d0f8",
+    "created_at": "2026-09-19T03:46:42.370033+00:00"
   },
   "gatecaptain_brannoc": {
     "npc_id": "gatecaptain_brannoc",
@@ -384,10 +404,10 @@
     "file": "gatewarden_pell.mp3",
     "source_key": "greeting__gatewarden_pell",
     "reference_text": "在草坪上走路当心些。花园亲自修剪它们，也喜欢它们整整齐齐。",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁看守古老花园大门的小守卫官，声音温和尽责、略带神经质紧张，说话时忍不住回头张望灌木丛的年轻男声",
     "mode": "anchor_frozen",
-    "audio_hash": "b044bf29fc3d",
-    "created_at": "2026-09-18T07:32:13.141682+00:00"
+    "audio_hash": "598d7d40427e",
+    "created_at": "2026-09-19T04:30:54.130755+00:00"
   },
   "gravedigger_mosley": {
     "npc_id": "gravedigger_mosley",
@@ -464,10 +484,10 @@
     "file": "huntsman_deral.mp3",
     "source_key": "greeting__huntsman_deral",
     "reference_text": "别出声。鹿群熟悉这山谷里的每一种声响，我也一样。",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "40多岁身穿苔藓皮甲的猎兽哨兵守望者，声音低沉平稳、刻意压低气息以防惊扰猎物、字字沉实坚毅的中年男低音",
     "mode": "anchor_frozen",
-    "audio_hash": "90af823f2430",
-    "created_at": "2026-09-18T07:32:13.142608+00:00"
+    "audio_hash": "08894243c974",
+    "created_at": "2026-09-19T04:29:58.574917+00:00"
   },
   "ignivar": {
     "npc_id": "ignivar",
@@ -514,10 +534,10 @@
     "file": "lamplighter_sorrel.mp3",
     "source_key": "greeting__lamplighter_sorrel",
     "reference_text": "留意这些灯，朋友。过了这道门，太阳就放弃了，接班的是花。",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "40多岁在永夜无光之路上坚守的点灯人，嗓音从容随和、略带戏谑与值夜人的从容沉稳中年男声",
     "mode": "anchor_frozen",
-    "audio_hash": "aefd717f2179",
-    "created_at": "2026-09-18T07:32:13.142867+00:00"
+    "audio_hash": "dac23394a93d",
+    "created_at": "2026-09-19T04:30:30.759052+00:00"
   },
   "lampman_cobb": {
     "npc_id": "lampman_cobb",
@@ -574,10 +594,10 @@
     "file": "mender_saul.mp3",
     "source_key": "greeting__mender_saul",
     "reference_text": "这一个月里我接的骨头，比过去十年医治渔民跌伤加起来还多。裂隙夺走的东西，很少留下什么。若你办得到，就囫囵着回来见我。",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "40多岁战场战地医师外科军医，疲惫温和、语气严谨精准，字里行间流露真挚悲悯之心的成年医者男性嗓音",
     "mode": "anchor_frozen",
-    "audio_hash": "004cfbb0e738",
-    "created_at": "2026-09-18T07:32:13.143622+00:00"
+    "audio_hash": "3af7df6809a9",
+    "created_at": "2026-09-19T04:31:34.745915+00:00"
   },
   "mother_sedge": {
     "npc_id": "mother_sedge",
@@ -644,10 +664,10 @@
     "file": "provisioner_fenna.mp3",
     "source_key": "greeting__provisioner_fenna",
     "reference_text": "面包还热着，泉水依然甘甜。幽谷有所馈赠，我也一样。",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁热情大方的村庄女物资官，面带微笑、语速轻快温和的亲切成熟女性女中音",
     "mode": "anchor_frozen",
-    "audio_hash": "476cb0cef34d",
-    "created_at": "2026-09-18T07:32:13.144112+00:00"
+    "audio_hash": "592824c1294a",
+    "created_at": "2026-09-19T03:46:09.643690+00:00"
   },
   "provisioner_hale": {
     "npc_id": "provisioner_hale",
@@ -714,10 +734,10 @@
     "file": "riftwatch_ollun.mp3",
     "source_key": "greeting__riftwatch_ollun",
     "reference_text": "每道裂隙开启之前都会歌唱，只要你有听它的耳朵。此刻我能听见岛上三道裂隙正在骚动，其中一道就在近处。",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "40多岁能提前听到空间裂隙异响的学者，声音紧张急促、时而骤然停顿屏息侧耳倾听的神经质狂热学者男声",
     "mode": "anchor_frozen",
-    "audio_hash": "201874acd410",
-    "created_at": "2026-09-18T07:32:13.144792+00:00"
+    "audio_hash": "c0b812d57a94",
+    "created_at": "2026-09-19T04:31:11.345636+00:00"
   },
   "salvage_boss_ryna": {
     "npc_id": "salvage_boss_ryna",
@@ -824,20 +844,20 @@
     "file": "strandwatcher_pell.mp3",
     "source_key": "greeting__strandwatcher_pell",
     "reference_text": "总算走出那片黑树林了。喘口气吧，陌生人，隘口这一侧还归太阳管。",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁走出幽暗丛林来到阳光海滩的守卫哨兵，嗓音爽朗阳光、开阔放松、带着海岛惬意笑意的青年男中音",
     "mode": "anchor_frozen",
-    "audio_hash": "66695bf4eb6b",
-    "created_at": "2026-09-18T07:32:13.146128+00:00"
+    "audio_hash": "19c918295f7b",
+    "created_at": "2026-09-19T04:30:44.339437+00:00"
   },
   "tanner_hesk": {
     "npc_id": "tanner_hesk",
     "file": "tanner_hesk.mp3",
     "source_key": "greeting__tanner_hesk",
     "reference_text": "皮子的好坏全看鞣制，冒险者。鞣槽已经备好，就等你了。",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "40多岁深褐皮革工坊的制革大师，声音沙哑扁平、字句极其简短短促、绝不多说半句废话的冷硬干练中年男低音",
     "mode": "anchor_frozen",
-    "audio_hash": "9b00bc041269",
-    "created_at": "2026-09-18T07:32:13.146398+00:00"
+    "audio_hash": "160f78048955",
+    "created_at": "2026-09-19T04:29:11.121104+00:00"
   },
   "the_merchant": {
     "npc_id": "the_merchant",
@@ -864,20 +884,20 @@
     "file": "tidewatcher_ondrel.mp3",
     "source_key": "greeting__tidewatcher_ondrel",
     "reference_text": "潭水饮尽月光，冒险者，又将溺者吐还。我守望那道门户已有三十夜——而今夜，它开了。",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "anchor_frozen",
-    "audio_hash": "cff76abbce9c",
-    "created_at": "2026-09-18T07:32:13.146837+00:00"
+    "audio_hash": "0b3cd8716599",
+    "created_at": "2026-09-19T03:45:49.889860+00:00"
   },
   "tinker_gizzel": {
     "npc_id": "tinker_gizzel",
     "file": "tinker_gizzel.mp3",
     "source_key": "greeting__tinker_gizzel",
     "reference_text": "弹簧、齿轮、锋利的刃口，冒险者：你手上缺什么，工坊里就有什么。",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "工坊地精疯狂技师，语速极快、神经质高亢跳跃、时而尖叫时而窃笑的科学狂人男高音",
     "mode": "anchor_frozen",
-    "audio_hash": "f94837fb8807",
-    "created_at": "2026-09-18T07:32:13.147023+00:00"
+    "audio_hash": "cab2325b7dca",
+    "created_at": "2026-09-19T03:45:00.062479+00:00"
   },
   "trader_wilkes": {
     "npc_id": "trader_wilkes",
@@ -914,10 +934,10 @@
     "file": "vicar_creel.mp3",
     "source_key": "greeting__vicar_creel",
     "reference_text": "礼拜堂多年前就塌了。堂下的亡者浑然不觉，于是我留了下来。",
-    "instruct": "50多岁成熟热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "instruct": "50多岁荒废礼拜堂的末代教士，疲惫干瘪、沙哑空洞、心灰意冷看透生死的年长教士男声",
     "mode": "anchor_frozen",
-    "audio_hash": "a83e6d4f39f4",
-    "created_at": "2026-09-18T07:32:13.147504+00:00"
+    "audio_hash": "cc2f06707b5c",
+    "created_at": "2026-09-19T03:46:23.769601+00:00"
   },
   "warden_coalfast": {
     "npc_id": "warden_coalfast",
