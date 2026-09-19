@@ -35,18 +35,6 @@
     "audio_hash": "c3269b35bac9",
     "updated_at": "2026-09-18T04:26:12.201808+00:00"
   },
-  "greeting__armorer_hode": {
-    "text": "炉火正旺，砂轮正转。能砍的东西，我都卖。",
-    "text_hash": "2b774543ad593683",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "armorer_hode",
-    "npc_seed": 24624778,
-    "audio_path": "armorer_hode/greeting__armorer_hode.mp3",
-    "audio_hash": "e5e37db77816",
-    "updated_at": "2026-09-18T04:26:20.423650+00:00"
-  },
   "greeting__astronomer_cassian": {
     "text": "轻声些。这里的天空从无黎明，所以它也从不停止诉说。",
     "text_hash": "d8f63b48307fe91a",
@@ -118,18 +106,6 @@
     "audio_path": "brother_aldric/greeting__brother_aldric.mp3",
     "audio_hash": "035847da9501",
     "updated_at": "2026-09-18T04:27:40.919798+00:00"
-  },
-  "greeting__brother_halven": {
-    "text": "下方的圣物库又移位了。",
-    "text_hash": "a6f11a6d18b1dae7",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "brother_halven",
-    "npc_seed": 97536900,
-    "audio_path": "brother_halven/greeting__brother_halven.mp3",
-    "audio_hash": "70959a8f86fd",
-    "updated_at": "2026-09-18T04:28:39.057924+00:00"
   },
   "greeting__bursar_aldous_crane": {
     "text": "每一只木箱、每一个钱柜、每一件饰物，交给镀金保险箱都万无一失。",
@@ -217,39 +193,27 @@
   },
   "greeting__cook_marlow": {
     "text": "没有半生不熟的东西能离开我的厨房，冒险者。坐下吃完，再回去闯荡。",
-    "text_hash": "7fb2a20fea3447ac",
+    "text_hash": "9fcf0b43142837ef",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音",
+    "instruct": "40多岁系着围裙的厨房大师傅，大嗓门、热烈粗犷带着市井炊烟烟火气的中年男中音",
     "mode": "clone(decoupled)",
     "anchor_key": "cook_marlow",
     "npc_seed": 81835220,
     "audio_path": "cook_marlow/greeting__cook_marlow.mp3",
-    "audio_hash": "7b592991cda4",
-    "updated_at": "2026-09-18T04:31:17.391226+00:00"
+    "audio_hash": "1ca68ab912dc",
+    "updated_at": "2026-09-19T03:48:34.174190+00:00"
   },
   "greeting__ferryman_odo": {
     "text": "刚下渡船吗，冒险者？看守塔姆就在码头正南的海滩上守着试炼跑道：先去跑一趟他的跑道，你的双腿会感谢你的。这片海滨的每一位看守都会在你办完差事后把你交给下一位，屏幕顶端的那张卡片永远知道下一步该往哪儿走。等谷地召唤你回去时，敲响立在我码头旁的那口铃，渡航会把你送到东溪镇上。",
-    "text_hash": "bc73a90f470ae120",
+    "text_hash": "77f9b9e6f53e8ad2",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "70多岁饱经沧桑的老船长，沙哑中带着无尽慈爱，语调舒缓沉稳、充满长辈关怀与鼓励的慈祥老爷爷男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "ferryman_odo",
     "npc_seed": 33928255,
     "audio_path": "ferryman_odo/greeting__ferryman_odo.mp3",
-    "audio_hash": "58bffe0498bd",
-    "updated_at": "2026-09-18T04:32:24.037008+00:00"
-  },
-  "greeting__ferrymaster_caddow": {
-    "text": "大湖又起雾了。水面上的灯笼一灭，聪明人就该待在岸上。",
-    "text_hash": "f0a08e1d24bd6a09",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "ferrymaster_caddow",
-    "npc_seed": 11241036,
-    "audio_path": "ferrymaster_caddow/greeting__ferrymaster_caddow.mp3",
-    "audio_hash": "36004225fb14",
-    "updated_at": "2026-09-18T04:32:35.900470+00:00"
+    "audio_hash": "37ab1e0b768c",
+    "updated_at": "2026-09-19T04:34:22.467440+00:00"
   },
   "greeting__fisher_nell": {
     "text": "它就在晾网的地方裂开了。就在那儿，我这辈子每天清晨都站着的地方。我再也不下到海岸去了。如今我哪儿都不太去了。",
@@ -289,27 +253,27 @@
   },
   "greeting__fury": {
     "text": "战场黄沙铭记每一场胜利。愿你妥善运用这份荣誉。",
-    "text_hash": "7d954dd7ee3793da",
+    "text_hash": "3b1f80cd034ac371",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "40多岁角斗场荣誉军需官，暴烈如雷、带有金属共鸣质感与死斗压迫感的半吼叫式残酷军人男声",
     "mode": "clone(decoupled)",
     "anchor_key": "fury",
     "npc_seed": 71603531,
     "audio_path": "fury/greeting__fury.mp3",
-    "audio_hash": "334d1070b1f8",
-    "updated_at": "2026-09-18T04:33:52.634615+00:00"
+    "audio_hash": "4cde59f24ec9",
+    "updated_at": "2026-09-19T04:32:45.589815+00:00"
   },
   "greeting__gardener_yew": {
     "text": "把那辆手推车递给我，好吗？不管小镇怎么想，这些草坪总得有人走上一遍。",
-    "text_hash": "0d2cf457f0e4fb88",
+    "text_hash": "ac027ac535335f98",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "90多岁看守草坪百年的极老园丁，低沉缓慢、如同苔藓与泥土般充满神秘神性的苍老男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "gardener_yew",
     "npc_seed": 45050387,
     "audio_path": "gardener_yew/greeting__gardener_yew.mp3",
-    "audio_hash": "72e28f80075d",
-    "updated_at": "2026-09-18T04:34:02.441429+00:00"
+    "audio_hash": "bb0c69e499b9",
+    "updated_at": "2026-09-19T04:33:38.192415+00:00"
   },
   "greeting__gatecaptain_brannoc": {
     "text": "望龙哨守着这道门。守了四十年。今夜也一样守得住。",
@@ -322,18 +286,6 @@
     "audio_path": "gatecaptain_brannoc/greeting__gatecaptain_brannoc.mp3",
     "audio_hash": "42211723f6a9",
     "updated_at": "2026-09-18T04:34:13.001212+00:00"
-  },
-  "greeting__gatewarden_pell": {
-    "text": "在草坪上走路当心些。花园亲自修剪它们，也喜欢它们整整齐齐。",
-    "text_hash": "313414577a625d38",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "gatewarden_pell",
-    "npc_seed": 79935709,
-    "audio_path": "gatewarden_pell/greeting__gatewarden_pell.mp3",
-    "audio_hash": "b044bf29fc3d",
-    "updated_at": "2026-09-18T04:34:22.961236+00:00"
   },
   "greeting__harbormaster_odile": {
     "text": "这湾里每一条船的龙骨都欠着老灯塔的情。有话快说，潮水可不等人。",
@@ -407,18 +359,6 @@
     "audio_hash": "2778f0b15db4",
     "updated_at": "2026-09-18T04:35:32.443463+00:00"
   },
-  "greeting__huntsman_deral": {
-    "text": "别出声。鹿群熟悉这山谷里的每一种声响，我也一样。",
-    "text_hash": "532347e3dc9d6aec",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "huntsman_deral",
-    "npc_seed": 83997835,
-    "audio_path": "huntsman_deral/greeting__huntsman_deral.mp3",
-    "audio_hash": "90af823f2430",
-    "updated_at": "2026-09-18T04:35:40.679852+00:00"
-  },
   "greeting__keeper_bram": {
     "text": "这盏灯在我手上烧了三十九年。它不会在你来的这天熄灭。",
     "text_hash": "935ec04d0b72eec5",
@@ -442,18 +382,6 @@
     "audio_path": "keeper_saelwyn/greeting__keeper_saelwyn.mp3",
     "audio_hash": "755b78529975",
     "updated_at": "2026-09-18T04:36:32.116277+00:00"
-  },
-  "greeting__lamplighter_sorrel": {
-    "text": "留意这些灯，朋友。过了这道门，太阳就放弃了，接班的是花。",
-    "text_hash": "015420bc9e20877d",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "lamplighter_sorrel",
-    "npc_seed": 77136335,
-    "audio_path": "lamplighter_sorrel/greeting__lamplighter_sorrel.mp3",
-    "audio_hash": "aefd717f2179",
-    "updated_at": "2026-09-18T04:36:43.728462+00:00"
   },
   "greeting__lampman_cobb": {
     "text": "待在灯光里，朋友。这片林子数着每一个过门的人。",
@@ -502,18 +430,6 @@
     "audio_path": "loremother_bryn/greeting__loremother_bryn.mp3",
     "audio_hash": "3fdbf01887ab",
     "updated_at": "2026-09-18T04:37:45.939692+00:00"
-  },
-  "greeting__mender_saul": {
-    "text": "这一个月里我接的骨头，比过去十年医治渔民跌伤加起来还多。裂隙夺走的东西，很少留下什么。若你办得到，就囫囵着回来见我。",
-    "text_hash": "afea8836074ed470",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "mender_saul",
-    "npc_seed": 18655655,
-    "audio_path": "mender_saul/greeting__mender_saul.mp3",
-    "audio_hash": "004cfbb0e738",
-    "updated_at": "2026-09-18T04:38:13.952460+00:00"
   },
   "greeting__mother_sedge": {
     "text": "你的靴子还没离开桥面，柳树就已告诉我你要来了。",
@@ -565,15 +481,15 @@
   },
   "greeting__provisioner_fenna": {
     "text": "面包还热着，泉水依然甘甜。幽谷有所馈赠，我也一样。",
-    "text_hash": "0ad1d4e7132d03ea",
+    "text_hash": "806478ff5b019cc4",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁热情大方的村庄女物资官，面带微笑、语速轻快温和的亲切成熟女性女中音",
     "mode": "clone(decoupled)",
     "anchor_key": "provisioner_fenna",
     "npc_seed": 89494995,
     "audio_path": "provisioner_fenna/greeting__provisioner_fenna.mp3",
-    "audio_hash": "476cb0cef34d",
-    "updated_at": "2026-09-18T04:39:34.634967+00:00"
+    "audio_hash": "daef4365f247",
+    "updated_at": "2026-09-19T04:33:12.493598+00:00"
   },
   "greeting__provisioner_hale": {
     "text": "干靴子，干面包，干火药：在芬桥，一天能有两样就算不错。",
@@ -622,18 +538,6 @@
     "audio_path": "reeve_ottoline/greeting__reeve_ottoline.mp3",
     "audio_hash": "a87ac32a0a71",
     "updated_at": "2026-09-18T04:41:04.890196+00:00"
-  },
-  "greeting__riftwatch_ollun": {
-    "text": "每道裂隙开启之前都会歌唱，只要你有听它的耳朵。此刻我能听见岛上三道裂隙正在骚动，其中一道就在近处。",
-    "text_hash": "b6ec9cea32b1ed52",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "riftwatch_ollun",
-    "npc_seed": 54298595,
-    "audio_path": "riftwatch_ollun/greeting__riftwatch_ollun.mp3",
-    "audio_hash": "201874acd410",
-    "updated_at": "2026-09-18T04:41:26.309312+00:00"
   },
   "greeting__salvage_boss_ryna": {
     "text": "一位胳膊还能使唤的冒险者，好。沉船线上的报酬不薄，前提是螃蟹给你留下够数钱的手指。",
@@ -731,30 +635,6 @@
     "audio_hash": "cd8b0436a2e7",
     "updated_at": "2026-09-18T04:43:19.558724+00:00"
   },
-  "greeting__strandwatcher_pell": {
-    "text": "总算走出那片黑树林了。喘口气吧，陌生人，隘口这一侧还归太阳管。",
-    "text_hash": "6ea7a08788d0b0ff",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "strandwatcher_pell",
-    "npc_seed": 92295020,
-    "audio_path": "strandwatcher_pell/greeting__strandwatcher_pell.mp3",
-    "audio_hash": "66695bf4eb6b",
-    "updated_at": "2026-09-18T04:43:51.352938+00:00"
-  },
-  "greeting__tanner_hesk": {
-    "text": "皮子的好坏全看鞣制，冒险者。鞣槽已经备好，就等你了。",
-    "text_hash": "15830ddafdc57988",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "tanner_hesk",
-    "npc_seed": 7122096,
-    "audio_path": "tanner_hesk/greeting__tanner_hesk.mp3",
-    "audio_hash": "9b00bc041269",
-    "updated_at": "2026-09-18T04:44:00.154825+00:00"
-  },
   "greeting__the_merchant": {
     "text": "欢迎来到世界市场，冒险者。从王国各地的冒险者手中购买，或出售你自己的货物。",
     "text_hash": "da5435b8cd362a24",
@@ -769,27 +649,27 @@
   },
   "greeting__tidewatcher_ondrel": {
     "text": "潭水饮尽月光，冒险者，又将溺者吐还。我守望那道门户已有三十夜——而今夜，它开了。",
-    "text_hash": "b11c6f443fd949f7",
+    "text_hash": "ee6926f3f0b78314",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "clone(decoupled)",
     "anchor_key": "tidewatcher_ondrel",
     "npc_seed": 59571655,
     "audio_path": "tidewatcher_ondrel/greeting__tidewatcher_ondrel.mp3",
-    "audio_hash": "cff76abbce9c",
-    "updated_at": "2026-09-18T04:44:47.868949+00:00"
+    "audio_hash": "617b3e92c703",
+    "updated_at": "2026-09-19T04:32:37.569333+00:00"
   },
   "greeting__tinker_gizzel": {
     "text": "弹簧、齿轮、锋利的刃口，冒险者：你手上缺什么，工坊里就有什么。",
-    "text_hash": "3f6d14742216fb91",
+    "text_hash": "a3a80a48c8547bac",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "工坊地精疯狂技师，语速极快、神经质高亢跳跃、时而尖叫时而窃笑的科学狂人男高音",
     "mode": "clone(decoupled)",
     "anchor_key": "tinker_gizzel",
     "npc_seed": 28313270,
     "audio_path": "tinker_gizzel/greeting__tinker_gizzel.mp3",
-    "audio_hash": "f94837fb8807",
-    "updated_at": "2026-09-18T04:45:02.542093+00:00"
+    "audio_hash": "ac6bb80f6daa",
+    "updated_at": "2026-09-19T04:31:50.254402+00:00"
   },
   "greeting__trader_wilkes": {
     "text": "新鲜面包，清水，公道价格。你需要什么？",
@@ -817,15 +697,15 @@
   },
   "greeting__vicar_creel": {
     "text": "礼拜堂多年前就塌了。堂下的亡者浑然不觉，于是我留了下来。",
-    "text_hash": "26898400e7709c83",
+    "text_hash": "3385ccb0ea2fb5b8",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "instruct": "50多岁荒废礼拜堂的末代教士，疲惫干瘪、沙哑空洞、心灰意冷看透生死的年长教士男声",
     "mode": "clone(decoupled)",
     "anchor_key": "vicar_creel",
     "npc_seed": 89938008,
     "audio_path": "vicar_creel/greeting__vicar_creel.mp3",
-    "audio_hash": "a83e6d4f39f4",
-    "updated_at": "2026-09-18T04:45:42.083760+00:00"
+    "audio_hash": "d35f7efe93eb",
+    "updated_at": "2026-09-19T04:33:25.242784+00:00"
   },
   "greeting__warden_coalfast": {
     "text": "裂隙才不管鸥港有多小，冒险者。我们守住这片海岸，否则就再没有海岸可守。与我们并肩而战，我不会忘记你的付出。",
@@ -961,15 +841,15 @@
   },
   "yell__drifthaven_i_can_smell_the_cookfires_from_here_i_owe_you_my_": {
     "text": "避风港！我都闻到炊烟里热汤的香气了！我的航海图和这条老命，全都是你给的，朋友！",
-    "text_hash": "a523a8ff1fc6248c",
+    "text_hash": "73f52afcb52987de",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁在礁石中获救的落难女领航员，嗓音低沉沙哑、精疲力竭却极度倔强、拒绝示弱的独行女水手口吻",
     "mode": "clone(decoupled)",
     "anchor_key": "castaway_navigator",
     "npc_seed": 1063045,
     "audio_path": "castaway_navigator/yell__drifthaven_i_can_smell_the_cookfires_from_here_i_owe_you_my_.mp3",
-    "audio_hash": "6e1737b89df4",
-    "updated_at": "2026-09-12T18:54:09.362675+00:00"
+    "audio_hash": "75b29e48e535",
+    "updated_at": "2026-09-19T05:05:19.121955+00:00"
   },
   "yell__every_blow_will_feed_the_furnace_in_my_chest_by_ember_stone_": {
     "text": "每一记重击，都将化作吾胸膛熔炉的烈焰！以余烬、顽石与巨砧之名，吾将重铸你们的形体！",
@@ -985,15 +865,15 @@
   },
   "yell__gullhaven_i_can_see_our_roof_from_here_go_on_ahead_friend_i_": {
     "text": "鸥港！我在这儿都能看见自家的屋顶了！你先请吧朋友，我得赶紧飞奔回去拥抱我的妻子！",
-    "text_hash": "45979f1e0a8c924a",
+    "text_hash": "acf9b61cc4ca99e4",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "instruct": "30多岁遭遇海难、浑身湿透惊魂未定、失声痛哭想念妻子的悲喜交加年轻渔夫嗓音",
     "mode": "clone(decoupled)",
     "anchor_key": "fisher_bram",
     "npc_seed": 90238156,
     "audio_path": "fisher_bram/yell__gullhaven_i_can_see_our_roof_from_here_go_on_ahead_friend_i_.mp3",
-    "audio_hash": "fe0d7b72fb93",
-    "updated_at": "2026-09-12T18:54:48.341099+00:00"
+    "audio_hash": "1de203bb1999",
+    "updated_at": "2026-09-19T05:05:58.223118+00:00"
   },
   "yell__no_i_m_sorry_brosk_i_couldn_t_make_it": {
     "text": "不……对不起，布罗斯克大师……我没能把药剂送回去……",
@@ -1055,18 +935,6 @@
     "audio_hash": "1d4e8b4bbe49",
     "updated_at": "2026-09-18T04:28:34.633569+00:00"
   },
-  "greeting__brother_halven_marsh": {
-    "text": "小径向北延伸。又一座圣物库，又一场仪式。选择你的难度，我会为你守住绳索，直到你归来。",
-    "text_hash": "1ef7d765a0717547",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "brother_halven_marsh",
-    "npc_seed": 48210643,
-    "audio_path": "brother_halven/greeting__brother_halven_marsh.mp3",
-    "audio_hash": "bf25bb883218",
-    "updated_at": "2026-09-18T04:29:00.218134+00:00"
-  },
   "greeting__scout_maren_highwatch": {
     "text": "我和你一起在湿地追踪那些邪教徒，而线索通向这里。群峰更糟，冒险者。保持警惕。",
     "text_hash": "489f97394afe8c1d",
@@ -1081,99 +949,99 @@
   },
   "greeting__warmarshal_draven_kole": {
     "text": "我只收荣誉这一种货币，战争军备库由我看守。在战场上挣得你的军阶，我便为你披上迎接下一战的甲胄。",
-    "text_hash": "b52114ca65991bb1",
+    "text_hash": "2c42821ce424bd07",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "40多岁角斗场荣誉军需官，暴烈如雷、带有金属共鸣质感与死斗压迫感的半吼叫式残酷军人男声",
     "mode": "clone(decoupled)",
     "anchor_key": "warmarshal_draven_kole",
     "npc_seed": 1762275,
     "audio_path": "fury/greeting__warmarshal_draven_kole.mp3",
-    "audio_hash": "1d53d0650fe6",
-    "updated_at": "2026-09-18T04:47:03.678143+00:00"
+    "audio_hash": "1d7f783a3140",
+    "updated_at": "2026-09-19T03:49:13.324271+00:00"
   },
   "guide__odo__arrival": {
-    "text": "你好，旅行者。",
-    "text_hash": "963412f4e5ab4800",
+    "text": "平安上岸啦，朋友。看见脚下这条金色路径了吗？它比我还认得路，跟着走就是。",
+    "text_hash": "e26b25394d63e9ca",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "70多岁饱经沧桑的老船长，沙哑中带着无尽慈爱，语调舒缓沉稳、充满长辈关怀与鼓励的慈祥老爷爷男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "ferryman_odo",
     "npc_seed": 33928255,
     "audio_path": "ferryman_odo/guide__odo__arrival.mp3",
-    "audio_hash": "1230d3f4f22f",
-    "updated_at": "2026-09-12T15:46:45.386045+00:00"
+    "audio_hash": "3ae604d52e6a",
+    "updated_at": "2026-09-19T05:06:20.644284+00:00"
   },
   "guide__odo__first_flag": {
-    "text": "你好，旅行者。",
-    "text_hash": "963412f4e5ab4800",
+    "text": "过了一面旗了。腿别停，还剩两面。",
+    "text_hash": "f183a92ea1b52890",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "70多岁饱经沧桑的老船长，沙哑中带着无尽慈爱，语调舒缓沉稳、充满长辈关怀与鼓励的慈祥老爷爷男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "ferryman_odo",
     "npc_seed": 33928255,
     "audio_path": "ferryman_odo/guide__odo__first_flag.mp3",
-    "audio_hash": "52a181dd1a03",
-    "updated_at": "2026-09-12T15:46:49.232575+00:00"
+    "audio_hash": "d3a0e499adf3",
+    "updated_at": "2026-09-19T05:06:27.307384+00:00"
   },
   "guide__odo__graduate": {
-    "text": "你好，旅行者。",
-    "text_hash": "963412f4e5ab4800",
+    "text": "钟为你敲响了。海那头的东溪正等着你，你也准备好了。",
+    "text_hash": "948dd05fdd635834",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "70多岁饱经沧桑的老船长，沙哑中带着无尽慈爱，语调舒缓沉稳、充满长辈关怀与鼓励的慈祥老爷爷男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "ferryman_odo",
     "npc_seed": 33928255,
     "audio_path": "ferryman_odo/guide__odo__graduate.mp3",
-    "audio_hash": "646e2468afd1",
-    "updated_at": "2026-09-12T15:46:52.677355+00:00"
+    "audio_hash": "fc4c03251eff",
+    "updated_at": "2026-09-19T05:07:08.951161+00:00"
   },
   "guide__odo__run_done": {
-    "text": "你好，旅行者。",
-    "text_hash": "963412f4e5ab4800",
+    "text": "跑得干净利落。奖赏在监工佩尔那里，去领吧。",
+    "text_hash": "5686bfac4ee257cb",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "70多岁饱经沧桑的老船长，沙哑中带着无尽慈爱，语调舒缓沉稳、充满长辈关怀与鼓励的慈祥老爷爷男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "ferryman_odo",
     "npc_seed": 33928255,
     "audio_path": "ferryman_odo/guide__odo__run_done.mp3",
-    "audio_hash": "0082495af7f7",
-    "updated_at": "2026-09-12T15:46:55.669586+00:00"
+    "audio_hash": "9cf22af9cbb8",
+    "updated_at": "2026-09-19T05:06:35.880437+00:00"
   },
   "guide__odo__station_done_a": {
-    "text": "你好，旅行者。",
-    "text_hash": "963412f4e5ab4800",
+    "text": "干得好。往下一处去吧，路已经为你点亮了。",
+    "text_hash": "3f98927302d7efc5",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "70多岁饱经沧桑的老船长，沙哑中带着无尽慈爱，语调舒缓沉稳、充满长辈关怀与鼓励的慈祥老爷爷男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "ferryman_odo",
     "npc_seed": 33928255,
     "audio_path": "ferryman_odo/guide__odo__station_done_a.mp3",
-    "audio_hash": "e9e20c57279b",
-    "updated_at": "2026-09-12T15:46:58.862257+00:00"
+    "audio_hash": "b5577cc1517e",
+    "updated_at": "2026-09-19T05:06:44.596628+00:00"
   },
   "guide__odo__station_done_b": {
-    "text": "你好，旅行者。",
-    "text_hash": "963412f4e5ab4800",
+    "text": "你越来越上手了，错不了。",
+    "text_hash": "64a5168caed2c78c",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "70多岁饱经沧桑的老船长，沙哑中带着无尽慈爱，语调舒缓沉稳、充满长辈关怀与鼓励的慈祥老爷爷男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "ferryman_odo",
     "npc_seed": 33928255,
     "audio_path": "ferryman_odo/guide__odo__station_done_b.mp3",
-    "audio_hash": "ca9f84a1c901",
-    "updated_at": "2026-09-12T15:47:02.157511+00:00"
+    "audio_hash": "4fe1502556b2",
+    "updated_at": "2026-09-19T05:06:49.754735+00:00"
   },
   "guide__odo__veer_off": {
-    "text": "你好，旅行者。",
-    "text_hash": "963412f4e5ab4800",
+    "text": "慢着，朋友，走反了。金色路径在你身后呢。",
+    "text_hash": "e3131f17ab166954",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "70多岁饱经沧桑的老船长，沙哑中带着无尽慈爱，语调舒缓沉稳、充满长辈关怀与鼓励的慈祥老爷爷男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "ferryman_odo",
     "npc_seed": 33928255,
     "audio_path": "ferryman_odo/guide__odo__veer_off.mp3",
-    "audio_hash": "e16da6da53a4",
-    "updated_at": "2026-09-12T15:47:04.797613+00:00"
+    "audio_hash": "5bb2c14c6735",
+    "updated_at": "2026-09-19T05:06:59.274546+00:00"
   },
   "quest__q_af_amber_from_the_herd__complete": {
     "text": "六块凝块，干净得像刚倒出的蜂蜜。这双护手就是用上一批缝的，冒险者：树脂浸硬，比看上去暖和得多。",
@@ -1247,30 +1115,6 @@
     "audio_hash": "54414f382269",
     "updated_at": "2026-09-18T04:51:30.873995+00:00"
   },
-  "quest__q_af_lanterns_on_the_water__complete": {
-    "text": "三盏俱全，而且还亮着。渡船灯在水里也不会熄，冒险者。它们生来如此。让我担心的，是究竟什么把它们扯了下来。",
-    "text_hash": "da176fe1c547771c",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "ferrymaster_caddow",
-    "npc_seed": 11241036,
-    "audio_path": "ferrymaster_caddow/quest__q_af_lanterns_on_the_water__complete.mp3",
-    "audio_hash": "98238ec1c59b",
-    "updated_at": "2026-09-18T04:51:49.742676+00:00"
-  },
-  "quest__q_af_lanterns_on_the_water__offer": {
-    "text": "大湖上的每条渡船都挂着一盏船尾灯，冒险者，而今天拂晓，我有三条船回来时灯不见了。是雾拿走了它们，或者是雾里的什么东西。风向一转，它们就会被冲上东岸。沿着湖岸路走一遭，把我的灯带回家。",
-    "text_hash": "219ad34e569d4cba",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "ferrymaster_caddow",
-    "npc_seed": 11241036,
-    "audio_path": "ferrymaster_caddow/quest__q_af_lanterns_on_the_water__offer.mp3",
-    "audio_hash": "52d864a49c51",
-    "updated_at": "2026-09-18T04:52:18.677359+00:00"
-  },
   "quest__q_af_orchard_call__complete": {
     "text": "镇务官在数她的货车，是吗？那就让她再多数几天空缺吧。看看我的果林，冒险者。比起迟到的货，我有更大的麻烦。",
     "text_hash": "104ee49566d3a547",
@@ -1318,54 +1162,6 @@
     "audio_path": "orchardist_pomeline/quest__q_af_sprites_and_spigots__offer.mp3",
     "audio_hash": "4f46c9643901",
     "updated_at": "2026-09-18T04:53:59.935167+00:00"
-  },
-  "quest__q_af_the_meredark__complete": {
-    "text": "今天清晨，大湖上的雾散了，冒险者，全镇的人都看见了。夜渡将会重开，水面上的每一盏灯都将为你的名字而亮。收下这个：它是从沉没栈桥打捞上来的，没有人比你更有资格披上它。",
-    "text_hash": "b8598de9f1a56076",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "ferrymaster_caddow",
-    "npc_seed": 11241036,
-    "audio_path": "ferrymaster_caddow/quest__q_af_the_meredark__complete.mp3",
-    "audio_hash": "ddff9da47cd4",
-    "updated_at": "2026-09-18T04:54:31.567059+00:00"
-  },
-  "quest__q_af_the_meredark__offer": {
-    "text": "老船夫们有一个只敢在岸上说的名字：湖渊暗影，第一头潜伏者，和湖一样古老，耐心还要多上一倍。它从前浮起过一次，就在沉没栈桥没入水中的那一年，而如今它又在上浮。黄昏时分，它会趴在南岸外的栈桥残骸上晒着余晖，冒险者。带上一个朋友，带上两个，趁它还能被终结时终结它。",
-    "text_hash": "46f48e6daf386ae8",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "ferrymaster_caddow",
-    "npc_seed": 11241036,
-    "audio_path": "ferrymaster_caddow/quest__q_af_the_meredark__offer.mp3",
-    "audio_hash": "adccbf35f1af",
-    "updated_at": "2026-09-18T04:55:13.072238+00:00"
-  },
-  "quest__q_af_what_took_the_moorings__complete": {
-    "text": "浅水里少了八条影子，今天的渡船两周来头一次准点。可潜伏者变得大胆，是因为有东西在驱赶它们，冒险者。大湖底下有什么正在搅动。",
-    "text_hash": "1b7be32f90af4cf4",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "ferrymaster_caddow",
-    "npc_seed": 11241036,
-    "audio_path": "ferrymaster_caddow/quest__q_af_what_took_the_moorings__complete.mp3",
-    "audio_hash": "71e0c13d3f89",
-    "updated_at": "2026-09-18T04:55:35.506346+00:00"
-  },
-  "quest__q_af_what_took_the_moorings__offer": {
-    "text": "现在我要告诉你我没在镇上人面前说的话。那些缆绳不是松脱的，是被咬断的。湖泽潜伏者一晚比一晚大胆，拖拽着缆绳和船舵。让八只永远沉回水底吧，冒险者，别等哪个船夫跟着一起沉下去。",
-    "text_hash": "b0558e17b2ec1169",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "ferrymaster_caddow",
-    "npc_seed": 11241036,
-    "audio_path": "ferrymaster_caddow/quest__q_af_what_took_the_moorings__offer.mp3",
-    "audio_hash": "2fb60b0317c3",
-    "updated_at": "2026-09-18T04:56:03.042037+00:00"
   },
   "quest__q_aldrics_fallen_star__complete": {
     "text": "这不是我认识的武器。看这些板片折叠的方式。若能穿戴，它也许是一件稀有护甲。带上它试试看，冒险者，但要小心。",
@@ -2173,123 +1969,123 @@
   },
   "quest__q_drowned_choir__complete": {
     "text": "珍珠、指骨、一条孩童雕刻的小鱼……这些都是陪葬之物，冒险者。它们并非要让死者复生，而是在为死者更衣，就像为下葬的尸身着装一般。这座神殿是一座拒绝合拢的坟墓。",
-    "text_hash": "1abf0ed9439efeca",
+    "text_hash": "52999961a74252fb",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "clone(decoupled)",
     "anchor_key": "tidewatcher_ondrel",
     "npc_seed": 59571655,
     "audio_path": "tidewatcher_ondrel/quest__q_drowned_choir__complete.mp3",
-    "audio_hash": "f9f60c398661",
-    "updated_at": "2026-09-18T05:11:40.635758+00:00"
+    "audio_hash": "6b2964fb2cd0",
+    "updated_at": "2026-09-19T04:42:21.421536+00:00"
   },
   "quest__q_drowned_choir__offer": {
     "text": "那些涉行者并非孤身行动。它们之中游走着溺亡信徒——随神殿一同沉没的邪教徒，至今仍披着腐烂的法衣，仍在岸边礁石上吟唱祷词。让其中八名永远噤声，再为我带回它们随身携带的六件祭品。我想知道它们打算献给女神什么。",
-    "text_hash": "b4fb24c45d0094e4",
+    "text_hash": "4f67dd3cab71de19",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "clone(decoupled)",
     "anchor_key": "tidewatcher_ondrel",
     "npc_seed": 59571655,
     "audio_path": "tidewatcher_ondrel/quest__q_drowned_choir__offer.mp3",
-    "audio_hash": "52bb5abd95a3",
-    "updated_at": "2026-09-12T16:25:23.290849+00:00"
+    "audio_hash": "2a660c553dd3",
+    "updated_at": "2026-09-19T04:41:48.507943+00:00"
   },
   "quest__q_drowned_moon__complete": {
     "text": "祭坛已暗，潭水已静，山潭之上的月亮也终于只是月亮。今夜你溺杀了一位女神，冒险者——这座大山永远不会知道它曾离覆灭如此之近。让岸边礁石上的守誓者们终能安息吧。",
-    "text_hash": "4c9f220347b546e8",
+    "text_hash": "fa7d9887ab0d27d1",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "clone(decoupled)",
     "anchor_key": "tidewatcher_ondrel",
     "npc_seed": 59571655,
     "audio_path": "tidewatcher_ondrel/quest__q_drowned_moon__complete.mp3",
-    "audio_hash": "867759fe5fc9",
-    "updated_at": "2026-09-18T05:12:06.804253+00:00"
+    "audio_hash": "b1acbace85a6",
+    "updated_at": "2026-09-19T04:45:56.177341+00:00"
   },
   "quest__q_drowned_moon__offer": {
     "text": "我已读完最后一份拓文，冒险者，如今我终于明白这邪教为何将自己溺死，只为让某物长眠。伊索蕾——溺月化作的血肉之躯——盘踞在神殿核心的祭坛之上，而这潭水夺去的每一条性命的余温，都正涌入她的苏醒。当满月当空，她便会升起，潭水也随她而涨——那山潭、那石壁、连同它脚下的整座大山。召集你能找到的最强者，让她重归长眠。这一次，要永远沉睡。",
-    "text_hash": "23f69416f760b2a8",
+    "text_hash": "25690c6cc003ea74",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "clone(decoupled)",
     "anchor_key": "tidewatcher_ondrel",
     "npc_seed": 59571655,
     "audio_path": "tidewatcher_ondrel/quest__q_drowned_moon__offer.mp3",
-    "audio_hash": "e1a849d2ba71",
-    "updated_at": "2026-09-18T05:12:59.552625+00:00"
+    "audio_hash": "5118dcf34c71",
+    "updated_at": "2026-09-19T04:45:27.280126+00:00"
   },
   "quest__q_eg_bloom_clippings__complete": {
     "text": "看这里：叶子全都向内蜷着，每一段剪枝都一样。花园在害怕，冒险者。一百年来，我从没见过它害怕。",
-    "text_hash": "f81a3d7d6f19e407",
+    "text_hash": "eeab369a1c4e6f02",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "90多岁看守草坪百年的极老园丁，低沉缓慢、如同苔藓与泥土般充满神秘神性的苍老男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "gardener_yew",
     "npc_seed": 45050387,
     "audio_path": "gardener_yew/quest__q_eg_bloom_clippings__complete.mp3",
-    "audio_hash": "06ed42af4899",
-    "updated_at": "2026-09-18T05:13:15.904995+00:00"
+    "audio_hash": "a8dd9cab0564",
+    "updated_at": "2026-09-19T04:59:05.499185+00:00"
   },
   "quest__q_eg_bloom_clippings__offer": {
     "text": "你想弄懂这座花园？那就用我的法子来读它。草坪上吃草的那些绿雕雄鹿长着最纯正的绿：它们身上每一片叶子都是一页书。从绿雕雄鹿身上给我剪六段新鲜的枝叶来，冒险者。它们不会为这次修剪谢你，但它们会重新长好。这里的一切都会重新长好。",
-    "text_hash": "5a12cfe5b14d20a7",
+    "text_hash": "145a6a43c503bf51",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "90多岁看守草坪百年的极老园丁，低沉缓慢、如同苔藓与泥土般充满神秘神性的苍老男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "gardener_yew",
     "npc_seed": 45050387,
     "audio_path": "gardener_yew/quest__q_eg_bloom_clippings__offer.mp3",
-    "audio_hash": "02cb06a69ff7",
-    "updated_at": "2026-09-18T05:13:57.250675+00:00"
+    "audio_hash": "c03806e21369",
+    "updated_at": "2026-09-19T04:58:41.194493+00:00"
   },
   "quest__q_eg_bull_of_the_court__complete": {
     "text": "他散架的那一刻，我在这里感觉到了。一百年的心血，而你终结它是对的。收下这件披风：我裁下它，就是留给证明自己胜过我最好作品的人。今夜的庭院只是一座喷泉，冒险者，花园也只是一座花园。也许现在，园丁长和我都能睡上一觉了。",
-    "text_hash": "9641161e2333e16e",
+    "text_hash": "c54e58f6228b0553",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "90多岁看守草坪百年的极老园丁，低沉缓慢、如同苔藓与泥土般充满神秘神性的苍老男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "gardener_yew",
     "npc_seed": 45050387,
     "audio_path": "gardener_yew/quest__q_eg_bull_of_the_court__complete.mp3",
-    "audio_hash": "4ec832aaf42b",
-    "updated_at": "2026-09-18T05:14:39.678695+00:00"
+    "audio_hash": "4428158a8ece",
+    "updated_at": "2026-09-19T05:02:18.326992+00:00"
   },
   "quest__q_eg_bull_of_the_court__offer": {
     "text": "现在说实话吧，冒险者。迷宫深处那头公牛是我的得意之作：我把他剪成喷泉庭院的守卫，他也守了一百年。可绿意里的恐惧已经蔓延到他身上，如今他什么也不守了，他在狩猎。谁误入迷宫，迷宫就把谁喂给他。我太老了，拆解不动他了，而这必须是连根带枝的拆解。带上一个朋友，穿过迷宫走到庭院，砍倒我的公牛。",
-    "text_hash": "63c84f474c87bc53",
+    "text_hash": "1798c754ff6a3892",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "90多岁看守草坪百年的极老园丁，低沉缓慢、如同苔藓与泥土般充满神秘神性的苍老男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "gardener_yew",
     "npc_seed": 45050387,
     "audio_path": "gardener_yew/quest__q_eg_bull_of_the_court__offer.mp3",
-    "audio_hash": "35bb7373475e",
-    "updated_at": "2026-09-18T05:15:35.276300+00:00"
+    "audio_hash": "690ce947956b",
+    "updated_at": "2026-09-19T05:01:34.968477+00:00"
   },
   "quest__q_eg_four_statues__complete": {
     "text": "四张拓片，四位姐妹，没有一位落下大理石的泪。花园已经掂量过你了，冒险者，而它没有嫌弃你。现在我可以把你派往麻烦真正盘踞的地方了。",
-    "text_hash": "6dbc4959df657768",
+    "text_hash": "8c8408936280d6f9",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "90多岁看守草坪百年的极老园丁，低沉缓慢、如同苔藓与泥土般充满神秘神性的苍老男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "gardener_yew",
     "npc_seed": 45050387,
     "audio_path": "gardener_yew/quest__q_eg_four_statues__complete.mp3",
-    "audio_hash": "6b899ef0f3e3",
-    "updated_at": "2026-09-18T05:15:59.218518+00:00"
+    "audio_hash": "f11b0d1ce52c",
+    "updated_at": "2026-09-19T05:00:36.329331+00:00"
   },
   "quest__q_eg_four_statues__offer": {
     "text": "花园年轻的时候，最早的园丁们立起四位大理石姐妹，看护园子的四方：一位立在野蔷薇丛上方，一位在迷宫以东的花瓣池步道，一位在地精筑洞的西草坪，还有一位在树篱之外的南草坪。迷宫在她们之间长了起来，大多数人一辈子也见不全四位。走遍四方吧，冒险者，把手掌贴上每一位姐妹。等花园从四面把你打量过一遍，它就会向你敞开那些不给陌生人看的地方。",
-    "text_hash": "9d9c06161ab83700",
+    "text_hash": "84e8edede42b8eec",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "90多岁看守草坪百年的极老园丁，低沉缓慢、如同苔藓与泥土般充满神秘神性的苍老男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "gardener_yew",
     "npc_seed": 45050387,
     "audio_path": "gardener_yew/quest__q_eg_four_statues__offer.mp3",
-    "audio_hash": "2bed69289b9e",
-    "updated_at": "2026-09-18T05:16:53.463854+00:00"
+    "audio_hash": "0a27881d3ad2",
+    "updated_at": "2026-09-19T05:00:11.717137+00:00"
   },
   "quest__q_eg_gate_report__complete": {
     "text": "挪动了，是吗。佩尔每周都这么报，而每周他都没报错。请原谅我这双眼睛，冒险者，我已经多年没睡过一个整觉了：花园在盯着我们，总得有人盯着花园。欢迎来到篱苑镇。",
@@ -2302,18 +2098,6 @@
     "audio_path": "head_gardener_amaranth/quest__q_eg_gate_report__complete.mp3",
     "audio_hash": "033b12a140da",
     "updated_at": "2026-09-18T05:17:22.003360+00:00"
-  },
-  "quest__q_eg_gate_report__offer": {
-    "text": "这道门后的草坪已经自己修剪了一百年，冒险者，而最近它们开始修剪访客了。园丁长阿玛兰丝在篱苑镇管着记录，就在门前草坪再往前的路上。告诉她又有一位旅人进了园子，还有，门边的树篱昨夜挪动了。",
-    "text_hash": "4e32c86c1c92c2e2",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "gatewarden_pell",
-    "npc_seed": 79935709,
-    "audio_path": "gatewarden_pell/quest__q_eg_gate_report__offer.mp3",
-    "audio_hash": "7e5b2ba74fc9",
-    "updated_at": "2026-09-18T05:17:54.681626+00:00"
   },
   "quest__q_eg_gnomes_in_the_green__complete": {
     "text": "三辆车回来了，挂钩上也重新挂满了。让那帮小恶棍在树篱里赌气去吧：这片草坪，篱苑镇同样有份打理。",
@@ -2389,15 +2173,15 @@
   },
   "quest__q_eg_who_trims_the_hedges__complete": {
     "text": "这么说，镇上总算派人来了。我在这些草坪上走了一百年，冒险者，花园和我之间有个默契：什么求剪，我就剪什么。坐吧。树篱匀得出你一个钟头。",
-    "text_hash": "d08f8b66f4cd2983",
+    "text_hash": "7a5d25929d640ef3",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "90多岁看守草坪百年的极老园丁，低沉缓慢、如同苔藓与泥土般充满神秘神性的苍老男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "gardener_yew",
     "npc_seed": 45050387,
     "audio_path": "gardener_yew/quest__q_eg_who_trims_the_hedges__complete.mp3",
-    "audio_hash": "499f9647faa3",
-    "updated_at": "2026-09-18T05:20:50.436498+00:00"
+    "audio_hash": "55918e3d5a51",
+    "updated_at": "2026-09-19T04:58:00.845099+00:00"
   },
   "quest__q_eg_who_trims_the_hedges__offer": {
     "text": "我管了三十年账本，冒险者，其中十年不曾睡好，因为账目怎么也对不上。草要割，树篱要剪，这里没有一个人做这些活，可每天拂晓花园都是修剪整齐的。最近林中人赌咒说，在遥远的南草坪上见过一个推着手推车的老人，就在迷宫之外的睡莲池边。找到他。若他是真的，我总算能睡了。若不是，我想我这辈子都睡不成了。",
@@ -2555,42 +2339,6 @@
     "audio_hash": "e5aac04dac9d",
     "updated_at": "2026-09-18T05:25:53.861778+00:00"
   },
-  "quest__q_fs_moss_and_mending__complete": {
-    "text": "一手是盐苔，一手是安静下来的海岸线。你把我整间手术房都补齐了，冒险者。行行好，别成了我的下一个病人。",
-    "text_hash": "ed2aa55425c30058",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "mender_saul",
-    "npc_seed": 18655655,
-    "audio_path": "mender_saul/quest__q_fs_moss_and_mending__complete.mp3",
-    "audio_hash": "87641780615b",
-    "updated_at": "2026-09-18T05:26:12.833026+00:00"
-  },
-  "quest__q_fs_moss_and_mending__offer": {
-    "text": "潮线边生长的盐苔是我所知最好的敷伤药，可裂生怪占了它生长的每一段海岸。说来也怪，它们的皮上就挂着一撮撮刮下来的盐苔。把东边滩涂上的六只清掉，冒险者，再从它们踩烂的苔地里给我采四把好苔来。",
-    "text_hash": "b298ff40bb504431",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "mender_saul",
-    "npc_seed": 18655655,
-    "audio_path": "mender_saul/quest__q_fs_moss_and_mending__offer.mp3",
-    "audio_hash": "060a9a8d6045",
-    "updated_at": "2026-09-18T05:26:47.089159+00:00"
-  },
-  "quest__q_fs_song_before_the_break__complete": {
-    "text": "守望者派你来的？好。这说明镇子总算肯听了。现在静一静，冒险者。那儿，在风声底下，听见了吗？峭壁在唱歌，而我不喜欢这个调子。",
-    "text_hash": "99b9c5f3b3d6524c",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "riftwatch_ollun",
-    "npc_seed": 54298595,
-    "audio_path": "riftwatch_ollun/quest__q_fs_song_before_the_break__complete.mp3",
-    "audio_hash": "26031b420d91",
-    "updated_at": "2026-09-18T05:27:19.504098+00:00"
-  },
   "quest__q_fs_song_before_the_break__offer": {
     "text": "有个人能在裂隙开启之前听见它们。裂察奥伦：一位学者，或是一个疯子，而近来我已经付不起分辨的代价了。他在守望草甸守着他的哨位，就在镇子东南的路上。找到他，冒险者，问问他这座岛接下来又要对我们做什么。",
     "text_hash": "196c4162711149af",
@@ -2602,30 +2350,6 @@
     "audio_path": "warden_coalfast/quest__q_fs_song_before_the_break__offer.mp3",
     "audio_hash": "dd932d4fdbe6",
     "updated_at": "2026-09-18T05:28:06.239225+00:00"
-  },
-  "quest__q_fs_stalkers_off_the_light__complete": {
-    "text": "八夜的围困，一夜了结。火光已经烧得稳了些，也可能只是我的手稳了。不管怎样，草甸又是我的了，我又能听见这座岛思考了。",
-    "text_hash": "618709ab6b2dddd3",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "riftwatch_ollun",
-    "npc_seed": 54298595,
-    "audio_path": "riftwatch_ollun/quest__q_fs_stalkers_off_the_light__complete.mp3",
-    "audio_hash": "8b40b9b6aaab",
-    "updated_at": "2026-09-12T16:41:48.883352+00:00"
-  },
-  "quest__q_fs_stalkers_off_the_light__offer": {
-    "text": "潜行者在哨火之间的黑暗里狩猎，每一夜都把包围我草甸的圈子收得更紧一些。它们并非没有心智，冒险者，它们有的是耐心，而耐心恰恰是我唯一耗不过的东西。杀掉八只，把黑暗推回它钻出来的峭壁去。",
-    "text_hash": "22bcb066f7381dc2",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "riftwatch_ollun",
-    "npc_seed": 54298595,
-    "audio_path": "riftwatch_ollun/quest__q_fs_stalkers_off_the_light__offer.mp3",
-    "audio_hash": "5096e5466a49",
-    "updated_at": "2026-09-18T05:28:44.136783+00:00"
   },
   "quest__q_fs_steel_for_the_redoubt__complete": {
     "text": "盐蚀斑斑，裂痕累累，可开刃照样锋利。来，这副护手是我亲手衬的里。以钢换钢，冒险者：如今的远岸，只做这一门买卖。",
@@ -2662,18 +2386,6 @@
     "audio_path": "warden_coalfast/quest__q_fs_the_great_break__complete.mp3",
     "audio_hash": "5dc504fd8bf1",
     "updated_at": "2026-09-18T05:30:01.328318+00:00"
-  },
-  "quest__q_fs_the_great_break__offer": {
-    "text": "这座岛唱的每一支歌，都终结在同一个低音上，而那个音来自碎裂断崖。有什么东西从那里的大裂隙里过来了，冒险者，是峭壁亲自裂开身子放进来的东西，而它还在生长。一旦它向北走，什么钟声都救不了了。带上一个朋友，带上两个，终结它。然后告诉煤耐，曲调变了。",
-    "text_hash": "3e1907f037506ba6",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "riftwatch_ollun",
-    "npc_seed": 54298595,
-    "audio_path": "riftwatch_ollun/quest__q_fs_the_great_break__offer.mp3",
-    "audio_hash": "402bd816d55c",
-    "updated_at": "2026-09-18T05:30:43.340822+00:00"
   },
   "quest__q_fs_the_three_bells__complete": {
     "text": "三副嗓子，三声回应，清清楚楚地传过了水面。今夜就睡在鸥港吧，冒险者，放心，若有钟声吵醒你，那一定是我亲手敲的，而且敲得及时。",
@@ -3205,51 +2917,51 @@
   },
   "quest__q_gleaming_antlers__complete": {
     "text": "看它们把光留得多好！没有火焰，没有烟，只有光。幽谷自有馈赠。",
-    "text_hash": "a5ddc7b86fca6c9f",
+    "text_hash": "29589e60da5b7662",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁热情大方的村庄女物资官，面带微笑、语速轻快温和的亲切成熟女性女中音",
     "mode": "clone(decoupled)",
     "anchor_key": "provisioner_fenna",
     "npc_seed": 89494995,
     "audio_path": "provisioner_fenna/quest__q_gleaming_antlers__complete.mp3",
-    "audio_hash": "f1cfb74bdc52",
-    "updated_at": "2026-09-12T17:04:00.918000+00:00"
+    "audio_hash": "895728687649",
+    "updated_at": "2026-09-19T04:46:33.524506+00:00"
   },
   "quest__q_gleaming_antlers__offer": {
     "text": "帷纱雄鹿在吃草的地方洒下微光，它们蜕下的鹿角能把光留住许多年。从星落盆地的鹿群那里取来五支，我的灯笼整个冬天都不用点油。不必伤害雄鹿，但它们也不会轻易相让。",
-    "text_hash": "ae9f025757766710",
+    "text_hash": "2023d5992506ddb9",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁热情大方的村庄女物资官，面带微笑、语速轻快温和的亲切成熟女性女中音",
     "mode": "clone(decoupled)",
     "anchor_key": "provisioner_fenna",
     "npc_seed": 89494995,
     "audio_path": "provisioner_fenna/quest__q_gleaming_antlers__offer.mp3",
-    "audio_hash": "fcd685fb1b20",
-    "updated_at": "2026-09-12T17:04:26.276564+00:00"
+    "audio_hash": "3f4e67749e8f",
+    "updated_at": "2026-09-19T04:46:20.947945+00:00"
   },
   "quest__q_glimmermere_light__complete": {
     "text": "一篇唤醒之祷……献给他们称作溺月之物。其下，以更沉稳的笔迹写着：“它只是在沉睡。”这潭水已聆听了很久很久，冒险者。",
-    "text_hash": "15d5a7e1ed1205e6",
+    "text_hash": "07cd22e5b1d9493f",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "clone(decoupled)",
     "anchor_key": "tidewatcher_ondrel",
     "npc_seed": 59571655,
     "audio_path": "tidewatcher_ondrel/quest__q_glimmermere_light__complete.mp3",
-    "audio_hash": "f382cff12ae9",
-    "updated_at": "2026-09-18T05:50:08.702617+00:00"
+    "audio_hash": "515152a3a071",
+    "updated_at": "2026-09-19T04:40:07.675423+00:00"
   },
   "quest__q_glimmermere_light__offer": {
     "text": "看那里，冒险者——水面之下，一道苍白石阶没入黑暗，阶顶有一道冷光铸成的门户。古时的守誓者在水吞没他们之前，将警语刻入岸边的礁石。替我拓下其中一块；在我们再靠近之前，我想读懂他们所惧为何物。",
-    "text_hash": "a2647a4b1a1f43de",
+    "text_hash": "144d13f9e32f3de1",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "clone(decoupled)",
     "anchor_key": "tidewatcher_ondrel",
     "npc_seed": 59571655,
     "audio_path": "tidewatcher_ondrel/quest__q_glimmermere_light__offer.mp3",
-    "audio_hash": "c2022386d610",
-    "updated_at": "2026-09-18T05:50:41.306382+00:00"
+    "audio_hash": "c5e850c5122b",
+    "updated_at": "2026-09-19T04:39:41.601969+00:00"
   },
   "quest__q_glowing_wax__complete": {
     "text": "还暖着。博学者说这光不属于任何他知道的火焰。",
@@ -3349,27 +3061,27 @@
   },
   "quest__q_grove_menace__complete": {
     "text": "夜市又能开张了。你有一位终身顾客，至少也有个折扣。",
-    "text_hash": "f571ee5202b5e104",
+    "text_hash": "d5f97548dbaeda30",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁热情大方的村庄女物资官，面带微笑、语速轻快温和的亲切成熟女性女中音",
     "mode": "clone(decoupled)",
     "anchor_key": "provisioner_fenna",
     "npc_seed": 89494995,
     "audio_path": "provisioner_fenna/quest__q_grove_menace__complete.mp3",
-    "audio_hash": "3e1e38cc755e",
-    "updated_at": "2026-09-12T17:08:11.310510+00:00"
+    "audio_hash": "4ccbbbf63054",
+    "updated_at": "2026-09-19T04:47:02.338028+00:00"
   },
   "quest__q_grove_menace__offer": {
     "text": "入夜后暮光灵开始在我的摊位间游荡，冒险者，它们的寒气碰什么坏什么。替我清一清：十只，哪里帷幕破了就去哪里。",
-    "text_hash": "cbef924e592d6d1e",
+    "text_hash": "0a5f6a40b2a3bf26",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁热情大方的村庄女物资官，面带微笑、语速轻快温和的亲切成熟女性女中音",
     "mode": "clone(decoupled)",
     "anchor_key": "provisioner_fenna",
     "npc_seed": 89494995,
     "audio_path": "provisioner_fenna/quest__q_grove_menace__offer.mp3",
-    "audio_hash": "e54631bdb226",
-    "updated_at": "2026-09-18T05:53:26.341262+00:00"
+    "audio_hash": "8f8eebe0ef86",
+    "updated_at": "2026-09-19T04:46:52.256855+00:00"
   },
   "quest__q_grubjaw__complete": {
     "text": "那根獠牙有我前臂那么长！驮骡终于得报了仇。",
@@ -3443,77 +3155,17 @@
     "audio_hash": "a728997ddb15",
     "updated_at": "2026-09-12T17:10:11.073768+00:00"
   },
-  "quest__q_hollow_first_of_the_herd__complete": {
-    "text": "于是鹿群之首倒在了最后。鹿群已经安定了些，你感觉到了吗？你今天为幽谷做了一件善事，哪怕它看上去不像。",
-    "text_hash": "e4cf7345c6812664",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "huntsman_deral",
-    "npc_seed": 83997835,
-    "audio_path": "huntsman_deral/quest__q_hollow_first_of_the_herd__complete.mp3",
-    "audio_hash": "e9006cc30c1e",
-    "updated_at": "2026-09-12T17:10:34.256484+00:00"
-  },
-  "quest__q_hollow_first_of_the_herd__offer": {
-    "text": "第二个名字更难说出口。我祖母守这座瞭望哨的年月，金角就已统领着这些鹿群，而幽谷中苏醒的那个东西，把他唤醒错了。他践踏着自己曾经守护的一切，鹿群熬不过他的疯狂。他在旧王庭道路附近的草甸上游荡。仁慈地终结他吧，冒险者，再带上一个朋友，分担这份重量。",
-    "text_hash": "c4eebcc7bad92c67",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "huntsman_deral",
-    "npc_seed": 83997835,
-    "audio_path": "huntsman_deral/quest__q_hollow_first_of_the_herd__offer.mp3",
-    "audio_hash": "78f502868667",
-    "updated_at": "2026-09-18T05:55:24.834466+00:00"
-  },
-  "quest__q_hollow_old_marrowshell__complete": {
-    "text": "浅滩又只是一片水了。我亲眼见过那只甲壳磕碎比我更好的猎手，冒险者。但没能磕碎你。",
-    "text_hash": "30267ef55995a936",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "huntsman_deral",
-    "npc_seed": 83997835,
-    "audio_path": "huntsman_deral/quest__q_hollow_old_marrowshell__complete.mp3",
-    "audio_hash": "1857e4e29125",
-    "updated_at": "2026-09-18T05:55:43.140896+00:00"
-  },
-  "quest__q_hollow_old_marrowshell__offer": {
-    "text": "第一个名字是老甲髓，一只货车大小的螃蟹，早在古辉镇还没有大门的年月，它就在东边的浅滩里捕猎了。它四处游走，冒险者，所以你得沿着岸线走，直到撞上它的行迹。不要独自前往，也不要相信它的静止。",
-    "text_hash": "50d09ad99de2359f",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "huntsman_deral",
-    "npc_seed": 83997835,
-    "audio_path": "huntsman_deral/quest__q_hollow_old_marrowshell__offer.mp3",
-    "audio_hash": "aa54d00d8d55",
-    "updated_at": "2026-09-18T05:56:23.812083+00:00"
-  },
-  "quest__q_hollow_the_huntsman__complete": {
-    "text": "芬娜派你来的？好。那就是说她信得过你，而我这里有两个需要划掉的名字。",
-    "text_hash": "81eaafe824833a24",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "huntsman_deral",
-    "npc_seed": 83997835,
-    "audio_path": "huntsman_deral/quest__q_hollow_the_huntsman__complete.mp3",
-    "audio_hash": "64423f829acf",
-    "updated_at": "2026-09-12T17:12:18.695660+00:00"
-  },
   "quest__q_hollow_the_huntsman__offer": {
     "text": "你看着可不像只能对付光灵的人，冒险者。猎人德拉尔在东边的雄鹿草甸间守着他的瞭望哨，这几周他一直在打听有没有能干的帮手。不管他在那边追踪的是什么，他都不肯在村子里说出口。",
-    "text_hash": "b3483265abc35263",
+    "text_hash": "e79443e9bc4bccb7",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁热情大方的村庄女物资官，面带微笑、语速轻快温和的亲切成熟女性女中音",
     "mode": "clone(decoupled)",
     "anchor_key": "provisioner_fenna",
     "npc_seed": 89494995,
     "audio_path": "provisioner_fenna/quest__q_hollow_the_huntsman__offer.mp3",
-    "audio_hash": "c225761466d7",
-    "updated_at": "2026-09-18T05:56:55.140631+00:00"
+    "audio_hash": "ee99a106a6f7",
+    "updated_at": "2026-09-19T04:47:28.958381+00:00"
   },
   "quest__q_idols__complete": {
     "text": "这是唤墓者的手笔，比莫森还古老。教派不是从东溪开始的，冒险者。",
@@ -3862,18 +3514,6 @@
     "audio_path": "lira_dewsong/quest__q_nb_road_of_lanterns__complete.mp3",
     "audio_hash": "21c6312015d4",
     "updated_at": "2026-09-18T06:03:52.436076+00:00"
-  },
-  "quest__q_nb_road_of_lanterns__offer": {
-    "text": "太阳从不跟着人爬到这上头来，冒险者，一路相随的只有我沿坡点亮的灯。月栖镇在北边，花光汇聚的地方。去花园里找到莉拉·露歌，告诉她夜门的灯还亮着。",
-    "text_hash": "fada5d63dbb7995a",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "lamplighter_sorrel",
-    "npc_seed": 77136335,
-    "audio_path": "lamplighter_sorrel/quest__q_nb_road_of_lanterns__offer.mp3",
-    "audio_hash": "2d585f81ed59",
-    "updated_at": "2026-09-18T06:04:25.262666+00:00"
   },
   "quest__q_nb_striders_in_the_dark__complete": {
     "text": "少了十只疾行者，兽群吃草已经安心多了。花园自有它的作息，但今夜，它过得太平。",
@@ -4237,27 +3877,27 @@
   },
   "quest__q_palecoil__complete": {
     "text": "它冷如世界之底，却仍在抽搐。深崖已清，冒险者——通往门户的石阶已然敞开。我几乎宁愿它仍封闭着。",
-    "text_hash": "e18c7d46f5b78eef",
+    "text_hash": "c8141bfbcf882fdc",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "clone(decoupled)",
     "anchor_key": "tidewatcher_ondrel",
     "npc_seed": 59571655,
     "audio_path": "tidewatcher_ondrel/quest__q_palecoil__complete.mp3",
-    "audio_hash": "c07cf423450a",
-    "updated_at": "2026-09-18T06:13:34.266297+00:00"
+    "audio_hash": "32f72860ab19",
+    "updated_at": "2026-09-19T04:43:25.689090+00:00"
   },
   "quest__q_palecoil__offer": {
     "text": "潭中有一道身影绝非溺亡之人。一条骨色的巨蛇游弋于石阶起始处的深崖之上——拓文称它为瑟斯雷尔，苍盘者，溺月亲选的守护之兽。只要它仍守着那片水域，便无人能活着抵达门户。下到那深崖去杀了它，冒险者。取下它的心鳞，让我知道事已了结。",
-    "text_hash": "b89e15704f706ddb",
+    "text_hash": "e297fee7fa199093",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "clone(decoupled)",
     "anchor_key": "tidewatcher_ondrel",
     "npc_seed": 59571655,
     "audio_path": "tidewatcher_ondrel/quest__q_palecoil__offer.mp3",
-    "audio_hash": "d6f524a2df4a",
-    "updated_at": "2026-09-18T06:14:21.711421+00:00"
+    "audio_hash": "a7c0cf4159a4",
+    "updated_at": "2026-09-19T04:43:05.193488+00:00"
   },
   "quest__q_pr_boars_in_the_gardens__complete": {
     "text": "晒架保住了，菜园也还能重新栽种。野猪不是自己选了走上沙滩的，冒险者。记住这一点：是有什么东西挪动了它们。",
@@ -4318,18 +3958,6 @@
     "audio_path": "salvage_boss_ryna/quest__q_pr_down_to_drifthaven__complete.mp3",
     "audio_hash": "c9d585c2f216",
     "updated_at": "2026-09-18T06:16:48.968972+00:00"
-  },
-  "quest__q_pr_down_to_drifthaven__offer": {
-    "text": "走出黑树林，走进太阳里，冒险者。沿着岸边路向北，赶在潮水转向之前你就能到漂流港。去找打捞头目莱娜，风暴过后她那儿多的是活计，谁的手都用得上，再告诉她缠木隘口的路还通着。",
-    "text_hash": "e75c45bc67d784aa",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "strandwatcher_pell",
-    "npc_seed": 92295020,
-    "audio_path": "strandwatcher_pell/quest__q_pr_down_to_drifthaven__offer.mp3",
-    "audio_hash": "71f1912fa909",
-    "updated_at": "2026-09-18T06:17:18.700886+00:00"
   },
   "quest__q_pr_idol_guardian__complete": {
     "text": "你击倒了一件连丛林自己都不敢碰的东西。看那边，神像背后：守卫守的从来不是石柱，冒险者，它守的是石柱之下的台阶。今夜鼓声沉寂了。沉睡在荒野之心盆地之下的那个东西，如今已经知道了你的名字。",
@@ -4477,51 +4105,51 @@
   },
   "quest__q_prof_amends_apothecary__complete": {
     "text": "这才是那股老味道。炼金术和烹饪重新回到你的灶台上，成为主修技艺。这一次多留一阵吧。",
-    "text_hash": "07ac8fc079912dc7",
+    "text_hash": "a8cfea1edb8f0f60",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音",
+    "instruct": "40多岁系着围裙的厨房大师傅，大嗓门、热烈粗犷带着市井炊烟烟火气的中年男中音",
     "mode": "clone(decoupled)",
     "anchor_key": "cook_marlow",
     "npc_seed": 81835220,
     "audio_path": "cook_marlow/quest__q_prof_amends_apothecary__complete.mp3",
-    "audio_hash": "b73e99c835bf",
-    "updated_at": "2026-09-12T17:44:33.062689+00:00"
+    "audio_hash": "089e92d019ed",
+    "updated_at": "2026-09-19T03:56:07.942717+00:00"
   },
   "quest__q_prof_amends_apothecary__offer": {
     "text": "瞧瞧，谁又回到我的锅边了。不计前嫌，冒险者，厨房里总有位置，可你知道，你每撂挑子走一回，这笔账就赊得更长。去西北边草地里把野猪清一清，因为实打实的汗水是第一味料，它会让你的手重新记起这份活计。",
-    "text_hash": "a03e7a9d13688a10",
+    "text_hash": "2b9fd54dad0d014b",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音",
+    "instruct": "40多岁系着围裙的厨房大师傅，大嗓门、热烈粗犷带着市井炊烟烟火气的中年男中音",
     "mode": "clone(decoupled)",
     "anchor_key": "cook_marlow",
     "npc_seed": 81835220,
     "audio_path": "cook_marlow/quest__q_prof_amends_apothecary__offer.mp3",
-    "audio_hash": "11f7ea445640",
-    "updated_at": "2026-09-18T06:23:43.149163+00:00"
+    "audio_hash": "9ae80e17d722",
+    "updated_at": "2026-09-19T03:55:54.662487+00:00"
   },
   "quest__q_prof_amends_bombardier__complete": {
     "text": "就是它，那股痒又回到你手上了。工程学和炼金术，又是主修技艺了，去吧，去放个响的。这回试着待住，嗯？",
-    "text_hash": "3fb7095f6be8113f",
+    "text_hash": "7db6efb23a3dbee3",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "工坊地精疯狂技师，语速极快、神经质高亢跳跃、时而尖叫时而窃笑的科学狂人男高音",
     "mode": "clone(decoupled)",
     "anchor_key": "tinker_gizzel",
     "npc_seed": 28313270,
     "audio_path": "tinker_gizzel/quest__q_prof_amends_bombardier__complete.mp3",
-    "audio_hash": "681c3979943d",
-    "updated_at": "2026-09-12T17:45:28.742970+00:00"
+    "audio_hash": "a28350a98d23",
+    "updated_at": "2026-09-19T04:37:58.481836+00:00"
   },
   "quest__q_prof_amends_bombardier__offer": {
     "text": "你回来啦，哈，他们总会回来，会响的东西有股魔力，对吧？我可不摆脸色，冒险者，可这账本，哦这账本，你每溜号一次它就长一截，每回来一次就更长，这才叫公道。去替我把矿坑里的深岩挖掘者清干净，先流汗，后放火花，这是我刚编出来的规矩。",
-    "text_hash": "32da652fc8f0dd7e",
+    "text_hash": "1f9bcd25257ef8fc",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "工坊地精疯狂技师，语速极快、神经质高亢跳跃、时而尖叫时而窃笑的科学狂人男高音",
     "mode": "clone(decoupled)",
     "anchor_key": "tinker_gizzel",
     "npc_seed": 28313270,
     "audio_path": "tinker_gizzel/quest__q_prof_amends_bombardier__offer.mp3",
-    "audio_hash": "f20523ebb683",
-    "updated_at": "2026-09-18T06:24:28.499073+00:00"
+    "audio_hash": "398fe14dd90f",
+    "updated_at": "2026-09-19T04:37:40.081200+00:00"
   },
   "quest__q_prof_amends_outfitter__complete": {
     "text": "又稳了。制皮和裁缝作为主修技艺回到你手中。这一次，在你游荡之前先量两次。",
@@ -4573,51 +4201,51 @@
   },
   "quest__q_prof_attune_apothecary__complete": {
     "text": "这个开头才有点油水。炼金术和烹饪，任你烹到多高都行。饿着肚子再回来。",
-    "text_hash": "b160871610b32d54",
+    "text_hash": "0a1bacb486caad53",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音",
+    "instruct": "40多岁系着围裙的厨房大师傅，大嗓门、热烈粗犷带着市井炊烟烟火气的中年男中音",
     "mode": "clone(decoupled)",
     "anchor_key": "cook_marlow",
     "npc_seed": 81835220,
     "audio_path": "cook_marlow/quest__q_prof_attune_apothecary__complete.mp3",
-    "audio_hash": "856527d18bd2",
-    "updated_at": "2026-09-12T17:48:13.018216+00:00"
+    "audio_hash": "487d31e13c0b",
+    "updated_at": "2026-09-19T03:53:29.022224+00:00"
   },
   "quest__q_prof_attune_apothecary__offer": {
     "text": "每一道好菜都是两种相得益彰的味道，好技艺也一样，冒险者。坐下来跟我学，炼金术和烹饪便成为你的两门主修技艺，是你能越过稀有品质慢炖下去的两门；轮盘另一侧的那门技艺是你的爱好，调味到稀有品质便别再加火了。你其余的手艺都好好收在食柜里，休眠着，不会坏掉，等你哪天取回来。趁锅还凉着我把丑话说前头：溜去投别的一对，回头就是一桩越来越费劲的活计，第一次照应五头野兽，下一次八头，再往后十一头，每添一份就更沉。还馋着这口？那就替我猎来四头野猪，因为一间像样的厨房，得从好肉开始。",
-    "text_hash": "5e2ac94683ebb8c1",
+    "text_hash": "a06dd42a840e0efc",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音",
+    "instruct": "40多岁系着围裙的厨房大师傅，大嗓门、热烈粗犷带着市井炊烟烟火气的中年男中音",
     "mode": "clone(decoupled)",
     "anchor_key": "cook_marlow",
     "npc_seed": 81835220,
     "audio_path": "cook_marlow/quest__q_prof_attune_apothecary__offer.mp3",
-    "audio_hash": "77ddedce1f4b",
-    "updated_at": "2026-09-18T06:26:50.990253+00:00"
+    "audio_hash": "1c0caaf16fe6",
+    "updated_at": "2026-09-19T03:53:17.942973+00:00"
   },
   "quest__q_prof_attune_bombardier__complete": {
     "text": "哈。试剂，正经货，手指头还全都在，好，好。工程学和炼金术，归你了，去做点让人后悔的东西吧。快去。",
-    "text_hash": "42116593c826d658",
+    "text_hash": "afa76d22fb844d29",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "工坊地精疯狂技师，语速极快、神经质高亢跳跃、时而尖叫时而窃笑的科学狂人男高音",
     "mode": "clone(decoupled)",
     "anchor_key": "tinker_gizzel",
     "npc_seed": 28313270,
     "audio_path": "tinker_gizzel/quest__q_prof_attune_bombardier__complete.mp3",
-    "audio_hash": "2b50a461ba51",
-    "updated_at": "2026-09-12T17:49:54.129368+00:00"
+    "audio_hash": "7ba3e1b70994",
+    "updated_at": "2026-09-19T04:37:01.936651+00:00"
   },
   "quest__q_prof_attune_bombardier__offer": {
-    "text": "哦，哦，你想要好东西，会响的东西，对吧？听着，听着，在你碰任何会滴答作响的玩意儿之前：说句话，工程学和炼金术就成了你的两门主修技艺，是你唯一能往稀有品质之上猛推的两门。对侧那门技艺揣进兜里当爱好，练到稀有就打住，别撅嘴。你别的手艺？没丢，冒险者，只是打个盹，休眠着，你想什么时候叫醒就什么时候叫醒。可是甩了这一对，晚点再摇摇晃晃爬回来，那可要你流一大堆越攒越多的汗，第一次放倒五个，下一次八个，再往后十一个，你每回一临阵退缩，就更多、更多。行不行？行不行？那就去替我采三丛草药，会炸的那种，别问是哪种，只要你信得够狠，它们全都有点会炸。",
-    "text_hash": "b4d87eab3a107766",
+    "text": "哦，哦，你想要好东西，会响的东西，对吧？听着，听着，在你碰任何会滴答作响的玩意儿之前：说句话，工程学和炼金术就成了你的两门主修技艺，是你唯一能往稀有品质之上猛推的两门（相信我，好戏就在那儿）。对侧那门技艺揣进兜里当爱好，练到稀有就打住，别撅嘴。你别的手艺？没丢，冒险者，只是打个盹，休眠着，你想什么时候叫醒就什么时候叫醒。可是（总有个可是，先按住引线）甩了这一对，晚点再摇摇晃晃爬回来，那可要你流一大堆越攒越多的汗，第一次放倒五个，下一次八个，再往后十一个，你每回一临阵退缩，就更多、更多。行不行？行不行？那就去替我采三丛草药，会炸的那种，别问是哪种，只要你信得够狠，它们全都有点会炸。",
+    "text_hash": "3af473903f9f4b8c",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "工坊地精疯狂技师，语速极快、神经质高亢跳跃、时而尖叫时而窃笑的科学狂人男高音",
     "mode": "clone(decoupled)",
     "anchor_key": "tinker_gizzel",
     "npc_seed": 28313270,
     "audio_path": "tinker_gizzel/quest__q_prof_attune_bombardier__offer.mp3",
-    "audio_hash": "14dd6825b62f",
-    "updated_at": "2026-09-18T06:28:26.584514+00:00"
+    "audio_hash": "7178ae046603",
+    "updated_at": "2026-09-19T04:36:42.238069+00:00"
   },
   "quest__q_prof_attune_outfitter__complete": {
     "text": "针脚匀称，手也稳。制皮和裁缝，任你的技艺能到多远，你就能带它们走多远。量两次，它们便不会辜负你。",
@@ -4765,27 +4393,27 @@
   },
   "quest__q_prof_workorder_kitchens__complete": {
     "text": "这才叫满仓。这是你的酬劳。等你的行囊又沉了，就再来。",
-    "text_hash": "ddcc6b6f22385910",
+    "text_hash": "5d01143702fddd4f",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音",
+    "instruct": "40多岁系着围裙的厨房大师傅，大嗓门、热烈粗犷带着市井炊烟烟火气的中年男中音",
     "mode": "clone(decoupled)",
     "anchor_key": "cook_marlow",
     "npc_seed": 81835220,
     "audio_path": "cook_marlow/quest__q_prof_workorder_kitchens__complete.mp3",
-    "audio_hash": "028c15240b28",
-    "updated_at": "2026-09-12T17:57:50.113654+00:00"
+    "audio_hash": "a3a57a4d7846",
+    "updated_at": "2026-09-19T03:57:35.679726+00:00"
   },
   "quest__q_prof_workorder_kitchens__offer": {
     "text": "我的储藏室见底了，冒险者，而空储藏室会让厨子发脾气。替我取来八份野味肉，里头有你的工钱，外加我没齿难忘的感激，这份感激不值几个钱，但尝起来更香。",
-    "text_hash": "3563e51446597c5a",
+    "text_hash": "45ba07f8ebe35316",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年威严刚毅的军人，低沉有力、沉稳干练的成年男性男中音",
+    "instruct": "40多岁系着围裙的厨房大师傅，大嗓门、热烈粗犷带着市井炊烟烟火气的中年男中音",
     "mode": "clone(decoupled)",
     "anchor_key": "cook_marlow",
     "npc_seed": 81835220,
     "audio_path": "cook_marlow/quest__q_prof_workorder_kitchens__offer.mp3",
-    "audio_hash": "32566d16980a",
-    "updated_at": "2026-09-18T06:37:53.843066+00:00"
+    "audio_hash": "1f91e26bacc1",
+    "updated_at": "2026-09-19T03:57:24.913454+00:00"
   },
   "quest__q_prof_workorder_loom__complete": {
     "text": "好丝，纺得匀。你的铜板，分毫不差。织机谢你，我也谢你。",
@@ -4811,53 +4439,29 @@
     "audio_hash": "081f12eeb482",
     "updated_at": "2026-09-18T06:38:12.873379+00:00"
   },
-  "quest__q_prof_workorder_tannery__complete": {
-    "text": "皮不错。价公道。有了再来。",
-    "text_hash": "e2a942e207506ad2",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "tanner_hesk",
-    "npc_seed": 7122096,
-    "audio_path": "tanner_hesk/quest__q_prof_workorder_tannery__complete.mp3",
-    "audio_hash": "5934c0b68c01",
-    "updated_at": "2026-09-12T17:59:04.117839+00:00"
-  },
-  "quest__q_prof_workorder_tannery__offer": {
-    "text": "鞣桶空了。带八张粗糙的兽皮来。到了付钱。",
-    "text_hash": "0627614e88442d3f",
-    "speaker": "(由 instruct 描述生成)",
-    "instruct": "40多岁中年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
-    "mode": "clone(decoupled)",
-    "anchor_key": "tanner_hesk",
-    "npc_seed": 7122096,
-    "audio_path": "tanner_hesk/quest__q_prof_workorder_tannery__offer.mp3",
-    "audio_hash": "cff95863570f",
-    "updated_at": "2026-09-12T17:59:11.428973+00:00"
-  },
   "quest__q_prof_workorder_toolworks__complete": {
-    "text": "完美，完美，纹理笔直，一点不糟。喏，你的铜板，看，我说话算话。等你哪天绊到棵树，就再带些来。",
-    "text_hash": "d0ae0b515ffbf5d9",
+    "text": "完美，完美，纹理笔直，一点不糟。喏，你的铜板，看，我说话算话（大概）。等你哪天绊到棵树，就再带些来。",
+    "text_hash": "d54d2b76b3fdbe39",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "工坊地精疯狂技师，语速极快、神经质高亢跳跃、时而尖叫时而窃笑的科学狂人男高音",
     "mode": "clone(decoupled)",
     "anchor_key": "tinker_gizzel",
     "npc_seed": 28313270,
     "audio_path": "tinker_gizzel/quest__q_prof_workorder_toolworks__complete.mp3",
-    "audio_hash": "b73023ab77c9",
-    "updated_at": "2026-09-12T17:59:33.055261+00:00"
+    "audio_hash": "7ae5f19f1218",
+    "updated_at": "2026-09-19T04:38:47.049473+00:00"
   },
   "quest__q_prof_workorder_toolworks__offer": {
     "text": "斧柄、手柄、枪托，我用木头的速度简直像它要绝版了似的，可它才不会绝版，木头是永恒的，冒险者。给我扛来八根铁皮木原木，我就付你钱，铜板，真金白银的铜板，不是人情，我保证，大概吧。",
-    "text_hash": "87b169bc630020c4",
+    "text_hash": "de229a06e22a26cd",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "工坊地精疯狂技师，语速极快、神经质高亢跳跃、时而尖叫时而窃笑的科学狂人男高音",
     "mode": "clone(decoupled)",
     "anchor_key": "tinker_gizzel",
     "npc_seed": 28313270,
     "audio_path": "tinker_gizzel/quest__q_prof_workorder_toolworks__offer.mp3",
-    "audio_hash": "94f325d3fed2",
-    "updated_at": "2026-09-18T06:38:43.960234+00:00"
+    "audio_hash": "dff855939960",
+    "updated_at": "2026-09-19T04:38:29.072654+00:00"
   },
   "quest__q_prowler_pelts__complete": {
     "text": "好厚的皮。现在这条栈道会比我们俩都长久。",
@@ -4957,15 +4561,15 @@
   },
   "quest__q_ps_set_sail__complete": {
     "text": "玛伦这么说了？能从一个曾让我练了一星期系缆绳的女人嘴里说出来，这可是极高的评价。等你准备好了就敲响立在我码头旁的那口铃，冒险者，渡航会把你送到东溪镇的正中央。当心狼群。",
-    "text_hash": "9ba2e4f9ce1ec88c",
+    "text_hash": "fccad7d94370d5a0",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "70多岁饱经沧桑的老船长，沙哑中带着无尽慈爱，语调舒缓沉稳、充满长辈关怀与鼓励的慈祥老爷爷男低音",
     "mode": "clone(decoupled)",
     "anchor_key": "wayfarer_bryn",
     "npc_seed": 33928255,
     "audio_path": "ferryman_odo/quest__q_ps_set_sail__complete.mp3",
-    "audio_hash": "c2ba642d56d1",
-    "updated_at": "2026-09-18T06:48:56.248790+00:00"
+    "audio_hash": "3c61887783ed",
+    "updated_at": "2026-09-19T04:19:52.705057+00:00"
   },
   "quest__q_ps_set_sail__offer": {
     "text": "这片海滨上已经没有你没跑过、没打倒过、没打开过、没买下过的东西了，冒险者。你准备好了，而东溪谷有真正的差事在等着。沿海滨大道走回码头，对着渡船人奥多按 F，告诉他，就说是我说的，你挣到了这趟航程。什么时候记不清自己欠了谁什么，随时按 L：那是你的任务日志。",
@@ -5389,27 +4993,27 @@
   },
   "quest__q_silence_the_choir__complete": {
     "text": "祷词渐弱……三十夜来头一回，这潭水安静了下来。但安静并不等于终结。塞尔瑟不过是唱诗班而已。它之下仍有某物在聆听。",
-    "text_hash": "e16708e59df54eb5",
+    "text_hash": "e34e9b4cb487db28",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "clone(decoupled)",
     "anchor_key": "tidewatcher_ondrel",
     "npc_seed": 59571655,
     "audio_path": "tidewatcher_ondrel/quest__q_silence_the_choir__complete.mp3",
-    "audio_hash": "6fb767c9f41e",
-    "updated_at": "2026-09-12T18:20:23.284000+00:00"
+    "audio_hash": "85e408fa2836",
+    "updated_at": "2026-09-19T04:44:32.121035+00:00"
   },
   "quest__q_silence_the_choir__offer": {
     "text": "如今歌声从门户之下传来，有一道嗓音领唱其间：唱诗母塞尔瑟，正是她最先教会邪教徒如何溺而不死。只要她还维系着那祷词，神殿便永不沉眠——这潭水也永不停止吐还它的亡者。带上同伴穿过那道门户，了结她。这绝非一柄孤刃所能担当的差事，冒险者。",
-    "text_hash": "f3d8f7ef06dff318",
+    "text_hash": "acf52757586f94c3",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "clone(decoupled)",
     "anchor_key": "tidewatcher_ondrel",
     "npc_seed": 59571655,
     "audio_path": "tidewatcher_ondrel/quest__q_silence_the_choir__offer.mp3",
-    "audio_hash": "81b04954ba11",
-    "updated_at": "2026-09-18T07:05:13.201480+00:00"
+    "audio_hash": "4a064ecc7c37",
+    "updated_at": "2026-09-19T04:44:07.607732+00:00"
   },
   "quest__q_spiders__complete": {
     "text": "呃，还在抽动。正合适。这是你应得的。",
@@ -5653,27 +5257,27 @@
   },
   "quest__q_tarn_waders__complete": {
     "text": "十个都回到了水里。它们感觉不到寒冷，冒险者，也毫无惧意——只有那门户的牵引。无论是什么在向它们歌唱，那歌声都唱得震天响。",
-    "text_hash": "83e6b2d5f6adce89",
+    "text_hash": "d21892303d6c6b1f",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "clone(decoupled)",
     "anchor_key": "tidewatcher_ondrel",
     "npc_seed": 59571655,
     "audio_path": "tidewatcher_ondrel/quest__q_tarn_waders__complete.mp3",
-    "audio_hash": "dfbbd9d3bd87",
-    "updated_at": "2026-09-18T07:09:37.127932+00:00"
+    "audio_hash": "d80ff8858145",
+    "updated_at": "2026-09-19T04:41:10.852569+00:00"
   },
   "quest__q_tarn_waders__offer": {
     "text": "自那门户开启以来，每到黄昏便有东西从潭中爬出——肿胀、苍白，本该长手之处却生着鳍。古老的拓文称它们为微光潭涉行者。它们会把任何活物拖回水底。在它们把我的守望者杀得一个不剩之前，铲除十个。",
-    "text_hash": "beeabdef73560b55",
+    "text_hash": "d641b3c131a72700",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁长期失眠被深海潮汐低语摄魂的守潮人，空灵幽邃、梦呓般催眠的神秘低语",
     "mode": "clone(decoupled)",
     "anchor_key": "tidewatcher_ondrel",
     "npc_seed": 59571655,
     "audio_path": "tidewatcher_ondrel/quest__q_tarn_waders__offer.mp3",
-    "audio_hash": "57154ff5e97e",
-    "updated_at": "2026-09-12T18:27:58.199082+00:00"
+    "audio_hash": "355db2415796",
+    "updated_at": "2026-09-19T04:40:45.972301+00:00"
   },
   "quest__q_the_codfather__complete": {
     "text": "湿地诸圣在上……鳕鱼教父本尊。看看那些胡须。芬桥会把这次收获讲上一整年，冒险者。",
@@ -6229,27 +5833,27 @@
   },
   "quest__q_ww_horn_of_the_huntsman__complete": {
     "text": "号角声在半个音上断了。绞湖镇的每一口钟都自己响了一声，随后这片林子安静下来，三十年来我从没听过它这样安静。你完成了我做不到的仪式，冒险者。披上这个，从此在树冠下行走，无所畏惧。",
-    "text_hash": "f2e9411d8a0a788e",
+    "text_hash": "d3bda5deb1e35ef6",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "instruct": "50多岁荒废礼拜堂的末代教士，疲惫干瘪、沙哑空洞、心灰意冷看透生死的年长教士男声",
     "mode": "clone(decoupled)",
     "anchor_key": "vicar_creel",
     "npc_seed": 89938008,
     "audio_path": "vicar_creel/quest__q_ww_horn_of_the_huntsman__complete.mp3",
-    "audio_hash": "14ae4a8a72d7",
-    "updated_at": "2026-09-18T07:25:03.607620+00:00"
+    "audio_hash": "9a134821b5c4",
+    "updated_at": "2026-09-19T04:56:38.220457+00:00"
   },
   "quest__q_ww_horn_of_the_huntsman__offer": {
     "text": "号角声你如今该听过了，冒险者，细弱而遥远，整片林子都为那声音屏住呼吸。苍白猎手在这里以北他的林隙中驰骋，他每经过一座坟，坟就变浅一分。他曾经是个人，却被下葬错了，而我已经不想再假装祷告能管用。带上一个朋友，带上两个，把他挑落马下。",
-    "text_hash": "2fd242d24db8d085",
+    "text_hash": "7d01eea06df5d7f6",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "instruct": "50多岁荒废礼拜堂的末代教士，疲惫干瘪、沙哑空洞、心灰意冷看透生死的年长教士男声",
     "mode": "clone(decoupled)",
     "anchor_key": "vicar_creel",
     "npc_seed": 89938008,
     "audio_path": "vicar_creel/quest__q_ww_horn_of_the_huntsman__offer.mp3",
-    "audio_hash": "60bbc260fea9",
-    "updated_at": "2026-09-18T07:25:40.989654+00:00"
+    "audio_hash": "a086def8b16b",
+    "updated_at": "2026-09-19T04:56:03.114700+00:00"
   },
   "quest__q_ww_silk_in_the_eaves__complete": {
     "text": "檐下少了十只纺蛛。今夜点灯人巡街时再不用抬头看了，这在这地方的分量，比你知道的重得多。",
@@ -6277,15 +5881,15 @@
   },
   "quest__q_ww_the_last_vicar__complete": {
     "text": "马罗居然惦记起我来了？倒是新鲜。告诉他，哀石礼拜堂还立着，勉强算立着，我也一样。留一会儿吧，冒险者。水潭最近总在低语，我不想独自听着。",
-    "text_hash": "2ea53b03c580f010",
+    "text_hash": "451b6f8a9582c1cb",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "instruct": "50多岁荒废礼拜堂的末代教士，疲惫干瘪、沙哑空洞、心灰意冷看透生死的年长教士男声",
     "mode": "clone(decoupled)",
     "anchor_key": "vicar_creel",
     "npc_seed": 89938008,
     "audio_path": "vicar_creel/quest__q_ww_the_last_vicar__complete.mp3",
-    "audio_hash": "4b69c5d22e44",
-    "updated_at": "2026-09-18T07:26:37.443274+00:00"
+    "audio_hash": "b890b0f28e97",
+    "updated_at": "2026-09-19T04:53:19.810779+00:00"
   },
   "quest__q_ww_the_last_vicar__offer": {
     "text": "从这里往南，哀石礼拜堂在它那片黑水潭边一点点朽坏，只剩一个人还在照看它：牧师克里尔，当年屋顶塌下来他也不肯走。论古老的仪轨，他比我的钟还熟，冒险者，可他已经一个月没捎来只言片语了。走一趟礼拜堂的路，亲眼看看他还喘着气。",
@@ -6325,27 +5929,27 @@
   },
   "quest__q_ww_what_the_bark_holds__complete": {
     "text": "天黑之前，三个魂灵回到了干净的土里。树怪还会再长出来，树皮向来如此，可今夜林地上空空荡荡，这就够了。",
-    "text_hash": "d1fd0556d8f72353",
+    "text_hash": "90a905131111d9a2",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "instruct": "50多岁荒废礼拜堂的末代教士，疲惫干瘪、沙哑空洞、心灰意冷看透生死的年长教士男声",
     "mode": "clone(decoupled)",
     "anchor_key": "vicar_creel",
     "npc_seed": 89938008,
     "audio_path": "vicar_creel/quest__q_ww_what_the_bark_holds__complete.mp3",
-    "audio_hash": "62d54b7e72f7",
-    "updated_at": "2026-09-12T18:49:58.281238+00:00"
+    "audio_hash": "893a0e73d2a2",
+    "updated_at": "2026-09-19T04:55:16.356734+00:00"
   },
   "quest__q_ww_what_the_bark_holds__offer": {
     "text": "在绞湖镇以东的吊影林地，纺蛛把裹满蛛丝的死者悬在枝头，墓皮树怪像一队耐心的抬棺人一样在底下守着。挂在上头的是我们的人啊，冒险者。击碎五只树怪，割下三具裹尸，带他们回家入土。",
-    "text_hash": "01b35df45114b338",
+    "text_hash": "dc88f1dd27acb6e0",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "instruct": "50多岁荒废礼拜堂的末代教士，疲惫干瘪、沙哑空洞、心灰意冷看透生死的年长教士男声",
     "mode": "clone(decoupled)",
     "anchor_key": "vicar_creel",
     "npc_seed": 89938008,
     "audio_path": "vicar_creel/quest__q_ww_what_the_bark_holds__offer.mp3",
-    "audio_hash": "eaf713a54219",
-    "updated_at": "2026-09-18T07:29:09.909016+00:00"
+    "audio_hash": "f7ae98afe2b8",
+    "updated_at": "2026-09-19T04:54:47.345799+00:00"
   },
   "quest__q_ww_widows_skeins__complete": {
     "text": "六束丝，软得像一口屏住的气。亡者裹着它会躺得安稳些。收下这副裹手吧，是我用上一批缝的，这片林子从没能咬穿过它们。",
@@ -6373,27 +5977,27 @@
   },
   "quest__q_ww_wraiths_of_the_tarn__complete": {
     "text": "八位守卫终于躺下了。在白天我不会管这叫仁慈，可私下里说，冒险者，这就是仁慈。",
-    "text_hash": "832752d21e08180c",
+    "text_hash": "15dc3cb5757fbfdc",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "instruct": "50多岁荒废礼拜堂的末代教士，疲惫干瘪、沙哑空洞、心灰意冷看透生死的年长教士男声",
     "mode": "clone(decoupled)",
     "anchor_key": "vicar_creel",
     "npc_seed": 89938008,
     "audio_path": "vicar_creel/quest__q_ww_wraiths_of_the_tarn__complete.mp3",
-    "audio_hash": "56e0bc68fa63",
-    "updated_at": "2026-09-18T07:29:54.204142+00:00"
+    "audio_hash": "eda53241e7d0",
+    "updated_at": "2026-09-19T04:54:10.030375+00:00"
   },
   "quest__q_ww_wraiths_of_the_tarn__offer": {
     "text": "林中怨灵从前是礼拜堂的守卫，冒险者，由栽在贤者墓上的树木生成。自从水潭变黑，它们就忘了自己的职守，如今在我的墓园里飘荡，扒抓着泥土。趁它们还没做完已经开始的事，拆散八只。",
-    "text_hash": "fbfabab70c743d8f",
+    "text_hash": "206ea2e49f21dbde",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "50多岁成熟热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "instruct": "50多岁荒废礼拜堂的末代教士，疲惫干瘪、沙哑空洞、心灰意冷看透生死的年长教士男声",
     "mode": "clone(decoupled)",
     "anchor_key": "vicar_creel",
     "npc_seed": 89938008,
     "audio_path": "vicar_creel/quest__q_ww_wraiths_of_the_tarn__offer.mp3",
-    "audio_hash": "f6d816ac3476",
-    "updated_at": "2026-09-18T07:30:20.499171+00:00"
+    "audio_hash": "2d689f6fef7a",
+    "updated_at": "2026-09-19T04:53:50.003326+00:00"
   },
   "quest__q_wyrm_sigils__complete": {
     "text": "没错。一篇苏醒祷文，写了好几代。他们很近了，冒险者。",
@@ -6589,39 +6193,39 @@
   },
   "yell__nell_i_am_sorry_love_i_nearly_made_it_home": {
     "text": "内尔……对不起，亲爱的……我差一点点……就能回家了……",
-    "text_hash": "3975f907cc91aa9f",
+    "text_hash": "0940b747b6bb4fbe",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "instruct": "30多岁遭遇海难、浑身湿透惊魂未定、失声痛哭想念妻子的悲喜交加年轻渔夫嗓音",
     "mode": "clone(decoupled)",
     "anchor_key": "fisher_bram",
     "npc_seed": 90238156,
     "audio_path": "fisher_bram/yell__nell_i_am_sorry_love_i_nearly_made_it_home.mp3",
-    "audio_hash": "f80f3fb794e1",
-    "updated_at": "2026-09-12T18:55:57.140675+00:00"
+    "audio_hash": "a050afc89322",
+    "updated_at": "2026-09-19T05:06:06.295610+00:00"
   },
   "yell__nell_sent_you_then_she_is_alive_oh_thank_the_tide_stay_close": {
     "text": "是内尔托你来寻我的？她还活着……哦，感谢海神！跟紧点，朋友：滩涂上的那些怪物从来不会落单！",
-    "text_hash": "6250ff6d2b299e2d",
+    "text_hash": "482514b0e3b51d0e",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "instruct": "30多岁遭遇海难、浑身湿透惊魂未定、失声痛哭想念妻子的悲喜交加年轻渔夫嗓音",
     "mode": "clone(decoupled)",
     "anchor_key": "fisher_bram",
     "npc_seed": 90238156,
     "audio_path": "fisher_bram/yell__nell_sent_you_then_she_is_alive_oh_thank_the_tide_stay_close.mp3",
-    "audio_hash": "3edcb5a0d9e5",
-    "updated_at": "2026-09-12T18:56:15.603150+00:00"
+    "audio_hash": "696e52e9df62",
+    "updated_at": "2026-09-19T05:05:44.873307+00:00"
   },
   "yell__no_the_sea_spits_me_back_once_not_twice": {
     "text": "不……无情的大海能饶我一次，却绝不会仁慈第二次……",
-    "text_hash": "f7bdb90ff073d3d8",
+    "text_hash": "adb354b90f34c25a",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁在礁石中获救的落难女领航员，嗓音低沉沙哑、精疲力竭却极度倔强、拒绝示弱的独行女水手口吻",
     "mode": "clone(decoupled)",
     "anchor_key": "castaway_navigator",
     "npc_seed": 1063045,
     "audio_path": "castaway_navigator/yell__no_the_sea_spits_me_back_once_not_twice.mp3",
-    "audio_hash": "cc7950145549",
-    "updated_at": "2026-09-12T18:56:43.438242+00:00"
+    "audio_hash": "08e827890006",
+    "updated_at": "2026-09-19T05:05:26.843498+00:00"
   },
   "yell__rise_once_more": {
     "text": "再度苏醒吧，我的仆从！",
@@ -6841,15 +6445,15 @@
   },
   "yell__you_came_down_the_wreck_line_for_me_then_let_us_go_before_th": {
     "text": "你是顺着沉船残骸一路找过来的？快，趁着怒潮还没漫上来！紧挨着我和海水，那些狂暴的潜伏蟹随时会破浪而出！",
-    "text_hash": "54b167a48f5723cb",
+    "text_hash": "e5e1d84da1e16d09",
     "speaker": "(由 instruct 描述生成)",
-    "instruct": "30多岁自然沉稳的奇幻冒险者，语调清晰自然的中年男性男中音",
+    "instruct": "30多岁在礁石中获救的落难女领航员，嗓音低沉沙哑、精疲力竭却极度倔强、拒绝示弱的独行女水手口吻",
     "mode": "clone(decoupled)",
     "anchor_key": "castaway_navigator",
     "npc_seed": 1063045,
     "audio_path": "castaway_navigator/yell__you_came_down_the_wreck_line_for_me_then_let_us_go_before_th.mp3",
-    "audio_hash": "7896a5e4c385",
-    "updated_at": "2026-09-12T18:59:42.084638+00:00"
+    "audio_hash": "71ced07ecabd",
+    "updated_at": "2026-09-19T05:05:06.274683+00:00"
   },
   "yell__you_cannot_stop_what_was_promised": {
     "text": "凡人……你无法阻挡早已注定的末日宿命！",
@@ -6934,5 +6538,797 @@
     "audio_path": "nythraxis/yell__your_spirit_belongs_to_me.mp3",
     "audio_hash": "7140c6698055",
     "updated_at": "2026-09-12T19:00:45.022508+00:00"
+  },
+  "greeting__farmer_jessica": {
+    "text": "祝你土好天晴，冒险者。从我这里买粒种子，播到那边任意一块田畦里，然后该忙什么忙什么去。你不在的时候它也一直在长，而且永远不会坏。收成日志列出了每块已播种的田畦和它的计时。",
+    "text_hash": "2e6aa7b28ac6c53e",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "20多岁在田间劳作的年轻女农夫，阳光清脆、随和利落的年轻女性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "farmer_jessica",
+    "npc_seed": 44380789,
+    "audio_path": "provisioner_fenna/greeting__farmer_jessica.mp3",
+    "audio_hash": "dc207e011762",
+    "updated_at": "2026-09-19T04:32:19.745132+00:00"
+  },
+  "greeting__farmer_teasel": {
+    "text": "沼泽稻米和沼泽甜菜的种子，冒险者，还有喂养它们的堆肥。稻田排水慢，脚下留神。",
+    "text_hash": "cb4a11b02ff859be",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁精明务实的沼泽水稻老农夫，沙哑低沉、沉稳朴实的劳动长者男低音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "trapper_brosk",
+    "npc_seed": 40857325,
+    "audio_path": "trapper_brosk/greeting__farmer_teasel.mp3",
+    "audio_hash": "7ea57094165e",
+    "updated_at": "2026-09-19T03:48:52.984492+00:00"
+  },
+  "greeting__farmer_verbena": {
+    "text": "当心镶边，冒险者，这些田畦可是花坛的骄傲。我卖的是种子和堆肥，你带来的枯萎谷壳，我都能给你变成更多堆肥。",
+    "text_hash": "faa60a52fb0b34ec",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "30多岁精心打理花草花坛的女花匠农夫，温柔细致、优雅从容的成熟女性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "orchardist_pomeline",
+    "npc_seed": 37078201,
+    "audio_path": "orchardist_pomeline/greeting__farmer_verbena.mp3",
+    "audio_hash": "83861f579819",
+    "updated_at": "2026-09-19T03:49:50.772161+00:00"
+  },
+  "greeting__riftwright_maelis": {
+    "text": "裂隙之戒记得造就它的那道裂隙，冒险者。把戒指和裂隙散落的精华带来，我会教它记住更多。",
+    "text_hash": "6ffae295faeeaf11",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁研究虚空与裂隙法术的女奥术工匠，语调神秘冷静、条理分明且带着法术回响的成熟女性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "quartermaster_edda",
+    "npc_seed": 3023389,
+    "audio_path": "quartermaster_edda/greeting__riftwright_maelis.mp3",
+    "audio_hash": "b42cf00a872b",
+    "updated_at": "2026-09-19T03:50:07.181567+00:00"
+  },
+  "greeting__archivist_maelin_emberward": {
+    "text": "这里的每一道锤印都是一句话。帮我读懂瓦尔库尔想隐藏的真相。",
+    "text_hash": "6cd521376ae5a09d",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "30多岁在熔炉前潜心考证的学者女档案官，专注深沉、带着学术探究执着的干练女性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "archivist_tullo",
+    "npc_seed": 6464336,
+    "audio_path": "archivist_tullo/greeting__archivist_maelin_emberward.mp3",
+    "audio_hash": "4f248f560bdb",
+    "updated_at": "2026-09-19T03:50:19.613348+00:00"
+  },
+  "greeting__archivist_maelin_ember_projection": {
+    "text": "余烬将梅琳的声音传向锻炉深处。",
+    "text_hash": "ebbc594529799e0b",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "空灵微弱、伴随余烬火光回响的学者女性微弱投影回音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "archivist_tullo",
+    "npc_seed": 70290966,
+    "audio_path": "archivist_tullo/greeting__archivist_maelin_ember_projection.mp3",
+    "audio_hash": "88867e912d0d",
+    "updated_at": "2026-09-19T03:50:26.610914+00:00"
+  },
+  "greeting__crucible_quartermaster": {
+    "text": "熔炉会铭记自己人。把坩埚里的印记带给我，我就为你披挂上阵。",
+    "text_hash": "2fce9c7caa3eae57",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁在熔炉烈火旁久经历练的铁甲军需官，嗓音厚重深沉、威严干练的军人男中音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "heroic_quartermaster",
+    "npc_seed": 25414122,
+    "audio_path": "heroic_quartermaster/greeting__crucible_quartermaster.mp3",
+    "audio_hash": "08d0d86e1d75",
+    "updated_at": "2026-09-19T03:50:37.682742+00:00"
+  },
+  "greeting__drillmaster_hale": {
+    "text": "我身后那具假人从不还手，也永远打不倒，冒险者。真正重要的是账目：你的伤害统计会记下你落在它身上的每一击。把它设为目标，打开伤害统计窗口，剩下的交给我来教你。",
+    "text_hash": "bf7bd88f1248c311",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁精壮练武场陪练教头，嗓音威武洪亮、干练沉稳的成年男性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "marshal_redbrook",
+    "npc_seed": 14996549,
+    "audio_path": "marshal_redbrook/greeting__drillmaster_hale.mp3",
+    "audio_hash": "cdabc6c8984f",
+    "updated_at": "2026-09-19T03:51:07.348787+00:00"
+  },
+  "quest__q_farm_intro__offer": {
+    "text": "拿着这把锄头和一小撮谷地小麦种子，冒险者。把种子播到我旁边任意一块田畦里，然后去忙你的事。想什么时候回来收庄稼都行；我会在这儿。",
+    "text_hash": "bacc9e23a74371da",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "30多岁热情大方的村庄女物资官，面带微笑、语速轻快温和的亲切成熟女性女中音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "provisioner_fenna",
+    "npc_seed": 89494995,
+    "audio_path": "provisioner_fenna/quest__q_farm_intro__offer.mp3",
+    "audio_hash": "531326132f09",
+    "updated_at": "2026-09-19T04:34:45.584293+00:00"
+  },
+  "quest__q_farm_intro__complete": {
+    "text": "瞧，你亲手种出的第一茬庄稼。你不在的时候它也一直在长，而且永远不会坏。收成日志列出了每块已播种的田畦和它的计时。田畦召唤你的时候，随时回来买种子，冒险者。",
+    "text_hash": "64ab5c0c64184a21",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "30多岁热情大方的村庄女物资官，面带微笑、语速轻快温和的亲切成熟女性女中音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "provisioner_fenna",
+    "npc_seed": 89494995,
+    "audio_path": "provisioner_fenna/quest__q_farm_intro__complete.mp3",
+    "audio_hash": "25e00ca13a96",
+    "updated_at": "2026-09-19T04:35:12.367619+00:00"
+  },
+  "quest__q_prof_workorder_kitchens_wheat__offer": {
+    "text": "面包不会自己烤出来，冒险者，我的面粉柜都快见底了。给我送来八捆谷地小麦，我按实价付你整批的钱。是你亲手种的还是从市场买的，我不在乎，磨得出粉就行。",
+    "text_hash": "d27c15ecf093aaf6",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁系着围裙的厨房大师傅，大嗓门、热烈粗犷带着市井炊烟烟火气的中年男中音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "cook_marlow",
+    "npc_seed": 81835220,
+    "audio_path": "cook_marlow/quest__q_prof_workorder_kitchens_wheat__offer.mp3",
+    "audio_hash": "e473798561c7",
+    "updated_at": "2026-09-19T03:58:02.232204+00:00"
+  },
+  "quest__q_prof_workorder_kitchens_wheat__complete": {
+    "text": "好干爽的粮食，还不少。这是你的酬劳，一枚不差。下一茬收上来的时候，你知道该敲哪扇门。",
+    "text_hash": "d3697976f67044d0",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁系着围裙的厨房大师傅，大嗓门、热烈粗犷带着市井炊烟烟火气的中年男中音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "cook_marlow",
+    "npc_seed": 81835220,
+    "audio_path": "cook_marlow/quest__q_prof_workorder_kitchens_wheat__complete.mp3",
+    "audio_hash": "644754545b9e",
+    "updated_at": "2026-09-19T03:58:15.516236+00:00"
+  },
+  "quest__q_prof_workorder_kitchens_rice__offer": {
+    "text": "沼泽人对自家的米赞不绝口，冒险者，我倒要弄明白是为什么。给我弄来五升沼泽稻米，钱就在这儿等着你。路上留神别弄湿了：湿米就是粥，我可没点过粥。",
+    "text_hash": "2f47d3b62538ede5",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁系着围裙的厨房大师傅，大嗓门、热烈粗犷带着市井炊烟烟火气的中年男中音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "cook_marlow",
+    "npc_seed": 81835220,
+    "audio_path": "cook_marlow/quest__q_prof_workorder_kitchens_rice__offer.mp3",
+    "audio_hash": "370f0707b585",
+    "updated_at": "2026-09-19T03:58:39.210042+00:00"
+  },
+  "quest__q_prof_workorder_kitchens_rice__complete": {
+    "text": "粒粒饱满干爽。这是你的钱。只要沼泽还长米，我就一直收。",
+    "text_hash": "1414c16cf3f187a8",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁系着围裙的厨房大师傅，大嗓门、热烈粗犷带着市井炊烟烟火气的中年男中音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "cook_marlow",
+    "npc_seed": 81835220,
+    "audio_path": "cook_marlow/quest__q_prof_workorder_kitchens_rice__complete.mp3",
+    "audio_hash": "a00fbebb7b9b",
+    "updated_at": "2026-09-19T03:58:51.792459+00:00"
+  },
+  "quest__q_ps_hone_the_edge__offer": {
+    "text": "挥砍就只是挥砍，冒险者，草人能挨上一整天，可那赢不来任何东西。看看屏幕下方那一排按钮：那一排才是你的本事，每一个都能做到你光靠胳膊做不到的事。你已经有一个了。回到草人跟前用出来：选好目标，按下这座校场为你标出的那个按钮，做满三次。别只是乱砍草垛，要真正把你会的那一手打出来。做完就回来找我。",
+    "text_hash": "8bafd63c93e98955",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁饱经风霜的军团老元帅，沙哑低沉、刚毅如磐石的威严军人男低音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "drillmaster_rook",
+    "npc_seed": 12880850,
+    "audio_path": "marshal_redbrook/quest__q_ps_hone_the_edge__offer.mp3",
+    "audio_hash": "a92553a51c66",
+    "updated_at": "2026-09-19T04:17:31.919583+00:00"
+  },
+  "quest__q_ps_hone_the_edge__complete": {
+    "text": "现在你是在战斗，而不是在瞎挥了。那一排会随着你每升一级变长，冒险者，活得最久的，永远是会读那一排的人。草人不在乎你用了哪个按钮。山谷会在乎。",
+    "text_hash": "164270cae4c025e4",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁饱经风霜的军团老元帅，沙哑低沉、刚毅如磐石的威严军人男低音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "drillmaster_rook",
+    "npc_seed": 12880850,
+    "audio_path": "marshal_redbrook/quest__q_ps_hone_the_edge__complete.mp3",
+    "audio_hash": "4b7021da0b3a",
+    "updated_at": "2026-09-19T04:17:55.468608+00:00"
+  },
+  "quest__q_ps_the_long_walk__offer": {
+    "text": "只剩最后一课了，冒险者，而这一课我说不明白：你得亲自经历一次。你在外头一定会死。谁都会死，而那并不是任何事情的终点。拿上这块往生石。按 B 打开背包，用鼠标左键点它，它就会让你在原地倒下。接着照屏幕上的指示做：释放灵魂，走回你自己的尸体，再走进去。尸体会等着你，那段路不要钱，走完它你什么也不会失去。",
+    "text_hash": "62a16b49bb026b20",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "干练爽朗、热情洋溢的马厩女老板口吻",
+    "mode": "clone(decoupled)",
+    "anchor_key": "instructor_maren",
+    "npc_seed": 28496285,
+    "audio_path": "stablemaster_marla/quest__q_ps_the_long_walk__offer.mp3",
+    "audio_hash": "a076069de7a8",
+    "updated_at": "2026-09-19T04:18:45.940298+00:00"
+  },
+  "quest__q_ps_the_long_walk__complete": {
+    "text": "你就这样回来了，一点没少。记住那种感觉，冒险者，因为下一次会牵扯到獠牙，而且没人站在旁边给你解释。尸体会等着你，那段路不要钱，死亡真正拿走的，只有你走回来的那点时间。",
+    "text_hash": "84785d36c2fd4f38",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "干练爽朗、热情洋溢的马厩女老板口吻",
+    "mode": "clone(decoupled)",
+    "anchor_key": "instructor_maren",
+    "npc_seed": 28496285,
+    "audio_path": "stablemaster_marla/quest__q_ps_the_long_walk__complete.mp3",
+    "audio_hash": "1c14be696fc2",
+    "updated_at": "2026-09-19T04:19:21.577312+00:00"
+  },
+  "quest__q_ignivar_echoes_in_iron__offer": {
+    "text": "这些自动机械不是士兵，而是草稿。摧毁每条装配线，在最后一具躯壳倒下时仔细聆听。锻炉记得瓦尔库尔试图抹去的一切。",
+    "text_hash": "4c736935698d63ae",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "archivist_tullo",
+    "npc_seed": 44487098,
+    "audio_path": "archivist_tullo/quest__q_ignivar_echoes_in_iron__offer.mp3",
+    "audio_hash": "37c641ac6121",
+    "updated_at": "2026-09-19T04:20:19.695689+00:00"
+  },
+  "quest__q_ignivar_echoes_in_iron__complete": {
+    "text": "回响彼此吻合。瓦尔库尔将垂死末泉的水束缚进活体金属。这些自动机械都是失败的淬炼品，只有伊格尼瓦尔撑了下来。",
+    "text_hash": "aef3ea92e28887e4",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "archivist_tullo",
+    "npc_seed": 44487098,
+    "audio_path": "archivist_tullo/quest__q_ignivar_echoes_in_iron__complete.mp3",
+    "audio_hash": "4518e05a731e",
+    "updated_at": "2026-09-19T04:20:44.051062+00:00"
+  },
+  "quest__q_ignivar_heralds_heart__offer": {
+    "text": "每一道回响都指向唯一的幸存者：伊格尼瓦尔。瓦尔库尔称他为先驱、封印和钥匙。击败他。如果记录属实，他的死亡会揭示他被锻造来守护什么。",
+    "text_hash": "1d406e43d9ac39da",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "archivist_tullo",
+    "npc_seed": 44487098,
+    "audio_path": "archivist_tullo/quest__q_ignivar_heralds_heart__offer.mp3",
+    "audio_hash": "f01304c33628",
+    "updated_at": "2026-09-19T04:21:13.200951+00:00"
+  },
+  "quest__q_ignivar_heralds_heart__complete": {
+    "text": "伊格尼瓦尔从来不只是守护者。他的心脏就是钥匙，最后的甲片打开了下方封闭的熔炉。",
+    "text_hash": "4ed0b1c365210876",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "archivist_tullo",
+    "npc_seed": 44487098,
+    "audio_path": "archivist_tullo/quest__q_ignivar_heralds_heart__complete.mp3",
+    "audio_hash": "9fb2ac1df972",
+    "updated_at": "2026-09-19T04:21:33.437672+00:00"
+  },
+  "quest__q_ignivar_the_forgefather__offer": {
+    "text": "下方的道路通向末焰锻父瓦尔库尔。他囚禁末泉以赋予金属生命，又锻造伊格尼瓦尔来封存这罪行。进入内环熔炉，结束他的工作。",
+    "text_hash": "fb8a92fac1c831e0",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "archivist_tullo",
+    "npc_seed": 44487098,
+    "audio_path": "archivist_tullo/quest__q_ignivar_the_forgefather__offer.mp3",
+    "audio_hash": "76570c06bccc",
+    "updated_at": "2026-09-19T04:22:01.896052+00:00"
+  },
+  "quest__q_ignivar_the_forgefather__complete": {
+    "text": "锻炉终于寂静了。泉水也许永远无法复原，但瓦尔库尔再也不能将生命锻成锁链。",
+    "text_hash": "f9fd9568f1254c8e",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "archivist_tullo",
+    "npc_seed": 44487098,
+    "audio_path": "archivist_tullo/quest__q_ignivar_the_forgefather__complete.mp3",
+    "audio_hash": "77e188767aae",
+    "updated_at": "2026-09-19T04:22:21.106715+00:00"
+  },
+  "quest__q_forgefathers_requiem__offer": {
+    "text": "瓦尔库尔将末泉的一缕余烬藏在心中。从他身上取回余烬，带来交给我。武器锻造技能达到125后，你就能学习亲手锻造碎炉者。接受此任务期间，在任意难度下击败他都能获得余烬。",
+    "text_hash": "0ddba053037e35a1",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "archivist_tullo",
+    "npc_seed": 44487098,
+    "audio_path": "archivist_tullo/quest__q_forgefathers_requiem__offer.mp3",
+    "audio_hash": "83c0dacd4716",
+    "updated_at": "2026-09-19T04:22:57.545754+00:00"
+  },
+  "quest__q_forgefathers_requiem__complete": {
+    "text": "它仍在歌唱。留着余烬，你的战锤需要它的声音。我已传授给你一次锻造碎炉者的技艺。只有制作成功，余烬和这份技艺才会消耗。",
+    "text_hash": "b30b5d2b720e6e6f",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "archivist_tullo",
+    "npc_seed": 44487098,
+    "audio_path": "archivist_tullo/quest__q_forgefathers_requiem__complete.mp3",
+    "audio_hash": "cb34ec602732",
+    "updated_at": "2026-09-19T04:23:26.029022+00:00"
+  },
+  "quest__q_requiem_at_the_forge__offer": {
+    "text": "将余烬、十五枚末焰之核、优质锇矿石和优质高松原木带到锻炉。亲手锻造碎炉者，然后将它放在背包中或装备上，回来见我。战锤归你所有，并与你绑定。这份技艺只能制作一把战锤。",
+    "text_hash": "da88fc307cfd20c7",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "archivist_tullo",
+    "npc_seed": 44487098,
+    "audio_path": "archivist_tullo/quest__q_requiem_at_the_forge__offer.mp3",
+    "audio_hash": "f4467e7a3eb2",
+    "updated_at": "2026-09-19T04:24:10.547443+00:00"
+  },
+  "quest__q_requiem_at_the_forge__complete": {
+    "text": "泉水的声音在钢铁中回荡。瓦尔库尔囚禁的事物，已被你的双手解放。锻造者，好好持有碎炉者吧。",
+    "text_hash": "819ac4832178fd15",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "60多岁老年热情精明的商人小贩，语速明快、亲切流畅的市井男性嗓音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "archivist_tullo",
+    "npc_seed": 44487098,
+    "audio_path": "archivist_tullo/quest__q_requiem_at_the_forge__complete.mp3",
+    "audio_hash": "3e2459332960",
+    "updated_at": "2026-09-19T04:24:29.632187+00:00"
+  },
+  "quest__q_hub_know_your_numbers__offer": {
+    "text": "量不出的力量，就是提不高的力量，冒险者。把训练假人设为目标，打开你的伤害统计，往它身上打满十击，挥砍或施法都算，边打边看着窗口记录你造成的伤害。打满十击后回来，把那个数字告诉我。",
+    "text_hash": "8502d3d3aff6f9e7",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁饱经风霜的军团老元帅，沙哑低沉、刚毅如磐石的威严军人男低音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "marshal_redbrook",
+    "npc_seed": 12880850,
+    "audio_path": "marshal_redbrook/quest__q_hub_know_your_numbers__offer.mp3",
+    "audio_hash": "e7294d339bdc",
+    "updated_at": "2026-09-19T04:25:03.582721+00:00"
+  },
+  "quest__q_hub_know_your_numbers__complete": {
+    "text": "十击打完，现在你知道它们值多少了。以后每拿到一件新武器、一个新天赋或一个新想法，冒险者，就回到这根桩子前，给它记上一个数字。山谷未必诚实，统计永远诚实。",
+    "text_hash": "90a4bffcae67d226",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁饱经风霜的军团老元帅，沙哑低沉、刚毅如磐石的威严军人男低音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "marshal_redbrook",
+    "npc_seed": 12880850,
+    "audio_path": "marshal_redbrook/quest__q_hub_know_your_numbers__complete.mp3",
+    "audio_hash": "5b353971fbe9",
+    "updated_at": "2026-09-19T04:25:34.613929+00:00"
+  },
+  "quest__q_hub_healing_numbers__offer": {
+    "text": "值得衡量的不只是拳头，冒险者。把旁边的治疗假人设为目标，打开你的伤害统计，切换到治疗页签。往它身上打出三次真正恢复生命值的治疗，边治边看着窗口像数拳头一样数着它们。",
+    "text_hash": "d609e2b5cb4eac90",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁饱经风霜的军团老元帅，沙哑低沉、刚毅如磐石的威严军人男低音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "marshal_redbrook",
+    "npc_seed": 12880850,
+    "audio_path": "marshal_redbrook/quest__q_hub_healing_numbers__offer.mp3",
+    "audio_hash": "8b84259bff4d",
+    "updated_at": "2026-09-19T04:26:02.443820+00:00"
+  },
+  "quest__q_hub_healing_numbers__complete": {
+    "text": "治愈的数字，不是打伤的数字，但终归都是数字，冒险者。从不看那些统计的治疗者，是在瞎猜自己的价值。",
+    "text_hash": "595c20ce2a3c5efb",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁饱经风霜的军团老元帅，沙哑低沉、刚毅如磐石的威严军人男低音",
+    "mode": "clone(decoupled)",
+    "anchor_key": "marshal_redbrook",
+    "npc_seed": 12880850,
+    "audio_path": "marshal_redbrook/quest__q_hub_healing_numbers__complete.mp3",
+    "audio_hash": "a95be68de4e5",
+    "updated_at": "2026-09-19T04:26:21.316900+00:00"
+  },
+  "greeting__tanner_hesk": {
+    "text": "皮子的好坏全看鞣制，冒险者。鞣槽已经备好，就等你了。",
+    "text_hash": "a64373550646783a",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁深褐皮革工坊的制革大师，声音沙哑扁平、字句极其简短短促、绝不多说半句废话的冷硬干练中年男低音",
+    "mode": "clone",
+    "anchor_key": "tanner_hesk",
+    "npc_seed": 7122096,
+    "audio_path": "tanner_hesk/greeting__tanner_hesk.mp3",
+    "audio_hash": "160f78048955",
+    "updated_at": "2026-09-19T04:29:11.117093+00:00"
+  },
+  "greeting__armorer_hode": {
+    "text": "炉火正旺，砂轮正转。能砍的东西，我都卖。",
+    "text_hash": "6352a2e3db64b782",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁身披厚重锁甲的铠甲匠大师，声音洪亮爽朗、性格豪爽，大嗓门如在铁砧上捶打玄铁的中年男高音",
+    "mode": "clone",
+    "anchor_key": "armorer_hode",
+    "npc_seed": 24624778,
+    "audio_path": "armorer_hode/greeting__armorer_hode.mp3",
+    "audio_hash": "cb963540d139",
+    "updated_at": "2026-09-19T04:29:18.380183+00:00"
+  },
+  "greeting__farmer_hollis": {
+    "text": "梯田只给山肯给的那么多，冒险者。我卖种子和堆肥，要是你的庄稼枯萎了，我可以把谷壳重新沤成好土给你。",
+    "text_hash": "bc6991db104609f8",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁梯田庄稼汉，语速缓慢平稳、字字沉实的中年农夫嗓音",
+    "mode": "clone",
+    "anchor_key": "farmer_hollis",
+    "npc_seed": 65277470,
+    "audio_path": "huntsman_deral/greeting__farmer_hollis.mp3",
+    "audio_hash": "9adea0330a6c",
+    "updated_at": "2026-09-19T04:29:36.450078+00:00"
+  },
+  "greeting__brother_halven": {
+    "text": "下方的圣物库又移位了。",
+    "text_hash": "5b3569c5c4d66fdd",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "80岁在沼泽中守望死者残魂的圣洁老修道士，嗓音苍老颤抖、带着无尽虔诚与轻声敬畏的年迈长者男声",
+    "mode": "clone",
+    "anchor_key": "brother_halven",
+    "npc_seed": 97536900,
+    "audio_path": "brother_halven/greeting__brother_halven.mp3",
+    "audio_hash": "3d6d2c17ac03",
+    "updated_at": "2026-09-19T04:29:45.521613+00:00"
+  },
+  "greeting__huntsman_deral": {
+    "text": "别出声。鹿群熟悉这山谷里的每一种声响，我也一样。",
+    "text_hash": "216affc8927d2dff",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁身穿苔藓皮甲的猎兽哨兵守望者，声音低沉平稳、刻意压低气息以防惊扰猎物、字字沉实坚毅的中年男低音",
+    "mode": "clone",
+    "anchor_key": "huntsman_deral",
+    "npc_seed": 83997835,
+    "audio_path": "huntsman_deral/greeting__huntsman_deral.mp3",
+    "audio_hash": "08894243c974",
+    "updated_at": "2026-09-19T04:29:58.571240+00:00"
+  },
+  "greeting__ferrymaster_caddow": {
+    "text": "大湖又起雾了。水面上的灯笼一灭，聪明人就该待在岸上。",
+    "text_hash": "07bff53cf13c5d19",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁大雾弥漫湖泊上的摆渡长，声音低沉潮湿、语速缓慢而谨慎，习惯压低嗓音说话的沉稳中年男中音",
+    "mode": "clone",
+    "anchor_key": "ferrymaster_caddow",
+    "npc_seed": 11241036,
+    "audio_path": "ferrymaster_caddow/greeting__ferrymaster_caddow.mp3",
+    "audio_hash": "c9a66ee0fa65",
+    "updated_at": "2026-09-19T04:30:16.338372+00:00"
+  },
+  "greeting__lamplighter_sorrel": {
+    "text": "留意这些灯，朋友。过了这道门，太阳就放弃了，接班的是花。",
+    "text_hash": "d33eebeec7aa971f",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁在永夜无光之路上坚守的点灯人，嗓音从容随和、略带戏谑与值夜人的从容沉稳中年男声",
+    "mode": "clone",
+    "anchor_key": "lamplighter_sorrel",
+    "npc_seed": 77136335,
+    "audio_path": "lamplighter_sorrel/greeting__lamplighter_sorrel.mp3",
+    "audio_hash": "dac23394a93d",
+    "updated_at": "2026-09-19T04:30:30.755415+00:00"
+  },
+  "greeting__strandwatcher_pell": {
+    "text": "总算走出那片黑树林了。喘口气吧，陌生人，隘口这一侧还归太阳管。",
+    "text_hash": "864ce7fe0b7933de",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "30多岁走出幽暗丛林来到阳光海滩的守卫哨兵，嗓音爽朗阳光、开阔放松、带着海岛惬意笑意的青年男中音",
+    "mode": "clone",
+    "anchor_key": "strandwatcher_pell",
+    "npc_seed": 92295020,
+    "audio_path": "strandwatcher_pell/greeting__strandwatcher_pell.mp3",
+    "audio_hash": "19c918295f7b",
+    "updated_at": "2026-09-19T04:30:44.334032+00:00"
+  },
+  "greeting__gatewarden_pell": {
+    "text": "在草坪上走路当心些。花园亲自修剪它们，也喜欢它们整整齐齐。",
+    "text_hash": "8e8fe750ad475fd6",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "30多岁看守古老花园大门的小守卫官，声音温和尽责、略带神经质紧张，说话时忍不住回头张望灌木丛的年轻男声",
+    "mode": "clone",
+    "anchor_key": "gatewarden_pell",
+    "npc_seed": 79935709,
+    "audio_path": "gatewarden_pell/greeting__gatewarden_pell.mp3",
+    "audio_hash": "598d7d40427e",
+    "updated_at": "2026-09-19T04:30:54.127113+00:00"
+  },
+  "greeting__riftwatch_ollun": {
+    "text": "每道裂隙开启之前都会歌唱，只要你有听它的耳朵。此刻我能听见岛上三道裂隙正在骚动，其中一道就在近处。",
+    "text_hash": "bdbf27b0cf9ac4d5",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁能提前听到空间裂隙异响的学者，声音紧张急促、时而骤然停顿屏息侧耳倾听的神经质狂热学者男声",
+    "mode": "clone",
+    "anchor_key": "riftwatch_ollun",
+    "npc_seed": 54298595,
+    "audio_path": "riftwatch_ollun/greeting__riftwatch_ollun.mp3",
+    "audio_hash": "c0b812d57a94",
+    "updated_at": "2026-09-19T04:31:11.342111+00:00"
+  },
+  "greeting__mender_saul": {
+    "text": "这一个月里我接的骨头，比过去十年医治渔民跌伤加起来还多。裂隙夺走的东西，很少留下什么。若你办得到，就囫囵着回来见我。",
+    "text_hash": "1cb9c4a1d5e8068a",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁战场战地医师外科军医，疲惫温和、语气严谨精准，字里行间流露真挚悲悯之心的成年医者男性嗓音",
+    "mode": "clone",
+    "anchor_key": "mender_saul",
+    "npc_seed": 18655655,
+    "audio_path": "mender_saul/greeting__mender_saul.mp3",
+    "audio_hash": "3af7df6809a9",
+    "updated_at": "2026-09-19T04:31:34.742329+00:00"
+  },
+  "greeting__brother_halven_marsh": {
+    "text": "小径向北延伸。又一座圣物库，又一场仪式。选择你的难度，我会为你守住绳索，直到你归来。",
+    "text_hash": "b330d854670e4df7",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "80岁在沼泽中守望死者残魂的圣洁老修道士，嗓音苍老颤抖、带着无尽虔诚与轻声敬畏的年迈长者男声",
+    "mode": "clone(decoupled)",
+    "anchor_key": "brother_halven_marsh",
+    "npc_seed": 48210643,
+    "audio_path": "brother_halven/greeting__brother_halven_marsh.mp3",
+    "audio_hash": "58f56c9a1cfa",
+    "updated_at": "2026-09-19T04:33:02.308007+00:00"
+  },
+  "quest__q_prof_workorder_tannery__offer": {
+    "text": "鞣桶空了。带八张粗糙的兽皮来。到了付钱。",
+    "text_hash": "2e9b424056193729",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁深褐皮革工坊的制革大师，声音沙哑扁平、字句极其简短短促、绝不多说半句废话的冷硬干练中年男低音",
+    "mode": "clone",
+    "anchor_key": "tanner_hesk",
+    "npc_seed": 7122096,
+    "audio_path": "tanner_hesk/quest__q_prof_workorder_tannery__offer.mp3",
+    "audio_hash": "3be250431f22",
+    "updated_at": "2026-09-19T04:38:57.781492+00:00"
+  },
+  "quest__q_prof_workorder_tannery__complete": {
+    "text": "皮不错。价公道。有了再来。",
+    "text_hash": "b77851888014be9d",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁深褐皮革工坊的制革大师，声音沙哑扁平、字句极其简短短促、绝不多说半句废话的冷硬干练中年男低音",
+    "mode": "clone",
+    "anchor_key": "tanner_hesk",
+    "npc_seed": 7122096,
+    "audio_path": "tanner_hesk/quest__q_prof_workorder_tannery__complete.mp3",
+    "audio_hash": "764bf656ba5c",
+    "updated_at": "2026-09-19T04:39:04.899208+00:00"
+  },
+  "quest__q_hollow_the_huntsman__complete": {
+    "text": "芬娜派你来的？好。那就是说她信得过你，而我这里有两个需要划掉的名字。",
+    "text_hash": "0cfa0d732436e080",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁身穿苔藓皮甲的猎兽哨兵守望者，声音低沉平稳、刻意压低气息以防惊扰猎物、字字沉实坚毅的中年男低音",
+    "mode": "clone",
+    "anchor_key": "huntsman_deral",
+    "npc_seed": 83997835,
+    "audio_path": "huntsman_deral/quest__q_hollow_the_huntsman__complete.mp3",
+    "audio_hash": "de8dd45da593",
+    "updated_at": "2026-09-19T04:47:42.410639+00:00"
+  },
+  "quest__q_hollow_old_marrowshell__offer": {
+    "text": "第一个名字是老甲髓，一只货车大小的螃蟹，早在古辉镇还没有大门的年月，它就在东边的浅滩里捕猎了。它四处游走，冒险者，所以你得沿着岸线走，直到撞上它的行迹。不要独自前往，也不要相信它的静止。",
+    "text_hash": "6c2936b7f3d7998b",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁身穿苔藓皮甲的猎兽哨兵守望者，声音低沉平稳、刻意压低气息以防惊扰猎物、字字沉实坚毅的中年男低音",
+    "mode": "clone",
+    "anchor_key": "huntsman_deral",
+    "npc_seed": 83997835,
+    "audio_path": "huntsman_deral/quest__q_hollow_old_marrowshell__offer.mp3",
+    "audio_hash": "675801649fb8",
+    "updated_at": "2026-09-19T04:48:13.202455+00:00"
+  },
+  "quest__q_hollow_old_marrowshell__complete": {
+    "text": "浅滩又只是一片水了。我亲眼见过那只甲壳磕碎比我更好的猎手，冒险者。但没能磕碎你。",
+    "text_hash": "38b9f5ac98c4213a",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁身穿苔藓皮甲的猎兽哨兵守望者，声音低沉平稳、刻意压低气息以防惊扰猎物、字字沉实坚毅的中年男低音",
+    "mode": "clone",
+    "anchor_key": "huntsman_deral",
+    "npc_seed": 83997835,
+    "audio_path": "huntsman_deral/quest__q_hollow_old_marrowshell__complete.mp3",
+    "audio_hash": "08a9e5a8f828",
+    "updated_at": "2026-09-19T04:48:29.364373+00:00"
+  },
+  "quest__q_hollow_first_of_the_herd__offer": {
+    "text": "第二个名字更难说出口。我祖母守这座瞭望哨的年月，金角就已统领着这些鹿群，而幽谷中苏醒的那个东西，把他唤醒错了。他践踏着自己曾经守护的一切，鹿群熬不过他的疯狂。他在旧王庭道路附近的草甸上游荡。仁慈地终结他吧，冒险者，再带上一个朋友，分担这份重量。",
+    "text_hash": "b761e9be576c9a63",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁身穿苔藓皮甲的猎兽哨兵守望者，声音低沉平稳、刻意压低气息以防惊扰猎物、字字沉实坚毅的中年男低音",
+    "mode": "clone",
+    "anchor_key": "huntsman_deral",
+    "npc_seed": 83997835,
+    "audio_path": "huntsman_deral/quest__q_hollow_first_of_the_herd__offer.mp3",
+    "audio_hash": "16da82b23f6f",
+    "updated_at": "2026-09-19T04:49:07.352971+00:00"
+  },
+  "quest__q_hollow_first_of_the_herd__complete": {
+    "text": "于是鹿群之首倒在了最后。鹿群已经安定了些，你感觉到了吗？你今天为幽谷做了一件善事，哪怕它看上去不像。",
+    "text_hash": "f1384aaf9deecd2a",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁身穿苔藓皮甲的猎兽哨兵守望者，声音低沉平稳、刻意压低气息以防惊扰猎物、字字沉实坚毅的中年男低音",
+    "mode": "clone",
+    "anchor_key": "huntsman_deral",
+    "npc_seed": 83997835,
+    "audio_path": "huntsman_deral/quest__q_hollow_first_of_the_herd__complete.mp3",
+    "audio_hash": "860620a817a0",
+    "updated_at": "2026-09-19T04:49:24.622821+00:00"
+  },
+  "quest__q_af_lanterns_on_the_water__offer": {
+    "text": "大湖上的每条渡船都挂着一盏船尾灯，冒险者，而今天拂晓，我有三条船回来时灯不见了。是雾拿走了它们，或者是雾里的什么东西。风向一转，它们就会被冲上东岸。沿着湖岸路走一遭，把我的灯带回家。",
+    "text_hash": "155179085fea8e92",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁大雾弥漫湖泊上的摆渡长，声音低沉潮湿、语速缓慢而谨慎，习惯压低嗓音说话的沉稳中年男中音",
+    "mode": "clone",
+    "anchor_key": "ferrymaster_caddow",
+    "npc_seed": 11241036,
+    "audio_path": "ferrymaster_caddow/quest__q_af_lanterns_on_the_water__offer.mp3",
+    "audio_hash": "e987c47159e4",
+    "updated_at": "2026-09-19T04:49:56.878439+00:00"
+  },
+  "quest__q_af_lanterns_on_the_water__complete": {
+    "text": "三盏俱全，而且还亮着。渡船灯在水里也不会熄，冒险者。它们生来如此。让我担心的，是究竟什么把它们扯了下来。",
+    "text_hash": "5efc7f0a6380d15c",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁大雾弥漫湖泊上的摆渡长，声音低沉潮湿、语速缓慢而谨慎，习惯压低嗓音说话的沉稳中年男中音",
+    "mode": "clone",
+    "anchor_key": "ferrymaster_caddow",
+    "npc_seed": 11241036,
+    "audio_path": "ferrymaster_caddow/quest__q_af_lanterns_on_the_water__complete.mp3",
+    "audio_hash": "5b51ed73e1bb",
+    "updated_at": "2026-09-19T04:50:19.224068+00:00"
+  },
+  "quest__q_af_what_took_the_moorings__offer": {
+    "text": "现在我要告诉你我没在镇上人面前说的话。那些缆绳不是松脱的，是被咬断的。湖泽潜伏者一晚比一晚大胆，拖拽着缆绳和船舵。让八只永远沉回水底吧，冒险者，别等哪个船夫跟着一起沉下去。",
+    "text_hash": "9b19a914aaf150e4",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁大雾弥漫湖泊上的摆渡长，声音低沉潮湿、语速缓慢而谨慎，习惯压低嗓音说话的沉稳中年男中音",
+    "mode": "clone",
+    "anchor_key": "ferrymaster_caddow",
+    "npc_seed": 11241036,
+    "audio_path": "ferrymaster_caddow/quest__q_af_what_took_the_moorings__offer.mp3",
+    "audio_hash": "dda267857347",
+    "updated_at": "2026-09-19T04:50:49.615316+00:00"
+  },
+  "quest__q_af_what_took_the_moorings__complete": {
+    "text": "浅水里少了八条影子，今天的渡船两周来头一次准点。可潜伏者变得大胆，是因为有东西在驱赶它们，冒险者。大湖底下有什么正在搅动。",
+    "text_hash": "657f03b0952f8ab7",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁大雾弥漫湖泊上的摆渡长，声音低沉潮湿、语速缓慢而谨慎，习惯压低嗓音说话的沉稳中年男中音",
+    "mode": "clone",
+    "anchor_key": "ferrymaster_caddow",
+    "npc_seed": 11241036,
+    "audio_path": "ferrymaster_caddow/quest__q_af_what_took_the_moorings__complete.mp3",
+    "audio_hash": "f9bc88c7abf5",
+    "updated_at": "2026-09-19T04:51:12.013964+00:00"
+  },
+  "quest__q_af_the_meredark__offer": {
+    "text": "老船夫们有一个只敢在岸上说的名字：湖渊暗影，第一头潜伏者，和湖一样古老，耐心还要多上一倍。它从前浮起过一次，就在沉没栈桥没入水中的那一年，而如今它又在上浮。黄昏时分，它会趴在南岸外的栈桥残骸上晒着余晖，冒险者。带上一个朋友，带上两个，趁它还能被终结时终结它。",
+    "text_hash": "e8991ef8083eb133",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁大雾弥漫湖泊上的摆渡长，声音低沉潮湿、语速缓慢而谨慎，习惯压低嗓音说话的沉稳中年男中音",
+    "mode": "clone",
+    "anchor_key": "ferrymaster_caddow",
+    "npc_seed": 11241036,
+    "audio_path": "ferrymaster_caddow/quest__q_af_the_meredark__offer.mp3",
+    "audio_hash": "02f551bbb65e",
+    "updated_at": "2026-09-19T04:51:58.446050+00:00"
+  },
+  "quest__q_af_the_meredark__complete": {
+    "text": "今天清晨，大湖上的雾散了，冒险者，全镇的人都看见了。夜渡将会重开，水面上的每一盏灯都将为你的名字而亮。收下这个：它是从沉没栈桥打捞上来的，没有人比你更有资格披上它。",
+    "text_hash": "e60de745d39171e1",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "50多岁大雾弥漫湖泊上的摆渡长，声音低沉潮湿、语速缓慢而谨慎，习惯压低嗓音说话的沉稳中年男中音",
+    "mode": "clone",
+    "anchor_key": "ferrymaster_caddow",
+    "npc_seed": 11241036,
+    "audio_path": "ferrymaster_caddow/quest__q_af_the_meredark__complete.mp3",
+    "audio_hash": "1287f168e700",
+    "updated_at": "2026-09-19T04:52:28.330129+00:00"
+  },
+  "quest__q_nb_road_of_lanterns__offer": {
+    "text": "太阳从不跟着人爬到这上头来，冒险者，一路相随的只有我沿坡点亮的灯。月栖镇在北边，花光汇聚的地方。去花园里找到莉拉·露歌，告诉她夜门的灯还亮着。",
+    "text_hash": "56ae7249f74edb6b",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁在永夜无光之路上坚守的点灯人，嗓音从容随和、略带戏谑与值夜人的从容沉稳中年男声",
+    "mode": "clone",
+    "anchor_key": "lamplighter_sorrel",
+    "npc_seed": 77136335,
+    "audio_path": "lamplighter_sorrel/quest__q_nb_road_of_lanterns__offer.mp3",
+    "audio_hash": "4846c73d25bd",
+    "updated_at": "2026-09-19T04:52:54.947450+00:00"
+  },
+  "quest__q_pr_down_to_drifthaven__offer": {
+    "text": "走出黑树林，走进太阳里，冒险者。沿着岸边路向北，赶在潮水转向之前你就能到漂流港。去找打捞头目莱娜，风暴过后她那儿多的是活计，谁的手都用得上，再告诉她缠木隘口的路还通着。",
+    "text_hash": "fc7078d58c590a33",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "30多岁走出幽暗丛林来到阳光海滩的守卫哨兵，嗓音爽朗阳光、开阔放松、带着海岛惬意笑意的青年男中音",
+    "mode": "clone",
+    "anchor_key": "strandwatcher_pell",
+    "npc_seed": 92295020,
+    "audio_path": "strandwatcher_pell/quest__q_pr_down_to_drifthaven__offer.mp3",
+    "audio_hash": "e850e8a65e09",
+    "updated_at": "2026-09-19T04:57:06.545257+00:00"
+  },
+  "quest__q_eg_gate_report__offer": {
+    "text": "这道门后的草坪已经自己修剪了一百年，冒险者，而最近它们开始修剪访客了。园丁长阿玛兰丝在篱苑镇管着记录，就在门前草坪再往前的路上。告诉她又有一位旅人进了园子，还有，门边的树篱昨夜挪动了。",
+    "text_hash": "8427a120ec3b9032",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "30多岁看守古老花园大门的小守卫官，声音温和尽责、略带神经质紧张，说话时忍不住回头张望灌木丛的年轻男声",
+    "mode": "clone",
+    "anchor_key": "gatewarden_pell",
+    "npc_seed": 79935709,
+    "audio_path": "gatewarden_pell/quest__q_eg_gate_report__offer.mp3",
+    "audio_hash": "10f4ae579a6b",
+    "updated_at": "2026-09-19T04:57:35.124432+00:00"
+  },
+  "quest__q_fs_song_before_the_break__complete": {
+    "text": "守望者派你来的？好。这说明镇子总算肯听了。现在静一静，冒险者。那儿，在风声底下，听见了吗？峭壁在唱歌，而我不喜欢这个调子。",
+    "text_hash": "3230964a8ccb2d50",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁能提前听到空间裂隙异响的学者，声音紧张急促、时而骤然停顿屏息侧耳倾听的神经质狂热学者男声",
+    "mode": "clone",
+    "anchor_key": "riftwatch_ollun",
+    "npc_seed": 54298595,
+    "audio_path": "riftwatch_ollun/quest__q_fs_song_before_the_break__complete.mp3",
+    "audio_hash": "361abe4e61b2",
+    "updated_at": "2026-09-19T05:02:41.476948+00:00"
+  },
+  "quest__q_fs_moss_and_mending__offer": {
+    "text": "潮线边生长的盐苔是我所知最好的敷伤药，可裂生怪占了它生长的每一段海岸。说来也怪，它们的皮上就挂着一撮撮刮下来的盐苔。把东边滩涂上的六只清掉，冒险者，再从它们踩烂的苔地里给我采四把好苔来。",
+    "text_hash": "a349d053759a291a",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁战场战地医师外科军医，疲惫温和、语气严谨精准，字里行间流露真挚悲悯之心的成年医者男性嗓音",
+    "mode": "clone",
+    "anchor_key": "mender_saul",
+    "npc_seed": 18655655,
+    "audio_path": "mender_saul/quest__q_fs_moss_and_mending__offer.mp3",
+    "audio_hash": "03670e2b50a4",
+    "updated_at": "2026-09-19T05:03:12.819296+00:00"
+  },
+  "quest__q_fs_moss_and_mending__complete": {
+    "text": "一手是盐苔，一手是安静下来的海岸线。你把我整间手术房都补齐了，冒险者。行行好，别成了我的下一个病人。",
+    "text_hash": "a6d13985c16fdf6f",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁战场战地医师外科军医，疲惫温和、语气严谨精准，字里行间流露真挚悲悯之心的成年医者男性嗓音",
+    "mode": "clone",
+    "anchor_key": "mender_saul",
+    "npc_seed": 18655655,
+    "audio_path": "mender_saul/quest__q_fs_moss_and_mending__complete.mp3",
+    "audio_hash": "608811855a1b",
+    "updated_at": "2026-09-19T05:03:28.984278+00:00"
+  },
+  "quest__q_fs_stalkers_off_the_light__offer": {
+    "text": "潜行者在哨火之间的黑暗里狩猎，每一夜都把包围我草甸的圈子收得更紧一些。它们并非没有心智，冒险者，它们有的是耐心，而耐心恰恰是我唯一耗不过的东西。杀掉八只，把黑暗推回它钻出来的峭壁去。",
+    "text_hash": "be5593a8b0f221f1",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁能提前听到空间裂隙异响的学者，声音紧张急促、时而骤然停顿屏息侧耳倾听的神经质狂热学者男声",
+    "mode": "clone",
+    "anchor_key": "riftwatch_ollun",
+    "npc_seed": 54298595,
+    "audio_path": "riftwatch_ollun/quest__q_fs_stalkers_off_the_light__offer.mp3",
+    "audio_hash": "a4ee0726cf09",
+    "updated_at": "2026-09-19T05:03:55.608390+00:00"
+  },
+  "quest__q_fs_stalkers_off_the_light__complete": {
+    "text": "八夜的围困，一夜了结。火光已经烧得稳了些，也可能只是我的手稳了。不管怎样，草甸又是我的了，我又能听见这座岛思考了。",
+    "text_hash": "f2595a797255d744",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁能提前听到空间裂隙异响的学者，声音紧张急促、时而骤然停顿屏息侧耳倾听的神经质狂热学者男声",
+    "mode": "clone",
+    "anchor_key": "riftwatch_ollun",
+    "npc_seed": 54298595,
+    "audio_path": "riftwatch_ollun/quest__q_fs_stalkers_off_the_light__complete.mp3",
+    "audio_hash": "8109b7d244e2",
+    "updated_at": "2026-09-19T05:04:12.275383+00:00"
+  },
+  "quest__q_fs_the_great_break__offer": {
+    "text": "这座岛唱的每一支歌，都终结在同一个低音上，而那个音来自碎裂断崖。有什么东西从那里的大裂隙里过来了，冒险者，是峭壁亲自裂开身子放进来的东西，而它还在生长。一旦它向北走，什么钟声都救不了了。带上一个朋友，带上两个，终结它。然后告诉煤耐，曲调变了。",
+    "text_hash": "7372f032f9e65675",
+    "speaker": "(由 instruct 描述生成)",
+    "instruct": "40多岁能提前听到空间裂隙异响的学者，声音紧张急促、时而骤然停顿屏息侧耳倾听的神经质狂热学者男声",
+    "mode": "clone",
+    "anchor_key": "riftwatch_ollun",
+    "npc_seed": 54298595,
+    "audio_path": "riftwatch_ollun/quest__q_fs_the_great_break__offer.mp3",
+    "audio_hash": "bde7d9a04c3a",
+    "updated_at": "2026-09-19T05:04:48.547517+00:00"
   }
 }

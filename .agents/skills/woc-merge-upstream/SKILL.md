@@ -49,7 +49,7 @@ git merge upstream/main
 1. **HTML Shells (`index.html` & `play.html`)**:
    - **Compliance Card Retention**: Retain the CADPA 12+ age badge, national health game advisory, ICP footer, and community non-commercial notice.
    - **Download Matrix**: Retain the custom desktop (Win/Linux/macOS) and mobile (Android/iOS) download grid pointing to domestic distribution URLs (`worldofclaudecraft.aoruantech.com`).
-   - **Version Number**: Update `#game-version` and client links to match upstream's new version (e.g., `v0.43.2`).
+   - **Version Number**: Update `#game-version` and client links to match upstream's new version (e.g., `v0.43.2`). Run `node scripts/release_version.mjs prepare <version>` to synchronize all client files automatically.
    - **Language & Graphics Settings**: Retain the Chinese-first language selector and graphics control dropdowns.
 
 2. **Localization & Translations (`src/ui/i18n.*`)**:
@@ -66,6 +66,11 @@ git merge upstream/main
      export const DEFAULT_LANGUAGE: SupportedLanguage = isTestEnv ? 'en' : 'zh_CN';
      ```
    - This ensures browser/production clients default to `zh_CN`, while automated Vitest runs evaluate in `en`.
+
+4. **Multi-Platform Client Versioning & Wire Protocol Synchronization (`release_version.mjs`)**:
+   - **自动化多端版本同步**：合流后严禁仅手工修改 HTML，必须执行 `node scripts/release_version.mjs prepare <version>` 确保 `package.json`、Android `versionName`、iOS `MARKETING_VERSION`、`index.html`、`play.html`、`README.md` 等全端版本 100% 同步。
+   - **握手协议 Epoch (Incompatible World Layout 鉴权)**：
+     客户端连接报错“版本不兼容”的根本原因在于 `src/world_api.ts` 的 `ONLINE_WORLD_LAYOUT_VERSION` 与 `ONLINE_WORLD_AUTH_TYPE`。当上游未升级协议版本时，国内版必须保持严格一致（当前为 29，对应 `auth-world-29`），杜绝因客户端打包与服务端 Epoch 脱节导致玩家无法登录。
 
 ## 4. Bidirectional Change Audit (双向变更审查：正向变动梳理 + 反向本地化防回归审查)
 
@@ -110,9 +115,15 @@ git diff --stat ${BASE_COMMIT}..upstream/main
 
 After resolving conflicts and committing the merge:
 
-1. **Type Checking**:
+1. **Client Version & Multi-Platform Parity Check (强制多端版本门禁)**:
    ```bash
    export PATH=/home/yeleo/miniconda3/envs/claudecraft/bin:/usr/bin:/bin:$PATH
+   npm run release:check
+   ```
+   必须确保 0 failures。验证 Android、iOS、PC、Web 及文档版本号 100% 同步对齐。
+
+2. **Type Checking**:
+   ```bash
    npm run check:types
    ```
    Must pass with 0 errors across TS, Svelte, and Bot schemas.
@@ -159,14 +170,18 @@ $$\text{全新 NPC} \xrightarrow{\text{VoiceDesign 抽卡}} \text{固化永久�
    - 仅当游戏引入了**数据库从未收录过的全新 NPC** 时，才使用 VoiceDesign 抽卡调试出最佳音色，固化写入 `scripts/voices/anchors/`，此后永久转入解耦克隆模式。
 
 ### 2. 强制变更扫描与指纹校验
+**重要认知：解耦上游残缺清单**：
+上游源仓库的 `voice_manifest.generated.ts` 常年滞后（仅包含旧的 578 条），而数据层 `src/sim/data.ts` 实际有 611 条台词。国内脚本已通过 `scripts/voices/export_catalog.mjs` 实现了与数据层的真实对接，以 611 条为全量真理基准。
+
 执行增量状态检查命令：
 ```bash
 conda activate tts
 python scripts/gen_chinese_voices.py --status
 ```
 该命令会自动比对 `src/ui/i18n.locales/zh_CN.ts` 最新台词与 `scripts/voices/zh_voice_cache.json` 中的配置指纹（MD5/SHA256）。
-- 若提示 `✨ 所有语音均已处于最新状态`：表示全部 578 条语音与文本 100% 同步，无需重新生成。
-- 若提示 `待生成/待更新: N 条`：表明上游合并修改了剧情文本或问候语，只需执行自动化增量重绘。
+- 若提示 `✨ 所有语音均已处于最新状态`：表示全部 611 条语音与文本 100% 同步，且待生成/待更新为 0 条。
+- 若提示 `待生成/待更新: N 条`：表明上游合并加入了新任务/新NPC或修改了剧情文本，只需执行自动化增量重绘。
+- **回退与占位符门禁**：严禁核心剧情台词静默回退为「你好，旅行者。」，严禁出现未经定制的通用冒险者模版音色。
 
 ### 3. 文本规整与变量插值防崩规范
 合成前必须经过 `clean_spoken_text()` 规整：
